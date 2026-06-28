@@ -54,46 +54,49 @@
 // Max 1MHz for esp-idf, but device supports up to 1.7Mhz
 #define I2C_FREQ_HZ (1000000)
 
-#define CHECK(x) do { esp_err_t __; if ((__ = x) != ESP_OK) return __; } while (0)
-#define CHECK_ARG(VAL) do { if (!(VAL)) return ESP_ERR_INVALID_ARG; } while (0)
+#define CHECK(x)                                                                                                                                                                                       \
+    do                                                                                                                                                                                                 \
+    {                                                                                                                                                                                                  \
+        esp_err_t __;                                                                                                                                                                                  \
+        if ((__ = x) != ESP_OK)                                                                                                                                                                        \
+            return __;                                                                                                                                                                                 \
+    }                                                                                                                                                                                                  \
+    while (0)
+#define CHECK_ARG(VAL)                                                                                                                                                                                 \
+    do                                                                                                                                                                                                 \
+    {                                                                                                                                                                                                  \
+        if (!(VAL))                                                                                                                                                                                    \
+            return ESP_ERR_INVALID_ARG;                                                                                                                                                                \
+    }                                                                                                                                                                                                  \
+    while (0)
 
 static const char *TAG = "mpu6050";
 
-static const float accel_res[] =
-{
-    [MPU6050_ACCEL_RANGE_2]  = 2.0f / 32768.0f,
-    [MPU6050_ACCEL_RANGE_4]  = 4.0f / 32768.0f,
-    [MPU6050_ACCEL_RANGE_8]  = 8.0f / 32768.0f,
+static const float accel_res[] = {
+    [MPU6050_ACCEL_RANGE_2] = 2.0f / 32768.0f,
+    [MPU6050_ACCEL_RANGE_4] = 4.0f / 32768.0f,
+    [MPU6050_ACCEL_RANGE_8] = 8.0f / 32768.0f,
     [MPU6050_ACCEL_RANGE_16] = 16.0f / 32768.0f,
 };
 
-static const float gyro_res[] =
-{
-    [MPU6050_GYRO_RANGE_250]  = 250.0f / 32768.0f,
-    [MPU6050_GYRO_RANGE_500]  = 500.0f / 32768.0f,
+static const float gyro_res[] = {
+    [MPU6050_GYRO_RANGE_250] = 250.0f / 32768.0f,
+    [MPU6050_GYRO_RANGE_500] = 500.0f / 32768.0f,
     [MPU6050_GYRO_RANGE_1000] = 1000.0f / 32768.0f,
     [MPU6050_GYRO_RANGE_2000] = 2000.0f / 32768.0f,
 };
 
 inline static float get_accel_value(mpu6050_dev_t *dev, int16_t raw)
-{
-    return (float)raw * accel_res[dev->ranges.accel];
-}
+{ return (float)raw * accel_res[dev->ranges.accel]; }
 
 inline static float get_gyro_value(mpu6050_dev_t *dev, int16_t raw)
-{
-    return (float)raw * gyro_res[dev->ranges.gyro];
-}
+{ return (float)raw * gyro_res[dev->ranges.gyro]; }
 
 inline static int16_t shuffle(uint16_t word)
-{
-    return (int16_t)((word >> 8) | (word << 8));
-}
+{ return (int16_t)((word >> 8) | (word << 8)); }
 
 inline static uint16_t ushuffle(uint16_t word)
-{
-    return ((word >> 8) | (word << 8));
-}
+{ return ((word >> 8) | (word << 8)); }
 
 static esp_err_t read_reg_bits(mpu6050_dev_t *dev, uint8_t reg_addr, uint8_t offset, uint8_t mask, uint8_t *value)
 {
@@ -189,9 +192,7 @@ static esp_err_t read_reg_bool(mpu6050_dev_t *dev, uint8_t reg_addr, uint8_t off
 }
 
 static inline esp_err_t write_reg_bool(mpu6050_dev_t *dev, uint8_t reg_addr, uint8_t offset, bool value)
-{
-    return write_reg_bits(dev, reg_addr, offset, BIT(offset), value ? 1 : 0);
-}
+{ return write_reg_bits(dev, reg_addr, offset, BIT(offset), value ? 1 : 0); }
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -236,44 +237,28 @@ esp_err_t mpu6050_init(mpu6050_dev_t *dev)
 }
 
 esp_err_t mpu6050_get_aux_vddio_level(mpu6050_dev_t *dev, mpu6050_vddio_level_t *level)
-{
-    return read_reg_bits(dev, MPU6050_REGISTER_YG_OFFS_TC, MPU6050_TC_PWR_MODE_BIT, BIT(MPU6050_TC_PWR_MODE_BIT), (uint8_t *)level);
-}
+{ return read_reg_bits(dev, MPU6050_REGISTER_YG_OFFS_TC, MPU6050_TC_PWR_MODE_BIT, BIT(MPU6050_TC_PWR_MODE_BIT), (uint8_t *)level); }
 
 esp_err_t mpu6050_set_aux_vddio_level(mpu6050_dev_t *dev, mpu6050_vddio_level_t level)
-{
-    return write_reg_bits(dev, MPU6050_REGISTER_YG_OFFS_TC, MPU6050_TC_PWR_MODE_BIT, BIT(MPU6050_TC_PWR_MODE_BIT), level);
-}
+{ return write_reg_bits(dev, MPU6050_REGISTER_YG_OFFS_TC, MPU6050_TC_PWR_MODE_BIT, BIT(MPU6050_TC_PWR_MODE_BIT), level); }
 
 esp_err_t mpu6050_get_rate(mpu6050_dev_t *dev, uint8_t *rate)
-{
-    return read_reg(dev, MPU6050_REGISTER_SMPLRT_DIV, rate);
-}
+{ return read_reg(dev, MPU6050_REGISTER_SMPLRT_DIV, rate); }
 
 esp_err_t mpu6050_set_rate(mpu6050_dev_t *dev, uint8_t rate)
-{
-    return write_reg(dev, MPU6050_REGISTER_SMPLRT_DIV, rate);
-}
+{ return write_reg(dev, MPU6050_REGISTER_SMPLRT_DIV, rate); }
 
 esp_err_t mpu6050_get_external_frame_sync(mpu6050_dev_t *dev, mpu6050_ext_sync_t *sync)
-{
-    return read_reg_bits(dev, MPU6050_REGISTER_CONFIG, MPU6050_CFG_EXT_SYNC_SET_BIT, MPU6050_CFG_EXT_SYNC_SET_MASK, (uint8_t *)sync);
-}
+{ return read_reg_bits(dev, MPU6050_REGISTER_CONFIG, MPU6050_CFG_EXT_SYNC_SET_BIT, MPU6050_CFG_EXT_SYNC_SET_MASK, (uint8_t *)sync); }
 
 esp_err_t mpu6050_set_external_frame_sync(mpu6050_dev_t *dev, mpu6050_ext_sync_t sync)
-{
-    return write_reg_bits(dev, MPU6050_REGISTER_CONFIG, MPU6050_CFG_EXT_SYNC_SET_BIT, MPU6050_CFG_EXT_SYNC_SET_MASK, sync);
-}
+{ return write_reg_bits(dev, MPU6050_REGISTER_CONFIG, MPU6050_CFG_EXT_SYNC_SET_BIT, MPU6050_CFG_EXT_SYNC_SET_MASK, sync); }
 
 esp_err_t mpu6050_get_dlpf_mode(mpu6050_dev_t *dev, mpu6050_dlpf_mode_t *mode)
-{
-    return read_reg_bits(dev, MPU6050_REGISTER_CONFIG, MPU6050_CFG_DLPF_CFG_BIT, MPU6050_CFG_DLPF_CFG_MASK, (uint8_t *)mode);
-}
+{ return read_reg_bits(dev, MPU6050_REGISTER_CONFIG, MPU6050_CFG_DLPF_CFG_BIT, MPU6050_CFG_DLPF_CFG_MASK, (uint8_t *)mode); }
 
 esp_err_t mpu6050_set_dlpf_mode(mpu6050_dev_t *dev, mpu6050_dlpf_mode_t mode)
-{
-    return write_reg_bits(dev, MPU6050_REGISTER_CONFIG, MPU6050_CFG_DLPF_CFG_BIT, MPU6050_CFG_DLPF_CFG_MASK, mode);
-}
+{ return write_reg_bits(dev, MPU6050_REGISTER_CONFIG, MPU6050_CFG_DLPF_CFG_BIT, MPU6050_CFG_DLPF_CFG_MASK, mode); }
 
 esp_err_t mpu6050_get_full_scale_gyro_range(mpu6050_dev_t *dev, mpu6050_gyro_range_t *range)
 {
@@ -302,8 +287,7 @@ esp_err_t mpu6050_get_accel_self_test_factory_trim(mpu6050_dev_t *dev, mpu6050_a
     static const struct
     {
         uint8_t r, s;
-    } regs[] =
-    {
+    } regs[] = {
         [MPU6050_X_AXIS] = { .r = MPU6050_REGISTER_SELF_TEST_X, .s = 4 },
         [MPU6050_Y_AXIS] = { .r = MPU6050_REGISTER_SELF_TEST_Y, .s = 2 },
         [MPU6050_Z_AXIS] = { .r = MPU6050_REGISTER_SELF_TEST_Z, .s = 0 },
@@ -324,8 +308,7 @@ esp_err_t mpu6050_get_gyro_self_test_factory_trim(mpu6050_dev_t *dev, mpu6050_ax
 {
     CHECK_ARG(axis <= MPU6050_Z_AXIS);
 
-    static const uint8_t regs[] =
-    {
+    static const uint8_t regs[] = {
         [MPU6050_X_AXIS] = MPU6050_REGISTER_SELF_TEST_X,
         [MPU6050_Y_AXIS] = MPU6050_REGISTER_SELF_TEST_Y,
         [MPU6050_Z_AXIS] = MPU6050_REGISTER_SELF_TEST_Z,
@@ -337,8 +320,7 @@ esp_err_t mpu6050_get_gyro_self_test_factory_trim(mpu6050_dev_t *dev, mpu6050_ax
     return ESP_OK;
 }
 
-static const uint8_t accel_sta_bits[] =
-{
+static const uint8_t accel_sta_bits[] = {
     [MPU6050_X_AXIS] = MPU6050_ACONFIG_XA_ST_BIT,
     [MPU6050_Y_AXIS] = MPU6050_ACONFIG_YA_ST_BIT,
     [MPU6050_Z_AXIS] = MPU6050_ACONFIG_ZA_ST_BIT,
@@ -379,87 +361,54 @@ esp_err_t mpu6050_set_full_scale_accel_range(mpu6050_dev_t *dev, mpu6050_accel_r
 }
 
 esp_err_t mpu6050_get_dhpf_mode(mpu6050_dev_t *dev, mpu6050_dhpf_mode_t *mode)
-{
-    return read_reg_bits(dev, MPU6050_REGISTER_ACCEL_CONFIG, MPU6050_ACONFIG_ACCEL_HPF_BIT, MPU6050_ACONFIG_ACCEL_HPF_MASK, (uint8_t *)mode);
-}
+{ return read_reg_bits(dev, MPU6050_REGISTER_ACCEL_CONFIG, MPU6050_ACONFIG_ACCEL_HPF_BIT, MPU6050_ACONFIG_ACCEL_HPF_MASK, (uint8_t *)mode); }
 
 esp_err_t mpu6050_set_dhpf_mode(mpu6050_dev_t *dev, mpu6050_dhpf_mode_t mode)
-{
-    return write_reg_bits(dev, MPU6050_REGISTER_ACCEL_CONFIG, MPU6050_ACONFIG_ACCEL_HPF_BIT, MPU6050_ACONFIG_ACCEL_HPF_MASK, mode);
-}
+{ return write_reg_bits(dev, MPU6050_REGISTER_ACCEL_CONFIG, MPU6050_ACONFIG_ACCEL_HPF_BIT, MPU6050_ACONFIG_ACCEL_HPF_MASK, mode); }
 
 esp_err_t mpu6050_get_freefall_detection_threshold(mpu6050_dev_t *dev, uint8_t *threshold)
-{
-    return read_reg(dev, MPU6050_REGISTER_FF_THR, threshold);
-}
+{ return read_reg(dev, MPU6050_REGISTER_FF_THR, threshold); }
 
 esp_err_t mpu6050_set_freefall_detection_threshold(mpu6050_dev_t *dev, uint8_t threshold)
-{
-    return write_reg(dev, MPU6050_REGISTER_FF_THR, threshold);
-}
+{ return write_reg(dev, MPU6050_REGISTER_FF_THR, threshold); }
 
 esp_err_t mpu6050_get_freefall_detection_duration(mpu6050_dev_t *dev, uint8_t *duration_ms)
-{
-    return read_reg(dev, MPU6050_REGISTER_FF_DUR, duration_ms);
-}
+{ return read_reg(dev, MPU6050_REGISTER_FF_DUR, duration_ms); }
 
 esp_err_t mpu6050_set_freefall_detection_duration(mpu6050_dev_t *dev, uint8_t duration_ms)
-{
-    return write_reg(dev, MPU6050_REGISTER_FF_DUR, duration_ms);
-}
+{ return write_reg(dev, MPU6050_REGISTER_FF_DUR, duration_ms); }
 
 esp_err_t mpu6050_get_motion_detection_threshold(mpu6050_dev_t *dev, uint8_t *threshold)
-{
-    return read_reg(dev, MPU6050_REGISTER_MOT_THR, threshold);
-}
+{ return read_reg(dev, MPU6050_REGISTER_MOT_THR, threshold); }
 
 esp_err_t mpu6050_set_motion_detection_threshold(mpu6050_dev_t *dev, uint8_t threshold)
-{
-    return write_reg(dev, MPU6050_REGISTER_MOT_THR, threshold);
-}
+{ return write_reg(dev, MPU6050_REGISTER_MOT_THR, threshold); }
 
 esp_err_t mpu6050_get_motion_detection_duration(mpu6050_dev_t *dev, uint8_t *duration)
-{
-    return read_reg(dev, MPU6050_REGISTER_MOT_DUR, duration);
-}
+{ return read_reg(dev, MPU6050_REGISTER_MOT_DUR, duration); }
 
 esp_err_t mpu6050_set_motion_detection_duration(mpu6050_dev_t *dev, uint8_t duration)
-{
-    return write_reg(dev, MPU6050_REGISTER_MOT_DUR, duration);
-}
+{ return write_reg(dev, MPU6050_REGISTER_MOT_DUR, duration); }
 
 esp_err_t mpu6050_get_zero_motion_detection_threshold(mpu6050_dev_t *dev, uint8_t *threshold)
-{
-    return read_reg(dev, MPU6050_REGISTER_ZRMOT_THR, threshold);
-}
+{ return read_reg(dev, MPU6050_REGISTER_ZRMOT_THR, threshold); }
 
 esp_err_t mpu6050_set_zero_motion_detection_threshold(mpu6050_dev_t *dev, uint8_t threshold)
-{
-    return write_reg(dev, MPU6050_REGISTER_ZRMOT_THR, threshold);
-}
+{ return write_reg(dev, MPU6050_REGISTER_ZRMOT_THR, threshold); }
 
 esp_err_t mpu6050_get_zero_motion_detection_duration(mpu6050_dev_t *dev, uint8_t *duration)
-{
-    return read_reg(dev, MPU6050_REGISTER_ZRMOT_DUR, duration);
-}
+{ return read_reg(dev, MPU6050_REGISTER_ZRMOT_DUR, duration); }
 
 esp_err_t mpu6050_set_zero_motion_detection_duration(mpu6050_dev_t *dev, uint8_t duration)
-{
-    return write_reg(dev, MPU6050_REGISTER_ZRMOT_DUR, duration);
-}
+{ return write_reg(dev, MPU6050_REGISTER_ZRMOT_DUR, duration); }
 
 esp_err_t mpu6050_get_temp_fifo_enabled(mpu6050_dev_t *dev, bool *enabled)
-{
-    return read_reg_bool(dev, MPU6050_REGISTER_FIFO_EN, MPU6050_TEMP_FIFO_EN_BIT, enabled);
-}
+{ return read_reg_bool(dev, MPU6050_REGISTER_FIFO_EN, MPU6050_TEMP_FIFO_EN_BIT, enabled); }
 
 esp_err_t mpu6050_set_temp_fifo_enabled(mpu6050_dev_t *dev, bool enabled)
-{
-    return write_reg_bool(dev, MPU6050_REGISTER_FIFO_EN, MPU6050_TEMP_FIFO_EN_BIT, enabled);
-}
+{ return write_reg_bool(dev, MPU6050_REGISTER_FIFO_EN, MPU6050_TEMP_FIFO_EN_BIT, enabled); }
 
-static const uint8_t gyro_fifo_bits[] =
-{
+static const uint8_t gyro_fifo_bits[] = {
     [MPU6050_X_AXIS] = MPU6050_XG_FIFO_EN_BIT,
     [MPU6050_Y_AXIS] = MPU6050_YG_FIFO_EN_BIT,
     [MPU6050_Z_AXIS] = MPU6050_ZG_FIFO_EN_BIT,
@@ -480,20 +429,15 @@ esp_err_t mpu6050_set_gyro_fifo_enabled(mpu6050_dev_t *dev, mpu6050_axis_t axis,
 }
 
 esp_err_t mpu6050_get_accel_fifo_enabled(mpu6050_dev_t *dev, bool *enabled)
-{
-    return read_reg_bool(dev, MPU6050_REGISTER_FIFO_EN, MPU6050_ACCEL_FIFO_EN_BIT, enabled);
-}
+{ return read_reg_bool(dev, MPU6050_REGISTER_FIFO_EN, MPU6050_ACCEL_FIFO_EN_BIT, enabled); }
 
 esp_err_t mpu6050_set_accel_fifo_enabled(mpu6050_dev_t *dev, bool enabled)
-{
-    return write_reg_bool(dev, MPU6050_REGISTER_FIFO_EN, MPU6050_ACCEL_FIFO_EN_BIT, enabled);
-}
+{ return write_reg_bool(dev, MPU6050_REGISTER_FIFO_EN, MPU6050_ACCEL_FIFO_EN_BIT, enabled); }
 
 static const struct
 {
     uint8_t r, b;
-} slave_fifo_bits[] =
-{
+} slave_fifo_bits[] = {
     [MPU6050_SLAVE_0] = { .r = MPU6050_REGISTER_FIFO_EN, .b = MPU6050_SLV2_FIFO_EN_BIT },
     [MPU6050_SLAVE_1] = { .r = MPU6050_REGISTER_FIFO_EN, .b = MPU6050_SLV1_FIFO_EN_BIT },
     [MPU6050_SLAVE_2] = { .r = MPU6050_REGISTER_FIFO_EN, .b = MPU6050_SLV0_FIFO_EN_BIT },
@@ -515,44 +459,28 @@ esp_err_t mpu6050_set_slave_fifo_enabled(mpu6050_dev_t *dev, mpu6050_slave_t num
 }
 
 esp_err_t mpu6050_get_multi_master_enabled(mpu6050_dev_t *dev, bool *enabled)
-{
-    return read_reg_bool(dev, MPU6050_REGISTER_I2C_MST_CTRL, MPU6050_MULT_MST_EN_BIT, enabled);
-}
+{ return read_reg_bool(dev, MPU6050_REGISTER_I2C_MST_CTRL, MPU6050_MULT_MST_EN_BIT, enabled); }
 
 esp_err_t mpu6050_set_multi_master_enabled(mpu6050_dev_t *dev, bool enabled)
-{
-    return write_reg_bool(dev, MPU6050_REGISTER_I2C_MST_CTRL, MPU6050_MULT_MST_EN_BIT, enabled);
-}
+{ return write_reg_bool(dev, MPU6050_REGISTER_I2C_MST_CTRL, MPU6050_MULT_MST_EN_BIT, enabled); }
 
 esp_err_t mpu6050_get_wait_for_external_sensor_enabled(mpu6050_dev_t *dev, bool *enabled)
-{
-    return read_reg_bool(dev, MPU6050_REGISTER_I2C_MST_CTRL, MPU6050_WAIT_FOR_ES_BIT, enabled);
-}
+{ return read_reg_bool(dev, MPU6050_REGISTER_I2C_MST_CTRL, MPU6050_WAIT_FOR_ES_BIT, enabled); }
 
 esp_err_t mpu6050_set_wait_for_external_sensor_enabled(mpu6050_dev_t *dev, bool enabled)
-{
-    return write_reg_bool(dev, MPU6050_REGISTER_I2C_MST_CTRL, MPU6050_WAIT_FOR_ES_BIT, enabled);
-}
+{ return write_reg_bool(dev, MPU6050_REGISTER_I2C_MST_CTRL, MPU6050_WAIT_FOR_ES_BIT, enabled); }
 
 esp_err_t mpu6050_get_slave_read_write_transition_enabled(mpu6050_dev_t *dev, bool *enabled)
-{
-    return read_reg_bool(dev, MPU6050_REGISTER_I2C_MST_CTRL, MPU6050_I2C_MST_P_NSR_BIT, enabled);
-}
+{ return read_reg_bool(dev, MPU6050_REGISTER_I2C_MST_CTRL, MPU6050_I2C_MST_P_NSR_BIT, enabled); }
 
 esp_err_t mpu6050_set_slave_read_write_transition_enabled(mpu6050_dev_t *dev, bool enabled)
-{
-    return write_reg_bool(dev, MPU6050_REGISTER_I2C_MST_CTRL, MPU6050_I2C_MST_P_NSR_BIT, enabled);
-}
+{ return write_reg_bool(dev, MPU6050_REGISTER_I2C_MST_CTRL, MPU6050_I2C_MST_P_NSR_BIT, enabled); }
 
 esp_err_t mpu6050_get_master_clock_speed(mpu6050_dev_t *dev, mpu6050_i2c_master_clock_t *clk_spd)
-{
-    return read_reg_bits(dev, MPU6050_REGISTER_I2C_MST_CTRL, MPU6050_I2C_MST_CLK_BIT, MPU6050_I2C_MST_CLK_MASK, (uint8_t *)clk_spd);
-}
+{ return read_reg_bits(dev, MPU6050_REGISTER_I2C_MST_CTRL, MPU6050_I2C_MST_CLK_BIT, MPU6050_I2C_MST_CLK_MASK, (uint8_t *)clk_spd); }
 
 esp_err_t mpu6050_set_master_clock_speed(mpu6050_dev_t *dev, mpu6050_i2c_master_clock_t clk_spd)
-{
-    return write_reg_bits(dev, MPU6050_REGISTER_I2C_MST_CTRL, MPU6050_I2C_MST_CLK_BIT, MPU6050_I2C_MST_CLK_MASK, clk_spd);
-}
+{ return write_reg_bits(dev, MPU6050_REGISTER_I2C_MST_CTRL, MPU6050_I2C_MST_CLK_BIT, MPU6050_I2C_MST_CLK_MASK, clk_spd); }
 
 esp_err_t mpu6050_get_slave_address(mpu6050_dev_t *dev, mpu6050_slave_t num, uint8_t *addr)
 {
@@ -653,56 +581,37 @@ esp_err_t mpu6050_set_slave_data_length(mpu6050_dev_t *dev, mpu6050_slave_t num,
 }
 
 esp_err_t mpu6050_set_slave_4_output_byte(mpu6050_dev_t *dev, uint8_t data)
-{
-    return write_reg(dev, MPU6050_REGISTER_I2C_SLV4_DO, data);
-}
+{ return write_reg(dev, MPU6050_REGISTER_I2C_SLV4_DO, data); }
 
 esp_err_t mpu6050_get_slave_4_interrupt_enabled(mpu6050_dev_t *dev, bool *enabled)
-{
-    return read_reg_bool(dev, MPU6050_REGISTER_I2C_SLV4_CTRL, MPU6050_I2C_SLV4_INT_EN_BIT, enabled);
-}
+{ return read_reg_bool(dev, MPU6050_REGISTER_I2C_SLV4_CTRL, MPU6050_I2C_SLV4_INT_EN_BIT, enabled); }
 
 esp_err_t mpu6050_set_slave_4_interrupt_enabled(mpu6050_dev_t *dev, bool enabled)
-{
-    return write_reg_bool(dev, MPU6050_REGISTER_I2C_SLV4_CTRL, MPU6050_I2C_SLV4_INT_EN_BIT, enabled);
-}
+{ return write_reg_bool(dev, MPU6050_REGISTER_I2C_SLV4_CTRL, MPU6050_I2C_SLV4_INT_EN_BIT, enabled); }
 
 esp_err_t mpu6050_get_slave_4_master_delay(mpu6050_dev_t *dev, uint8_t *delay)
-{
-    return read_reg_bits(dev, MPU6050_REGISTER_I2C_SLV4_CTRL, MPU6050_I2C_SLV4_MST_DLY_BIT, MPU6050_I2C_SLV4_MST_DLY_LENGTH, delay);
-}
+{ return read_reg_bits(dev, MPU6050_REGISTER_I2C_SLV4_CTRL, MPU6050_I2C_SLV4_MST_DLY_BIT, MPU6050_I2C_SLV4_MST_DLY_LENGTH, delay); }
 
 esp_err_t mpu6050_set_slave_4_master_delay(mpu6050_dev_t *dev, uint8_t delay)
-{
-    return write_reg_bits(dev, MPU6050_REGISTER_I2C_SLV4_CTRL, MPU6050_I2C_SLV4_MST_DLY_BIT, MPU6050_I2C_SLV4_MST_DLY_LENGTH, delay);
-}
+{ return write_reg_bits(dev, MPU6050_REGISTER_I2C_SLV4_CTRL, MPU6050_I2C_SLV4_MST_DLY_BIT, MPU6050_I2C_SLV4_MST_DLY_LENGTH, delay); }
 
 esp_err_t mpu6050_get_slave_4_input_byte(mpu6050_dev_t *dev, uint8_t *byte)
-{
-    return read_reg(dev, MPU6050_REGISTER_I2C_SLV4_DI, byte);
-}
+{ return read_reg(dev, MPU6050_REGISTER_I2C_SLV4_DI, byte); }
 
 esp_err_t mpu6050_get_passthrough_status(mpu6050_dev_t *dev, bool *enabled)
-{
-    return read_reg_bool(dev, MPU6050_REGISTER_I2C_MST_STATUS, MPU6050_MST_PASS_THROUGH_BIT, enabled);
-}
+{ return read_reg_bool(dev, MPU6050_REGISTER_I2C_MST_STATUS, MPU6050_MST_PASS_THROUGH_BIT, enabled); }
 
 esp_err_t mpu6050_get_slave_4_is_done(mpu6050_dev_t *dev, bool *enabled)
-{
-    return read_reg_bool(dev, MPU6050_REGISTER_I2C_MST_STATUS, MPU6050_MST_I2C_SLV4_DONE_BIT, enabled);
-}
+{ return read_reg_bool(dev, MPU6050_REGISTER_I2C_MST_STATUS, MPU6050_MST_I2C_SLV4_DONE_BIT, enabled); }
 
 esp_err_t mpu6050_get_lost_arbitration(mpu6050_dev_t *dev, bool *lost)
-{
-    return read_reg_bool(dev, MPU6050_REGISTER_I2C_MST_STATUS, MPU6050_MST_I2C_LOST_ARB_BIT, lost);
-}
+{ return read_reg_bool(dev, MPU6050_REGISTER_I2C_MST_STATUS, MPU6050_MST_I2C_LOST_ARB_BIT, lost); }
 
 esp_err_t mpu6050_get_slave_nack(mpu6050_dev_t *dev, mpu6050_slave_t num, bool *nack)
 {
     CHECK_ARG(num <= MPU6050_SLAVE_4);
 
-    static const uint8_t bits[] =
-    {
+    static const uint8_t bits[] = {
         [MPU6050_SLAVE_0] = MPU6050_MST_I2C_SLV0_NACK_BIT,
         [MPU6050_SLAVE_1] = MPU6050_MST_I2C_SLV1_NACK_BIT,
         [MPU6050_SLAVE_2] = MPU6050_MST_I2C_SLV2_NACK_BIT,
@@ -713,9 +622,7 @@ esp_err_t mpu6050_get_slave_nack(mpu6050_dev_t *dev, mpu6050_slave_t num, bool *
 }
 
 esp_err_t mpu6050_get_interrupt_mode(mpu6050_dev_t *dev, mpu6050_int_level_t *mode)
-{
-    return read_reg_bits(dev, MPU6050_REGISTER_INT_PIN_CFG, MPU6050_INTCFG_INT_LEVEL_BIT, BIT(MPU6050_INTCFG_INT_LEVEL_BIT), (uint8_t *)mode);
-}
+{ return read_reg_bits(dev, MPU6050_REGISTER_INT_PIN_CFG, MPU6050_INTCFG_INT_LEVEL_BIT, BIT(MPU6050_INTCFG_INT_LEVEL_BIT), (uint8_t *)mode); }
 
 esp_err_t mpu6050_set_interrupt_mode(mpu6050_dev_t *dev, mpu6050_int_level_t mode)
 {
@@ -725,9 +632,7 @@ esp_err_t mpu6050_set_interrupt_mode(mpu6050_dev_t *dev, mpu6050_int_level_t mod
 }
 
 esp_err_t mpu6050_get_interrupt_drive(mpu6050_dev_t *dev, mpu6050_int_drive_t *drive)
-{
-    return read_reg_bits(dev, MPU6050_REGISTER_INT_PIN_CFG, MPU6050_INTCFG_INT_OPEN_BIT, BIT(MPU6050_INTCFG_INT_OPEN_BIT), (uint8_t *)drive);
-}
+{ return read_reg_bits(dev, MPU6050_REGISTER_INT_PIN_CFG, MPU6050_INTCFG_INT_OPEN_BIT, BIT(MPU6050_INTCFG_INT_OPEN_BIT), (uint8_t *)drive); }
 
 esp_err_t mpu6050_set_interrupt_drive(mpu6050_dev_t *dev, mpu6050_int_drive_t drive)
 {
@@ -737,9 +642,7 @@ esp_err_t mpu6050_set_interrupt_drive(mpu6050_dev_t *dev, mpu6050_int_drive_t dr
 }
 
 esp_err_t mpu6050_get_interrupt_latch(mpu6050_dev_t *dev, mpu6050_int_latch_t *latch)
-{
-    return read_reg_bits(dev, MPU6050_REGISTER_INT_PIN_CFG, MPU6050_INTCFG_LATCH_INT_EN_BIT, BIT(MPU6050_INTCFG_LATCH_INT_EN_BIT), (uint8_t *)latch);
-}
+{ return read_reg_bits(dev, MPU6050_REGISTER_INT_PIN_CFG, MPU6050_INTCFG_LATCH_INT_EN_BIT, BIT(MPU6050_INTCFG_LATCH_INT_EN_BIT), (uint8_t *)latch); }
 
 esp_err_t mpu6050_set_interrupt_latch(mpu6050_dev_t *dev, mpu6050_int_latch_t latch)
 {
@@ -749,19 +652,13 @@ esp_err_t mpu6050_set_interrupt_latch(mpu6050_dev_t *dev, mpu6050_int_latch_t la
 }
 
 esp_err_t mpu6050_get_interrupt_latch_clear(mpu6050_dev_t *dev, bool *clear)
-{
-    return read_reg_bool(dev, MPU6050_REGISTER_INT_PIN_CFG, MPU6050_INTCFG_INT_RD_CLEAR_BIT, clear);
-}
+{ return read_reg_bool(dev, MPU6050_REGISTER_INT_PIN_CFG, MPU6050_INTCFG_INT_RD_CLEAR_BIT, clear); }
 
 esp_err_t mpu6050_set_interrupt_latch_clear(mpu6050_dev_t *dev, bool clear)
-{
-    return write_reg_bool(dev, MPU6050_REGISTER_INT_PIN_CFG, MPU6050_INTCFG_INT_RD_CLEAR_BIT, clear);
-}
+{ return write_reg_bool(dev, MPU6050_REGISTER_INT_PIN_CFG, MPU6050_INTCFG_INT_RD_CLEAR_BIT, clear); }
 
 esp_err_t mpu6050_get_fsync_interrupt_level(mpu6050_dev_t *dev, mpu6050_int_level_t *level)
-{
-    return read_reg_bits(dev, MPU6050_REGISTER_INT_PIN_CFG, MPU6050_INTCFG_FSYNC_INT_LEVEL_BIT, BIT(MPU6050_INTCFG_FSYNC_INT_LEVEL_BIT), (uint8_t *)level);
-}
+{ return read_reg_bits(dev, MPU6050_REGISTER_INT_PIN_CFG, MPU6050_INTCFG_FSYNC_INT_LEVEL_BIT, BIT(MPU6050_INTCFG_FSYNC_INT_LEVEL_BIT), (uint8_t *)level); }
 
 esp_err_t mpu6050_set_fsync_interrupt_level(mpu6050_dev_t *dev, mpu6050_int_level_t level)
 {
@@ -771,52 +668,33 @@ esp_err_t mpu6050_set_fsync_interrupt_level(mpu6050_dev_t *dev, mpu6050_int_leve
 }
 
 esp_err_t mpu6050_get_fsync_interrupt_enabled(mpu6050_dev_t *dev, bool *enabled)
-{
-    return read_reg_bool(dev, MPU6050_REGISTER_INT_PIN_CFG, MPU6050_INTCFG_FSYNC_INT_EN_BIT, enabled);
-}
+{ return read_reg_bool(dev, MPU6050_REGISTER_INT_PIN_CFG, MPU6050_INTCFG_FSYNC_INT_EN_BIT, enabled); }
 
 esp_err_t mpu6050_set_fsync_interrupt_enabled(mpu6050_dev_t *dev, bool enabled)
-{
-    return write_reg_bool(dev, MPU6050_REGISTER_INT_PIN_CFG, MPU6050_INTCFG_FSYNC_INT_EN_BIT, enabled);
-}
+{ return write_reg_bool(dev, MPU6050_REGISTER_INT_PIN_CFG, MPU6050_INTCFG_FSYNC_INT_EN_BIT, enabled); }
 
 esp_err_t mpu6050_get_i2c_bypass_enabled(mpu6050_dev_t *dev, bool *enabled)
-{
-    return read_reg_bool(dev, MPU6050_REGISTER_INT_PIN_CFG, MPU6050_INTCFG_I2C_BYPASS_EN_BIT, enabled);
-}
+{ return read_reg_bool(dev, MPU6050_REGISTER_INT_PIN_CFG, MPU6050_INTCFG_I2C_BYPASS_EN_BIT, enabled); }
 
 esp_err_t mpu6050_set_i2c_bypass_enabled(mpu6050_dev_t *dev, bool enabled)
-{
-    return write_reg_bool(dev, MPU6050_REGISTER_INT_PIN_CFG, MPU6050_INTCFG_I2C_BYPASS_EN_BIT, enabled);
-}
+{ return write_reg_bool(dev, MPU6050_REGISTER_INT_PIN_CFG, MPU6050_INTCFG_I2C_BYPASS_EN_BIT, enabled); }
 
 esp_err_t mpu6050_get_clock_output_enabled(mpu6050_dev_t *dev, bool *enabled)
-{
-    return read_reg_bool(dev, MPU6050_REGISTER_INT_PIN_CFG, MPU6050_INTCFG_CLKOUT_EN_BIT, enabled);
-}
+{ return read_reg_bool(dev, MPU6050_REGISTER_INT_PIN_CFG, MPU6050_INTCFG_CLKOUT_EN_BIT, enabled); }
 
 esp_err_t mpu6050_set_clock_output_enabled(mpu6050_dev_t *dev, bool enabled)
-{
-    return write_reg_bool(dev, MPU6050_REGISTER_INT_PIN_CFG, MPU6050_INTCFG_CLKOUT_EN_BIT, enabled);
-}
+{ return write_reg_bool(dev, MPU6050_REGISTER_INT_PIN_CFG, MPU6050_INTCFG_CLKOUT_EN_BIT, enabled); }
 
 esp_err_t mpu6050_get_int_enabled(mpu6050_dev_t *dev, uint8_t *ints)
-{
-    return read_reg(dev, MPU6050_REGISTER_INT_ENABLE, ints);
-}
+{ return read_reg(dev, MPU6050_REGISTER_INT_ENABLE, ints); }
 
 esp_err_t mpu6050_set_int_enabled(mpu6050_dev_t *dev, uint8_t ints)
-{
-    return write_reg(dev, MPU6050_REGISTER_INT_ENABLE, ints);
-}
+{ return write_reg(dev, MPU6050_REGISTER_INT_ENABLE, ints); }
 
 esp_err_t mpu6050_get_int_status(mpu6050_dev_t *dev, uint8_t *ints)
-{
-    return read_reg(dev, MPU6050_REGISTER_INT_ENABLE, ints);
-}
+{ return read_reg(dev, MPU6050_REGISTER_INT_ENABLE, ints); }
 
-static const uint8_t accel_offs_regs[] =
-{
+static const uint8_t accel_offs_regs[] = {
     [MPU6050_X_AXIS] = MPU6050_REGISTER_XA_OFFS_H,
     [MPU6050_Y_AXIS] = MPU6050_REGISTER_YA_OFFS_H,
     [MPU6050_Z_AXIS] = MPU6050_REGISTER_ZA_OFFS_H,
@@ -836,8 +714,7 @@ esp_err_t mpu6050_set_accel_offset(mpu6050_dev_t *dev, mpu6050_axis_t axis, int1
     return write_reg_word(dev, accel_offs_regs[axis], offset);
 }
 
-static const uint8_t gyro_offs_regs[] =
-{
+static const uint8_t gyro_offs_regs[] = {
     [MPU6050_X_AXIS] = MPU6050_REGISTER_XG_OFFS_USRH,
     [MPU6050_Y_AXIS] = MPU6050_REGISTER_YG_OFFS_USRH,
     [MPU6050_Z_AXIS] = MPU6050_REGISTER_ZG_OFFS_USRH,
@@ -987,9 +864,7 @@ esp_err_t mpu6050_get_external_sensor_data(mpu6050_dev_t *dev, int position, voi
 }
 
 esp_err_t mpu6050_get_motion_status(mpu6050_dev_t *dev, uint8_t *status)
-{
-    return read_reg(dev, MPU6050_REGISTER_MOT_DETECT_STATUS, status);
-}
+{ return read_reg(dev, MPU6050_REGISTER_MOT_DETECT_STATUS, status); }
 
 esp_err_t mpu6050_set_slave_output_byte(mpu6050_dev_t *dev, mpu6050_slave_t num, uint8_t data)
 {
@@ -999,14 +874,10 @@ esp_err_t mpu6050_set_slave_output_byte(mpu6050_dev_t *dev, mpu6050_slave_t num,
 }
 
 esp_err_t mpu6050_get_external_shadow_delay_enabled(mpu6050_dev_t *dev, bool *enabled)
-{
-    return read_reg_bool(dev, MPU6050_REGISTER_I2C_MST_DELAY_CTRL, MPU6050_DLYCTRL_DELAY_ES_SHADOW_BIT, enabled);
-}
+{ return read_reg_bool(dev, MPU6050_REGISTER_I2C_MST_DELAY_CTRL, MPU6050_DLYCTRL_DELAY_ES_SHADOW_BIT, enabled); }
 
 esp_err_t mpu6050_set_external_shadow_delay_enabled(mpu6050_dev_t *dev, bool enabled)
-{
-    return write_reg_bool(dev, MPU6050_REGISTER_I2C_MST_DELAY_CTRL, MPU6050_DLYCTRL_DELAY_ES_SHADOW_BIT, enabled);
-}
+{ return write_reg_bool(dev, MPU6050_REGISTER_I2C_MST_DELAY_CTRL, MPU6050_DLYCTRL_DELAY_ES_SHADOW_BIT, enabled); }
 
 esp_err_t mpu6050_get_slave_delay_enabled(mpu6050_dev_t *dev, mpu6050_slave_t num, bool *enabled)
 {
@@ -1023,109 +894,67 @@ esp_err_t mpu6050_set_slave_delay_enabled(mpu6050_dev_t *dev, mpu6050_slave_t nu
 }
 
 esp_err_t mpu6050_reset_gyroscope_path(mpu6050_dev_t *dev)
-{
-    return write_reg_bool(dev, MPU6050_REGISTER_SIGNAL_PATH_RESET, MPU6050_PATHRESET_GYRO_RESET_BIT, 1);
-}
+{ return write_reg_bool(dev, MPU6050_REGISTER_SIGNAL_PATH_RESET, MPU6050_PATHRESET_GYRO_RESET_BIT, 1); }
 
 esp_err_t mpu6050_reset_accelerometer_path(mpu6050_dev_t *dev)
-{
-    return write_reg_bool(dev, MPU6050_REGISTER_SIGNAL_PATH_RESET, MPU6050_PATHRESET_ACCEL_RESET_BIT, 1);
-}
+{ return write_reg_bool(dev, MPU6050_REGISTER_SIGNAL_PATH_RESET, MPU6050_PATHRESET_ACCEL_RESET_BIT, 1); }
 
 esp_err_t mpu6050_reset_temperature_path(mpu6050_dev_t *dev)
-{
-    return write_reg_bool(dev, MPU6050_REGISTER_SIGNAL_PATH_RESET, MPU6050_PATHRESET_TEMP_RESET_BIT, 1);
-}
+{ return write_reg_bool(dev, MPU6050_REGISTER_SIGNAL_PATH_RESET, MPU6050_PATHRESET_TEMP_RESET_BIT, 1); }
 
 esp_err_t mpu6050_get_accelerometer_power_on_delay(mpu6050_dev_t *dev, uint8_t *delay)
-{
-    return read_reg_bits(dev, MPU6050_REGISTER_MOT_DETECT_CTRL, MPU6050_DETECT_ACCEL_DELAY_BIT, MPU6050_DETECT_ACCEL_DELAY_MASK, delay);
-}
+{ return read_reg_bits(dev, MPU6050_REGISTER_MOT_DETECT_CTRL, MPU6050_DETECT_ACCEL_DELAY_BIT, MPU6050_DETECT_ACCEL_DELAY_MASK, delay); }
 
 esp_err_t mpu6050_set_accelerometer_power_on_delay(mpu6050_dev_t *dev, uint8_t delay)
-{
-    return write_reg_bits(dev, MPU6050_REGISTER_MOT_DETECT_CTRL, MPU6050_DETECT_ACCEL_DELAY_BIT, MPU6050_DETECT_ACCEL_DELAY_MASK, delay);
-}
+{ return write_reg_bits(dev, MPU6050_REGISTER_MOT_DETECT_CTRL, MPU6050_DETECT_ACCEL_DELAY_BIT, MPU6050_DETECT_ACCEL_DELAY_MASK, delay); }
 
 esp_err_t mpu6050_get_freefall_detection_counter_decrement(mpu6050_dev_t *dev, uint8_t *decrement)
-{
-    return read_reg_bits(dev, MPU6050_REGISTER_MOT_DETECT_CTRL, MPU6050_DETECT_FF_COUNT_BIT, MPU6050_DETECT_FF_COUNT_MASK, decrement);
-}
+{ return read_reg_bits(dev, MPU6050_REGISTER_MOT_DETECT_CTRL, MPU6050_DETECT_FF_COUNT_BIT, MPU6050_DETECT_FF_COUNT_MASK, decrement); }
 
 esp_err_t mpu6050_set_freefall_detection_counter_decrement(mpu6050_dev_t *dev, uint8_t decrement)
-{
-    return write_reg_bits(dev, MPU6050_REGISTER_MOT_DETECT_CTRL, MPU6050_DETECT_FF_COUNT_BIT, MPU6050_DETECT_FF_COUNT_MASK, decrement);
-}
+{ return write_reg_bits(dev, MPU6050_REGISTER_MOT_DETECT_CTRL, MPU6050_DETECT_FF_COUNT_BIT, MPU6050_DETECT_FF_COUNT_MASK, decrement); }
 
 esp_err_t mpu6050_get_motion_detection_counter_decrement(mpu6050_dev_t *dev, uint8_t *decrement)
-{
-    return read_reg_bits(dev, MPU6050_REGISTER_MOT_DETECT_CTRL, MPU6050_DETECT_MOT_COUNT_BIT, MPU6050_DETECT_MOT_COUNT_MASK, decrement);
-}
+{ return read_reg_bits(dev, MPU6050_REGISTER_MOT_DETECT_CTRL, MPU6050_DETECT_MOT_COUNT_BIT, MPU6050_DETECT_MOT_COUNT_MASK, decrement); }
 
 esp_err_t mpu6050_set_motion_detection_counter_decrement(mpu6050_dev_t *dev, uint8_t decrement)
-{
-    return write_reg_bits(dev, MPU6050_REGISTER_MOT_DETECT_CTRL, MPU6050_DETECT_MOT_COUNT_BIT, MPU6050_DETECT_MOT_COUNT_MASK, decrement);
-}
+{ return write_reg_bits(dev, MPU6050_REGISTER_MOT_DETECT_CTRL, MPU6050_DETECT_MOT_COUNT_BIT, MPU6050_DETECT_MOT_COUNT_MASK, decrement); }
 
 esp_err_t mpu6050_get_fifo_enabled(mpu6050_dev_t *dev, bool *enabled)
-{
-    return read_reg_bool(dev, MPU6050_REGISTER_USER_CTRL, MPU6050_USERCTRL_FIFO_EN_BIT, enabled);
-}
+{ return read_reg_bool(dev, MPU6050_REGISTER_USER_CTRL, MPU6050_USERCTRL_FIFO_EN_BIT, enabled); }
 
 esp_err_t mpu6050_set_fifo_enabled(mpu6050_dev_t *dev, bool enabled)
-{
-    return write_reg_bool(dev, MPU6050_REGISTER_USER_CTRL, MPU6050_USERCTRL_FIFO_EN_BIT, enabled);
-}
+{ return write_reg_bool(dev, MPU6050_REGISTER_USER_CTRL, MPU6050_USERCTRL_FIFO_EN_BIT, enabled); }
 
 esp_err_t mpu6050_get_i2c_master_mode_enabled(mpu6050_dev_t *dev, bool *enabled)
-{
-    return read_reg_bool(dev, MPU6050_REGISTER_USER_CTRL, MPU6050_USERCTRL_I2C_MST_EN_BIT, enabled);
-}
+{ return read_reg_bool(dev, MPU6050_REGISTER_USER_CTRL, MPU6050_USERCTRL_I2C_MST_EN_BIT, enabled); }
 
 esp_err_t mpu6050_set_i2c_master_mode_enabled(mpu6050_dev_t *dev, bool enabled)
-{
-    return write_reg_bool(dev, MPU6050_REGISTER_USER_CTRL, MPU6050_USERCTRL_I2C_MST_EN_BIT, enabled);
-}
+{ return write_reg_bool(dev, MPU6050_REGISTER_USER_CTRL, MPU6050_USERCTRL_I2C_MST_EN_BIT, enabled); }
 
 esp_err_t mpu6050_switch_spie_enabled(mpu6050_dev_t *dev, bool enabled)
-{
-    return write_reg_bool(dev, MPU6050_REGISTER_USER_CTRL, MPU6050_USERCTRL_I2C_IF_DIS_BIT, enabled);
-}
+{ return write_reg_bool(dev, MPU6050_REGISTER_USER_CTRL, MPU6050_USERCTRL_I2C_IF_DIS_BIT, enabled); }
 
 esp_err_t mpu6050_reset_fifo(mpu6050_dev_t *dev)
-{
-    return write_reg_bool(dev, MPU6050_REGISTER_USER_CTRL, MPU6050_USERCTRL_FIFO_RESET_BIT, 1);
-}
+{ return write_reg_bool(dev, MPU6050_REGISTER_USER_CTRL, MPU6050_USERCTRL_FIFO_RESET_BIT, 1); }
 
 esp_err_t mpu6050_reset_sensors(mpu6050_dev_t *dev)
-{
-    return write_reg_bool(dev, MPU6050_REGISTER_USER_CTRL, MPU6050_USERCTRL_SIG_COND_RESET_BIT, 1);
-}
+{ return write_reg_bool(dev, MPU6050_REGISTER_USER_CTRL, MPU6050_USERCTRL_SIG_COND_RESET_BIT, 1); }
 
 esp_err_t mpu6050_reset(mpu6050_dev_t *dev)
-{
-    return write_reg_bool(dev, MPU6050_REGISTER_PWR_MGMT_1, MPU6050_PWR1_DEVICE_RESET_BIT, 1);
-}
+{ return write_reg_bool(dev, MPU6050_REGISTER_PWR_MGMT_1, MPU6050_PWR1_DEVICE_RESET_BIT, 1); }
 
 esp_err_t mpu6050_get_sleep_enabled(mpu6050_dev_t *dev, bool *enabled)
-{
-    return read_reg_bool(dev, MPU6050_REGISTER_PWR_MGMT_1, MPU6050_PWR1_SLEEP_BIT, enabled);
-}
+{ return read_reg_bool(dev, MPU6050_REGISTER_PWR_MGMT_1, MPU6050_PWR1_SLEEP_BIT, enabled); }
 
 esp_err_t mpu6050_set_sleep_enabled(mpu6050_dev_t *dev, bool enabled)
-{
-    return write_reg_bool(dev, MPU6050_REGISTER_PWR_MGMT_1, MPU6050_PWR1_SLEEP_BIT, enabled);
-}
+{ return write_reg_bool(dev, MPU6050_REGISTER_PWR_MGMT_1, MPU6050_PWR1_SLEEP_BIT, enabled); }
 
 esp_err_t mpu6050_get_wake_cycle_enabled(mpu6050_dev_t *dev, bool *enabled)
-{
-    return read_reg_bool(dev, MPU6050_REGISTER_PWR_MGMT_1, MPU6050_PWR1_CYCLE_BIT, enabled);
-}
+{ return read_reg_bool(dev, MPU6050_REGISTER_PWR_MGMT_1, MPU6050_PWR1_CYCLE_BIT, enabled); }
 
 esp_err_t mpu6050_set_wake_cycle_enabled(mpu6050_dev_t *dev, bool enabled)
-{
-    return write_reg_bool(dev, MPU6050_REGISTER_PWR_MGMT_1, MPU6050_PWR1_CYCLE_BIT, enabled);
-}
+{ return write_reg_bool(dev, MPU6050_REGISTER_PWR_MGMT_1, MPU6050_PWR1_CYCLE_BIT, enabled); }
 
 esp_err_t mpu6050_get_temp_sensor_enabled(mpu6050_dev_t *dev, bool *enabled)
 {
@@ -1136,32 +965,21 @@ esp_err_t mpu6050_get_temp_sensor_enabled(mpu6050_dev_t *dev, bool *enabled)
 }
 
 esp_err_t mpu6050_set_temp_sensor_enabled(mpu6050_dev_t *dev, bool enabled)
-{
-    return write_reg_bool(dev, MPU6050_REGISTER_PWR_MGMT_1, MPU6050_PWR1_TEMP_DIS_BIT, !enabled);
-}
+{ return write_reg_bool(dev, MPU6050_REGISTER_PWR_MGMT_1, MPU6050_PWR1_TEMP_DIS_BIT, !enabled); }
 
 esp_err_t mpu6050_get_clock_source(mpu6050_dev_t *dev, mpu6050_clock_source_t *source)
-{
-    return read_reg_bits(dev, MPU6050_REGISTER_PWR_MGMT_1, MPU6050_PWR1_CLKSEL_BIT, MPU6050_PWR1_CLKSEL_MASK, (uint8_t *)source);
-}
+{ return read_reg_bits(dev, MPU6050_REGISTER_PWR_MGMT_1, MPU6050_PWR1_CLKSEL_BIT, MPU6050_PWR1_CLKSEL_MASK, (uint8_t *)source); }
 
 esp_err_t mpu6050_set_clock_source(mpu6050_dev_t *dev, mpu6050_clock_source_t source)
-{
-    return write_reg_bits(dev, MPU6050_REGISTER_PWR_MGMT_1, MPU6050_PWR1_CLKSEL_BIT, MPU6050_PWR1_CLKSEL_MASK, source);
-}
+{ return write_reg_bits(dev, MPU6050_REGISTER_PWR_MGMT_1, MPU6050_PWR1_CLKSEL_BIT, MPU6050_PWR1_CLKSEL_MASK, source); }
 
 esp_err_t mpu6050_get_wake_frequency(mpu6050_dev_t *dev, mpu6050_wake_freq_t *frequency)
-{
-    return read_reg_bits(dev, MPU6050_REGISTER_PWR_MGMT_2, MPU6050_PWR2_LP_WAKE_CTRL_BIT, MPU6050_PWR2_LP_WAKE_CTRL_MASK, (uint8_t *)frequency);
-}
+{ return read_reg_bits(dev, MPU6050_REGISTER_PWR_MGMT_2, MPU6050_PWR2_LP_WAKE_CTRL_BIT, MPU6050_PWR2_LP_WAKE_CTRL_MASK, (uint8_t *)frequency); }
 
 esp_err_t mpu6050_set_wake_frequency(mpu6050_dev_t *dev, mpu6050_wake_freq_t frequency)
-{
-    return write_reg_bits(dev, MPU6050_REGISTER_PWR_MGMT_2, MPU6050_PWR2_LP_WAKE_CTRL_BIT, MPU6050_PWR2_LP_WAKE_CTRL_MASK, frequency);
-}
+{ return write_reg_bits(dev, MPU6050_REGISTER_PWR_MGMT_2, MPU6050_PWR2_LP_WAKE_CTRL_BIT, MPU6050_PWR2_LP_WAKE_CTRL_MASK, frequency); }
 
-static const uint8_t standby_accel_bits[] =
-{
+static const uint8_t standby_accel_bits[] = {
     [MPU6050_X_AXIS] = MPU6050_PWR2_STBY_XA_BIT,
     [MPU6050_Y_AXIS] = MPU6050_PWR2_STBY_YA_BIT,
     [MPU6050_Z_AXIS] = MPU6050_PWR2_STBY_ZA_BIT,
@@ -1181,8 +999,7 @@ esp_err_t mpu6050_set_standby_accel_enabled(mpu6050_dev_t *dev, mpu6050_axis_t a
     return write_reg_bool(dev, MPU6050_REGISTER_PWR_MGMT_2, standby_accel_bits[axis], enabled);
 }
 
-static const uint8_t standby_gyro_bits[] =
-{
+static const uint8_t standby_gyro_bits[] = {
     [MPU6050_X_AXIS] = MPU6050_PWR2_STBY_XG_BIT,
     [MPU6050_Y_AXIS] = MPU6050_PWR2_STBY_YG_BIT,
     [MPU6050_Z_AXIS] = MPU6050_PWR2_STBY_ZG_BIT,
@@ -1226,19 +1043,13 @@ esp_err_t mpu6050_get_fifo_bytes(mpu6050_dev_t *dev, uint8_t *data, size_t lengt
 }
 
 esp_err_t mpu6050_get_fifo_byte(mpu6050_dev_t *dev, uint8_t *data)
-{
-    return read_reg(dev, MPU6050_REGISTER_FIFO_R_W, data);
-}
+{ return read_reg(dev, MPU6050_REGISTER_FIFO_R_W, data); }
 
 esp_err_t mpu6050_set_fifo_byte(mpu6050_dev_t *dev, uint8_t data)
-{
-    return write_reg(dev, MPU6050_REGISTER_FIFO_R_W, data);
-}
+{ return write_reg(dev, MPU6050_REGISTER_FIFO_R_W, data); }
 
 esp_err_t mpu6050_get_device_id(mpu6050_dev_t *dev, uint8_t *id)
-{
-    return read_reg_bits(dev, MPU6050_REGISTER_WHO_AM_I, MPU6050_WHO_AM_I_BIT, MPU6050_WHO_AM_I_MASK, id);
-}
+{ return read_reg_bits(dev, MPU6050_REGISTER_WHO_AM_I, MPU6050_WHO_AM_I_BIT, MPU6050_WHO_AM_I_MASK, id); }
 
 esp_err_t mpu6050_calibrate(mpu6050_dev_t *dev, float *accel_bias_res, float *gyro_bias_res)
 {
@@ -1302,9 +1113,10 @@ esp_err_t mpu6050_calibrate(mpu6050_dev_t *dev, float *accel_bias_res, float *gy
     CHECK(mpu6050_set_gyro_fifo_enabled(dev, MPU6050_X_AXIS, false));
     CHECK(mpu6050_set_gyro_fifo_enabled(dev, MPU6050_Y_AXIS, false));
     CHECK(mpu6050_set_temp_fifo_enabled(dev, false));
-
+    // vTaskDelay(pdMS_TO_TICKS(500));
     // Sets of full gyro and accelerometer data for averaging:
     CHECK(mpu6050_get_fifo_count(dev, &packet_count));
+    ESP_LOGI(TAG, "Packet count: %d", packet_count);
     packet_count /= 12;
 
     for (int i = 0; i < packet_count; i++)
