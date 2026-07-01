@@ -4,6 +4,7 @@
 #include <mpu6050.h>
 #include "../include/nvs.h"
 #include "../include/uart.h"
+#include "common.h"
 
 #include <esp_err.h>
 #include <esp_log.h>

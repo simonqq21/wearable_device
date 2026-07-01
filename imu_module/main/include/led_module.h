@@ -1,0 +1,13 @@
+#ifndef LED_MODULE_H
+#define LED_MODULE_H
+
+#include "common.h"
+
+#define LED1_PIN 2 // power/status LED
+#define LED2_PIN 4 // recording LED
+#define GPIO_OUTPUT_PIN_SEL ((1ULL << LED1_PIN) | (1ULL << LED2_PIN))
+
+void gpio_init(void);
+void notif_led_task(void *pvParameters);
+
+#endif
