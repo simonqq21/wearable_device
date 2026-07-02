@@ -2,17 +2,16 @@
 
 // MPU6050
 // ****************************************************************
-// #ifdef CONFIG_EXAMPLE_I2C_ADDRESS_LOW
-#define ADDR MPU6050_I2C_ADDRESS_LOW
-// #else
-// #define ADDR MPU6050_I2C_ADDRESS_HIGH
-// #endif
+
+const uint16_t imu_sample_period_ms = 1000 / IMU_SAMPLE_RATE_HZ;
 
 mpu6050_dev_t dev = {0};
 imu_calibration_offsets_t offsets;
 
 extern QueueHandle_t imu_data_queue;
+
 // self-test MPU6050
+// queue for IMU data from the IMU measuring task to the data logging task
 
 void mpu6050_calibrate_user(void)
 {
@@ -75,7 +74,8 @@ void mpu6050_calibrate_user(void)
     ESP_LOGI(IMU_TAG, "gyro_offsets_z = %.4f", offsets.oGz);
     NVS_write_imu_calibration_offsets(&offsets);
     ESP_LOGI(IMU_TAG, "MPU6050 calibrated.");
-    // NVS_read_imu_calibration_offsets(&offsets);
+    NVS_read_imu_calibration_offsets(&offsets);
+    vTaskDelay(pdMS_TO_TICKS(1000));
 }
 
 void mpu6050_load_calibration_offsets(void)
@@ -142,6 +142,9 @@ void mpu6050_init_custom(uint8_t calibrate_imu)
     ESP_LOGI(IMU_TAG, "Gyro range:  %d", dev.ranges.gyro);
 }
 
+/*
+read raw measurements from MPU6050
+*/
 esp_err_t mpu6050_measure_raw(imu_data_t *data)
 {
     // measure MPU6050
@@ -150,7 +153,9 @@ esp_err_t mpu6050_measure_raw(imu_data_t *data)
     return ESP_OK;
 }
 
-// read measurements from MPU6050
+/*
+read calibration-offset measurements from MPU6050
+*/
 esp_err_t mpu6050_measure(imu_data_t *data)
 {
     // measure MPU6050
@@ -165,22 +170,32 @@ esp_err_t mpu6050_measure(imu_data_t *data)
     return ESP_OK;
 }
 
-// queue for IMU data from the IMU measuring task to the data logging task
-const int imu_queue_len = 30;
-const uint16_t imu_sample_rate_hz = 10;
-const uint16_t imu_sample_period_ms = 1000 / imu_sample_rate_hz;
+uint32_t imu_calibrate_notif;
 
-void imu_read_task(void *pvParameters)
+void imu_task(void *pvParameters)
 {
     imu_data_t data;
     while (1)
     {
-        mpu6050_measure(&data);
-        if (xQueueSend(imu_data_queue, &data, 10) != pdTRUE)
+        // check IMU task task notification queue
+        xTaskNotifyWait(0,
+                        0,
+                        &imu_calibrate_notif,
+                        imu_sample_period_ms / portTICK_PERIOD_MS);
+        if (imu_calibrate_notif == 0)
         {
-            ESP_LOGE(IMU_TAG, "ERROR: Could not put item on IMU queue.");
+            mpu6050_measure(&data);
+            if (xQueueSend(imu_data_queue, &data, 100 / portTICK_PERIOD_MS) != pdTRUE)
+            {
+                ESP_LOGE(IMU_TAG, "ERROR: Could not put item on IMU queue.");
+            }
         }
-        vTaskDelay(imu_sample_period_ms / portTICK_PERIOD_MS);
+        else
+        {
+            mpu6050_calibrate_user();
+        }
+
+        // vTaskDelay(imu_sample_period_ms / portTICK_PERIOD_MS);
     }
 }
 // ****************************************************************

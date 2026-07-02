@@ -13,16 +13,16 @@
 
 #define MAIN_TAG "MAIN"
 
-// littleFS
+// task handles
 // ****************************************************************
+TaskHandle_t task_handle_status_led;
+TaskHandle_t task_handle_imu;
+TaskHandle_t task_handle_data_logging;
 
-// ****************************************************************
-
-// tasks
-// ****************************************************************
 // queue for status LED states
 QueueHandle_t status_led_queue;
 QueueHandle_t imu_data_queue;
+
 bool datalogging = false;
 
 // FreeRTOS task to log sensor data
@@ -55,7 +55,6 @@ static void data_logging_task(void *pvParameters)
 
 // main
 imu_data_t data;
-extern int imu_queue_len;
 void app_main(void)
 {
     // initialize GPIO
@@ -79,15 +78,15 @@ void app_main(void)
 
     ESP_LOGI(MAIN_TAG, "Starting all tasks!");
     // initialize all queues
-    imu_data_queue = xQueueCreate(imu_queue_len, sizeof(imu_data_t));
+    imu_data_queue = xQueueCreate(IMU_QUEUE_LEN, sizeof(imu_data_t));
     // initialize all tasks
     // IMU reading task
-    xTaskCreatePinnedToCore(imu_read_task,
-                            "imu read task",
+    xTaskCreatePinnedToCore(imu_task,
+                            "imu calibrate and read task",
                             2048,
                             NULL,
                             1,
-                            NULL,
+                            &task_handle_imu,
                             0);
     // reading tasks of other sensors
 
@@ -97,7 +96,7 @@ void app_main(void)
                             2048,
                             NULL,
                             1,
-                            NULL,
+                            &task_handle_data_logging,
                             0);
 
     // notification LED task
@@ -106,7 +105,7 @@ void app_main(void)
                             1024,
                             NULL,
                             5,
-                            NULL,
+                            &task_handle_status_led,
                             0);
 
     // button task

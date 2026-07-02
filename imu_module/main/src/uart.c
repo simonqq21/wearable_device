@@ -1,10 +1,6 @@
 #include "../include/uart.h"
 // UART
 // ****************************************************************
-// configure UART
-#define UART_PORT_NUM 0
-#define UART_BAUD_RATE 115200
-#define UART_BUF_SIZE 128
 
 esp_err_t uart_configure(void)
 {

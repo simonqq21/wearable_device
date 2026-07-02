@@ -3,7 +3,6 @@
 
 #include "common.h"
 
-#define BTN1_PIN 5
 #define BUTTON_TAG "BUTTON"
 
 void button_toggle_datalogging_cb(void *arg, void *data);

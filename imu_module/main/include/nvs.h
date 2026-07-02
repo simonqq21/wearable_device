@@ -3,8 +3,6 @@
 
 #include "common.h"
 
-#define IMU_OFFSETS_NVS_KEY "imu_offsets"
-#define NVS_NAMESPACE "NVS"
 #define NVS_TAG "NVS"
 
 void nvs_init(void);

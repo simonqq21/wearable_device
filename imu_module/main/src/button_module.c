@@ -3,31 +3,54 @@
 // button
 // ****************************************************************
 
-extern QueueHandle_t status_led_queue;
+// extern QueueHandle_t status_led_queue;
+extern TaskHandle_t task_handle_status_led;
+extern TaskHandle_t task_handle_imu;
+extern TaskHandle_t task_handle_data_logging;
+
 extern uint8_t datalogging;
 
-status_led_state_t status_led_state_from_button;
-// button callback format
+status_led_task_notif_t status_led_state_from_button;
+
+/*
+notify IMU task to start datalogging
+notify IMU task to stop datalogging
+*/
 void button_toggle_datalogging_cb(void *arg, void *data)
 {
     if (datalogging)
     {
         datalogging = false;
-        status_led_state_from_button = STATUS_LED_OFF;
+        // status_led_state_from_button = STATUS_LED_OFF;
+        // xTaskNotifyGiveIndexed(task_handle_status_led, 0);
+        xTaskNotify(task_handle_status_led, STATUS_LED_OFF, eSetValueWithOverwrite);
         ESP_LOGI(BUTTON_TAG, "Datalogging stopped.");
     }
     else
     {
         datalogging = true;
-        status_led_state_from_button = STATUS_LED_BLINK;
+        // status_led_state_from_button = STATUS_LED_BLINK;
+        // xTaskNotifyGiveIndexed(task_handle_status_led, 0);
+        xTaskNotify(task_handle_status_led, STATUS_LED_BLINK, eSetValueWithOverwrite);
         ESP_LOGI(BUTTON_TAG, "Datalogging started.");
     }
-    xQueueSend(status_led_queue, &status_led_state_from_button, 10);
+    // xQueueSend(status_led_queue, &status_led_state_from_button, 10);
 }
 
+/*
+notify IMU task to pause datalogging and initiate calibration
+*/
 void button_trigger_calibration_cb(void *arg, void *data)
 {
     ESP_LOGI(BUTTON_TAG, "Calibrating IMU...");
+    // pause datalogging
+    // pause IMU reading task
+
+    // perform calibration
+    xTaskNotify(task_handle_imu, 1, eSetValueWithOverwrite);
+
+    // resume datalogging
+    // resume IMU reading task
 }
 
 // initialize button
