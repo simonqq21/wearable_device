@@ -8,9 +8,9 @@ extern TaskHandle_t task_handle_status_led;
 extern TaskHandle_t task_handle_imu;
 extern TaskHandle_t task_handle_data_logging;
 
-extern uint8_t datalogging;
+uint8_t datalogging;
 
-status_led_task_notif_t status_led_state_from_button;
+status_led_task_cmd_t status_led_state_from_button;
 
 /*
 notify IMU task to start datalogging
@@ -23,7 +23,14 @@ void button_toggle_datalogging_cb(void *arg, void *data)
         datalogging = false;
         // status_led_state_from_button = STATUS_LED_OFF;
         // xTaskNotifyGiveIndexed(task_handle_status_led, 0);
+
+        // stop datalogging task
+        xTaskNotify(task_handle_data_logging, DATALOGGING_STOP, eSetValueWithOverwrite);
+        //  start IMU task
+        xTaskNotify(task_handle_imu, IMU_STOP, eSetValueWithOverwrite);
+        // turn off the status LED
         xTaskNotify(task_handle_status_led, STATUS_LED_OFF, eSetValueWithOverwrite);
+
         ESP_LOGI(BUTTON_TAG, "Datalogging stopped.");
     }
     else
@@ -31,7 +38,14 @@ void button_toggle_datalogging_cb(void *arg, void *data)
         datalogging = true;
         // status_led_state_from_button = STATUS_LED_BLINK;
         // xTaskNotifyGiveIndexed(task_handle_status_led, 0);
+
+        // start datalogging task
+        xTaskNotify(task_handle_data_logging, DATALOGGING_START, eSetValueWithOverwrite);
+        //  start IMU task
+        xTaskNotify(task_handle_imu, IMU_READ_LOOP, eSetValueWithOverwrite);
+        // turn on the status LED
         xTaskNotify(task_handle_status_led, STATUS_LED_BLINK, eSetValueWithOverwrite);
+
         ESP_LOGI(BUTTON_TAG, "Datalogging started.");
     }
     // xQueueSend(status_led_queue, &status_led_state_from_button, 10);
@@ -44,13 +58,11 @@ void button_trigger_calibration_cb(void *arg, void *data)
 {
     ESP_LOGI(BUTTON_TAG, "Calibrating IMU...");
     // pause datalogging
-    // pause IMU reading task
-
-    // perform calibration
-    xTaskNotify(task_handle_imu, 1, eSetValueWithOverwrite);
-
-    // resume datalogging
-    // resume IMU reading task
+    xTaskNotify(task_handle_data_logging, DATALOGGING_STOP, eSetValueWithOverwrite);
+    // pause IMU reading task to perform calibration
+    xTaskNotify(task_handle_imu, IMU_CALIBRATE, eSetValueWithOverwrite);
+    // vTaskDelay(1000 / portTICK_PERIOD_MS);
+    // xTaskNotify(task_handle_imu, IMU_STOP, eSetValueWithOverwrite);
 }
 
 // initialize button

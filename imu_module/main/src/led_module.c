@@ -8,7 +8,7 @@ extern QueueHandle_t status_led_queue;
 
 void gpio_init(void)
 {
-    status_led_queue = xQueueCreate(5, sizeof(status_led_task_notif_t));
+    status_led_queue = xQueueCreate(5, sizeof(status_led_task_cmd_t));
     // zero-initialize the config structure.
     gpio_config_t io_conf = {};
     // disable interrupt
@@ -35,7 +35,7 @@ off when datalogging is stopped
 
 void notif_led_task(void *pvParameters)
 {
-    status_led_task_notif_t status_led_state;
+    status_led_task_cmd_t status_led_state;
     uint8_t led_value = 0;
     TickType_t loop_delay = 20 / portTICK_PERIOD_MS;
 
@@ -55,7 +55,13 @@ void notif_led_task(void *pvParameters)
             led_value = !led_value;
             loop_delay = 500 / portTICK_PERIOD_MS;
             break;
-        case STATUS_LED_FADE:
+        case STATUS_LED_FAST_BLINK:
+            led_value = !led_value;
+            loop_delay = 100 / portTICK_PERIOD_MS;
+            break;
+        case STATUS_LED_ON:
+            led_value = 1;
+            loop_delay = 20 / portTICK_PERIOD_MS;
             break;
         default:
             led_value = 0;

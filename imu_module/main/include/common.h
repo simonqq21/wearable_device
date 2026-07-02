@@ -25,22 +25,23 @@ typedef enum
     STATUS_LED_OFF,
     STATUS_LED_ON,
     STATUS_LED_BLINK,
-    STATUS_LED_FADE,
-} status_led_task_notif_t;
+    STATUS_LED_FAST_BLINK,
+} status_led_task_cmd_t;
 
 /* IMU task notification queue values */
 typedef enum
 {
+    IMU_STOP,
     IMU_CALIBRATE,
     IMU_READ_LOOP,
-} imu_task_notif_t;
+} imu_task_cmd_t;
 
 /* Datalogging task notification queue values */
 typedef enum
 {
     DATALOGGING_STOP,
-    DATALOGGING_START, 
-} datalogging_task_notif_t;
+    DATALOGGING_START,
+} datalogging_task_cmd_t;
 
 /* IMU calibration offsets struct */
 typedef struct
@@ -87,5 +88,6 @@ typedef struct
 // FreeRTOS primitives config
 #define IMU_QUEUE_LEN 30
 #define IMU_SAMPLE_RATE_HZ 10
+#define IMU_SAMPLE_PERIOD_MS (1000 / IMU_SAMPLE_RATE_HZ)
 
 #endif

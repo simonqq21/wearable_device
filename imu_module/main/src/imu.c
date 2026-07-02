@@ -3,12 +3,14 @@
 // MPU6050
 // ****************************************************************
 
-const uint16_t imu_sample_period_ms = 1000 / IMU_SAMPLE_RATE_HZ;
+// const uint16_t IMU_SAMPLE_PERIOD_MS = 1000 / IMU_SAMPLE_RATE_HZ;
 
 mpu6050_dev_t dev = {0};
 imu_calibration_offsets_t offsets;
 
 extern QueueHandle_t imu_data_queue;
+
+extern TaskHandle_t task_handle_status_led;
 
 // self-test MPU6050
 // queue for IMU data from the IMU measuring task to the data logging task
@@ -72,7 +74,9 @@ void mpu6050_calibrate_user(void)
     ESP_LOGI(IMU_TAG, "gyro_offsets_x = %.4f", offsets.oGx);
     ESP_LOGI(IMU_TAG, "gyro_offsets_y = %.4f", offsets.oGy);
     ESP_LOGI(IMU_TAG, "gyro_offsets_z = %.4f", offsets.oGz);
+
     NVS_write_imu_calibration_offsets(&offsets);
+
     ESP_LOGI(IMU_TAG, "MPU6050 calibrated.");
     NVS_read_imu_calibration_offsets(&offsets);
     vTaskDelay(pdMS_TO_TICKS(1000));
@@ -170,32 +174,55 @@ esp_err_t mpu6050_measure(imu_data_t *data)
     return ESP_OK;
 }
 
-uint32_t imu_calibrate_notif;
-
+imu_task_cmd_t imu_task_cmd, ongoing_imu_task_cmd;
+TickType_t imu_task_delay_period;
 void imu_task(void *pvParameters)
 {
     imu_data_t data;
     while (1)
     {
-        // check IMU task task notification queue
-        xTaskNotifyWait(0,
-                        0,
-                        &imu_calibrate_notif,
-                        imu_sample_period_ms / portTICK_PERIOD_MS);
-        if (imu_calibrate_notif == 0)
+        if (ongoing_imu_task_cmd == IMU_READ_LOOP)
         {
-            mpu6050_measure(&data);
-            if (xQueueSend(imu_data_queue, &data, 100 / portTICK_PERIOD_MS) != pdTRUE)
-            {
-                ESP_LOGE(IMU_TAG, "ERROR: Could not put item on IMU queue.");
-            }
+            imu_task_delay_period = IMU_SAMPLE_PERIOD_MS / portTICK_PERIOD_MS;
         }
         else
         {
-            mpu6050_calibrate_user();
+            imu_task_delay_period = portMAX_DELAY;
         }
 
-        // vTaskDelay(imu_sample_period_ms / portTICK_PERIOD_MS);
+        if (xTaskNotifyWait(0,
+                            0,
+                            (uint32_t *)&imu_task_cmd,
+                            imu_task_delay_period) == pdTRUE)
+        {
+            ongoing_imu_task_cmd = imu_task_cmd;
+        }
+
+        switch (ongoing_imu_task_cmd)
+        {
+        case IMU_CALIBRATE:
+            // calibrate IMU
+            xTaskNotify(task_handle_status_led, STATUS_LED_FAST_BLINK, eSetValueWithOverwrite);
+
+            mpu6050_calibrate_user();
+
+            xTaskNotify(task_handle_status_led, STATUS_LED_OFF, eSetValueWithOverwrite);
+            ongoing_imu_task_cmd = IMU_STOP;
+            break;
+        case IMU_READ_LOOP:
+            // measure IMU and send measurements to queue
+            mpu6050_measure(&data);
+            if (xQueueSend(imu_data_queue, &data, IMU_SAMPLE_PERIOD_MS / portTICK_PERIOD_MS) != pdTRUE)
+            {
+                ESP_LOGE(IMU_TAG, "ERROR: Could not put item on IMU queue.");
+            }
+            break;
+        default: // IMU_STOP
+            // check IMU task task notification queue
+
+            break;
+        }
+        // vTaskDelay(IMU_SAMPLE_PERIOD_MS / portTICK_PERIOD_MS);
     }
 }
 // ****************************************************************

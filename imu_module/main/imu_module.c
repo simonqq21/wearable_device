@@ -23,7 +23,8 @@ TaskHandle_t task_handle_data_logging;
 QueueHandle_t status_led_queue;
 QueueHandle_t imu_data_queue;
 
-bool datalogging = false;
+// bool datalogging = false;
+datalogging_task_cmd_t datalogging_task_cmd, previous_datalogging_task_cmd;
 
 // FreeRTOS task to log sensor data
 #define DATA_LOGGING_TAG "DATA LOGGING"
@@ -33,21 +34,43 @@ static void data_logging_task(void *pvParameters)
     imu_data_t imu_data;
     while (1)
     {
-        // receive IMU data from queue
-        imu_data_received = xQueueReceive(imu_data_queue, (void *)&imu_data, 100 / portTICK_PERIOD_MS);
-
-        // receive data from other sensors' queues
-
-        // log data to CSV file.
-        if (imu_data_received)
+        xTaskNotifyWait(0,
+                        0,
+                        (uint32_t *)&datalogging_task_cmd,
+                        IMU_SAMPLE_PERIOD_MS / portTICK_PERIOD_MS);
+        switch (datalogging_task_cmd)
         {
-            // log IMU data
-            if (datalogging == true)
+        case DATALOGGING_START:
+            if (previous_datalogging_task_cmd == DATALOGGING_STOP)
             {
+                previous_datalogging_task_cmd = DATALOGGING_START;
+                ESP_LOGI(DATA_LOGGING_TAG, "Datalogging started.");
+            }
+
+            // receive IMU data from queue
+            imu_data_received = xQueueReceive(imu_data_queue, (void *)&imu_data, 100 / portTICK_PERIOD_MS);
+
+            // receive data from other sensors' queues
+
+            // log data to CSV file.
+            if (imu_data_received)
+            {
+                // log IMU data
                 ESP_LOGI(DATA_LOGGING_TAG, "Acceleration: x=%.4f   y=%.4f   z=%.4f", imu_data.acc.x, imu_data.acc.y, imu_data.acc.z);
                 ESP_LOGI(DATA_LOGGING_TAG, "Rotation:     x=%.4f   y=%.4f   z=%.4f", imu_data.rot.x, imu_data.rot.y, imu_data.rot.z);
                 ESP_LOGI(DATA_LOGGING_TAG, "Temperature:  %.1f\n", imu_data.temp);
             }
+            break;
+        case DATALOGGING_STOP:
+            if (previous_datalogging_task_cmd == DATALOGGING_START)
+            {
+                previous_datalogging_task_cmd = DATALOGGING_STOP;
+                ESP_LOGI(DATA_LOGGING_TAG, "Datalogging stopped.");
+            }
+
+            break;
+        default:
+            break;
         }
     }
 }
