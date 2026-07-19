@@ -1,4 +1,4 @@
-#include "common.h"
+
 
 // #include "esp_flash.h"
 // #include "esp_chip_info.h"
@@ -10,59 +10,245 @@
 #include "include/led_module.h"
 #include "include/button_module.h"
 #include "include/imu.h"
+#include "include/sd_card.h"
+#include "esp_timer.h"
+#include "common.h"
+#include "config.h"
 
 #define MAIN_TAG "MAIN"
+
+typedef struct
+{
+    TaskHandle_t *task_handle_status_led;
+    QueueHandle_t queue_imu_data;
+
+} task_imu_params_t;
+
+typedef struct
+{
+    QueueHandle_t queue_imu_data;
+    QueueHandle_t queue_sd_card_datalogger;
+    // QueueHandle_t queue_UART_datastreamer;
+    // QueueHandle_t queue_BLE_datastreamer;
+
+} task_main_datalogging_params_t;
+
+typedef struct
+{
+    QueueHandle_t queue_sd_card_datalogger;
+} task_SD_card_datalogger_params_t;
 
 // task handles
 // ****************************************************************
 TaskHandle_t task_handle_status_led;
-TaskHandle_t task_handle_imu;
-TaskHandle_t task_handle_data_logging;
+TaskHandle_t task_handle_imu_data;
+TaskHandle_t task_handle_main_data_logging;
+TaskHandle_t task_handle_SD_card_datalogger;
 
 // queue for status LED states
-QueueHandle_t status_led_queue;
-QueueHandle_t imu_data_queue;
+// queue from IMU publisher to main datalogger subscriber
+QueueHandle_t queue_imu_data;
+// queue from main datalogger publisher to SD card datalogger subscriber
+QueueHandle_t queue_sd_card_datalogger;
+QueueHandle_t queue_UART_datastreamer;
+QueueHandle_t queue_BLE_datastreamer;
 
 // bool datalogging = false;
-datalogging_task_cmd_t datalogging_task_cmd, previous_datalogging_task_cmd;
+cmd_task_datalogging_t datalogging_task_cmd, previous_datalogging_task_cmd;
+cmd_imu_task_t imu_task_cmd, ongoing_imu_task_cmd;
+cmd_task_sd_card_datalogging_t cmd_task_sd_card_datalogging, prev_cmd_task_sd_card_datalogging;
+TickType_t imu_task_delay_period;
 
-// FreeRTOS task to log sensor data
+void sd_card_configure_loop(void);
+
+void set_datalogging_led(uint8_t led_value)
+{
+    gpio_set_level(LED1_PIN, led_value);
+}
+
+/**
+ * @brief notification LED task
+ *
+ * The notification LED has the following states: STATUS_LED_OFF, STATUS_LED_ON, STATUS_LED_BLINK, and STATUS_LED_FAST_BLINK.
+ * The notification LED state is set via a task notification.
+ */
+void task_notification_LED(void *pvParameters)
+{
+    cmd_task_status_led_t status_led_state;
+    uint8_t led_value = 0;
+    TickType_t loop_delay = 20 / portTICK_PERIOD_MS;
+
+    while (1)
+    {
+        // xQueueReceive(status_led_queue, &status_led_state, loop_delay);
+        // status_led_state = ulTaskNotifyTakeIndexed(0, pdFALSE, loop_delay);
+        // use task notification as queue
+        xTaskNotifyWait(0,
+                        0,
+                        (uint32_t *)&status_led_state,
+                        loop_delay);
+
+        switch (status_led_state)
+        {
+        // notification LED blinks when datalogging is ongoing
+        case STATUS_LED_BLINK:
+            led_value = !led_value;
+            loop_delay = 500 / portTICK_PERIOD_MS;
+            break;
+        // notification LED blinks fast when calibration is ongoing
+        case STATUS_LED_FAST_BLINK:
+            led_value = !led_value;
+            loop_delay = 100 / portTICK_PERIOD_MS;
+            break;
+        //
+        case STATUS_LED_ON:
+            led_value = 1;
+            loop_delay = 20 / portTICK_PERIOD_MS;
+            break;
+        // notification LED is off when datalogging is stopped
+        default:
+            led_value = 0;
+            loop_delay = 20 / portTICK_PERIOD_MS;
+            break;
+        }
+        set_datalogging_led(led_value);
+        // ESP_LOGI("LED_module", "%d\n", status_led_state);
+    }
+}
+
+/**
+ * @brief IMU reading task
+ *
+ */
+void task_imu(void *params)
+{
+    imu_data_t imu_data;
+    task_imu_params_t *imu_task_params = (task_imu_params_t *)params;
+    QueueHandle_t queue_imu_data = imu_task_params->queue_imu_data;
+    TaskHandle_t *task_handle_status_led = imu_task_params->task_handle_status_led;
+
+    while (1)
+    {
+        // variable delay
+        if (ongoing_imu_task_cmd == IMU_READ_LOOP)
+        {
+            imu_task_delay_period = IMU_SAMPLE_PERIOD_MS / portTICK_PERIOD_MS;
+        }
+        else
+        {
+            imu_task_delay_period = portMAX_DELAY;
+        }
+
+        // wait for task notification from button
+        if (xTaskNotifyWait(0,
+                            0,
+                            (uint32_t *)&imu_task_cmd,
+                            imu_task_delay_period) == pdTRUE)
+        {
+            ongoing_imu_task_cmd = imu_task_cmd;
+        }
+
+        switch (ongoing_imu_task_cmd)
+        {
+        // calibrate IMU
+        case IMU_CALIBRATE:
+            // notification LED fast blink
+            if (*task_handle_status_led != NULL)
+                xTaskNotify(*task_handle_status_led, STATUS_LED_FAST_BLINK, eSetValueWithOverwrite);
+            // calibrate IMU
+            imu_calibrate_user();
+            // notification LED off
+            if (*task_handle_status_led != NULL)
+                xTaskNotify(*task_handle_status_led, STATUS_LED_OFF, eSetValueWithOverwrite);
+            // stop IMU after calibration
+            ongoing_imu_task_cmd = IMU_STOP;
+            break;
+        // measure IMU and send measurements to queue
+        case IMU_READ_LOOP:
+            imu_measure(&imu_data);
+            imu_data.timestamp = esp_timer_get_time() / 1000;
+            ESP_LOGI(IMU_TAG, "timestamp=%d", imu_data.timestamp);
+            ESP_LOGI(IMU_TAG, "Acceleration: x=%.4f   y=%.4f   z=%.4f", imu_data.ax, imu_data.ay, imu_data.az);
+            ESP_LOGI(IMU_TAG, "Rotation:     x=%.4f   y=%.4f   z=%.4f", imu_data.gx, imu_data.gy, imu_data.gz);
+            ESP_LOGI(IMU_TAG, "Temperature:  %.1f\n", imu_data.temp);
+            // send data to queue
+            if (queue_imu_data != NULL)
+                if (xQueueSend(queue_imu_data, &imu_data, IMU_SAMPLE_PERIOD_MS / portTICK_PERIOD_MS) != pdTRUE)
+                {
+                    ESP_LOGE(IMU_TAG, "ERROR: Could not put item on IMU queue.");
+                }
+            break;
+        default: // IMU_STOP
+            // check IMU task task notification queue
+            break;
+        }
+        // vTaskDelay(IMU_SAMPLE_PERIOD_MS / portTICK_PERIOD_MS);
+    }
+}
+
+/**
+ * @brief FreeRTOS task to get sensor data and distribute them to the SD card
+ * datalogging task, UART data streaming task, and BLE data streaming task.
+ *
+ *
+ */
 #define DATA_LOGGING_TAG "DATA LOGGING"
-static void data_logging_task(void *pvParameters)
+static void task_main_datalogging(void *params)
 {
     uint8_t imu_data_received;
     imu_data_t imu_data;
+    task_main_datalogging_params_t *datalogging_params = (task_main_datalogging_params_t *)params;
+    QueueHandle_t queue_imu_data = datalogging_params->queue_imu_data;
+    QueueHandle_t queue_sd_card_datalogger = datalogging_params->queue_sd_card_datalogger;
+    // QueueHandle_t queue_UART_datastreamer = datalogging_params->queue_UART_datastreamer;
+    // QueueHandle_t queue_BLE_datastreamer = datalogging_params->queue_BLE_datastreamer;
+
     while (1)
     {
+        // wait for task notification from button
         xTaskNotifyWait(0,
                         0,
                         (uint32_t *)&datalogging_task_cmd,
-                        IMU_SAMPLE_PERIOD_MS / portTICK_PERIOD_MS);
+                        100 / portTICK_PERIOD_MS);
+
         switch (datalogging_task_cmd)
         {
-        case DATALOGGING_START:
+        // go datalogging
+        case DATALOGGING_GO:
             if (previous_datalogging_task_cmd == DATALOGGING_STOP)
             {
-                previous_datalogging_task_cmd = DATALOGGING_START;
+                previous_datalogging_task_cmd = DATALOGGING_GO;
                 ESP_LOGI(DATA_LOGGING_TAG, "Datalogging started.");
             }
 
             // receive IMU data from queue
-            imu_data_received = xQueueReceive(imu_data_queue, (void *)&imu_data, 100 / portTICK_PERIOD_MS);
+            imu_data_received = xQueueReceive(queue_imu_data, (void *)&imu_data, 100 / portTICK_PERIOD_MS);
 
             // receive data from other sensors' queues
 
-            // log data to CSV file.
             if (imu_data_received)
             {
-                // log IMU data
-                ESP_LOGI(DATA_LOGGING_TAG, "Acceleration: x=%.4f   y=%.4f   z=%.4f", imu_data.acc.x, imu_data.acc.y, imu_data.acc.z);
-                ESP_LOGI(DATA_LOGGING_TAG, "Rotation:     x=%.4f   y=%.4f   z=%.4f", imu_data.rot.x, imu_data.rot.y, imu_data.rot.z);
+                // send data to SD card datalogger queue
+                if (queue_sd_card_datalogger != NULL)
+                    xQueueSend(queue_sd_card_datalogger, &imu_data, 100 / portTICK_PERIOD_MS);
+                // send data to UART data streaming queue
+                if (queue_UART_datastreamer != NULL)
+                    xQueueSend(queue_UART_datastreamer, &imu_data, 100 / portTICK_PERIOD_MS);
+                // send data to BLE data streaming queue
+                if (queue_BLE_datastreamer != NULL)
+                    xQueueSend(queue_BLE_datastreamer, &imu_data, 100 / portTICK_PERIOD_MS);
+
+                // display IMU data
+                ESP_LOGI(DATA_LOGGING_TAG, "timestamp=%d", imu_data.timestamp);
+                ESP_LOGI(DATA_LOGGING_TAG, "Acceleration: x=%.4f   y=%.4f   z=%.4f", imu_data.ax, imu_data.ay, imu_data.az);
+                ESP_LOGI(DATA_LOGGING_TAG, "Rotation:     x=%.4f   y=%.4f   z=%.4f", imu_data.gx, imu_data.gy, imu_data.gz);
                 ESP_LOGI(DATA_LOGGING_TAG, "Temperature:  %.1f\n", imu_data.temp);
             }
             break;
+
+        // stop datalogging
         case DATALOGGING_STOP:
-            if (previous_datalogging_task_cmd == DATALOGGING_START)
+            if (previous_datalogging_task_cmd == DATALOGGING_GO)
             {
                 previous_datalogging_task_cmd = DATALOGGING_STOP;
                 ESP_LOGI(DATA_LOGGING_TAG, "Datalogging stopped.");
@@ -71,6 +257,157 @@ static void data_logging_task(void *pvParameters)
             break;
         default:
             break;
+        }
+    }
+}
+
+void close_file(FILE *f)
+{
+    if (REQUIRE_SD_CARD)
+    {
+        if (f != NULL)
+        {
+            fclose(f);
+        }
+    }
+}
+
+void open_file(FILE *f, char *filepath)
+{
+    if (REQUIRE_SD_CARD)
+    {
+        f = fopen(filepath, "wb");
+        if (f == NULL)
+        {
+            ESP_LOGE(SD_CARD_TAG, "Failed to open file for writing");
+        }
+    }
+}
+
+void write_imu_data_to_card(FILE *f, imu_data_t *rcv_imu_data, unsigned long *file_size)
+{
+    if (REQUIRE_SD_CARD)
+    {
+        fwrite(rcv_imu_data, sizeof(imu_data_t), 1, f);
+        *file_size = ftell(f);
+    }
+}
+
+/**
+ * @brief SD card datalogging subscriber task
+ *
+ * Grab data sent from the IMU datalogging publisher task to log to the SD card.
+ * Create and open new binary file with given index
+ */
+static void task_SD_card_datalogger(void *params)
+{
+    task_SD_card_datalogger_params_t *sd_datalogger_params = (task_SD_card_datalogger_params_t *)params;
+    QueueHandle_t queue_sd_card_datalogger = sd_datalogger_params->queue_sd_card_datalogger;
+
+    char filename[20];
+    char filepath[30];
+    FILE *f = NULL;
+    // struct stat st;
+    int max_idx;
+    unsigned long file_size = 0;
+    imu_data_t rcv_imu_data;
+
+    // get index of latest datalog file
+    max_idx = get_latest_datalog_idx(MOUNT_POINT);
+    if (max_idx < 0)
+    {
+        ESP_LOGI(SD_CARD_TAG, "no previous IMU datalogs.");
+    }
+    else
+    {
+        ESP_LOGI(SD_CARD_TAG, "Latest IMU datalog has index %d.", max_idx);
+    }
+
+    while (1)
+    {
+        // read from the queue, infinite delay.
+        xQueueReceive(queue_sd_card_datalogger, (void *)&rcv_imu_data, portMAX_DELAY);
+        ESP_LOGI(SD_CARD_TAG, "received data: ");
+        ESP_LOGI(SD_CARD_TAG, "Accel %.4f, %.4f, %.4f", rcv_imu_data.ax, rcv_imu_data.ay, rcv_imu_data.az);
+        ESP_LOGI(SD_CARD_TAG, "Gyro %.4f, %.4f, %.4f", rcv_imu_data.gx, rcv_imu_data.gy, rcv_imu_data.gz);
+        ESP_LOGI(SD_CARD_TAG, "Temp %.2f", rcv_imu_data.temp);
+
+        // check for the signal to stop datalogging, which will save the file.
+        xTaskNotifyWait(0,
+                        0,
+                        (uint32_t *)&cmd_task_sd_card_datalogging, 20 / portTICK_PERIOD_MS);
+
+        // if stop signal received, save and close the file.
+        if (cmd_task_sd_card_datalogging == SD_CARD_STOP)
+        {
+            if (prev_cmd_task_sd_card_datalogging == SD_CARD_START)
+            {
+                close_file(f);
+                ESP_LOGI(SD_CARD_TAG, "File written.");
+                ESP_LOGI(SD_CARD_TAG, "file size: %d", file_size);
+            }
+        }
+        // else, keep logging incoming data to SD card.
+        else
+        {
+            /*
+            if an item was received from the queue, create new datalog file and log there continuously
+            until the file size limit is reached, then close the file and open a new binary datalog file
+            for writing.
+            */
+            // if no file is open
+            if (f == NULL || prev_cmd_task_sd_card_datalogging == SD_CARD_START)
+            {
+                sd_card_configure_loop();
+                file_size = 0;
+                // get the latest datalog file index and add one to it for the new datalog file
+                max_idx++;
+                // create filename IMU_FILENAME_FORMAT
+                sprintf(filename, "imu_%06d.bin", max_idx);
+                ESP_LOGI(SD_CARD_TAG, "filename: %s", filename);
+                // create filepath
+                sprintf(filepath, "%s/%s", MOUNT_POINT, filename);
+                ESP_LOGI(SD_CARD_TAG, "filepath: %s", filepath);
+                // create and write new binary file
+                ESP_LOGI(SD_CARD_TAG, "Writing to new file");
+                open_file(f, filepath);
+            }
+            // while the file is less than the maximum datalog file size
+            if (file_size < MAX_DATALOG_FILE_SIZE)
+            {
+
+                write_imu_data_to_card(f, &rcv_imu_data, &file_size);
+                xQueueReceive(queue_imu_data, (void *)&rcv_imu_data, portMAX_DELAY);
+            }
+            // once the file reaches the maximum datalog file size
+            else
+            {
+                close_file(f);
+                ESP_LOGI(SD_CARD_TAG, "File written.");
+                ESP_LOGI(SD_CARD_TAG, "file size: %d", file_size);
+            }
+        }
+
+        prev_cmd_task_sd_card_datalogging = cmd_task_sd_card_datalogging;
+    }
+}
+
+void sd_card_configure_loop(void)
+{
+    if (REQUIRE_SD_CARD && !sd_card_is_initialized())
+    {
+        for (int i = 0; i < 5; i++)
+        {
+
+            if (sd_configure() != ESP_OK)
+            {
+                ESP_LOGE(MAIN_TAG, "SD card initialization failed");
+            }
+            else
+            {
+                ESP_LOGI(MAIN_TAG, "SD card initialized");
+                break;
+            }
         }
     }
 }
@@ -94,36 +431,58 @@ void app_main(void)
     // mpu6050_init(&dev);
     // mpu6050_calibrate(&dev, NULL, NULL);
     // ESP_LOGI(MAIN_TAG, "IMU calibrated");
-    mpu6050_init_custom(false);
+    imu_set_offset_read_cb(NVS_read_imu_calibration_offsets);
+    imu_set_offset_write_cb(NVS_write_imu_calibration_offsets);
+    imu_init_custom(false);
     // initialize littleFS
 
-    // initialize SD card
-
+    /*
+    initialize SD card
+    The SD card is an integral part to datalogging.
+    If the card doesn't initialize, attempt to initialize n times in a loop.
+    */
+    sd_card_configure_loop();
     ESP_LOGI(MAIN_TAG, "Starting all tasks!");
+
     // initialize all queues
-    imu_data_queue = xQueueCreate(IMU_QUEUE_LEN, sizeof(imu_data_t));
+    queue_imu_data = xQueueCreate(IMU_QUEUE_LEN, sizeof(imu_data_t));
+    queue_sd_card_datalogger = xQueueCreate(IMU_QUEUE_LEN, sizeof(imu_data_t));
+
+    // create all primitives
+    task_imu_params_t task_imu_params;
+    task_main_datalogging_params_t task_main_datalogging_params;
+    task_SD_card_datalogger_params_t task_SD_card_datalogger_params;
+    // task_imu_params
+    task_imu_params.task_handle_status_led = &task_handle_status_led;
+    task_imu_params.queue_imu_data = queue_imu_data;
+
+    // task_main_datalogging_params
+    task_main_datalogging_params.queue_imu_data = queue_imu_data;
+    task_main_datalogging_params.queue_sd_card_datalogger = queue_sd_card_datalogger;
+    // task_SD_card_datalogger_params
+    task_SD_card_datalogger_params.queue_sd_card_datalogger = queue_sd_card_datalogger;
+
     // initialize all tasks
     // IMU reading task
-    xTaskCreatePinnedToCore(imu_task,
+    xTaskCreatePinnedToCore(task_imu,
                             "imu calibrate and read task",
                             2048,
-                            NULL,
+                            &task_imu_params,
                             1,
-                            &task_handle_imu,
+                            &task_handle_imu_data,
                             0);
-    // reading tasks of other sensors
 
     // sensor data logging task
-    xTaskCreatePinnedToCore(data_logging_task,
-                            "data logging task",
+    xTaskCreatePinnedToCore(task_main_datalogging,
+                            "main data logging task",
                             2048,
-                            NULL,
+                            &task_main_datalogging_params,
                             1,
-                            &task_handle_data_logging,
+                            &task_handle_main_data_logging,
                             0);
 
     // notification LED task
-    xTaskCreatePinnedToCore(notif_led_task,
+    xTaskCreatePinnedToCore(task_notification_LED,
                             "notification LED task",
                             1024,
                             NULL,
@@ -131,9 +490,18 @@ void app_main(void)
                             &task_handle_status_led,
                             0);
 
+    // micro SD card datalogging task
+    xTaskCreatePinnedToCore(task_SD_card_datalogger,
+                            "SD card data logging task",
+                            4096,
+                            &task_SD_card_datalogger_params,
+                            5,
+                            &task_handle_SD_card_datalogger,
+                            0);
+
     // button task
     while (1)
     {
-        vTaskDelay(500 / portTICK_PERIOD_MS);
+        vTaskDelay(2000 / portTICK_PERIOD_MS);
     }
 }

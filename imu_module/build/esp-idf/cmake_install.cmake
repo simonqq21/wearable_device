@@ -739,6 +739,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
+  include("/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/esp-idf/espressif__esp-dsp/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
   include("/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/esp-idf/joltwallet__littlefs/cmake_install.cmake")
 endif()
 

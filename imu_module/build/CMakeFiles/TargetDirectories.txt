@@ -1116,6 +1116,13 @@
 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/esp-idf/espressif__button/CMakeFiles/install.dir
 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/esp-idf/espressif__button/CMakeFiles/install/local.dir
 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/esp-idf/espressif__button/CMakeFiles/install/strip.dir
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/esp-idf/espressif__esp-dsp/CMakeFiles/__idf_espressif__esp-dsp.dir
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/esp-idf/espressif__esp-dsp/CMakeFiles/edit_cache.dir
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/esp-idf/espressif__esp-dsp/CMakeFiles/rebuild_cache.dir
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/esp-idf/espressif__esp-dsp/CMakeFiles/list_install_components.dir
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/esp-idf/espressif__esp-dsp/CMakeFiles/install.dir
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/esp-idf/espressif__esp-dsp/CMakeFiles/install/local.dir
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/esp-idf/espressif__esp-dsp/CMakeFiles/install/strip.dir
 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/esp-idf/joltwallet__littlefs/CMakeFiles/__idf_joltwallet__littlefs.dir
 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/esp-idf/joltwallet__littlefs/CMakeFiles/edit_cache.dir
 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/esp-idf/joltwallet__littlefs/CMakeFiles/rebuild_cache.dir

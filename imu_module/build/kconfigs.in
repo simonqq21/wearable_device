@@ -83,4 +83,5 @@ source "/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_modul
 source "/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/managed_components/esp-idf-lib__mpu6050/Kconfig"
 source "/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/managed_components/espressif__button/Kconfig"
 source "/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/managed_components/espressif__cmake_utilities/Kconfig"
+source "/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/managed_components/espressif__esp-dsp/Kconfig"
 source "/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/managed_components/joltwallet__littlefs/Kconfig"

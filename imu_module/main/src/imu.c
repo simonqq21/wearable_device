@@ -8,14 +8,27 @@
 mpu6050_dev_t dev = {0};
 imu_calibration_offsets_t offsets;
 
-extern QueueHandle_t imu_data_queue;
+extern QueueHandle_t queue_imu_data;
 
 extern TaskHandle_t task_handle_status_led;
 
 // self-test MPU6050
 // queue for IMU data from the IMU measuring task to the data logging task
 
-void mpu6050_calibrate_user(void)
+// NVS offset read write function callback
+nvs_func_t offset_read_cb, offset_write_cb;
+
+void imu_set_offset_read_cb(nvs_func_t cb)
+{
+    offset_read_cb = cb;
+}
+
+void imu_set_offset_write_cb(nvs_func_t cb)
+{
+    offset_write_cb = cb;
+}
+
+void imu_calibrate_user(void)
 {
     offsets.oAx = 0;
     offsets.oAy = 0;
@@ -32,26 +45,28 @@ void mpu6050_calibrate_user(void)
     // set gyroscope full scale range
     mpu6050_set_full_scale_gyro_range(&dev, MPU6050_GYRO_RANGE_250); // ±250 deg/s
     // set clock source
-    mpu6050_set_clock_source(&dev, MPU6050_CLOCK_PLL_Y);
+    mpu6050_set_clock_source(&dev, MPU6050_CLOCK_PLL_X);
     // set sample rate to 1 Khz
     mpu6050_set_rate(&dev, 0);
     // enable MPU6050 FIFO
     mpu6050_set_fifo_enabled(&dev, true);
     // set DLPF
-    mpu6050_set_dlpf_mode(&dev, MPU6050_DLPF_1);
+    mpu6050_set_dlpf_mode(&dev, MPU6050_DLPF_3);
+    // wake IMU up
+    mpu6050_set_sleep_enabled(&dev, false);
     // delay for user to place the IMU on a flat surface
     ESP_LOGI(IMU_TAG, "Calibration starting, place the device on a flat surface.");
     vTaskDelay(pdMS_TO_TICKS(3000));
     // take 500 samples of all six axes at 100 Hz
     for (int i = 0; i < num_samples; i++)
     {
-        mpu6050_measure_raw(&temp);
-        offsets.oAx += temp.acc.x;
-        offsets.oAy += temp.acc.y;
-        offsets.oAz += temp.acc.z - 1; // account for gravity
-        offsets.oGx += temp.rot.x;
-        offsets.oGy += temp.rot.y;
-        offsets.oGz += temp.rot.z;
+        imu_measure_raw(&temp);
+        offsets.oAx += temp.ax;
+        offsets.oAy += temp.ay;
+        offsets.oAz += temp.az - 1; // account for gravity
+        offsets.oGx += temp.gx;
+        offsets.oGy += temp.gy;
+        offsets.oGz += temp.gz;
         // vTaskDelay(pdMS_TO_TICKS(10));
     }
     ESP_LOGI(IMU_TAG, "accel_offsets_x = %.4f", offsets.oAx);
@@ -75,17 +90,20 @@ void mpu6050_calibrate_user(void)
     ESP_LOGI(IMU_TAG, "gyro_offsets_y = %.4f", offsets.oGy);
     ESP_LOGI(IMU_TAG, "gyro_offsets_z = %.4f", offsets.oGz);
 
-    NVS_write_imu_calibration_offsets(&offsets);
-
+    // NVS_write_imu_calibration_offsets(&offsets);
+    offset_write_cb(&offsets);
     ESP_LOGI(IMU_TAG, "MPU6050 calibrated.");
-    NVS_read_imu_calibration_offsets(&offsets);
+    // NVS_read_imu_calibration_offsets(&offsets);
+    offset_read_cb(&offsets);
+
     vTaskDelay(pdMS_TO_TICKS(1000));
 }
 
-void mpu6050_load_calibration_offsets(void)
+void imu_load_calibration_offsets(void)
 {
     // read accel and gyro calibration offsets from NVS
-    NVS_read_imu_calibration_offsets(&offsets);
+    // NVS_read_imu_calibration_offsets(&offsets);
+    offset_read_cb(&offsets);
     ESP_LOGI(IMU_TAG, "MPU6050 read calibration from NVS.");
     ESP_LOGI(IMU_TAG, "accel_offsets_x = %.2f", offsets.oAx);
     ESP_LOGI(IMU_TAG, "accel_offsets_y = %.2f", offsets.oAy);
@@ -96,7 +114,7 @@ void mpu6050_load_calibration_offsets(void)
 }
 
 // initialize and configure MPU6050
-void mpu6050_init_custom(uint8_t calibrate_imu)
+void imu_init_custom(uint8_t calibrate_imu)
 {
     uint8_t mpu6050_id = 0;
     imu_calibration_offsets_t offsets;
@@ -119,11 +137,11 @@ void mpu6050_init_custom(uint8_t calibrate_imu)
     // calibrate IMU
     if (calibrate_imu)
     {
-        mpu6050_calibrate_user();
+        imu_calibrate_user();
     }
     else
     {
-        mpu6050_load_calibration_offsets();
+        imu_load_calibration_offsets();
     }
 
     // get MPU6050 WHOAMI
@@ -149,80 +167,76 @@ void mpu6050_init_custom(uint8_t calibrate_imu)
 /*
 read raw measurements from MPU6050
 */
-esp_err_t mpu6050_measure_raw(imu_data_t *data)
+esp_err_t imu_measure_raw(imu_data_t *data)
 {
     // measure MPU6050
+    mpu6050_acceleration_t temp_acc;
+    mpu6050_rotation_t temp_rot;
     ESP_ERROR_CHECK(mpu6050_get_temperature(&dev, &data->temp));
-    ESP_ERROR_CHECK(mpu6050_get_motion(&dev, &data->acc, &data->rot));
+    ESP_ERROR_CHECK(mpu6050_get_motion(&dev, &temp_acc, &temp_rot));
+    data->ax = temp_acc.x;
+    data->ay = temp_acc.y;
+    data->az = temp_acc.z;
+    data->gx = temp_rot.x;
+    data->gy = temp_rot.y;
+    data->gz = temp_rot.z;
     return ESP_OK;
 }
 
 /*
 read calibration-offset measurements from MPU6050
 */
-esp_err_t mpu6050_measure(imu_data_t *data)
+esp_err_t imu_measure(imu_data_t *data)
 {
     // measure MPU6050
-    ESP_ERROR_CHECK(mpu6050_measure_raw(data));
+    ESP_ERROR_CHECK(imu_measure_raw(data));
     // apply calibration offsets
-    data->acc.x -= offsets.oAx;
-    data->acc.y -= offsets.oAy;
-    data->acc.z -= offsets.oAz;
-    data->rot.x -= offsets.oGx;
-    data->rot.y -= offsets.oGy;
-    data->rot.z -= offsets.oGz;
+    data->ax -= offsets.oAx;
+    data->ay -= offsets.oAy;
+    data->az -= offsets.oAz;
+    data->gx -= offsets.oGx;
+    data->gy -= offsets.oGy;
+    data->gz -= offsets.oGz;
     return ESP_OK;
 }
 
-imu_task_cmd_t imu_task_cmd, ongoing_imu_task_cmd;
-TickType_t imu_task_delay_period;
-void imu_task(void *pvParameters)
-{
-    imu_data_t data;
-    while (1)
-    {
-        if (ongoing_imu_task_cmd == IMU_READ_LOOP)
-        {
-            imu_task_delay_period = IMU_SAMPLE_PERIOD_MS / portTICK_PERIOD_MS;
-        }
-        else
-        {
-            imu_task_delay_period = portMAX_DELAY;
-        }
+// void acc_to_euler(imu_data_t *data, euler_angles_t *euler_angles)
+// {
+//     // convert accelerometer data to euler)
+//     /*
+//     [ax, ay, az] = self.get_acc()
+//         phi = math.atan2(ay, math.sqrt(ax ** 2.0 + az ** 2.0))
+//         theta = math.atan2(-ax, math.sqrt(ay ** 2.0 + az ** 2.0))
+//         return [phi, theta]
+//         */
+//     euler_angles->roll_phi = atan2(data->ay, sqrt(data->ax * data->ax + data->az * data->az));
+//     euler_angles->pitch_theta = atan2(-data->ax, sqrt(data->ay * data->ay + data->az * data->az));
+//     euler_angles->yaw_psi = 0;
+// }
 
-        if (xTaskNotifyWait(0,
-                            0,
-                            (uint32_t *)&imu_task_cmd,
-                            imu_task_delay_period) == pdTRUE)
-        {
-            ongoing_imu_task_cmd = imu_task_cmd;
-        }
+// void mpu6050_preprocess(imu_data_t *x)
+// {
+//     static imu_data_t y_prev;
+//     // lowpass filter for noise reduction
+//     // recursive averaging filter
+//     imu_data_t y;
+//     float averaging_alpha = 0.5;
+//     y.acc.x = averaging_alpha * x->acc.x + (1 - averaging_alpha) * y_prev.acc.x;
+//     y.acc.y = averaging_alpha * x->acc.y + (1 - averaging_alpha) * y_prev.acc.y;
+//     y.acc.z = averaging_alpha * x->acc.z + (1 - averaging_alpha) * y_prev.acc.z;
+//     y.rot.x = averaging_alpha * x->rot.x + (1 - averaging_alpha) * y_prev.rot.x;
+//     y.rot.y = averaging_alpha * x->rot.y + (1 - averaging_alpha) * y_prev.rot.y;
+//     y.rot.z = averaging_alpha * x->rot.z + (1 - averaging_alpha) * y_prev.rot.z;
+//     y_prev = y;
+//     // convert accelerometer and gyroscope readings to roll pitch and yaw
+//     euler_angles_t euler_angles;
+//     acc_to_euler(&y, &euler_angles);
 
-        switch (ongoing_imu_task_cmd)
-        {
-        case IMU_CALIBRATE:
-            // calibrate IMU
-            xTaskNotify(task_handle_status_led, STATUS_LED_FAST_BLINK, eSetValueWithOverwrite);
+//     // sensor fusion (Complementary filter)
 
-            mpu6050_calibrate_user();
+//     // sensor fusion (Kalman Filter)
 
-            xTaskNotify(task_handle_status_led, STATUS_LED_OFF, eSetValueWithOverwrite);
-            ongoing_imu_task_cmd = IMU_STOP;
-            break;
-        case IMU_READ_LOOP:
-            // measure IMU and send measurements to queue
-            mpu6050_measure(&data);
-            if (xQueueSend(imu_data_queue, &data, IMU_SAMPLE_PERIOD_MS / portTICK_PERIOD_MS) != pdTRUE)
-            {
-                ESP_LOGE(IMU_TAG, "ERROR: Could not put item on IMU queue.");
-            }
-            break;
-        default: // IMU_STOP
-            // check IMU task task notification queue
+//     // double integration and dead reckoning?
+// }
 
-            break;
-        }
-        // vTaskDelay(IMU_SAMPLE_PERIOD_MS / portTICK_PERIOD_MS);
-    }
-}
 // ****************************************************************

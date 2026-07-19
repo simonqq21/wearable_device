@@ -4,6 +4,7 @@
 #include "common.h"
 
 #define BUTTON_TAG "BUTTON"
+#define BTN1_PIN 5
 
 void button_toggle_datalogging_cb(void *arg, void *data);
 void button_trigger_calibration_cb(void *arg, void *data);

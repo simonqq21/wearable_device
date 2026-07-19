@@ -89,6 +89,16 @@ dependencies:
       registry_url: https://components.espressif.com
       type: service
     version: 1.1.1
+  espressif/esp-dsp:
+    component_hash: ed9ac175b14e0414399a2b33c525579414b5bad19a2a67b12ea212def96f9a98
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=4.2'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 1.8.2
   idf:
     source:
       type: idf
@@ -106,8 +116,9 @@ dependencies:
 direct_dependencies:
 - esp-idf-lib/mpu6050
 - espressif/button
+- espressif/esp-dsp
 - idf
 - joltwallet/littlefs
-manifest_hash: 2e83d9584622f42ba2a090fcf4438956a8fb518d41543b36da175bce3554ecb0
+manifest_hash: 04eb29c5e70a73f26f75e791e9b8716353208e6bbe09ccd5eb3d3015881b196a
 target: esp32
 version: 2.0.0

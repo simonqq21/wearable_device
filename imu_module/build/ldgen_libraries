@@ -201,8 +201,10 @@
 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/esp-idf/esp-idf-lib__mpu6050/libesp-idf-lib__mpu6050.a
 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/esp-idf/esp-idf-lib__i2cdev/libesp-idf-lib__i2cdev.a
 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/esp-idf/espressif__button/libespressif__button.a
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/esp-idf/espressif__esp-dsp/libespressif__esp-dsp.a
 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/esp-idf/joltwallet__littlefs/libjoltwallet__littlefs.a
 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/esp-idf/main/libmain.a
 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/esp-idf/esp-idf-lib__mpu6050/libesp-idf-lib__mpu6050.a
 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/esp-idf/espressif__button/libespressif__button.a
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/esp-idf/espressif__esp-dsp/libespressif__esp-dsp.a
 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/esp-idf/joltwallet__littlefs/libjoltwallet__littlefs.a

@@ -5,12 +5,13 @@
 
 // extern QueueHandle_t status_led_queue;
 extern TaskHandle_t task_handle_status_led;
-extern TaskHandle_t task_handle_imu;
-extern TaskHandle_t task_handle_data_logging;
+extern TaskHandle_t task_handle_imu_data;
+extern TaskHandle_t task_handle_main_data_logging;
+extern TaskHandle_t task_handle_SD_card_datalogger;
 
 uint8_t datalogging;
 
-status_led_task_cmd_t status_led_state_from_button;
+cmd_task_status_led_t status_led_state_from_button;
 
 /*
 notify IMU task to start datalogging
@@ -25,12 +26,17 @@ void button_toggle_datalogging_cb(void *arg, void *data)
         // xTaskNotifyGiveIndexed(task_handle_status_led, 0);
 
         // stop datalogging task
-        xTaskNotify(task_handle_data_logging, DATALOGGING_STOP, eSetValueWithOverwrite);
+        if (task_handle_main_data_logging != NULL)
+            xTaskNotify(task_handle_main_data_logging, DATALOGGING_STOP, eSetValueWithOverwrite);
         //  start IMU task
-        xTaskNotify(task_handle_imu, IMU_STOP, eSetValueWithOverwrite);
+        if (task_handle_imu_data != NULL)
+            xTaskNotify(task_handle_imu_data, IMU_STOP, eSetValueWithOverwrite);
         // turn off the status LED
-        xTaskNotify(task_handle_status_led, STATUS_LED_OFF, eSetValueWithOverwrite);
-
+        if (task_handle_status_led != NULL)
+            xTaskNotify(task_handle_status_led, STATUS_LED_OFF, eSetValueWithOverwrite);
+        // stop SD card datalogging
+        if (task_handle_SD_card_datalogger != NULL)
+            xTaskNotify(task_handle_SD_card_datalogger, SD_CARD_STOP, eSetValueWithOverwrite);
         ESP_LOGI(BUTTON_TAG, "Datalogging stopped.");
     }
     else
@@ -40,12 +46,17 @@ void button_toggle_datalogging_cb(void *arg, void *data)
         // xTaskNotifyGiveIndexed(task_handle_status_led, 0);
 
         // start datalogging task
-        xTaskNotify(task_handle_data_logging, DATALOGGING_START, eSetValueWithOverwrite);
+        if (task_handle_main_data_logging != NULL)
+            xTaskNotify(task_handle_main_data_logging, DATALOGGING_GO, eSetValueWithOverwrite);
         //  start IMU task
-        xTaskNotify(task_handle_imu, IMU_READ_LOOP, eSetValueWithOverwrite);
+        if (task_handle_imu_data != NULL)
+            xTaskNotify(task_handle_imu_data, IMU_READ_LOOP, eSetValueWithOverwrite);
         // turn on the status LED
-        xTaskNotify(task_handle_status_led, STATUS_LED_BLINK, eSetValueWithOverwrite);
-
+        if (task_handle_status_led != NULL)
+            xTaskNotify(task_handle_status_led, STATUS_LED_BLINK, eSetValueWithOverwrite);
+        // start SD card datalogging
+        if (task_handle_SD_card_datalogger != NULL)
+            xTaskNotify(task_handle_SD_card_datalogger, SD_CARD_START, eSetValueWithOverwrite);
         ESP_LOGI(BUTTON_TAG, "Datalogging started.");
     }
     // xQueueSend(status_led_queue, &status_led_state_from_button, 10);
@@ -58,9 +69,11 @@ void button_trigger_calibration_cb(void *arg, void *data)
 {
     ESP_LOGI(BUTTON_TAG, "Calibrating IMU...");
     // pause datalogging
-    xTaskNotify(task_handle_data_logging, DATALOGGING_STOP, eSetValueWithOverwrite);
+    if (task_handle_main_data_logging != NULL)
+        xTaskNotify(task_handle_main_data_logging, DATALOGGING_STOP, eSetValueWithOverwrite);
     // pause IMU reading task to perform calibration
-    xTaskNotify(task_handle_imu, IMU_CALIBRATE, eSetValueWithOverwrite);
+    if (task_handle_imu_data != NULL)
+        xTaskNotify(task_handle_imu_data, IMU_CALIBRATE, eSetValueWithOverwrite);
     // vTaskDelay(1000 / portTICK_PERIOD_MS);
     // xTaskNotify(task_handle_imu, IMU_STOP, eSetValueWithOverwrite);
 }

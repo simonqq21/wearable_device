@@ -1,0 +1,35 @@
+Command: ninja all
+[1/15] Performing build step for 'bootloader'
+[1/1] cd /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/bootloader && /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/bootloader/bootloader.bin
+Bootloader binary size 0x6610 bytes. 0x9f0 bytes (9%) free.
+[2/15] No install step for 'bootloader'
+[3/15] Completed 'bootloader'
+[4/15] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/src/led_module.c.obj
+[5/15] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/src/uart.c.obj
+[6/15] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/src/button_module.c.obj
+[7/15] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/imu_module.c.obj
+In file included from /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/main/imu_module.c:13:
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/main/include/sd_card.h:44:13: warning: 'task_SD_card_datalogger_subscriber' declared 'static' but never defined [-Wunused-function]
+   44 | static void task_SD_card_datalogger_subscriber(void *params);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[8/15] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/src/nvs.c.obj
+[9/15] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/src/sd_card.c.obj
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/main/src/sd_card.c:218:13: warning: 'task_SD_card_datalogger_subscriber' defined but not used [-Wunused-function]
+  218 | static void task_SD_card_datalogger_subscriber(void *params)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[10/15] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/src/imu.c.obj
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/main/src/imu.c: In function 'mpu6050_init_custom':
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/main/src/imu.c:104:31: warning: unused variable 'offsets' [-Wunused-variable]
+  104 |     imu_calibration_offsets_t offsets;
+      |                               ^~~~~~~
+[11/15] Linking C static library esp-idf/main/libmain.a
+[12/15] Generating esp-idf/esp_system/ld/sections.ld
+[13/15] Linking CXX executable imu_module.elf
+[14/15] Generating binary image from built executable
+esptool v5.2.dev3
+Creating ESP32 image...
+Merged 2 ELF sections.
+Successfully created ESP32 image.
+Generated /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/imu_module.bin
+[15/15] cd /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build && /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/partition_table/partition-table.bin /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/imu_module.bin
+imu_module.bin binary size 0x37b30 bytes. Smallest app partition is 0x100000 bytes. 0xc84d0 bytes (78%) free.

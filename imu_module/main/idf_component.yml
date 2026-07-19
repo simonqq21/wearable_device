@@ -18,3 +18,4 @@ dependencies:
   espressif/button: =*
   joltwallet/littlefs: ==1.22.1
   esp-idf-lib/mpu6050: '*'
+  espressif/esp-dsp: '*'

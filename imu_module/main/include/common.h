@@ -2,11 +2,16 @@
 #define COMMON_H
 
 #include <stdio.h>
+#include <dirent.h>
 #include <inttypes.h>
 #include <freertos/FreeRTOS.h>
 #include <freertos/task.h>
 #include <freertos/queue.h>
 #include "freertos/semphr.h"
+
+#include <string.h>
+#include <sys/unistd.h>
+#include <sys/stat.h>
 
 #include <esp_err.h>
 #include <esp_log.h>
@@ -17,7 +22,56 @@
 #include "driver/gpio.h"
 #include "driver/uart.h"
 #include "nvs_flash.h"
+
+#include "esp_vfs_fat.h"
+#include "sdmmc_cmd.h"
+
 #include <mpu6050.h>
+
+// #include "button_module.h"
+// #include "imu.h"
+// #include "led_module.h"
+// #include "nvs.h"
+// #include "sd_card.h"
+// #include "uart.h"
+
+/* IMU task notification queue values */
+typedef enum
+{
+    IMU_STOP,
+    IMU_CALIBRATE,
+    IMU_READ_LOOP,
+} cmd_imu_task_t;
+
+/* IMU calibration offsets struct */
+typedef struct
+{
+    float oAx, oAy, oAz;
+    float oGx, oGy, oGz;
+} imu_calibration_offsets_t;
+
+/* IMU data struct */
+typedef struct
+{
+    uint32_t timestamp;
+    float ax, ay, az; // IMU model-agnostic
+    float gx, gy, gz;
+    float temp;
+} imu_data_t;
+
+/* Datalogging task notification queue values */
+typedef enum
+{
+    DATALOGGING_STOP,
+    DATALOGGING_GO,
+} cmd_task_datalogging_t;
+
+/* SD card task notification command values */
+typedef enum
+{
+    SD_CARD_STOP,
+    SD_CARD_START,
+} cmd_task_sd_card_datalogging_t;
 
 /* Status LED task notification queue values */
 typedef enum
@@ -26,68 +80,15 @@ typedef enum
     STATUS_LED_ON,
     STATUS_LED_BLINK,
     STATUS_LED_FAST_BLINK,
-} status_led_task_cmd_t;
+} cmd_task_status_led_t;
 
-/* IMU task notification queue values */
-typedef enum
-{
-    IMU_STOP,
-    IMU_CALIBRATE,
-    IMU_READ_LOOP,
-} imu_task_cmd_t;
-
-/* Datalogging task notification queue values */
-typedef enum
-{
-    DATALOGGING_STOP,
-    DATALOGGING_START,
-} datalogging_task_cmd_t;
-
-/* IMU calibration offsets struct */
-typedef struct
-{
-    float oAx;
-    float oAy;
-    float oAz;
-    float oGx;
-    float oGy;
-    float oGz;
-} imu_calibration_offsets_t;
-
-/* IMU data struct */
-typedef struct
-{
-    mpu6050_acceleration_t acc;
-    mpu6050_rotation_t rot;
-    float temp;
-} imu_data_t;
-
-// ESP32 pins config
-#define LED1_PIN 2 // power/status LED
-#define LED2_PIN 4 // recording LED
-#define BTN1_PIN 5
-#define SDA_PIN 21
-#define SCL_PIN 22
-
-// ESP32 NVS config
-#define IMU_OFFSETS_NVS_KEY "imu_offsets"
-#define NVS_NAMESPACE "NVS"
-
-// ESP32 UART config
-#define UART_PORT_NUM 0
-#define UART_BAUD_RATE 115200
-#define UART_BUF_SIZE 128
-
-// ESP32 IMU MPU6050 config
-// #ifdef CONFIG_EXAMPLE_I2C_ADDRESS_LOW
-#define ADDR MPU6050_I2C_ADDRESS_LOW
-// #else
-// #define ADDR MPU6050_I2C_ADDRESS_HIGH
-// #endif
+// ESP32 SD card config
+#define MOUNT_POINT "/sdcard"
 
 // FreeRTOS primitives config
-#define IMU_QUEUE_LEN 30
-#define IMU_SAMPLE_RATE_HZ 10
+#define IMU_QUEUE_LEN 50
+#define IMU_SAMPLE_RATE_HZ 4
 #define IMU_SAMPLE_PERIOD_MS (1000 / IMU_SAMPLE_RATE_HZ)
+#define DATALOG_FILE_DURATION_S (10)
 
 #endif
