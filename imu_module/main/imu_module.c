@@ -59,7 +59,7 @@ cmd_imu_task_t imu_task_cmd, ongoing_imu_task_cmd;
 cmd_task_sd_card_datalogging_t cmd_task_sd_card_datalogging, prev_cmd_task_sd_card_datalogging;
 TickType_t imu_task_delay_period;
 
-void sd_card_configure_loop(void);
+esp_err_t sd_card_configure_wrapper(void);
 
 void set_datalogging_led(uint8_t led_value)
 {
@@ -261,8 +261,9 @@ static void task_main_datalogging(void *params)
     }
 }
 
-void close_file(FILE *f)
+FILE *close_file(FILE *f, unsigned long *file_size)
 {
+    *file_size = 0;
     if (REQUIRE_SD_CARD)
     {
         if (f != NULL)
@@ -270,26 +271,40 @@ void close_file(FILE *f)
             fclose(f);
         }
     }
+    f = NULL;
+    return f;
 }
 
-void open_file(FILE *f, char *filepath)
+FILE *open_file(FILE *f, char *filepath, unsigned long *file_size)
 {
+    *file_size = 0;
     if (REQUIRE_SD_CARD)
     {
         f = fopen(filepath, "wb");
+
         if (f == NULL)
         {
             ESP_LOGE(SD_CARD_TAG, "Failed to open file for writing");
         }
+        else
+        {
+            ESP_LOGI(SD_CARD_TAG, "FILE IS NOT NULL");
+        }
     }
+    return f;
 }
 
 void write_imu_data_to_card(FILE *f, imu_data_t *rcv_imu_data, unsigned long *file_size)
 {
     if (REQUIRE_SD_CARD)
     {
-        fwrite(rcv_imu_data, sizeof(imu_data_t), 1, f);
-        *file_size = ftell(f);
+        if (f != NULL)
+        {
+            fwrite(rcv_imu_data, sizeof(imu_data_t), 1, f);
+            *file_size = ftell(f);
+        }
+        else
+            ESP_LOGE(SD_CARD_TAG, "file is null");
     }
 }
 
@@ -313,54 +328,53 @@ static void task_SD_card_datalogger(void *params)
     imu_data_t rcv_imu_data;
 
     // get index of latest datalog file
-    max_idx = get_latest_datalog_idx(MOUNT_POINT);
-    if (max_idx < 0)
-    {
-        ESP_LOGI(SD_CARD_TAG, "no previous IMU datalogs.");
-    }
-    else
-    {
-        ESP_LOGI(SD_CARD_TAG, "Latest IMU datalog has index %d.", max_idx);
-    }
+    // max_idx = get_latest_datalog_idx(MOUNT_POINT);
+    // if (max_idx < 0)
+    // {
+    //     ESP_LOGI(SD_CARD_TAG, "no previous IMU datalogs.");
+    // }
+    // else
+    // {
+    //     ESP_LOGI(SD_CARD_TAG, "Latest IMU datalog has index %d.", max_idx);
+    // }
 
     while (1)
     {
-        // read from the queue, infinite delay.
-        xQueueReceive(queue_sd_card_datalogger, (void *)&rcv_imu_data, portMAX_DELAY);
-        ESP_LOGI(SD_CARD_TAG, "received data: ");
-        ESP_LOGI(SD_CARD_TAG, "Accel %.4f, %.4f, %.4f", rcv_imu_data.ax, rcv_imu_data.ay, rcv_imu_data.az);
-        ESP_LOGI(SD_CARD_TAG, "Gyro %.4f, %.4f, %.4f", rcv_imu_data.gx, rcv_imu_data.gy, rcv_imu_data.gz);
-        ESP_LOGI(SD_CARD_TAG, "Temp %.2f", rcv_imu_data.temp);
-
         // check for the signal to stop datalogging, which will save the file.
         xTaskNotifyWait(0,
                         0,
-                        (uint32_t *)&cmd_task_sd_card_datalogging, 20 / portTICK_PERIOD_MS);
+                        (uint32_t *)&cmd_task_sd_card_datalogging, 40 / portTICK_PERIOD_MS);
 
-        // if stop signal received, save and close the file.
-        if (cmd_task_sd_card_datalogging == SD_CARD_STOP)
+        /*
+         run once when stop signal received
+
+         if stop signal received, save and close the file.
+        */
+        if (cmd_task_sd_card_datalogging == SD_CARD_STOP && prev_cmd_task_sd_card_datalogging == SD_CARD_START)
         {
-            if (prev_cmd_task_sd_card_datalogging == SD_CARD_START)
-            {
-                close_file(f);
-                ESP_LOGI(SD_CARD_TAG, "File written.");
-                ESP_LOGI(SD_CARD_TAG, "file size: %d", file_size);
-            }
+            f = close_file(f, &file_size);
+            ESP_LOGI(SD_CARD_TAG, "File written.");
+            ESP_LOGI(SD_CARD_TAG, "file size: %d", file_size);
         }
-        // else, keep logging incoming data to SD card.
-        else
+
+        /*
+        run once when start signal received
+
+        if start signal received, open a new file..
+        */
+        else if (cmd_task_sd_card_datalogging == SD_CARD_START && prev_cmd_task_sd_card_datalogging == SD_CARD_STOP)
         {
-            /*
-            if an item was received from the queue, create new datalog file and log there continuously
-            until the file size limit is reached, then close the file and open a new binary datalog file
-            for writing.
-            */
-            // if no file is open
-            if (f == NULL || prev_cmd_task_sd_card_datalogging == SD_CARD_START)
-            {
-                sd_card_configure_loop();
+
+            // if no file is open, create a new file.
+            if (f == NULL)
+            { // if SD card not initialized, attempt to mount it.
+                if (!sd_card_is_initialized())
+                {
+                    sd_card_configure_wrapper();
+                }
                 file_size = 0;
                 // get the latest datalog file index and add one to it for the new datalog file
+                max_idx = get_latest_datalog_idx(MOUNT_POINT);
                 max_idx++;
                 // create filename IMU_FILENAME_FORMAT
                 sprintf(filename, "imu_%06d.bin", max_idx);
@@ -370,46 +384,111 @@ static void task_SD_card_datalogger(void *params)
                 ESP_LOGI(SD_CARD_TAG, "filepath: %s", filepath);
                 // create and write new binary file
                 ESP_LOGI(SD_CARD_TAG, "Writing to new file");
-                open_file(f, filepath);
+                f = open_file(f, filepath, &file_size);
+                if (f == NULL)
+                {
+                    ESP_LOGE(SD_CARD_TAG, "FILE IS NULL");
+                }
+                else
+                {
+                    ESP_LOGI(SD_CARD_TAG, "FILE IS NOT NULL");
+                }
             }
+        }
+
+        /*
+        run continuously while datalogging is ongoing
+
+
+        */
+        else if (cmd_task_sd_card_datalogging == SD_CARD_START && prev_cmd_task_sd_card_datalogging == SD_CARD_START)
+        {
             // while the file is less than the maximum datalog file size
             if (file_size < MAX_DATALOG_FILE_SIZE)
             {
+                // if no file is open, create a new file.
+                if (f == NULL)
+                { // if SD card not initialized, attempt to mount it.
+                    if (!sd_card_is_initialized())
+                    {
+                        sd_card_configure_wrapper();
+                    }
+                    file_size = 0;
+                    // get the latest datalog file index and add one to it for the new datalog file
+                    max_idx = get_latest_datalog_idx(MOUNT_POINT);
+                    max_idx++;
+                    // create filename IMU_FILENAME_FORMAT
+                    sprintf(filename, "imu_%06d.bin", max_idx);
+                    ESP_LOGI(SD_CARD_TAG, "filename: %s", filename);
+                    // create filepath
+                    sprintf(filepath, "%s/%s", MOUNT_POINT, filename);
+                    ESP_LOGI(SD_CARD_TAG, "filepath: %s", filepath);
+                    // create and write new binary file
+                    ESP_LOGI(SD_CARD_TAG, "Writing to new file");
+                    f = open_file(f, filepath, &file_size);
+                    if (f == NULL)
+                    {
+                        ESP_LOGE(SD_CARD_TAG, "FILE IS NULL");
+                    }
+                    else
+                    {
+                        ESP_LOGI(SD_CARD_TAG, "FILE IS NOT NULL");
+                    }
+                }
 
-                write_imu_data_to_card(f, &rcv_imu_data, &file_size);
-                xQueueReceive(queue_imu_data, (void *)&rcv_imu_data, portMAX_DELAY);
+                // read from the queue.
+                if (xQueueReceive(queue_sd_card_datalogger, (void *)&rcv_imu_data, 10 / portTICK_PERIOD_MS) == pdTRUE) // portMAX_DELAY
+                {
+                    ESP_LOGI(SD_CARD_TAG, "received data: ");
+                    ESP_LOGI(SD_CARD_TAG, "Accel %.4f, %.4f, %.4f", rcv_imu_data.ax, rcv_imu_data.ay, rcv_imu_data.az);
+                    ESP_LOGI(SD_CARD_TAG, "Gyro %.4f, %.4f, %.4f", rcv_imu_data.gx, rcv_imu_data.gy, rcv_imu_data.gz);
+                    ESP_LOGI(SD_CARD_TAG, "Temp %.2f", rcv_imu_data.temp);
+
+                    write_imu_data_to_card(f, &rcv_imu_data, &file_size);
+                }
             }
-            // once the file reaches the maximum datalog file size
             else
-            {
-                close_file(f);
+            { // once the file reaches the maximum datalog file size
+                f = close_file(f, &file_size);
                 ESP_LOGI(SD_CARD_TAG, "File written.");
                 ESP_LOGI(SD_CARD_TAG, "file size: %d", file_size);
             }
+        }
+
+        /*
+        run continuously while datalogging is stopped
+
+        do nothing
+        */
+        else if (cmd_task_sd_card_datalogging == SD_CARD_STOP && prev_cmd_task_sd_card_datalogging == SD_CARD_STOP)
+        {
         }
 
         prev_cmd_task_sd_card_datalogging = cmd_task_sd_card_datalogging;
     }
 }
 
-void sd_card_configure_loop(void)
+esp_err_t sd_card_configure_wrapper(void)
 {
+    esp_err_t ret = ESP_OK;
     if (REQUIRE_SD_CARD && !sd_card_is_initialized())
     {
-        for (int i = 0; i < 5; i++)
+        // for (int i = 0; i < 5; i++)
+        // {
+        ret = sd_configure();
+        if (ret != ESP_OK)
         {
-
-            if (sd_configure() != ESP_OK)
-            {
-                ESP_LOGE(MAIN_TAG, "SD card initialization failed");
-            }
-            else
-            {
-                ESP_LOGI(MAIN_TAG, "SD card initialized");
-                break;
-            }
+            ESP_LOGE(MAIN_TAG, "SD card initialization failed");
         }
+        else
+        {
+            ESP_LOGI(MAIN_TAG, "SD card initialized");
+            return ret;
+            // break;
+        }
+        // }
     }
+    return ret;
 }
 // ****************************************************************
 
@@ -441,7 +520,7 @@ void app_main(void)
     The SD card is an integral part to datalogging.
     If the card doesn't initialize, attempt to initialize n times in a loop.
     */
-    sd_card_configure_loop();
+    sd_card_configure_wrapper();
     ESP_LOGI(MAIN_TAG, "Starting all tasks!");
 
     // initialize all queues

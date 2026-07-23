@@ -13,7 +13,7 @@ esp_err_t sd_configure(void)
     // If format_if_mount_failed is set to true, SD card will be partitioned and
     // formatted in case when mounting fails.
     esp_vfs_fat_sdmmc_mount_config_t mount_config = {
-        .format_if_mount_failed = false,
+        .format_if_mount_failed = true,
         .max_files = 5,
         .allocation_unit_size = 16 * 1024,
     };
@@ -31,7 +31,7 @@ esp_err_t sd_configure(void)
     // For setting a specific frequency, use host.max_freq_khz (range 400kHz - 20MHz for SDSPI)
     // Example: for fixed frequency of 10MHz, use host.max_freq_khz = 10000;
     sdmmc_host_t host = SDSPI_HOST_DEFAULT();
-    host.max_freq_khz = 1000;
+    host.max_freq_khz = 5000;
 
     // SD card SPI bus configuration
     spi_bus_config_t bus_cfg = {
@@ -115,7 +115,7 @@ int get_latest_datalog_idx(const char *dir_path)
         }
 
         // Print the file/folder name
-        printf("%s\n", entry->d_name);
+        // printf("%s\n", entry->d_name);
         if (strlen(entry->d_name) == IMU_EXPECTED_LEN)
         {
             int file_number;
