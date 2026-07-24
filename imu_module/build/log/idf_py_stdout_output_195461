@@ -1,0 +1,274 @@
+Command: ninja all
+[0/1] Re-running CMake...
+-- Component directory /home/simonque/Documents/code/esp-idf/components/idf_test does not contain a CMakeLists.txt file. No component will be added
+-- Component directory /home/simonque/Documents/code/esp-idf/components/mqtt does not contain a CMakeLists.txt file. No component will be added
+-- Minimal build - OFF
+-- Building ESP-IDF components for target esp32
+NOTICE: 
+Following dependencies have new versions available:
+Dependency "esp-idf-lib/i2cdev": "2.1.1" -> "2.1.2"
+Consider running "idf.py update-dependencies" to update your lock file.
+NOTICE: Processing 8 dependencies:
+NOTICE: [1/8] esp-idf-lib/esp_idf_lib_helpers (1.4.0)
+NOTICE: [2/8] esp-idf-lib/i2cdev (2.1.1)
+NOTICE: [3/8] esp-idf-lib/mpu6050 (2.1.9)
+NOTICE: [4/8] espressif/button (4.2.0)
+NOTICE: [5/8] espressif/cmake_utilities (1.1.1)
+NOTICE: [6/8] espressif/esp-dsp (1.8.2)
+NOTICE: [7/8] joltwallet/littlefs (1.22.1)
+NOTICE: [8/8] idf (6.1.0)
+-- i2cdev: ESP-IDF v6.1 detected, using new i2c_master driver
+-- i2cdev: Compiling with new I2C master driver (i2cdev.c)
+-- ESP-TEE is currently supported only on the esp32c6;esp32h2;esp32c5;esp32c61 SoCs
+-- KCONFIG_REPORT_VERBOSITY not set, using default
+-- Project sdkconfig file /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/sdkconfig
+-- Compiler supported targets: xtensa-esp-elf
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- App "imu_module" version: b044a33-dirty
+-- Setting up mbedtls configuration
+-- Linkage type is PUBLIC
+-- Adding linker script /home/simonque/Documents/code/esp-idf/components/esp_system/ld/esp32/memory.ld.in
+--   -> Preprocessing .in script: /home/simonque/Documents/code/esp-idf/components/esp_system/ld/esp32/memory.ld.in
+-- Adding linker script /home/simonque/Documents/code/esp-idf/components/esp_system/ld/esp32/sections.ld.in
+--   -> Preprocessing .in script: /home/simonque/Documents/code/esp-idf/components/esp_system/ld/esp32/sections.ld.in
+--   -> Applying ldgen processing: /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/esp-idf/esp_system/ld/sections.ld.in
+-- Adding linker script /home/simonque/Documents/code/esp-idf/components/esp_rom/esp32/ld/esp32.rom.ld
+-- Adding linker script /home/simonque/Documents/code/esp-idf/components/esp_rom/esp32/ld/esp32.rom.api.ld
+-- Adding linker script /home/simonque/Documents/code/esp-idf/components/esp_rom/esp32/ld/esp32.rom.libgcc.ld
+-- Adding linker script /home/simonque/Documents/code/esp-idf/components/esp_rom/esp32/ld/esp32.rom.libc-funcs.ld
+-- Adding linker script /home/simonque/Documents/code/esp-idf/components/soc/esp32/ld/esp32.peripherals.ld
+-- i2cdev: ESP-IDF v6.1 detected, using new i2c_master driver
+-- i2cdev: Compiling with new I2C master driver (i2cdev.c)
+-- BUTTON: 4.2.0
+-- Component idf::esp_trace will be linked with -Wl,--whole-archive
+-- Components: app_trace app_update bootloader bootloader_support bt cmock console cxx driver efuse esp-idf-lib__esp_idf_lib_helpers esp-idf-lib__i2cdev esp-idf-lib__mpu6050 esp-tls esp_adc esp_app_format esp_blockdev esp_bootloader_format esp_coex esp_common esp_driver_ana_cmpr esp_driver_bitscrambler esp_driver_cam esp_driver_dac esp_driver_dma esp_driver_gpio esp_driver_gptimer esp_driver_i2c esp_driver_i2s esp_driver_i3c esp_driver_isp esp_driver_jpeg esp_driver_ledc esp_driver_mcpwm esp_driver_parlio esp_driver_pcnt esp_driver_ppa esp_driver_rmt esp_driver_sd_intf esp_driver_sdio esp_driver_sdm esp_driver_sdmmc esp_driver_sdspi esp_driver_spi esp_driver_touch_sens esp_driver_tsens esp_driver_twai esp_driver_uart esp_driver_usb_serial_jtag esp_eth esp_event esp_gdbstub esp_hal_ana_cmpr esp_hal_ana_conv esp_hal_cam esp_hal_clock esp_hal_dma esp_hal_emac esp_hal_gpio esp_hal_gpspi esp_hal_i2c esp_hal_i2s esp_hal_i3c esp_hal_ieee802154 esp_hal_jpeg esp_hal_lcd esp_hal_ledc esp_hal_mcpwm esp_hal_mspi esp_hal_parlio esp_hal_pcnt esp_hal_pmu esp_hal_ppa esp_hal_rmt esp_hal_rtc_timer esp_hal_security esp_hal_timg esp_hal_touch_sens esp_hal_twai esp_hal_uart esp_hal_usb esp_hal_wdt esp_hid esp_http_client esp_http_server esp_https_ota esp_https_server esp_hw_support esp_lcd esp_libc esp_local_ctrl esp_mm esp_netif esp_netif_stack esp_partition esp_phy esp_pm esp_psram esp_ringbuf esp_rom esp_security esp_stdio esp_system esp_timer esp_trace esp_usb_cdc_rom_console esp_wifi espcoredump espressif__button espressif__cmake_utilities espressif__esp-dsp esptool_py fatfs freertos hal heap http_parser ieee802154 joltwallet__littlefs log lwip main mbedtls nvs_flash nvs_sec_provider openthread partition_table perfmon protobuf-c protocomm pthread rt sdmmc soc spi_flash spiffs tcp_transport ulp unity vfs wear_levelling wpa_supplicant xtensa
+-- Component paths: /home/simonque/Documents/code/esp-idf/components/app_trace /home/simonque/Documents/code/esp-idf/components/app_update /home/simonque/Documents/code/esp-idf/components/bootloader /home/simonque/Documents/code/esp-idf/components/bootloader_support /home/simonque/Documents/code/esp-idf/components/bt /home/simonque/Documents/code/esp-idf/components/cmock /home/simonque/Documents/code/esp-idf/components/console /home/simonque/Documents/code/esp-idf/components/cxx /home/simonque/Documents/code/esp-idf/components/driver /home/simonque/Documents/code/esp-idf/components/efuse /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/managed_components/esp-idf-lib__esp_idf_lib_helpers /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/managed_components/esp-idf-lib__i2cdev /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/managed_components/esp-idf-lib__mpu6050 /home/simonque/Documents/code/esp-idf/components/esp-tls /home/simonque/Documents/code/esp-idf/components/esp_adc /home/simonque/Documents/code/esp-idf/components/esp_app_format /home/simonque/Documents/code/esp-idf/components/esp_blockdev /home/simonque/Documents/code/esp-idf/components/esp_bootloader_format /home/simonque/Documents/code/esp-idf/components/esp_coex /home/simonque/Documents/code/esp-idf/components/esp_common /home/simonque/Documents/code/esp-idf/components/esp_driver_ana_cmpr /home/simonque/Documents/code/esp-idf/components/esp_driver_bitscrambler /home/simonque/Documents/code/esp-idf/components/esp_driver_cam /home/simonque/Documents/code/esp-idf/components/esp_driver_dac /home/simonque/Documents/code/esp-idf/components/esp_driver_dma /home/simonque/Documents/code/esp-idf/components/esp_driver_gpio /home/simonque/Documents/code/esp-idf/components/esp_driver_gptimer /home/simonque/Documents/code/esp-idf/components/esp_driver_i2c /home/simonque/Documents/code/esp-idf/components/esp_driver_i2s /home/simonque/Documents/code/esp-idf/components/esp_driver_i3c /home/simonque/Documents/code/esp-idf/components/esp_driver_isp /home/simonque/Documents/code/esp-idf/components/esp_driver_jpeg /home/simonque/Documents/code/esp-idf/components/esp_driver_ledc /home/simonque/Documents/code/esp-idf/components/esp_driver_mcpwm /home/simonque/Documents/code/esp-idf/components/esp_driver_parlio /home/simonque/Documents/code/esp-idf/components/esp_driver_pcnt /home/simonque/Documents/code/esp-idf/components/esp_driver_ppa /home/simonque/Documents/code/esp-idf/components/esp_driver_rmt /home/simonque/Documents/code/esp-idf/components/esp_driver_sd_intf /home/simonque/Documents/code/esp-idf/components/esp_driver_sdio /home/simonque/Documents/code/esp-idf/components/esp_driver_sdm /home/simonque/Documents/code/esp-idf/components/esp_driver_sdmmc /home/simonque/Documents/code/esp-idf/components/esp_driver_sdspi /home/simonque/Documents/code/esp-idf/components/esp_driver_spi /home/simonque/Documents/code/esp-idf/components/esp_driver_touch_sens /home/simonque/Documents/code/esp-idf/components/esp_driver_tsens /home/simonque/Documents/code/esp-idf/components/esp_driver_twai /home/simonque/Documents/code/esp-idf/components/esp_driver_uart /home/simonque/Documents/code/esp-idf/components/esp_driver_usb_serial_jtag /home/simonque/Documents/code/esp-idf/components/esp_eth /home/simonque/Documents/code/esp-idf/components/esp_event /home/simonque/Documents/code/esp-idf/components/esp_gdbstub /home/simonque/Documents/code/esp-idf/components/esp_hal_ana_cmpr /home/simonque/Documents/code/esp-idf/components/esp_hal_ana_conv /home/simonque/Documents/code/esp-idf/components/esp_hal_cam /home/simonque/Documents/code/esp-idf/components/esp_hal_clock /home/simonque/Documents/code/esp-idf/components/esp_hal_dma /home/simonque/Documents/code/esp-idf/components/esp_hal_emac /home/simonque/Documents/code/esp-idf/components/esp_hal_gpio /home/simonque/Documents/code/esp-idf/components/esp_hal_gpspi /home/simonque/Documents/code/esp-idf/components/esp_hal_i2c /home/simonque/Documents/code/esp-idf/components/esp_hal_i2s /home/simonque/Documents/code/esp-idf/components/esp_hal_i3c /home/simonque/Documents/code/esp-idf/components/esp_hal_ieee802154 /home/simonque/Documents/code/esp-idf/components/esp_hal_jpeg /home/simonque/Documents/code/esp-idf/components/esp_hal_lcd /home/simonque/Documents/code/esp-idf/components/esp_hal_ledc /home/simonque/Documents/code/esp-idf/components/esp_hal_mcpwm /home/simonque/Documents/code/esp-idf/components/esp_hal_mspi /home/simonque/Documents/code/esp-idf/components/esp_hal_parlio /home/simonque/Documents/code/esp-idf/components/esp_hal_pcnt /home/simonque/Documents/code/esp-idf/components/esp_hal_pmu /home/simonque/Documents/code/esp-idf/components/esp_hal_ppa /home/simonque/Documents/code/esp-idf/components/esp_hal_rmt /home/simonque/Documents/code/esp-idf/components/esp_hal_rtc_timer /home/simonque/Documents/code/esp-idf/components/esp_hal_security /home/simonque/Documents/code/esp-idf/components/esp_hal_timg /home/simonque/Documents/code/esp-idf/components/esp_hal_touch_sens /home/simonque/Documents/code/esp-idf/components/esp_hal_twai /home/simonque/Documents/code/esp-idf/components/esp_hal_uart /home/simonque/Documents/code/esp-idf/components/esp_hal_usb /home/simonque/Documents/code/esp-idf/components/esp_hal_wdt /home/simonque/Documents/code/esp-idf/components/esp_hid /home/simonque/Documents/code/esp-idf/components/esp_http_client /home/simonque/Documents/code/esp-idf/components/esp_http_server /home/simonque/Documents/code/esp-idf/components/esp_https_ota /home/simonque/Documents/code/esp-idf/components/esp_https_server /home/simonque/Documents/code/esp-idf/components/esp_hw_support /home/simonque/Documents/code/esp-idf/components/esp_lcd /home/simonque/Documents/code/esp-idf/components/esp_libc /home/simonque/Documents/code/esp-idf/components/esp_local_ctrl /home/simonque/Documents/code/esp-idf/components/esp_mm /home/simonque/Documents/code/esp-idf/components/esp_netif /home/simonque/Documents/code/esp-idf/components/esp_netif_stack /home/simonque/Documents/code/esp-idf/components/esp_partition /home/simonque/Documents/code/esp-idf/components/esp_phy /home/simonque/Documents/code/esp-idf/components/esp_pm /home/simonque/Documents/code/esp-idf/components/esp_psram /home/simonque/Documents/code/esp-idf/components/esp_ringbuf /home/simonque/Documents/code/esp-idf/components/esp_rom /home/simonque/Documents/code/esp-idf/components/esp_security /home/simonque/Documents/code/esp-idf/components/esp_stdio /home/simonque/Documents/code/esp-idf/components/esp_system /home/simonque/Documents/code/esp-idf/components/esp_timer /home/simonque/Documents/code/esp-idf/components/esp_trace /home/simonque/Documents/code/esp-idf/components/esp_usb_cdc_rom_console /home/simonque/Documents/code/esp-idf/components/esp_wifi /home/simonque/Documents/code/esp-idf/components/espcoredump /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/managed_components/espressif__button /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/managed_components/espressif__cmake_utilities /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/managed_components/espressif__esp-dsp /home/simonque/Documents/code/esp-idf/components/esptool_py /home/simonque/Documents/code/esp-idf/components/fatfs /home/simonque/Documents/code/esp-idf/components/freertos /home/simonque/Documents/code/esp-idf/components/hal /home/simonque/Documents/code/esp-idf/components/heap /home/simonque/Documents/code/esp-idf/components/http_parser /home/simonque/Documents/code/esp-idf/components/ieee802154 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/managed_components/joltwallet__littlefs /home/simonque/Documents/code/esp-idf/components/log /home/simonque/Documents/code/esp-idf/components/lwip /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/main /home/simonque/Documents/code/esp-idf/components/mbedtls /home/simonque/Documents/code/esp-idf/components/nvs_flash /home/simonque/Documents/code/esp-idf/components/nvs_sec_provider /home/simonque/Documents/code/esp-idf/components/openthread /home/simonque/Documents/code/esp-idf/components/partition_table /home/simonque/Documents/code/esp-idf/components/perfmon /home/simonque/Documents/code/esp-idf/components/protobuf-c /home/simonque/Documents/code/esp-idf/components/protocomm /home/simonque/Documents/code/esp-idf/components/pthread /home/simonque/Documents/code/esp-idf/components/rt /home/simonque/Documents/code/esp-idf/components/sdmmc /home/simonque/Documents/code/esp-idf/components/soc /home/simonque/Documents/code/esp-idf/components/spi_flash /home/simonque/Documents/code/esp-idf/components/spiffs /home/simonque/Documents/code/esp-idf/components/tcp_transport /home/simonque/Documents/code/esp-idf/components/ulp /home/simonque/Documents/code/esp-idf/components/unity /home/simonque/Documents/code/esp-idf/components/vfs /home/simonque/Documents/code/esp-idf/components/wear_levelling /home/simonque/Documents/code/esp-idf/components/wpa_supplicant /home/simonque/Documents/code/esp-idf/components/xtensa
+-- Configuring done (8.8s)
+-- Generating done (0.5s)
+-- Build files have been written to: /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build
+[1/17] Building C object esp-idf/esp_app_format/CMakeFiles/__idf_esp_app_format.dir/esp_app_desc.c.obj
+[2/17] Linking C static library esp-idf/esp_app_format/libesp_app_format.a
+[3/17] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/src/led_module.c.obj
+[4/17] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/src/uart.c.obj
+[5/17] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/src/button_module.c.obj
+[6/17] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/src/nvs.c.obj
+[7/17] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/src/sd_card.c.obj
+[8/17] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/src/imu.c.obj
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/main/src/imu.c: In function 'imu_init_custom':
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/main/src/imu.c:120:31: warning: unused variable 'offsets' [-Wunused-variable]
+  120 |     imu_calibration_offsets_t offsets;
+      |                               ^~~~~~~
+[9/17] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/imu_module.c.obj
+[10/17] Linking C static library esp-idf/main/libmain.a
+[11/17] Performing build step for 'bootloader'
+[0/1] Re-running CMake...
+-- Component directory /home/simonque/Documents/code/esp-idf/components/idf_test does not contain a CMakeLists.txt file. No component will be added
+-- Component directory /home/simonque/Documents/code/esp-idf/components/mqtt does not contain a CMakeLists.txt file. No component will be added
+-- Minimal build - OFF
+-- Building ESP-IDF components for target esp32
+-- ESP-TEE is currently supported only on the esp32c6;esp32h2;esp32c5;esp32c61 SoCs
+-- KCONFIG_REPORT_VERBOSITY not set, using default
+-- Project sdkconfig file /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/sdkconfig
+Configuration Report                                                            
+ ────────────────────────────────────────────────────────────────────────────── 
+   Parser Version: 1                                                            
+   Verbosity: default                                                           
+   Defaults policy: sdkconfig                                                   
+   Status: Finished with notifications                                          
+                                                                                
+  Default Value Mismatch                                                        
+   ──────────────────────────────────────────────────────────────────────────   
+    Using sdkconfig default values                                              
+    Choice symbols with different default selection between sdkconfig and       
+    Kconfig                                                                     
+    LIBC_STDOUT_LINE_ENDING: Kconfig default selection: choice                  
+    deselected, sdkconfig default selection: LIBC_STDOUT_LINE_ENDING_CRLF       
+    LIBC_STDIN_LINE_ENDING: Kconfig default selection: choice deselected,       
+    sdkconfig default selection: LIBC_STDIN_LINE_ENDING_CR                      
+   ──────────────────────────────────────────────────────────────────────────   
+ ────────────────────────────────────────────────────────────────────────────── 
+-- Compiler supported targets: xtensa-esp-elf
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Adding linker script /home/simonque/Documents/code/esp-idf/components/soc/esp32/ld/esp32.peripherals.ld
+-- Bootloader project name: "bootloader" version: 1
+-- Adding linker script /home/simonque/Documents/code/esp-idf/components/esp_rom/esp32/ld/esp32.rom.ld
+-- Adding linker script /home/simonque/Documents/code/esp-idf/components/esp_rom/esp32/ld/esp32.rom.api.ld
+-- Adding linker script /home/simonque/Documents/code/esp-idf/components/esp_rom/esp32/ld/esp32.rom.libgcc.ld
+-- Adding linker script /home/simonque/Documents/code/esp-idf/components/esp_rom/esp32/ld/esp32.rom.libc-funcs.ld
+-- Components: bootloader bootloader_support efuse esp_app_format esp_blockdev esp_bootloader_format esp_common esp_hal_ana_conv esp_hal_clock esp_hal_dma esp_hal_gpio esp_hal_gpspi esp_hal_i2s esp_hal_mspi esp_hal_pmu esp_hal_rtc_timer esp_hal_security esp_hal_timg esp_hal_uart esp_hal_usb esp_hal_wdt esp_hw_support esp_libc esp_rom esp_security esp_stdio esp_system esptool_py freertos hal log main micro-ecc partition_table soc spi_flash xtensa
+-- Component paths: /home/simonque/Documents/code/esp-idf/components/bootloader /home/simonque/Documents/code/esp-idf/components/bootloader_support /home/simonque/Documents/code/esp-idf/components/efuse /home/simonque/Documents/code/esp-idf/components/esp_app_format /home/simonque/Documents/code/esp-idf/components/esp_blockdev /home/simonque/Documents/code/esp-idf/components/esp_bootloader_format /home/simonque/Documents/code/esp-idf/components/esp_common /home/simonque/Documents/code/esp-idf/components/esp_hal_ana_conv /home/simonque/Documents/code/esp-idf/components/esp_hal_clock /home/simonque/Documents/code/esp-idf/components/esp_hal_dma /home/simonque/Documents/code/esp-idf/components/esp_hal_gpio /home/simonque/Documents/code/esp-idf/components/esp_hal_gpspi /home/simonque/Documents/code/esp-idf/components/esp_hal_i2s /home/simonque/Documents/code/esp-idf/components/esp_hal_mspi /home/simonque/Documents/code/esp-idf/components/esp_hal_pmu /home/simonque/Documents/code/esp-idf/components/esp_hal_rtc_timer /home/simonque/Documents/code/esp-idf/components/esp_hal_security /home/simonque/Documents/code/esp-idf/components/esp_hal_timg /home/simonque/Documents/code/esp-idf/components/esp_hal_uart /home/simonque/Documents/code/esp-idf/components/esp_hal_usb /home/simonque/Documents/code/esp-idf/components/esp_hal_wdt /home/simonque/Documents/code/esp-idf/components/esp_hw_support /home/simonque/Documents/code/esp-idf/components/esp_libc /home/simonque/Documents/code/esp-idf/components/esp_rom /home/simonque/Documents/code/esp-idf/components/esp_security /home/simonque/Documents/code/esp-idf/components/esp_stdio /home/simonque/Documents/code/esp-idf/components/esp_system /home/simonque/Documents/code/esp-idf/components/esptool_py /home/simonque/Documents/code/esp-idf/components/freertos /home/simonque/Documents/code/esp-idf/components/hal /home/simonque/Documents/code/esp-idf/components/log /home/simonque/Documents/code/esp-idf/components/bootloader/subproject/main /home/simonque/Documents/code/esp-idf/components/bootloader/subproject/components/micro-ecc /home/simonque/Documents/code/esp-idf/components/partition_table /home/simonque/Documents/code/esp-idf/components/soc /home/simonque/Documents/code/esp-idf/components/spi_flash /home/simonque/Documents/code/esp-idf/components/xtensa
+-- Adding linker script /home/simonque/Documents/code/esp-idf/components/bootloader/subproject/main/ld/esp32/bootloader.ld.in
+--   -> Preprocessing .in script: /home/simonque/Documents/code/esp-idf/components/bootloader/subproject/main/ld/esp32/bootloader.ld.in
+-- Configuring done (3.7s)
+-- Generating done (0.1s)
+-- Build files have been written to: /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/bootloader
+[1/138] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/interrupts.c.obj
+[2/138] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/mpi_periph.c.obj
+[3/138] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/dport_access_common.c.obj
+[4/138] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/gpio_periph.c.obj
+[5/138] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/sdmmc_periph.c.obj
+[6/138] Building C object esp-idf/xtensa/CMakeFiles/__idf_xtensa.dir/eri.c.obj
+[7/138] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/dport_access.c.obj
+[8/138] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/power_supply_periph.c.obj
+[9/138] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/lldesc.c.obj
+[10/138] Building C object esp-idf/xtensa/CMakeFiles/__idf_xtensa.dir/xt_trax.c.obj
+[11/138] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/sdio_slave_periph.c.obj
+[12/138] Building C object esp-idf/esp_hal_gpio/CMakeFiles/__idf_esp_hal_gpio.dir/esp32/sdm_periph.c.obj
+[13/138] Building C object esp-idf/esp_hal_gpio/CMakeFiles/__idf_esp_hal_gpio.dir/esp32/rtc_io_periph.c.obj
+[14/138] Building C object esp-idf/esp_hal_pmu/CMakeFiles/__idf_esp_hal_pmu.dir/brownout_hal.c.obj
+[15/138] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/efuse_hal.c.obj
+[16/138] Building C object esp-idf/esp_hal_gpio/CMakeFiles/__idf_esp_hal_gpio.dir/sdm_hal.c.obj
+[17/138] Building C object esp-idf/esp_hal_gpspi/CMakeFiles/__idf_esp_hal_gpspi.dir/esp32/spi_periph.c.obj
+[18/138] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/esp32/efuse_hal.c.obj
+[19/138] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/esp32/cache_hal_esp32.c.obj
+[20/138] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/hal_utils.c.obj
+[21/138] Building C object esp-idf/esp_hal_gpio/CMakeFiles/__idf_esp_hal_gpio.dir/gpio_hal.c.obj
+[22/138] Building C object esp-idf/esp_hal_gpio/CMakeFiles/__idf_esp_hal_gpio.dir/rtc_io_hal.c.obj
+[23/138] Building C object esp-idf/esp_hal_mspi/CMakeFiles/__idf_esp_hal_mspi.dir/esp32/mspi_periph.c.obj
+[24/138] Building C object esp-idf/esp_hal_wdt/CMakeFiles/__idf_esp_hal_wdt.dir/esp32/mwdt_periph.c.obj
+[25/138] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_wrap.c.obj
+[26/138] Building C object esp-idf/esp_bootloader_format/CMakeFiles/__idf_esp_bootloader_format.dir/esp_bootloader_desc.c.obj
+[27/138] Building C object esp-idf/esp_hal_gpspi/CMakeFiles/__idf_esp_hal_gpspi.dir/spi_slave_hal.c.obj
+[28/138] Building C object esp-idf/esp_hal_gpspi/CMakeFiles/__idf_esp_hal_gpspi.dir/spi_hal.c.obj
+[29/138] Building C object esp-idf/esp_hal_timg/CMakeFiles/__idf_esp_hal_timg.dir/esp32/timer_periph.c.obj
+[30/138] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/mmu_hal.c.obj
+[31/138] Building C object esp-idf/esp_hal_clock/CMakeFiles/__idf_esp_hal_clock.dir/esp32/clk_tree_hal.c.obj
+[32/138] Building C object esp-idf/esp_hal_timg/CMakeFiles/__idf_esp_hal_timg.dir/timer_hal.c.obj
+[33/138] Building C object esp-idf/esp_hal_uart/CMakeFiles/__idf_esp_hal_uart.dir/esp32/uart_periph.c.obj
+[34/138] Building C object esp-idf/esp_hal_gpspi/CMakeFiles/__idf_esp_hal_gpspi.dir/spi_slave_hal_iram.c.obj
+[35/138] Building C object esp-idf/esp_hal_ana_conv/CMakeFiles/__idf_esp_hal_ana_conv.dir/esp32/adc_periph.c.obj
+[36/138] Building C object esp-idf/esp_hal_uart/CMakeFiles/__idf_esp_hal_uart.dir/uart_hal_iram.c.obj
+[37/138] Building C object esp-idf/esp_hal_ana_conv/CMakeFiles/__idf_esp_hal_ana_conv.dir/esp32/dac_periph.c.obj
+[38/138] Building C object esp-idf/esp_hal_i2s/CMakeFiles/__idf_esp_hal_i2s.dir/esp32/i2s_periph.c.obj
+[39/138] Building C object esp-idf/esp_hal_ana_conv/CMakeFiles/__idf_esp_hal_ana_conv.dir/adc_hal_common.c.obj
+[40/138] Building C object esp-idf/esp_hal_security/CMakeFiles/__idf_esp_hal_security.dir/mpu_hal.c.obj
+[41/138] Building C object esp-idf/esp_security/CMakeFiles/__idf_esp_security.dir/src/esp_crypto_lock.c.obj
+[42/138] Building C object esp-idf/esp_hal_uart/CMakeFiles/__idf_esp_hal_uart.dir/uart_hal.c.obj
+[43/138] Building C object esp-idf/esp_hal_ana_conv/CMakeFiles/__idf_esp_hal_ana_conv.dir/adc_oneshot_hal.c.obj
+[44/138] Building C object esp-idf/esp_security/CMakeFiles/__idf_esp_security.dir/src/esp_crypto_periph_clk.c.obj
+[45/138] Building C object esp-idf/esp_hal_wdt/CMakeFiles/__idf_esp_hal_wdt.dir/wdt_hal_iram.c.obj
+[46/138] Building C object esp-idf/esp_hal_gpspi/CMakeFiles/__idf_esp_hal_gpspi.dir/spi_hal_iram.c.obj
+[47/138] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_mem.c.obj
+[48/138] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_efuse.c.obj
+[49/138] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_clock_init.c.obj
+[50/138] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/secure_boot.c.obj
+[51/138] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_random.c.obj
+[52/138] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_common.c.obj
+[53/138] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_random_esp32.c.obj
+[54/138] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_common_loader.c.obj
+[55/138] Building C object esp-idf/esp_hal_i2s/CMakeFiles/__idf_esp_hal_i2s.dir/i2s_hal.c.obj
+[56/138] Building C object esp-idf/esp_hal_ana_conv/CMakeFiles/__idf_esp_hal_ana_conv.dir/adc_hal.c.obj
+[57/138] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/flash_partitions.c.obj
+[58/138] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/bootloader_flash/src/flash_qio_mode.c.obj
+[59/138] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_clock_loader.c.obj
+[60/138] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_console_loader.c.obj
+[61/138] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/flash_encrypt.c.obj
+[62/138] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/esp32/bootloader_soc.c.obj
+[63/138] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_sha.c.obj
+[64/138] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_console.c.obj
+[65/138] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/esp32/esp_efuse_table.c.obj
+[66/138] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_init.c.obj
+[67/138] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_panic.c.obj
+[68/138] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/esp_efuse_fields.c.obj
+[69/138] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/esp32/esp_efuse_fields.c.obj
+[70/138] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/esp32/bootloader_esp32.c.obj
+[71/138] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/esp_err.c.obj
+[72/138] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/bootloader_flash/src/bootloader_flash_config_esp32.c.obj
+[73/138] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/esp_cpu_intr.c.obj
+[74/138] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/cpu_region_protect.c.obj
+[75/138] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/bootloader_flash/src/bootloader_flash.c.obj
+[76/138] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_utility.c.obj
+[77/138] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/esp_memory_utils.c.obj
+[78/138] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/esp32/esp_efuse_utility.c.obj
+[79/138] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/cpu.c.obj
+[80/138] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/esp_efuse_api.c.obj
+[81/138] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/efuse_controller/keys/without_key_purposes/three_key_blocks/esp_efuse_api_key.c.obj
+[82/138] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_crc.c.obj
+[83/138] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_sys.c.obj
+[84/138] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/chip_info.c.obj
+[85/138] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/rtc_init.c.obj
+[86/138] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_efuse.c.obj
+[87/138] Building C object esp-idf/esp_common/CMakeFiles/__idf_esp_common.dir/src/esp_err_to_name.c.obj
+[88/138] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/esp_efuse_utility.c.obj
+[89/138] Building ASM object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_longjmp.S.obj
+[90/138] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/rtc_clk_init.c.obj
+[91/138] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_serial_output.c.obj
+[92/138] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_gpio.c.obj
+[93/138] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/noos/log_lock.c.obj
+[94/138] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/esp_image_format.c.obj
+[95/138] Building C object esp-idf/micro-ecc/CMakeFiles/__idf_micro-ecc.dir/uECC_verify_antifault.c.obj
+[96/138] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/noos/util.c.obj
+[97/138] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/rtc_sleep.c.obj
+[98/138] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/log_timestamp_common.c.obj
+[99/138] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/util.c.obj
+[100/138] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/noos/log_timestamp.c.obj
+[101/138] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/rtc_time.c.obj
+[102/138] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/log_format_text.c.obj
+[103/138] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/log_print.c.obj
+[104/138] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/log.c.obj
+[105/138] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/bootloader_start.c.obj
+[106/138] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/buffer/log_buffers.c.obj
+[107/138] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_print.c.obj
+[108/138] Linking C static library esp-idf/log/liblog.a
+[109/138] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/rtc_clk.c.obj
+[110/138] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_spiflash.c.obj
+[111/138] Linking C static library esp-idf/esp_rom/libesp_rom.a
+[112/138] Linking C static library esp-idf/esp_common/libesp_common.a
+[113/138] Linking C static library esp-idf/esp_hw_support/libesp_hw_support.a
+[114/138] Linking C static library esp-idf/esp_system/libesp_system.a
+[115/138] Linking C static library esp-idf/efuse/libefuse.a
+[116/138] Linking C static library esp-idf/bootloader_support/libbootloader_support.a
+[117/138] Linking C static library esp-idf/esp_security/libesp_security.a
+[118/138] Linking C static library esp-idf/esp_hal_security/libesp_hal_security.a
+[119/138] Linking C static library esp-idf/esp_hal_ana_conv/libesp_hal_ana_conv.a
+[120/138] Linking C static library esp-idf/esp_hal_i2s/libesp_hal_i2s.a
+[121/138] Linking C static library esp-idf/esp_hal_uart/libesp_hal_uart.a
+[122/138] Linking C static library esp-idf/esp_hal_wdt/libesp_hal_wdt.a
+[123/138] Linking C static library esp-idf/esp_hal_timg/libesp_hal_timg.a
+[124/138] Linking C static library esp-idf/esp_bootloader_format/libesp_bootloader_format.a
+[125/138] Linking C static library esp-idf/spi_flash/libspi_flash.a
+[126/138] Linking C static library esp-idf/esp_hal_mspi/libesp_hal_mspi.a
+[127/138] Linking C static library esp-idf/esp_hal_clock/libesp_hal_clock.a
+[128/138] Linking C static library esp-idf/esp_hal_gpspi/libesp_hal_gpspi.a
+[129/138] Linking C static library esp-idf/micro-ecc/libmicro-ecc.a
+[130/138] Linking C static library esp-idf/esp_hal_pmu/libesp_hal_pmu.a
+[131/138] Linking C static library esp-idf/esp_hal_gpio/libesp_hal_gpio.a
+[132/138] Linking C static library esp-idf/hal/libhal.a
+[133/138] Linking C static library esp-idf/soc/libsoc.a
+[134/138] Linking C static library esp-idf/xtensa/libxtensa.a
+[135/138] Linking C static library esp-idf/main/libmain.a
+[136/138] Linking C executable bootloader.elf
+[137/138] Generating binary image from built executable
+esptool v5.2.dev3
+Creating ESP32 image...
+Merged 2 ELF sections.
+Successfully created ESP32 image.
+Generated /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/bootloader/bootloader.bin
+[138/138] cd /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/bootloader && /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/bootloader/bootloader.bin
+Bootloader binary size 0x6610 bytes. 0x9f0 bytes (9%) free.
+[12/17] No install step for 'bootloader'
+[13/17] Completed 'bootloader'
+[14/17] Generating esp-idf/esp_system/ld/sections.ld
+[15/17] Linking CXX executable imu_module.elf
+[16/17] Generating binary image from built executable
+esptool v5.2.dev3
+Creating ESP32 image...
+Merged 2 ELF sections.
+Successfully created ESP32 image.
+Generated /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/imu_module.bin
+[17/17] cd /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build && /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/partition_table/partition-table.bin /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/imu_module.bin
+imu_module.bin binary size 0x4ee60 bytes. Smallest app partition is 0x100000 bytes. 0xb11a0 bytes (69%) free.

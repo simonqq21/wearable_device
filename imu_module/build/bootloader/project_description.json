@@ -1,7 +1,7 @@
 {
     "version":            "1.3",
     "project_name":       "bootloader",
-    "project_version":    "v6.1-dev-2310-g44e2fa6d9c-dirty",
+    "project_version":    "v6.1-dev-2310-g44e2fa6d9c5-dirty",
     "project_path":       "/home/simonque/Documents/code/esp-idf/components/bootloader/subproject",
     "idf_path":           "/home/simonque/Documents/code/esp-idf",
     "build_dir":          "/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build/bootloader",
@@ -11,7 +11,7 @@
     "app_elf":            "bootloader.elf",
     "app_bin":            "bootloader.bin",
     "build_type":         "flash_app",
-    "git_revision":       "v6.1-dev-2310-g44e2fa6d9c-dirty",
+    "git_revision":       "v6.1-dev-2310-g44e2fa6d9c5-dirt",
     "target":             "esp32",
     "rev":                "0",
     "min_rev":            "0",

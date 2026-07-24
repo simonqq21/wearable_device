@@ -1,7 +1,7 @@
 {
     "version":            "1.3",
     "project_name":       "imu_module",
-    "project_version":    "e016c72-dirty",
+    "project_version":    "b044a33-dirty",
     "project_path":       "/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module",
     "idf_path":           "/home/simonque/Documents/code/esp-idf",
     "build_dir":          "/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_module/build",

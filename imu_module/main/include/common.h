@@ -7,6 +7,7 @@
 #include <freertos/FreeRTOS.h>
 #include <freertos/task.h>
 #include <freertos/queue.h>
+#include <freertos/stream_buffer.h>
 #include "freertos/semphr.h"
 
 #include <string.h>
@@ -84,11 +85,5 @@ typedef enum
 
 // ESP32 SD card config
 #define MOUNT_POINT "/sdcard"
-
-// FreeRTOS primitives config
-#define IMU_QUEUE_LEN 50
-#define IMU_SAMPLE_RATE_HZ 4
-#define IMU_SAMPLE_PERIOD_MS (1000 / IMU_SAMPLE_RATE_HZ)
-#define DATALOG_FILE_DURATION_S (10)
 
 #endif
