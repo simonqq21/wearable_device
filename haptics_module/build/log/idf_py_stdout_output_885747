@@ -1,0 +1,172 @@
+Command: /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /home/simonque/Documents/code/esp-idf-projects/wearable_device/haptics_module/build/haptics_module.elf /home/simonque/Documents/code/esp-idf-projects/wearable_device/haptics_module/build/bootloader/bootloader.elf -m '/home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python' '/home/simonque/Documents/code/esp-idf/tools/idf.py'
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0040,len:6272
+load:0x40078000,len:15848
+load:0x40080400,len:3920
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v6.1-dev-2310-g44e2fa6d9c5-dirt 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Aug 13 2026 21:36:32[0m
+[0;32mI (28) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v3.1[0m
+[0;32mI (34) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (37) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (65) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (78) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=08f70h ( 36720) map[0m
+[0;32mI (101) esp_image: segment 1: paddr=00018f98 vaddr=3ffb0000 size=02aach ( 10924) load[0m
+[0;32mI (106) esp_image: segment 2: paddr=0001ba4c vaddr=40080000 size=045cch ( 17868) load[0m
+[0;32mI (113) esp_image: segment 3: paddr=00020020 vaddr=400d0020 size=0d404h ( 54276) map[0m
+[0;32mI (133) esp_image: segment 4: paddr=0002d42c vaddr=400845cc size=0691ch ( 26908) load[0m
+[0;32mI (144) esp_image: segment 5: paddr=00033d50 vaddr=50000000 size=00028h (    40) load[0m
+[0;32mI (150) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (150) boot: Disabling RNG early entropy source...[0m
+[0;32mI (162) cpu_start: Multicore app[0m
+[0;32mI (171) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (171) cpu_start: Pro cpu start user code[0m
+[0;32mI (171) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (173) app_init: Application information:[0m
+[0;32mI (177) app_init: Project name:     haptics_module[0m
+[0;32mI (181) app_init: App version:      48d9c88-dirty[0m
+[0;32mI (186) app_init: Compile time:     Aug 13 2026 21:36:43[0m
+[0;32mI (191) app_init: ELF file SHA256:  e7b534286...[0m
+[0;32mI (195) app_init: ESP-IDF:          v6.1-dev-2310-g44e2fa6d9c5-dirt[0m
+[0;32mI (201) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (205) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (209) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (213) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (219) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (224) heap_init: At 3FFB3538 len 0002CAC8 (178 KiB): DRAM[0m
+[0;32mI (229) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (235) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (240) heap_init: At 4008AEE8 len 00015118 (84 KiB): IRAM[0m
+[0;33mW (247) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (259) spi_flash: detected chip: generic[0m
+[0;32mI (262) spi_flash: flash io: dio[0m
+[0;33mW (265) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (278) main_task: Started on CPU0[0m
+[0;32mI (288) main_task: Calling app_main()[0m
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0040,len:6272
+load:0x40078000,len:15848
+load:0x40080400,len:3920
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v6.1-dev-2310-g44e2fa6d9c5-dirt 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Aug 13 2026 21:36:32[0m
+[0;32mI (28) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v3.1[0m
+[0;32mI (34) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (37) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (65) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (78) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=08f70h ( 36720) map[0m
+[0;32mI (101) esp_image: segment 1: paddr=00018f98 vaddr=3ffb0000 size=02aach ( 10924) load[0m
+[0;32mI (106) esp_image: segment 2: paddr=0001ba4c vaddr=40080000 size=045cch ( 17868) load[0m
+[0;32mI (113) esp_image: segment 3: paddr=00020020 vaddr=400d0020 size=0d404h ( 54276) map[0m
+[0;32mI (133) esp_image: segment 4: paddr=0002d42c vaddr=400845cc size=0691ch ( 26908) load[0m
+[0;32mI (144) esp_image: segment 5: paddr=00033d50 vaddr=50000000 size=00028h (    40) load[0m
+[0;32mI (150) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (150) boot: Disabling RNG early entropy source...[0m
+[0;32mI (162) cpu_start: Multicore app[0m
+[0;32mI (171) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (171) cpu_start: Pro cpu start user code[0m
+[0;32mI (171) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (173) app_init: Application information:[0m
+[0;32mI (177) app_init: Project name:     haptics_module[0m
+[0;32mI (181) app_init: App version:      48d9c88-dirty[0m
+[0;32mI (186) app_init: Compile time:     Aug 13 2026 21:36:43[0m
+[0;32mI (191) app_init: ELF file SHA256:  e7b534286...[0m
+[0;32mI (195) app_init: ESP-IDF:          v6.1-dev-2310-g44e2fa6d9c5-dirt[0m
+[0;32mI (201) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (205) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (209) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (213) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (219) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (224) heap_init: At 3FFB3538 len 0002CAC8 (178 KiB): DRAM[0m
+[0;32mI (229) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (235) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (240) heap_init: At 4008AEE8 len 00015118 (84 KiB): IRAM[0m
+[0;33mW (247) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (259) spi_flash: detected chip: generic[0m
+[0;32mI (262) spi_flash: flash io: dio[0m
+[0;33mW (265) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (278) main_task: Started on CPU0[0m
+[0;32mI (288) main_task: Calling app_main()[0m
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0040,len:6272
+load:0x40078000,len:15848
+load:0x40080400,len:3920
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v6.1-dev-2310-g44e2fa6d9c5-dirt 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Aug 13 2026 21:36:32[0m
+[0;32mI (28) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v3.1[0m
+[0;32mI (34) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (37) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (65) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (78) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=08f70h ( 36720) map[0m
+[0;32mI (101) esp_image: segment 1: paddr=00018f98 vaddr=3ffb0000 size=02aach ( 10924) load[0m
+[0;32mI (106) esp_image: segment 2: paddr=0001ba4c vaddr=40080000 size=045cch ( 17868) load[0m
+[0;32mI (113) esp_image: segment 3: paddr=00020020 vaddr=400d0020 size=0d404h ( 54276) map[0m
+[0;32mI (133) esp_image: segment 4: paddr=0002d42c vaddr=400845cc size=0691ch ( 26908) load[0m
+[0;32mI (144) esp_image: segment 5: paddr=00033d50 vaddr=50000000 size=00028h (    40) load[0m
+[0;32mI (150) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (150) boot: Disabling RNG early entropy source...[0m
+[0;32mI (162) cpu_start: Multicore app[0m
+[0;32mI (171) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (171) cpu_start: Pro cpu start user code[0m
+[0;32mI (171) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (173) app_init: Application information:[0m
+[0;32mI (177) app_init: Project name:     haptics_module[0m
+[0;32mI (181) app_init: App version:      48d9c88-dirty[0m
+[0;32mI (186) app_init: Compile time:     Aug 13 2026 21:36:43[0m
+[0;32mI (191) app_init: ELF file SHA256:  e7b534286...[0m
+[0;32mI (195) app_init: ESP-IDF:          v6.1-dev-2310-g44e2fa6d9c5-dirt[0m
+[0;32mI (201) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (205) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (209) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (213) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (219) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (224) heap_init: At 3FFB3538 len 0002CAC8 (178 KiB): DRAM[0m
+[0;32mI (229) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (235) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (240) heap_init: At 4008AEE8 len 00015118 (84 KiB): IRAM[0m
+[0;33mW (247) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (259) spi_flash: detected chip: generic[0m
+[0;32mI (262) spi_flash: flash io: dio[0m
+[0;33mW (265) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (278) main_task: Started on CPU0[0m
+[0;32mI (288) main_task: Calling app_main()[0m

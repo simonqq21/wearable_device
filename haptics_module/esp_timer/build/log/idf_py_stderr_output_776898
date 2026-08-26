@@ -1,0 +1,13 @@
+Command: cmake -G Ninja -B /home/simonque/Documents/code/esp-idf-projects/wearable_device/haptics_module/esp_timer/build -DPYTHON_DEPS_CHECKED=1 -DPYTHON=/home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python -DESP_PLATFORM=1 -DCCACHE_ENABLE=False /home/simonque/Documents/code/esp-idf-projects/wearable_device/haptics_module/esp_timer
+Configuration Report                                                                                                                                                     
+ ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   Parser Version: 1                                                                                                                                                     
+   Verbosity: default                                                                                                                                                    
+   Defaults policy: sdkconfig                                                                                                                                            
+   Status: Finished with notifications                                                                                                                                   
+                                                                                                                                                                         
+  Disabled Symbols/Choices With User-Set Value                                                                                                                           
+   ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────   
+    * LIBC_NEWLIB_NANO_FORMAT (defined at /home/simonque/Documents/code/esp-idf/components/esp_libc/Kconfig:106) with user-set value n from /tmp/kconfgen_tmp67aammsv    
+   ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────   
+ ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 

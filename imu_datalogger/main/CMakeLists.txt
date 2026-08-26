@@ -1,0 +1,11 @@
+idf_component_register(SRCS "imu_datalogger.c" 
+"src/imu.c" 
+"src/nvs.c" 
+"src/led_module.c"
+"src/button_module.c"
+"src/uart.c"
+"src/sd_card.c"
+"src/lsm6ds3.c"
+"src/i2c_module.c"
+                    INCLUDE_DIRS "." 
+                    "./include")

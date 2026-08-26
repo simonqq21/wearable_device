@@ -1,0 +1,44 @@
+Command: /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/imu_module.elf /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader/bootloader.elf -m '/home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python' '/home/simonque/Documents/code/esp-idf/tools/idf.py'
+[0;33m--- esp-idf-monitor 1.9.0 on /dev/ttyUSB0 115200[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H[0m
+[0m--- 0x40080400: [0;33m_invalid_pc_placeholder[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m2235[0m
+[0m--- 0x40080644: [0;33mcall_start_cpu0[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x40089845: [0;33mpanic_abort[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_system/panic.c[0m[0m:[1;31m464[0m
+[0m--- 0x4008980d: [0;33mesp_system_abort[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_system/port/esp_system_chip.c[0m[0m:[1;31m87[0m
+[0m--- 0x40088805: [0;33m__assert_func[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_libc/src/assert.c[0m[0m:[1;31m81[0m
+[0m--- 0x400f7feb: [0;33mprvReadBytesFromBuffer[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/stream_buffer.c[0m[0m:[1;31m1381[0m
+[0m--- 0x4008a392: [0;33mprvReadMessageFromBuffer[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/stream_buffer.c[0m[0m:[1;31m1190[0m
+[0m--- 0x400f833e: [0;33mxStreamBufferReceive[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/stream_buffer.c[0m[0m:[1;31m1025[0m
+[0m--- 0x400de9b4: [0;33mtask_SD_card_datalogger[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/sd_card.c[0m[0m:[1;31m126[0m
+[0m--- 0x400f7572: [0;33mvPortTaskWrapper[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c[0m[0m:[1;31m143[0m
+[0m--- 0x40080400: [0;33m_invalid_pc_placeholder[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m2235[0m
+[0m--- 0x40080644: [0;33mcall_start_cpu0[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x40087610: [0;33mesp_cpu_compare_and_set[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_hw_support/cpu.c[0m[0m:[1;31m200[0m
+[0m--- 0x4008760d: [0;33mesp_clk_utils_mspi_speed_mode_sync_before_cpu_freq_switching[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x400f82ad: [0;33mvPortEnterCritical[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos/portmacro.h[0m[0m:[1;31m554[0m
+[0m--- (inlined by) [0;33mxStreamBufferReceive[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/stream_buffer.c[0m[0m:[1;31m961[0m
+[0m--- 0x400dd803: [0;33mtask_main_datalogging[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/imu_datalogger.c[0m[0m:[1;31m103[0m
+[0m--- 0x400f7572: [0;33mvPortTaskWrapper[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c[0m[0m:[1;31m143[0m
+[0m--- 0x4008770e: [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_hw_support/cpu.c[0m[0m:[1;31m64[0m
+[0m--- 0x400815e4: [0;33mipc_task[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_system/esp_ipc.c[0m[0m:[1;31m53[0m
+[0m--- 0x4008770b: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x400f703a: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x400f8582: [0;33mprvIdleTask[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x400f7572: [0;33mvPortTaskWrapper[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c[0m[0m:[1;31m143[0m
+[0m--- 0x40080400: [0;33m_invalid_pc_placeholder[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m2235[0m
+[0m--- 0x40080644: [0;33mcall_start_cpu0[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x40080400: [0;33m_invalid_pc_placeholder[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m2235[0m
+[0m--- 0x40080644: [0;33mcall_start_cpu0[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x40089845: [0;33mpanic_abort[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_system/panic.c[0m[0m:[1;31m464[0m
+[0m--- 0x4008980d: [0;33mesp_system_abort[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_system/port/esp_system_chip.c[0m[0m:[1;31m87[0m
+[0m--- 0x40088805: [0;33m__assert_func[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_libc/src/assert.c[0m[0m:[1;31m81[0m
+[0m--- 0x40089c2a: [0;33mspinlock_acquire[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_hw_support/include/spinlock.h[0m[0m:[1;31m142[0m
+[0m--- (inlined by) [0;33mxPortEnterCriticalTimeout[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c[0m[0m:[1;31m483[0m
+[0m--- 0x400f8306: [0;33mvPortEnterCritical[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos/portmacro.h[0m[0m:[1;31m554[0m
+[0m--- (inlined by) [0;33mxStreamBufferReceive[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/stream_buffer.c[0m[0m:[1;31m996[0m
+[0m--- 0x400de9b4: [0;33mtask_SD_card_datalogger[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/sd_card.c[0m[0m:[1;31m126[0m
+[0m--- 0x400f7572: [0;33mvPortTaskWrapper[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c[0m[0m:[1;31m143[0m
+[0m--- 0x40080400: [0;33m_invalid_pc_placeholder[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m2235[0m
+[0m--- 0x40080644: [0;33mcall_start_cpu0[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m
