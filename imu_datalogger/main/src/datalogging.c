@@ -24,6 +24,8 @@ void task_main_datalogging(void *params)
     QueueHandle_t queue_orientation_BLE = datalogging_params->queue_orientation_BLE;
 
     int num_bytes_read = 0;
+    uint16_t num_samples_read = 0;
+
     imu_data_t imu_data_buf[NUM_FIFO_TIMESTAMPS];
 
     prev_datalogging_task_cmd = CMD_DATALOGGING_STOP;
@@ -55,12 +57,23 @@ void task_main_datalogging(void *params)
             // receive IMU data from queue
             if (xQueueReceive(queue_imu, (void *)&imu_data, 100 / portTICK_PERIOD_MS) == pdTRUE)
             {
+
                 // send data to SD card datalogger queue
                 if (queue_raw_sdcard != NULL)
                 {
-                    ESP_LOGI(DATALOGGING_TAG, "raw data sent to SD card");
-                    xQueueSend(queue_raw_sdcard, &imu_data, 100 / portTICK_PERIOD_MS);
+                    if (xQueueSend(queue_raw_sdcard, &imu_data, 100 / portTICK_PERIOD_MS) == pdTRUE)
+                    {
+                        if (num_samples_read == NUM_FIFO_TIMESTAMPS - 1)
+                        {
+                            ESP_LOGI(DATALOGGING_TAG, "%d raw samples sent to SD card", num_samples_read);
+                        }
+                    }
+                    else
+                    {
+                        ESP_LOGI(DATALOGGING_TAG, "error sending data to SD card queue");
+                    }
                 }
+                num_samples_read = (num_samples_read + 1) % NUM_FIFO_TIMESTAMPS;
             }
 
             // num_bytes_read = xStreamBufferReceive(streambuffer_imu,
