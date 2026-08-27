@@ -7,5 +7,6 @@ idf_component_register(SRCS "imu_datalogger.c"
 "src/sd_card.c"
 "src/lsm6ds3.c"
 "src/i2c_module.c"
+"src/datalogging.c"
                     INCLUDE_DIRS "." 
                     "./include")

@@ -22,16 +22,17 @@
 /**
  * @brief parameters for the SD card datalogging task
  *
- * @param stream_buffer_sd stream buffer to receive data from the main datalogger task
+ * @param streambuffer_sd stream buffer to receive data from the main datalogger task
  */
 typedef struct
 {
-    // QueueHandle_t queue_sd_card_datalogger;
-    StreamBufferHandle_t stream_buffer_sd;
+    QueueHandle_t queue_sdcard;
+    StreamBufferHandle_t streambuffer_sd;
 } task_SD_card_datalogger_params_t;
 
 void task_SD_card_datalogger(void *params);
 esp_err_t sd_configure(void);
+esp_err_t sd_card_configure_wrapper(void);
 uint8_t sd_card_is_initialized(void);
 int get_latest_datalog_idx(const char *dir_path);
 esp_err_t read_datalog_file(int idx);

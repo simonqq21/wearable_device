@@ -14,19 +14,9 @@
 #include "esp_timer.h"
 #include "common.h"
 #include "config.h"
+#include "datalogging.h"
 
 #define MAIN_TAG "MAIN"
-
-typedef struct
-{
-    QueueHandle_t queue_imu_data;
-    // QueueHandle_t queue_sd_card_datalogger;
-    StreamBufferHandle_t stream_buffer_imu;
-    // QueueHandle_t queue_UART_datastreamer;
-    // QueueHandle_t queue_BLE_datastreamer;
-    StreamBufferHandle_t stream_buffer_sd;
-
-} task_main_datalogging_params_t;
 
 // task handles
 // ****************************************************************
@@ -35,120 +25,19 @@ TaskHandle_t task_handle_imu_data;
 TaskHandle_t task_handle_main_data_logging;
 TaskHandle_t task_handle_SD_card_datalogger;
 
-// queue for status LED states
-// queue from IMU publisher to main datalogger subscriber
-QueueHandle_t queue_imu_data;
-// queue from main datalogger publisher to SD card datalogger subscriber
-QueueHandle_t queue_sd_card_datalogger;
-QueueHandle_t queue_UART_datastreamer;
-QueueHandle_t queue_BLE_datastreamer;
-StreamBufferHandle_t stream_buffer_imu, stream_buffer_sd;
+/* queue for IMU data coming from IMU task to datalogging task */
+QueueHandle_t queue_imu;
+/* queues for raw IMU data from datalogging task to the SD card, UART, and BLE */
+QueueHandle_t queue_raw_sdcard;
+/* queue for orientation from datalogging task to the SD card, UART, and BLE */
+QueueHandle_t queue_orientation_sdcard, queue_orientation_UART, queue_orientation_BLE;
+/* streambuffers */
+StreamBufferHandle_t streambuffer_imu, streambuffer_sd;
 
 // bool datalogging = false;
 
-esp_err_t sd_card_configure_wrapper(void);
-
 i2c_master_bus_handle_t bus_handle;
 i2c_master_dev_handle_t dev_handle;
-
-/**
- * @brief FreeRTOS task to get sensor data and distribute them to the SD card
- * datalogging task, UART data streaming task, and BLE data streaming task.
- *
- *
- */
-#define DATA_LOGGING_TAG "DATA LOGGING"
-
-static void task_main_datalogging(void *params)
-{
-    cmd_task_datalogging_t temp, datalogging_task_cmd, previous_datalogging_task_cmd;
-    // uint8_t imu_data_received;
-    // imu_data_t imu_data;
-    task_main_datalogging_params_t *datalogging_params = (task_main_datalogging_params_t *)params;
-    // QueueHandle_t queue_imu_data = datalogging_params->queue_imu_data;
-    StreamBufferHandle_t stream_buffer_imu = datalogging_params->stream_buffer_imu;
-    StreamBufferHandle_t stream_buffer_sd = datalogging_params->stream_buffer_sd;
-    // QueueHandle_t queue_sd_card_datalogger = datalogging_params->queue_sd_card_datalogger;
-    // QueueHandle_t queue_UART_datastreamer = datalogging_params->queue_UART_datastreamer;
-    // QueueHandle_t queue_BLE_datastreamer = datalogging_params->queue_BLE_datastreamer;
-
-    int num_bytes_read = 0;
-    imu_data_t imu_data_buf[NUM_FIFO_TIMESTAMPS];
-
-    previous_datalogging_task_cmd = CMD_DATALOGGING_STOP;
-    datalogging_task_cmd = CMD_DATALOGGING_STOP;
-    while (1)
-    {
-        // wait for task notification from button
-        if (xTaskNotifyWait(0,
-                            0,
-                            (uint32_t *)&temp,
-                            5 / portTICK_PERIOD_MS) != pdTRUE)
-        {
-            datalogging_task_cmd = temp;
-        }
-
-        switch (datalogging_task_cmd)
-        {
-        // go datalogging
-        case CMD_DATALOGGING_GO:
-            if (previous_datalogging_task_cmd == CMD_DATALOGGING_STOP)
-            {
-                previous_datalogging_task_cmd = CMD_DATALOGGING_GO;
-                ESP_LOGI(DATA_LOGGING_TAG, "Datalogging started.");
-            }
-
-            // receive IMU data from queue
-            // imu_data_received = xQueueReceive(queue_imu_data, (void *)&imu_data, 100 / portTICK_PERIOD_MS);
-            num_bytes_read = xStreamBufferReceive(stream_buffer_imu,
-                                                  &imu_data_buf,
-                                                  sizeof(imu_data_t) * NUM_FIFO_TIMESTAMPS,
-                                                  100 / portTICK_PERIOD_MS);
-
-            // receive data from other sensors' queues
-
-            if (num_bytes_read > 0)
-            {
-                // // send data to SD card datalogger queue
-                // if (queue_sd_card_datalogger != NULL)
-                //     xQueueSend(queue_sd_card_datalogger, &imu_data, 100 / );
-                if (stream_buffer_sd != NULL)
-                    if (xStreamBufferSend(stream_buffer_sd,
-                                          &imu_data_buf,
-                                          num_bytes_read,
-                                          10 / portTICK_PERIOD_MS) == 0)
-                    {
-                        ESP_LOGE(IMU_TAG, "ERROR: Could not put item on SD stream buffer.");
-                    }
-                // // send data to UART data streaming queue
-                // if (queue_UART_datastreamer != NULL)
-                //     xQueueSend(queue_UART_datastreamer, &imu_data, 10 / );
-                // // send data to BLE data streaming queue
-                // if (queue_BLE_datastreamer != NULL)
-                //     xQueueSend(queue_BLE_datastreamer, &imu_data, 10 / );
-
-                // display IMU data
-                // ESP_LOGI(DATA_LOGGING_TAG, "timestamp=%d", imu_data.timestamp);
-                // ESP_LOGI(DATA_LOGGING_TAG, "Acceleration: x=%.4f   y=%.4f   z=%.4f", imu_data.ax, imu_data.ay, imu_data.az);
-                // ESP_LOGI(DATA_LOGGING_TAG, "Rotation:     x=%.4f   y=%.4f   z=%.4f", imu_data.gx, imu_data.gy, imu_data.gz);
-                // ESP_LOGI(DATA_LOGGING_TAG, "Temperature:  %.1f\n", imu_data.temp);
-            }
-            break;
-
-        // stop datalogging
-        case CMD_DATALOGGING_STOP:
-            if (previous_datalogging_task_cmd == CMD_DATALOGGING_GO)
-            {
-                previous_datalogging_task_cmd = CMD_DATALOGGING_STOP;
-                ESP_LOGI(DATA_LOGGING_TAG, "Datalogging stopped.");
-            }
-            vTaskDelay(100 / portTICK_PERIOD_MS);
-            break;
-        default:
-            break;
-        }
-    }
-}
 
 // ****************************************************************
 
@@ -187,35 +76,42 @@ void app_main(void)
     sd_card_configure_wrapper();
     ESP_LOGI(MAIN_TAG, "Starting all tasks!");
 
-    // initialize all queues
-    queue_imu_data = xQueueCreate(NUM_FIFO_TIMESTAMPS, sizeof(imu_data_t));
-    queue_sd_card_datalogger = xQueueCreate(NUM_FIFO_TIMESTAMPS, sizeof(imu_data_t));
+    /* create all queues */
+    queue_imu = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(imu_data_t));
+    queue_raw_sdcard = xQueueCreate(NUM_FIFO_TIMESTAMPS, sizeof(imu_data_t));
+    queue_orientation_sdcard = xQueueCreate(NUM_FIFO_TIMESTAMPS, sizeof(imu_data_t));
+    queue_orientation_UART = xQueueCreate(NUM_FIFO_TIMESTAMPS, sizeof(imu_data_t));
+    queue_orientation_BLE = xQueueCreate(NUM_FIFO_TIMESTAMPS, sizeof(imu_data_t));
 
-    stream_buffer_imu = xStreamBufferCreate(sizeof(imu_data_t) * NUM_FIFO_TIMESTAMPS, sizeof(imu_data_t) * NUM_FIFO_TIMESTAMPS);
-    stream_buffer_sd = xStreamBufferCreate(sizeof(imu_data_t) * NUM_FIFO_TIMESTAMPS * 2, sizeof(imu_data_t) * NUM_FIFO_TIMESTAMPS);
+    /* create all streambuffers */
+    streambuffer_imu = xStreamBufferCreate(sizeof(imu_data_t) * NUM_FIFO_TIMESTAMPS, sizeof(imu_data_t) * NUM_FIFO_TIMESTAMPS);
+    streambuffer_sd = xStreamBufferCreate(sizeof(imu_data_t) * NUM_FIFO_TIMESTAMPS * 2, sizeof(imu_data_t) * NUM_FIFO_TIMESTAMPS);
 
-    // create all primitives
+    /* create all parameters */
     task_imu_params_t task_imu_params;
     task_main_datalogging_params_t task_main_datalogging_params;
     task_SD_card_datalogger_params_t task_SD_card_datalogger_params;
 
-    // task_imu_params
+    /* task_imu_params */
     task_imu_params.task_handle_status_led = &task_handle_status_led;
-    // task_imu_params.queue_imu_data = queue_imu_data;
-    task_imu_params.stream_buffer_imu = stream_buffer_imu;
+    task_imu_params.queue_imu = queue_imu;
+    task_imu_params.streambuffer_imu = streambuffer_imu;
     task_imu_params.dev_handle = dev_handle;
 
-    // task_main_datalogging_params
-    task_main_datalogging_params.queue_imu_data = queue_imu_data;
-    // task_main_datalogging_params.queue_sd_card_datalogger = queue_sd_card_datalogger;
-    task_main_datalogging_params.stream_buffer_imu = stream_buffer_imu;
-    task_main_datalogging_params.stream_buffer_sd = stream_buffer_sd;
+    /* task_main_datalogging_params */
+    task_main_datalogging_params.queue_imu = queue_imu;
+    task_main_datalogging_params.streambuffer_imu = streambuffer_imu;
+    task_main_datalogging_params.queue_raw_sdcard = queue_raw_sdcard;
+    task_main_datalogging_params.queue_orientation_sdcard = queue_orientation_sdcard;
+    task_main_datalogging_params.queue_orientation_UART = queue_orientation_UART;
+    task_main_datalogging_params.queue_orientation_BLE = queue_orientation_BLE;
+    task_main_datalogging_params.streambuffer_sd = streambuffer_sd;
 
-    // task_SD_card_datalogger_params
-    // task_SD_card_datalogger_params.queue_sd_card_datalogger = queue_sd_card_datalogger;
-    task_SD_card_datalogger_params.stream_buffer_sd = stream_buffer_sd;
+    /* task_SD_card_datalogger_params */
+    task_SD_card_datalogger_params.queue_sdcard = queue_raw_sdcard;
+    task_SD_card_datalogger_params.streambuffer_sd = streambuffer_sd;
 
-    // initialize all tasks
+    /* initialize all tasks */
     // IMU reading task
     xTaskCreatePinnedToCore(task_imu,
                             "imu calibrate and read task",

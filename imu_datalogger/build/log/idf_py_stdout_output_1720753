@@ -16,7 +16,7 @@ In file included from /home/simonque/Documents/code/esp-idf-projects/wearable_de
     4 | uint8_t sd_card_initialized = 0;
       | ^~~~~~~
 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/sd_card.c:5:22: error: storage class specified for parameter 'queue_imu_data'
-    5 | extern QueueHandle_t queue_imu_data;
+    5 | extern QueueHandle_t queue_imu;
       |                      ^~~~~~~~~~~~~~
 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/sd_card.c:16:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
    16 | {

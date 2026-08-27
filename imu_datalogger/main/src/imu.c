@@ -33,14 +33,15 @@ void task_imu(void *params)
 
     /* parse freeRTOS primitives from params */
     task_imu_params_t *imu_task_params = (task_imu_params_t *)params;
-    /* IMU i2c device handle */
-    i2c_master_dev_handle_t dev_handle = imu_task_params->dev_handle;
-    /* IMU data queue */
-    // QueueHandle_t queue_imu_data = imu_task_params->queue_imu_data;
-    /* IMU data stream buffer */
-    StreamBufferHandle_t stream_buffer_imu = imu_task_params->stream_buffer_imu;
+
     /* status LED task handle */
     TaskHandle_t *task_handle_status_led = imu_task_params->task_handle_status_led;
+    /* IMU data queue */
+    QueueHandle_t queue_imu = imu_task_params->queue_imu;
+    /* IMU data stream buffer */
+    StreamBufferHandle_t streambuffer_imu = imu_task_params->streambuffer_imu;
+    /* IMU i2c device handle */
+    i2c_master_dev_handle_t dev_handle = imu_task_params->dev_handle;
 
     /* current timestamp */
     uint64_t cur_timestamp;
@@ -111,6 +112,17 @@ void task_imu(void *params)
                     /* add timestamp to each sample in the FIFO */
                     imu_data_buffer[i].timestamp = cur_timestamp;
                     cur_timestamp += IMU_LOGGING_TIMEDELTA_MS;
+
+                    /* send IMU data to queue */
+                    if (queue_imu != NULL)
+                    {
+                        if (xQueueSend(queue_imu,
+                                       &imu_data_buffer[i],
+                                       (imu_task_delay_period / portTICK_PERIOD_MS)) != pdTRUE)
+                        {
+                            ESP_LOGE(IMU_TAG, "ERROR: Could not put item on IMU queue.");
+                        }
+                    }
                 }
 
                 // imu_data.timestamp = esp_timer_get_time() / 1000;
@@ -118,23 +130,18 @@ void task_imu(void *params)
                 // ESP_LOGI(IMU_TAG, "Acceleration: x=%.4f   y=%.4f   z=%.4f", imu_data.ax, imu_data.ay, imu_data.az);
                 // ESP_LOGI(IMU_TAG, "Rotation:     x=%.4f   y=%.4f   z=%.4f", imu_data.gx, imu_data.gy, imu_data.gz);
                 // ESP_LOGI(IMU_TAG, "Temperature:  %.1f\n", imu_data.temp);
-                // send data to queue
-                // if (queue_imu_data != NULL)
-                //     if (xQueueSend(queue_imu_data, &imu_data, (IMU_SAMPLE_PERIOD_MS / portTICK_PERIOD_MS)) != pdTRUE)
-                //     {
-                //         ESP_LOGE(IMU_TAG, "ERROR: Could not put item on IMU queue.");
-                //     }
 
-                if (stream_buffer_imu != NULL)
-                {
-                    if (xStreamBufferSend(stream_buffer_imu,
-                                          imu_data_buffer,
-                                          sizeof(imu_data_t) * num_samples_read,
-                                          10 / portTICK_PERIOD_MS) == 0)
-                    {
-                        ESP_LOGE(IMU_TAG, "ERROR: Could not put item on IMU stream buffer.");
-                    }
-                }
+                // /* send IMU data to streambuffer */
+                // if (streambuffer_imu != NULL)
+                // {
+                //     if (xStreamBufferSend(streambuffer_imu,
+                //                           imu_data_buffer,
+                //                           sizeof(imu_data_t) * num_samples_read,
+                //                           10 / portTICK_PERIOD_MS) == 0)
+                //     {
+                //         ESP_LOGE(IMU_TAG, "ERROR: Could not put item on IMU stream buffer.");
+                //     }
+                // }
             }
         }
         /* runs when datalogging is stopped */
@@ -149,7 +156,7 @@ void task_imu(void *params)
 
         prev_imu_task_cmd = imu_task_cmd;
 
-        // vTaskDelay(IMU_SAMPLE_PERIOD_MS / );
+        // vTaskDelay(IMU_SAMPLE_PERIOD_MS / portTICK_PERIOD_MS);
     }
 }
 

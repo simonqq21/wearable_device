@@ -16,15 +16,15 @@
 /**
  * @brief parameters for IMU task
  *
- * @param stream_buffer_imu stream buffer going from IMU task to main datalogging task
+ * @param streambuffer_imu stream buffer going from IMU task to main datalogging task
  * @param task_handle_status_led task handle of status LED controlling task
  * @param dev_handle IMU i2c device handle
  */
 typedef struct
 {
     TaskHandle_t *task_handle_status_led;
-    // QueueHandle_t queue_imu_data;
-    StreamBufferHandle_t stream_buffer_imu;
+    QueueHandle_t queue_imu;
+    StreamBufferHandle_t streambuffer_imu;
     i2c_master_dev_handle_t dev_handle;
 } task_imu_params_t;
 

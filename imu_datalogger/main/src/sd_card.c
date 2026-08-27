@@ -2,7 +2,7 @@
 
 const int IMU_EXPECTED_LEN = strlen("imu_000000.bin");
 uint8_t sd_card_initialized = 0;
-extern QueueHandle_t queue_imu_data;
+extern QueueHandle_t queue_imu;
 
 /**
  * @brief SD card datalogging subscriber task
@@ -19,8 +19,8 @@ void task_SD_card_datalogger(void *params)
 
     /* parse freeRTOS primitives from params */
     task_SD_card_datalogger_params_t *sd_datalogger_params = (task_SD_card_datalogger_params_t *)params;
-    // QueueHandle_t queue_sd_card_datalogger = sd_datalogger_params->queue_sd_card_datalogger;
-    StreamBufferHandle_t stream_buffer_sd = sd_datalogger_params->stream_buffer_sd;
+    QueueHandle_t queue_sdcard = sd_datalogger_params->queue_sdcard;
+    StreamBufferHandle_t streambuffer_sd = sd_datalogger_params->streambuffer_sd;
 
     char filename[20];
     char filepath[30];
@@ -28,9 +28,11 @@ void task_SD_card_datalogger(void *params)
     // struct stat st;
     int max_idx;
     unsigned long file_size = 0;
+
     imu_data_t rcv_imu_data;
     imu_data_t imu_data_buf[NUM_FIFO_TIMESTAMPS];
     int num_bytes_read = 0;
+    uint16_t num_samples_read = 0;
 
     while (1)
     {
@@ -58,6 +60,9 @@ void task_SD_card_datalogger(void *params)
         */
         else if (cmd_task_sd_card_datalogging == CMD_SD_CARD_START && prev_cmd_task_sd_card_datalogging == CMD_SD_CARD_STOP)
         {
+            /* reset  */
+            num_bytes_read = 0;
+            num_samples_read = 0;
 
             // if no file is open, create a new file.
             if (f == NULL)
@@ -67,16 +72,16 @@ void task_SD_card_datalogger(void *params)
                     sd_card_configure_wrapper();
                 }
                 file_size = 0;
-                // get the latest datalog file index and add one to it for the new datalog file
+                /* get the latest datalog file index and add one to it for the new datalog file */
                 max_idx = get_latest_datalog_idx(MOUNT_POINT);
                 max_idx++;
-                // create filename IMU_FILENAME_FORMAT
+                /* create filename IMU_FILENAME_FORMAT */
                 sprintf(filename, "imu_%06d.bin", max_idx);
                 ESP_LOGI(SD_CARD_TAG, "filename: %s", filename);
-                // create filepath
+                /* create filepath */
                 sprintf(filepath, "%s/%s", MOUNT_POINT, filename);
                 ESP_LOGI(SD_CARD_TAG, "filepath: %s", filepath);
-                // create and write new binary file
+                /* create and write new binary file */
                 ESP_LOGI(SD_CARD_TAG, "Writing to new file");
                 f = open_file(f, filepath, &file_size);
             }
@@ -97,42 +102,51 @@ void task_SD_card_datalogger(void *params)
                         sd_card_configure_wrapper();
                     }
                     file_size = 0;
-                    // get the latest datalog file index and add one to it for the new datalog file
+                    /* get the latest datalog file index and add one to it for the new datalog file */
                     max_idx = get_latest_datalog_idx(MOUNT_POINT);
                     max_idx++;
-                    // create filename IMU_FILENAME_FORMAT
+                    /* create filename IMU_FILENAME_FORMAT */
                     sprintf(filename, "imu_%06d.bin", max_idx);
                     ESP_LOGI(SD_CARD_TAG, "filename: %s", filename);
-                    // create filepath
+                    /* create filepath */
                     sprintf(filepath, "%s/%s", MOUNT_POINT, filename);
                     ESP_LOGI(SD_CARD_TAG, "filepath: %s", filepath);
-                    // create and write new binary file
+                    /*  create and write new binary file */
                     ESP_LOGI(SD_CARD_TAG, "Writing to new file");
                     f = open_file(f, filepath, &file_size);
                 }
 
-                // // read from the queue.
-                // if (xQueueReceive(queue_sd_card_datalogger, (void *)&rcv_imu_data, 10 / ) == pdTRUE) // portMAX_DELAY
-                // {
-                //     ESP_LOGI(SD_CARD_TAG, "received data: ");
-                //     ESP_LOGI(SD_CARD_TAG, "Accel %.4f, %.4f, %.4f", rcv_imu_data.ax, rcv_imu_data.ay, rcv_imu_data.az);
-                //     ESP_LOGI(SD_CARD_TAG, "Gyro %.4f, %.4f, %.4f", rcv_imu_data.gx, rcv_imu_data.gy, rcv_imu_data.gz);
-                //     ESP_LOGI(SD_CARD_TAG, "Temp %.2f", rcv_imu_data.temp);
-
-                //     write_imu_data_to_card(f, &rcv_imu_data, &file_size);
-                // }
-
-                // read from stream buffer
-                num_bytes_read = xStreamBufferReceive(stream_buffer_sd,
-                                                      imu_data_buf,
-                                                      sizeof(imu_data_t) * NUM_FIFO_TIMESTAMPS,
-                                                      (100 / portTICK_PERIOD_MS));
-                if (num_bytes_read > 0)
+                /* read from the queue */
+                if (xQueueReceive(queue_sdcard, &rcv_imu_data, 10 / portTICK_PERIOD_MS) == pdTRUE)
                 {
-                    ESP_LOGI(SD_CARD_TAG, "%d bytes to write", num_bytes_read);
-                    // for (int i = 0; i < num_bytes_read / sizeof(imu_data_t); i++)
-                    write_imu_data_to_card(f, &rcv_imu_data, num_bytes_read / sizeof(imu_data_t), &file_size);
+                    //     ESP_LOGI(SD_CARD_TAG, "received data: ");
+                    //     ESP_LOGI(SD_CARD_TAG, "Accel %.4f, %.4f, %.4f", rcv_imu_data.ax, rcv_imu_data.ay, rcv_imu_data.az);
+                    //     ESP_LOGI(SD_CARD_TAG, "Gyro %.4f, %.4f, %.4f", rcv_imu_data.gx, rcv_imu_data.gy, rcv_imu_data.gz);
+                    //     ESP_LOGI(SD_CARD_TAG, "Temp %.2f", rcv_imu_data.temp);
+
+                    /* copy data to buffer */
+                    memcpy(&imu_data_buf[num_samples_read], &rcv_imu_data, sizeof(imu_data_t));
+
+                    /* write buffer data to card */
+                    if (num_samples_read == NUM_FIFO_TIMESTAMPS - 1)
+                    {
+                        write_imu_data_to_card(f, imu_data_buf, num_samples_read, &file_size);
+                    }
+
+                    num_samples_read = (num_samples_read + 1) % NUM_FIFO_TIMESTAMPS;
                 }
+
+                // // read from stream buffer
+                // num_bytes_read = xStreamBufferReceive(streambuffer_sd,
+                //                                       imu_data_buf,
+                //                                       sizeof(imu_data_t) * NUM_FIFO_TIMESTAMPS,
+                //                                       (100 / portTICK_PERIOD_MS));
+                // if (num_bytes_read > 0)
+                // {
+                //     ESP_LOGI(SD_CARD_TAG, "%d bytes to write", num_bytes_read);
+                //     // for (int i = 0; i < num_bytes_read / sizeof(imu_data_t); i++)
+                //     write_imu_data_to_card(f, &imu_data_buf, num_bytes_read / sizeof(imu_data_t), &file_size);
+                // }
             }
             /* once the file reaches the maximum datalog file size */
             else
@@ -236,6 +250,30 @@ esp_err_t sd_configure(void)
     sdmmc_card_print_info(stdout, card);
     sd_card_initialized = 1;
     return ESP_OK;
+}
+
+/**
+ * @brief wrapper to configure SD card
+ */
+esp_err_t sd_card_configure_wrapper(void)
+{
+    esp_err_t ret = ESP_OK;
+    if (REQUIRE_SD_CARD && !sd_card_is_initialized())
+    {
+        ret = sd_configure();
+        if (ret != ESP_OK)
+        {
+            ESP_LOGE(SD_CARD_TAG, "SD card initialization failed");
+        }
+        else
+        {
+            ESP_LOGI(SD_CARD_TAG, "SD card initialized");
+            return ret;
+            // break;
+        }
+        // }
+    }
+    return ret;
 }
 
 /**
@@ -454,30 +492,6 @@ void write_imu_data_to_card(FILE *f, imu_data_t *rcv_imu_data, int num_elements,
         else
             ESP_LOGE(SD_CARD_TAG, "file is null");
     }
-}
-
-/**
- * @brief wrapper to configure SD card
- */
-esp_err_t sd_card_configure_wrapper(void)
-{
-    esp_err_t ret = ESP_OK;
-    if (REQUIRE_SD_CARD && !sd_card_is_initialized())
-    {
-        ret = sd_configure();
-        if (ret != ESP_OK)
-        {
-            ESP_LOGE(SD_CARD_TAG, "SD card initialization failed");
-        }
-        else
-        {
-            ESP_LOGI(SD_CARD_TAG, "SD card initialized");
-            return ret;
-            // break;
-        }
-        // }
-    }
-    return ret;
 }
 
 /*

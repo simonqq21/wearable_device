@@ -1,1 +1,9 @@
-48d9c88789c96f045500efc4212b60127bca9995
+0000000000000000000000000000000000000000 73fa6fef94c52d1e050adaf699034c5b7defc7a8 SImon QUe <ques86225@gmail.com> 1782303972 +0800	commit (initial): initial commit
+73fa6fef94c52d1e050adaf699034c5b7defc7a8 cb69cbe9dcfac58c83ce04e9da6a0a64256ff54c SImon QUe <ques86225@gmail.com> 1782641640 +0800	commit: implemented IMU calibration with nonvolatile calibration offset loading and saving.
+cb69cbe9dcfac58c83ce04e9da6a0a64256ff54c 80fa6718b5af9ba6413816ff88cd09ac35e3ddd6 SImon QUe <ques86225@gmail.com> 1782913188 +0800	commit: basic datalogger completed
+80fa6718b5af9ba6413816ff88cd09ac35e3ddd6 23819cfbf358c41f84e36480bfc4d7a3d43be9d6 SImon QUe <ques86225@gmail.com> 1782968817 +0800	commit: implemented task notifications as queues between the status LED task, button task, IMU reading task, and datalogging task.
+23819cfbf358c41f84e36480bfc4d7a3d43be9d6 04adab86600491b813f5af0340b34ccac30713aa SImon QUe <ques86225@gmail.com> 1782978426 +0800	commit: bare minimum IMU calibration and datalogging functionality complete.
+04adab86600491b813f5af0340b34ccac30713aa e016c72d3e54ad6f7cf1abf83403b46644a9d5d3 SImon QUe <ques86225@gmail.com> 1784480237 +0800	commit: dependency injection for FreeRTOS synchronization primitives
+e016c72d3e54ad6f7cf1abf83403b46644a9d5d3 b044a3307e66aa659eb6be7312c56be17c170ae4 SImon QUe <ques86225@gmail.com> 1784808821 +0800	commit: working SD card datalogging
+b044a3307e66aa659eb6be7312c56be17c170ae4 48d9c88789c96f045500efc4212b60127bca9995 SImon QUe <ques86225@gmail.com> 1784899398 +0800	commit: higher frequency datalogging now working
+48d9c88789c96f045500efc4212b60127bca9995 2a1ac5c8202e4d0ff75dd15fdd1aea185a4ac732 SImon QUe <ques86225@gmail.com> 1787750554 +0800	commit: added working LSM6DS3 library
