@@ -14,10 +14,16 @@ void task_main_datalogging(void *params)
     cmd_task_datalogging_t datalogging_task_cmd, prev_datalogging_task_cmd;
     // uint8_t imu_data_received;
     imu_data_t imu_data;
+
+    /* datalogging task params */
     task_main_datalogging_params_t *datalogging_params = (task_main_datalogging_params_t *)params;
-    QueueHandle_t queue_imu = datalogging_params->queue_imu;
+
+    /* streambuffers */
     StreamBufferHandle_t streambuffer_imu = datalogging_params->streambuffer_imu;
     StreamBufferHandle_t streambuffer_sd = datalogging_params->streambuffer_sd;
+
+    /* queues */
+    QueueHandle_t queue_imu = datalogging_params->queue_imu;
     QueueHandle_t queue_raw_sdcard = datalogging_params->queue_raw_sdcard;
     QueueHandle_t queue_orientation_sdcard = datalogging_params->queue_orientation_sdcard;
     QueueHandle_t queue_orientation_UART = datalogging_params->queue_orientation_UART;
@@ -26,10 +32,52 @@ void task_main_datalogging(void *params)
     int num_bytes_read = 0;
     uint16_t num_samples_read = 0;
 
-    imu_data_t imu_data_buf[NUM_FIFO_TIMESTAMPS];
+    // imu_data_t imu_data_buf[NUM_FIFO_TIMESTAMPS];
 
+    /* FSM vars */
     prev_datalogging_task_cmd = CMD_DATALOGGING_STOP;
     datalogging_task_cmd = CMD_DATALOGGING_STOP;
+
+    /* Fusion AHRS variables */
+    const float sampleRate = IMU_ODR_HZ; // Hz
+
+    // Calibration parameters (replace with actual calibration data)
+    const FusionMatrix gyroscopeMisalignment = {{1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f}};
+    const FusionVector gyroscopeSensitivity = {{1.0f, 1.0f, 1.0f}};
+    const FusionVector gyroscopeOffset = {{0.0f, 0.0f, 0.0f}};
+
+    const FusionMatrix accelerometerMisalignment = {{1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f}};
+    const FusionVector accelerometerSensitivity = {{1.0f, 1.0f, 1.0f}};
+    const FusionVector accelerometerOffset = {{0.0f, 0.0f, 0.0f}};
+
+    // const FusionMatrix softIronMatrix = {1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f};
+    // const FusionVector hardIronOffset = {0.0f, 0.0f, 0.0f};
+
+    /* initialize Fusion AHRS */
+    // Instantiate AHRS algorithm
+    FusionAhrs ahrs;
+    FusionAhrsInitialise(&ahrs);
+
+    const FusionAhrsSettings settings = {
+        .sampleRate = sampleRate,
+        .convention = FusionConventionEnu,
+        .gain = 0.5f,
+        .gyroscopeRange = IMU_G_FS, /* replace with actual gyroscope range */
+        .accelerationRejection = 10.0f,
+        .magneticRejection = 10.0f,
+        .rejectionTimeout = 5.0f,
+    };
+
+    FusionAhrsSetSettings(&ahrs, &settings);
+
+    // Instantiate bias algorithm
+    FusionBias bias;
+    FusionBiasInitialise(&bias);
+
+    FusionBiasSettings biasSettings = fusionBiasDefaultSettings;
+    biasSettings.sampleRate = sampleRate;
+
+    FusionBiasSetSettings(&bias, &biasSettings);
 
     while (1)
     {
@@ -54,11 +102,11 @@ void task_main_datalogging(void *params)
         /* if datalogging is ongoing */
         if (datalogging_task_cmd == CMD_DATALOGGING_GO && prev_datalogging_task_cmd == CMD_DATALOGGING_GO)
         {
-            // receive IMU data from queue
+            /* receive IMU data from queue */
             if (xQueueReceive(queue_imu, (void *)&imu_data, 100 / portTICK_PERIOD_MS) == pdTRUE)
             {
 
-                // send data to SD card datalogger queue
+                /* send data to SD card datalogger queue */
                 if (queue_raw_sdcard != NULL)
                 {
                     if (xQueueSend(queue_raw_sdcard, &imu_data, 100 / portTICK_PERIOD_MS) == pdTRUE)
@@ -73,6 +121,48 @@ void task_main_datalogging(void *params)
                         ESP_LOGI(DATALOGGING_TAG, "error sending data to SD card queue");
                     }
                 }
+
+                /* Fusion AHRS sensor fusion */
+                // Read sensors (replace with actual sensor data)
+                const uint64_t timestamp = imu_data.timestamp;
+                FusionVector gyroscope = {{imu_data.gx, imu_data.gy, imu_data.gz}};
+                FusionVector accelerometer = {{imu_data.ax, imu_data.ay, imu_data.az}};
+                // FusionVector magnetometer = {1.0f, 0.0f, 0.0f};
+
+                // Apply calibration
+                gyroscope = FusionModelInertial(gyroscope, gyroscopeMisalignment, gyroscopeSensitivity, gyroscopeOffset);
+
+                accelerometer = FusionModelInertial(accelerometer, accelerometerMisalignment, accelerometerSensitivity, accelerometerOffset);
+
+                // magnetometer = FusionModelMagnetic(magnetometer, softIronMatrix, hardIronOffset);
+
+                // Update bias algorithm
+                gyroscope = FusionBiasUpdate(&bias, gyroscope);
+
+                // Calculate delta time to compensate for gyroscope sample clock errors
+                static uint64_t previousTimestamp = 0;
+                const float deltaTime = (float)(timestamp - previousTimestamp);
+                previousTimestamp = timestamp;
+
+                FusionAhrsSetSamplePeriod(&ahrs, deltaTime);
+
+                // Update AHRS algorithm
+                // FusionAhrsUpdate(&ahrs, gyroscope, accelerometer, magnetometer);
+                FusionAhrsUpdateNoMagnetometer(&ahrs, gyroscope, accelerometer);
+
+                // Print AHRS outputs
+                const FusionEuler euler = FusionQuaternionToEuler(FusionAhrsGetQuaternion(&ahrs));
+
+                const FusionVector earth = FusionAhrsGetEarthAcceleration(&ahrs);
+
+                // printf("Roll %0.1f, Pitch %0.1f, Yaw %0.1f, X %0.1f, Y %0.1f, Z %0.1f\n",
+                //        euler.angle.roll, euler.angle.pitch, euler.angle.yaw,
+                //        earth.axis.x, earth.axis.y, earth.axis.z);
+
+                /* send orientation data to SD card */
+                /* send orientation data to UART */
+                /* send orientation data to BLE */
+
                 num_samples_read = (num_samples_read + 1) % NUM_FIFO_TIMESTAMPS;
             }
 

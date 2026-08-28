@@ -14,7 +14,7 @@ nvs_func_t offset_read_cb,
 /**
  * @brief IMU reading task
  *
- * @param params type task_imu_params_t
+ * @param params type params_imu_task_t
  */
 void task_imu(void *params)
 {
@@ -32,16 +32,16 @@ void task_imu(void *params)
     // imu_data_t imu_data;
 
     /* parse freeRTOS primitives from params */
-    task_imu_params_t *imu_task_params = (task_imu_params_t *)params;
+    params_imu_task_t *params_imu_task = (params_imu_task_t *)params;
 
     /* status LED task handle */
-    TaskHandle_t *task_handle_status_led = imu_task_params->task_handle_status_led;
+    TaskHandle_t *task_handle_status_led = params_imu_task->task_handle_status_led;
     /* IMU data queue */
-    QueueHandle_t queue_imu = imu_task_params->queue_imu;
+    QueueHandle_t queue_imu = params_imu_task->queue_imu;
     /* IMU data stream buffer */
-    StreamBufferHandle_t streambuffer_imu = imu_task_params->streambuffer_imu;
+    StreamBufferHandle_t streambuffer_imu = params_imu_task->streambuffer_imu;
     /* IMU i2c device handle */
-    i2c_master_dev_handle_t dev_handle = imu_task_params->dev_handle;
+    i2c_master_dev_handle_t dev_handle = params_imu_task->dev_handle;
 
     /* current timestamp */
     uint64_t cur_timestamp;
@@ -109,7 +109,7 @@ void task_imu(void *params)
             {
                 for (int i = 0; i < num_samples_read; i++)
                 {
-                    /* add timestamp to each sample in the FIFO */
+                    /* add timestamp to each IMU data in the FIFO */
                     imu_data_buffer[i].timestamp = cur_timestamp;
                     cur_timestamp += IMU_LOGGING_TIMEDELTA_MS;
 

@@ -38,14 +38,6 @@
 // #include "sd_card.h"
 // #include "uart.h"
 
-/* IMU task notification queue values */
-typedef enum
-{
-    CMD_IMU_STOP,
-    CMD_IMU_CALIBRATE,
-    CMD_IMU_READ_LOOP,
-} cmd_imu_task_t;
-
 /* IMU calibration offsets struct */
 typedef struct
 {
@@ -61,6 +53,33 @@ typedef struct __attribute__((packed))
     float gx, gy, gz;
     float temp;
 } imu_data_t;
+
+/* Euler angle */
+typedef struct
+{
+    float x, y, z;
+} euler_angle_t;
+
+/* Quaternion */
+typedef struct
+{
+    float w, x, y, z;
+} quaternion_t;
+
+/* orientation data union */
+typedef union
+{
+    euler_angle_t euler_angle;
+    quaternion_t quaternion;
+} orientation_data_t;
+
+/* IMU task notification queue values */
+typedef enum
+{
+    CMD_IMU_STOP,
+    CMD_IMU_CALIBRATE,
+    CMD_IMU_READ_LOOP,
+} cmd_imu_task_t;
 
 /* Datalogging task notification queue values */
 typedef enum
@@ -84,17 +103,5 @@ typedef enum
     STATUS_LED_BLINK,
     STATUS_LED_FAST_BLINK,
 } cmd_task_status_led_t;
-
-// ESP32 SD card config
-#define MOUNT_POINT "/sdcard"
-/* number of timestamps that can fit in the FIFO at once */
-#define NUM_FIFO_TIMESTAMPS 100
-
-/* logging frequency of the IMU */
-#define IMU_ODR_HZ 104
-/* IMU accelerometer full scale */
-#define IMU_XL_FS 4
-/* IMU gyroscope full scale*/
-#define IMU_G_FS 500
 
 #endif

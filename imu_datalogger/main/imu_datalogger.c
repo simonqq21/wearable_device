@@ -88,7 +88,7 @@ void app_main(void)
     streambuffer_sd = xStreamBufferCreate(sizeof(imu_data_t) * NUM_FIFO_TIMESTAMPS * 2, sizeof(imu_data_t) * NUM_FIFO_TIMESTAMPS);
 
     /* create all parameters */
-    task_imu_params_t task_imu_params;
+    params_imu_task_t task_imu_params;
     task_main_datalogging_params_t task_main_datalogging_params;
     task_SD_card_datalogger_params_t task_SD_card_datalogger_params;
 

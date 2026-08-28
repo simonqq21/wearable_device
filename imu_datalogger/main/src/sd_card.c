@@ -201,7 +201,7 @@ esp_err_t sd_configure(void)
     // For setting a specific frequency, use host.max_freq_khz (range 400kHz - 20MHz for SDSPI)
     // Example: for fixed frequency of 10MHz, use host.max_freq_khz = 10000;
     sdmmc_host_t host = SDSPI_HOST_DEFAULT();
-    host.max_freq_khz = 4000;
+    host.max_freq_khz = 5000;
 
     // SD card SPI bus configuration
     spi_bus_config_t bus_cfg = {

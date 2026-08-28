@@ -1,0 +1,2883 @@
+Command: /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/imu_module.elf /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader/bootloader.elf -m '/home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python' '/home/simonque/Documents/code/esp-idf/tools/idf.py'
+���x�x�x�xxx� 0x10000�ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0040,len:6272
+load:0x40078000,len:15848
+load:0x40080400,len:3920
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v6.1-dev-2310-g44e2fa6d9c5-dirt 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Aug 24 2026 15:48:13[0m
+[0;32mI (28) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v3.1[0m
+[0;32mI (34) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (37) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (65) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (78) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=12ab8h ( 76472) map[0m
+[0;32mI (116) esp_image: segment 1: paddr=00022ae0 vaddr=3ffb0000 size=02d24h ( 11556) load[0m
+[0;32mI (120) esp_image: segment 2: paddr=0002580c vaddr=40080000 size=0a80ch ( 43020) load[0m
+[0;32mI (138) esp_image: segment 3: paddr=00030020 vaddr=400d0020 size=2b2d4h (176852) map[0m
+[0;32mI (201) esp_image: segment 4: paddr=0005b2fc vaddr=4008a80c size=048dch ( 18652) load[0m
+[0;32mI (209) esp_image: segment 5: paddr=0005fbe0 vaddr=50000000 size=00028h (    40) load[0m
+[0;32mI (217) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (217) boot: Disabling RNG early entropy source...[0m
+[0;32mI (229) cpu_start: Multicore app[0m
+[0;32mI (237) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (238) cpu_start: Pro cpu start user code[0m
+[0;32mI (238) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (240) app_init: Application information:[0m
+[0;32mI (243) app_init: Project name:     imu_module[0m
+[0;32mI (248) app_init: App version:      a009959-dirty[0m
+[0;32mI (252) app_init: Compile time:     Aug 27 2026 18:52:00[0m
+[0;32mI (257) app_init: ELF file SHA256:  1ab3ef3ed...[0m
+[0;32mI (261) app_init: ESP-IDF:          v6.1-dev-2310-g44e2fa6d9c5-dirt[0m
+[0;32mI (267) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (271) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (275) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (279) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (285) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (290) heap_init: At 3FFB38B0 len 0002C750 (177 KiB): DRAM[0m
+[0;32mI (296) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (301) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (307) heap_init: At 4008F0E8 len 00010F18 (67 KiB): IRAM[0m
+[0;33mW (313) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (325) spi_flash: detected chip: generic[0m
+[0;32mI (328) spi_flash: flash io: dio[0m
+[0;33mW (331) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (345) main_task: Started on CPU0[0m
+[0;32mI (355) main_task: Calling app_main()[0m
+[0;32mI (355) button: IoT Button Version: 4.2.0[0m
+[0;32mI (355) MAIN: I2C initialized successfully[0m
+[0;32mI (365) LSM6DS3: WHO_AM_I = 69[0m
+[0;32mI (375) LSM6DS3: FIFO_CTRL1_REG_ADDR = C8[0m
+[0;32mI (375) LSM6DS3: FIFO_CTRL2_REG_ADDR = 8[0m
+[0;32mI (375) NVS: IMU calibration offsets from blob:[0m
+[0;32mI (375) NVS: required_size = 24[0m
+[0;32mI (375) NVS: err=0[0m
+
+[0;32mI (385) NVS: accel_offsets_x = 0.0480[0m
+[0;32mI (385) NVS: accel_offsets_y = -0.0170[0m
+[0;32mI (385) NVS: accel_offsets_z = -0.0018[0m
+[0;32mI (395) NVS: gyro_offsets_x = 2.4248[0m
+[0;32mI (395) NVS: gyro_offsets_y = -7.0694[0m
+[0;32mI (395) NVS: gyro_offsets_z = -1.9762[0m
+[0;32mI (405) IMU: IMU read calibration from NVS.[0m
+[0;32mI (405) IMU: accel_offsets_x = 0.05[0m
+[0;32mI (405) IMU: accel_offsets_y = -0.02[0m
+[0;32mI (415) IMU: accel_offsets_z = -0.00[0m
+[0;32mI (415) IMU: gyro_offsets_x = 2.42[0m
+[0;32mI (415) IMU: gyro_offsets_y = -7.07[0m
+[0;32mI (425) IMU: gyro_offsets_z = -1.98[0m
+[0;32mI (425) SD_CARD: Initializing SD card[0m
+[0;32mI (425) SD_CARD: Using SPI peripheral[0m
+[0;32mI (435) SD_CARD: Mounting filesystem[0m
+[0;32mI (435) sdspi_transaction: cmd=52, R1 response: command not supported[0m
+[0;32mI (485) sdspi_transaction: cmd=5, R1 response: command not supported[0m
+[0;32mI (525) SD_CARD: Filesystem mounted[0m
+Name: ACLCE
+Type: SDHC
+Speed: 4.00 MHz (limit: 4.00 MHz)
+Size: 60906MB
+CSD: ver=2, sector_size=512, capacity=124735488 read_bl_len=9
+SSR: bus_width=1
+[0;32mI (535) SD_CARD: SD card initialized[0m
+[0;32mI (535) MAIN: Starting all tasks![0m
+[0;32mI (2945) BUTTON: Datalogging started.[0m
+[0;32mI (2945) IMU: IMU started[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (3045) DATA LOGGING: Datalogging started.[0m
+[0;32mI (3355) SD_CARD: max_idx: 21[0m
+[0;32mI (3355) SD_CARD: filename: imu_000022.bin[0m
+[0;32mI (3355) SD_CARD: filepath: /sdcard/imu_000022.bin[0m
+[0;32mI (3365) SD_CARD: Writing to new file[0m
+[0;32mI (3395) LSM6DS3: num_fifo_samples = 282[0m
+[0;32mI (3395) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (3845) LSM6DS3: num_fifo_samples = 564[0m
+[0;32mI (3845) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (4005) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (4355) LSM6DS3: [0m
+[0;32mI (4355) LSM6DS3: gyro = 2.319336 -6.942749 -2.090454[0m
+[0;32mI (4355) LSM6DS3: accel = 0.061157 0.089111 0.990112[0m
+[0;32mI (4355) LSM6DS3: num_fifo_samples = 288[0m
+[0;32mI (4355) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (4375) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (4825) LSM6DS3: num_fifo_samples = 582[0m
+[0;32mI (4825) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (5335) LSM6DS3: [0m
+[0;32mI (5335) LSM6DS3: gyro = 2.380371 -7.049561 -1.983643[0m
+[0;32mI (5335) LSM6DS3: accel = 0.061523 0.089722 0.989746[0m
+[0;32mI (5335) LSM6DS3: num_fifo_samples = 306[0m
+[0;32mI (5335) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (5355) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (5805) LSM6DS3: num_fifo_samples = 594[0m
+[0;32mI (5805) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (6315) LSM6DS3: [0m
+[0;32mI (6315) LSM6DS3: gyro = 2.334595 -7.217407 -2.044678[0m
+[0;32mI (6315) LSM6DS3: accel = 0.062744 0.087646 0.988281[0m
+[0;32mI (6315) LSM6DS3: num_fifo_samples = 318[0m
+[0;32mI (6315) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (6335) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (6845) LSM6DS3: [0m
+[0;32mI (6845) LSM6DS3: gyro = 2.349854 -7.064819 -2.029419[0m
+[0;32mI (6845) LSM6DS3: accel = 0.062256 0.088257 0.992554[0m
+[0;32mI (6845) LSM6DS3: num_fifo_samples = 54[0m
+[0;32mI (6845) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (6865) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (7315) LSM6DS3: num_fifo_samples = 348[0m
+[0;32mI (7315) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (7825) LSM6DS3: [0m
+[0;32mI (7825) LSM6DS3: gyro = 2.334595 -7.034302 -2.044678[0m
+[0;32mI (7825) LSM6DS3: accel = 0.062500 0.089600 0.994629[0m
+[0;32mI (7825) LSM6DS3: num_fifo_samples = 66[0m
+[0;32mI (7825) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (7845) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (8295) LSM6DS3: num_fifo_samples = 360[0m
+[0;32mI (8295) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (8805) LSM6DS3: [0m
+[0;32mI (8805) LSM6DS3: gyro = 2.304077 -6.958008 -2.014160[0m
+[0;32mI (8805) LSM6DS3: accel = 0.061890 0.089111 0.995361[0m
+[0;32mI (8805) LSM6DS3: num_fifo_samples = 84[0m
+[0;32mI (8805) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (8825) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (9275) LSM6DS3: num_fifo_samples = 378[0m
+[0;32mI (9275) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (9785) LSM6DS3: [0m
+[0;32mI (9785) LSM6DS3: gyro = 2.365112 -7.064819 -2.059937[0m
+[0;32mI (9785) LSM6DS3: accel = 0.061523 0.088623 0.993042[0m
+[0;32mI (9785) LSM6DS3: num_fifo_samples = 102[0m
+[0;32mI (9785) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (9805) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (10255) LSM6DS3: num_fifo_samples = 390[0m
+[0;32mI (10255) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (10765) LSM6DS3: [0m
+[0;32mI (10765) LSM6DS3: gyro = 5.599976 -26.916504 6.088257[0m
+[0;32mI (10765) LSM6DS3: accel = 0.122803 0.219971 1.028809[0m
+[0;32mI (10765) LSM6DS3: num_fifo_samples = 114[0m
+[0;32mI (10765) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (10785) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (11235) LSM6DS3: num_fifo_samples = 408[0m
+[0;32mI (11235) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (11745) LSM6DS3: [0m
+[0;32mI (11745) LSM6DS3: gyro = 23.239136 -30.731201 -2.334595[0m
+[0;32mI (11745) LSM6DS3: accel = 1.096313 0.047119 0.196289[0m
+[0;32mI (11745) LSM6DS3: num_fifo_samples = 132[0m
+[0;32mI (11745) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (11765) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (12215) LSM6DS3: num_fifo_samples = 426[0m
+[0;32mI (12215) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (12725) LSM6DS3: [0m
+[0;32mI (12725) LSM6DS3: gyro = 7.324219 -3.143311 6.805420[0m
+[0;32mI (12725) LSM6DS3: accel = 0.991211 0.179565 -0.061890[0m
+[0;32mI (12725) LSM6DS3: num_fifo_samples = 144[0m
+[0;32mI (12725) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (12745) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (13195) LSM6DS3: num_fifo_samples = 438[0m
+[0;32mI (13195) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (13705) LSM6DS3: [0m
+[0;32mI (13705) LSM6DS3: gyro = 2.899170 -6.286621 -2.395630[0m
+[0;32mI (13705) LSM6DS3: accel = 1.020386 0.112793 -0.050293[0m
+[0;32mI (13705) LSM6DS3: num_fifo_samples = 162[0m
+[0;32mI (13705) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (13725) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (14175) LSM6DS3: num_fifo_samples = 456[0m
+[0;32mI (14175) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (14685) LSM6DS3: [0m
+[0;32mI (14685) LSM6DS3: gyro = 26.458740 188.125610 -22.186279[0m
+[0;32mI (14685) LSM6DS3: accel = 0.483643 0.086060 0.963867[0m
+[0;32mI (14685) LSM6DS3: num_fifo_samples = 180[0m
+[0;32mI (14685) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (14705) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (15155) LSM6DS3: num_fifo_samples = 468[0m
+[0;32mI (15155) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (15665) LSM6DS3: [0m
+[0;32mI (15665) LSM6DS3: gyro = -2.716064 -12.252808 -16.693115[0m
+[0;32mI (15665) LSM6DS3: accel = -0.985840 0.166382 -0.165894[0m
+[0;32mI (15665) LSM6DS3: num_fifo_samples = 192[0m
+[0;32mI (15665) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (15685) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (16135) LSM6DS3: num_fifo_samples = 486[0m
+[0;32mI (16135) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (16645) LSM6DS3: [0m
+[0;32mI (16645) LSM6DS3: gyro = 5.371094 -8.407593 -5.935669[0m
+[0;32mI (16645) LSM6DS3: accel = -0.979370 0.069824 0.029541[0m
+[0;32mI (16645) LSM6DS3: num_fifo_samples = 210[0m
+[0;32mI (16645) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (16665) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (17115) LSM6DS3: num_fifo_samples = 504[0m
+[0;32mI (17115) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (17625) LSM6DS3: [0m
+[0;32mI (17625) LSM6DS3: gyro = 15.258789 -162.384033 30.334473[0m
+[0;32mI (17625) LSM6DS3: accel = -0.797729 0.308350 0.555542[0m
+[0;32mI (17625) LSM6DS3: num_fifo_samples = 222[0m
+[0;32mI (17625) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (17645) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (18095) LSM6DS3: num_fifo_samples = 516[0m
+[0;32mI (18095) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (18605) LSM6DS3: [0m
+[0;32mI (18605) LSM6DS3: gyro = -183.105469 -38.253784 -44.799805[0m
+[0;32mI (18605) LSM6DS3: accel = -0.080078 -0.720459 0.406860[0m
+[0;32mI (18605) LSM6DS3: num_fifo_samples = 240[0m
+[0;32mI (18605) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (18625) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (19075) LSM6DS3: num_fifo_samples = 534[0m
+[0;32mI (19075) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (19585) LSM6DS3: [0m
+[0;32mI (19585) LSM6DS3: gyro = 2.639771 -2.868652 0.549316[0m
+[0;32mI (19585) LSM6DS3: accel = 0.031372 -1.013916 0.056396[0m
+[0;32mI (19585) LSM6DS3: num_fifo_samples = 258[0m
+[0;32mI (19585) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (19605) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (20055) LSM6DS3: num_fifo_samples = 546[0m
+[0;32mI (20055) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (20565) LSM6DS3: [0m
+[0;32mI (20565) LSM6DS3: gyro = -0.762939 -4.455566 -2.334595[0m
+[0;32mI (20565) LSM6DS3: accel = 0.032837 -1.005615 0.034180[0m
+[0;32mI (20565) LSM6DS3: num_fifo_samples = 270[0m
+[0;32mI (20565) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (20585) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (21035) LSM6DS3: num_fifo_samples = 564[0m
+[0;32mI (21035) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (21545) LSM6DS3: [0m
+[0;32mI (21545) LSM6DS3: gyro = 169.830322 -31.951904 17.593384[0m
+[0;32mI (21545) LSM6DS3: accel = -0.004150 -0.343018 1.094971[0m
+[0;32mI (21545) LSM6DS3: num_fifo_samples = 288[0m
+[0;32mI (21545) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (21565) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (22015) LSM6DS3: num_fifo_samples = 582[0m
+[0;32mI (22015) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (22525) LSM6DS3: [0m
+[0;32mI (22525) LSM6DS3: gyro = 141.479492 -69.396973 -16.433716[0m
+[0;32mI (22525) LSM6DS3: accel = 0.077148 0.967651 0.428223[0m
+[0;32mI (22525) LSM6DS3: num_fifo_samples = 300[0m
+[0;32mI (22525) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (22545) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (22995) LSM6DS3: num_fifo_samples = 594[0m
+[0;32mI (22995) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (23505) LSM6DS3: [0m
+[0;32mI (23505) LSM6DS3: gyro = 0.061035 -0.946045 -2.258301[0m
+[0;32mI (23505) LSM6DS3: accel = 0.010742 0.946411 -0.183838[0m
+[0;32mI (23505) LSM6DS3: num_fifo_samples = 318[0m
+[0;32mI (23505) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (23525) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (24035) LSM6DS3: [0m
+[0;32mI (24035) LSM6DS3: gyro = 1.388550 -5.187988 -3.448486[0m
+[0;32mI (24035) LSM6DS3: accel = 0.012573 0.973511 -0.042480[0m
+[0;32mI (24035) LSM6DS3: num_fifo_samples = 54[0m
+[0;32mI (24035) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (24055) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (24505) LSM6DS3: num_fifo_samples = 342[0m
+[0;32mI (24505) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (25015) LSM6DS3: [0m
+[0;32mI (25015) LSM6DS3: gyro = -18.646240 -6.561279 -1.159668[0m
+[0;32mI (25015) LSM6DS3: accel = 0.038574 1.037842 -0.015015[0m
+[0;32mI (25015) LSM6DS3: num_fifo_samples = 66[0m
+[0;32mI (25015) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (25035) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (25485) LSM6DS3: num_fifo_samples = 360[0m
+[0;32mI (25485) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (25995) LSM6DS3: [0m
+[0;32mI (25995) LSM6DS3: gyro = 8.544922 -7.446289 3.509521[0m
+[0;32mI (25995) LSM6DS3: accel = 0.035767 0.105103 1.072632[0m
+[0;32mI (25995) LSM6DS3: num_fifo_samples = 84[0m
+[0;32mI (25995) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (26015) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (26465) LSM6DS3: num_fifo_samples = 378[0m
+[0;32mI (26465) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (26975) LSM6DS3: [0m
+[0;32mI (26975) LSM6DS3: gyro = 8.178711 -61.950684 -16.891479[0m
+[0;32mI (26975) LSM6DS3: accel = 0.293701 -0.179443 -1.188354[0m
+[0;32mI (26975) LSM6DS3: num_fifo_samples = 96[0m
+[0;32mI (26975) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (26995) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (27445) LSM6DS3: num_fifo_samples = 390[0m
+[0;32mI (27445) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (27955) LSM6DS3: [0m
+[0;32mI (27955) LSM6DS3: gyro = -1.785278 -10.940552 -8.636475[0m
+[0;32mI (27955) LSM6DS3: accel = 0.030396 0.121216 -0.994629[0m
+[0;32mI (27955) LSM6DS3: num_fifo_samples = 114[0m
+[0;32mI (27955) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (27975) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (28425) LSM6DS3: num_fifo_samples = 408[0m
+[0;32mI (28425) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (28935) LSM6DS3: [0m
+[0;32mI (28935) LSM6DS3: gyro = 3.890991 -7.705688 -2.761841[0m
+[0;32mI (28935) LSM6DS3: accel = -0.007202 0.101685 -0.976562[0m
+[0;32mI (28935) LSM6DS3: num_fifo_samples = 132[0m
+[0;32mI (28935) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (28955) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (29405) LSM6DS3: num_fifo_samples = 420[0m
+[0;32mI (29405) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (29915) LSM6DS3: [0m
+[0;32mI (29915) LSM6DS3: gyro = 2.441406 -7.400513 -2.105713[0m
+[0;32mI (29915) LSM6DS3: accel = -0.007812 0.074097 -1.017700[0m
+[0;32mI (29915) LSM6DS3: num_fifo_samples = 144[0m
+[0;32mI (29915) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (29935) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (30385) LSM6DS3: num_fifo_samples = 438[0m
+[0;32mI (30385) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (30895) LSM6DS3: [0m
+[0;32mI (30895) LSM6DS3: gyro = -38.497925 -221.389771 -4.867554[0m
+[0;32mI (30895) LSM6DS3: accel = -0.516846 0.138184 0.385254[0m
+[0;32mI (30895) LSM6DS3: num_fifo_samples = 162[0m
+[0;32mI (30895) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (30915) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (31365) LSM6DS3: num_fifo_samples = 456[0m
+[0;32mI (31365) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (31875) LSM6DS3: [0m
+[0;32mI (31875) LSM6DS3: gyro = 2.075195 -10.986328 -2.807617[0m
+[0;32mI (31875) LSM6DS3: accel = 0.051880 0.026245 1.000610[0m
+[0;32mI (31875) LSM6DS3: num_fifo_samples = 174[0m
+[0;32mI (31875) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (31895) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (32345) LSM6DS3: num_fifo_samples = 468[0m
+[0;32mI (32345) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (32855) LSM6DS3: [0m
+[0;32mI (32855) LSM6DS3: gyro = 0.030518 -10.513306 -2.807617[0m
+[0;32mI (32855) LSM6DS3: accel = 0.067017 -0.017456 0.975464[0m
+[0;32mI (32855) LSM6DS3: num_fifo_samples = 192[0m
+[0;32mI (32855) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (32875) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (33325) LSM6DS3: num_fifo_samples = 486[0m
+[0;32mI (33325) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (33835) LSM6DS3: [0m
+[0;32mI (33835) LSM6DS3: gyro = 2.410889 -6.423950 -0.656128[0m
+[0;32mI (33835) LSM6DS3: accel = 0.068481 0.078491 0.999023[0m
+[0;32mI (33835) LSM6DS3: num_fifo_samples = 210[0m
+[0;32mI (33835) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (33855) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (34305) LSM6DS3: num_fifo_samples = 498[0m
+[0;32mI (34305) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (34815) LSM6DS3: [0m
+[0;32mI (34815) LSM6DS3: gyro = 2.304077 -6.973267 -1.907349[0m
+[0;32mI (34815) LSM6DS3: accel = 0.068848 0.083130 1.000366[0m
+[0;32mI (34815) LSM6DS3: num_fifo_samples = 222[0m
+[0;32mI (34815) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (34835) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (35285) LSM6DS3: num_fifo_samples = 516[0m
+[0;32mI (35285) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (35795) LSM6DS3: [0m
+[0;32mI (35795) LSM6DS3: gyro = 2.319336 -6.988525 -1.998901[0m
+[0;32mI (35795) LSM6DS3: accel = 0.066284 0.086060 0.994873[0m
+[0;32mI (35795) LSM6DS3: num_fifo_samples = 240[0m
+[0;32mI (35795) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (35815) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (36265) LSM6DS3: num_fifo_samples = 534[0m
+[0;32mI (36265) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (36775) LSM6DS3: [0m
+[0;32mI (36775) LSM6DS3: gyro = 2.395630 -7.080078 -2.059937[0m
+[0;32mI (36775) LSM6DS3: accel = 0.067017 0.084351 0.990601[0m
+[0;32mI (36775) LSM6DS3: num_fifo_samples = 252[0m
+[0;32mI (36775) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (36795) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (37245) LSM6DS3: num_fifo_samples = 546[0m
+[0;32mI (37245) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (37755) LSM6DS3: [0m
+[0;32mI (37755) LSM6DS3: gyro = 2.441406 -7.064819 -2.075195[0m
+[0;32mI (37755) LSM6DS3: accel = 0.066528 0.084717 0.992798[0m
+[0;32mI (37755) LSM6DS3: num_fifo_samples = 270[0m
+[0;32mI (37755) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (37775) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (38225) LSM6DS3: num_fifo_samples = 564[0m
+[0;32mI (38225) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (38735) LSM6DS3: [0m
+[0;32mI (38735) LSM6DS3: gyro = 2.410889 -7.110596 -2.014160[0m
+[0;32mI (38735) LSM6DS3: accel = 0.065674 0.085938 0.993530[0m
+[0;32mI (38735) LSM6DS3: num_fifo_samples = 288[0m
+[0;32mI (38735) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (38755) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (39205) LSM6DS3: num_fifo_samples = 582[0m
+[0;32mI (39205) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (39585) BUTTON: Datalogging stopped.[0m
+[0;32mI (39585) IMU: IMU stopped[0m
+[0;32mI (39615) SD_CARD: File written.[0m
+[0;32mI (39615) SD_CARD: file size: 0[0m
+[0;32mI (39655) DATA LOGGING: Datalogging stopped.[0m
+[0;32mI (41645) BUTTON: Datalogging started.[0m
+[0;32mI (41645) IMU: IMU started[0m
+[0;32mI (41655) DATA LOGGING: Datalogging started.[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (42025) SD_CARD: max_idx: 22[0m
+[0;32mI (42025) SD_CARD: filename: imu_000023.bin[0m
+[0;32mI (42025) SD_CARD: filepath: /sdcard/imu_000023.bin[0m
+[0;32mI (42035) SD_CARD: Writing to new file[0m
+[0;32mI (42095) LSM6DS3: num_fifo_samples = 282[0m
+[0;32mI (42095) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (42545) LSM6DS3: num_fifo_samples = 564[0m
+[0;32mI (42545) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (42675) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (43055) LSM6DS3: [0m
+[0;32mI (43055) LSM6DS3: gyro = 2.288818 -6.851196 -2.014160[0m
+[0;32mI (43055) LSM6DS3: accel = 0.063110 0.087891 1.002075[0m
+[0;32mI (43055) LSM6DS3: num_fifo_samples = 288[0m
+[0;32mI (43055) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (43075) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (43525) LSM6DS3: num_fifo_samples = 582[0m
+[0;32mI (43525) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (44035) LSM6DS3: [0m
+[0;32mI (44035) LSM6DS3: gyro = 2.288818 -6.988525 -2.075195[0m
+[0;32mI (44035) LSM6DS3: accel = 0.063843 0.086304 0.998657[0m
+[0;32mI (44035) LSM6DS3: num_fifo_samples = 306[0m
+[0;32mI (44035) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (44055) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (44505) LSM6DS3: num_fifo_samples = 594[0m
+[0;32mI (44505) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (45015) LSM6DS3: [0m
+[0;32mI (45015) LSM6DS3: gyro = 2.288818 -7.095337 -2.014160[0m
+[0;32mI (45015) LSM6DS3: accel = 0.064819 0.087891 0.998535[0m
+[0;32mI (45015) LSM6DS3: num_fifo_samples = 318[0m
+[0;32mI (45015) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (45035) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (45545) LSM6DS3: [0m
+[0;32mI (45545) LSM6DS3: gyro = 2.365112 -7.141113 -2.075195[0m
+[0;32mI (45545) LSM6DS3: accel = 0.064331 0.087280 0.995361[0m
+[0;32mI (45545) LSM6DS3: num_fifo_samples = 54[0m
+[0;32mI (45545) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (45565) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (46015) LSM6DS3: num_fifo_samples = 348[0m
+[0;32mI (46015) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (46525) LSM6DS3: [0m
+[0;32mI (46525) LSM6DS3: gyro = 2.365112 -6.988525 -2.075195[0m
+[0;32mI (46525) LSM6DS3: accel = 0.063843 0.088013 0.997314[0m
+[0;32mI (46525) LSM6DS3: num_fifo_samples = 66[0m
+[0;32mI (46525) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (46545) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (46995) LSM6DS3: num_fifo_samples = 360[0m
+[0;32mI (46995) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (47505) LSM6DS3: [0m
+[0;32mI (47505) LSM6DS3: gyro = 2.182007 -7.019043 -2.014160[0m
+[0;32mI (47505) LSM6DS3: accel = 0.064209 0.085938 0.998657[0m
+[0;32mI (47505) LSM6DS3: num_fifo_samples = 84[0m
+[0;32mI (47505) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (47525) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (47975) LSM6DS3: num_fifo_samples = 378[0m
+[0;32mI (47975) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (48485) LSM6DS3: [0m
+[0;32mI (48485) LSM6DS3: gyro = 2.304077 -7.064819 -2.014160[0m
+[0;32mI (48485) LSM6DS3: accel = 0.063721 0.087769 0.996460[0m
+[0;32mI (48485) LSM6DS3: num_fifo_samples = 102[0m
+[0;32mI (48485) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (48505) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (48955) LSM6DS3: num_fifo_samples = 390[0m
+[0;32mI (48955) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (49465) LSM6DS3: [0m
+[0;32mI (49465) LSM6DS3: gyro = 2.395630 -7.095337 -2.044678[0m
+[0;32mI (49465) LSM6DS3: accel = 0.065186 0.087158 0.990723[0m
+[0;32mI (49465) LSM6DS3: num_fifo_samples = 114[0m
+[0;32mI (49465) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (49485) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (49935) LSM6DS3: num_fifo_samples = 408[0m
+[0;32mI (49935) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (50445) LSM6DS3: [0m
+[0;32mI (50445) LSM6DS3: gyro = 2.243042 -7.110596 -2.014160[0m
+[0;32mI (50445) LSM6DS3: accel = 0.062744 0.087402 0.993408[0m
+[0;32mI (50445) LSM6DS3: num_fifo_samples = 132[0m
+[0;32mI (50445) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (50465) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (50915) LSM6DS3: num_fifo_samples = 426[0m
+[0;32mI (50915) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (51425) LSM6DS3: [0m
+[0;32mI (51425) LSM6DS3: gyro = 2.365112 -7.034302 -2.029419[0m
+[0;32mI (51425) LSM6DS3: accel = 0.063232 0.085938 0.992432[0m
+[0;32mI (51425) LSM6DS3: num_fifo_samples = 144[0m
+[0;32mI (51425) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (51445) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (51895) LSM6DS3: num_fifo_samples = 438[0m
+[0;32mI (51895) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (52405) LSM6DS3: [0m
+[0;32mI (52405) LSM6DS3: gyro = 2.395630 -7.110596 -2.029419[0m
+[0;32mI (52405) LSM6DS3: accel = 0.063354 0.088013 0.993042[0m
+[0;32mI (52405) LSM6DS3: num_fifo_samples = 162[0m
+[0;32mI (52405) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (52425) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (52875) LSM6DS3: num_fifo_samples = 456[0m
+[0;32mI (52875) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (53385) LSM6DS3: [0m
+[0;32mI (53385) LSM6DS3: gyro = 2.334595 -6.958008 -1.983643[0m
+[0;32mI (53385) LSM6DS3: accel = 0.063843 0.086670 0.995850[0m
+[0;32mI (53385) LSM6DS3: num_fifo_samples = 180[0m
+[0;32mI (53385) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (53405) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (53855) LSM6DS3: num_fifo_samples = 468[0m
+[0;32mI (53855) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (54365) LSM6DS3: [0m
+[0;32mI (54365) LSM6DS3: gyro = 2.243042 -7.095337 -2.014160[0m
+[0;32mI (54365) LSM6DS3: accel = 0.063110 0.087280 0.996948[0m
+[0;32mI (54365) LSM6DS3: num_fifo_samples = 192[0m
+[0;32mI (54365) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (54385) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (54835) LSM6DS3: num_fifo_samples = 486[0m
+[0;32mI (54835) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (55345) LSM6DS3: [0m
+[0;32mI (55345) LSM6DS3: gyro = 2.304077 -7.141113 -2.029419[0m
+[0;32mI (55345) LSM6DS3: accel = 0.064087 0.086792 0.993286[0m
+[0;32mI (55345) LSM6DS3: num_fifo_samples = 210[0m
+[0;32mI (55345) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (55365) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (55815) LSM6DS3: num_fifo_samples = 504[0m
+[0;32mI (55815) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (56325) LSM6DS3: [0m
+[0;32mI (56325) LSM6DS3: gyro = 2.349854 -7.080078 -1.998901[0m
+[0;32mI (56325) LSM6DS3: accel = 0.065186 0.086182 0.993896[0m
+[0;32mI (56325) LSM6DS3: num_fifo_samples = 222[0m
+[0;32mI (56325) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (56345) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (56795) LSM6DS3: num_fifo_samples = 516[0m
+[0;32mI (56795) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (57305) LSM6DS3: [0m
+[0;32mI (57305) LSM6DS3: gyro = 2.273560 -7.003784 -2.014160[0m
+[0;32mI (57305) LSM6DS3: accel = 0.062622 0.085205 0.995361[0m
+[0;32mI (57305) LSM6DS3: num_fifo_samples = 240[0m
+[0;32mI (57305) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (57325) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (57775) LSM6DS3: num_fifo_samples = 534[0m
+[0;32mI (57775) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (58285) LSM6DS3: [0m
+[0;32mI (58285) LSM6DS3: gyro = 2.288818 -6.988525 -1.998901[0m
+[0;32mI (58285) LSM6DS3: accel = 0.064453 0.087524 0.998535[0m
+[0;32mI (58285) LSM6DS3: num_fifo_samples = 258[0m
+[0;32mI (58285) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (58305) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (58755) LSM6DS3: num_fifo_samples = 546[0m
+[0;32mI (58755) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (59265) LSM6DS3: [0m
+[0;32mI (59265) LSM6DS3: gyro = 2.380371 -7.095337 -2.014160[0m
+[0;32mI (59265) LSM6DS3: accel = 0.063599 0.088013 0.997192[0m
+[0;32mI (59265) LSM6DS3: num_fifo_samples = 270[0m
+[0;32mI (59265) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (59285) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (59735) LSM6DS3: num_fifo_samples = 564[0m
+[0;32mI (59735) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (60245) LSM6DS3: [0m
+[0;32mI (60245) LSM6DS3: gyro = 2.243042 -7.034302 -2.044678[0m
+[0;32mI (60245) LSM6DS3: accel = 0.063965 0.086548 0.994751[0m
+[0;32mI (60245) LSM6DS3: num_fifo_samples = 288[0m
+[0;32mI (60245) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (60265) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (60715) LSM6DS3: num_fifo_samples = 582[0m
+[0;32mI (60715) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (61225) LSM6DS3: [0m
+[0;32mI (61225) LSM6DS3: gyro = 2.548218 -7.202148 -2.044678[0m
+[0;32mI (61225) LSM6DS3: accel = 0.064941 0.087769 0.991089[0m
+[0;32mI (61225) LSM6DS3: num_fifo_samples = 300[0m
+[0;32mI (61225) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (61245) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (61695) LSM6DS3: num_fifo_samples = 594[0m
+[0;32mI (61695) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (62205) LSM6DS3: [0m
+[0;32mI (62205) LSM6DS3: gyro = 2.349854 -7.095337 -1.983643[0m
+[0;32mI (62205) LSM6DS3: accel = 0.064697 0.085327 0.994019[0m
+[0;32mI (62205) LSM6DS3: num_fifo_samples = 318[0m
+[0;32mI (62205) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (62225) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (62735) LSM6DS3: [0m
+[0;32mI (62735) LSM6DS3: gyro = 2.258301 -7.110596 -2.059937[0m
+[0;32mI (62735) LSM6DS3: accel = 0.064087 0.085571 0.993774[0m
+[0;32mI (62735) LSM6DS3: num_fifo_samples = 54[0m
+[0;32mI (62735) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (62755) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (63205) LSM6DS3: num_fifo_samples = 342[0m
+[0;32mI (63205) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (63715) LSM6DS3: [0m
+[0;32mI (63715) LSM6DS3: gyro = 2.334595 -7.080078 -2.029419[0m
+[0;32mI (63715) LSM6DS3: accel = 0.064209 0.085571 0.993408[0m
+[0;32mI (63715) LSM6DS3: num_fifo_samples = 66[0m
+[0;32mI (63715) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (63735) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (64185) LSM6DS3: num_fifo_samples = 360[0m
+[0;32mI (64185) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (64695) LSM6DS3: [0m
+[0;32mI (64695) LSM6DS3: gyro = 2.609253 -7.217407 -2.105713[0m
+[0;32mI (64695) LSM6DS3: accel = 0.066162 0.090210 0.991089[0m
+[0;32mI (64695) LSM6DS3: num_fifo_samples = 84[0m
+[0;32mI (64695) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (64715) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (65165) LSM6DS3: num_fifo_samples = 378[0m
+[0;32mI (65165) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (65675) LSM6DS3: [0m
+[0;32mI (65675) LSM6DS3: gyro = 2.319336 -7.156372 -1.983643[0m
+[0;32mI (65675) LSM6DS3: accel = 0.065430 0.087036 0.995239[0m
+[0;32mI (65675) LSM6DS3: num_fifo_samples = 96[0m
+[0;32mI (65675) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (65695) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (66145) LSM6DS3: num_fifo_samples = 390[0m
+[0;32mI (66145) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (66655) LSM6DS3: [0m
+[0;32mI (66655) LSM6DS3: gyro = 2.288818 -6.988525 -2.075195[0m
+[0;32mI (66655) LSM6DS3: accel = 0.062744 0.086548 0.996094[0m
+[0;32mI (66655) LSM6DS3: num_fifo_samples = 114[0m
+[0;32mI (66655) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (66675) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (67125) LSM6DS3: num_fifo_samples = 408[0m
+[0;32mI (67125) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (67635) LSM6DS3: [0m
+[0;32mI (67635) LSM6DS3: gyro = 2.349854 -7.019043 -1.968384[0m
+[0;32mI (67635) LSM6DS3: accel = 0.063354 0.087280 0.997681[0m
+[0;32mI (67635) LSM6DS3: num_fifo_samples = 132[0m
+[0;32mI (67635) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (67655) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (68105) LSM6DS3: num_fifo_samples = 420[0m
+[0;32mI (68105) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (68615) LSM6DS3: [0m
+[0;32mI (68615) LSM6DS3: gyro = 2.182007 -6.988525 -1.937866[0m
+[0;32mI (68615) LSM6DS3: accel = 0.063599 0.086304 0.998657[0m
+[0;32mI (68615) LSM6DS3: num_fifo_samples = 144[0m
+[0;32mI (68615) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (68635) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (69085) LSM6DS3: num_fifo_samples = 438[0m
+[0;32mI (69085) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (69595) LSM6DS3: [0m
+[0;32mI (69595) LSM6DS3: gyro = 2.334595 -7.034302 -2.029419[0m
+[0;32mI (69595) LSM6DS3: accel = 0.063477 0.086426 0.996582[0m
+[0;32mI (69595) LSM6DS3: num_fifo_samples = 162[0m
+[0;32mI (69595) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (69615) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (70065) LSM6DS3: num_fifo_samples = 456[0m
+[0;32mI (70065) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (70575) LSM6DS3: [0m
+[0;32mI (70575) LSM6DS3: gyro = 2.304077 -6.988525 -2.029419[0m
+[0;32mI (70575) LSM6DS3: accel = 0.064087 0.087280 0.996094[0m
+[0;32mI (70575) LSM6DS3: num_fifo_samples = 174[0m
+[0;32mI (70575) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (70595) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (71045) LSM6DS3: num_fifo_samples = 468[0m
+[0;32mI (71045) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (71555) LSM6DS3: [0m
+[0;32mI (71555) LSM6DS3: gyro = 2.288818 -7.019043 -1.953125[0m
+[0;32mI (71555) LSM6DS3: accel = 0.062256 0.085693 0.995728[0m
+[0;32mI (71555) LSM6DS3: num_fifo_samples = 192[0m
+[0;32mI (71555) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (71575) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (72025) LSM6DS3: num_fifo_samples = 486[0m
+[0;32mI (72025) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (72535) LSM6DS3: [0m
+[0;32mI (72535) LSM6DS3: gyro = 2.334595 -7.064819 -2.029419[0m
+[0;32mI (72535) LSM6DS3: accel = 0.063965 0.087036 0.991821[0m
+[0;32mI (72535) LSM6DS3: num_fifo_samples = 210[0m
+[0;32mI (72535) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (72555) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (73005) LSM6DS3: num_fifo_samples = 504[0m
+[0;32mI (73005) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (73515) LSM6DS3: [0m
+[0;32mI (73515) LSM6DS3: gyro = 2.319336 -7.019043 -2.014160[0m
+[0;32mI (73515) LSM6DS3: accel = 0.063477 0.086426 0.995239[0m
+[0;32mI (73515) LSM6DS3: num_fifo_samples = 222[0m
+[0;32mI (73515) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (73535) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (73985) LSM6DS3: num_fifo_samples = 516[0m
+[0;32mI (73985) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (74495) LSM6DS3: [0m
+[0;32mI (74495) LSM6DS3: gyro = 2.227783 -6.958008 -1.968384[0m
+[0;32mI (74495) LSM6DS3: accel = 0.064453 0.085938 1.000122[0m
+[0;32mI (74495) LSM6DS3: num_fifo_samples = 240[0m
+[0;32mI (74495) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (74515) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (74965) LSM6DS3: num_fifo_samples = 534[0m
+[0;32mI (74965) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (75475) LSM6DS3: [0m
+[0;32mI (75475) LSM6DS3: gyro = 2.410889 -7.095337 -2.120972[0m
+[0;32mI (75475) LSM6DS3: accel = 0.064209 0.087524 0.994629[0m
+[0;32mI (75475) LSM6DS3: num_fifo_samples = 258[0m
+[0;32mI (75475) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (75495) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (75945) LSM6DS3: num_fifo_samples = 546[0m
+[0;32mI (75945) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (76455) LSM6DS3: [0m
+[0;32mI (76455) LSM6DS3: gyro = 2.288818 -7.141113 -2.029419[0m
+[0;32mI (76455) LSM6DS3: accel = 0.062988 0.086182 0.994507[0m
+[0;32mI (76455) LSM6DS3: num_fifo_samples = 270[0m
+[0;32mI (76455) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (76475) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (76925) LSM6DS3: num_fifo_samples = 564[0m
+[0;32mI (76925) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (77435) LSM6DS3: [0m
+[0;32mI (77435) LSM6DS3: gyro = 2.410889 -6.988525 -2.059937[0m
+[0;32mI (77435) LSM6DS3: accel = 0.063110 0.088013 0.993530[0m
+[0;32mI (77435) LSM6DS3: num_fifo_samples = 288[0m
+[0;32mI (77435) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (77455) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (77905) LSM6DS3: num_fifo_samples = 582[0m
+[0;32mI (77905) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (78415) LSM6DS3: [0m
+[0;32mI (78415) LSM6DS3: gyro = 2.426147 -7.110596 -2.044678[0m
+[0;32mI (78415) LSM6DS3: accel = 0.064331 0.086426 0.993530[0m
+[0;32mI (78415) LSM6DS3: num_fifo_samples = 300[0m
+[0;32mI (78415) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (78435) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (78885) LSM6DS3: num_fifo_samples = 594[0m
+[0;32mI (78885) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (79395) LSM6DS3: [0m
+[0;32mI (79395) LSM6DS3: gyro = 2.349854 -7.095337 -2.044678[0m
+[0;32mI (79395) LSM6DS3: accel = 0.064087 0.087280 0.993652[0m
+[0;32mI (79395) LSM6DS3: num_fifo_samples = 318[0m
+[0;32mI (79395) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (79415) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (79925) LSM6DS3: [0m
+[0;32mI (79925) LSM6DS3: gyro = 2.197266 -6.927490 -1.983643[0m
+[0;32mI (79925) LSM6DS3: accel = 0.064087 0.085449 0.999268[0m
+[0;32mI (79925) LSM6DS3: num_fifo_samples = 48[0m
+[0;32mI (79925) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (79945) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (80395) LSM6DS3: num_fifo_samples = 342[0m
+[0;32mI (80395) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (80905) LSM6DS3: [0m
+[0;32mI (80905) LSM6DS3: gyro = 2.365112 -7.049561 -2.029419[0m
+[0;32mI (80905) LSM6DS3: accel = 0.063354 0.089111 0.993896[0m
+[0;32mI (80905) LSM6DS3: num_fifo_samples = 66[0m
+[0;32mI (80905) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (80925) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (81375) LSM6DS3: num_fifo_samples = 360[0m
+[0;32mI (81375) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (81885) LSM6DS3: [0m
+[0;32mI (81885) LSM6DS3: gyro = 2.258301 -6.988525 -2.029419[0m
+[0;32mI (81885) LSM6DS3: accel = 0.063599 0.087036 0.994141[0m
+[0;32mI (81885) LSM6DS3: num_fifo_samples = 84[0m
+[0;32mI (81885) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (81905) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (82355) LSM6DS3: num_fifo_samples = 378[0m
+[0;32mI (82355) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (82865) LSM6DS3: [0m
+[0;32mI (82865) LSM6DS3: gyro = 2.288818 -7.034302 -2.059937[0m
+[0;32mI (82865) LSM6DS3: accel = 0.063843 0.086792 0.998535[0m
+[0;32mI (82865) LSM6DS3: num_fifo_samples = 96[0m
+[0;32mI (82865) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (82885) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (83335) LSM6DS3: num_fifo_samples = 390[0m
+[0;32mI (83335) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (83845) LSM6DS3: [0m
+[0;32mI (83845) LSM6DS3: gyro = 2.395630 -7.034302 -2.029419[0m
+[0;32mI (83845) LSM6DS3: accel = 0.063477 0.087646 0.993896[0m
+[0;32mI (83845) LSM6DS3: num_fifo_samples = 114[0m
+[0;32mI (83845) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (83865) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (84315) LSM6DS3: num_fifo_samples = 408[0m
+[0;32mI (84315) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (84825) LSM6DS3: [0m
+[0;32mI (84825) LSM6DS3: gyro = 2.334595 -7.095337 -1.983643[0m
+[0;32mI (84825) LSM6DS3: accel = 0.064209 0.086670 0.997803[0m
+[0;32mI (84825) LSM6DS3: num_fifo_samples = 126[0m
+[0;32mI (84825) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (84845) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (85295) LSM6DS3: num_fifo_samples = 420[0m
+[0;32mI (85295) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (85805) LSM6DS3: [0m
+[0;32mI (85805) LSM6DS3: gyro = 2.410889 -7.034302 -2.014160[0m
+[0;32mI (85805) LSM6DS3: accel = 0.065308 0.088379 0.995605[0m
+[0;32mI (85805) LSM6DS3: num_fifo_samples = 144[0m
+[0;32mI (85805) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (85825) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (86275) LSM6DS3: num_fifo_samples = 438[0m
+[0;32mI (86275) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (86785) LSM6DS3: [0m
+[0;32mI (86785) LSM6DS3: gyro = 2.380371 -6.988525 -2.075195[0m
+[0;32mI (86785) LSM6DS3: accel = 0.063110 0.086792 0.996948[0m
+[0;32mI (86785) LSM6DS3: num_fifo_samples = 162[0m
+[0;32mI (86785) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (86805) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (87255) LSM6DS3: num_fifo_samples = 456[0m
+[0;32mI (87255) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (87765) LSM6DS3: [0m
+[0;32mI (87765) LSM6DS3: gyro = 2.319336 -7.034302 -2.014160[0m
+[0;32mI (87765) LSM6DS3: accel = 0.064087 0.085815 0.995972[0m
+[0;32mI (87765) LSM6DS3: num_fifo_samples = 174[0m
+[0;32mI (87765) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (87785) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (88235) LSM6DS3: num_fifo_samples = 468[0m
+[0;32mI (88235) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (88745) LSM6DS3: [0m
+[0;32mI (88745) LSM6DS3: gyro = 2.380371 -7.080078 -2.059937[0m
+[0;32mI (88745) LSM6DS3: accel = 0.062866 0.087524 0.994019[0m
+[0;32mI (88745) LSM6DS3: num_fifo_samples = 192[0m
+[0;32mI (88745) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (88765) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (89215) LSM6DS3: num_fifo_samples = 486[0m
+[0;32mI (89215) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (89725) LSM6DS3: [0m
+[0;32mI (89725) LSM6DS3: gyro = 2.334595 -7.049561 -2.029419[0m
+[0;32mI (89725) LSM6DS3: accel = 0.065430 0.086670 0.997192[0m
+[0;32mI (89725) LSM6DS3: num_fifo_samples = 210[0m
+[0;32mI (89725) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (89745) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (90195) LSM6DS3: num_fifo_samples = 498[0m
+[0;32mI (90195) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (90705) LSM6DS3: [0m
+[0;32mI (90705) LSM6DS3: gyro = 2.212524 -7.141113 -1.998901[0m
+[0;32mI (90705) LSM6DS3: accel = 0.064453 0.085815 0.997681[0m
+[0;32mI (90705) LSM6DS3: num_fifo_samples = 222[0m
+[0;32mI (90705) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (90725) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (91175) LSM6DS3: num_fifo_samples = 516[0m
+[0;32mI (91175) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (91685) LSM6DS3: [0m
+[0;32mI (91685) LSM6DS3: gyro = 2.258301 -6.942749 -1.968384[0m
+[0;32mI (91685) LSM6DS3: accel = 0.065430 0.086548 1.000000[0m
+[0;32mI (91685) LSM6DS3: num_fifo_samples = 240[0m
+[0;32mI (91685) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (91705) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (92155) LSM6DS3: num_fifo_samples = 534[0m
+[0;32mI (92155) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (92665) LSM6DS3: [0m
+[0;32mI (92665) LSM6DS3: gyro = 2.410889 -7.110596 -2.029419[0m
+[0;32mI (92665) LSM6DS3: accel = 0.064087 0.087891 0.997314[0m
+[0;32mI (92665) LSM6DS3: num_fifo_samples = 252[0m
+[0;32mI (92665) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (92685) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (93135) LSM6DS3: num_fifo_samples = 546[0m
+[0;32mI (93135) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (93645) LSM6DS3: [0m
+[0;32mI (93645) LSM6DS3: gyro = 2.365112 -6.958008 -1.968384[0m
+[0;32mI (93645) LSM6DS3: accel = 0.064209 0.086670 0.996338[0m
+[0;32mI (93645) LSM6DS3: num_fifo_samples = 270[0m
+[0;32mI (93645) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (93665) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (94115) LSM6DS3: num_fifo_samples = 564[0m
+[0;32mI (94115) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (94625) LSM6DS3: [0m
+[0;32mI (94625) LSM6DS3: gyro = 2.365112 -7.034302 -1.953125[0m
+[0;32mI (94625) LSM6DS3: accel = 0.064453 0.086426 0.996704[0m
+[0;32mI (94625) LSM6DS3: num_fifo_samples = 288[0m
+[0;32mI (94625) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (94645) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (95095) LSM6DS3: num_fifo_samples = 576[0m
+[0;32mI (95095) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (95605) LSM6DS3: [0m
+[0;32mI (95605) LSM6DS3: gyro = 2.365112 -7.034302 -1.998901[0m
+[0;32mI (95605) LSM6DS3: accel = 0.063965 0.086792 0.994263[0m
+[0;32mI (95605) LSM6DS3: num_fifo_samples = 300[0m
+[0;32mI (95605) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (95625) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (96075) LSM6DS3: num_fifo_samples = 594[0m
+[0;32mI (96075) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (96585) LSM6DS3: [0m
+[0;32mI (96585) LSM6DS3: gyro = 2.395630 -7.095337 -2.029419[0m
+[0;32mI (96585) LSM6DS3: accel = 0.064575 0.088989 0.994629[0m
+[0;32mI (96585) LSM6DS3: num_fifo_samples = 318[0m
+[0;32mI (96585) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (96605) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (97115) LSM6DS3: [0m
+[0;32mI (97115) LSM6DS3: gyro = 2.380371 -7.125854 -2.029419[0m
+[0;32mI (97115) LSM6DS3: accel = 0.064453 0.086304 0.993408[0m
+[0;32mI (97115) LSM6DS3: num_fifo_samples = 48[0m
+[0;32mI (97115) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (97135) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (97585) LSM6DS3: num_fifo_samples = 342[0m
+[0;32mI (97585) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (98095) LSM6DS3: [0m
+[0;32mI (98095) LSM6DS3: gyro = 2.380371 -7.019043 -2.044678[0m
+[0;32mI (98095) LSM6DS3: accel = 0.064575 0.086304 0.994751[0m
+[0;32mI (98095) LSM6DS3: num_fifo_samples = 66[0m
+[0;32mI (98095) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (98115) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (98565) LSM6DS3: num_fifo_samples = 360[0m
+[0;32mI (98565) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (99075) LSM6DS3: [0m
+[0;32mI (99075) LSM6DS3: gyro = 2.227783 -7.049561 -2.075195[0m
+[0;32mI (99075) LSM6DS3: accel = 0.063110 0.087158 0.998169[0m
+[0;32mI (99075) LSM6DS3: num_fifo_samples = 84[0m
+[0;32mI (99075) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (99095) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (99545) LSM6DS3: num_fifo_samples = 372[0m
+[0;32mI (99545) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (100055) LSM6DS3: [0m
+[0;32mI (100055) LSM6DS3: gyro = 2.456665 -7.080078 -2.059937[0m
+[0;32mI (100055) LSM6DS3: accel = 0.064819 0.087769 0.993286[0m
+[0;32mI (100055) LSM6DS3: num_fifo_samples = 96[0m
+[0;32mI (100055) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (100075) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (100525) LSM6DS3: num_fifo_samples = 390[0m
+[0;32mI (100525) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (101035) LSM6DS3: [0m
+[0;32mI (101035) LSM6DS3: gyro = 2.319336 -7.095337 -2.029419[0m
+[0;32mI (101035) LSM6DS3: accel = 0.062744 0.086426 0.993652[0m
+[0;32mI (101035) LSM6DS3: num_fifo_samples = 114[0m
+[0;32mI (101035) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (101055) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (101505) LSM6DS3: num_fifo_samples = 408[0m
+[0;32mI (101505) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (102015) LSM6DS3: [0m
+[0;32mI (102015) LSM6DS3: gyro = 2.334595 -6.958008 -2.120972[0m
+[0;32mI (102015) LSM6DS3: accel = 0.064209 0.087036 0.995239[0m
+[0;32mI (102015) LSM6DS3: num_fifo_samples = 126[0m
+[0;32mI (102015) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (102035) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (102485) LSM6DS3: num_fifo_samples = 420[0m
+[0;32mI (102485) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (102995) LSM6DS3: [0m
+[0;32mI (102995) LSM6DS3: gyro = 2.258301 -7.003784 -2.059937[0m
+[0;32mI (102995) LSM6DS3: accel = 0.064819 0.086548 0.996216[0m
+[0;32mI (102995) LSM6DS3: num_fifo_samples = 144[0m
+[0;32mI (102995) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (103015) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (103045) SD_CARD: File written.[0m
+[0;32mI (103045) SD_CARD: file size: 0[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (103365) SD_CARD: max_idx: 23[0m
+[0;32mI (103365) SD_CARD: filename: imu_000024.bin[0m
+[0;32mI (103365) SD_CARD: filepath: /sdcard/imu_000024.bin[0m
+[0;32mI (103365) SD_CARD: Writing to new file[0m
+[0;32mI (103465) LSM6DS3: num_fifo_samples = 438[0m
+[0;32mI (103465) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (104015) LSM6DS3: [0m
+[0;32mI (104015) LSM6DS3: gyro = 2.273560 -7.034302 -2.044678[0m
+[0;32mI (104015) LSM6DS3: accel = 0.065308 0.086792 0.998413[0m
+[0;32mI (104015) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (104015) LSM6DS3: num_fifo_samples = 186[0m
+[0;32mI (104025) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (104035) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (104485) LSM6DS3: num_fifo_samples = 480[0m
+[0;32mI (104485) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (104995) LSM6DS3: [0m
+[0;32mI (104995) LSM6DS3: gyro = 2.243042 -6.958008 -2.044678[0m
+[0;32mI (104995) LSM6DS3: accel = 0.064331 0.085938 0.998657[0m
+[0;32mI (104995) LSM6DS3: num_fifo_samples = 198[0m
+[0;32mI (104995) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (105015) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (105465) LSM6DS3: num_fifo_samples = 492[0m
+[0;32mI (105465) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (105975) LSM6DS3: [0m
+[0;32mI (105975) LSM6DS3: gyro = 2.349854 -7.156372 -1.983643[0m
+[0;32mI (105975) LSM6DS3: accel = 0.064819 0.086548 0.989136[0m
+[0;32mI (105975) LSM6DS3: num_fifo_samples = 216[0m
+[0;32mI (105975) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (105995) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (106445) LSM6DS3: num_fifo_samples = 510[0m
+[0;32mI (106445) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (106955) LSM6DS3: [0m
+[0;32mI (106955) LSM6DS3: gyro = 2.273560 -7.080078 -2.059937[0m
+[0;32mI (106955) LSM6DS3: accel = 0.062622 0.085815 0.992920[0m
+[0;32mI (106955) LSM6DS3: num_fifo_samples = 234[0m
+[0;32mI (106955) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (106975) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (107425) LSM6DS3: num_fifo_samples = 522[0m
+[0;32mI (107425) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (107935) LSM6DS3: [0m
+[0;32mI (107935) LSM6DS3: gyro = 2.380371 -7.003784 -1.998901[0m
+[0;32mI (107935) LSM6DS3: accel = 0.064575 0.087646 0.996216[0m
+[0;32mI (107935) LSM6DS3: num_fifo_samples = 246[0m
+[0;32mI (107935) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (107955) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (108405) LSM6DS3: num_fifo_samples = 540[0m
+[0;32mI (108405) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (108915) LSM6DS3: [0m
+[0;32mI (108915) LSM6DS3: gyro = 2.288818 -7.049561 -2.059937[0m
+[0;32mI (108915) LSM6DS3: accel = 0.062378 0.086426 0.997559[0m
+[0;32mI (108915) LSM6DS3: num_fifo_samples = 264[0m
+[0;32mI (108915) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (108935) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (109385) LSM6DS3: num_fifo_samples = 558[0m
+[0;32mI (109385) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (109895) LSM6DS3: [0m
+[0;32mI (109895) LSM6DS3: gyro = 2.273560 -7.049561 -2.044678[0m
+[0;32mI (109895) LSM6DS3: accel = 0.063110 0.085449 0.996948[0m
+[0;32mI (109895) LSM6DS3: num_fifo_samples = 276[0m
+[0;32mI (109895) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (109915) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (110365) LSM6DS3: num_fifo_samples = 570[0m
+[0;32mI (110365) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (110875) LSM6DS3: [0m
+[0;32mI (110875) LSM6DS3: gyro = 2.243042 -7.003784 -2.029419[0m
+[0;32mI (110875) LSM6DS3: accel = 0.062866 0.087280 0.996948[0m
+[0;32mI (110875) LSM6DS3: num_fifo_samples = 294[0m
+[0;32mI (110875) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (110895) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (111345) LSM6DS3: num_fifo_samples = 588[0m
+[0;32mI (111345) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (111855) LSM6DS3: [0m
+[0;32mI (111855) LSM6DS3: gyro = 2.258301 -7.003784 -2.044678[0m
+[0;32mI (111855) LSM6DS3: accel = 0.064087 0.085938 0.997192[0m
+[0;32mI (111855) LSM6DS3: num_fifo_samples = 312[0m
+[0;32mI (111855) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (111875) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (112325) LSM6DS3: num_fifo_samples = 600[0m
+[0;32mI (112325) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (112835) LSM6DS3: [0m
+[0;32mI (112835) LSM6DS3: gyro = 2.288818 -7.110596 -2.029419[0m
+[0;32mI (112835) LSM6DS3: accel = 0.065186 0.088013 0.994385[0m
+[0;32mI (112835) LSM6DS3: num_fifo_samples = 324[0m
+[0;32mI (112835) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (112855) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (113365) LSM6DS3: [0m
+[0;32mI (113365) LSM6DS3: gyro = 2.258301 -6.973267 -1.983643[0m
+[0;32mI (113365) LSM6DS3: accel = 0.064209 0.087891 0.994629[0m
+[0;32mI (113365) LSM6DS3: num_fifo_samples = 60[0m
+[0;32mI (113365) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (113385) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (113835) LSM6DS3: num_fifo_samples = 354[0m
+[0;32mI (113835) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (114345) LSM6DS3: [0m
+[0;32mI (114345) LSM6DS3: gyro = 2.243042 -7.064819 -2.075195[0m
+[0;32mI (114345) LSM6DS3: accel = 0.062988 0.087036 0.993530[0m
+[0;32mI (114345) LSM6DS3: num_fifo_samples = 72[0m
+[0;32mI (114345) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (114365) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (114815) LSM6DS3: num_fifo_samples = 366[0m
+[0;32mI (114815) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (115325) LSM6DS3: [0m
+[0;32mI (115325) LSM6DS3: gyro = 2.288818 -7.003784 -2.014160[0m
+[0;32mI (115325) LSM6DS3: accel = 0.063721 0.088379 0.993896[0m
+[0;32mI (115325) LSM6DS3: num_fifo_samples = 90[0m
+[0;32mI (115325) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (115345) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (115795) LSM6DS3: num_fifo_samples = 384[0m
+[0;32mI (115795) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (116305) LSM6DS3: [0m
+[0;32mI (116305) LSM6DS3: gyro = 2.349854 -7.003784 -1.983643[0m
+[0;32mI (116305) LSM6DS3: accel = 0.062988 0.087524 0.996216[0m
+[0;32mI (116305) LSM6DS3: num_fifo_samples = 108[0m
+[0;32mI (116305) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (116325) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (116775) LSM6DS3: num_fifo_samples = 396[0m
+[0;32mI (116775) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (117285) LSM6DS3: [0m
+[0;32mI (117285) LSM6DS3: gyro = 2.395630 -7.034302 -2.044678[0m
+[0;32mI (117285) LSM6DS3: accel = 0.063843 0.086426 0.993896[0m
+[0;32mI (117285) LSM6DS3: num_fifo_samples = 120[0m
+[0;32mI (117285) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (117305) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (117755) LSM6DS3: num_fifo_samples = 414[0m
+[0;32mI (117755) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (118265) LSM6DS3: [0m
+[0;32mI (118265) LSM6DS3: gyro = 2.273560 -7.019043 -2.014160[0m
+[0;32mI (118265) LSM6DS3: accel = 0.064697 0.086426 0.996826[0m
+[0;32mI (118265) LSM6DS3: num_fifo_samples = 138[0m
+[0;32mI (118265) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (118285) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (118735) LSM6DS3: num_fifo_samples = 432[0m
+[0;32mI (118735) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (119245) LSM6DS3: [0m
+[0;32mI (119245) LSM6DS3: gyro = 2.441406 -7.064819 -2.029419[0m
+[0;32mI (119245) LSM6DS3: accel = 0.062744 0.088379 0.993530[0m
+[0;32mI (119245) LSM6DS3: num_fifo_samples = 150[0m
+[0;32mI (119245) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (119265) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (119715) LSM6DS3: num_fifo_samples = 444[0m
+[0;32mI (119715) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (120225) LSM6DS3: [0m
+[0;32mI (120225) LSM6DS3: gyro = 2.395630 -7.110596 -2.075195[0m
+[0;32mI (120225) LSM6DS3: accel = 0.064819 0.087646 0.992310[0m
+[0;32mI (120225) LSM6DS3: num_fifo_samples = 168[0m
+[0;32mI (120225) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (120245) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (120695) LSM6DS3: num_fifo_samples = 462[0m
+[0;32mI (120695) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (121205) LSM6DS3: [0m
+[0;32mI (121205) LSM6DS3: gyro = 2.395630 -7.034302 -2.044678[0m
+[0;32mI (121205) LSM6DS3: accel = 0.064209 0.086792 0.992920[0m
+[0;32mI (121205) LSM6DS3: num_fifo_samples = 186[0m
+[0;32mI (121205) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (121225) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (121675) LSM6DS3: num_fifo_samples = 474[0m
+[0;32mI (121675) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (122185) LSM6DS3: [0m
+[0;32mI (122185) LSM6DS3: gyro = 2.243042 -7.003784 -1.998901[0m
+[0;32mI (122185) LSM6DS3: accel = 0.064087 0.087036 0.996216[0m
+[0;32mI (122185) LSM6DS3: num_fifo_samples = 198[0m
+[0;32mI (122185) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (122205) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (122655) LSM6DS3: num_fifo_samples = 492[0m
+[0;32mI (122655) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (123165) LSM6DS3: [0m
+[0;32mI (123165) LSM6DS3: gyro = 2.288818 -6.973267 -1.983643[0m
+[0;32mI (123165) LSM6DS3: accel = 0.064453 0.086548 0.996094[0m
+[0;32mI (123165) LSM6DS3: num_fifo_samples = 216[0m
+[0;32mI (123165) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (123185) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (123635) LSM6DS3: num_fifo_samples = 510[0m
+[0;32mI (123635) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (124145) LSM6DS3: [0m
+[0;32mI (124145) LSM6DS3: gyro = 2.349854 -7.034302 -2.059937[0m
+[0;32mI (124145) LSM6DS3: accel = 0.063721 0.087158 0.995850[0m
+[0;32mI (124145) LSM6DS3: num_fifo_samples = 228[0m
+[0;32mI (124145) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (124165) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (124615) LSM6DS3: num_fifo_samples = 522[0m
+[0;32mI (124615) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (125125) LSM6DS3: [0m
+[0;32mI (125125) LSM6DS3: gyro = 2.273560 -7.095337 -1.983643[0m
+[0;32mI (125125) LSM6DS3: accel = 0.063232 0.086426 0.993652[0m
+[0;32mI (125125) LSM6DS3: num_fifo_samples = 246[0m
+[0;32mI (125125) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (125145) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (125595) LSM6DS3: num_fifo_samples = 540[0m
+[0;32mI (125595) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (126105) LSM6DS3: [0m
+[0;32mI (126105) LSM6DS3: gyro = 2.319336 -6.942749 -2.014160[0m
+[0;32mI (126105) LSM6DS3: accel = 0.061646 0.085327 0.997314[0m
+[0;32mI (126105) LSM6DS3: num_fifo_samples = 264[0m
+[0;32mI (126105) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (126125) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (126575) LSM6DS3: num_fifo_samples = 552[0m
+[0;32mI (126575) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (127085) LSM6DS3: [0m
+[0;32mI (127085) LSM6DS3: gyro = 2.334595 -7.095337 -1.998901[0m
+[0;32mI (127085) LSM6DS3: accel = 0.064697 0.087036 0.992676[0m
+[0;32mI (127085) LSM6DS3: num_fifo_samples = 276[0m
+[0;32mI (127085) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (127105) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (127555) LSM6DS3: num_fifo_samples = 570[0m
+[0;32mI (127555) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (128065) LSM6DS3: [0m
+[0;32mI (128065) LSM6DS3: gyro = 2.334595 -7.034302 -2.014160[0m
+[0;32mI (128065) LSM6DS3: accel = 0.064819 0.086426 0.993652[0m
+[0;32mI (128065) LSM6DS3: num_fifo_samples = 294[0m
+[0;32mI (128065) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (128085) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (128535) LSM6DS3: num_fifo_samples = 588[0m
+[0;32mI (128535) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (129045) LSM6DS3: [0m
+[0;32mI (129045) LSM6DS3: gyro = 2.319336 -7.080078 -2.029419[0m
+[0;32mI (129045) LSM6DS3: accel = 0.064453 0.087891 0.994019[0m
+[0;32mI (129045) LSM6DS3: num_fifo_samples = 306[0m
+[0;32mI (129045) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (129065) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (129515) LSM6DS3: num_fifo_samples = 600[0m
+[0;32mI (129515) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (130025) LSM6DS3: [0m
+[0;32mI (130025) LSM6DS3: gyro = 2.304077 -7.019043 -1.998901[0m
+[0;32mI (130025) LSM6DS3: accel = 0.064819 0.087280 0.997314[0m
+[0;32mI (130025) LSM6DS3: num_fifo_samples = 324[0m
+[0;32mI (130025) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (130045) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (130555) LSM6DS3: [0m
+[0;32mI (130555) LSM6DS3: gyro = 2.319336 -7.034302 -1.968384[0m
+[0;32mI (130555) LSM6DS3: accel = 0.062134 0.086304 0.995972[0m
+[0;32mI (130555) LSM6DS3: num_fifo_samples = 60[0m
+[0;32mI (130555) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (130575) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (131025) LSM6DS3: num_fifo_samples = 348[0m
+[0;32mI (131025) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (131535) LSM6DS3: [0m
+[0;32mI (131535) LSM6DS3: gyro = 2.258301 -6.973267 -1.998901[0m
+[0;32mI (131535) LSM6DS3: accel = 0.063110 0.086914 0.995728[0m
+[0;32mI (131535) LSM6DS3: num_fifo_samples = 72[0m
+[0;32mI (131535) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (131555) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (132005) LSM6DS3: num_fifo_samples = 366[0m
+[0;32mI (132005) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (132515) LSM6DS3: [0m
+[0;32mI (132515) LSM6DS3: gyro = 2.319336 -7.080078 -2.014160[0m
+[0;32mI (132515) LSM6DS3: accel = 0.061646 0.085327 0.996948[0m
+[0;32mI (132515) LSM6DS3: num_fifo_samples = 90[0m
+[0;32mI (132515) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (132535) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (132985) LSM6DS3: num_fifo_samples = 384[0m
+[0;32mI (132985) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (133495) LSM6DS3: [0m
+[0;32mI (133495) LSM6DS3: gyro = 2.273560 -7.064819 -1.998901[0m
+[0;32mI (133495) LSM6DS3: accel = 0.063721 0.086792 0.996582[0m
+[0;32mI (133495) LSM6DS3: num_fifo_samples = 102[0m
+[0;32mI (133495) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (133515) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (133965) LSM6DS3: num_fifo_samples = 396[0m
+[0;32mI (133965) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (134475) LSM6DS3: [0m
+[0;32mI (134475) LSM6DS3: gyro = 2.304077 -7.049561 -2.044678[0m
+[0;32mI (134475) LSM6DS3: accel = 0.063721 0.088135 0.997314[0m
+[0;32mI (134475) LSM6DS3: num_fifo_samples = 120[0m
+[0;32mI (134475) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (134495) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (134945) LSM6DS3: num_fifo_samples = 414[0m
+[0;32mI (134945) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (135455) LSM6DS3: [0m
+[0;32mI (135455) LSM6DS3: gyro = 2.349854 -7.034302 -1.998901[0m
+[0;32mI (135455) LSM6DS3: accel = 0.063477 0.088013 0.996826[0m
+[0;32mI (135455) LSM6DS3: num_fifo_samples = 138[0m
+[0;32mI (135455) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (135475) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (135925) LSM6DS3: num_fifo_samples = 426[0m
+[0;32mI (135925) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (136435) LSM6DS3: [0m
+[0;32mI (136435) LSM6DS3: gyro = 2.182007 -6.988525 -2.059937[0m
+[0;32mI (136435) LSM6DS3: accel = 0.064575 0.086548 0.999878[0m
+[0;32mI (136435) LSM6DS3: num_fifo_samples = 150[0m
+[0;32mI (136435) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (136455) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (136905) LSM6DS3: num_fifo_samples = 444[0m
+[0;32mI (136905) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (137415) LSM6DS3: [0m
+[0;32mI (137415) LSM6DS3: gyro = 2.319336 -6.958008 -1.998901[0m
+[0;32mI (137415) LSM6DS3: accel = 0.062988 0.086792 0.995361[0m
+[0;32mI (137415) LSM6DS3: num_fifo_samples = 168[0m
+[0;32mI (137415) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (137435) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (137885) LSM6DS3: num_fifo_samples = 462[0m
+[0;32mI (137885) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (138395) LSM6DS3: [0m
+[0;32mI (138395) LSM6DS3: gyro = 2.395630 -7.141113 -1.983643[0m
+[0;32mI (138395) LSM6DS3: accel = 0.065308 0.088135 0.990112[0m
+[0;32mI (138395) LSM6DS3: num_fifo_samples = 180[0m
+[0;32mI (138395) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (138415) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (138865) LSM6DS3: num_fifo_samples = 474[0m
+[0;32mI (138865) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (139375) LSM6DS3: [0m
+[0;32mI (139375) LSM6DS3: gyro = 2.395630 -7.064819 -2.029419[0m
+[0;32mI (139375) LSM6DS3: accel = 0.065308 0.087280 0.992432[0m
+[0;32mI (139375) LSM6DS3: num_fifo_samples = 198[0m
+[0;32mI (139375) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (139395) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (139845) LSM6DS3: num_fifo_samples = 492[0m
+[0;32mI (139845) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (140355) LSM6DS3: [0m
+[0;32mI (140355) LSM6DS3: gyro = 2.273560 -7.095337 -2.014160[0m
+[0;32mI (140355) LSM6DS3: accel = 0.062622 0.085938 0.995972[0m
+[0;32mI (140355) LSM6DS3: num_fifo_samples = 216[0m
+[0;32mI (140355) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (140375) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (140825) LSM6DS3: num_fifo_samples = 504[0m
+[0;32mI (140825) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (141335) LSM6DS3: [0m
+[0;32mI (141335) LSM6DS3: gyro = 2.334595 -6.942749 -1.998901[0m
+[0;32mI (141335) LSM6DS3: accel = 0.064453 0.086182 0.994019[0m
+[0;32mI (141335) LSM6DS3: num_fifo_samples = 228[0m
+[0;32mI (141335) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (141355) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (141805) LSM6DS3: num_fifo_samples = 522[0m
+[0;32mI (141805) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (142315) LSM6DS3: [0m
+[0;32mI (142315) LSM6DS3: gyro = 2.273560 -7.003784 -1.968384[0m
+[0;32mI (142315) LSM6DS3: accel = 0.064697 0.086426 0.993408[0m
+[0;32mI (142315) LSM6DS3: num_fifo_samples = 246[0m
+[0;32mI (142315) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (142335) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (142785) LSM6DS3: num_fifo_samples = 540[0m
+[0;32mI (142785) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (143295) LSM6DS3: [0m
+[0;32mI (143295) LSM6DS3: gyro = 2.395630 -7.080078 -1.983643[0m
+[0;32mI (143295) LSM6DS3: accel = 0.063843 0.087036 0.995972[0m
+[0;32mI (143295) LSM6DS3: num_fifo_samples = 258[0m
+[0;32mI (143295) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (143315) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (143765) LSM6DS3: num_fifo_samples = 552[0m
+[0;32mI (143765) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (144275) LSM6DS3: [0m
+[0;32mI (144275) LSM6DS3: gyro = 2.166748 -6.958008 -2.044678[0m
+[0;32mI (144275) LSM6DS3: accel = 0.063599 0.086426 0.996704[0m
+[0;32mI (144275) LSM6DS3: num_fifo_samples = 276[0m
+[0;32mI (144275) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (144295) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (144745) LSM6DS3: num_fifo_samples = 570[0m
+[0;32mI (144745) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (145255) LSM6DS3: [0m
+[0;32mI (145255) LSM6DS3: gyro = 2.349854 -7.019043 -2.044678[0m
+[0;32mI (145255) LSM6DS3: accel = 0.064819 0.087524 0.992798[0m
+[0;32mI (145255) LSM6DS3: num_fifo_samples = 294[0m
+[0;32mI (145255) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (145275) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (145725) LSM6DS3: num_fifo_samples = 588[0m
+[0;32mI (145725) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (146235) LSM6DS3: [0m
+[0;32mI (146235) LSM6DS3: gyro = 2.395630 -7.186890 -2.029419[0m
+[0;32mI (146235) LSM6DS3: accel = 0.065186 0.087891 0.991455[0m
+[0;32mI (146235) LSM6DS3: num_fifo_samples = 306[0m
+[0;32mI (146235) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (146255) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (146705) LSM6DS3: num_fifo_samples = 600[0m
+[0;32mI (146705) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (147215) LSM6DS3: [0m
+[0;32mI (147215) LSM6DS3: gyro = 2.365112 -7.034302 -2.075195[0m
+[0;32mI (147215) LSM6DS3: accel = 0.065308 0.087646 0.991455[0m
+[0;32mI (147215) LSM6DS3: num_fifo_samples = 324[0m
+[0;32mI (147215) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (147235) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (147745) LSM6DS3: [0m
+[0;32mI (147745) LSM6DS3: gyro = 2.334595 -7.110596 -1.998901[0m
+[0;32mI (147745) LSM6DS3: accel = 0.063354 0.087158 0.994019[0m
+[0;32mI (147745) LSM6DS3: num_fifo_samples = 54[0m
+[0;32mI (147745) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (147765) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (148215) LSM6DS3: num_fifo_samples = 348[0m
+[0;32mI (148215) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (148725) LSM6DS3: [0m
+[0;32mI (148725) LSM6DS3: gyro = 2.319336 -7.019043 -2.059937[0m
+[0;32mI (148725) LSM6DS3: accel = 0.064209 0.087891 0.992676[0m
+[0;32mI (148725) LSM6DS3: num_fifo_samples = 72[0m
+[0;32mI (148725) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (148745) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (149195) LSM6DS3: num_fifo_samples = 366[0m
+[0;32mI (149195) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (149705) LSM6DS3: [0m
+[0;32mI (149705) LSM6DS3: gyro = 2.380371 -7.186890 -2.029419[0m
+[0;32mI (149705) LSM6DS3: accel = 0.064087 0.088501 0.990112[0m
+[0;32mI (149705) LSM6DS3: num_fifo_samples = 90[0m
+[0;32mI (149705) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (149725) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (150175) LSM6DS3: num_fifo_samples = 378[0m
+[0;32mI (150175) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (150685) LSM6DS3: [0m
+[0;32mI (150685) LSM6DS3: gyro = 2.365112 -7.019043 -2.029419[0m
+[0;32mI (150685) LSM6DS3: accel = 0.065186 0.087036 0.994995[0m
+[0;32mI (150685) LSM6DS3: num_fifo_samples = 102[0m
+[0;32mI (150685) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (150705) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (151155) LSM6DS3: num_fifo_samples = 396[0m
+[0;32mI (151155) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (151665) LSM6DS3: [0m
+[0;32mI (151665) LSM6DS3: gyro = 2.365112 -7.049561 -1.983643[0m
+[0;32mI (151665) LSM6DS3: accel = 0.063354 0.087036 0.990967[0m
+[0;32mI (151665) LSM6DS3: num_fifo_samples = 120[0m
+[0;32mI (151665) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (151685) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (152135) LSM6DS3: num_fifo_samples = 414[0m
+[0;32mI (152135) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (152645) LSM6DS3: [0m
+[0;32mI (152645) LSM6DS3: gyro = 2.288818 -7.125854 -2.014160[0m
+[0;32mI (152645) LSM6DS3: accel = 0.063110 0.086670 0.992065[0m
+[0;32mI (152645) LSM6DS3: num_fifo_samples = 132[0m
+[0;32mI (152645) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (152665) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (153115) LSM6DS3: num_fifo_samples = 426[0m
+[0;32mI (153115) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (153625) LSM6DS3: [0m
+[0;32mI (153625) LSM6DS3: gyro = 2.334595 -7.049561 -2.044678[0m
+[0;32mI (153625) LSM6DS3: accel = 0.063354 0.087891 0.990112[0m
+[0;32mI (153625) LSM6DS3: num_fifo_samples = 150[0m
+[0;32mI (153625) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (153645) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (154095) LSM6DS3: num_fifo_samples = 444[0m
+[0;32mI (154095) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (154605) LSM6DS3: [0m
+[0;32mI (154605) LSM6DS3: gyro = 2.288818 -7.049561 -2.075195[0m
+[0;32mI (154605) LSM6DS3: accel = 0.063599 0.086670 0.994019[0m
+[0;32mI (154605) LSM6DS3: num_fifo_samples = 168[0m
+[0;32mI (154605) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (154625) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (155075) LSM6DS3: num_fifo_samples = 462[0m
+[0;32mI (155075) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (155585) LSM6DS3: [0m
+[0;32mI (155585) LSM6DS3: gyro = 2.319336 -7.049561 -2.029419[0m
+[0;32mI (155585) LSM6DS3: accel = 0.063721 0.087036 0.992310[0m
+[0;32mI (155585) LSM6DS3: num_fifo_samples = 180[0m
+[0;32mI (155585) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (155605) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (156055) LSM6DS3: num_fifo_samples = 474[0m
+[0;32mI (156055) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (156565) LSM6DS3: [0m
+[0;32mI (156565) LSM6DS3: gyro = 2.319336 -7.003784 -2.014160[0m
+[0;32mI (156565) LSM6DS3: accel = 0.063599 0.087158 0.993896[0m
+[0;32mI (156565) LSM6DS3: num_fifo_samples = 198[0m
+[0;32mI (156565) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (156585) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (157035) LSM6DS3: num_fifo_samples = 492[0m
+[0;32mI (157035) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (157545) LSM6DS3: [0m
+[0;32mI (157545) LSM6DS3: gyro = 2.288818 -7.034302 -1.983643[0m
+[0;32mI (157545) LSM6DS3: accel = 0.063965 0.086426 0.993774[0m
+[0;32mI (157545) LSM6DS3: num_fifo_samples = 216[0m
+[0;32mI (157545) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (157565) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (158015) LSM6DS3: num_fifo_samples = 504[0m
+[0;32mI (158015) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (158525) LSM6DS3: [0m
+[0;32mI (158525) LSM6DS3: gyro = 2.441406 -7.034302 -2.105713[0m
+[0;32mI (158525) LSM6DS3: accel = 0.064331 0.087280 0.992798[0m
+[0;32mI (158525) LSM6DS3: num_fifo_samples = 228[0m
+[0;32mI (158525) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (158545) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (158995) LSM6DS3: num_fifo_samples = 522[0m
+[0;32mI (158995) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (159505) LSM6DS3: [0m
+[0;32mI (159505) LSM6DS3: gyro = 2.227783 -7.034302 -2.075195[0m
+[0;32mI (159505) LSM6DS3: accel = 0.065063 0.086792 0.998657[0m
+[0;32mI (159505) LSM6DS3: num_fifo_samples = 246[0m
+[0;32mI (159505) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (159525) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (159975) LSM6DS3: num_fifo_samples = 540[0m
+[0;32mI (159975) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (160485) LSM6DS3: [0m
+[0;32mI (160485) LSM6DS3: gyro = 2.166748 -6.973267 -2.029419[0m
+[0;32mI (160485) LSM6DS3: accel = 0.063232 0.084961 0.996582[0m
+[0;32mI (160485) LSM6DS3: num_fifo_samples = 258[0m
+[0;32mI (160485) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (160505) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (160955) LSM6DS3: num_fifo_samples = 552[0m
+[0;32mI (160955) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (161465) LSM6DS3: [0m
+[0;32mI (161465) LSM6DS3: gyro = 2.258301 -7.019043 -2.029419[0m
+[0;32mI (161465) LSM6DS3: accel = 0.064087 0.086792 0.995117[0m
+[0;32mI (161465) LSM6DS3: num_fifo_samples = 276[0m
+[0;32mI (161465) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (161485) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (161935) LSM6DS3: num_fifo_samples = 570[0m
+[0;32mI (161935) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (162445) LSM6DS3: [0m
+[0;32mI (162445) LSM6DS3: gyro = 2.151489 -6.958008 -1.998901[0m
+[0;32mI (162445) LSM6DS3: accel = 0.065796 0.085571 1.001465[0m
+[0;32mI (162445) LSM6DS3: num_fifo_samples = 294[0m
+[0;32mI (162445) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (162465) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (162915) LSM6DS3: num_fifo_samples = 582[0m
+[0;32mI (162915) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (163425) LSM6DS3: [0m
+[0;32mI (163425) LSM6DS3: gyro = 2.273560 -7.049561 -2.029419[0m
+[0;32mI (163425) LSM6DS3: accel = 0.064209 0.086792 0.996704[0m
+[0;32mI (163425) LSM6DS3: num_fifo_samples = 306[0m
+[0;32mI (163425) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (163445) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (163895) LSM6DS3: num_fifo_samples = 600[0m
+[0;32mI (163895) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (164405) LSM6DS3: [0m
+[0;32mI (164405) LSM6DS3: gyro = 2.273560 -6.958008 -2.029419[0m
+[0;32mI (164405) LSM6DS3: accel = 0.063965 0.086182 0.998901[0m
+[0;32mI (164405) LSM6DS3: num_fifo_samples = 324[0m
+[0;32mI (164405) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (164425) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (164455) SD_CARD: File written.[0m
+[0;32mI (164455) SD_CARD: file size: 0[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (164775) SD_CARD: max_idx: 24[0m
+[0;32mI (164775) SD_CARD: filename: imu_000025.bin[0m
+[0;32mI (164775) SD_CARD: filepath: /sdcard/imu_000025.bin[0m
+[0;32mI (164775) SD_CARD: Writing to new file[0m
+[0;32mI (164975) LSM6DS3: [0m
+[0;32mI (164975) LSM6DS3: gyro = 2.258301 -6.912231 -2.075195[0m
+[0;32mI (164975) LSM6DS3: accel = 0.063354 0.084717 1.000000[0m
+[0;32mI (164975) LSM6DS3: num_fifo_samples = 84[0m
+[0;32mI (164975) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (164995) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (165425) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (165445) LSM6DS3: num_fifo_samples = 372[0m
+[0;32mI (165445) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (165955) LSM6DS3: [0m
+[0;32mI (165955) LSM6DS3: gyro = 2.319336 -7.095337 -2.075195[0m
+[0;32mI (165955) LSM6DS3: accel = 0.063843 0.086792 0.996704[0m
+[0;32mI (165955) LSM6DS3: num_fifo_samples = 96[0m
+[0;32mI (165955) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (165975) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (166425) LSM6DS3: num_fifo_samples = 390[0m
+[0;32mI (166425) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (166935) LSM6DS3: [0m
+[0;32mI (166935) LSM6DS3: gyro = 2.441406 -7.095337 -1.937866[0m
+[0;32mI (166935) LSM6DS3: accel = 0.062988 0.086548 0.995239[0m
+[0;32mI (166935) LSM6DS3: num_fifo_samples = 114[0m
+[0;32mI (166935) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (166955) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (167405) LSM6DS3: num_fifo_samples = 408[0m
+[0;32mI (167405) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (167915) LSM6DS3: [0m
+[0;32mI (167915) LSM6DS3: gyro = 2.304077 -6.896973 -1.953125[0m
+[0;32mI (167915) LSM6DS3: accel = 0.064453 0.087280 1.001221[0m
+[0;32mI (167915) LSM6DS3: num_fifo_samples = 126[0m
+[0;32mI (167915) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (167935) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (168385) LSM6DS3: num_fifo_samples = 420[0m
+[0;32mI (168385) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (168895) LSM6DS3: [0m
+[0;32mI (168895) LSM6DS3: gyro = 2.349854 -7.049561 -2.014160[0m
+[0;32mI (168895) LSM6DS3: accel = 0.063599 0.087036 0.995850[0m
+[0;32mI (168895) LSM6DS3: num_fifo_samples = 144[0m
+[0;32mI (168895) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (168915) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (169365) LSM6DS3: num_fifo_samples = 438[0m
+[0;32mI (169365) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (169875) LSM6DS3: [0m
+[0;32mI (169875) LSM6DS3: gyro = 2.349854 -7.171631 -2.044678[0m
+[0;32mI (169875) LSM6DS3: accel = 0.063843 0.086548 0.994019[0m
+[0;32mI (169875) LSM6DS3: num_fifo_samples = 162[0m
+[0;32mI (169875) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (169895) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (170345) LSM6DS3: num_fifo_samples = 450[0m
+[0;32mI (170345) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (170855) LSM6DS3: [0m
+[0;32mI (170855) LSM6DS3: gyro = 2.319336 -7.049561 -2.029419[0m
+[0;32mI (170855) LSM6DS3: accel = 0.064575 0.086914 0.993530[0m
+[0;32mI (170855) LSM6DS3: num_fifo_samples = 174[0m
+[0;32mI (170855) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (170875) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (171325) LSM6DS3: num_fifo_samples = 468[0m
+[0;32mI (171325) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (171835) LSM6DS3: [0m
+[0;32mI (171835) LSM6DS3: gyro = 2.227783 -6.988525 -2.044678[0m
+[0;32mI (171835) LSM6DS3: accel = 0.064453 0.086670 1.000977[0m
+[0;32mI (171835) LSM6DS3: num_fifo_samples = 192[0m
+[0;32mI (171835) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (171855) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (172305) LSM6DS3: num_fifo_samples = 486[0m
+[0;32mI (172305) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (172815) LSM6DS3: [0m
+[0;32mI (172815) LSM6DS3: gyro = 2.319336 -7.019043 -1.998901[0m
+[0;32mI (172815) LSM6DS3: accel = 0.062744 0.088135 0.993408[0m
+[0;32mI (172815) LSM6DS3: num_fifo_samples = 204[0m
+[0;32mI (172815) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (172835) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (173285) LSM6DS3: num_fifo_samples = 498[0m
+[0;32mI (173285) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (173795) LSM6DS3: [0m
+[0;32mI (173795) LSM6DS3: gyro = 2.334595 -7.034302 -2.029419[0m
+[0;32mI (173795) LSM6DS3: accel = 0.063232 0.087891 0.993042[0m
+[0;32mI (173795) LSM6DS3: num_fifo_samples = 222[0m
+[0;32mI (173795) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (173815) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (174265) LSM6DS3: num_fifo_samples = 516[0m
+[0;32mI (174265) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (174775) LSM6DS3: [0m
+[0;32mI (174775) LSM6DS3: gyro = 2.410889 -7.064819 -2.029419[0m
+[0;32mI (174775) LSM6DS3: accel = 0.064209 0.087280 0.991577[0m
+[0;32mI (174775) LSM6DS3: num_fifo_samples = 240[0m
+[0;32mI (174775) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (174795) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (175245) LSM6DS3: num_fifo_samples = 528[0m
+[0;32mI (175245) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (175755) LSM6DS3: [0m
+[0;32mI (175755) LSM6DS3: gyro = 2.197266 -6.958008 -2.029419[0m
+[0;32mI (175755) LSM6DS3: accel = 0.064697 0.087036 0.997314[0m
+[0;32mI (175755) LSM6DS3: num_fifo_samples = 252[0m
+[0;32mI (175755) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (175775) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (176225) LSM6DS3: num_fifo_samples = 546[0m
+[0;32mI (176225) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (176735) LSM6DS3: [0m
+[0;32mI (176735) LSM6DS3: gyro = 2.258301 -6.988525 -1.998901[0m
+[0;32mI (176735) LSM6DS3: accel = 0.063232 0.087402 0.997559[0m
+[0;32mI (176735) LSM6DS3: num_fifo_samples = 270[0m
+[0;32mI (176735) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (176755) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (177205) LSM6DS3: num_fifo_samples = 564[0m
+[0;32mI (177205) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (177715) LSM6DS3: [0m
+[0;32mI (177715) LSM6DS3: gyro = 2.288818 -7.003784 -2.044678[0m
+[0;32mI (177715) LSM6DS3: accel = 0.064087 0.086792 0.998413[0m
+[0;32mI (177715) LSM6DS3: num_fifo_samples = 282[0m
+[0;32mI (177715) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (177735) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (178185) LSM6DS3: num_fifo_samples = 576[0m
+[0;32mI (178185) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (178695) LSM6DS3: [0m
+[0;32mI (178695) LSM6DS3: gyro = 2.456665 -7.110596 -2.029419[0m
+[0;32mI (178695) LSM6DS3: accel = 0.065308 0.089111 0.990845[0m
+[0;32mI (178695) LSM6DS3: num_fifo_samples = 300[0m
+[0;32mI (178695) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (178715) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (179165) LSM6DS3: num_fifo_samples = 594[0m
+[0;32mI (179165) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (179675) LSM6DS3: [0m
+[0;32mI (179675) LSM6DS3: gyro = 2.441406 -7.034302 -2.029419[0m
+[0;32mI (179675) LSM6DS3: accel = 0.064087 0.088013 0.993652[0m
+[0;32mI (179675) LSM6DS3: num_fifo_samples = 318[0m
+[0;32mI (179675) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (179695) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (180205) LSM6DS3: [0m
+[0;32mI (180205) LSM6DS3: gyro = 2.304077 -7.095337 -1.998901[0m
+[0;32mI (180205) LSM6DS3: accel = 0.064087 0.087891 0.994263[0m
+[0;32mI (180205) LSM6DS3: num_fifo_samples = 48[0m
+[0;32mI (180205) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (180225) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (180675) LSM6DS3: num_fifo_samples = 342[0m
+[0;32mI (180675) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (181185) LSM6DS3: [0m
+[0;32mI (181185) LSM6DS3: gyro = 2.258301 -6.973267 -1.998901[0m
+[0;32mI (181185) LSM6DS3: accel = 0.063477 0.086670 0.997314[0m
+[0;32mI (181185) LSM6DS3: num_fifo_samples = 66[0m
+[0;32mI (181185) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (181205) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (181655) LSM6DS3: num_fifo_samples = 360[0m
+[0;32mI (181655) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (182165) LSM6DS3: [0m
+[0;32mI (182165) LSM6DS3: gyro = 2.395630 -7.049561 -2.044678[0m
+[0;32mI (182165) LSM6DS3: accel = 0.063843 0.086304 0.994873[0m
+[0;32mI (182165) LSM6DS3: num_fifo_samples = 78[0m
+[0;32mI (182165) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (182185) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (182635) LSM6DS3: num_fifo_samples = 372[0m
+[0;32mI (182635) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (183145) LSM6DS3: [0m
+[0;32mI (183145) LSM6DS3: gyro = 2.319336 -7.141113 -2.090454[0m
+[0;32mI (183145) LSM6DS3: accel = 0.063477 0.086914 0.994751[0m
+[0;32mI (183145) LSM6DS3: num_fifo_samples = 96[0m
+[0;32mI (183145) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (183165) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (183615) LSM6DS3: num_fifo_samples = 390[0m
+[0;32mI (183615) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (184125) LSM6DS3: [0m
+[0;32mI (184125) LSM6DS3: gyro = 2.258301 -7.064819 -2.029419[0m
+[0;32mI (184125) LSM6DS3: accel = 0.063721 0.087036 0.997803[0m
+[0;32mI (184125) LSM6DS3: num_fifo_samples = 114[0m
+[0;32mI (184125) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (184145) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (184595) LSM6DS3: num_fifo_samples = 402[0m
+[0;32mI (184595) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (185105) LSM6DS3: [0m
+[0;32mI (185105) LSM6DS3: gyro = 2.334595 -7.049561 -2.059937[0m
+[0;32mI (185105) LSM6DS3: accel = 0.063477 0.088013 0.996338[0m
+[0;32mI (185105) LSM6DS3: num_fifo_samples = 126[0m
+[0;32mI (185105) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (185125) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (185575) LSM6DS3: num_fifo_samples = 420[0m
+[0;32mI (185575) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (186085) LSM6DS3: [0m
+[0;32mI (186085) LSM6DS3: gyro = 2.288818 -7.110596 -2.044678[0m
+[0;32mI (186085) LSM6DS3: accel = 0.064697 0.087646 0.997192[0m
+[0;32mI (186085) LSM6DS3: num_fifo_samples = 144[0m
+[0;32mI (186085) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (186105) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (186555) LSM6DS3: num_fifo_samples = 438[0m
+[0;32mI (186555) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (187065) LSM6DS3: [0m
+[0;32mI (187065) LSM6DS3: gyro = 2.380371 -7.141113 -2.044678[0m
+[0;32mI (187065) LSM6DS3: accel = 0.063354 0.085693 0.995483[0m
+[0;32mI (187065) LSM6DS3: num_fifo_samples = 156[0m
+[0;32mI (187065) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (187085) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (187535) LSM6DS3: num_fifo_samples = 450[0m
+[0;32mI (187535) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (188045) LSM6DS3: [0m
+[0;32mI (188045) LSM6DS3: gyro = 2.304077 -7.186890 -1.983643[0m
+[0;32mI (188045) LSM6DS3: accel = 0.063965 0.087402 0.996704[0m
+[0;32mI (188045) LSM6DS3: num_fifo_samples = 174[0m
+[0;32mI (188045) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (188065) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (188515) LSM6DS3: num_fifo_samples = 468[0m
+[0;32mI (188515) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (189025) LSM6DS3: [0m
+[0;32mI (189025) LSM6DS3: gyro = 2.319336 -7.034302 -1.998901[0m
+[0;32mI (189025) LSM6DS3: accel = 0.063354 0.085938 0.996216[0m
+[0;32mI (189025) LSM6DS3: num_fifo_samples = 192[0m
+[0;32mI (189025) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (189045) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (189495) LSM6DS3: num_fifo_samples = 480[0m
+[0;32mI (189495) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (190005) LSM6DS3: [0m
+[0;32mI (190005) LSM6DS3: gyro = 2.319336 -7.064819 -2.014160[0m
+[0;32mI (190005) LSM6DS3: accel = 0.063965 0.088013 0.997314[0m
+[0;32mI (190005) LSM6DS3: num_fifo_samples = 204[0m
+[0;32mI (190005) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (190025) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (190475) LSM6DS3: num_fifo_samples = 498[0m
+[0;32mI (190475) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (190985) LSM6DS3: [0m
+[0;32mI (190985) LSM6DS3: gyro = 2.334595 -7.049561 -2.014160[0m
+[0;32mI (190985) LSM6DS3: accel = 0.064331 0.087646 0.995605[0m
+[0;32mI (190985) LSM6DS3: num_fifo_samples = 222[0m
+[0;32mI (190985) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (191005) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (191455) LSM6DS3: num_fifo_samples = 516[0m
+[0;32mI (191455) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (191965) LSM6DS3: [0m
+[0;32mI (191965) LSM6DS3: gyro = 2.258301 -6.927490 -2.014160[0m
+[0;32mI (191965) LSM6DS3: accel = 0.063721 0.086060 0.998779[0m
+[0;32mI (191965) LSM6DS3: num_fifo_samples = 234[0m
+[0;32mI (191965) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (191985) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (192435) LSM6DS3: num_fifo_samples = 528[0m
+[0;32mI (192435) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (192945) LSM6DS3: [0m
+[0;32mI (192945) LSM6DS3: gyro = 2.273560 -7.003784 -2.014160[0m
+[0;32mI (192945) LSM6DS3: accel = 0.064209 0.086548 0.994873[0m
+[0;32mI (192945) LSM6DS3: num_fifo_samples = 252[0m
+[0;32mI (192945) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (192965) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (193415) LSM6DS3: num_fifo_samples = 546[0m
+[0;32mI (193415) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (193925) LSM6DS3: [0m
+[0;32mI (193925) LSM6DS3: gyro = 2.304077 -7.019043 -1.983643[0m
+[0;32mI (193925) LSM6DS3: accel = 0.063599 0.087280 0.998047[0m
+[0;32mI (193925) LSM6DS3: num_fifo_samples = 270[0m
+[0;32mI (193925) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (193945) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (194395) LSM6DS3: num_fifo_samples = 558[0m
+[0;32mI (194395) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (194905) LSM6DS3: [0m
+[0;32mI (194905) LSM6DS3: gyro = 2.334595 -7.156372 -2.059937[0m
+[0;32mI (194905) LSM6DS3: accel = 0.065308 0.086914 0.994019[0m
+[0;32mI (194905) LSM6DS3: num_fifo_samples = 282[0m
+[0;32mI (194905) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (194925) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (195375) LSM6DS3: num_fifo_samples = 576[0m
+[0;32mI (195375) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (195885) LSM6DS3: [0m
+[0;32mI (195885) LSM6DS3: gyro = 2.517700 -7.186890 -2.014160[0m
+[0;32mI (195885) LSM6DS3: accel = 0.064453 0.088379 0.993164[0m
+[0;32mI (195885) LSM6DS3: num_fifo_samples = 300[0m
+[0;32mI (195885) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (195905) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (196355) LSM6DS3: num_fifo_samples = 594[0m
+[0;32mI (196355) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (196865) LSM6DS3: [0m
+[0;32mI (196865) LSM6DS3: gyro = 2.288818 -7.064819 -2.014160[0m
+[0;32mI (196865) LSM6DS3: accel = 0.063721 0.087402 0.996582[0m
+[0;32mI (196865) LSM6DS3: num_fifo_samples = 312[0m
+[0;32mI (196865) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (196885) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (197395) LSM6DS3: [0m
+[0;32mI (197395) LSM6DS3: gyro = 2.319336 -7.019043 -2.014160[0m
+[0;32mI (197395) LSM6DS3: accel = 0.065063 0.087158 0.994873[0m
+[0;32mI (197395) LSM6DS3: num_fifo_samples = 48[0m
+[0;32mI (197395) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (197415) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (197865) LSM6DS3: num_fifo_samples = 342[0m
+[0;32mI (197865) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (198375) LSM6DS3: [0m
+[0;32mI (198375) LSM6DS3: gyro = 2.151489 -6.942749 -2.059937[0m
+[0;32mI (198375) LSM6DS3: accel = 0.064209 0.085815 1.000000[0m
+[0;32mI (198375) LSM6DS3: num_fifo_samples = 66[0m
+[0;32mI (198375) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (198395) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (198845) LSM6DS3: num_fifo_samples = 354[0m
+[0;32mI (198845) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (199355) LSM6DS3: [0m
+[0;32mI (199355) LSM6DS3: gyro = 2.182007 -7.019043 -2.044678[0m
+[0;32mI (199355) LSM6DS3: accel = 0.064819 0.086914 0.996826[0m
+[0;32mI (199355) LSM6DS3: num_fifo_samples = 78[0m
+[0;32mI (199355) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (199375) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (199825) LSM6DS3: num_fifo_samples = 372[0m
+[0;32mI (199825) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (200335) LSM6DS3: [0m
+[0;32mI (200335) LSM6DS3: gyro = 2.288818 -7.080078 -2.044678[0m
+[0;32mI (200335) LSM6DS3: accel = 0.064331 0.086304 0.993896[0m
+[0;32mI (200335) LSM6DS3: num_fifo_samples = 96[0m
+[0;32mI (200335) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (200355) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (200805) LSM6DS3: num_fifo_samples = 390[0m
+[0;32mI (200805) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (201315) LSM6DS3: [0m
+[0;32mI (201315) LSM6DS3: gyro = 2.426147 -7.141113 -2.059937[0m
+[0;32mI (201315) LSM6DS3: accel = 0.065918 0.088379 0.991943[0m
+[0;32mI (201315) LSM6DS3: num_fifo_samples = 108[0m
+[0;32mI (201315) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (201335) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (201785) LSM6DS3: num_fifo_samples = 402[0m
+[0;32mI (201785) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (202295) LSM6DS3: [0m
+[0;32mI (202295) LSM6DS3: gyro = 2.227783 -6.958008 -1.968384[0m
+[0;32mI (202295) LSM6DS3: accel = 0.064087 0.087158 0.996216[0m
+[0;32mI (202295) LSM6DS3: num_fifo_samples = 126[0m
+[0;32mI (202295) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (202315) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (202765) LSM6DS3: num_fifo_samples = 420[0m
+[0;32mI (202765) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (203275) LSM6DS3: [0m
+[0;32mI (203275) LSM6DS3: gyro = 2.273560 -6.988525 -2.075195[0m
+[0;32mI (203275) LSM6DS3: accel = 0.065063 0.087158 0.997192[0m
+[0;32mI (203275) LSM6DS3: num_fifo_samples = 144[0m
+[0;32mI (203275) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (203295) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (203745) LSM6DS3: num_fifo_samples = 432[0m
+[0;32mI (203745) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (204255) LSM6DS3: [0m
+[0;32mI (204255) LSM6DS3: gyro = 2.273560 -6.881714 -2.075195[0m
+[0;32mI (204255) LSM6DS3: accel = 0.064453 0.086182 1.000854[0m
+[0;32mI (204255) LSM6DS3: num_fifo_samples = 156[0m
+[0;32mI (204255) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (204275) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (204725) LSM6DS3: num_fifo_samples = 450[0m
+[0;32mI (204725) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (205235) LSM6DS3: [0m
+[0;32mI (205235) LSM6DS3: gyro = 2.349854 -7.202148 -2.044678[0m
+[0;32mI (205235) LSM6DS3: accel = 0.066895 0.087891 0.991699[0m
+[0;32mI (205235) LSM6DS3: num_fifo_samples = 174[0m
+[0;32mI (205235) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (205255) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (205705) LSM6DS3: num_fifo_samples = 468[0m
+[0;32mI (205705) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (206215) LSM6DS3: [0m
+[0;32mI (206215) LSM6DS3: gyro = 2.197266 -6.881714 -2.014160[0m
+[0;32mI (206215) LSM6DS3: accel = 0.064697 0.085571 0.997925[0m
+[0;32mI (206215) LSM6DS3: num_fifo_samples = 186[0m
+[0;32mI (206215) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (206235) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (206685) LSM6DS3: num_fifo_samples = 480[0m
+[0;32mI (206685) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (207195) LSM6DS3: [0m
+[0;32mI (207195) LSM6DS3: gyro = 2.304077 -7.095337 -2.075195[0m
+[0;32mI (207195) LSM6DS3: accel = 0.065186 0.087036 0.994263[0m
+[0;32mI (207195) LSM6DS3: num_fifo_samples = 204[0m
+[0;32mI (207195) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (207215) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (207665) LSM6DS3: num_fifo_samples = 498[0m
+[0;32mI (207665) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (208175) LSM6DS3: [0m
+[0;32mI (208175) LSM6DS3: gyro = 2.349854 -7.141113 -2.029419[0m
+[0;32mI (208175) LSM6DS3: accel = 0.064087 0.087891 0.994995[0m
+[0;32mI (208175) LSM6DS3: num_fifo_samples = 222[0m
+[0;32mI (208175) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (208195) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (208645) LSM6DS3: num_fifo_samples = 510[0m
+[0;32mI (208645) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (209155) LSM6DS3: [0m
+[0;32mI (209155) LSM6DS3: gyro = 2.365112 -6.988525 -2.044678[0m
+[0;32mI (209155) LSM6DS3: accel = 0.064209 0.087891 0.993408[0m
+[0;32mI (209155) LSM6DS3: num_fifo_samples = 234[0m
+[0;32mI (209155) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (209175) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (209625) LSM6DS3: num_fifo_samples = 528[0m
+[0;32mI (209625) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (210135) LSM6DS3: [0m
+[0;32mI (210135) LSM6DS3: gyro = 2.471924 -7.141113 -2.075195[0m
+[0;32mI (210135) LSM6DS3: accel = 0.064209 0.089233 0.992554[0m
+[0;32mI (210135) LSM6DS3: num_fifo_samples = 252[0m
+[0;32mI (210135) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (210155) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (210605) LSM6DS3: num_fifo_samples = 546[0m
+[0;32mI (210605) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (211115) LSM6DS3: [0m
+[0;32mI (211115) LSM6DS3: gyro = 2.258301 -7.019043 -2.075195[0m
+[0;32mI (211115) LSM6DS3: accel = 0.063599 0.085083 0.994507[0m
+[0;32mI (211115) LSM6DS3: num_fifo_samples = 264[0m
+[0;32mI (211115) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (211135) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (211585) LSM6DS3: num_fifo_samples = 558[0m
+[0;32mI (211585) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (212095) LSM6DS3: [0m
+[0;32mI (212095) LSM6DS3: gyro = 2.319336 -7.019043 -2.014160[0m
+[0;32mI (212095) LSM6DS3: accel = 0.063721 0.087036 0.996704[0m
+[0;32mI (212095) LSM6DS3: num_fifo_samples = 282[0m
+[0;32mI (212095) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (212115) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (212565) LSM6DS3: num_fifo_samples = 576[0m
+[0;32mI (212565) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (213075) LSM6DS3: [0m
+[0;32mI (213075) LSM6DS3: gyro = 2.319336 -7.019043 -2.044678[0m
+[0;32mI (213075) LSM6DS3: accel = 0.064209 0.087036 0.995605[0m
+[0;32mI (213075) LSM6DS3: num_fifo_samples = 300[0m
+[0;32mI (213075) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (213095) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (213545) LSM6DS3: num_fifo_samples = 594[0m
+[0;32mI (213545) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (214055) LSM6DS3: [0m
+[0;32mI (214055) LSM6DS3: gyro = 2.365112 -7.141113 -1.998901[0m
+[0;32mI (214055) LSM6DS3: accel = 0.065186 0.087524 0.993652[0m
+[0;32mI (214055) LSM6DS3: num_fifo_samples = 312[0m
+[0;32mI (214055) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (214075) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (214585) LSM6DS3: [0m
+[0;32mI (214585) LSM6DS3: gyro = 2.365112 -7.064819 -1.968384[0m
+[0;32mI (214585) LSM6DS3: accel = 0.066040 0.088623 0.994995[0m
+[0;32mI (214585) LSM6DS3: num_fifo_samples = 48[0m
+[0;32mI (214585) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (214605) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (215055) LSM6DS3: num_fifo_samples = 342[0m
+[0;32mI (215055) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (215565) LSM6DS3: [0m
+[0;32mI (215565) LSM6DS3: gyro = 2.380371 -7.095337 -1.998901[0m
+[0;32mI (215565) LSM6DS3: accel = 0.064697 0.087524 0.995117[0m
+[0;32mI (215565) LSM6DS3: num_fifo_samples = 60[0m
+[0;32mI (215565) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (215585) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (216035) LSM6DS3: num_fifo_samples = 354[0m
+[0;32mI (216035) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (216545) LSM6DS3: [0m
+[0;32mI (216545) LSM6DS3: gyro = 2.288818 -7.034302 -1.998901[0m
+[0;32mI (216545) LSM6DS3: accel = 0.063843 0.088135 0.997437[0m
+[0;32mI (216545) LSM6DS3: num_fifo_samples = 78[0m
+[0;32mI (216545) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (216565) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (217015) LSM6DS3: num_fifo_samples = 372[0m
+[0;32mI (217015) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (217525) LSM6DS3: [0m
+[0;32mI (217525) LSM6DS3: gyro = 2.151489 -6.958008 -2.014160[0m
+[0;32mI (217525) LSM6DS3: accel = 0.064209 0.085693 0.999756[0m
+[0;32mI (217525) LSM6DS3: num_fifo_samples = 96[0m
+[0;32mI (217525) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (217545) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (217995) LSM6DS3: num_fifo_samples = 384[0m
+[0;32mI (217995) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (218505) LSM6DS3: [0m
+[0;32mI (218505) LSM6DS3: gyro = 2.243042 -7.171631 -2.014160[0m
+[0;32mI (218505) LSM6DS3: accel = 0.062988 0.086182 0.996094[0m
+[0;32mI (218505) LSM6DS3: num_fifo_samples = 108[0m
+[0;32mI (218505) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (218525) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (218975) LSM6DS3: num_fifo_samples = 402[0m
+[0;32mI (218975) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (219485) LSM6DS3: [0m
+[0;32mI (219485) LSM6DS3: gyro = 2.182007 -6.912231 -2.029419[0m
+[0;32mI (219485) LSM6DS3: accel = 0.065186 0.086548 0.999268[0m
+[0;32mI (219485) LSM6DS3: num_fifo_samples = 126[0m
+[0;32mI (219485) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (219505) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (219955) LSM6DS3: num_fifo_samples = 420[0m
+[0;32mI (219955) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (220465) LSM6DS3: [0m
+[0;32mI (220465) LSM6DS3: gyro = 2.334595 -7.095337 -1.998901[0m
+[0;32mI (220465) LSM6DS3: accel = 0.064941 0.086426 0.994141[0m
+[0;32mI (220465) LSM6DS3: num_fifo_samples = 138[0m
+[0;32mI (220465) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (220485) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (220935) LSM6DS3: num_fifo_samples = 432[0m
+[0;32mI (220935) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (221445) LSM6DS3: [0m
+[0;32mI (221445) LSM6DS3: gyro = 2.273560 -7.156372 -1.998901[0m
+[0;32mI (221445) LSM6DS3: accel = 0.065674 0.087524 0.995361[0m
+[0;32mI (221445) LSM6DS3: num_fifo_samples = 156[0m
+[0;32mI (221445) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (221465) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (221915) LSM6DS3: num_fifo_samples = 450[0m
+[0;32mI (221915) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (222425) LSM6DS3: [0m
+[0;32mI (222425) LSM6DS3: gyro = 2.410889 -6.973267 -2.014160[0m
+[0;32mI (222425) LSM6DS3: accel = 0.064453 0.086792 0.994019[0m
+[0;32mI (222425) LSM6DS3: num_fifo_samples = 174[0m
+[0;32mI (222425) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (222445) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (222895) LSM6DS3: num_fifo_samples = 462[0m
+[0;32mI (222895) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (223405) LSM6DS3: [0m
+[0;32mI (223405) LSM6DS3: gyro = 2.304077 -7.095337 -2.014160[0m
+[0;32mI (223405) LSM6DS3: accel = 0.063354 0.087280 0.995239[0m
+[0;32mI (223405) LSM6DS3: num_fifo_samples = 186[0m
+[0;32mI (223405) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (223425) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (223875) LSM6DS3: num_fifo_samples = 480[0m
+[0;32mI (223875) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (224385) LSM6DS3: [0m
+[0;32mI (224385) LSM6DS3: gyro = 2.258301 -7.064819 -1.998901[0m
+[0;32mI (224385) LSM6DS3: accel = 0.064697 0.087402 0.997314[0m
+[0;32mI (224385) LSM6DS3: num_fifo_samples = 204[0m
+[0;32mI (224385) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (224405) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (224855) LSM6DS3: num_fifo_samples = 498[0m
+[0;32mI (224855) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (225365) LSM6DS3: [0m
+[0;32mI (225365) LSM6DS3: gyro = 2.349854 -7.064819 -2.014160[0m
+[0;32mI (225365) LSM6DS3: accel = 0.064331 0.087036 0.994263[0m
+[0;32mI (225365) LSM6DS3: num_fifo_samples = 216[0m
+[0;32mI (225365) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (225385) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (225415) SD_CARD: File written.[0m
+[0;32mI (225425) SD_CARD: file size: 0[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (225735) SD_CARD: max_idx: 25[0m
+[0;32mI (225735) SD_CARD: filename: imu_000026.bin[0m
+[0;32mI (225735) SD_CARD: filepath: /sdcard/imu_000026.bin[0m
+[0;32mI (225735) SD_CARD: Writing to new file[0m
+[0;32mI (225835) LSM6DS3: num_fifo_samples = 510[0m
+[0;32mI (225835) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (226385) LSM6DS3: [0m
+[0;32mI (226385) LSM6DS3: gyro = 2.212524 -6.942749 -1.998901[0m
+[0;32mI (226385) LSM6DS3: accel = 0.065796 0.086670 1.001465[0m
+[0;32mI (226385) LSM6DS3: num_fifo_samples = 258[0m
+[0;32mI (226385) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (226395) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (226405) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (226855) LSM6DS3: num_fifo_samples = 552[0m
+[0;32mI (226855) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (227365) LSM6DS3: [0m
+[0;32mI (227365) LSM6DS3: gyro = 2.212524 -7.049561 -2.029419[0m
+[0;32mI (227365) LSM6DS3: accel = 0.064575 0.086182 0.997803[0m
+[0;32mI (227365) LSM6DS3: num_fifo_samples = 276[0m
+[0;32mI (227365) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (227385) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (227835) LSM6DS3: num_fifo_samples = 570[0m
+[0;32mI (227835) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (228345) LSM6DS3: [0m
+[0;32mI (228345) LSM6DS3: gyro = 2.365112 -7.034302 -2.090454[0m
+[0;32mI (228345) LSM6DS3: accel = 0.063354 0.088623 0.993774[0m
+[0;32mI (228345) LSM6DS3: num_fifo_samples = 288[0m
+[0;32mI (228345) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (228365) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (228815) LSM6DS3: num_fifo_samples = 582[0m
+[0;32mI (228815) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (229325) LSM6DS3: [0m
+[0;32mI (229325) LSM6DS3: gyro = 2.273560 -7.110596 -2.044678[0m
+[0;32mI (229325) LSM6DS3: accel = 0.063843 0.086792 0.995483[0m
+[0;32mI (229325) LSM6DS3: num_fifo_samples = 306[0m
+[0;32mI (229325) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (229345) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (229795) LSM6DS3: num_fifo_samples = 600[0m
+[0;32mI (229795) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (230305) LSM6DS3: [0m
+[0;32mI (230305) LSM6DS3: gyro = 2.365112 -7.049561 -2.014160[0m
+[0;32mI (230305) LSM6DS3: accel = 0.064453 0.087769 0.996338[0m
+[0;32mI (230305) LSM6DS3: num_fifo_samples = 324[0m
+[0;32mI (230305) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (230325) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (230835) LSM6DS3: [0m
+[0;32mI (230835) LSM6DS3: gyro = 2.212524 -7.003784 -2.014160[0m
+[0;32mI (230835) LSM6DS3: accel = 0.064697 0.087646 0.996582[0m
+[0;32mI (230835) LSM6DS3: num_fifo_samples = 54[0m
+[0;32mI (230835) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (230855) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (231305) LSM6DS3: num_fifo_samples = 348[0m
+[0;32mI (231305) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (231815) LSM6DS3: [0m
+[0;32mI (231815) LSM6DS3: gyro = 2.288818 -7.064819 -1.983643[0m
+[0;32mI (231815) LSM6DS3: accel = 0.064697 0.085449 0.997925[0m
+[0;32mI (231815) LSM6DS3: num_fifo_samples = 72[0m
+[0;32mI (231815) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (231835) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (232285) LSM6DS3: num_fifo_samples = 366[0m
+[0;32mI (232285) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (232795) LSM6DS3: [0m
+[0;32mI (232795) LSM6DS3: gyro = 2.227783 -6.851196 -2.029419[0m
+[0;32mI (232795) LSM6DS3: accel = 0.065918 0.086304 1.002197[0m
+[0;32mI (232795) LSM6DS3: num_fifo_samples = 84[0m
+[0;32mI (232795) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (232815) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (233265) LSM6DS3: num_fifo_samples = 378[0m
+[0;32mI (233265) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (233775) LSM6DS3: [0m
+[0;32mI (233775) LSM6DS3: gyro = 2.380371 -7.064819 -2.029419[0m
+[0;32mI (233775) LSM6DS3: accel = 0.063965 0.087646 0.993164[0m
+[0;32mI (233775) LSM6DS3: num_fifo_samples = 102[0m
+[0;32mI (233775) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (233795) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (234245) LSM6DS3: num_fifo_samples = 396[0m
+[0;32mI (234245) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (234755) LSM6DS3: [0m
+[0;32mI (234755) LSM6DS3: gyro = 2.487183 -7.125854 -1.998901[0m
+[0;32mI (234755) LSM6DS3: accel = 0.065308 0.088867 0.992188[0m
+[0;32mI (234755) LSM6DS3: num_fifo_samples = 120[0m
+[0;32mI (234755) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (234775) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (235225) LSM6DS3: num_fifo_samples = 408[0m
+[0;32mI (235225) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (235735) LSM6DS3: [0m
+[0;32mI (235735) LSM6DS3: gyro = 2.395630 -7.034302 -2.029419[0m
+[0;32mI (235735) LSM6DS3: accel = 0.063843 0.087158 0.997070[0m
+[0;32mI (235735) LSM6DS3: num_fifo_samples = 132[0m
+[0;32mI (235735) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (235755) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (236205) LSM6DS3: num_fifo_samples = 426[0m
+[0;32mI (236205) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (236715) LSM6DS3: [0m
+[0;32mI (236715) LSM6DS3: gyro = 2.227783 -7.049561 -2.029419[0m
+[0;32mI (236715) LSM6DS3: accel = 0.064209 0.086914 0.998047[0m
+[0;32mI (236715) LSM6DS3: num_fifo_samples = 150[0m
+[0;32mI (236715) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (236735) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (237185) LSM6DS3: num_fifo_samples = 444[0m
+[0;32mI (237185) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (237695) LSM6DS3: [0m
+[0;32mI (237695) LSM6DS3: gyro = 2.273560 -7.095337 -1.968384[0m
+[0;32mI (237695) LSM6DS3: accel = 0.064209 0.087524 0.994019[0m
+[0;32mI (237695) LSM6DS3: num_fifo_samples = 162[0m
+[0;32mI (237695) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (237715) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (238165) LSM6DS3: num_fifo_samples = 456[0m
+[0;32mI (238165) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (238675) LSM6DS3: [0m
+[0;32mI (238675) LSM6DS3: gyro = 2.243042 -6.973267 -2.014160[0m
+[0;32mI (238675) LSM6DS3: accel = 0.063965 0.088257 0.995850[0m
+[0;32mI (238675) LSM6DS3: num_fifo_samples = 180[0m
+[0;32mI (238675) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (238695) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (239145) LSM6DS3: num_fifo_samples = 474[0m
+[0;32mI (239145) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (239655) LSM6DS3: [0m
+[0;32mI (239655) LSM6DS3: gyro = 2.258301 -7.049561 -2.014160[0m
+[0;32mI (239655) LSM6DS3: accel = 0.065796 0.086060 0.999512[0m
+[0;32mI (239655) LSM6DS3: num_fifo_samples = 198[0m
+[0;32mI (239655) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (239675) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (240125) LSM6DS3: num_fifo_samples = 492[0m
+[0;32mI (240125) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (240635) LSM6DS3: [0m
+[0;32mI (240635) LSM6DS3: gyro = 2.410889 -7.049561 -2.014160[0m
+[0;32mI (240635) LSM6DS3: accel = 0.065063 0.086670 0.993164[0m
+[0;32mI (240635) LSM6DS3: num_fifo_samples = 210[0m
+[0;32mI (240635) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (240655) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (241105) LSM6DS3: num_fifo_samples = 504[0m
+[0;32mI (241105) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (241615) LSM6DS3: [0m
+[0;32mI (241615) LSM6DS3: gyro = 2.273560 -6.927490 -1.998901[0m
+[0;32mI (241615) LSM6DS3: accel = 0.065796 0.087402 0.995483[0m
+[0;32mI (241615) LSM6DS3: num_fifo_samples = 228[0m
+[0;32mI (241615) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (241635) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (242085) LSM6DS3: num_fifo_samples = 522[0m
+[0;32mI (242085) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (242595) LSM6DS3: [0m
+[0;32mI (242595) LSM6DS3: gyro = 2.212524 -6.973267 -1.983643[0m
+[0;32mI (242595) LSM6DS3: accel = 0.065552 0.086182 1.000244[0m
+[0;32mI (242595) LSM6DS3: num_fifo_samples = 240[0m
+[0;32mI (242595) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (242615) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (243065) LSM6DS3: num_fifo_samples = 534[0m
+[0;32mI (243065) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (243575) LSM6DS3: [0m
+[0;32mI (243575) LSM6DS3: gyro = 2.349854 -7.125854 -1.998901[0m
+[0;32mI (243575) LSM6DS3: accel = 0.064575 0.086548 0.992798[0m
+[0;32mI (243575) LSM6DS3: num_fifo_samples = 258[0m
+[0;32mI (243575) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (243595) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (244045) LSM6DS3: num_fifo_samples = 552[0m
+[0;32mI (244045) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (244555) LSM6DS3: [0m
+[0;32mI (244555) LSM6DS3: gyro = 2.273560 -6.958008 -2.029419[0m
+[0;32mI (244555) LSM6DS3: accel = 0.064453 0.086670 0.997437[0m
+[0;32mI (244555) LSM6DS3: num_fifo_samples = 276[0m
+[0;32mI (244555) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (244575) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (245025) LSM6DS3: num_fifo_samples = 570[0m
+[0;32mI (245025) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (245535) LSM6DS3: [0m
+[0;32mI (245535) LSM6DS3: gyro = 2.258301 -6.958008 -1.998901[0m
+[0;32mI (245535) LSM6DS3: accel = 0.062500 0.086182 0.996948[0m
+[0;32mI (245535) LSM6DS3: num_fifo_samples = 288[0m
+[0;32mI (245535) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (245555) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (246005) LSM6DS3: num_fifo_samples = 582[0m
+[0;32mI (246005) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (246515) LSM6DS3: [0m
+[0;32mI (246515) LSM6DS3: gyro = 2.227783 -6.927490 -1.983643[0m
+[0;32mI (246515) LSM6DS3: accel = 0.064331 0.086182 0.998535[0m
+[0;32mI (246515) LSM6DS3: num_fifo_samples = 306[0m
+[0;32mI (246515) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (246535) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (246985) LSM6DS3: num_fifo_samples = 600[0m
+[0;32mI (246985) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (247495) LSM6DS3: [0m
+[0;32mI (247495) LSM6DS3: gyro = 2.304077 -6.988525 -2.029419[0m
+[0;32mI (247495) LSM6DS3: accel = 0.063477 0.087036 0.997681[0m
+[0;32mI (247495) LSM6DS3: num_fifo_samples = 324[0m
+[0;32mI (247495) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (247515) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (248025) LSM6DS3: [0m
+[0;32mI (248025) LSM6DS3: gyro = 2.471924 -7.202148 -1.968384[0m
+[0;32mI (248025) LSM6DS3: accel = 0.063843 0.087036 0.993774[0m
+[0;32mI (248025) LSM6DS3: num_fifo_samples = 54[0m
+[0;32mI (248025) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (248045) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (248495) LSM6DS3: num_fifo_samples = 348[0m
+[0;32mI (248495) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (249005) LSM6DS3: [0m
+[0;32mI (249005) LSM6DS3: gyro = 2.349854 -7.034302 -2.014160[0m
+[0;32mI (249005) LSM6DS3: accel = 0.064575 0.087402 0.994385[0m
+[0;32mI (249005) LSM6DS3: num_fifo_samples = 72[0m
+[0;32mI (249005) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (249025) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (249475) LSM6DS3: num_fifo_samples = 360[0m
+[0;32mI (249475) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (249985) LSM6DS3: [0m
+[0;32mI (249985) LSM6DS3: gyro = 2.304077 -7.049561 -2.029419[0m
+[0;32mI (249985) LSM6DS3: accel = 0.064087 0.086914 0.992554[0m
+[0;32mI (249985) LSM6DS3: num_fifo_samples = 84[0m
+[0;32mI (249985) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (250005) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (250455) LSM6DS3: num_fifo_samples = 378[0m
+[0;32mI (250455) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (250965) LSM6DS3: [0m
+[0;32mI (250965) LSM6DS3: gyro = 2.380371 -7.034302 -2.105713[0m
+[0;32mI (250965) LSM6DS3: accel = 0.064209 0.087646 0.997681[0m
+[0;32mI (250965) LSM6DS3: num_fifo_samples = 102[0m
+[0;32mI (250965) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (250985) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (251435) LSM6DS3: num_fifo_samples = 396[0m
+[0;32mI (251435) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (251945) LSM6DS3: [0m
+[0;32mI (251945) LSM6DS3: gyro = 2.258301 -6.912231 -2.014160[0m
+[0;32mI (251945) LSM6DS3: accel = 0.063110 0.085815 0.997681[0m
+[0;32mI (251945) LSM6DS3: num_fifo_samples = 114[0m
+[0;32mI (251945) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (251965) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (252415) LSM6DS3: num_fifo_samples = 408[0m
+[0;32mI (252415) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (252925) LSM6DS3: [0m
+[0;32mI (252925) LSM6DS3: gyro = 2.319336 -7.095337 -1.953125[0m
+[0;32mI (252925) LSM6DS3: accel = 0.063232 0.086914 0.993164[0m
+[0;32mI (252925) LSM6DS3: num_fifo_samples = 132[0m
+[0;32mI (252925) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (252945) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (253395) LSM6DS3: num_fifo_samples = 426[0m
+[0;32mI (253395) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (253905) LSM6DS3: [0m
+[0;32mI (253905) LSM6DS3: gyro = 2.349854 -6.988525 -2.044678[0m
+[0;32mI (253905) LSM6DS3: accel = 0.064697 0.086426 0.993042[0m
+[0;32mI (253905) LSM6DS3: num_fifo_samples = 150[0m
+[0;32mI (253905) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (253925) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (254375) LSM6DS3: num_fifo_samples = 444[0m
+[0;32mI (254375) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (254885) LSM6DS3: [0m
+[0;32mI (254885) LSM6DS3: gyro = 2.380371 -7.049561 -2.029419[0m
+[0;32mI (254885) LSM6DS3: accel = 0.063721 0.087402 0.994263[0m
+[0;32mI (254885) LSM6DS3: num_fifo_samples = 162[0m
+[0;32mI (254885) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (254905) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (255355) LSM6DS3: num_fifo_samples = 456[0m
+[0;32mI (255355) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (255865) LSM6DS3: [0m
+[0;32mI (255865) LSM6DS3: gyro = 2.288818 -7.049561 -1.953125[0m
+[0;32mI (255865) LSM6DS3: accel = 0.064819 0.087036 0.994873[0m
+[0;32mI (255865) LSM6DS3: num_fifo_samples = 180[0m
+[0;32mI (255865) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (255885) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (256335) LSM6DS3: num_fifo_samples = 474[0m
+[0;32mI (256335) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (256845) LSM6DS3: [0m
+[0;32mI (256845) LSM6DS3: gyro = 2.365112 -7.064819 -2.044678[0m
+[0;32mI (256845) LSM6DS3: accel = 0.064331 0.088013 0.994141[0m
+[0;32mI (256845) LSM6DS3: num_fifo_samples = 192[0m
+[0;32mI (256845) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (256865) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (257315) LSM6DS3: num_fifo_samples = 486[0m
+[0;32mI (257315) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (257825) LSM6DS3: [0m
+[0;32mI (257825) LSM6DS3: gyro = 2.426147 -7.186890 -2.059937[0m
+[0;32mI (257825) LSM6DS3: accel = 0.064819 0.087769 0.988403[0m
+[0;32mI (257825) LSM6DS3: num_fifo_samples = 210[0m
+[0;32mI (257825) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (257845) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (258295) LSM6DS3: num_fifo_samples = 504[0m
+[0;32mI (258295) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (258805) LSM6DS3: [0m
+[0;32mI (258805) LSM6DS3: gyro = 2.243042 -6.973267 -2.075195[0m
+[0;32mI (258805) LSM6DS3: accel = 0.064087 0.088135 0.992188[0m
+[0;32mI (258805) LSM6DS3: num_fifo_samples = 228[0m
+[0;32mI (258805) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (258825) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (259275) LSM6DS3: num_fifo_samples = 522[0m
+[0;32mI (259275) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (259785) LSM6DS3: [0m
+[0;32mI (259785) LSM6DS3: gyro = 2.365112 -7.064819 -1.998901[0m
+[0;32mI (259785) LSM6DS3: accel = 0.065674 0.087158 0.995605[0m
+[0;32mI (259785) LSM6DS3: num_fifo_samples = 240[0m
+[0;32mI (259785) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (259805) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (260255) LSM6DS3: num_fifo_samples = 534[0m
+[0;32mI (260255) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (260765) LSM6DS3: [0m
+[0;32mI (260765) LSM6DS3: gyro = 2.334595 -7.064819 -2.029419[0m
+[0;32mI (260765) LSM6DS3: accel = 0.063354 0.088013 0.993408[0m
+[0;32mI (260765) LSM6DS3: num_fifo_samples = 258[0m
+[0;32mI (260765) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (260785) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (261235) LSM6DS3: num_fifo_samples = 552[0m
+[0;32mI (261235) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (261745) LSM6DS3: [0m
+[0;32mI (261745) LSM6DS3: gyro = 2.273560 -7.049561 -2.014160[0m
+[0;32mI (261745) LSM6DS3: accel = 0.064697 0.085327 0.998169[0m
+[0;32mI (261745) LSM6DS3: num_fifo_samples = 276[0m
+[0;32mI (261745) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (261765) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (262215) LSM6DS3: num_fifo_samples = 564[0m
+[0;32mI (262215) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (262725) LSM6DS3: [0m
+[0;32mI (262725) LSM6DS3: gyro = 2.243042 -6.973267 -1.998901[0m
+[0;32mI (262725) LSM6DS3: accel = 0.061890 0.086548 0.996826[0m
+[0;32mI (262725) LSM6DS3: num_fifo_samples = 288[0m
+[0;32mI (262725) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (262745) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (263195) LSM6DS3: num_fifo_samples = 582[0m
+[0;32mI (263195) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (263705) LSM6DS3: [0m
+[0;32mI (263705) LSM6DS3: gyro = 2.197266 -7.019043 -1.998901[0m
+[0;32mI (263705) LSM6DS3: accel = 0.063843 0.086792 0.997559[0m
+[0;32mI (263705) LSM6DS3: num_fifo_samples = 306[0m
+[0;32mI (263705) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (263725) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (264175) LSM6DS3: num_fifo_samples = 600[0m
+[0;32mI (264175) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (264685) LSM6DS3: [0m
+[0;32mI (264685) LSM6DS3: gyro = 2.487183 -7.064819 -2.059937[0m
+[0;32mI (264685) LSM6DS3: accel = 0.064087 0.088013 0.991455[0m
+[0;32mI (264685) LSM6DS3: num_fifo_samples = 318[0m
+[0;32mI (264685) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (264705) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (265215) LSM6DS3: [0m
+[0;32mI (265215) LSM6DS3: gyro = 2.212524 -7.003784 -2.059937[0m
+[0;32mI (265215) LSM6DS3: accel = 0.063965 0.086060 0.997314[0m
+[0;32mI (265215) LSM6DS3: num_fifo_samples = 54[0m
+[0;32mI (265215) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (265235) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (265685) LSM6DS3: num_fifo_samples = 348[0m
+[0;32mI (265685) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (266195) LSM6DS3: [0m
+[0;32mI (266195) LSM6DS3: gyro = 2.288818 -7.019043 -2.014160[0m
+[0;32mI (266195) LSM6DS3: accel = 0.065796 0.086548 0.994995[0m
+[0;32mI (266195) LSM6DS3: num_fifo_samples = 66[0m
+[0;32mI (266195) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (266215) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (266665) LSM6DS3: num_fifo_samples = 360[0m
+[0;32mI (266665) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (267175) LSM6DS3: [0m
+[0;32mI (267175) LSM6DS3: gyro = 2.441406 -7.110596 -1.998901[0m
+[0;32mI (267175) LSM6DS3: accel = 0.064575 0.088379 0.993652[0m
+[0;32mI (267175) LSM6DS3: num_fifo_samples = 84[0m
+[0;32mI (267175) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (267195) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (267645) LSM6DS3: num_fifo_samples = 378[0m
+[0;32mI (267645) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (268155) LSM6DS3: [0m
+[0;32mI (268155) LSM6DS3: gyro = 2.273560 -6.988525 -1.998901[0m
+[0;32mI (268155) LSM6DS3: accel = 0.064819 0.085693 0.996948[0m
+[0;32mI (268155) LSM6DS3: num_fifo_samples = 102[0m
+[0;32mI (268155) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (268175) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (268625) LSM6DS3: num_fifo_samples = 396[0m
+[0;32mI (268625) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (269135) LSM6DS3: [0m
+[0;32mI (269135) LSM6DS3: gyro = 2.227783 -6.927490 -2.044678[0m
+[0;32mI (269135) LSM6DS3: accel = 0.063354 0.087646 0.997314[0m
+[0;32mI (269135) LSM6DS3: num_fifo_samples = 114[0m
+[0;32mI (269135) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (269155) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (269605) LSM6DS3: num_fifo_samples = 408[0m
+[0;32mI (269605) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (270115) LSM6DS3: [0m
+[0;32mI (270115) LSM6DS3: gyro = 2.410889 -7.125854 -2.044678[0m
+[0;32mI (270115) LSM6DS3: accel = 0.065186 0.087402 0.992310[0m
+[0;32mI (270115) LSM6DS3: num_fifo_samples = 132[0m
+[0;32mI (270115) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (270135) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (270585) LSM6DS3: num_fifo_samples = 426[0m
+[0;32mI (270585) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (271095) LSM6DS3: [0m
+[0;32mI (271095) LSM6DS3: gyro = 2.334595 -6.988525 -2.090454[0m
+[0;32mI (271095) LSM6DS3: accel = 0.063721 0.088623 0.996338[0m
+[0;32mI (271095) LSM6DS3: num_fifo_samples = 144[0m
+[0;32mI (271095) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (271115) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (271565) LSM6DS3: num_fifo_samples = 438[0m
+[0;32mI (271565) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (272075) LSM6DS3: [0m
+[0;32mI (272075) LSM6DS3: gyro = 2.182007 -7.095337 -2.029419[0m
+[0;32mI (272075) LSM6DS3: accel = 0.064209 0.085449 0.998047[0m
+[0;32mI (272075) LSM6DS3: num_fifo_samples = 162[0m
+[0;32mI (272075) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (272095) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (272545) LSM6DS3: num_fifo_samples = 456[0m
+[0;32mI (272545) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (273055) LSM6DS3: [0m
+[0;32mI (273055) LSM6DS3: gyro = 2.243042 -7.019043 -2.044678[0m
+[0;32mI (273055) LSM6DS3: accel = 0.064209 0.086548 0.993774[0m
+[0;32mI (273055) LSM6DS3: num_fifo_samples = 180[0m
+[0;32mI (273055) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (273075) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (273525) LSM6DS3: num_fifo_samples = 474[0m
+[0;32mI (273525) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (274035) LSM6DS3: [0m
+[0;32mI (274035) LSM6DS3: gyro = 2.334595 -7.034302 -1.998901[0m
+[0;32mI (274035) LSM6DS3: accel = 0.063965 0.087402 0.995972[0m
+[0;32mI (274035) LSM6DS3: num_fifo_samples = 192[0m
+[0;32mI (274035) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (274055) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (274505) LSM6DS3: num_fifo_samples = 486[0m
+[0;32mI (274505) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (275015) LSM6DS3: [0m
+[0;32mI (275015) LSM6DS3: gyro = 2.273560 -6.942749 -2.044678[0m
+[0;32mI (275015) LSM6DS3: accel = 0.063599 0.086182 0.998779[0m
+[0;32mI (275015) LSM6DS3: num_fifo_samples = 210[0m
+[0;32mI (275015) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (275035) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (275485) LSM6DS3: num_fifo_samples = 504[0m
+[0;32mI (275485) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (275995) LSM6DS3: [0m
+[0;32mI (275995) LSM6DS3: gyro = 2.151489 -6.912231 -1.998901[0m
+[0;32mI (275995) LSM6DS3: accel = 0.064331 0.087036 0.997925[0m
+[0;32mI (275995) LSM6DS3: num_fifo_samples = 228[0m
+[0;32mI (275995) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (276015) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (276465) LSM6DS3: num_fifo_samples = 516[0m
+[0;32mI (276465) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (276975) LSM6DS3: [0m
+[0;32mI (276975) LSM6DS3: gyro = 2.349854 -7.034302 -1.983643[0m
+[0;32mI (276975) LSM6DS3: accel = 0.064697 0.088745 0.997437[0m
+[0;32mI (276975) LSM6DS3: num_fifo_samples = 240[0m
+[0;32mI (276975) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (276995) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (277445) LSM6DS3: num_fifo_samples = 534[0m
+[0;32mI (277445) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (277955) LSM6DS3: [0m
+[0;32mI (277955) LSM6DS3: gyro = 2.288818 -6.988525 -2.029419[0m
+[0;32mI (277955) LSM6DS3: accel = 0.064697 0.086182 0.998901[0m
+[0;32mI (277955) LSM6DS3: num_fifo_samples = 258[0m
+[0;32mI (277955) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (277975) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (278425) LSM6DS3: num_fifo_samples = 552[0m
+[0;32mI (278425) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (278935) LSM6DS3: [0m
+[0;32mI (278935) LSM6DS3: gyro = 2.243042 -6.912231 -1.998901[0m
+[0;32mI (278935) LSM6DS3: accel = 0.065430 0.086060 0.993042[0m
+[0;32mI (278935) LSM6DS3: num_fifo_samples = 270[0m
+[0;32mI (278935) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (278955) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (279405) LSM6DS3: num_fifo_samples = 564[0m
+[0;32mI (279405) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (279915) LSM6DS3: [0m
+[0;32mI (279915) LSM6DS3: gyro = 2.273560 -7.003784 -2.029419[0m
+[0;32mI (279915) LSM6DS3: accel = 0.064209 0.086548 0.994385[0m
+[0;32mI (279915) LSM6DS3: num_fifo_samples = 288[0m
+[0;32mI (279915) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (279935) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (280385) LSM6DS3: num_fifo_samples = 582[0m
+[0;32mI (280385) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (280895) LSM6DS3: [0m
+[0;32mI (280895) LSM6DS3: gyro = 2.319336 -7.095337 -2.044678[0m
+[0;32mI (280895) LSM6DS3: accel = 0.063477 0.086182 0.995972[0m
+[0;32mI (280895) LSM6DS3: num_fifo_samples = 306[0m
+[0;32mI (280895) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (280915) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (281365) LSM6DS3: num_fifo_samples = 594[0m
+[0;32mI (281365) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (281875) LSM6DS3: [0m
+[0;32mI (281875) LSM6DS3: gyro = 2.304077 -6.988525 -2.014160[0m
+[0;32mI (281875) LSM6DS3: accel = 0.064819 0.086914 0.993530[0m
+[0;32mI (281875) LSM6DS3: num_fifo_samples = 318[0m
+[0;32mI (281875) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (281895) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (282405) LSM6DS3: [0m
+[0;32mI (282405) LSM6DS3: gyro = 2.304077 -6.942749 -2.029419[0m
+[0;32mI (282405) LSM6DS3: accel = 0.063721 0.088013 0.996338[0m
+[0;32mI (282405) LSM6DS3: num_fifo_samples = 54[0m
+[0;32mI (282405) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (282425) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (282875) LSM6DS3: num_fifo_samples = 348[0m
+[0;32mI (282875) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (283385) LSM6DS3: [0m
+[0;32mI (283385) LSM6DS3: gyro = 2.166748 -6.866455 -1.968384[0m
+[0;32mI (283385) LSM6DS3: accel = 0.065308 0.085205 1.002808[0m
+[0;32mI (283385) LSM6DS3: num_fifo_samples = 66[0m
+[0;32mI (283385) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (283405) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (283855) LSM6DS3: num_fifo_samples = 360[0m
+[0;32mI (283855) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (284365) LSM6DS3: [0m
+[0;32mI (284365) LSM6DS3: gyro = 2.365112 -6.851196 -2.029419[0m
+[0;32mI (284365) LSM6DS3: accel = 0.063965 0.088013 0.995361[0m
+[0;32mI (284365) LSM6DS3: num_fifo_samples = 84[0m
+[0;32mI (284365) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (284385) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (284835) LSM6DS3: num_fifo_samples = 378[0m
+[0;32mI (284835) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (285345) LSM6DS3: [0m
+[0;32mI (285345) LSM6DS3: gyro = 2.258301 -6.973267 -2.014160[0m
+[0;32mI (285345) LSM6DS3: accel = 0.064575 0.086914 0.996338[0m
+[0;32mI (285345) LSM6DS3: num_fifo_samples = 96[0m
+[0;32mI (285345) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (285365) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (285815) LSM6DS3: num_fifo_samples = 390[0m
+[0;32mI (285815) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (286325) LSM6DS3: [0m
+[0;32mI (286325) LSM6DS3: gyro = 2.365112 -6.881714 -2.014160[0m
+[0;32mI (286325) LSM6DS3: accel = 0.064209 0.087402 0.998413[0m
+[0;32mI (286325) LSM6DS3: num_fifo_samples = 114[0m
+[0;32mI (286325) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (286345) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (286375) SD_CARD: File written.[0m
+[0;32mI (286375) SD_CARD: file size: 0[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (286695) SD_CARD: max_idx: 26[0m
+[0;32mI (286695) SD_CARD: filename: imu_000027.bin[0m
+[0;32mI (286695) SD_CARD: filepath: /sdcard/imu_000027.bin[0m
+[0;32mI (286695) SD_CARD: Writing to new file[0m
+[0;32mI (286795) LSM6DS3: num_fifo_samples = 408[0m
+[0;32mI (286795) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (287345) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (287345) LSM6DS3: [0m
+[0;32mI (287345) LSM6DS3: gyro = 2.441406 -7.034302 -2.029419[0m
+[0;32mI (287345) LSM6DS3: accel = 0.062256 0.087158 0.993164[0m
+[0;32mI (287345) LSM6DS3: num_fifo_samples = 156[0m
+[0;32mI (287355) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (287365) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (287815) LSM6DS3: num_fifo_samples = 450[0m
+[0;32mI (287815) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (288325) LSM6DS3: [0m
+[0;32mI (288325) LSM6DS3: gyro = 2.304077 -7.095337 -2.044678[0m
+[0;32mI (288325) LSM6DS3: accel = 0.064087 0.088623 0.992310[0m
+[0;32mI (288325) LSM6DS3: num_fifo_samples = 168[0m
+[0;32mI (288325) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (288345) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (288795) LSM6DS3: num_fifo_samples = 462[0m
+[0;32mI (288795) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (289305) LSM6DS3: [0m
+[0;32mI (289305) LSM6DS3: gyro = 2.380371 -6.912231 -2.075195[0m
+[0;32mI (289305) LSM6DS3: accel = 0.065186 0.087646 0.995972[0m
+[0;32mI (289305) LSM6DS3: num_fifo_samples = 186[0m
+[0;32mI (289305) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (289325) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (289775) LSM6DS3: num_fifo_samples = 480[0m
+[0;32mI (289775) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (290285) LSM6DS3: [0m
+[0;32mI (290285) LSM6DS3: gyro = 2.227783 -7.110596 -2.014160[0m
+[0;32mI (290285) LSM6DS3: accel = 0.063843 0.086914 0.996094[0m
+[0;32mI (290285) LSM6DS3: num_fifo_samples = 204[0m
+[0;32mI (290285) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (290305) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (290755) LSM6DS3: num_fifo_samples = 498[0m
+[0;32mI (290755) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (291265) LSM6DS3: [0m
+[0;32mI (291265) LSM6DS3: gyro = 2.212524 -6.973267 -1.968384[0m
+[0;32mI (291265) LSM6DS3: accel = 0.064087 0.086548 0.997070[0m
+[0;32mI (291265) LSM6DS3: num_fifo_samples = 216[0m
+[0;32mI (291265) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (291285) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (291735) LSM6DS3: num_fifo_samples = 510[0m
+[0;32mI (291735) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (292245) LSM6DS3: [0m
+[0;32mI (292245) LSM6DS3: gyro = 2.258301 -6.942749 -1.998901[0m
+[0;32mI (292245) LSM6DS3: accel = 0.064453 0.085449 0.998901[0m
+[0;32mI (292245) LSM6DS3: num_fifo_samples = 234[0m
+[0;32mI (292245) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (292265) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (292715) LSM6DS3: num_fifo_samples = 528[0m
+[0;32mI (292715) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (293225) LSM6DS3: [0m
+[0;32mI (293225) LSM6DS3: gyro = 2.410889 -7.186890 -1.983643[0m
+[0;32mI (293225) LSM6DS3: accel = 0.063843 0.088257 0.992920[0m
+[0;32mI (293225) LSM6DS3: num_fifo_samples = 252[0m
+[0;32mI (293225) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (293245) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (293695) LSM6DS3: num_fifo_samples = 540[0m
+[0;32mI (293695) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (294205) LSM6DS3: [0m
+[0;32mI (294205) LSM6DS3: gyro = 2.288818 -7.003784 -2.075195[0m
+[0;32mI (294205) LSM6DS3: accel = 0.063965 0.087524 0.993530[0m
+[0;32mI (294205) LSM6DS3: num_fifo_samples = 264[0m
+[0;32mI (294205) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (294225) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (294675) LSM6DS3: num_fifo_samples = 558[0m
+[0;32mI (294675) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (295185) LSM6DS3: [0m
+[0;32mI (295185) LSM6DS3: gyro = 2.197266 -6.988525 -2.029419[0m
+[0;32mI (295185) LSM6DS3: accel = 0.063721 0.086426 0.995483[0m
+[0;32mI (295185) LSM6DS3: num_fifo_samples = 282[0m
+[0;32mI (295185) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (295205) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (295655) LSM6DS3: num_fifo_samples = 576[0m
+[0;32mI (295655) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (296165) LSM6DS3: [0m
+[0;32mI (296165) LSM6DS3: gyro = 2.273560 -7.019043 -2.029419[0m
+[0;32mI (296165) LSM6DS3: accel = 0.063721 0.087769 0.996826[0m
+[0;32mI (296165) LSM6DS3: num_fifo_samples = 294[0m
+[0;32mI (296165) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (296185) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (296635) LSM6DS3: num_fifo_samples = 588[0m
+[0;32mI (296635) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (297145) LSM6DS3: [0m
+[0;32mI (297145) LSM6DS3: gyro = 2.090454 -6.958008 -1.983643[0m
+[0;32mI (297145) LSM6DS3: accel = 0.064819 0.085571 0.998413[0m
+[0;32mI (297145) LSM6DS3: num_fifo_samples = 312[0m
+[0;32mI (297145) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (297165) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (297675) LSM6DS3: [0m
+[0;32mI (297675) LSM6DS3: gyro = 2.288818 -7.034302 -2.029419[0m
+[0;32mI (297675) LSM6DS3: accel = 0.063354 0.087769 0.996582[0m
+[0;32mI (297675) LSM6DS3: num_fifo_samples = 42[0m
+[0;32mI (297675) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (297695) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (298145) LSM6DS3: num_fifo_samples = 336[0m
+[0;32mI (298145) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (298655) LSM6DS3: [0m
+[0;32mI (298655) LSM6DS3: gyro = 2.258301 -7.049561 -2.029419[0m
+[0;32mI (298655) LSM6DS3: accel = 0.063965 0.087646 0.997925[0m
+[0;32mI (298655) LSM6DS3: num_fifo_samples = 60[0m
+[0;32mI (298655) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (298675) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (299125) LSM6DS3: num_fifo_samples = 354[0m
+[0;32mI (299125) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (299635) LSM6DS3: [0m
+[0;32mI (299635) LSM6DS3: gyro = 2.410889 -7.049561 -2.059937[0m
+[0;32mI (299635) LSM6DS3: accel = 0.063721 0.088013 0.993286[0m
+[0;32mI (299635) LSM6DS3: num_fifo_samples = 78[0m
+[0;32mI (299635) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (299655) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (300105) LSM6DS3: num_fifo_samples = 372[0m
+[0;32mI (300105) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (300615) LSM6DS3: [0m
+[0;32mI (300615) LSM6DS3: gyro = 2.273560 -7.064819 -2.044678[0m
+[0;32mI (300615) LSM6DS3: accel = 0.064819 0.087769 0.996704[0m
+[0;32mI (300615) LSM6DS3: num_fifo_samples = 90[0m
+[0;32mI (300615) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (300635) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (301085) LSM6DS3: num_fifo_samples = 384[0m
+[0;32mI (301085) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (301595) LSM6DS3: [0m
+[0;32mI (301595) LSM6DS3: gyro = 2.502441 -7.308960 -1.998901[0m
+[0;32mI (301595) LSM6DS3: accel = 0.065674 0.088013 0.987915[0m
+[0;32mI (301595) LSM6DS3: num_fifo_samples = 108[0m
+[0;32mI (301595) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (301615) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (302065) LSM6DS3: num_fifo_samples = 402[0m
+[0;32mI (302065) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (302575) LSM6DS3: [0m
+[0;32mI (302575) LSM6DS3: gyro = 2.319336 -6.958008 -1.983643[0m
+[0;32mI (302575) LSM6DS3: accel = 0.065552 0.088135 0.995972[0m
+[0;32mI (302575) LSM6DS3: num_fifo_samples = 120[0m
+[0;32mI (302575) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (302595) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (303045) LSM6DS3: num_fifo_samples = 414[0m
+[0;32mI (303045) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (303555) LSM6DS3: [0m
+[0;32mI (303555) LSM6DS3: gyro = 2.365112 -7.019043 -2.059937[0m
+[0;32mI (303555) LSM6DS3: accel = 0.064941 0.087402 0.997314[0m
+[0;32mI (303555) LSM6DS3: num_fifo_samples = 138[0m
+[0;32mI (303555) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (303575) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (304025) LSM6DS3: num_fifo_samples = 432[0m
+[0;32mI (304025) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (304535) LSM6DS3: [0m
+[0;32mI (304535) LSM6DS3: gyro = 2.227783 -6.973267 -2.044678[0m
+[0;32mI (304535) LSM6DS3: accel = 0.063354 0.085571 0.995605[0m
+[0;32mI (304535) LSM6DS3: num_fifo_samples = 156[0m
+[0;32mI (304535) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (304555) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (305005) LSM6DS3: num_fifo_samples = 450[0m
+[0;32mI (305005) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (305515) LSM6DS3: [0m
+[0;32mI (305515) LSM6DS3: gyro = 2.380371 -7.080078 -2.014160[0m
+[0;32mI (305515) LSM6DS3: accel = 0.064087 0.088501 0.992310[0m
+[0;32mI (305515) LSM6DS3: num_fifo_samples = 168[0m
+[0;32mI (305515) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (305535) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (305985) LSM6DS3: num_fifo_samples = 462[0m
+[0;32mI (305985) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (306495) LSM6DS3: [0m
+[0;32mI (306495) LSM6DS3: gyro = 2.334595 -7.049561 -1.983643[0m
+[0;32mI (306495) LSM6DS3: accel = 0.064087 0.086304 0.994263[0m
+[0;32mI (306495) LSM6DS3: num_fifo_samples = 186[0m
+[0;32mI (306495) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (306515) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (306965) LSM6DS3: num_fifo_samples = 480[0m
+[0;32mI (306965) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (307475) LSM6DS3: [0m
+[0;32mI (307475) LSM6DS3: gyro = 2.258301 -7.034302 -2.059937[0m
+[0;32mI (307475) LSM6DS3: accel = 0.064209 0.086304 0.995728[0m
+[0;32mI (307475) LSM6DS3: num_fifo_samples = 204[0m
+[0;32mI (307475) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (307495) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (307945) LSM6DS3: num_fifo_samples = 492[0m
+[0;32mI (307945) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (308455) LSM6DS3: [0m
+[0;32mI (308455) LSM6DS3: gyro = 3.204346 -7.720947 -2.075195[0m
+[0;32mI (308455) LSM6DS3: accel = 0.065918 0.090820 0.967041[0m
+[0;32mI (308455) LSM6DS3: num_fifo_samples = 216[0m
+[0;32mI (308455) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (308475) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (308925) LSM6DS3: num_fifo_samples = 510[0m
+[0;32mI (308925) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (309435) LSM6DS3: [0m
+[0;32mI (309435) LSM6DS3: gyro = 2.227783 -6.896973 -2.029419[0m
+[0;32mI (309435) LSM6DS3: accel = 0.064819 0.088013 0.998657[0m
+[0;32mI (309435) LSM6DS3: num_fifo_samples = 234[0m
+[0;32mI (309435) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (309455) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (309905) LSM6DS3: num_fifo_samples = 528[0m
+[0;32mI (309905) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (310415) LSM6DS3: [0m
+[0;32mI (310415) LSM6DS3: gyro = 2.258301 -7.003784 -1.983643[0m
+[0;32mI (310415) LSM6DS3: accel = 0.063965 0.085938 0.995239[0m
+[0;32mI (310415) LSM6DS3: num_fifo_samples = 246[0m
+[0;32mI (310415) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (310435) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (310885) LSM6DS3: num_fifo_samples = 540[0m
+[0;32mI (310885) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (311395) LSM6DS3: [0m
+[0;32mI (311395) LSM6DS3: gyro = 2.288818 -6.942749 -2.014160[0m
+[0;32mI (311395) LSM6DS3: accel = 0.064209 0.087158 0.994751[0m
+[0;32mI (311395) LSM6DS3: num_fifo_samples = 264[0m
+[0;32mI (311395) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (311415) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (311865) LSM6DS3: num_fifo_samples = 558[0m
+[0;32mI (311865) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (312375) LSM6DS3: [0m
+[0;32mI (312375) LSM6DS3: gyro = 2.212524 -6.942749 -2.075195[0m
+[0;32mI (312375) LSM6DS3: accel = 0.064209 0.087769 0.998779[0m
+[0;32mI (312375) LSM6DS3: num_fifo_samples = 282[0m
+[0;32mI (312375) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (312395) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (312845) LSM6DS3: num_fifo_samples = 570[0m
+[0;32mI (312845) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (313355) LSM6DS3: [0m
+[0;32mI (313355) LSM6DS3: gyro = 2.304077 -7.019043 -1.968384[0m
+[0;32mI (313355) LSM6DS3: accel = 0.064941 0.086426 0.991089[0m
+[0;32mI (313355) LSM6DS3: num_fifo_samples = 294[0m
+[0;32mI (313355) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (313375) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (313825) LSM6DS3: num_fifo_samples = 588[0m
+[0;32mI (313825) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (314335) LSM6DS3: [0m
+[0;32mI (314335) LSM6DS3: gyro = 2.212524 -7.003784 -2.044678[0m
+[0;32mI (314335) LSM6DS3: accel = 0.065063 0.086182 0.997681[0m
+[0;32mI (314335) LSM6DS3: num_fifo_samples = 312[0m
+[0;32mI (314335) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (314355) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (314865) LSM6DS3: [0m
+[0;32mI (314865) LSM6DS3: gyro = 2.395630 -6.958008 -2.105713[0m
+[0;32mI (314865) LSM6DS3: accel = 0.064941 0.088501 0.991821[0m
+[0;32mI (314865) LSM6DS3: num_fifo_samples = 42[0m
+[0;32mI (314865) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (314885) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (315335) LSM6DS3: num_fifo_samples = 336[0m
+[0;32mI (315335) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (315845) LSM6DS3: [0m
+[0;32mI (315845) LSM6DS3: gyro = 2.304077 -7.019043 -2.044678[0m
+[0;32mI (315845) LSM6DS3: accel = 0.065186 0.086304 0.990601[0m
+[0;32mI (315845) LSM6DS3: num_fifo_samples = 60[0m
+[0;32mI (315845) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (315865) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (316315) LSM6DS3: num_fifo_samples = 354[0m
+[0;32mI (316315) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (316825) LSM6DS3: [0m
+[0;32mI (316825) LSM6DS3: gyro = 2.258301 -7.049561 -2.014160[0m
+[0;32mI (316825) LSM6DS3: accel = 0.063843 0.086914 0.994019[0m
+[0;32mI (316825) LSM6DS3: num_fifo_samples = 72[0m
+[0;32mI (316825) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (316845) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (317295) LSM6DS3: num_fifo_samples = 366[0m
+[0;32mI (317295) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (317805) LSM6DS3: [0m
+[0;32mI (317805) LSM6DS3: gyro = 2.243042 -6.942749 -2.029419[0m
+[0;32mI (317805) LSM6DS3: accel = 0.064453 0.087769 0.996948[0m
+[0;32mI (317805) LSM6DS3: num_fifo_samples = 90[0m
+[0;32mI (317805) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (317825) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (318275) LSM6DS3: num_fifo_samples = 384[0m
+[0;32mI (318275) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (318785) LSM6DS3: [0m
+[0;32mI (318785) LSM6DS3: gyro = 2.243042 -6.988525 -2.044678[0m
+[0;32mI (318785) LSM6DS3: accel = 0.063477 0.087646 0.993774[0m
+[0;32mI (318785) LSM6DS3: num_fifo_samples = 108[0m
+[0;32mI (318785) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (318805) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (319255) LSM6DS3: num_fifo_samples = 402[0m
+[0;32mI (319255) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (319765) LSM6DS3: [0m
+[0;32mI (319765) LSM6DS3: gyro = 2.273560 -6.973267 -1.983643[0m
+[0;32mI (319765) LSM6DS3: accel = 0.063965 0.087158 0.992920[0m
+[0;32mI (319765) LSM6DS3: num_fifo_samples = 120[0m
+[0;32mI (319765) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (319785) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (320235) LSM6DS3: num_fifo_samples = 414[0m
+[0;32mI (320235) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (320745) LSM6DS3: [0m
+[0;32mI (320745) LSM6DS3: gyro = 2.304077 -7.049561 -2.059937[0m
+[0;32mI (320745) LSM6DS3: accel = 0.066406 0.086426 0.992798[0m
+[0;32mI (320745) LSM6DS3: num_fifo_samples = 138[0m
+[0;32mI (320745) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (320765) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (321215) LSM6DS3: num_fifo_samples = 432[0m
+[0;32mI (321215) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (321725) LSM6DS3: [0m
+[0;32mI (321725) LSM6DS3: gyro = 2.365112 -7.049561 -1.937866[0m
+[0;32mI (321725) LSM6DS3: accel = 0.064453 0.086304 0.993530[0m
+[0;32mI (321725) LSM6DS3: num_fifo_samples = 156[0m
+[0;32mI (321725) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (321745) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (322195) LSM6DS3: num_fifo_samples = 444[0m
+[0;32mI (322195) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (322705) LSM6DS3: [0m
+[0;32mI (322705) LSM6DS3: gyro = 2.212524 -7.003784 -2.044678[0m
+[0;32mI (322705) LSM6DS3: accel = 0.064331 0.086548 0.993408[0m
+[0;32mI (322705) LSM6DS3: num_fifo_samples = 168[0m
+[0;32mI (322705) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (322725) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (323175) LSM6DS3: num_fifo_samples = 462[0m
+[0;32mI (323175) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (323685) LSM6DS3: [0m
+[0;32mI (323685) LSM6DS3: gyro = 2.319336 -7.064819 -2.029419[0m
+[0;32mI (323685) LSM6DS3: accel = 0.063965 0.087280 0.992310[0m
+[0;32mI (323685) LSM6DS3: num_fifo_samples = 186[0m
+[0;32mI (323685) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (323705) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (324155) LSM6DS3: num_fifo_samples = 480[0m
+[0;32mI (324155) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (324665) LSM6DS3: [0m
+[0;32mI (324665) LSM6DS3: gyro = 2.212524 -7.064819 -1.983643[0m
+[0;32mI (324665) LSM6DS3: accel = 0.065308 0.086426 0.996582[0m
+[0;32mI (324665) LSM6DS3: num_fifo_samples = 198[0m
+[0;32mI (324665) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (324685) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (325135) LSM6DS3: num_fifo_samples = 492[0m
+[0;32mI (325135) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (325645) LSM6DS3: [0m
+[0;32mI (325645) LSM6DS3: gyro = 2.227783 -7.003784 -2.090454[0m
+[0;32mI (325645) LSM6DS3: accel = 0.064819 0.087524 0.992188[0m
+[0;32mI (325645) LSM6DS3: num_fifo_samples = 216[0m
+[0;32mI (325645) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (325665) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (326115) LSM6DS3: num_fifo_samples = 510[0m
+[0;32mI (326115) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (326625) LSM6DS3: [0m
+[0;32mI (326625) LSM6DS3: gyro = 2.243042 -7.019043 -2.014160[0m
+[0;32mI (326625) LSM6DS3: accel = 0.064209 0.086060 0.992065[0m
+[0;32mI (326625) LSM6DS3: num_fifo_samples = 234[0m
+[0;32mI (326625) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (326645) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (327095) LSM6DS3: num_fifo_samples = 522[0m
+[0;32mI (327095) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (327605) LSM6DS3: [0m
+[0;32mI (327605) LSM6DS3: gyro = 2.182007 -6.988525 -2.029419[0m
+[0;32mI (327605) LSM6DS3: accel = 0.063721 0.085693 0.996948[0m
+[0;32mI (327605) LSM6DS3: num_fifo_samples = 246[0m
+[0;32mI (327605) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (327625) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (328075) LSM6DS3: num_fifo_samples = 540[0m
+[0;32mI (328075) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (328585) LSM6DS3: [0m
+[0;32mI (328585) LSM6DS3: gyro = 2.395630 -7.125854 -2.014160[0m
+[0;32mI (328585) LSM6DS3: accel = 0.065063 0.088135 0.990845[0m
+[0;32mI (328585) LSM6DS3: num_fifo_samples = 264[0m
+[0;32mI (328585) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (328605) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (329055) LSM6DS3: num_fifo_samples = 558[0m
+[0;32mI (329055) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (329565) LSM6DS3: [0m
+[0;32mI (329565) LSM6DS3: gyro = 2.334595 -7.080078 -2.029419[0m
+[0;32mI (329565) LSM6DS3: accel = 0.064575 0.086914 0.993896[0m
+[0;32mI (329565) LSM6DS3: num_fifo_samples = 276[0m
+[0;32mI (329565) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (329585) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (330035) LSM6DS3: num_fifo_samples = 570[0m
+[0;32mI (330035) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (330545) LSM6DS3: [0m
+[0;32mI (330545) LSM6DS3: gyro = 2.151489 -6.988525 -2.029419[0m
+[0;32mI (330545) LSM6DS3: accel = 0.064575 0.086304 0.997070[0m
+[0;32mI (330545) LSM6DS3: num_fifo_samples = 294[0m
+[0;32mI (330545) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (330565) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (331015) LSM6DS3: num_fifo_samples = 588[0m
+[0;32mI (331015) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (331525) LSM6DS3: [0m
+[0;32mI (331525) LSM6DS3: gyro = 2.258301 -6.942749 -2.014160[0m
+[0;32mI (331525) LSM6DS3: accel = 0.064819 0.085938 0.993774[0m
+[0;32mI (331525) LSM6DS3: num_fifo_samples = 312[0m
+[0;32mI (331525) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (331545) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (331995) LSM6DS3: num_fifo_samples = 600[0m
+[0;32mI (331995) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (332505) LSM6DS3: [0m
+[0;32mI (332505) LSM6DS3: gyro = 2.258301 -6.958008 -2.014160[0m
+[0;32mI (332505) LSM6DS3: accel = 0.063477 0.086670 0.995605[0m
+[0;32mI (332505) LSM6DS3: num_fifo_samples = 324[0m
+[0;32mI (332505) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (332525) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (333035) LSM6DS3: [0m
+[0;32mI (333035) LSM6DS3: gyro = 2.227783 -7.019043 -2.014160[0m
+[0;32mI (333035) LSM6DS3: accel = 0.063843 0.085693 0.991455[0m
+[0;32mI (333035) LSM6DS3: num_fifo_samples = 60[0m
+[0;32mI (333035) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (333055) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (333505) LSM6DS3: num_fifo_samples = 354[0m
+[0;32mI (333505) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (334015) LSM6DS3: [0m
+[0;32mI (334015) LSM6DS3: gyro = 2.334595 -7.019043 -2.075195[0m
+[0;32mI (334015) LSM6DS3: accel = 0.065063 0.086060 0.992920[0m
+[0;32mI (334015) LSM6DS3: num_fifo_samples = 72[0m
+[0;32mI (334015) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (334035) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (334485) LSM6DS3: num_fifo_samples = 366[0m
+[0;32mI (334485) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (334995) LSM6DS3: [0m
+[0;32mI (334995) LSM6DS3: gyro = 2.182007 -6.988525 -2.014160[0m
+[0;32mI (334995) LSM6DS3: accel = 0.063354 0.085449 0.999878[0m
+[0;32mI (334995) LSM6DS3: num_fifo_samples = 90[0m
+[0;32mI (334995) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (335015) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (335465) LSM6DS3: num_fifo_samples = 384[0m
+[0;32mI (335465) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (335975) LSM6DS3: [0m
+[0;32mI (335975) LSM6DS3: gyro = 2.288818 -6.988525 -2.075195[0m
+[0;32mI (335975) LSM6DS3: accel = 0.062744 0.086548 0.994507[0m
+[0;32mI (335975) LSM6DS3: num_fifo_samples = 108[0m
+[0;32mI (335975) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (335995) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (336445) LSM6DS3: num_fifo_samples = 396[0m
+[0;32mI (336445) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
