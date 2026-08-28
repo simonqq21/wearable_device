@@ -10,7 +10,7 @@ extern QueueHandle_t queue_imu;
  * Grab data sent from the IMU datalogging publisher task to log to the SD card.
  * Create and open new binary file with given index
  *
- * @param params task_SD_card_datalogger_params_t
+ * @param params params_task_SD_card_datalogger_t
  */
 void task_SD_card_datalogger(void *params)
 {
@@ -18,7 +18,7 @@ void task_SD_card_datalogger(void *params)
     cmd_task_sd_card_datalogging_t prev_cmd_task_sd_card_datalogging = CMD_SD_CARD_STOP;
 
     /* parse freeRTOS primitives from params */
-    task_SD_card_datalogger_params_t *sd_datalogger_params = (task_SD_card_datalogger_params_t *)params;
+    params_task_SD_card_datalogger_t *sd_datalogger_params = (params_task_SD_card_datalogger_t *)params;
     QueueHandle_t queue_sdcard = sd_datalogger_params->queue_sdcard;
     StreamBufferHandle_t streambuffer_sd = sd_datalogger_params->streambuffer_sd;
 

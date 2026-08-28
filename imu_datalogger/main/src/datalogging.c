@@ -14,9 +14,10 @@ void task_main_datalogging(void *params)
     cmd_task_datalogging_t datalogging_task_cmd, prev_datalogging_task_cmd;
     // uint8_t imu_data_received;
     imu_data_t imu_data;
+    orientation_data_t orientation_data;
 
     /* datalogging task params */
-    task_main_datalogging_params_t *datalogging_params = (task_main_datalogging_params_t *)params;
+    params_task_main_datalogging_t *datalogging_params = (params_task_main_datalogging_t *)params;
 
     /* streambuffers */
     StreamBufferHandle_t streambuffer_imu = datalogging_params->streambuffer_imu;
@@ -159,7 +160,36 @@ void task_main_datalogging(void *params)
                 //        euler.angle.roll, euler.angle.pitch, euler.angle.yaw,
                 //        earth.axis.x, earth.axis.y, earth.axis.z);
 
+                /* if orientation format is in euler angles, stream euler angles. */
+                if (ORIENTATION_FORMAT == ORIENTATION_EULER)
+                {
+                    orientation_data.euler_angle.timestamp = 120000;
+                    orientation_data.euler_angle.x = 30;
+                    orientation_data.euler_angle.y = 40;
+                    orientation_data.euler_angle.z = 50;
+                }
+                /* else if orientation format is in quaternions, stream quaternions. */
+                else if (ORIENTATION_FORMAT == ORIENTATION_QUATERNION)
+                {
+                    orientation_data.quaternion.timestamp = 120000;
+                    orientation_data.quaternion.w = 1;
+                    orientation_data.quaternion.x = 2;
+                    orientation_data.quaternion.y = 3;
+                    orientation_data.quaternion.z = 5;
+                }
+
                 /* send orientation data to SD card */
+                // if (queue_orientation_sdcard != NULL)
+                // {
+                //     if (xQueueSend(queue_orientation_sdcard, &orientation_data, 100 / portTICK_PERIOD_MS) == pdTRUE)
+                //     {
+                //         ESP_LOGI(DATALOGGING_TAG, "send orientation data to SD card");
+                //     }
+                //     else
+                //     {
+                //         ESP_LOGI(DATALOGGING_TAG, "failed to send orientation data to SD card");
+                //     }
+                // }
                 /* send orientation data to UART */
                 /* send orientation data to BLE */
 

@@ -28,7 +28,7 @@ typedef struct
 {
     QueueHandle_t queue_sdcard;
     StreamBufferHandle_t streambuffer_sd;
-} task_SD_card_datalogger_params_t;
+} params_task_SD_card_datalogger_t;
 
 void task_SD_card_datalogger(void *params);
 esp_err_t sd_configure(void);

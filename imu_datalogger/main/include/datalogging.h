@@ -22,7 +22,7 @@ typedef struct
     QueueHandle_t queue_orientation_BLE;
     StreamBufferHandle_t streambuffer_sd;
 
-} task_main_datalogging_params_t;
+} params_task_main_datalogging_t;
 
 void task_main_datalogging(void *params);
 

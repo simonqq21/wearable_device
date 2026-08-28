@@ -38,9 +38,11 @@ void task_uart_streaming(void *params)
 {
     /* orientation data */
     orientation_data_t rcv_orientation_data;
-
+    uint16_t encoded_bytes_len;
+    /* COBS-encoded bytes buffer */
+    char encoded_bytes_buf[sizeof(orientation_data_t) + 3];
     /* UART task parameters */
-    params_uart_task_t *params_uart_task = (params_uart_task_t *)params;
+    params_task_uart_t *params_uart_task = (params_task_uart_t *)params;
     QueueHandle_t queue_orientation_UART = params_uart_task->queue_orientation_UART;
 
     while (1)
@@ -48,16 +50,10 @@ void task_uart_streaming(void *params)
         /* receive orientation values from the UART orientation queue */
         if (xQueueReceive(queue_orientation_UART, &rcv_orientation_data, 100 / portTICK_PERIOD_MS) == pdTRUE)
         {
-            /* if orientation format is in euler angles, stream euler angles. */
-            if (ORIENTATION_FORMAT == ORIENTATION_EULER)
-            {
-                // rcv_orientation_data.euler_angle.x;
-            }
-            /* else if orientation format is in quaternions, stream quaternions. */
-            else if (ORIENTATION_FORMAT == ORIENTATION_QUATERNION)
-            {
-                // rcv_orientation_data.quaternion.w;
-            }
+            /* COBS-encode the orientation data */
+            encoded_bytes_len = cobs_encode((char *)&rcv_orientation_data, encoded_bytes_buf, sizeof(orientation_data_t));
+            /* stream the COBS-encoded orientation data out the UART port */
+            uart_write_bytes(UART_PORT_NUM, encoded_bytes_buf, encoded_bytes_len);
         }
     }
 }

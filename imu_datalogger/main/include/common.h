@@ -29,15 +29,6 @@
 #include "sdmmc_cmd.h"
 #include "config.h"
 
-// #include <mpu6050.h>
-
-// #include "button_module.h"
-// #include "imu.h"
-// #include "led_module.h"
-// #include "nvs.h"
-// #include "sd_card.h"
-// #include "uart.h"
-
 /* IMU calibration offsets struct */
 typedef struct
 {
@@ -48,7 +39,7 @@ typedef struct
 /* IMU data struct */
 typedef struct __attribute__((packed))
 {
-    uint32_t timestamp;
+    uint64_t timestamp;
     float ax, ay, az; // IMU model-agnostic
     float gx, gy, gz;
     float temp;
@@ -57,12 +48,14 @@ typedef struct __attribute__((packed))
 /* Euler angle */
 typedef struct
 {
+    uint64_t timestamp;
     float x, y, z;
 } euler_angle_t;
 
 /* Quaternion */
 typedef struct
 {
+    uint64_t timestamp;
     float w, x, y, z;
 } quaternion_t;
 

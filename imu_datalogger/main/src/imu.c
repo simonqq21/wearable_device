@@ -14,7 +14,7 @@ nvs_func_t offset_read_cb,
 /**
  * @brief IMU reading task
  *
- * @param params type params_imu_task_t
+ * @param params type params_task_imu_t
  */
 void task_imu(void *params)
 {
@@ -32,7 +32,7 @@ void task_imu(void *params)
     // imu_data_t imu_data;
 
     /* parse freeRTOS primitives from params */
-    params_imu_task_t *params_imu_task = (params_imu_task_t *)params;
+    params_task_imu_t *params_imu_task = (params_task_imu_t *)params;
 
     /* status LED task handle */
     TaskHandle_t *task_handle_status_led = params_imu_task->task_handle_status_led;

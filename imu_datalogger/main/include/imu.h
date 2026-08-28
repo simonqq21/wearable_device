@@ -26,7 +26,7 @@ typedef struct
     QueueHandle_t queue_imu;
     StreamBufferHandle_t streambuffer_imu;
     i2c_master_dev_handle_t dev_handle;
-} params_imu_task_t;
+} params_task_imu_t;
 
 // NVS offset read write function callback typedef
 typedef esp_err_t (*nvs_func_t)(imu_calibration_offsets_t *);

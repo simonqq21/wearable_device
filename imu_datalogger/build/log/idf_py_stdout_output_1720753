@@ -259,7 +259,7 @@ In file included from /home/simonque/Documents/code/esp-idf-projects/wearable_de
       |                          ^~~~~~~~~~~~~~~~~~
       |                          TimerHandle_t
 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/imu_datalogger.c:29:3: error: storage class specified for parameter 'task_main_datalogging_params_t'
-   29 | } task_main_datalogging_params_t;
+   29 | } params_task_main_datalogging_t;
       |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/imu_datalogger.c:67:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
    67 | {
