@@ -1,0 +1,39 @@
+Command: ninja all
+[1/11] Performing build step for 'bootloader'
+[1/1] cd /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader && /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader/bootloader.bin
+Bootloader binary size 0x6610 bytes. 0x9f0 bytes (9%) free.
+[2/11] No install step for 'bootloader'
+[3/11] Completed 'bootloader'
+[4/11] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/imu_datalogger.c.obj
+[5/11] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/src/datalogging.c.obj
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/datalogging.c: In function 'task_main_datalogging':
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/datalogging.c:150:36: warning: unused variable 'earth' [-Wunused-variable]
+  150 |                 const FusionVector earth = FusionAhrsGetEarthAcceleration(&ahrs);
+      |                                    ^~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/datalogging.c:148:35: warning: unused variable 'euler' [-Wunused-variable]
+  148 |                 const FusionEuler euler = FusionQuaternionToEuler(FusionAhrsGetQuaternion(&ahrs));
+      |                                   ^~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/datalogging.c:33:9: warning: unused variable 'num_bytes_read' [-Wunused-variable]
+   33 |     int num_bytes_read = 0;
+      |         ^~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/datalogging.c:31:19: warning: unused variable 'queue_orientation_BLE' [-Wunused-variable]
+   31 |     QueueHandle_t queue_orientation_BLE = datalogging_params->queue_orientation_BLE;
+      |                   ^~~~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/datalogging.c:24:26: warning: unused variable 'streambuffer_sd' [-Wunused-variable]
+   24 |     StreamBufferHandle_t streambuffer_sd = datalogging_params->streambuffer_sd;
+      |                          ^~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/datalogging.c:23:26: warning: unused variable 'streambuffer_imu' [-Wunused-variable]
+   23 |     StreamBufferHandle_t streambuffer_imu = datalogging_params->streambuffer_imu;
+      |                          ^~~~~~~~~~~~~~~~
+[6/11] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/src/sd_card.c.obj
+[7/11] Linking C static library esp-idf/main/libmain.a
+[8/11] Generating esp-idf/esp_system/ld/sections.ld
+[9/11] Linking CXX executable imu_module.elf
+[10/11] Generating binary image from built executable
+esptool v5.2.dev3
+Creating ESP32 image...
+Merged 2 ELF sections.
+Successfully created ESP32 image.
+Generated /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/imu_module.bin
+[11/11] cd /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build && /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/partition_table/partition-table.bin /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/imu_module.bin
+imu_module.bin binary size 0x520c0 bytes. Smallest app partition is 0x100000 bytes. 0xadf40 bytes (68%) free.

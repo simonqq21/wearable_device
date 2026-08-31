@@ -88,13 +88,6 @@ void task_main_datalogging(void *params)
                         (uint32_t *)&datalogging_task_cmd,
                         5 / portTICK_PERIOD_MS);
 
-        // if (xTaskNotifyWait(0,
-        //                     0,
-        //                     (uint32_t *)&temp,
-        //                     5 / portTICK_PERIOD_MS) != pdTRUE)
-        // {
-        //     datalogging_task_cmd = temp;
-        // }
         /* if datalogging was just started */
         if (datalogging_task_cmd == CMD_DATALOGGING_GO && prev_datalogging_task_cmd == CMD_DATALOGGING_STOP)
         {
@@ -163,7 +156,8 @@ void task_main_datalogging(void *params)
                 /* if orientation format is in euler angles, stream euler angles. */
                 if (ORIENTATION_FORMAT == ORIENTATION_EULER)
                 {
-                    orientation_data.euler_angle.timestamp = 120000;
+                    /* dummy euler angle values */
+                    orientation_data.euler_angle.timestamp = imu_data.timestamp;
                     orientation_data.euler_angle.x = 30;
                     orientation_data.euler_angle.y = 40;
                     orientation_data.euler_angle.z = 50;
@@ -171,7 +165,8 @@ void task_main_datalogging(void *params)
                 /* else if orientation format is in quaternions, stream quaternions. */
                 else if (ORIENTATION_FORMAT == ORIENTATION_QUATERNION)
                 {
-                    orientation_data.quaternion.timestamp = 120000;
+                    /* dummy quaternion values */
+                    orientation_data.quaternion.timestamp = imu_data.timestamp;
                     orientation_data.quaternion.w = 1;
                     orientation_data.quaternion.x = 2;
                     orientation_data.quaternion.y = 3;
@@ -179,19 +174,43 @@ void task_main_datalogging(void *params)
                 }
 
                 /* send orientation data to SD card */
-                // if (queue_orientation_sdcard != NULL)
+                if (queue_orientation_sdcard != NULL)
+                {
+                    if (xQueueSend(queue_orientation_sdcard, &orientation_data, 100 / portTICK_PERIOD_MS) == pdTRUE)
+                    {
+                        // ESP_LOGI(DATALOGGING_TAG, "send orientation data to SD card");
+                    }
+                    else
+                    {
+                        ESP_LOGI(DATALOGGING_TAG, "failed to send orientation data to SD card");
+                    }
+                }
+
+                /* send orientation data to UART */
+                if (queue_orientation_UART != NULL)
+                {
+                    if (xQueueSend(queue_orientation_UART, &orientation_data, 100 / portTICK_PERIOD_MS) == pdTRUE)
+                    {
+                        // ESP_LOGI(DATALOGGING_TAG, "sent orientation data to UART");
+                    }
+                    else
+                    {
+                        ESP_LOGI(DATALOGGING_TAG, "failed to send orientation data to UART");
+                    }
+                }
+
+                /* send orientation data to BLE */
+                // if (queue_orientation_BLE != NULL)
                 // {
-                //     if (xQueueSend(queue_orientation_sdcard, &orientation_data, 100 / portTICK_PERIOD_MS) == pdTRUE)
+                //     if (xQueueSend(queue_orientation_BLE, &orientation_data, 100 / portTICK_PERIOD_MS) == pdTRUE)
                 //     {
-                //         ESP_LOGI(DATALOGGING_TAG, "send orientation data to SD card");
+                //         // ESP_LOGI(DATALOGGING_TAG, "sent orientation data to BLE");
                 //     }
                 //     else
                 //     {
-                //         ESP_LOGI(DATALOGGING_TAG, "failed to send orientation data to SD card");
+                //         // ESP_LOGI(DATALOGGING_TAG, "failed to send orientation data to BLE");
                 //     }
                 // }
-                /* send orientation data to UART */
-                /* send orientation data to BLE */
 
                 num_samples_read = (num_samples_read + 1) % NUM_FIFO_TIMESTAMPS;
             }

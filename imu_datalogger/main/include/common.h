@@ -28,6 +28,7 @@
 #include "esp_vfs_fat.h"
 #include "sdmmc_cmd.h"
 #include "config.h"
+#include "pins.h"
 
 /* IMU calibration offsets struct */
 typedef struct
@@ -46,21 +47,21 @@ typedef struct __attribute__((packed))
 } imu_data_t;
 
 /* Euler angle */
-typedef struct
+typedef struct __attribute__((packed))
 {
     uint64_t timestamp;
     float x, y, z;
 } euler_angle_t;
 
 /* Quaternion */
-typedef struct
+typedef struct __attribute__((packed))
 {
     uint64_t timestamp;
     float w, x, y, z;
 } quaternion_t;
 
 /* orientation data union */
-typedef union
+typedef union __attribute__((packed))
 {
     euler_angle_t euler_angle;
     quaternion_t quaternion;

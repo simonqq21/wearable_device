@@ -2,8 +2,7 @@
 
 esp_err_t uart_configure(void)
 {
-    /* Configure parameters of an UART driver,
-     * communication pins and install the driver */
+    /* Configure UART0 driver for ESP_LOGI */
     uart_config_t uart_config = {
         .baud_rate = UART_BAUD_RATE,
         .data_bits = UART_DATA_8_BITS,
@@ -19,7 +18,23 @@ esp_err_t uart_configure(void)
     /**
      * If you want to use USB, set TXD to 1 and RXD to 3.
      */
-    ESP_ERROR_CHECK(uart_set_pin(UART_PORT_NUM, 1, 3, 0, 0));
+    ESP_ERROR_CHECK(uart_set_pin(UART_PORT_NUM, UART_TX_PIN, UART_RX_PIN, 0, 0));
+
+    /* configure UART1 for data streaming */
+    uart_config_t uart_streaming_config = {
+        .baud_rate = 230400,
+        .data_bits = UART_DATA_8_BITS,
+        .parity = UART_PARITY_DISABLE,
+        .stop_bits = UART_STOP_BITS_1,
+        .flow_ctrl = UART_HW_FLOWCTRL_DISABLE,
+        // .source_clk = UART_SCLK_DEFAULT,
+    };
+    intr_alloc_flags = 0;
+
+    ESP_ERROR_CHECK(uart_driver_install(UART_STREAMING_PORT_NUM, UART_BUF_SIZE * 2, 0, 0, NULL, intr_alloc_flags));
+    ESP_ERROR_CHECK(uart_param_config(UART_STREAMING_PORT_NUM, &uart_streaming_config));
+    ESP_ERROR_CHECK(uart_set_pin(UART_STREAMING_PORT_NUM, UART_STREAM_TX_PIN, UART_STREAM_RX_PIN, 0, 0));
+
     return ESP_OK;
 }
 
@@ -52,8 +67,9 @@ void task_uart_streaming(void *params)
         {
             /* COBS-encode the orientation data */
             encoded_bytes_len = cobs_encode((char *)&rcv_orientation_data, encoded_bytes_buf, sizeof(orientation_data_t));
+            // ESP_LOGI(UART_TAG, "enc_bytes_len = %d\n", encoded_bytes_len);
             /* stream the COBS-encoded orientation data out the UART port */
-            uart_write_bytes(UART_PORT_NUM, encoded_bytes_buf, encoded_bytes_len);
+            uart_write_bytes(UART_STREAMING_PORT_NUM, encoded_bytes_buf, encoded_bytes_len);
         }
     }
 }
@@ -167,7 +183,8 @@ uint16_t cobs_decode(char *src, char *dst, uint16_t len)
             dst[write_index++] = src[read_index++];
         }
 
-        /* write the 0x0 once the next 0x0 index has been reached */
+        /* write the 0x0 to the decoded char array once the next 0x0 index has
+        been reached */
         if (code < 0xFF && read_index < len)
         {
             dst[write_index++] = 0x00;

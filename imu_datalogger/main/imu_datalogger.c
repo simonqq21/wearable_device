@@ -87,8 +87,8 @@ void app_main(void)
     queue_orientation_BLE = xQueueCreate(NUM_FIFO_TIMESTAMPS, sizeof(imu_data_t));
 
     /* create all streambuffers */
-    streambuffer_imu = xStreamBufferCreate(sizeof(imu_data_t) * NUM_FIFO_TIMESTAMPS, sizeof(imu_data_t) * NUM_FIFO_TIMESTAMPS);
-    streambuffer_sd = xStreamBufferCreate(sizeof(imu_data_t) * NUM_FIFO_TIMESTAMPS * 2, sizeof(imu_data_t) * NUM_FIFO_TIMESTAMPS);
+    // streambuffer_imu = xStreamBufferCreate(sizeof(imu_data_t) * NUM_FIFO_TIMESTAMPS, sizeof(imu_data_t) * NUM_FIFO_TIMESTAMPS);
+    // streambuffer_sd = xStreamBufferCreate(sizeof(imu_data_t) * NUM_FIFO_TIMESTAMPS * 2, sizeof(imu_data_t) * NUM_FIFO_TIMESTAMPS);
 
     /* create all parameters */
     params_task_imu_t params_task_imu;
@@ -99,24 +99,27 @@ void app_main(void)
     /* params_task_imu */
     params_task_imu.task_handle_status_led = &task_handle_status_led;
     params_task_imu.queue_imu = queue_imu;
-    params_task_imu.streambuffer_imu = streambuffer_imu;
+    // params_task_imu.streambuffer_imu = streambuffer_imu;
     params_task_imu.dev_handle = dev_handle;
 
     /* params_task_main_datalogging */
     params_task_main_datalogging.queue_imu = queue_imu;
-    params_task_main_datalogging.streambuffer_imu = streambuffer_imu;
+    // params_task_main_datalogging.streambuffer_imu = streambuffer_imu;
     params_task_main_datalogging.queue_raw_sdcard = queue_raw_sdcard;
     params_task_main_datalogging.queue_orientation_sdcard = queue_orientation_sdcard;
     params_task_main_datalogging.queue_orientation_UART = queue_orientation_UART;
     params_task_main_datalogging.queue_orientation_BLE = queue_orientation_BLE;
-    params_task_main_datalogging.streambuffer_sd = streambuffer_sd;
+    // params_task_main_datalogging.streambuffer_sd = streambuffer_sd;
 
     /* params_task_SD_card_datalogger */
-    params_task_SD_card_datalogger.queue_sdcard = queue_raw_sdcard;
-    params_task_SD_card_datalogger.streambuffer_sd = streambuffer_sd;
+    params_task_SD_card_datalogger.queue_raw_sdcard = queue_raw_sdcard;
+    params_task_SD_card_datalogger.queue_orientation_sdcard = queue_orientation_sdcard;
+    // params_task_SD_card_datalogger.streambuffer_sd = streambuffer_sd;
 
     /* params_task_uart */
     params_task_uart.queue_orientation_UART = queue_orientation_UART;
+
+    /* params_task_ble */
 
     /* initialize all tasks */
     // IMU reading task
@@ -149,7 +152,7 @@ void app_main(void)
     // micro SD card datalogging task
     xTaskCreatePinnedToCore(task_SD_card_datalogger,
                             "SD card data logging task",
-                            7000,
+                            10000,
                             &params_task_SD_card_datalogger,
                             5,
                             &task_handle_SD_card_datalogger,
@@ -157,7 +160,7 @@ void app_main(void)
     /* UART streaming task */
     xTaskCreatePinnedToCore(task_uart_streaming,
                             "UART data streaming task",
-                            2048,
+                            3072,
                             &params_task_uart,
                             3,
                             &task_handle_uart,

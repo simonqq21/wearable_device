@@ -1,0 +1,29 @@
+Command: ninja all
+[1/10] Performing build step for 'bootloader'
+[1/1] cd /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader && /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader/bootloader.bin
+Bootloader binary size 0x6610 bytes. 0x9f0 bytes (9%) free.
+[2/10] No install step for 'bootloader'
+[3/10] Completed 'bootloader'
+[4/10] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/imu_datalogger.c.obj
+[5/10] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/src/sd_card.c.obj
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/sd_card.c: In function 'get_highest_datalog_idx':
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/sd_card.c:431:20: warning: unused variable 'entry' [-Wunused-variable]
+  431 |     struct dirent *entry;
+      |                    ^~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/sd_card.c:422:10: warning: unused variable 'trailing_chars' [-Wunused-variable]
+  422 |     char trailing_chars[2] = {0};
+      |          ^~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/sd_card.c:421:9: warning: unused variable 'file_number' [-Wunused-variable]
+  421 |     int file_number;
+      |         ^~~~~~~~~~~
+[6/10] Linking C static library esp-idf/main/libmain.a
+[7/10] Generating esp-idf/esp_system/ld/sections.ld
+[8/10] Linking CXX executable imu_module.elf
+[9/10] Generating binary image from built executable
+esptool v5.2.dev3
+Creating ESP32 image...
+Merged 2 ELF sections.
+Successfully created ESP32 image.
+Generated /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/imu_module.bin
+[10/10] cd /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build && /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/partition_table/partition-table.bin /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/imu_module.bin
+imu_module.bin binary size 0x52360 bytes. Smallest app partition is 0x100000 bytes. 0xadca0 bytes (68%) free.
