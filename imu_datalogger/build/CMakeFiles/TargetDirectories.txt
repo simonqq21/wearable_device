@@ -628,6 +628,7 @@
 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/esp-idf/esp_gdbstub/CMakeFiles/install.dir
 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/esp-idf/esp_gdbstub/CMakeFiles/install/local.dir
 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/esp-idf/esp_gdbstub/CMakeFiles/install/strip.dir
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/esp-idf/bt/CMakeFiles/__idf_bt.dir
 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/esp-idf/bt/CMakeFiles/edit_cache.dir
 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/esp-idf/bt/CMakeFiles/rebuild_cache.dir
 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/esp-idf/bt/CMakeFiles/list_install_components.dir

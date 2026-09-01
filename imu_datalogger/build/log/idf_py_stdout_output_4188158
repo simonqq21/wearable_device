@@ -1,0 +1,1290 @@
+Command: ninja all
+[1/9] Performing build step for 'bootloader'
+[1/1] cd /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader && /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader/bootloader.bin
+Bootloader binary size 0x6610 bytes. 0x9f0 bytes (9%) free.
+[2/9] No install step for 'bootloader'
+[3/9] Completed 'bootloader'
+[4/9] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/src/ble.c.obj
+FAILED: esp-idf/main/CMakeFiles/__idf_main.dir/src/ble.c.obj 
+/home/simonque/.espressif/tools/xtensa-esp-elf/esp-15.2.0_20251204/xtensa-esp-elf/bin/xtensa-esp32-elf-gcc -DESP_PLATFORM -DIDF_VER=\"v6.1-dev-2310-g44e2fa6d9c5-dirt\" -DMBEDTLS_CONFIG_FILE=\"mbedtls/esp_config.h\" -DMBEDTLS_MAJOR_VERSION=4 -DSOC_MMU_PAGE_SIZE=CONFIG_MMU_PAGE_SIZE -DSOC_XTAL_FREQ_MHZ=CONFIG_XTAL_FREQ -DTF_PSA_CRYPTO_USER_CONFIG_FILE=\"mbedtls/esp_config.h\" -DUNITY_INCLUDE_CONFIG_H -D_GLIBCXX_HAVE_POSIX_SEMAPHORE -D_GLIBCXX_USE_POSIX_SEMAPHORE -D_GNU_SOURCE -D_POSIX_READER_WRITER_LOCKS -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/config -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/include -I/home/simonque/Documents/code/esp-idf/components/esp_libc/platform_include -I/home/simonque/Documents/code/esp-idf/components/freertos/config/include -I/home/simonque/Documents/code/esp-idf/components/freertos/config/include/freertos -I/home/simonque/Documents/code/esp-idf/components/freertos/config/xtensa/include -I/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/include -I/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include -I/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos -I/home/simonque/Documents/code/esp-idf/components/freertos/esp_additions/include -I/home/simonque/Documents/code/esp-idf/components/esp_hw_support/include -I/home/simonque/Documents/code/esp-idf/components/esp_hw_support/include/soc -I/home/simonque/Documents/code/esp-idf/components/esp_hw_support/ldo/include -I/home/simonque/Documents/code/esp-idf/components/esp_hw_support/debug_probe/include -I/home/simonque/Documents/code/esp-idf/components/esp_hw_support/etm/include -I/home/simonque/Documents/code/esp-idf/components/esp_hw_support/mspi/mspi_timing_tuning/include -I/home/simonque/Documents/code/esp-idf/components/esp_hw_support/mspi/mspi_timing_tuning/tuning_scheme_impl/include -I/home/simonque/Documents/code/esp-idf/components/esp_hw_support/mspi/mspi_intr/include -I/home/simonque/Documents/code/esp-idf/components/esp_hw_support/power_supply/include -I/home/simonque/Documents/code/esp-idf/components/esp_hw_support/modem/include -I/home/simonque/Documents/code/esp-idf/components/esp_hw_support/port/esp32/. -I/home/simonque/Documents/code/esp-idf/components/esp_hw_support/port/esp32/include -I/home/simonque/Documents/code/esp-idf/components/heap/include -I/home/simonque/Documents/code/esp-idf/components/heap/tlsf -I/home/simonque/Documents/code/esp-idf/components/log/include -I/home/simonque/Documents/code/esp-idf/components/soc/include -I/home/simonque/Documents/code/esp-idf/components/soc/esp32 -I/home/simonque/Documents/code/esp-idf/components/soc/esp32/include -I/home/simonque/Documents/code/esp-idf/components/soc/esp32/register -I/home/simonque/Documents/code/esp-idf/components/hal/platform_port/include -I/home/simonque/Documents/code/esp-idf/components/hal/esp32/include -I/home/simonque/Documents/code/esp-idf/components/hal/include -I/home/simonque/Documents/code/esp-idf/components/esp_rom/include -I/home/simonque/Documents/code/esp-idf/components/esp_rom/esp32/include -I/home/simonque/Documents/code/esp-idf/components/esp_rom/esp32/include/esp32 -I/home/simonque/Documents/code/esp-idf/components/esp_rom/esp32 -I/home/simonque/Documents/code/esp-idf/components/esp_common/include -I/home/simonque/Documents/code/esp-idf/components/esp_system/include -I/home/simonque/Documents/code/esp-idf/components/esp_system/port/soc -I/home/simonque/Documents/code/esp-idf/components/esp_system/port/include/private -I/home/simonque/Documents/code/esp-idf/components/esp_stdio/include -I/home/simonque/Documents/code/esp-idf/components/xtensa/esp32/include -I/home/simonque/Documents/code/esp-idf/components/xtensa/include -I/home/simonque/Documents/code/esp-idf/components/xtensa/deprecated_include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_gpio/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_gpio/esp32/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_usb/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_pmu/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_pmu/esp32/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_ana_conv/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_ana_conv/esp32/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_dma/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_i2s/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_i2s/esp32/include -I/home/simonque/Documents/code/esp-idf/components/lwip/include -I/home/simonque/Documents/code/esp-idf/components/lwip/include/apps -I/home/simonque/Documents/code/esp-idf/components/lwip/lwip/src/include -I/home/simonque/Documents/code/esp-idf/components/lwip/port/include -I/home/simonque/Documents/code/esp-idf/components/lwip/port/freertos/include -I/home/simonque/Documents/code/esp-idf/components/lwip/port/esp32xx/include -I/home/simonque/Documents/code/esp-idf/components/lwip/port/esp32xx/include/arch -I/home/simonque/Documents/code/esp-idf/components/lwip/port/esp32xx/include/sys -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/esp-idf-lib__mpu6050 -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/esp-idf-lib__i2cdev -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/esp-idf-lib__esp_idf_lib_helpers -I/home/simonque/Documents/code/esp-idf/components/esp_driver_gpio/include -I/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_i2c/esp32/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_i2c/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__button/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__button/interface -I/home/simonque/Documents/code/esp-idf/components/esp_adc/include -I/home/simonque/Documents/code/esp-idf/components/esp_adc/interface -I/home/simonque/Documents/code/esp-idf/components/esp_adc/esp32/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/dotprod/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/support/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/support/mem/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/windows/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/windows/hann/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/windows/blackman/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/windows/blackman_harris/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/windows/blackman_nuttall/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/windows/nuttall/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/windows/flat_top/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/iir/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/fir/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/math/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/math/add/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/math/sub/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/math/mul/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/math/addc/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/math/mulc/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/math/sqrt/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/matrix/mul/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/matrix/add/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/matrix/addc/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/matrix/mulc/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/matrix/sub/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/matrix/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/fft/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/dct/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/conv/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/common/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/matrix/mul/test/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/kalman/ekf/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/espressif__esp-dsp/modules/kalman/ekf_imu13states/include -I/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/managed_components/joltwallet__littlefs/include -I/home/simonque/Documents/code/esp-idf/components/sdmmc/include -I/home/simonque/Documents/code/esp-idf/components/esp_blockdev/include -I/home/simonque/Documents/code/esp-idf/components/esp_partition/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_gpspi/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_gpspi/esp32/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_clock/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_clock/esp32/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_mspi/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_mspi/esp32/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_security/esp32/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_security/include -I/home/simonque/Documents/code/esp-idf/components/esp_app_format/include -I/home/simonque/Documents/code/esp-idf/components/esp_bootloader_format/include -I/home/simonque/Documents/code/esp-idf/components/app_update/include -I/home/simonque/Documents/code/esp-idf/components/bootloader_support/include -I/home/simonque/Documents/code/esp-idf/components/bootloader_support/bootloader_flash/include -I/home/simonque/Documents/code/esp-idf/components/efuse/include -I/home/simonque/Documents/code/esp-idf/components/efuse/esp32/include -I/home/simonque/Documents/code/esp-idf/components/esp_security/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_uart/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_uart/esp32/include -I/home/simonque/Documents/code/esp-idf/components/esp_pm/include -I/home/simonque/Documents/code/esp-idf/components/esp_mm/include -I/home/simonque/Documents/code/esp-idf/components/esp_driver_dma/include -I/home/simonque/Documents/code/esp-idf/components/mbedtls/port/include -I/home/simonque/Documents/code/esp-idf/components/mbedtls/mbedtls/include -I/home/simonque/Documents/code/esp-idf/components/mbedtls/mbedtls/library -I/home/simonque/Documents/code/esp-idf/components/mbedtls/mbedtls/tf-psa-crypto/core -I/home/simonque/Documents/code/esp-idf/components/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/src -I/home/simonque/Documents/code/esp-idf/components/mbedtls/esp_crt_bundle/include -I/home/simonque/Documents/code/esp-idf/components/mbedtls/port/psa_driver/include -I/home/simonque/Documents/code/esp-idf/components/mbedtls/mbedtls/tf-psa-crypto/include -I/home/simonque/Documents/code/esp-idf/components/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/include -I/home/simonque/Documents/code/esp-idf/components/mbedtls/mbedtls/tf-psa-crypto/drivers/everest/include -I/home/simonque/Documents/code/esp-idf/components/mbedtls/mbedtls/tf-psa-crypto/drivers/p256-m -I/home/simonque/Documents/code/esp-idf/components/esp_hal_timg/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_timg/esp32/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_wdt/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_wdt/esp32/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_rtc_timer/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_rtc_timer/esp32/include -I/home/simonque/Documents/code/esp-idf/components/spi_flash/include -I/home/simonque/Documents/code/esp-idf/components/esp_usb_cdc_rom_console/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_touch_sens/esp32/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_touch_sens/include -I/home/simonque/Documents/code/esp-idf/components/pthread/include -I/home/simonque/Documents/code/esp-idf/components/esp_timer/include -I/home/simonque/Documents/code/esp-idf/components/esp_ringbuf/include -I/home/simonque/Documents/code/esp-idf/components/esp_psram/include -I/home/simonque/Documents/code/esp-idf/components/esp_driver_uart/include -I/home/simonque/Documents/code/esp-idf/components/vfs/include -I/home/simonque/Documents/code/esp-idf/components/esp_driver_gptimer/include -I/home/simonque/Documents/code/esp-idf/components/app_trace/include -I/home/simonque/Documents/code/esp-idf/components/esp_event/include -I/home/simonque/Documents/code/esp-idf/components/nvs_sec_provider/include -I/home/simonque/Documents/code/esp-idf/components/nvs_flash/include -I/home/simonque/Documents/code/esp-idf/components/esp_phy/include -I/home/simonque/Documents/code/esp-idf/components/esp_phy/esp32/include -I/home/simonque/Documents/code/esp-idf/components/esp_driver_usb_serial_jtag/include -I/home/simonque/Documents/code/esp-idf/components/esp_netif/include -I/home/simonque/Documents/code/esp-idf/components/wpa_supplicant/include -I/home/simonque/Documents/code/esp-idf/components/wpa_supplicant/port/include -I/home/simonque/Documents/code/esp-idf/components/wpa_supplicant/esp_supplicant/include -I/home/simonque/Documents/code/esp-idf/components/esp_coex/include -I/home/simonque/Documents/code/esp-idf/components/esp_wifi/include -I/home/simonque/Documents/code/esp-idf/components/esp_wifi/include/local -I/home/simonque/Documents/code/esp-idf/components/esp_wifi/wifi_apps/include -I/home/simonque/Documents/code/esp-idf/components/esp_wifi/wifi_apps/nan_app/include -I/home/simonque/Documents/code/esp-idf/components/esp_driver_spi/include -I/home/simonque/Documents/code/esp-idf/components/esp_gdbstub/include -I/home/simonque/Documents/code/esp-idf/components/bt/include/esp32/include -I/home/simonque/Documents/code/esp-idf/components/bt/common/osi/include -I/home/simonque/Documents/code/esp-idf/components/bt/common/api/include/api -I/home/simonque/Documents/code/esp-idf/components/bt/common/btc/profile/esp/blufi/include -I/home/simonque/Documents/code/esp-idf/components/bt/common/btc/profile/esp/include -I/home/simonque/Documents/code/esp-idf/components/bt/common/hci_log/include -I/home/simonque/Documents/code/esp-idf/components/bt/common/ble_log/include -I/home/simonque/Documents/code/esp-idf/components/bt/host/bluedroid/api/include/api -I/home/simonque/Documents/code/esp-idf/components/bt/common/tinycrypt/include -I/home/simonque/Documents/code/esp-idf/components/bt/common/tinycrypt/port -I/home/simonque/Documents/code/esp-idf/components/unity/include -I/home/simonque/Documents/code/esp-idf/components/unity/unity/src -I/home/simonque/Documents/code/esp-idf/components/cmock/CMock/src -I/home/simonque/Documents/code/esp-idf/components/console -I/home/simonque/Documents/code/esp-idf/components/esp_hal_twai/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_twai/esp32/include -I/home/simonque/Documents/code/esp-idf/components/driver/i2c/include -I/home/simonque/Documents/code/esp-idf/components/driver/touch_sensor/include -I/home/simonque/Documents/code/esp-idf/components/driver/twai/include -I/home/simonque/Documents/code/esp-idf/components/driver/touch_sensor/esp32/include -I/home/simonque/Documents/code/esp-idf/components/http_parser -I/home/simonque/Documents/code/esp-idf/components/esp-tls -I/home/simonque/Documents/code/esp-idf/components/esp-tls/esp-tls-crypto -I/home/simonque/Documents/code/esp-idf/components/esp_driver_i2s/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_ana_cmpr/include -I/home/simonque/Documents/code/esp-idf/components/esp_driver_ana_cmpr/include -I/home/simonque/Documents/code/esp-idf/components/esp_driver_bitscrambler/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_cam/include -I/home/simonque/Documents/code/esp-idf/components/esp_driver_isp/include -I/home/simonque/Documents/code/esp-idf/components/esp_driver_cam/include -I/home/simonque/Documents/code/esp-idf/components/esp_driver_cam/interface -I/home/simonque/Documents/code/esp-idf/components/esp_driver_dac/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_i3c/include -I/home/simonque/Documents/code/esp-idf/components/esp_driver_i3c/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_jpeg/include -I/home/simonque/Documents/code/esp-idf/components/esp_driver_jpeg/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_ledc/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_ledc/esp32/include -I/home/simonque/Documents/code/esp-idf/components/esp_driver_ledc/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_mcpwm/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_mcpwm/esp32/include -I/home/simonque/Documents/code/esp-idf/components/esp_driver_mcpwm/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_parlio/include -I/home/simonque/Documents/code/esp-idf/components/esp_driver_parlio/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_pcnt/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_pcnt/esp32/include -I/home/simonque/Documents/code/esp-idf/components/esp_driver_pcnt/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_ppa/include -I/home/simonque/Documents/code/esp-idf/components/esp_driver_ppa/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_rmt/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_rmt/esp32/include -I/home/simonque/Documents/code/esp-idf/components/esp_driver_rmt/include -I/home/simonque/Documents/code/esp-idf/components/esp_driver_sd_intf/include -I/home/simonque/Documents/code/esp-idf/components/esp_driver_sdio/include -I/home/simonque/Documents/code/esp-idf/components/esp_driver_sdm/include -I/home/simonque/Documents/code/esp-idf/components/esp_driver_sdmmc/include -I/home/simonque/Documents/code/esp-idf/components/esp_driver_sdmmc/legacy/include -I/home/simonque/Documents/code/esp-idf/components/esp_driver_sdspi/include -I/home/simonque/Documents/code/esp-idf/components/esp_driver_touch_sens/include -I/home/simonque/Documents/code/esp-idf/components/esp_driver_touch_sens/hw_ver1/include -I/home/simonque/Documents/code/esp-idf/components/esp_driver_tsens/include -I/home/simonque/Documents/code/esp-idf/components/esp_driver_twai/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_emac/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_emac/esp32/include -I/home/simonque/Documents/code/esp-idf/components/esp_eth/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_ieee802154/include -I/home/simonque/Documents/code/esp-idf/components/esp_hal_lcd/include -I/home/simonque/Documents/code/esp-idf/components/esp_hid/include -I/home/simonque/Documents/code/esp-idf/components/tcp_transport/include -I/home/simonque/Documents/code/esp-idf/components/esp_http_client/include -I/home/simonque/Documents/code/esp-idf/components/esp_http_server/include -I/home/simonque/Documents/code/esp-idf/components/esp_https_ota/include -I/home/simonque/Documents/code/esp-idf/components/esp_https_server/include -I/home/simonque/Documents/code/esp-idf/components/esp_lcd/include -I/home/simonque/Documents/code/esp-idf/components/esp_lcd/interface -I/home/simonque/Documents/code/esp-idf/components/protobuf-c/protobuf-c -I/home/simonque/Documents/code/esp-idf/components/protocomm/include/common -I/home/simonque/Documents/code/esp-idf/components/protocomm/include/security -I/home/simonque/Documents/code/esp-idf/components/protocomm/include/transports -I/home/simonque/Documents/code/esp-idf/components/protocomm/include/crypto/srp6a -I/home/simonque/Documents/code/esp-idf/components/protocomm/proto-c -I/home/simonque/Documents/code/esp-idf/components/esp_local_ctrl/include -I/home/simonque/Documents/code/esp-idf/components/esp_trace/include -I/home/simonque/Documents/code/esp-idf/components/wear_levelling/include -I/home/simonque/Documents/code/esp-idf/components/fatfs/diskio -I/home/simonque/Documents/code/esp-idf/components/fatfs/src -I/home/simonque/Documents/code/esp-idf/components/fatfs/vfs -I/home/simonque/Documents/code/esp-idf/components/ieee802154/include -I/home/simonque/Documents/code/esp-idf/components/perfmon/include -I/home/simonque/Documents/code/esp-idf/components/rt/include -I/home/simonque/Documents/code/esp-idf/components/spiffs/include @"/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/toolchain/cflags" -fdiagnostics-color=always -fdiagnostics-color=always -ffunction-sections -fdata-sections -Wall -Werror -Wno-error=unused-function -Wno-error=unused-variable -Wno-error=unused-but-set-variable -Wno-error=deprecated-declarations -Wextra -Wno-error=extra -Wno-unused-parameter -Wno-sign-compare -Wno-enum-conversion -gdwarf-4 -ggdb -Og -fno-shrink-wrap -fmacro-prefix-map=/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger=. -fmacro-prefix-map=/home/simonque/Documents/code/esp-idf=/IDF -fstrict-volatile-bitfields -fno-jump-tables -fno-tree-switch-conversion -std=gnu23 -Wno-old-style-declaration -fzero-init-padding-bits=all -fno-malloc-dce -DBUTTON_VER_MAJOR=4 -DBUTTON_VER_MINOR=2 -DBUTTON_VER_PATCH=0 -MD -MT esp-idf/main/CMakeFiles/__idf_main.dir/src/ble.c.obj -MF esp-idf/main/CMakeFiles/__idf_main.dir/src/ble.c.obj.d -o esp-idf/main/CMakeFiles/__idf_main.dir/src/ble.c.obj -c /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c: In function 'ble_configure':
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:617:39: error: 'device_name' undeclared (first use in this function)
+  617 |     ret = esp_ble_gap_set_device_name(device_name);
+      |                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:617:39: note: each undeclared identifier is reported only once for each function it appears in
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c: At top level:
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:694:37: error: 'struct ble_gap_event' declared inside parameter list will not be visible outside of this definition or declaration [-Werror]
+  694 | static int gap_event_handler(struct ble_gap_event *event, void *arg)
+      |                                     ^~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:694:12: error: conflicting types for 'gap_event_handler'; have 'int(struct ble_gap_event *, void *)'
+  694 | static int gap_event_handler(struct ble_gap_event *event, void *arg)
+      |            ^~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:202:13: note: previous definition of 'gap_event_handler' with type 'void(esp_gap_ble_cb_event_t,  esp_ble_gap_cb_param_t *)'
+  202 | static void gap_event_handler(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param_t *param)
+      |             ^~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c: In function 'gap_event_handler':
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:698:30: error: storage size of 'desc' isn't known
+  698 |     struct ble_gap_conn_desc desc;
+      |                              ^~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:701:18: error: invalid use of undefined type 'struct ble_gap_event'
+  701 |     switch (event->type)
+      |                  ^~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:705:10: error: 'BLE_GAP_EVENT_CONNECT' undeclared (first use in this function)
+  705 |     case BLE_GAP_EVENT_CONNECT:
+      |          ^~~~~~~~~~~~~~~~~~~~~
+In file included from /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/../include/common.h:18,
+                 from /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/../include/ble.h:4,
+                 from /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:49:
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:707:18: error: 'TAG' undeclared (first use in this function)
+  707 |         ESP_LOGI(TAG, "connection %s; status=%d",
+      |                  ^~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:220:111: note: in definition of macro 'ESP_LOG_LEVEL'
+  220 |         if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_ERROR)        { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_ERROR),   tag, LOG_FORMAT(E, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                               ^~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:707:9: note: in expansion of macro 'ESP_LOGI'
+  707 |         ESP_LOGI(TAG, "connection %s; status=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:708:23: error: invalid use of undefined type 'struct ble_gap_event'
+  708 |                  event->connect.status == 0 ? "established" : "failed",
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:220:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  220 |         if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_ERROR)        { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_ERROR),   tag, LOG_FORMAT(E, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:707:9: note: in expansion of macro 'ESP_LOGI'
+  707 |         ESP_LOGI(TAG, "connection %s; status=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:709:23: error: invalid use of undefined type 'struct ble_gap_event'
+  709 |                  event->connect.status);
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:220:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  220 |         if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_ERROR)        { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_ERROR),   tag, LOG_FORMAT(E, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:707:9: note: in expansion of macro 'ESP_LOGI'
+  707 |         ESP_LOGI(TAG, "connection %s; status=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:708:23: error: invalid use of undefined type 'struct ble_gap_event'
+  708 |                  event->connect.status == 0 ? "established" : "failed",
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:221:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  221 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_WARN)    { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_WARN),    tag, LOG_FORMAT(W, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:707:9: note: in expansion of macro 'ESP_LOGI'
+  707 |         ESP_LOGI(TAG, "connection %s; status=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:709:23: error: invalid use of undefined type 'struct ble_gap_event'
+  709 |                  event->connect.status);
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:221:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  221 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_WARN)    { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_WARN),    tag, LOG_FORMAT(W, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:707:9: note: in expansion of macro 'ESP_LOGI'
+  707 |         ESP_LOGI(TAG, "connection %s; status=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:708:23: error: invalid use of undefined type 'struct ble_gap_event'
+  708 |                  event->connect.status == 0 ? "established" : "failed",
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:222:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  222 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_DEBUG)   { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_DEBUG),   tag, LOG_FORMAT(D, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:707:9: note: in expansion of macro 'ESP_LOGI'
+  707 |         ESP_LOGI(TAG, "connection %s; status=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:709:23: error: invalid use of undefined type 'struct ble_gap_event'
+  709 |                  event->connect.status);
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:222:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  222 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_DEBUG)   { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_DEBUG),   tag, LOG_FORMAT(D, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:707:9: note: in expansion of macro 'ESP_LOGI'
+  707 |         ESP_LOGI(TAG, "connection %s; status=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:708:23: error: invalid use of undefined type 'struct ble_gap_event'
+  708 |                  event->connect.status == 0 ? "established" : "failed",
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:223:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  223 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_VERBOSE) { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_VERBOSE), tag, LOG_FORMAT(V, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:707:9: note: in expansion of macro 'ESP_LOGI'
+  707 |         ESP_LOGI(TAG, "connection %s; status=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:709:23: error: invalid use of undefined type 'struct ble_gap_event'
+  709 |                  event->connect.status);
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:223:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  223 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_VERBOSE) { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_VERBOSE), tag, LOG_FORMAT(V, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:707:9: note: in expansion of macro 'ESP_LOGI'
+  707 |         ESP_LOGI(TAG, "connection %s; status=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:708:23: error: invalid use of undefined type 'struct ble_gap_event'
+  708 |                  event->connect.status == 0 ? "established" : "failed",
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:224:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  224 |         else                                                  { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_INFO),    tag, LOG_FORMAT(I, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:707:9: note: in expansion of macro 'ESP_LOGI'
+  707 |         ESP_LOGI(TAG, "connection %s; status=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:709:23: error: invalid use of undefined type 'struct ble_gap_event'
+  709 |                  event->connect.status);
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:224:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  224 |         else                                                  { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_INFO),    tag, LOG_FORMAT(I, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:707:9: note: in expansion of macro 'ESP_LOGI'
+  707 |         ESP_LOGI(TAG, "connection %s; status=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:712:18: error: invalid use of undefined type 'struct ble_gap_event'
+  712 |         if (event->connect.status == 0)
+      |                  ^~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:715:18: error: implicit declaration of function 'ble_gap_conn_find' [-Wimplicit-function-declaration]
+  715 |             rc = ble_gap_conn_find(event->connect.conn_handle, &desc);
+      |                  ^~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:715:41: error: invalid use of undefined type 'struct ble_gap_event'
+  715 |             rc = ble_gap_conn_find(event->connect.conn_handle, &desc);
+      |                                         ^~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:725:13: error: implicit declaration of function 'print_conn_desc' [-Wimplicit-function-declaration]
+  725 |             print_conn_desc(&desc);
+      |             ^~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:728:20: error: variable 'params' has initializer but incomplete type
+  728 |             struct ble_gap_upd_params params = {.itvl_min = desc.conn_itvl,
+      |                    ^~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:728:50: error: 'struct ble_gap_upd_params' has no member named 'itvl_min'
+  728 |             struct ble_gap_upd_params params = {.itvl_min = desc.conn_itvl,
+      |                                                  ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:728:61: error: excess elements in struct initializer [-Werror]
+  728 |             struct ble_gap_upd_params params = {.itvl_min = desc.conn_itvl,
+      |                                                             ^~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:728:61: note: (near initialization for 'params')
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:729:50: error: 'struct ble_gap_upd_params' has no member named 'itvl_max'
+  729 |                                                 .itvl_max = desc.conn_itvl,
+      |                                                  ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:729:61: error: excess elements in struct initializer [-Werror]
+  729 |                                                 .itvl_max = desc.conn_itvl,
+      |                                                             ^~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:729:61: note: (near initialization for 'params')
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:730:50: error: 'struct ble_gap_upd_params' has no member named 'latency'
+  730 |                                                 .latency = 3,
+      |                                                  ^~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:730:60: error: excess elements in struct initializer [-Werror]
+  730 |                                                 .latency = 3,
+      |                                                            ^
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:730:60: note: (near initialization for 'params')
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:731:50: error: 'struct ble_gap_upd_params' has no member named 'supervision_timeout'
+  731 |                                                 .supervision_timeout =
+      |                                                  ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:732:53: error: excess elements in struct initializer [-Werror]
+  732 |                                                     desc.supervision_timeout};
+      |                                                     ^~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:732:53: note: (near initialization for 'params')
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:728:39: error: storage size of 'params' isn't known
+  728 |             struct ble_gap_upd_params params = {.itvl_min = desc.conn_itvl,
+      |                                       ^~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:733:18: error: implicit declaration of function 'ble_gap_update_params'; did you mean 'esp_ble_gap_update_conn_params'? [-Wimplicit-function-declaration]
+  733 |             rc = ble_gap_update_params(event->connect.conn_handle, &params);
+      |                  ^~~~~~~~~~~~~~~~~~~~~
+      |                  esp_ble_gap_update_conn_params
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:733:45: error: invalid use of undefined type 'struct ble_gap_event'
+  733 |             rc = ble_gap_update_params(event->connect.conn_handle, &params);
+      |                                             ^~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:728:39: warning: unused variable 'params' [-Wunused-variable]
+  728 |             struct ble_gap_upd_params params = {.itvl_min = desc.conn_itvl,
+      |                                       ^~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:746:13: error: implicit declaration of function 'start_advertising' [-Wimplicit-function-declaration]
+  746 |             start_advertising();
+      |             ^~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:751:10: error: 'BLE_GAP_EVENT_DISCONNECT' undeclared (first use in this function)
+  751 |     case BLE_GAP_EVENT_DISCONNECT:
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:754:23: error: invalid use of undefined type 'struct ble_gap_event'
+  754 |                  event->disconnect.reason);
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:220:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  220 |         if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_ERROR)        { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_ERROR),   tag, LOG_FORMAT(E, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:753:9: note: in expansion of macro 'ESP_LOGI'
+  753 |         ESP_LOGI(TAG, "disconnected from peer; reason=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:754:23: error: invalid use of undefined type 'struct ble_gap_event'
+  754 |                  event->disconnect.reason);
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:221:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  221 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_WARN)    { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_WARN),    tag, LOG_FORMAT(W, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:753:9: note: in expansion of macro 'ESP_LOGI'
+  753 |         ESP_LOGI(TAG, "disconnected from peer; reason=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:754:23: error: invalid use of undefined type 'struct ble_gap_event'
+  754 |                  event->disconnect.reason);
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:222:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  222 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_DEBUG)   { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_DEBUG),   tag, LOG_FORMAT(D, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:753:9: note: in expansion of macro 'ESP_LOGI'
+  753 |         ESP_LOGI(TAG, "disconnected from peer; reason=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:754:23: error: invalid use of undefined type 'struct ble_gap_event'
+  754 |                  event->disconnect.reason);
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:223:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  223 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_VERBOSE) { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_VERBOSE), tag, LOG_FORMAT(V, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:753:9: note: in expansion of macro 'ESP_LOGI'
+  753 |         ESP_LOGI(TAG, "disconnected from peer; reason=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:754:23: error: invalid use of undefined type 'struct ble_gap_event'
+  754 |                  event->disconnect.reason);
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:224:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  224 |         else                                                  { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_INFO),    tag, LOG_FORMAT(I, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:753:9: note: in expansion of macro 'ESP_LOGI'
+  753 |         ESP_LOGI(TAG, "disconnected from peer; reason=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:761:10: error: 'BLE_GAP_EVENT_CONN_UPDATE' undeclared (first use in this function)
+  761 |     case BLE_GAP_EVENT_CONN_UPDATE:
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:764:23: error: invalid use of undefined type 'struct ble_gap_event'
+  764 |                  event->conn_update.status);
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:220:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  220 |         if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_ERROR)        { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_ERROR),   tag, LOG_FORMAT(E, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:763:9: note: in expansion of macro 'ESP_LOGI'
+  763 |         ESP_LOGI(TAG, "connection updated; status=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:764:23: error: invalid use of undefined type 'struct ble_gap_event'
+  764 |                  event->conn_update.status);
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:221:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  221 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_WARN)    { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_WARN),    tag, LOG_FORMAT(W, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:763:9: note: in expansion of macro 'ESP_LOGI'
+  763 |         ESP_LOGI(TAG, "connection updated; status=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:764:23: error: invalid use of undefined type 'struct ble_gap_event'
+  764 |                  event->conn_update.status);
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:222:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  222 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_DEBUG)   { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_DEBUG),   tag, LOG_FORMAT(D, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:763:9: note: in expansion of macro 'ESP_LOGI'
+  763 |         ESP_LOGI(TAG, "connection updated; status=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:764:23: error: invalid use of undefined type 'struct ble_gap_event'
+  764 |                  event->conn_update.status);
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:223:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  223 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_VERBOSE) { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_VERBOSE), tag, LOG_FORMAT(V, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:763:9: note: in expansion of macro 'ESP_LOGI'
+  763 |         ESP_LOGI(TAG, "connection updated; status=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:764:23: error: invalid use of undefined type 'struct ble_gap_event'
+  764 |                  event->conn_update.status);
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:224:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  224 |         else                                                  { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_INFO),    tag, LOG_FORMAT(I, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:763:9: note: in expansion of macro 'ESP_LOGI'
+  763 |         ESP_LOGI(TAG, "connection updated; status=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:767:37: error: invalid use of undefined type 'struct ble_gap_event'
+  767 |         rc = ble_gap_conn_find(event->conn_update.conn_handle, &desc);
+      |                                     ^~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:778:10: error: 'BLE_GAP_EVENT_ADV_COMPLETE' undeclared (first use in this function)
+  778 |     case BLE_GAP_EVENT_ADV_COMPLETE:
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:781:23: error: invalid use of undefined type 'struct ble_gap_event'
+  781 |                  event->adv_complete.reason);
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:220:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  220 |         if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_ERROR)        { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_ERROR),   tag, LOG_FORMAT(E, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:780:9: note: in expansion of macro 'ESP_LOGI'
+  780 |         ESP_LOGI(TAG, "advertise complete; reason=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:781:23: error: invalid use of undefined type 'struct ble_gap_event'
+  781 |                  event->adv_complete.reason);
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:221:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  221 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_WARN)    { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_WARN),    tag, LOG_FORMAT(W, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:780:9: note: in expansion of macro 'ESP_LOGI'
+  780 |         ESP_LOGI(TAG, "advertise complete; reason=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:781:23: error: invalid use of undefined type 'struct ble_gap_event'
+  781 |                  event->adv_complete.reason);
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:222:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  222 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_DEBUG)   { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_DEBUG),   tag, LOG_FORMAT(D, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:780:9: note: in expansion of macro 'ESP_LOGI'
+  780 |         ESP_LOGI(TAG, "advertise complete; reason=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:781:23: error: invalid use of undefined type 'struct ble_gap_event'
+  781 |                  event->adv_complete.reason);
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:223:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  223 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_VERBOSE) { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_VERBOSE), tag, LOG_FORMAT(V, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:780:9: note: in expansion of macro 'ESP_LOGI'
+  780 |         ESP_LOGI(TAG, "advertise complete; reason=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:781:23: error: invalid use of undefined type 'struct ble_gap_event'
+  781 |                  event->adv_complete.reason);
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:224:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  224 |         else                                                  { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_INFO),    tag, LOG_FORMAT(I, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:780:9: note: in expansion of macro 'ESP_LOGI'
+  780 |         ESP_LOGI(TAG, "advertise complete; reason=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:786:10: error: 'BLE_GAP_EVENT_NOTIFY_TX' undeclared (first use in this function)
+  786 |     case BLE_GAP_EVENT_NOTIFY_TX:
+      |          ^~~~~~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:787:19: error: invalid use of undefined type 'struct ble_gap_event'
+  787 |         if ((event->notify_tx.status != 0) &&
+      |                   ^~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:788:19: error: invalid use of undefined type 'struct ble_gap_event'
+  788 |             (event->notify_tx.status != BLE_HS_EDONE))
+      |                   ^~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:788:41: error: 'BLE_HS_EDONE' undeclared (first use in this function)
+  788 |             (event->notify_tx.status != BLE_HS_EDONE))
+      |                                         ^~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:794:27: error: invalid use of undefined type 'struct ble_gap_event'
+  794 |                      event->notify_tx.conn_handle, event->notify_tx.attr_handle,
+      |                           ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:220:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  220 |         if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_ERROR)        { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_ERROR),   tag, LOG_FORMAT(E, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:791:13: note: in expansion of macro 'ESP_LOGI'
+  791 |             ESP_LOGI(TAG,
+      |             ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:794:57: error: invalid use of undefined type 'struct ble_gap_event'
+  794 |                      event->notify_tx.conn_handle, event->notify_tx.attr_handle,
+      |                                                         ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:220:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  220 |         if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_ERROR)        { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_ERROR),   tag, LOG_FORMAT(E, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:791:13: note: in expansion of macro 'ESP_LOGI'
+  791 |             ESP_LOGI(TAG,
+      |             ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:795:27: error: invalid use of undefined type 'struct ble_gap_event'
+  795 |                      event->notify_tx.status, event->notify_tx.indication);
+      |                           ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:220:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  220 |         if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_ERROR)        { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_ERROR),   tag, LOG_FORMAT(E, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:791:13: note: in expansion of macro 'ESP_LOGI'
+  791 |             ESP_LOGI(TAG,
+      |             ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:795:52: error: invalid use of undefined type 'struct ble_gap_event'
+  795 |                      event->notify_tx.status, event->notify_tx.indication);
+      |                                                    ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:220:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  220 |         if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_ERROR)        { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_ERROR),   tag, LOG_FORMAT(E, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:791:13: note: in expansion of macro 'ESP_LOGI'
+  791 |             ESP_LOGI(TAG,
+      |             ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:794:27: error: invalid use of undefined type 'struct ble_gap_event'
+  794 |                      event->notify_tx.conn_handle, event->notify_tx.attr_handle,
+      |                           ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:221:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  221 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_WARN)    { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_WARN),    tag, LOG_FORMAT(W, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:791:13: note: in expansion of macro 'ESP_LOGI'
+  791 |             ESP_LOGI(TAG,
+      |             ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:794:57: error: invalid use of undefined type 'struct ble_gap_event'
+  794 |                      event->notify_tx.conn_handle, event->notify_tx.attr_handle,
+      |                                                         ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:221:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  221 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_WARN)    { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_WARN),    tag, LOG_FORMAT(W, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:791:13: note: in expansion of macro 'ESP_LOGI'
+  791 |             ESP_LOGI(TAG,
+      |             ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:795:27: error: invalid use of undefined type 'struct ble_gap_event'
+  795 |                      event->notify_tx.status, event->notify_tx.indication);
+      |                           ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:221:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  221 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_WARN)    { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_WARN),    tag, LOG_FORMAT(W, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:791:13: note: in expansion of macro 'ESP_LOGI'
+  791 |             ESP_LOGI(TAG,
+      |             ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:795:52: error: invalid use of undefined type 'struct ble_gap_event'
+  795 |                      event->notify_tx.status, event->notify_tx.indication);
+      |                                                    ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:221:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  221 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_WARN)    { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_WARN),    tag, LOG_FORMAT(W, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:791:13: note: in expansion of macro 'ESP_LOGI'
+  791 |             ESP_LOGI(TAG,
+      |             ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:794:27: error: invalid use of undefined type 'struct ble_gap_event'
+  794 |                      event->notify_tx.conn_handle, event->notify_tx.attr_handle,
+      |                           ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:222:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  222 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_DEBUG)   { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_DEBUG),   tag, LOG_FORMAT(D, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:791:13: note: in expansion of macro 'ESP_LOGI'
+  791 |             ESP_LOGI(TAG,
+      |             ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:794:57: error: invalid use of undefined type 'struct ble_gap_event'
+  794 |                      event->notify_tx.conn_handle, event->notify_tx.attr_handle,
+      |                                                         ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:222:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  222 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_DEBUG)   { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_DEBUG),   tag, LOG_FORMAT(D, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:791:13: note: in expansion of macro 'ESP_LOGI'
+  791 |             ESP_LOGI(TAG,
+      |             ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:795:27: error: invalid use of undefined type 'struct ble_gap_event'
+  795 |                      event->notify_tx.status, event->notify_tx.indication);
+      |                           ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:222:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  222 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_DEBUG)   { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_DEBUG),   tag, LOG_FORMAT(D, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:791:13: note: in expansion of macro 'ESP_LOGI'
+  791 |             ESP_LOGI(TAG,
+      |             ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:795:52: error: invalid use of undefined type 'struct ble_gap_event'
+  795 |                      event->notify_tx.status, event->notify_tx.indication);
+      |                                                    ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:222:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  222 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_DEBUG)   { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_DEBUG),   tag, LOG_FORMAT(D, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:791:13: note: in expansion of macro 'ESP_LOGI'
+  791 |             ESP_LOGI(TAG,
+      |             ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:794:27: error: invalid use of undefined type 'struct ble_gap_event'
+  794 |                      event->notify_tx.conn_handle, event->notify_tx.attr_handle,
+      |                           ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:223:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  223 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_VERBOSE) { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_VERBOSE), tag, LOG_FORMAT(V, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:791:13: note: in expansion of macro 'ESP_LOGI'
+  791 |             ESP_LOGI(TAG,
+      |             ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:794:57: error: invalid use of undefined type 'struct ble_gap_event'
+  794 |                      event->notify_tx.conn_handle, event->notify_tx.attr_handle,
+      |                                                         ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:223:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  223 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_VERBOSE) { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_VERBOSE), tag, LOG_FORMAT(V, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:791:13: note: in expansion of macro 'ESP_LOGI'
+  791 |             ESP_LOGI(TAG,
+      |             ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:795:27: error: invalid use of undefined type 'struct ble_gap_event'
+  795 |                      event->notify_tx.status, event->notify_tx.indication);
+      |                           ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:223:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  223 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_VERBOSE) { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_VERBOSE), tag, LOG_FORMAT(V, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:791:13: note: in expansion of macro 'ESP_LOGI'
+  791 |             ESP_LOGI(TAG,
+      |             ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:795:52: error: invalid use of undefined type 'struct ble_gap_event'
+  795 |                      event->notify_tx.status, event->notify_tx.indication);
+      |                                                    ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:223:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  223 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_VERBOSE) { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_VERBOSE), tag, LOG_FORMAT(V, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:791:13: note: in expansion of macro 'ESP_LOGI'
+  791 |             ESP_LOGI(TAG,
+      |             ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:794:27: error: invalid use of undefined type 'struct ble_gap_event'
+  794 |                      event->notify_tx.conn_handle, event->notify_tx.attr_handle,
+      |                           ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:224:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  224 |         else                                                  { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_INFO),    tag, LOG_FORMAT(I, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:791:13: note: in expansion of macro 'ESP_LOGI'
+  791 |             ESP_LOGI(TAG,
+      |             ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:794:57: error: invalid use of undefined type 'struct ble_gap_event'
+  794 |                      event->notify_tx.conn_handle, event->notify_tx.attr_handle,
+      |                                                         ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:224:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  224 |         else                                                  { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_INFO),    tag, LOG_FORMAT(I, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:791:13: note: in expansion of macro 'ESP_LOGI'
+  791 |             ESP_LOGI(TAG,
+      |             ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:795:27: error: invalid use of undefined type 'struct ble_gap_event'
+  795 |                      event->notify_tx.status, event->notify_tx.indication);
+      |                           ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:224:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  224 |         else                                                  { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_INFO),    tag, LOG_FORMAT(I, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:791:13: note: in expansion of macro 'ESP_LOGI'
+  791 |             ESP_LOGI(TAG,
+      |             ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:795:52: error: invalid use of undefined type 'struct ble_gap_event'
+  795 |                      event->notify_tx.status, event->notify_tx.indication);
+      |                                                    ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:224:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  224 |         else                                                  { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_INFO),    tag, LOG_FORMAT(I, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:791:13: note: in expansion of macro 'ESP_LOGI'
+  791 |             ESP_LOGI(TAG,
+      |             ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:800:10: error: 'BLE_GAP_EVENT_SUBSCRIBE' undeclared (first use in this function)
+  800 |     case BLE_GAP_EVENT_SUBSCRIBE:
+      |          ^~~~~~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:805:23: error: invalid use of undefined type 'struct ble_gap_event'
+  805 |                  event->subscribe.conn_handle, event->subscribe.attr_handle,
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:220:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  220 |         if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_ERROR)        { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_ERROR),   tag, LOG_FORMAT(E, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:805:53: error: invalid use of undefined type 'struct ble_gap_event'
+  805 |                  event->subscribe.conn_handle, event->subscribe.attr_handle,
+      |                                                     ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:220:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  220 |         if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_ERROR)        { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_ERROR),   tag, LOG_FORMAT(E, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:806:23: error: invalid use of undefined type 'struct ble_gap_event'
+  806 |                  event->subscribe.reason, event->subscribe.prev_notify,
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:220:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  220 |         if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_ERROR)        { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_ERROR),   tag, LOG_FORMAT(E, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:806:48: error: invalid use of undefined type 'struct ble_gap_event'
+  806 |                  event->subscribe.reason, event->subscribe.prev_notify,
+      |                                                ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:220:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  220 |         if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_ERROR)        { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_ERROR),   tag, LOG_FORMAT(E, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:807:23: error: invalid use of undefined type 'struct ble_gap_event'
+  807 |                  event->subscribe.cur_notify, event->subscribe.prev_indicate,
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:220:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  220 |         if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_ERROR)        { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_ERROR),   tag, LOG_FORMAT(E, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:807:52: error: invalid use of undefined type 'struct ble_gap_event'
+  807 |                  event->subscribe.cur_notify, event->subscribe.prev_indicate,
+      |                                                    ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:220:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  220 |         if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_ERROR)        { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_ERROR),   tag, LOG_FORMAT(E, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:808:23: error: invalid use of undefined type 'struct ble_gap_event'
+  808 |                  event->subscribe.cur_indicate);
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:220:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  220 |         if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_ERROR)        { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_ERROR),   tag, LOG_FORMAT(E, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:805:23: error: invalid use of undefined type 'struct ble_gap_event'
+  805 |                  event->subscribe.conn_handle, event->subscribe.attr_handle,
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:221:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  221 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_WARN)    { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_WARN),    tag, LOG_FORMAT(W, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:805:53: error: invalid use of undefined type 'struct ble_gap_event'
+  805 |                  event->subscribe.conn_handle, event->subscribe.attr_handle,
+      |                                                     ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:221:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  221 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_WARN)    { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_WARN),    tag, LOG_FORMAT(W, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:806:23: error: invalid use of undefined type 'struct ble_gap_event'
+  806 |                  event->subscribe.reason, event->subscribe.prev_notify,
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:221:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  221 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_WARN)    { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_WARN),    tag, LOG_FORMAT(W, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:806:48: error: invalid use of undefined type 'struct ble_gap_event'
+  806 |                  event->subscribe.reason, event->subscribe.prev_notify,
+      |                                                ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:221:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  221 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_WARN)    { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_WARN),    tag, LOG_FORMAT(W, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:807:23: error: invalid use of undefined type 'struct ble_gap_event'
+  807 |                  event->subscribe.cur_notify, event->subscribe.prev_indicate,
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:221:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  221 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_WARN)    { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_WARN),    tag, LOG_FORMAT(W, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:807:52: error: invalid use of undefined type 'struct ble_gap_event'
+  807 |                  event->subscribe.cur_notify, event->subscribe.prev_indicate,
+      |                                                    ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:221:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  221 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_WARN)    { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_WARN),    tag, LOG_FORMAT(W, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:808:23: error: invalid use of undefined type 'struct ble_gap_event'
+  808 |                  event->subscribe.cur_indicate);
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:221:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  221 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_WARN)    { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_WARN),    tag, LOG_FORMAT(W, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:805:23: error: invalid use of undefined type 'struct ble_gap_event'
+  805 |                  event->subscribe.conn_handle, event->subscribe.attr_handle,
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:222:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  222 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_DEBUG)   { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_DEBUG),   tag, LOG_FORMAT(D, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:805:53: error: invalid use of undefined type 'struct ble_gap_event'
+  805 |                  event->subscribe.conn_handle, event->subscribe.attr_handle,
+      |                                                     ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:222:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  222 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_DEBUG)   { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_DEBUG),   tag, LOG_FORMAT(D, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:806:23: error: invalid use of undefined type 'struct ble_gap_event'
+  806 |                  event->subscribe.reason, event->subscribe.prev_notify,
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:222:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  222 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_DEBUG)   { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_DEBUG),   tag, LOG_FORMAT(D, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:806:48: error: invalid use of undefined type 'struct ble_gap_event'
+  806 |                  event->subscribe.reason, event->subscribe.prev_notify,
+      |                                                ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:222:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  222 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_DEBUG)   { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_DEBUG),   tag, LOG_FORMAT(D, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:807:23: error: invalid use of undefined type 'struct ble_gap_event'
+  807 |                  event->subscribe.cur_notify, event->subscribe.prev_indicate,
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:222:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  222 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_DEBUG)   { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_DEBUG),   tag, LOG_FORMAT(D, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:807:52: error: invalid use of undefined type 'struct ble_gap_event'
+  807 |                  event->subscribe.cur_notify, event->subscribe.prev_indicate,
+      |                                                    ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:222:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  222 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_DEBUG)   { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_DEBUG),   tag, LOG_FORMAT(D, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:808:23: error: invalid use of undefined type 'struct ble_gap_event'
+  808 |                  event->subscribe.cur_indicate);
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:222:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  222 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_DEBUG)   { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_DEBUG),   tag, LOG_FORMAT(D, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:805:23: error: invalid use of undefined type 'struct ble_gap_event'
+  805 |                  event->subscribe.conn_handle, event->subscribe.attr_handle,
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:223:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  223 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_VERBOSE) { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_VERBOSE), tag, LOG_FORMAT(V, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:805:53: error: invalid use of undefined type 'struct ble_gap_event'
+  805 |                  event->subscribe.conn_handle, event->subscribe.attr_handle,
+      |                                                     ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:223:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  223 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_VERBOSE) { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_VERBOSE), tag, LOG_FORMAT(V, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:806:23: error: invalid use of undefined type 'struct ble_gap_event'
+  806 |                  event->subscribe.reason, event->subscribe.prev_notify,
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:223:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  223 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_VERBOSE) { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_VERBOSE), tag, LOG_FORMAT(V, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:806:48: error: invalid use of undefined type 'struct ble_gap_event'
+  806 |                  event->subscribe.reason, event->subscribe.prev_notify,
+      |                                                ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:223:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  223 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_VERBOSE) { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_VERBOSE), tag, LOG_FORMAT(V, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:807:23: error: invalid use of undefined type 'struct ble_gap_event'
+  807 |                  event->subscribe.cur_notify, event->subscribe.prev_indicate,
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:223:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  223 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_VERBOSE) { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_VERBOSE), tag, LOG_FORMAT(V, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:807:52: error: invalid use of undefined type 'struct ble_gap_event'
+  807 |                  event->subscribe.cur_notify, event->subscribe.prev_indicate,
+      |                                                    ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:223:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  223 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_VERBOSE) { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_VERBOSE), tag, LOG_FORMAT(V, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:808:23: error: invalid use of undefined type 'struct ble_gap_event'
+  808 |                  event->subscribe.cur_indicate);
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:223:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  223 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_VERBOSE) { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_VERBOSE), tag, LOG_FORMAT(V, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:805:23: error: invalid use of undefined type 'struct ble_gap_event'
+  805 |                  event->subscribe.conn_handle, event->subscribe.attr_handle,
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:224:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  224 |         else                                                  { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_INFO),    tag, LOG_FORMAT(I, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:805:53: error: invalid use of undefined type 'struct ble_gap_event'
+  805 |                  event->subscribe.conn_handle, event->subscribe.attr_handle,
+      |                                                     ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:224:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  224 |         else                                                  { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_INFO),    tag, LOG_FORMAT(I, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:806:23: error: invalid use of undefined type 'struct ble_gap_event'
+  806 |                  event->subscribe.reason, event->subscribe.prev_notify,
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:224:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  224 |         else                                                  { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_INFO),    tag, LOG_FORMAT(I, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:806:48: error: invalid use of undefined type 'struct ble_gap_event'
+  806 |                  event->subscribe.reason, event->subscribe.prev_notify,
+      |                                                ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:224:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  224 |         else                                                  { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_INFO),    tag, LOG_FORMAT(I, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:807:23: error: invalid use of undefined type 'struct ble_gap_event'
+  807 |                  event->subscribe.cur_notify, event->subscribe.prev_indicate,
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:224:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  224 |         else                                                  { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_INFO),    tag, LOG_FORMAT(I, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:807:52: error: invalid use of undefined type 'struct ble_gap_event'
+  807 |                  event->subscribe.cur_notify, event->subscribe.prev_indicate,
+      |                                                    ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:224:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  224 |         else                                                  { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_INFO),    tag, LOG_FORMAT(I, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:808:23: error: invalid use of undefined type 'struct ble_gap_event'
+  808 |                  event->subscribe.cur_indicate);
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:224:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  224 |         else                                                  { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_INFO),    tag, LOG_FORMAT(I, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:802:9: note: in expansion of macro 'ESP_LOGI'
+  802 |         ESP_LOGI(TAG,
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:811:9: error: implicit declaration of function 'gatt_svr_subscribe_cb' [-Wimplicit-function-declaration]
+  811 |         gatt_svr_subscribe_cb(event);
+      |         ^~~~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:815:10: error: 'BLE_GAP_EVENT_MTU' undeclared (first use in this function)
+  815 |     case BLE_GAP_EVENT_MTU:
+      |          ^~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:818:23: error: invalid use of undefined type 'struct ble_gap_event'
+  818 |                  event->mtu.conn_handle, event->mtu.channel_id,
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:220:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  220 |         if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_ERROR)        { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_ERROR),   tag, LOG_FORMAT(E, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:817:9: note: in expansion of macro 'ESP_LOGI'
+  817 |         ESP_LOGI(TAG, "mtu update event; conn_handle=%d cid=%d mtu=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:818:47: error: invalid use of undefined type 'struct ble_gap_event'
+  818 |                  event->mtu.conn_handle, event->mtu.channel_id,
+      |                                               ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:220:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  220 |         if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_ERROR)        { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_ERROR),   tag, LOG_FORMAT(E, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:817:9: note: in expansion of macro 'ESP_LOGI'
+  817 |         ESP_LOGI(TAG, "mtu update event; conn_handle=%d cid=%d mtu=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:819:23: error: invalid use of undefined type 'struct ble_gap_event'
+  819 |                  event->mtu.value);
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:220:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  220 |         if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_ERROR)        { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_ERROR),   tag, LOG_FORMAT(E, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:817:9: note: in expansion of macro 'ESP_LOGI'
+  817 |         ESP_LOGI(TAG, "mtu update event; conn_handle=%d cid=%d mtu=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:818:23: error: invalid use of undefined type 'struct ble_gap_event'
+  818 |                  event->mtu.conn_handle, event->mtu.channel_id,
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:221:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  221 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_WARN)    { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_WARN),    tag, LOG_FORMAT(W, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:817:9: note: in expansion of macro 'ESP_LOGI'
+  817 |         ESP_LOGI(TAG, "mtu update event; conn_handle=%d cid=%d mtu=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:818:47: error: invalid use of undefined type 'struct ble_gap_event'
+  818 |                  event->mtu.conn_handle, event->mtu.channel_id,
+      |                                               ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:221:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  221 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_WARN)    { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_WARN),    tag, LOG_FORMAT(W, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:817:9: note: in expansion of macro 'ESP_LOGI'
+  817 |         ESP_LOGI(TAG, "mtu update event; conn_handle=%d cid=%d mtu=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:819:23: error: invalid use of undefined type 'struct ble_gap_event'
+  819 |                  event->mtu.value);
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:221:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  221 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_WARN)    { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_WARN),    tag, LOG_FORMAT(W, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:817:9: note: in expansion of macro 'ESP_LOGI'
+  817 |         ESP_LOGI(TAG, "mtu update event; conn_handle=%d cid=%d mtu=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:818:23: error: invalid use of undefined type 'struct ble_gap_event'
+  818 |                  event->mtu.conn_handle, event->mtu.channel_id,
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:222:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  222 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_DEBUG)   { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_DEBUG),   tag, LOG_FORMAT(D, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:817:9: note: in expansion of macro 'ESP_LOGI'
+  817 |         ESP_LOGI(TAG, "mtu update event; conn_handle=%d cid=%d mtu=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:818:47: error: invalid use of undefined type 'struct ble_gap_event'
+  818 |                  event->mtu.conn_handle, event->mtu.channel_id,
+      |                                               ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:222:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  222 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_DEBUG)   { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_DEBUG),   tag, LOG_FORMAT(D, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:817:9: note: in expansion of macro 'ESP_LOGI'
+  817 |         ESP_LOGI(TAG, "mtu update event; conn_handle=%d cid=%d mtu=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:819:23: error: invalid use of undefined type 'struct ble_gap_event'
+  819 |                  event->mtu.value);
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:222:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  222 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_DEBUG)   { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_DEBUG),   tag, LOG_FORMAT(D, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:817:9: note: in expansion of macro 'ESP_LOGI'
+  817 |         ESP_LOGI(TAG, "mtu update event; conn_handle=%d cid=%d mtu=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:818:23: error: invalid use of undefined type 'struct ble_gap_event'
+  818 |                  event->mtu.conn_handle, event->mtu.channel_id,
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:223:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  223 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_VERBOSE) { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_VERBOSE), tag, LOG_FORMAT(V, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:817:9: note: in expansion of macro 'ESP_LOGI'
+  817 |         ESP_LOGI(TAG, "mtu update event; conn_handle=%d cid=%d mtu=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:818:47: error: invalid use of undefined type 'struct ble_gap_event'
+  818 |                  event->mtu.conn_handle, event->mtu.channel_id,
+      |                                               ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:223:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  223 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_VERBOSE) { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_VERBOSE), tag, LOG_FORMAT(V, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:817:9: note: in expansion of macro 'ESP_LOGI'
+  817 |         ESP_LOGI(TAG, "mtu update event; conn_handle=%d cid=%d mtu=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:819:23: error: invalid use of undefined type 'struct ble_gap_event'
+  819 |                  event->mtu.value);
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:223:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  223 |         else if (ESP_LOG_GET_LEVEL(configs)==ESP_LOG_VERBOSE) { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_VERBOSE), tag, LOG_FORMAT(V, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:817:9: note: in expansion of macro 'ESP_LOGI'
+  817 |         ESP_LOGI(TAG, "mtu update event; conn_handle=%d cid=%d mtu=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:818:23: error: invalid use of undefined type 'struct ble_gap_event'
+  818 |                  event->mtu.conn_handle, event->mtu.channel_id,
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:224:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  224 |         else                                                  { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_INFO),    tag, LOG_FORMAT(I, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:817:9: note: in expansion of macro 'ESP_LOGI'
+  817 |         ESP_LOGI(TAG, "mtu update event; conn_handle=%d cid=%d mtu=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:818:47: error: invalid use of undefined type 'struct ble_gap_event'
+  818 |                  event->mtu.conn_handle, event->mtu.channel_id,
+      |                                               ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:224:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  224 |         else                                                  { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_INFO),    tag, LOG_FORMAT(I, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:817:9: note: in expansion of macro 'ESP_LOGI'
+  817 |         ESP_LOGI(TAG, "mtu update event; conn_handle=%d cid=%d mtu=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:819:23: error: invalid use of undefined type 'struct ble_gap_event'
+  819 |                  event->mtu.value);
+      |                       ^~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:224:167: note: in definition of macro 'ESP_LOG_LEVEL'
+  224 |         else                                                  { esp_log(ESP_LOG_CONFIG_INIT(ESP_LOG_INFO),    tag, LOG_FORMAT(I, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                                                       ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf/components/log/include/esp_log.h:127:41: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  127 | #define ESP_LOGI(tag, format, ...) do { ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO, tag, format, ##__VA_ARGS__); } while(0)
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:817:9: note: in expansion of macro 'ESP_LOGI'
+  817 |         ESP_LOGI(TAG, "mtu update event; conn_handle=%d cid=%d mtu=%d",
+      |         ^~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:698:30: warning: unused variable 'desc' [-Wunused-variable]
+  698 |     struct ble_gap_conn_desc desc;
+      |                              ^~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c: At top level:
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:694:12: warning: 'gap_event_handler' defined but not used [-Wunused-function]
+  694 | static int gap_event_handler(struct ble_gap_event *event, void *arg)
+      |            ^~~~~~~~~~~~~~~~~
+cc1: all warnings being treated as errors
+ninja: build stopped: subcommand failed.

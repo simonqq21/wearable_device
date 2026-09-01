@@ -12,6 +12,7 @@
 #include "include/imu.h"
 #include "include/sd_card.h"
 #include "include/uart.h"
+#include "include/ble.h"
 #include "esp_timer.h"
 #include "common.h"
 #include "config.h"
@@ -95,6 +96,7 @@ void app_main(void)
     params_task_main_datalogging_t params_task_main_datalogging;
     params_task_SD_card_datalogger_t params_task_SD_card_datalogger;
     params_task_uart_t params_task_uart;
+    params_task_ble_t params_task_ble;
 
     /* params_task_imu */
     params_task_imu.task_handle_status_led = &task_handle_status_led;
@@ -120,6 +122,7 @@ void app_main(void)
     params_task_uart.queue_orientation_UART = queue_orientation_UART;
 
     /* params_task_ble */
+    params_task_ble.queue_orientation_BLE = queue_orientation_BLE;
 
     /* initialize all tasks */
     // IMU reading task

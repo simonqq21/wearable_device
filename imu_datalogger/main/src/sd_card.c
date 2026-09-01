@@ -443,8 +443,8 @@ int get_highest_datalog_idx(const char *dir_path)
             continue;
         }
 
-        // Print the file/folder name
-        printf("%s\n", entry->d_name);
+        // // Print the file/folder name
+        // printf("%s\n", entry->d_name);
 
         // if (strlen(entry->d_name) == IMU_EXPECTED_LEN)
 
