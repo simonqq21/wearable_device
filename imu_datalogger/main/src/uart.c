@@ -57,8 +57,8 @@ void task_uart_streaming(void *params)
     /* COBS-encoded bytes buffer */
     char encoded_bytes_buf[sizeof(orientation_data_t) + 3];
     /* UART task parameters */
-    params_task_uart_t *params_uart_task = (params_task_uart_t *)params;
-    QueueHandle_t queue_orientation_UART = params_uart_task->queue_orientation_UART;
+    params_task_uart_t *params_task_uart = (params_task_uart_t *)params;
+    QueueHandle_t queue_orientation_UART = params_task_uart->queue_orientation_UART;
 
     while (1)
     {

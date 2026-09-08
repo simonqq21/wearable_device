@@ -9,6 +9,8 @@
 
 #define LSM6DS3_TAG "LSM6DS3"
 
+#define MAX_FIFO_TIMESTAMPS 200
+
 #define LSM6DS3_SENSOR_ADDR 0x6B /*!< Address of the LSM6DS3 sensor */
 #define LSM6DS3_WHO_AM_I_REG_ADDR 0x0F
 #define LSM6DS3_WHO_AM_I 0x69
@@ -356,7 +358,7 @@ void lsm6ds3_set_fifo_operation_mode(i2c_master_dev_handle_t dev_handle, lsm6ds3
 uint16_t lsm6ds3_fifo_get_num_samples(i2c_master_dev_handle_t dev_handle);
 uint16_t lsm6ds3_fifo_get_pattern(i2c_master_dev_handle_t dev_handle);
 uint16_t lsm6ds3_fifo_read_word_from_fifo(i2c_master_dev_handle_t dev_handle);
-void lsm6ds3_read_fifo_status2_reg(i2c_master_dev_handle_t dev_handle);
+uint8_t lsm6ds3_read_fifo_status2_reg(i2c_master_dev_handle_t dev_handle);
 
 uint8_t lsm6ds3_check_temp_data_available(i2c_master_dev_handle_t dev_handle);
 uint8_t lsm6ds3_check_gyro_data_available(i2c_master_dev_handle_t dev_handle);

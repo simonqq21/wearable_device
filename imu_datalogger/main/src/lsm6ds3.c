@@ -466,7 +466,7 @@ void lsm6ds3_enable_bdu(i2c_master_dev_handle_t dev_handle)
 void lsm6ds3_fifo_init(i2c_master_dev_handle_t dev_handle, uint16_t odr)
 {
     /* set FIFO threshold */
-    uint16_t fifo_threshold = 200;
+    uint16_t fifo_threshold = 2000;
     lsm6ds3_set_fifo_thresh(dev_handle, fifo_threshold);
 
     /* include temperature in FIFO */
@@ -592,7 +592,7 @@ uint16_t lsm6ds3_fifo_read_word_from_fifo(i2c_master_dev_handle_t dev_handle)
 /**
  * @brief LSM6DS3 read and interpret FIFO STATUS 2 register
  */
-void lsm6ds3_read_fifo_status2_reg(i2c_master_dev_handle_t dev_handle)
+uint8_t lsm6ds3_read_fifo_status2_reg(i2c_master_dev_handle_t dev_handle)
 {
     uint8_t temp;
     uint8_t waterm = 0;
@@ -609,6 +609,7 @@ void lsm6ds3_read_fifo_status2_reg(i2c_master_dev_handle_t dev_handle)
     if (temp & FIFO_STATUS2_FIFO_EMPTY)
         empty = 1;
     ESP_LOGI(LSM6DS3_TAG, "FIFO watermark = %d, overrun = %d, full_smart = %d, empty = %d", waterm, overrun, full_smart, empty);
+    return temp;
 }
 
 /**
@@ -623,6 +624,7 @@ void lsm6ds3_read_fifo_status2_reg(i2c_master_dev_handle_t dev_handle)
 uint16_t lsm6ds3_fifo_read(i2c_master_dev_handle_t dev_handle, lsm6ds3_data_t *lsm6ds3_fifo_buffer, uint16_t num_timesteps)
 {
     uint16_t num_fifo_samples;
+    uint16_t num_samples_to_read;
     uint16_t fifo_pattern;
     uint16_t num_timesteps_read = 0;
 
@@ -659,12 +661,29 @@ uint16_t lsm6ds3_fifo_read(i2c_master_dev_handle_t dev_handle, lsm6ds3_data_t *l
     //     num_fifo_samples--;
     // }
 
+    /*
+    get the number of FIFO samples currently in the LSM6DS3.
+    This represents raw samples, not timestamps, so need to divide by 6.
+    */
     num_fifo_samples = lsm6ds3_fifo_get_num_samples(dev_handle);
+    num_samples_to_read = num_timesteps * 6;
+    /* read FIFO status register to determine when an overflow occurs */
+    uint8_t status2_reg = lsm6ds3_read_fifo_status2_reg(dev_handle);
 
-    /* 6 axes */
-    if (num_fifo_samples > num_timesteps * 6)
+    /* 6 axes
+    ||
+        ((status2_reg & FIFO_STATUS2_WATERM) == 1 &&
+         (status2_reg & FIFO_STATUS2_OVER_RUN) == 0 &&
+         (status2_reg & FIFO_STATUS2_FIFO_FULL_SMART) == 1 &&
+         (status2_reg & FIFO_STATUS2_FIFO_EMPTY) == 0)|| (status2_reg & FIFO_STATUS2_WATERM) == 1
+     */
+    if (num_fifo_samples > num_samples_to_read)
     {
-        for (int i = 0; i < num_timesteps; i++)
+        uint16_t num_timesteps_to_read = num_timesteps;
+
+        ESP_LOGI(LSM6DS3_TAG, "num_fifo_samples = %d %d", num_fifo_samples, num_timesteps_to_read);
+        // ESP_LOGI(LSM6DS3_TAG, "num_fifo_samples = %d %d", num_fifo_samples, num_samples_to_read);
+        for (int i = 0; i < num_timesteps_to_read; i++)
         {
             // ESP_ERROR_CHECK(lsm6ds3_register_read(dev_handle, LSM6DS3_FIFO_DATA_OUT_L_REG_ADDR, data, 2));
             // lsm6ds3_fifo_buffer[i].gyro[0] = ((int16_t)(data[1] << 8) | data[0]) / 32768.0 * gyro_fs_cf;
@@ -681,6 +700,7 @@ uint16_t lsm6ds3_fifo_read(i2c_master_dev_handle_t dev_handle, lsm6ds3_data_t *l
             // lsm6ds3_fifo_buffer[i].accel[2] = ((int16_t)(data[1] << 8) | data[0]) / 32768.0 * accel_fs_cf;
 
             ESP_ERROR_CHECK(lsm6ds3_register_read(dev_handle, LSM6DS3_FIFO_DATA_OUT_L_REG_ADDR, data, 12));
+            // ESP_LOGI(LSM6DS3_TAG, "r %d", i);
             lsm6ds3_fifo_buffer[i].gyro[0] = ((int16_t)(data[1] << 8) | data[0]) / 32768.0 * gyro_fs_cf;
             lsm6ds3_fifo_buffer[i].gyro[1] = ((int16_t)(data[3] << 8) | data[2]) / 32768.0 * gyro_fs_cf;
             lsm6ds3_fifo_buffer[i].gyro[2] = ((int16_t)(data[5] << 8) | data[4]) / 32768.0 * gyro_fs_cf;
@@ -701,7 +721,6 @@ uint16_t lsm6ds3_fifo_read(i2c_master_dev_handle_t dev_handle, lsm6ds3_data_t *l
 
     num_fifo_samples = lsm6ds3_fifo_get_num_samples(dev_handle);
     ESP_LOGI(LSM6DS3_TAG, "num_fifo_samples = %d", num_fifo_samples);
-    lsm6ds3_read_fifo_status2_reg(dev_handle);
 
     return num_timesteps_read;
 }

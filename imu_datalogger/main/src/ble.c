@@ -48,115 +48,280 @@
 
 #include "../include/ble.h"
 
-/**
- * @brief this struct acts as an application-level state container for a single GATT profile.
- * It stores the stack handles, identifiers, and configuration metadata needed to manage a GATT
- * service, its characteristic, and its descriptor throughout their lifecycle.
- *
- *
- */
-struct gatts_profile_inst
-{
-    esp_gatts_cb_t gatts_cb;       // Profile-specific event callback
-    uint16_t gatts_if;             // GATT Interface ID
-    uint16_t app_id;               // Application ID
-    uint16_t conn_id;              // Connection ID
-    uint16_t service_handle;       // Service handle
-    esp_gatt_srvc_id_t service_id; // Service ID
-    uint16_t char_handle;          // Characteristic handle
-    esp_bt_uuid_t char_uuid;       // Characteristic UUID
-    esp_gatt_perm_t perm;          //
-    esp_gatt_char_prop_t property; // Characteristic property (Read, Write, Notify, Indicate)
-    uint16_t descr_handle;         // Characteristic descriptor handle
-    esp_bt_uuid_t descr_uuid;      // Characteristic descriptor UUID
+static const char device_name[] = "ITLAB BLE WEARABLE";
+
+// 32816f9c-482f-43fb-9e58-5f35d8d5a8e0
+static uint8_t ORIENTATION_SERVICE_UUID[] = {
+    0x32,
+    0x81,
+    0x6f,
+    0x9c,
+    0x48,
+    0x2f,
+    0x43,
+    0xfb,
+    0x9e,
+    0x58,
+    0x5f,
+    0x35,
+    0xd8,
+    0xd5,
+    0xa8,
+    0xe0,
 };
 
-/**
- * GATT event handlers
- */
-static void orientation_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param);
-static void example_write_event_env(esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param);
+// 653f0660-4e9d-46e5-9881-14fe894e2edd
+static uint8_t ORIENTATION_CHARACTERISTIC_UUID[] = {
+    0x65,
+    0x3f,
+    0x06,
+    0x60,
+    0x4e,
+    0x9d,
+    0x46,
+    0xe5,
+    0x98,
+    0x81,
+    0x14,
+    0xfe,
+    0x89,
+    0x4e,
+    0x2e,
+    0xdd,
+};
 
-static const char *GATTS_TAG = "GATTS";
-/*
-BLE GATT characteristics properties
-Read, Write, Notify, or Indicate
-*/
-/* ESP_GATT_CHAR_PROP_BIT_READ | ESP_GATT_CHAR_PROP_BIT_INDICATE */
-static esp_gatt_char_prop_t orientation_property = 0;
-/* ESP_GATT_CHAR_PROP_BIT_WRITE */
+// /* orientation service UUID = 3b2e4236-a101-47a2-99cd-cbc128b57126 */
+// static uint8_t ORIENTATION_SERVICE_UUID[] = {
+// 	0x26,
+// 	0x71,
+// 	0xb5,
+// 	0x28,
+// 	0xc1,
+// 	0xcb,
+// 	0xcd,
+// 	0x99,
+// 	0xa2,
+// 	0x47,
+// 	0x01,
+// 	0xa1,
+// 	0x36,
+// 	0x42,
+// 	0x2e,
+// 	0x3b,
+// };
+
+// /* orientation stream characteristic UUID = 651539c8-b216-4ede-a768-bee272c47d42 */
+// static uint8_t ORIENTATION_CHARACTERISTIC_UUID[] = {
+// 	0x42,
+// 	0x7d,
+// 	0xc4,
+// 	0x72,
+// 	0xe2,
+// 	0xbe,
+// 	0x68,
+// 	0xa7,
+// 	0xde,
+// 	0x4e,
+// 	0x16,
+// 	0xb2,
+// 	0xc8,
+// 	0x39,
+// 	0x15,
+// 	0x65,
+// };
 
 /* orientation value */
 static orientation_data_t orientation_data;
+static uint8_t test_data[] = {0x12, 0x34};
 
-/* enable BLE indicate */
-static bool indicate_enabled = false;
-/* orientation create GATT complete */
-static bool orientation_create_cmpl = false; // Heart Rate Service
+/* indicate enabled */
+uint8_t notify_enabled[GATT_IDX_NB];
 /* advertising configuration done */
 static uint8_t adv_config_done = 0;
+/* service handle integer storage */
+uint16_t service_handle_table[GATT_IDX_NB];
+static prepare_type_env_t prepare_write_env;
 
-/* orientation attribute */
-esp_attr_value_t orientation_data_attr = {
-    .attr_max_len = sizeof(orientation_data_t),
-    .attr_len = sizeof(orientation_data_t),
-    .attr_value = (uint8_t *)&orientation_data,
-};
-
-/* BLE advertising data */
+/* The length of adv data must be less than 31 bytes */
 static esp_ble_adv_data_t adv_data = {
     .set_scan_rsp = false,
     .include_name = true,
-    .include_txpower = false,
-    .min_interval = 0x0006,
-    .max_interval = 0x0010,
+    .include_txpower = true,
+    .min_interval = ESP_BLE_GAP_CONN_ITVL_MS(7.5), // slave connection min interval
+    .max_interval = ESP_BLE_GAP_CONN_ITVL_MS(20),  // slave connection max interval
     .appearance = 0x00,
-    .manufacturer_len = 0,
-    .p_manufacturer_data = NULL,
+    .manufacturer_len = 0,       // TEST_MANUFACTURER_DATA_LEN,
+    .p_manufacturer_data = NULL, // test_manufacturer,
     .service_data_len = 0,
     .p_service_data = NULL,
-    .service_uuid_len = 0,
-    .p_service_uuid = NULL,
+    .service_uuid_len = sizeof(ORIENTATION_SERVICE_UUID),
+    .p_service_uuid = ORIENTATION_SERVICE_UUID,
     .flag = (ESP_BLE_ADV_FLAG_GEN_DISC | ESP_BLE_ADV_FLAG_BREDR_NOT_SPT),
 };
 
-/* BLE advertising params */
 static esp_ble_adv_params_t adv_params = {
-    .adv_int_min = 0x20, // 20ms
-    .adv_int_max = 0x40, // 40ms
+    .adv_int_min = ESP_BLE_GAP_ADV_ITVL_MS(20),
+    .adv_int_max = ESP_BLE_GAP_ADV_ITVL_MS(40),
     .adv_type = ADV_TYPE_IND,
     .own_addr_type = BLE_ADDR_TYPE_PUBLIC,
     .channel_map = ADV_CHNL_ALL,
     .adv_filter_policy = ADV_FILTER_ALLOW_SCAN_ANY_CON_ANY,
 };
 
-/* BLE GATT profile instances */
+// scan response data
+static esp_ble_adv_data_t scan_rsp_data = {
+    .set_scan_rsp = true,
+    .include_name = true,
+    .include_txpower = true,
+    .min_interval = ESP_BLE_GAP_CONN_ITVL_MS(7.5),
+    .max_interval = ESP_BLE_GAP_CONN_ITVL_MS(20),
+    .appearance = 0x00,
+    .manufacturer_len = 0,       // TEST_MANUFACTURER_DATA_LEN,
+    .p_manufacturer_data = NULL, //&test_manufacturer[0],
+    .service_data_len = 0,
+    .p_service_data = NULL,
+    .service_uuid_len = sizeof(ORIENTATION_SERVICE_UUID),
+    .p_service_uuid = ORIENTATION_SERVICE_UUID,
+    .flag = (ESP_BLE_ADV_FLAG_GEN_DISC | ESP_BLE_ADV_FLAG_BREDR_NOT_SPT),
+};
+
+/* BLE GATT profile instances
+ One gatt-based profile one app_id and one gatts_if, this array will store the gatts_if
+ returned by ESP_GATTS_REG_EVT */
 static struct gatts_profile_inst gl_profile_tab[PROFILE_NUM] = {
     [APP_ID] = {
-        .gatts_cb = orientation_profile_event_handler,
+        .gatts_cb = gatts_profile_event_handler,
         .gatts_if = ESP_GATT_IF_NONE, /* Not get the gatt_if, so initial is ESP_GATT_IF_NONE */
     },
 };
 
-// /* orientation data update and read task */
-// static void heart_rate_task(void *param)
-// {
-//     ESP_LOGI(GATTS_TAG, "Heart Rate Task Start");
+/* Task that handles writing to LEDs and reading the button and potentiometer */
+#define ORIENTATION_TAG "ORIENTATION"
 
+// /* update orientation data with timestamp and dummy orientation values */
+// void update_orientation(orientation_data_t *orientation_data)
+// {
+//     // orientation_data->euler_angle.timestamp = 100;
+//     // orientation_data->euler_angle.x = 30;
+//     // orientation_data->euler_angle.y = 40;
+//     // orientation_data->euler_angle.z = 50;
+
+//     uint32_t random_number = esp_random() % 361;
+//     orientation_data->euler_angle.timestamp = esp_timer_get_time() / 1000;
+//     orientation_data->euler_angle.x = -180.0 + random_number;
+//     // vTaskDelay(3 / portTICK_PERIOD_MS);
+//     random_number = esp_random() % 361;
+//     orientation_data->euler_angle.y = -180.0 + random_number;
+//     // vTaskDelay(3 / portTICK_PERIOD_MS);
+//     random_number = esp_random() % 361;
+//     orientation_data->euler_angle.z = -180.0 + random_number;
+// }
+
+// static void task_orientation(void *param)
+// {
+//     // euler_angle_t euler1;
+//     // euler1.timestamp = 100;
+//     // euler1.x = 10.0f;
+//     // euler1.y = 20.0f;
+//     // euler1.z = 30.0f;
+
+//     // ESP_LOGI(ORIENTATION_TAG, "timestamp %lld, x %f, y %f, z %f",
+//     // 		 euler1.timestamp,
+//     // 		 euler1.x,
+//     // 		 euler1.y,
+//     // 		 euler1.z);
 //     while (1)
 //     {
-//         if (orientation_create_cmpl)
-//         {
-//             // update_heart_rate();
-//             // ESP_LOGI(GATTS_TAG, "Heart Rate updated to %d", get_heart_rate());
+//         /* update orientation */
+//         update_orientation(&orientation_data);
+//         ESP_LOGI(ORIENTATION_TAG, "timestamp %lld, x %f, y %f, z %f \n",
+//                  orientation_data.euler_angle.timestamp,
+//                  orientation_data.euler_angle.x,
+//                  orientation_data.euler_angle.y,
+//                  orientation_data.euler_angle.z);
+//         /* update orientation BLE attribute */
+//         // if (btn1_val_prev != btn1_val)
+//         // {
+//         // 	btn1_val_prev = btn1_val;
+//         esp_ble_gatts_set_attr_value(service_handle_table[ORIENTATION_IDX_VAL], sizeof(orientation_data), (uint8_t *)&orientation_data);
+//         // }
 
-//             // heart_rate_val[1] = get_heart_rate();
-//             esp_ble_gatts_set_attr_value(gl_profile_tab[APP_ID].char_handle, 2, heart_rate_val);
-//         }
-
-//         vTaskDelay(1000 / portTICK_PERIOD_MS);
+//         vTaskDelay(50 / portTICK_PERIOD_MS);
 //     }
 // }
+
+/* UUID for defining a primary GATT service in the GATT DB  */
+static const uint16_t primary_service_uuid = ESP_GATT_UUID_PRI_SERVICE;
+/* UUID for declaring a GATT characteristic in the GATT DB */
+static const uint16_t character_declaration_uuid = ESP_GATT_UUID_CHAR_DECLARE;
+/* UUID for declaring a GATT characteristic configuration in the GATT DB */
+static const uint16_t character_client_config_uuid = ESP_GATT_UUID_CHAR_CLIENT_CONFIG;
+
+/*
+BLE GATT characteristics properties
+Read, Write, Notify, or Indicate
+*/
+/* read-only characteristic property */
+static uint8_t char_prop_read = ESP_GATT_CHAR_PROP_BIT_READ;
+/* write-only characteristic property */
+static uint8_t char_prop_write = ESP_GATT_CHAR_PROP_BIT_WRITE;
+/* read-write characteristic property */
+static uint8_t char_prop_read_write = ESP_GATT_CHAR_PROP_BIT_READ | ESP_GATT_CHAR_PROP_BIT_WRITE;
+/* read-write-notify characteristic property */
+static uint8_t char_prop_read_write_indicate = ESP_GATT_CHAR_PROP_BIT_WRITE | ESP_GATT_CHAR_PROP_BIT_READ | ESP_GATT_CHAR_PROP_BIT_INDICATE;
+static uint8_t char_prop_read_notify = ESP_GATT_CHAR_PROP_BIT_READ | ESP_GATT_CHAR_PROP_BIT_NOTIFY;
+/*
+Client Characteristic Configuration (CCC) descriptor is an additional attribute that describes if the characteristic has notifications enabled.
+
+Notifications for changing orientation values
+*/
+static const uint8_t orientation_ccc[2] = {0x00, 0x00};
+
+/* Full Database Description - Used to add attributes into the database */
+static const esp_gatts_attr_db_t gatt_db[GATT_IDX_NB] =
+    {
+        // Orientation Service Declaration
+        [ORIENTATION_IDX_SVC] =
+            {
+                {ESP_GATT_AUTO_RSP},
+                {ESP_UUID_LEN_16,                        // define primary GATT service
+                 (uint8_t *)&primary_service_uuid,       // define primary GATT service
+                 ESP_GATT_PERM_READ,                     // read permission
+                 sizeof(ORIENTATION_SERVICE_UUID),       // UUID128
+                 sizeof(ORIENTATION_SERVICE_UUID),       // UUID128
+                 (uint8_t *)&ORIENTATION_SERVICE_UUID}}, // GATT service UUID
+
+        /* orientation characteristic declaration*/
+        [ORIENTATION_IDX_CHAR] = // Named or designated initializer in the enum table.
+        {
+            {ESP_GATT_AUTO_RSP},                     // Auto respond configuration, set to respond automatically by the stack.
+            {ESP_UUID_LEN_16,                        // define a GATT characteristic
+             (uint8_t *)&character_declaration_uuid, // define a GATT characteristic
+             ESP_GATT_PERM_READ,                     // read permission
+             CHAR_DECLARATION_SIZE,                  // characteristic declaration size (uint8_t)
+             CHAR_DECLARATION_SIZE,                  // characteristic declaration size (uint8_t)
+             (uint8_t *)&char_prop_read_notify}},    // Characteristic is read-write
+
+        /* orientation value declaration */
+        [ORIENTATION_IDX_VAL] =
+            {{ESP_GATT_AUTO_RSP},
+             {ESP_UUID_LEN_128,                           // UUID128
+              (uint8_t *)ORIENTATION_CHARACTERISTIC_UUID, // GATT characteristic UUID
+              ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,   // read-write permission
+              500,                                        // max size of value
+              sizeof(orientation_data),                   // cur size of value
+              (uint8_t *)&orientation_data}},             // pointer to characteristic value
+
+        /* orientation notification configuration declaration */
+        [ORIENTATION_IDX_NTF_CFG] =
+            {{ESP_GATT_AUTO_RSP},
+             {ESP_UUID_LEN_16,                          // UUID128
+              (uint8_t *)&character_client_config_uuid, // GATT characteristic UUID
+              ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE, // read-write permission
+              sizeof(uint16_t),                         // max size of value
+              sizeof(uint16_t),                         // cur size of value
+              (uint8_t *)&orientation_ccc}},            // pointer to characteristic value
+};
 
 /**
  * @brief handles different BLE events such as connect, disconnect,
@@ -170,44 +335,44 @@ static void gap_event_handler(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param
 {
     switch (event)
     {
-    /* BLE GAP advertising data set completed */
+        /* BLE GAP advertising data set completed */
     case ESP_GAP_BLE_ADV_DATA_SET_COMPLETE_EVT:
-        ESP_LOGI(GATTS_TAG, "Advertising data set, status %d", param->adv_data_cmpl.status);
+        ESP_LOGI(BLE_TAG, "Advertising data set, status %d", param->adv_data_cmpl.status);
         adv_config_done &= (~ADV_CONFIG_FLAG);
         if (adv_config_done == 0)
         {
             esp_ble_gap_start_advertising(&adv_params);
         }
         break;
-    /* BLE GAP scan response data set completed */
+        /* BLE GAP scan response data set completed */
     case ESP_GAP_BLE_SCAN_RSP_DATA_SET_COMPLETE_EVT:
-        ESP_LOGI(GATTS_TAG, "Scan response data set, status %d", param->scan_rsp_data_cmpl.status);
+        ESP_LOGI(BLE_TAG, "Scan response data set, status %d", param->scan_rsp_data_cmpl.status);
         adv_config_done &= (~SCAN_RSP_CONFIG_FLAG);
         if (adv_config_done == 0)
         {
             esp_ble_gap_start_advertising(&adv_params);
         }
         break;
-    /* BLE GAP advertising started */
+        /* BLE GAP advertising started */
     case ESP_GAP_BLE_ADV_START_COMPLETE_EVT:
         if (param->adv_start_cmpl.status != ESP_BT_STATUS_SUCCESS)
         {
-            ESP_LOGE(GATTS_TAG, "Advertising start failed, status %d", param->adv_start_cmpl.status);
+            ESP_LOGE(BLE_TAG, "Advertising start failed, status %d", param->adv_start_cmpl.status);
             break;
         }
-        ESP_LOGI(GATTS_TAG, "Advertising start successfully");
+        ESP_LOGI(BLE_TAG, "Advertising start successfully");
         break;
-    /* BLE GAP update connection params completed */
+        /* BLE GAP update connection params completed */
     case ESP_GAP_BLE_UPDATE_CONN_PARAMS_EVT:
-        ESP_LOGI(GATTS_TAG, "Connection params update, status %d, conn_int %d, latency %d, timeout %d",
+        ESP_LOGI(BLE_TAG, "Connection params update, status %d, conn_int %d, latency %d, timeout %d",
                  param->update_conn_params.status,
                  param->update_conn_params.conn_int,
                  param->update_conn_params.latency,
                  param->update_conn_params.timeout);
         break;
-    /* BLE GAP set packet length complete */
+        /* BLE GAP set packet length complete */
     case ESP_GAP_BLE_SET_PKT_LENGTH_COMPLETE_EVT:
-        ESP_LOGI(GATTS_TAG, "Packet length update, status %d, rx %d, tx %d",
+        ESP_LOGI(BLE_TAG, "Packet length update, status %d, rx %d, tx %d",
                  param->pkt_data_length_cmpl.status,
                  param->pkt_data_length_cmpl.params.rx_len,
                  param->pkt_data_length_cmpl.params.tx_len);
@@ -217,297 +382,313 @@ static void gap_event_handler(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param
     }
 }
 
-/**
- * @brief orientation data profile event handler
- */
-static void orientation_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param)
+void example_prepare_write_event_env(esp_gatt_if_t gatts_if, prepare_type_env_t *prepare_write_env, esp_ble_gatts_cb_param_t *param)
+{
+    ESP_LOGI(BLE_TAG, "prepare write, handle = %d, value len = %d", param->write.handle, param->write.len);
+    esp_gatt_status_t status = ESP_GATT_OK;
+    if (param->write.offset > PREPARE_BUF_MAX_SIZE)
+    {
+        status = ESP_GATT_INVALID_OFFSET;
+    }
+    else if ((param->write.offset + param->write.len) > PREPARE_BUF_MAX_SIZE)
+    {
+        status = ESP_GATT_INVALID_ATTR_LEN;
+    }
+    if (status == ESP_GATT_OK && prepare_write_env->prepare_buf == NULL)
+    {
+        prepare_write_env->prepare_buf = (uint8_t *)malloc(PREPARE_BUF_MAX_SIZE * sizeof(uint8_t));
+        prepare_write_env->prepare_len = 0;
+        if (prepare_write_env->prepare_buf == NULL)
+        {
+            ESP_LOGE(BLE_TAG, "%s, Gatt_server prep no mem", __func__);
+            status = ESP_GATT_NO_RESOURCES;
+        }
+    }
+
+    /*send response when param->write.need_rsp is true */
+    if (param->write.need_rsp)
+    {
+        esp_gatt_rsp_t *gatt_rsp = (esp_gatt_rsp_t *)malloc(sizeof(esp_gatt_rsp_t));
+        if (gatt_rsp != NULL)
+        {
+            gatt_rsp->attr_value.len = param->write.len;
+            gatt_rsp->attr_value.handle = param->write.handle;
+            gatt_rsp->attr_value.offset = param->write.offset;
+            gatt_rsp->attr_value.auth_req = ESP_GATT_AUTH_REQ_NONE;
+            memcpy(gatt_rsp->attr_value.value, param->write.value, param->write.len);
+            esp_err_t response_err = esp_ble_gatts_send_response(gatts_if, param->write.conn_id, param->write.trans_id, status, gatt_rsp);
+            if (response_err != ESP_OK)
+            {
+                ESP_LOGE(BLE_TAG, "Send response error");
+            }
+            free(gatt_rsp);
+        }
+        else
+        {
+            ESP_LOGE(BLE_TAG, "%s, malloc failed", __func__);
+            status = ESP_GATT_NO_RESOURCES;
+        }
+    }
+    if (status != ESP_GATT_OK)
+    {
+        return;
+    }
+    memcpy(prepare_write_env->prepare_buf + param->write.offset,
+           param->write.value,
+           param->write.len);
+    prepare_write_env->prepare_len += param->write.len;
+}
+
+void example_exec_write_event_env(prepare_type_env_t *prepare_write_env, esp_ble_gatts_cb_param_t *param)
+{
+    if (param->exec_write.exec_write_flag == ESP_GATT_PREP_WRITE_EXEC && prepare_write_env->prepare_buf)
+    {
+        ESP_LOG_BUFFER_HEX(BLE_TAG, prepare_write_env->prepare_buf, prepare_write_env->prepare_len);
+    }
+    else
+    {
+        ESP_LOGI(BLE_TAG, "ESP_GATT_PREP_WRITE_CANCEL");
+    }
+    if (prepare_write_env->prepare_buf)
+    {
+        free(prepare_write_env->prepare_buf);
+        prepare_write_env->prepare_buf = NULL;
+    }
+    prepare_write_env->prepare_len = 0;
+}
+
+void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param)
 {
     switch (event)
     {
-    /* This event is triggered when a GATT Server application is registered using esp_ble_gatts_app_register */
+        /* This event is triggered when a GATT Server application is registered using esp_ble_gatts_app_register */
     case ESP_GATTS_REG_EVT:
-        ESP_LOGI(GATTS_TAG, "GATT server register, status %d, app_id %d", param->reg.status, param->reg.app_id);
-        gl_profile_tab[APP_ID].service_id.is_primary = true;
-        gl_profile_tab[APP_ID].service_id.id.inst_id = 0x00;
-        gl_profile_tab[APP_ID].service_id.id.uuid.len = ESP_UUID_LEN_128;
-        memcpy(gl_profile_tab[APP_ID].service_id.id.uuid.uuid.uuid128, ORIENTATION_SERVICE_UUID, ESP_UUID_LEN_128);
+    {
+        esp_err_t set_dev_name_ret = esp_ble_gap_set_device_name(device_name);
+        if (set_dev_name_ret)
+        {
+            ESP_LOGE(BLE_TAG, "set device name failed, error code = %x", set_dev_name_ret);
+        }
+
+        // ESP_LOGI(BLE_TAG, "before adv");
 
         // config adv data
         esp_err_t ret = esp_ble_gap_config_adv_data(&adv_data);
         if (ret)
         {
-            ESP_LOGE(GATTS_TAG, "config adv data failed, error code = %x", ret);
-            break;
+            ESP_LOGE(BLE_TAG, "config adv data failed, error code = %x", ret);
         }
 
-        esp_ble_gatts_create_service(gatts_if, &gl_profile_tab[APP_ID].service_id, ORIENTATION_NUM_HANDLE);
-        break;
+        // ESP_LOGI(BLE_TAG, "after adv1");
 
-    /* This event is triggered when a GATT Server service is created using esp_ble_gatts_create_service */
-    case ESP_GATTS_CREATE_EVT:
-        // service has been created, now add characteristic declaration
-        ESP_LOGI(GATTS_TAG, "Service create, status %d, service_handle %d", param->create.status, param->create.service_handle);
-        gl_profile_tab[APP_ID].service_handle = param->create.service_handle;
-        gl_profile_tab[APP_ID].char_uuid.len = ESP_UUID_LEN_128;
-        memcpy(gl_profile_tab[APP_ID].char_uuid.uuid.uuid128, ORIENTATION_CHARACTERISTIC_UUID, ESP_UUID_LEN_128);
-        esp_ble_gatts_start_service(gl_profile_tab[APP_ID].service_handle);
-        orientation_property = ESP_GATT_CHAR_PROP_BIT_READ | ESP_GATT_CHAR_PROP_BIT_INDICATE;
-        ret = esp_ble_gatts_add_char(gl_profile_tab[APP_ID].service_handle, &gl_profile_tab[APP_ID].char_uuid,
-                                     ESP_GATT_PERM_READ,
-                                     orientation_property,
-                                     &orientation_data_attr, NULL);
+        adv_config_done |= ADV_CONFIG_FLAG;
+        // config scan response data
+        ret = esp_ble_gap_config_adv_data(&scan_rsp_data);
         if (ret)
         {
-            ESP_LOGE(GATTS_TAG, "add char failed, error code = %x", ret);
+            ESP_LOGE(BLE_TAG, "config scan response data failed, error code = %x", ret);
         }
-        break;
+        adv_config_done |= SCAN_RSP_CONFIG_FLAG;
 
-    /* This event is triggered when a characteristic is added to the service using esp_ble_gatts_add_char */
-    case ESP_GATTS_ADD_CHAR_EVT:
-        ESP_LOGI(GATTS_TAG, "Characteristic add, status %d, attr_handle %d, char_uuid %x",
-                 param->add_char.status, param->add_char.attr_handle, param->add_char.char_uuid.uuid.uuid128);
-        gl_profile_tab[APP_ID].char_handle = param->add_char.attr_handle;
-        gl_profile_tab[APP_ID].descr_uuid.len = ESP_UUID_LEN_16;
-        gl_profile_tab[APP_ID].descr_uuid.uuid.uuid16 = ESP_GATT_UUID_CHAR_CLIENT_CONFIG;
-        ESP_LOGI(GATTS_TAG, "orientation data char handle %d", param->add_char.attr_handle);
-        ret = esp_ble_gatts_add_char_descr(gl_profile_tab[APP_ID].service_handle, &gl_profile_tab[APP_ID].descr_uuid,
-                                           ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE, NULL, NULL);
-        break;
+        // ESP_LOGI(BLE_TAG, "after adv2");
 
-    /* This event is triggered when a characteristic descriptor is added to the service using esp_ble_gatts_add_char_descr */
-    case ESP_GATTS_ADD_CHAR_DESCR_EVT:
-        ESP_LOGI(GATTS_TAG, "Descriptor add, status %d, attr_handle %u",
-                 param->add_char_descr.status, param->add_char_descr.attr_handle);
-        gl_profile_tab[APP_ID].descr_handle = param->add_char_descr.attr_handle;
-        orientation_create_cmpl = true;
-        break;
+        esp_err_t create_attr_ret = esp_ble_gatts_create_attr_tab(gatt_db, gatts_if, GATT_IDX_NB, SVC_INST_ID);
+        if (create_attr_ret)
+        {
+            ESP_LOGE(BLE_TAG, "create attr table failed, error code = %x", create_attr_ret);
+        }
+    }
+    break;
 
     /* This event is triggered when the read request from the Client is received.  */
     case ESP_GATTS_READ_EVT:
-        ESP_LOGI(GATTS_TAG, "Characteristic read");
-        esp_gatt_rsp_t rsp;
-        memset(&rsp, 0, sizeof(esp_gatt_rsp_t));
-        rsp.attr_value.handle = param->read.handle;
-        rsp.attr_value.len = 2;
-        memcpy(rsp.attr_value.value, &orientation_data, sizeof(orientation_data));
-        esp_ble_gatts_send_response(gatts_if, param->read.conn_id, param->read.trans_id, ESP_GATT_OK, &rsp);
+        ESP_LOGI(BLE_TAG, "ESP_GATTS_READ_EVT handle %d", param->read.handle);
         break;
 
-    /* This event is triggered when the write request from the Client is received. */
+        /* This event is triggered when the write request from the Client is received. */
     case ESP_GATTS_WRITE_EVT:
-        ESP_LOGI(GATTS_TAG, "Characteristic write, value len %u, value ", param->write.len);
-        ESP_LOG_BUFFER_HEX(GATTS_TAG, param->write.value, param->write.len);
-
-        if (gl_profile_tab[APP_ID].descr_handle == param->write.handle && param->write.len == 2)
+        /* write.is_prep indicates the write operation is a prepared write operation */
+        if (!param->write.is_prep)
         {
-            uint16_t descr_value = param->write.value[1] << 8 | param->write.value[0];
-            if (descr_value == 0x0001)
+            // GATTS_DEMO_CHAR_VAL_LEN_MAX
+            // the data length of gattc write  must be less than GATTS_DEMO_CHAR_VAL_LEN_MAX.
+            ESP_LOGI(BLE_TAG, "GATT_WRITE_EVT, handle = %d, value len = %d, value :", param->write.handle, param->write.len);
+            ESP_LOG_BUFFER_HEX(BLE_TAG, param->write.value, param->write.len);
+
+            /* toggle notify and indicate in orientation characteristic CCC */
+            if (service_handle_table[ORIENTATION_IDX_NTF_CFG] == param->write.handle && param->write.len == 2)
             {
-                if (orientation_property & ESP_GATT_CHAR_PROP_BIT_NOTIFY)
+                uint16_t descr_value = param->write.value[1] << 8 | param->write.value[0];
+                /* */
+                if (descr_value == 0x0001)
                 {
-                    ESP_LOGI(GATTS_TAG, "Notification enable");
-                    uint8_t notify_data[15];
-                    for (int i = 0; i < sizeof(notify_data); i++)
-                    {
-                        notify_data[i] = i % 0xff;
-                    }
-                    // the size of notify_data[] need less than MTU size
-                    esp_ble_gatts_send_indicate(gatts_if, param->write.conn_id, gl_profile_tab[APP_ID].char_handle,
-                                                sizeof(notify_data), notify_data, false);
+                    ESP_LOGI(BLE_TAG, "notify enable");
+
+                    /* set notify_enabled for BTN1 characteristic to 1 */
+                    notify_enabled[ORIENTATION_IDX_VAL] = 1;
+
+                    // // the size of notify_data[] need less than MTU size
+                    // esp_ble_gatts_send_indicate(gatts_if, param->write.conn_id, service_handle_table[ORIENTATION_IDX_VAL],
+                    //                             sizeof(orientation_data), (uint8_t *)&orientation_data, false);
                 }
-            }
-            else if (descr_value == 0x0002)
-            {
-                if (orientation_property & ESP_GATT_CHAR_PROP_BIT_INDICATE)
+                else if (descr_value == 0x0002)
                 {
-                    ESP_LOGI(GATTS_TAG, "Indication enable");
-                    indicate_enabled = true;
-                    uint8_t indicate_data[15];
-                    for (int i = 0; i < sizeof(indicate_data); i++)
-                    {
-                        indicate_data[i] = i % 0xff;
-                    }
+                    ESP_LOGI(BLE_TAG, "indicate enable");
+
+                    /* set notify_enabled for BTN1 characteristic to 1 */
+                    notify_enabled[ORIENTATION_IDX_VAL] = 1;
+
                     // the size of indicate_data[] need less than MTU size
-                    esp_ble_gatts_send_indicate(gatts_if, param->write.conn_id, gl_profile_tab[APP_ID].char_handle,
-                                                sizeof(indicate_data), indicate_data, true);
+                    // esp_ble_gatts_send_indicate(gatts_if, param->write.conn_id, service_handle_table[ORIENTATION_IDX_VAL],
+                    //                             sizeof(orientation_data), (uint8_t *)&orientation_data, true);
+                }
+                else if (descr_value == 0x0000)
+                {
+                    ESP_LOGI(BLE_TAG, "notify/indicate disable ");
+
+                    /* set notify_enabled for this characteristic to 0 */
+                    notify_enabled[ORIENTATION_IDX_VAL] = 0;
+                }
+                else
+                {
+                    ESP_LOGE(BLE_TAG, "unknown descr value");
+                    ESP_LOG_BUFFER_HEX(BLE_TAG, param->write.value, param->write.len);
                 }
             }
-            else if (descr_value == 0x0000)
+
+            /* send response when param->write.need_rsp is true*/
+            if (param->write.need_rsp)
             {
-                indicate_enabled = false;
-                ESP_LOGI(GATTS_TAG, "Notification/Indication disable");
-            }
-            else
-            {
-                ESP_LOGE(GATTS_TAG, "Invalid descriptor value");
-                ESP_LOG_BUFFER_HEX(GATTS_TAG, param->write.value, param->write.len);
+                esp_ble_gatts_send_response(gatts_if, param->write.conn_id, param->write.trans_id, ESP_GATT_OK, NULL);
             }
         }
-        example_write_event_env(gatts_if, param);
+
+        else
+        {
+            /* handle prepare write */
+            example_prepare_write_event_env(gatts_if, &prepare_write_env, param);
+        }
         break;
 
-    /* This event is triggered when the service is deleted using esp_ble_gatts_delete_service */
-    case ESP_GATTS_DELETE_EVT:
+        /* */
+    case ESP_GATTS_EXEC_WRITE_EVT:
+        // the length of gattc prepare write data must be less than GATTS_DEMO_CHAR_VAL_LEN_MAX.
+        ESP_LOGI(BLE_TAG, "ESP_GATTS_EXEC_WRITE_EVT");
+        example_exec_write_event_env(&prepare_write_env, param);
         break;
 
-    /* This event is triggered when the service is started using esp_ble_gatts_start_service */
+        /**/
+    case ESP_GATTS_MTU_EVT:
+        ESP_LOGI(BLE_TAG, "ESP_GATTS_MTU_EVT, MTU %d", param->mtu.mtu);
+        break;
+
+        /* This event is triggered when the confirmation from the Client is received. */
+    case ESP_GATTS_CONF_EVT:
+        ESP_LOGI(BLE_TAG, "ESP_GATTS_CONF_EVT, status = %d, attr_handle %d", param->conf.status, param->conf.handle);
+        break;
+
+        /* This event is triggered when the service is started using esp_ble_gatts_start_service */
     case ESP_GATTS_START_EVT:
-        ESP_LOGI(GATTS_TAG, "Service start, status %d, service_handle %d", param->start.status, param->start.service_handle);
+        ESP_LOGI(BLE_TAG, "SERVICE_START_EVT, status %d, service_handle %d", param->start.status, param->start.service_handle);
+        break;
+
+        /* This event is triggered when a physical connection is set up. */
+    case ESP_GATTS_CONNECT_EVT:
+        ESP_LOGI(BLE_TAG, "ESP_GATTS_CONNECT_EVT, conn_id = %d", param->connect.conn_id);
+        ESP_LOG_BUFFER_HEX(BLE_TAG, param->connect.remote_bda, 6);
+        esp_ble_conn_update_params_t conn_params = {0};
+        memcpy(conn_params.bda, param->connect.remote_bda, sizeof(esp_bd_addr_t));
+        /* For the iOS system, please refer to Apple official documents about the BLE connection parameters restrictions. */
+        conn_params.latency = 0;
+        conn_params.max_int = 0x20; // max_int = 0x20*1.25ms = 40ms
+        conn_params.min_int = 0x10; // min_int = 0x10*1.25ms = 20ms
+        conn_params.timeout = 400;  // timeout = 400*10ms = 4000ms
+        // start sent the update connection parameters to the peer device.
+        esp_ble_gap_update_conn_params(&conn_params);
+        break;
+
+        /* This event is triggered when a physical connection is terminated. */
+    case ESP_GATTS_DISCONNECT_EVT:
+        ESP_LOGI(BLE_TAG, "ESP_GATTS_DISCONNECT_EVT, reason = 0x%x", param->disconnect.reason);
+        esp_ble_gap_start_advertising(&adv_params);
+        break;
+
+    /* This event is triggered when a service attribute table is created using esp_ble_gatts_create_attr_tab */
+    case ESP_GATTS_CREAT_ATTR_TAB_EVT:
+    {
+        if (param->add_attr_tab.status != ESP_GATT_OK)
+        {
+            ESP_LOGE(BLE_TAG, "create attribute table failed, error code=0x%x", param->add_attr_tab.status);
+        }
+
+        else if (param->add_attr_tab.num_handle != GATT_IDX_NB)
+        {
+            ESP_LOGE(BLE_TAG, "create attribute table abnormally, num_handle (%d) \
+                        doesn't equal to SERVICE1_IDX_NB(%d)",
+                     param->add_attr_tab.num_handle, GATT_IDX_NB);
+        }
+        /* populate the uint16_t service handle table */
+        else
+        {
+            ESP_LOGI(BLE_TAG, "create attribute table successfully, the number handle = %d", param->add_attr_tab.num_handle);
+            memcpy(service_handle_table, param->add_attr_tab.handles, sizeof(service_handle_table));
+            esp_ble_gatts_start_service(service_handle_table[ORIENTATION_IDX_SVC]);
+        }
+        break;
+    }
+
+    /*  This event is triggered when an attribute value is set using esp_ble_gatts_set_attr_value */
+    case ESP_GATTS_SET_ATTR_VAL_EVT:
+        // ESP_LOGI(GATTS_TAG, "Attribute value set, status %d, attr_handle %d, srvc_handle %d",
+        // 		 param->set_attr_val.status,
+        // 		 param->set_attr_val.attr_handle,
+        // 		 param->set_attr_val.srvc_handle);
+        uint16_t attr_handle = param->set_attr_val.attr_handle;
+        uint16_t length = 0;
+        const uint8_t *value;
+
+        esp_ble_gatts_get_attr_value(attr_handle, &length, &value);
+
+        /* set orientation attr val */
+        if (attr_handle == service_handle_table[ORIENTATION_IDX_VAL])
+        {
+            if (notify_enabled[ORIENTATION_IDX_VAL])
+            {
+
+                uint8_t indicate_data[length];
+                memcpy(indicate_data, value, length);
+                esp_ble_gatts_send_indicate(gatts_if, gl_profile_tab[ORIENTATION_IDX_SVC].conn_id, service_handle_table[ORIENTATION_IDX_VAL],
+                                            length, (uint8_t *)indicate_data, false);
+                // esp_ble_gatts_send_indicate(gatts_if, gl_profile_tab[ORIENTATION_IDX_SVC].conn_id, service_handle_table[ORIENTATION_IDX_VAL],
+                // sizeof(orientation_data), (uint8_t *)&orientation_data, false);
+                // uint8_t indicate_data[sizeof(test_data)] = {0};
+                // memcpy(indicate_data, test_data, sizeof(test_data));
+                // esp_ble_gatts_send_indicate(gatts_if, gl_profile_tab[ORIENTATION_IDX_SVC].conn_id, service_handle_table[ORIENTATION_IDX_VAL],
+                //                             sizeof(test_data), (uint8_t *)test_data, false);
+            }
+        }
         break;
 
     /* This event is triggered when the service is stopped using esp_ble_gatts_stop_service */
     case ESP_GATTS_STOP_EVT:
-        break;
+    case ESP_GATTS_OPEN_EVT:
+    case ESP_GATTS_CANCEL_OPEN_EVT:
+    case ESP_GATTS_CLOSE_EVT:
+    case ESP_GATTS_LISTEN_EVT:
+    case ESP_GATTS_CONGEST_EVT:
+    case ESP_GATTS_UNREG_EVT:
 
-    /* This event is triggered when a physical connection is set up. */
-    case ESP_GATTS_CONNECT_EVT:
-        ESP_LOGI(GATTS_TAG, "Connected, conn_id %u, remote " ESP_BD_ADDR_STR "",
-                 param->connect.conn_id, ESP_BD_ADDR_HEX(param->connect.remote_bda));
-        gl_profile_tab[APP_ID].conn_id = param->connect.conn_id;
-        break;
-
-    /* This event is triggered when a physical connection is terminated. */
-    case ESP_GATTS_DISCONNECT_EVT:
-        ESP_LOGI(GATTS_TAG, "Disconnected, remote " ESP_BD_ADDR_STR ", reason 0x%02x",
-                 ESP_BD_ADDR_HEX(param->disconnect.remote_bda), param->disconnect.reason);
-        indicate_enabled = false;
-        esp_ble_gap_start_advertising(&adv_params);
-        break;
-
-    /* This event is triggered when the confirmation from the Client is received. */
-    case ESP_GATTS_CONF_EVT:
-        ESP_LOGI(GATTS_TAG, "Confirm receive, status %d, attr_handle %d", param->conf.status, param->conf.handle);
-        if (param->conf.status != ESP_GATT_OK)
-        {
-            ESP_LOG_BUFFER_HEX(GATTS_TAG, param->conf.value, param->conf.len);
-        }
-        break;
-
-    /* This event is triggered when an attribute value is set using esp_ble_gatts_set_attr_value */
-    case ESP_GATTS_SET_ATTR_VAL_EVT:
-        ESP_LOGI(GATTS_TAG, "Attribute value set, status %d", param->set_attr_val.status);
-        if (indicate_enabled)
-        {
-            uint8_t indicate_data[sizeof(orientation_data_t)] = {0};
-            memcpy(indicate_data, &orientation_data, sizeof(orientation_data));
-            esp_ble_gatts_send_indicate(gatts_if, gl_profile_tab[APP_ID].conn_id, gl_profile_tab[APP_ID].char_handle, sizeof(indicate_data), indicate_data, true);
-        }
-        break;
-
+        /* This event is triggered when the service is deleted using esp_ble_gatts_delete_service */
+    case ESP_GATTS_DELETE_EVT:
     default:
         break;
     }
 }
 
-// static void auto_io_gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param)
-// {
-//     switch (event)
-//     {
-//     case ESP_GATTS_REG_EVT:
-//         ESP_LOGI(GATTS_TAG, "GATT server register, status %d, app_id %d", param->reg.status, param->reg.app_id);
-//         gl_profile_tab[AUTO_IO_PROFILE_APP_ID].service_id.is_primary = true;
-//         gl_profile_tab[AUTO_IO_PROFILE_APP_ID].service_id.id.inst_id = 0x00;
-//         gl_profile_tab[AUTO_IO_PROFILE_APP_ID].service_id.id.uuid.len = ESP_UUID_LEN_16;
-//         gl_profile_tab[AUTO_IO_PROFILE_APP_ID].service_id.id.uuid.uuid.uuid128 = AUTO_IO_SVC_UUID;
-//         esp_ble_gatts_create_service(gatts_if, &gl_profile_tab[AUTO_IO_PROFILE_APP_ID].service_id, AUTO_IO_NUM_HANDLE);
-//         break;
-//     case ESP_GATTS_CREATE_EVT:
-//         // service has been created, now add characteristic declaration
-//         ESP_LOGI(GATTS_TAG, "Service create, status %d, service_handle %d", param->create.status, param->create.service_handle);
-//         gl_profile_tab[AUTO_IO_PROFILE_APP_ID].service_handle = param->create.service_handle;
-//         gl_profile_tab[AUTO_IO_PROFILE_APP_ID].char_uuid.len = ESP_UUID_LEN_128;
-//         memcpy(gl_profile_tab[AUTO_IO_PROFILE_APP_ID].char_uuid.uuid.uuid128, led_chr_uuid, ESP_UUID_LEN_128);
-
-//         esp_ble_gatts_start_service(gl_profile_tab[AUTO_IO_PROFILE_APP_ID].service_handle);
-//         auto_io_property = ESP_GATT_CHAR_PROP_BIT_WRITE;
-//         esp_err_t ret = esp_ble_gatts_add_char(gl_profile_tab[AUTO_IO_PROFILE_APP_ID].service_handle, &gl_profile_tab[AUTO_IO_PROFILE_APP_ID].char_uuid,
-//                                                ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
-//                                                auto_io_property,
-//                                                &led_status_attr, NULL);
-//         if (ret)
-//         {
-//             ESP_LOGE(GATTS_TAG, "add char failed, error code = %x", ret);
-//         }
-//         break;
-//     case ESP_GATTS_ADD_CHAR_EVT:
-//         ESP_LOGI(GATTS_TAG, "Characteristic add, status %d, attr_handle %d, char_uuid %x",
-//                  param->add_char.status, param->add_char.attr_handle, param->add_char.char_uuid.uuid.uuid128);
-//         gl_profile_tab[AUTO_IO_PROFILE_APP_ID].char_handle = param->add_char.attr_handle;
-//         break;
-//     case ESP_GATTS_ADD_CHAR_DESCR_EVT:
-//         ESP_LOGI(GATTS_TAG, "Descriptor add, status %d", param->add_char_descr.status);
-//         gl_profile_tab[AUTO_IO_PROFILE_APP_ID].descr_handle = param->add_char_descr.attr_handle;
-//         break;
-//     case ESP_GATTS_READ_EVT:
-//         ESP_LOGI(GATTS_TAG, "Characteristic read");
-//         esp_gatt_rsp_t rsp;
-//         memset(&rsp, 0, sizeof(esp_gatt_rsp_t));
-
-//         rsp.attr_value.handle = param->read.handle;
-//         rsp.attr_value.len = 1;
-//         rsp.attr_value.value[0] = 0x02;
-//         esp_ble_gatts_send_response(gatts_if, param->read.conn_id, param->read.trans_id, ESP_GATT_OK, &rsp);
-//         break;
-//     case ESP_GATTS_WRITE_EVT:
-//         ESP_LOGI(GATTS_TAG, "Characteristic write, value len %u, value ", param->write.len);
-//         ESP_LOG_BUFFER_HEX(GATTS_TAG, param->write.value, param->write.len);
-//         if (param->write.len > 0)
-//         {
-//             if (param->write.value[0])
-//             {
-//                 ESP_LOGI(GATTS_TAG, "LED ON!");
-//                 // led_on();
-//             }
-//             else
-//             {
-//                 ESP_LOGI(GATTS_TAG, "LED OFF!");
-//                 // led_off();
-//             }
-//         }
-//         else
-//         {
-//             ESP_LOGW(GATTS_TAG, "Empty write data received");
-//         }
-//         example_write_event_env(gatts_if, param);
-//         break;
-//     case ESP_GATTS_DELETE_EVT:
-//         break;
-//     case ESP_GATTS_START_EVT:
-//         ESP_LOGI(GATTS_TAG, "Service start, status %d, service_handle %d", param->start.status, param->start.service_handle);
-//         break;
-//     case ESP_GATTS_STOP_EVT:
-//         break;
-//     case ESP_GATTS_CONNECT_EVT:
-//         esp_ble_conn_update_params_t conn_params = {0};
-//         memcpy(conn_params.bda, param->connect.remote_bda, sizeof(esp_bd_addr_t));
-//         conn_params.latency = 0;
-//         conn_params.max_int = 0x20;
-//         conn_params.min_int = 0x10;
-//         conn_params.timeout = 400;
-//         ESP_LOGI(GATTS_TAG, "Connected, conn_id %u, remote " ESP_BD_ADDR_STR "",
-//                  param->connect.conn_id, ESP_BD_ADDR_HEX(param->connect.remote_bda));
-//         gl_profile_tab[AUTO_IO_PROFILE_APP_ID].conn_id = param->connect.conn_id;
-//         esp_ble_gap_update_conn_params(&conn_params);
-//         break;
-//     case ESP_GATTS_DISCONNECT_EVT:
-//         ESP_LOGI(GATTS_TAG, "Disconnected, remote " ESP_BD_ADDR_STR ", reason 0x%02x",
-//                  ESP_BD_ADDR_HEX(param->disconnect.remote_bda), param->disconnect.reason);
-//         break;
-//     case ESP_GATTS_CONF_EVT:
-//         ESP_LOGI(GATTS_TAG, "Confirm receive, status %d, attr_handle %d", param->conf.status, param->conf.handle);
-//         if (param->conf.status != ESP_GATT_OK)
-//         {
-//             ESP_LOG_BUFFER_HEX(GATTS_TAG, param->conf.value, param->conf.len);
-//         }
-//         break;
-//     default:
-//         break;
-//     }
-// }
-
 /**
- * BLE GATT event handler
- *
+ * @brief BLE GATT event handler
+ * The event is captured by the gatts_event_handler() which stores the generated interface in the profile table
+ * and then forwards it to the corresponding profile event handler.
  */
 static void gatts_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param)
 {
@@ -516,6 +697,7 @@ static void gatts_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_
     This event is triggered when a GATT Server application is
     registered using esp_ble_gatts_app_register
     */
+    /* If event is register event, store the gatts_if for each profile */
     if (event == ESP_GATTS_REG_EVT)
     {
         if (param->reg.status == ESP_GATT_OK)
@@ -524,7 +706,7 @@ static void gatts_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_
         }
         else
         {
-            ESP_LOGI(GATTS_TAG, "Reg app failed, app_id %04x, status %d",
+            ESP_LOGI(BLE_TAG, "Reg app failed, app_id %04x, status %d",
                      param->reg.app_id,
                      param->reg.status);
             return;
@@ -542,6 +724,7 @@ static void gatts_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_
             {
                 if (gl_profile_tab[idx].gatts_cb)
                 {
+                    // call the callback
                     gl_profile_tab[idx].gatts_cb(event, gatts_if, param);
                 }
             }
@@ -549,23 +732,59 @@ static void gatts_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_
     } while (0);
 }
 
-// /**
-//  * BLE FreeRTOS task
-//  *
-//  */
-// void task_ble_streaming(void *params)
-// {
-// }
-
 /**
- * @brief send response back to client
+ * BLE FreeRTOS task
+ *
  */
-void example_write_event_env(esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param)
+void task_ble_streaming(void *params)
 {
-    esp_gatt_status_t status = ESP_GATT_OK;
-    if (param->write.need_rsp)
+    /* orientation data */
+    orientation_data_t rcv_orientation_data[15];
+    uint8_t idx = 0;
+
+    ESP_LOGI(BLE_TAG, "ble task started");
+    /* UART task parameters */
+    params_task_ble_t *params_task_ble = (params_task_ble_t *)params;
+
+    /* print out pointer */
+    ESP_LOGI(BLE_TAG, "params_task_ble = %p", params_task_ble);
+
+    QueueHandle_t queue_orientation_BLE = params_task_ble->queue_orientation_BLE;
+
+    orientation_data.euler_angle.timestamp = 1000;
+    orientation_data.euler_angle.x = 10;
+    orientation_data.euler_angle.y = 15;
+    orientation_data.euler_angle.z = 20;
+
+    /* stream the COBS-encoded orientation data out via BLE */
+    esp_ble_gatts_set_attr_value(service_handle_table[ORIENTATION_IDX_VAL],
+                                 sizeof(orientation_data),
+                                 (uint8_t *)&orientation_data);
+
+    while (1)
     {
-        esp_ble_gatts_send_response(gatts_if, param->write.conn_id, param->write.trans_id, status, NULL);
+
+        /* receive orientation values from the BLE orientation queue */
+        if (xQueueReceive(queue_orientation_BLE, &rcv_orientation_data[idx], 100 / portTICK_PERIOD_MS) == pdTRUE)
+        {
+            /* stream the data out via BLE */
+            if (idx == 14)
+            {
+
+                esp_ble_gatts_set_attr_value(service_handle_table[ORIENTATION_IDX_VAL],
+                                             sizeof(rcv_orientation_data),
+                                             (uint8_t *)rcv_orientation_data);
+            }
+            // ESP_LOGI(BLE_TAG, "ble read queue");
+            idx = (idx + 1) % 15;
+        }
+
+        // esp_ble_gatts_set_attr_value(service_handle_table[ORIENTATION_IDX_VAL],
+        //                              sizeof(orientation_data),
+        //                              (uint8_t *)&orientation_data);
+        // test_data[0]++;
+        // test_data[1]++;
+        // vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
 }
 
@@ -584,14 +803,15 @@ void ble_configure(void)
         ret = nvs_flash_init();
     }
     ESP_ERROR_CHECK(ret);
-    ESP_ERROR_CHECK(esp_bt_controller_mem_release(ESP_BT_MODE_CLASSIC_BT));
 
     /* initialize BT controller */
+    ESP_ERROR_CHECK(esp_bt_controller_mem_release(ESP_BT_MODE_CLASSIC_BT));
+
     esp_bt_controller_config_t bt_cfg = BT_CONTROLLER_INIT_CONFIG_DEFAULT();
     ret = esp_bt_controller_init(&bt_cfg);
     if (ret)
     {
-        ESP_LOGE(GATTS_TAG, "%s initialize controller failed: %s", __func__, esp_err_to_name(ret));
+        ESP_LOGE(BLE_TAG, "%s initialize controller failed: %s", __func__, esp_err_to_name(ret));
         return;
     }
 
@@ -599,7 +819,7 @@ void ble_configure(void)
     ret = esp_bt_controller_enable(ESP_BT_MODE_BLE);
     if (ret)
     {
-        ESP_LOGE(GATTS_TAG, "%s enable controller failed: %s", __func__, esp_err_to_name(ret));
+        ESP_LOGE(BLE_TAG, "%s enable controller failed: %s", __func__, esp_err_to_name(ret));
         return;
     }
 
@@ -608,7 +828,7 @@ void ble_configure(void)
     ret = esp_bluedroid_init_with_cfg(&cfg);
     if (ret)
     {
-        ESP_LOGE(GATTS_TAG, "%s init bluetooth failed: %s", __func__, esp_err_to_name(ret));
+        ESP_LOGE(BLE_TAG, "%s init bluetooth failed: %s", __func__, esp_err_to_name(ret));
         return;
     }
 
@@ -616,7 +836,7 @@ void ble_configure(void)
     ret = esp_bluedroid_enable();
     if (ret)
     {
-        ESP_LOGE(GATTS_TAG, "%s enable bluetooth failed: %s", __func__, esp_err_to_name(ret));
+        ESP_LOGE(BLE_TAG, "%s enable bluetooth failed: %s", __func__, esp_err_to_name(ret));
         return;
     }
 
@@ -624,7 +844,7 @@ void ble_configure(void)
     ret = esp_ble_gap_set_device_name(device_name);
     if (ret)
     {
-        ESP_LOGE(GATTS_TAG, "set device name failed, error code = %x", ret);
+        ESP_LOGE(BLE_TAG, "set device name failed, error code = %x", ret);
         return;
     }
 
@@ -637,7 +857,7 @@ void ble_configure(void)
     ret = esp_ble_gap_register_callback(gap_event_handler);
     if (ret)
     {
-        ESP_LOGE(GATTS_TAG, "gap register error, error code = %x", ret);
+        ESP_LOGE(BLE_TAG, "gap register error, error code = %x", ret);
         return;
     }
 
@@ -652,7 +872,7 @@ void ble_configure(void)
     ret = esp_ble_gatts_register_callback(gatts_event_handler);
     if (ret)
     {
-        ESP_LOGE(GATTS_TAG, "gatts register error, error code = %x", ret);
+        ESP_LOGE(BLE_TAG, "gatts register error, error code = %x", ret);
         return;
     }
 
@@ -662,7 +882,7 @@ void ble_configure(void)
     ret = esp_ble_gatts_app_register(APP_ID);
     if (ret)
     {
-        ESP_LOGE(GATTS_TAG, "app register error, error code = %x", ret);
+        ESP_LOGE(BLE_TAG, "app register error, error code = %x", ret);
         return;
     }
 
@@ -676,8 +896,8 @@ void ble_configure(void)
     ret = esp_ble_gatt_set_local_mtu(500);
     if (ret)
     {
-        ESP_LOGE(GATTS_TAG, "set local  MTU failed, error code = %x", ret);
+        ESP_LOGE(BLE_TAG, "set local  MTU failed, error code = %x", ret);
     }
 
-    // xTaskCreate(heart_rate_task, "Heart Rate", 2 * 1024, NULL, 5, NULL);
+    // xTaskCreate(task_ble_streaming, "BLE streaming task", 2 * 1024, NULL, 5, NULL);
 }

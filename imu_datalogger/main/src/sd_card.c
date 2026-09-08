@@ -88,15 +88,11 @@ void task_SD_card_datalogger(void *params)
             num_raw_data_samples_read = 0;
             num_orientation_data_samples_read = 0;
 
-            // ESP_LOGI(SD_CARD_TAG, "t1");
-
             // if SD card not initialized, attempt to mount it.
             if (!sd_card_is_initialized())
             {
                 sd_card_configure_wrapper();
             }
-
-            // ESP_LOGI(SD_CARD_TAG, "t2");
 
             /* get the latest datalog file index and add one to it for the new datalog file */
             if (f_raw == NULL || f_orientation == NULL)
@@ -143,7 +139,6 @@ void task_SD_card_datalogger(void *params)
         /* run continuously while datalogging is ongoing */
         else if (cmd_task_sd_card_datalogging == CMD_SD_CARD_START && prev_cmd_task_sd_card_datalogging == CMD_SD_CARD_START)
         {
-            // ESP_LOGI(SD_CARD_TAG, "t6");
 
             /* if SD card not initialized, attempt to mount it. */
             if (!sd_card_is_initialized())
@@ -157,8 +152,6 @@ void task_SD_card_datalogger(void *params)
                 max_idx = get_highest_datalog_idx(MOUNT_POINT);
                 max_idx++;
             }
-
-            // ESP_LOGI(SD_CARD_TAG, "t7");
 
             /* while the file is less than the maximum raw data file size */
             if (raw_file_size < MAX_IMU_RAW_DATA_FILE_SIZE)

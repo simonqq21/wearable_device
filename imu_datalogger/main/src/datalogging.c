@@ -80,6 +80,9 @@ void task_main_datalogging(void *params)
 
     FusionBiasSetSettings(&bias, &biasSettings);
 
+    int decimation_counter = 0;
+#define DECIMATION_FACTOR 8
+
     while (1)
     {
         /* wait for task notification from button */
@@ -92,10 +95,17 @@ void task_main_datalogging(void *params)
         if (datalogging_task_cmd == CMD_DATALOGGING_GO && prev_datalogging_task_cmd == CMD_DATALOGGING_STOP)
         {
             ESP_LOGI(DATALOGGING_TAG, "Datalogging started.");
+            /* reset all queues */
+            xQueueReset(queue_imu);
+            xQueueReset(queue_raw_sdcard);
+            xQueueReset(queue_orientation_sdcard);
+            xQueueReset(queue_orientation_UART);
+            xQueueReset(queue_orientation_BLE);
         }
         /* if datalogging is ongoing */
         if (datalogging_task_cmd == CMD_DATALOGGING_GO && prev_datalogging_task_cmd == CMD_DATALOGGING_GO)
         {
+            // ESP_LOGI(DATALOGGING_TAG, "asdf %d", num_samples_read);
             /* receive IMU data from queue */
             if (xQueueReceive(queue_imu, (void *)&imu_data, 100 / portTICK_PERIOD_MS) == pdTRUE)
             {
@@ -103,7 +113,7 @@ void task_main_datalogging(void *params)
                 /* send data to SD card datalogger queue */
                 if (queue_raw_sdcard != NULL)
                 {
-                    if (xQueueSend(queue_raw_sdcard, &imu_data, 100 / portTICK_PERIOD_MS) == pdTRUE)
+                    if (xQueueSend(queue_raw_sdcard, &imu_data, 10 / portTICK_PERIOD_MS) == pdTRUE)
                     {
                         if (num_samples_read == NUM_FIFO_TIMESTAMPS - 1)
                         {
@@ -112,7 +122,8 @@ void task_main_datalogging(void *params)
                     }
                     else
                     {
-                        ESP_LOGI(DATALOGGING_TAG, "error sending data to SD card queue");
+                        ESP_LOGE(DATALOGGING_TAG, "SDCARD raw fail");
+                        xQueueReset(queue_raw_sdcard);
                     }
                 }
 
@@ -176,44 +187,54 @@ void task_main_datalogging(void *params)
                 /* send orientation data to SD card */
                 if (queue_orientation_sdcard != NULL)
                 {
-                    if (xQueueSend(queue_orientation_sdcard, &orientation_data, 100 / portTICK_PERIOD_MS) == pdTRUE)
+                    if (xQueueSend(queue_orientation_sdcard, &orientation_data, 10 / portTICK_PERIOD_MS) == pdTRUE)
                     {
                         // ESP_LOGI(DATALOGGING_TAG, "send orientation data to SD card");
                     }
                     else
                     {
-                        ESP_LOGI(DATALOGGING_TAG, "failed to send orientation data to SD card");
+                        ESP_LOGE(DATALOGGING_TAG, "SDCARD orientation fail");
+                        xQueueReset(queue_orientation_sdcard);
                     }
                 }
 
                 /* send orientation data to UART */
                 if (queue_orientation_UART != NULL)
                 {
-                    if (xQueueSend(queue_orientation_UART, &orientation_data, 100 / portTICK_PERIOD_MS) == pdTRUE)
+                    if (xQueueSend(queue_orientation_UART, &orientation_data, 10 / portTICK_PERIOD_MS) == pdTRUE)
                     {
                         // ESP_LOGI(DATALOGGING_TAG, "sent orientation data to UART");
                     }
                     else
                     {
-                        ESP_LOGI(DATALOGGING_TAG, "failed to send orientation data to UART");
+                        ESP_LOGE(DATALOGGING_TAG, "UART orientation fail");
+                        xQueueReset(queue_orientation_UART);
                     }
                 }
 
                 /* send orientation data to BLE */
-                // if (queue_orientation_BLE != NULL)
-                // {
-                //     if (xQueueSend(queue_orientation_BLE, &orientation_data, 100 / portTICK_PERIOD_MS) == pdTRUE)
-                //     {
-                //         // ESP_LOGI(DATALOGGING_TAG, "sent orientation data to BLE");
-                //     }
-                //     else
-                //     {
-                //         // ESP_LOGI(DATALOGGING_TAG, "failed to send orientation data to BLE");
-                //     }
-                // }
+                if (queue_orientation_BLE != NULL)
+                {
+                    if (decimation_counter == 0)
+                    {
+                        if (xQueueSend(queue_orientation_BLE, &orientation_data, 10 / portTICK_PERIOD_MS) == pdTRUE)
+                        {
+                            // ESP_LOGI(DATALOGGING_TAG, "sent orientation data to BLE");
+                        }
+                        else
+                        {
+                            ESP_LOGE(DATALOGGING_TAG, "BLE orientation fail");
+                            xQueueReset(queue_orientation_BLE);
+                        }
+                    }
+                    decimation_counter = (decimation_counter + 1) % DECIMATION_FACTOR;
+                }
 
                 num_samples_read = (num_samples_read + 1) % NUM_FIFO_TIMESTAMPS;
             }
+
+            /* test FIFO overflow */
+            // vTaskDelay(1000 / portTICK_PERIOD_MS);
 
             // num_bytes_read = xStreamBufferReceive(streambuffer_imu,
             //                                       &imu_data_buf,

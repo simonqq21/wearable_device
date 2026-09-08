@@ -1,0 +1,3132 @@
+Command: /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/imu_module.elf /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader/bootloader.elf -m '/home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python' '/home/simonque/Documents/code/esp-idf/tools/idf.py'
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0040,len:6272
+load:0x40078000,len:15848
+load:0x40080400,len:3920
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v6.1-dev-2310-g44e2fa6d9c5-dirt 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Sep  1 2026 14:56:57[0m
+[0;32mI (28) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v3.1[0m
+[0;32mI (34) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (37) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (65) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (78) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=26a0ch (158220) map[0m
+[0;32mI (145) esp_image: segment 1: paddr=00036a34 vaddr=3ffbdb60 size=05134h ( 20788) load[0m
+[0;32mI (153) esp_image: segment 2: paddr=0003bb70 vaddr=40080000 size=044a8h ( 17576) load[0m
+[0;32mI (160) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=7ee7ch (519804) map[0m
+[0;32mI (346) esp_image: segment 4: paddr=000beea4 vaddr=400844a8 size=149b4h ( 84404) load[0m
+[0;32mI (380) esp_image: segment 5: paddr=000d3860 vaddr=50000000 size=00028h (    40) load[0m
+[0;32mI (393) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (393) boot: Disabling RNG early entropy source...[0m
+[0;32mI (404) cpu_start: Multicore app[0m
+[0;32mI (412) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (412) cpu_start: Pro cpu start user code[0m
+[0;32mI (412) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (414) app_init: Application information:[0m
+[0;32mI (418) app_init: Project name:     imu_module[0m
+[0;32mI (422) app_init: App version:      7887318-dirty[0m
+[0;32mI (427) app_init: Compile time:     Sep  8 2026 09:15:31[0m
+[0;32mI (432) app_init: ELF file SHA256:  7de52653a...[0m
+[0;32mI (436) app_init: ESP-IDF:          v6.1-dev-2310-g44e2fa6d9c5-dirt[0m
+[0;32mI (442) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (446) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (450) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (454) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (460) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (465) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (470) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (475) heap_init: At 3FFC7228 len 00018DD8 (99 KiB): DRAM[0m
+[0;32mI (481) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (486) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (491) heap_init: At 40098E5C len 000071A4 (28 KiB): IRAM[0m
+[0;33mW (498) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (510) spi_flash: detected chip: generic[0m
+[0;32mI (513) spi_flash: flash io: dio[0m
+[0;33mW (516) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (530) coexist: coex firmware version: 093e3d2[0m
+[0;32mI (534) main_task: Started on CPU0[0m
+[0;32mI (544) main_task: Calling app_main()[0m
+[0;32mI (544) button: IoT Button Version: 4.2.0[0m
+[0;32mI (544) MAIN: I2C initialized successfully[0m
+[0;32mI (564) BTDM_INIT: BT controller compile version [045a658][0m
+[0;32mI (564) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (564) BTDM_INIT: Bluetooth MAC: d8:13:2a:7d:69:0a[0m
+[0;32mI (564) phy_init: phy_version 4863,a3a4459,Oct 28 2025,14:30:06[0m
+[0;33mW (974) BT_BTM: BTM_BleWriteAdvData, Partial data write into ADV[0m
+[0;33mW (974) BT_BTM: BTM_BleWriteScanRsp, Partial data write into ADV[0m
+[0;32mI (984) BLE: create attribute table successfully, the number handle = 4[0m
+[0;32mI (984) BLE: Advertising data set, status 0[0m
+[0;32mI (984) BLE: Scan response data set, status 0[0m
+[0;32mI (994) BLE: SERVICE_START_EVT, status 0, service_handle 40[0m
+[0;32mI (994) LSM6DS3: WHO_AM_I = 69[0m
+[0;32mI (1004) BLE: Advertising start successfully[0m
+[0;32mI (1014) LSM6DS3: FIFO_CTRL1_REG_ADDR = D0[0m
+[0;32mI (1014) LSM6DS3: FIFO_CTRL2_REG_ADDR = F[0m
+[0;32mI (1014) NVS: IMU calibration offsets from blob:[0m
+[0;32mI (1014) NVS: required_size = 24[0m
+[0;32mI (1014) NVS: err=0[0m
+
+[0;32mI (1024) NVS: accel_offsets_x = 0.0480[0m
+[0;32mI (1024) NVS: accel_offsets_y = -0.0170[0m
+[0;32mI (1024) NVS: accel_offsets_z = -0.0018[0m
+[0;32mI (1034) NVS: gyro_offsets_x = 2.4248[0m
+[0;32mI (1034) NVS: gyro_offsets_y = -7.0694[0m
+[0;32mI (1034) NVS: gyro_offsets_z = -1.9762[0m
+[0;32mI (1044) IMU: IMU read calibration from NVS.[0m
+[0;32mI (1044) IMU: accel_offsets_x = 0.05[0m
+[0;32mI (1044) IMU: accel_offsets_y = -0.02[0m
+[0;32mI (1054) IMU: accel_offsets_z = -0.00[0m
+[0;32mI (1054) IMU: gyro_offsets_x = 2.42[0m
+[0;32mI (1054) IMU: gyro_offsets_y = -7.07[0m
+[0;32mI (1064) IMU: gyro_offsets_z = -1.98[0m
+[0;32mI (1064) SD_CARD: Initializing SD card[0m
+[0;32mI (1064) SD_CARD: Using SPI peripheral[0m
+[0;32mI (1074) SD_CARD: Mounting filesystem[0m
+[0;32mI (1074) sdspi_transaction: cmd=52, R1 response: command not supported[0m
+[0;32mI (1124) sdspi_transaction: cmd=5, R1 response: command not supported[0m
+[0;32mI (1174) SD_CARD: Filesystem mounted[0m
+Name: ACLCE
+Type: SDHC
+Speed: 4.00 MHz (limit: 4.00 MHz)
+Size: 60906MB
+CSD: ver=2, sector_size=512, capacity=124735488 read_bl_len=9
+SSR: bus_width=1
+[0;32mI (1174) SD_CARD: SD card initialized[0m
+[0;32mI (1184) MAIN: Starting all tasks![0m
+[0;32mI (1184) MAIN: params_task_uart = 0x3ffc3528[0m
+[0;32mI (1184) MAIN: params_task_ble = 0x3ffc3524[0m
+[0;32mI (1194) BLE: ble task started[0m
+[0;32mI (1194) BLE: params_task_ble = 0x3ffc3524[0m
+[0;32mI (58544) BUTTON: Datalogging started.[0m
+[0;32mI (58544) IMU: IMU started[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (58594) DATA LOGGING: Datalogging started.[0m
+[0;32mI (58994) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (58994) LSM6DS3: num_fifo_samples = 282 100[0m
+[0;32mI (59194) LSM6DS3: [0m
+[0;32mI (59194) LSM6DS3: gyro = 121.475220 121.475220 121.475220[0m
+[0;32mI (59194) LSM6DS3: accel = 0.971802 0.971802 0.971802[0m
+[0;32mI (59194) LSM6DS3: num_fifo_samples = 7[0m
+[0;32mI (59354) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (59504) BLE: ble read queue[0m
+[0;32mI (59674) SD_CARD: max_idx: 1699[0m
+[0;32mI (59674) SD_CARD: filename: imu_raw_001700.bin[0m
+[0;32mI (59674) SD_CARD: filepath: /sdcard/imu_raw_001700.bin[0m
+[0;32mI (59674) SD_CARD: Writing to new raw file[0m
+[0;32mI (59804) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (59804) LSM6DS3: num_fifo_samples = 385 100[0m
+[0;32mI (59924) LSM6DS3: [0m
+[0;32mI (59924) LSM6DS3: gyro = 121.810913 121.810913 121.810913[0m
+[0;32mI (59924) LSM6DS3: accel = 0.974487 0.974487 0.974487[0m
+[0;32mI (59934) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (59944) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (59954) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (59964) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (59984) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (60384) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (60384) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (60504) BLE: ble read queue[0m
+[0;32mI (60504) LSM6DS3: [0m
+[0;32mI (60504) LSM6DS3: gyro = 122.314453 122.314453 122.314453[0m
+[0;32mI (60514) LSM6DS3: accel = 0.978516 0.978516 0.978516[0m
+[0;32mI (60514) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (60524) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (60534) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (60544) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (60554) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (60964) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (60964) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (61074) LSM6DS3: [0m
+[0;32mI (61074) LSM6DS3: gyro = 122.131348 122.131348 122.131348[0m
+[0;32mI (61074) LSM6DS3: accel = 0.977051 0.977051 0.977051[0m
+[0;32mI (61084) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (61094) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (61104) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (61114) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (61124) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (61504) BLE: ble read queue[0m
+[0;32mI (61534) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (61534) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (61654) LSM6DS3: [0m
+[0;32mI (61654) LSM6DS3: gyro = 121.765137 121.765137 121.765137[0m
+[0;32mI (61654) LSM6DS3: accel = 0.974121 0.974121 0.974121[0m
+[0;32mI (61654) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (61664) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (61674) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (61684) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (61694) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (61904) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (61904) SD_CARD: filename: imu_orientation_001700.bin[0m
+[0;32mI (61904) SD_CARD: filepath: /sdcard/imu_orientation_001700.bin[0m
+[0;32mI (61904) SD_CARD: Writing to new orientation file[0m
+[0;32mI (62114) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (62114) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (62234) LSM6DS3: [0m
+[0;32mI (62234) LSM6DS3: gyro = 122.451782 122.451782 122.451782[0m
+[0;32mI (62234) LSM6DS3: accel = 0.979614 0.979614 0.979614[0m
+[0;32mI (62234) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (62254) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (62264) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (62274) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (62284) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (62504) BLE: ble read queue[0m
+[0;32mI (62694) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (62694) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (62814) LSM6DS3: [0m
+[0;32mI (62814) LSM6DS3: gyro = 121.398926 121.398926 121.398926[0m
+[0;32mI (62814) LSM6DS3: accel = 0.971191 0.971191 0.971191[0m
+[0;32mI (62814) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (62834) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (62844) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (62854) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (62854) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (63274) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (63274) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (63384) LSM6DS3: [0m
+[0;32mI (63384) LSM6DS3: gyro = 122.024536 122.024536 122.024536[0m
+[0;32mI (63384) LSM6DS3: accel = 0.976196 0.976196 0.976196[0m
+[0;32mI (63394) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (63404) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (63414) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (63424) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (63424) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (63504) BLE: ble read queue[0m
+[0;32mI (63844) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (63844) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (63954) LSM6DS3: [0m
+[0;32mI (63954) LSM6DS3: gyro = 122.055054 2.227783 -6.958008[0m
+[0;32mI (63954) LSM6DS3: accel = -0.015747 0.009155 0.198730[0m
+[0;32mI (63964) LSM6DS3: num_fifo_samples = 1[0m
+[1;31mE (63974) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (63984) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (63994) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (63994) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (64144) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (64414) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (64414) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (64474) LSM6DS3: [0m
+[0;32mI (64474) LSM6DS3: gyro = 121.948242 121.948242 121.948242[0m
+[0;32mI (64474) LSM6DS3: accel = 0.975586 0.975586 0.975586[0m
+[0;32mI (64474) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (64484) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (64484) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (64504) BLE: ble read queue[0m
+[0;32mI (64924) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (64924) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (64984) LSM6DS3: [0m
+[0;32mI (64984) LSM6DS3: gyro = 122.283936 122.283936 122.283936[0m
+[0;32mI (64984) LSM6DS3: accel = 0.978271 0.978271 0.978271[0m
+[0;32mI (64984) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (64994) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (65004) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (65454) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (65454) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (65504) BLE: ble read queue[0m
+[0;32mI (65514) LSM6DS3: [0m
+[0;32mI (65514) LSM6DS3: gyro = 121.566772 121.566772 121.566772[0m
+[0;32mI (65514) LSM6DS3: accel = 0.972534 0.972534 0.972534[0m
+[0;32mI (65514) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (65534) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (65544) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (65974) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (65974) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (66024) LSM6DS3: [0m
+[0;32mI (66024) LSM6DS3: gyro = 122.314453 122.314453 122.314453[0m
+[0;32mI (66034) LSM6DS3: accel = 0.978516 0.978516 0.978516[0m
+[0;32mI (66034) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (66044) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (66064) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (66504) BLE: ble read queue[0m
+[0;32mI (66514) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (66514) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (66574) LSM6DS3: [0m
+[0;32mI (66574) LSM6DS3: gyro = 122.467041 122.467041 122.467041[0m
+[0;32mI (66574) LSM6DS3: accel = 0.979736 0.979736 0.979736[0m
+[0;32mI (66574) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (66594) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (66604) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (67034) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (67034) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (67084) LSM6DS3: [0m
+[0;32mI (67084) LSM6DS3: gyro = 121.551514 121.551514 121.551514[0m
+[0;32mI (67094) LSM6DS3: accel = 0.972412 0.972412 0.972412[0m
+[0;32mI (67094) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (67114) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (67124) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (67504) BLE: ble read queue[0m
+[0;32mI (67554) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (67554) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (67614) LSM6DS3: [0m
+[0;32mI (67614) LSM6DS3: gyro = 121.917725 2.792358 -7.156372[0m
+[0;32mI (67614) LSM6DS3: accel = -0.016113 0.009277 0.201782[0m
+[0;32mI (67614) LSM6DS3: num_fifo_samples = 1[0m
+[1;31mE (67634) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (67634) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (68074) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (68074) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (68124) LSM6DS3: [0m
+[0;32mI (68124) LSM6DS3: gyro = 122.192383 122.192383 122.192383[0m
+[0;32mI (68134) LSM6DS3: accel = 0.977539 0.977539 0.977539[0m
+[0;32mI (68134) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (68154) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (68164) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (68504) BLE: ble read queue[0m
+[0;32mI (68594) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (68594) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (68644) LSM6DS3: [0m
+[0;32mI (68644) LSM6DS3: gyro = 122.390747 122.390747 122.390747[0m
+[0;32mI (68654) LSM6DS3: accel = 0.979126 0.979126 0.979126[0m
+[0;32mI (68654) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (68674) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (68674) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (69114) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (69114) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (69174) LSM6DS3: [0m
+[0;32mI (69174) LSM6DS3: gyro = 122.146606 122.146606 122.146606[0m
+[0;32mI (69174) LSM6DS3: accel = 0.977173 0.977173 0.977173[0m
+[0;32mI (69174) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (69194) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (69194) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (69504) BLE: ble read queue[0m
+[0;32mI (69634) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (69634) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (69684) LSM6DS3: [0m
+[0;32mI (69684) LSM6DS3: gyro = 122.085571 122.085571 122.085571[0m
+[0;32mI (69694) LSM6DS3: accel = 0.976685 0.976685 0.976685[0m
+[0;32mI (69694) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (69714) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (69724) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (70154) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (70154) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (70204) LSM6DS3: [0m
+[0;32mI (70214) LSM6DS3: gyro = 121.795654 121.795654 121.795654[0m
+[0;32mI (70214) LSM6DS3: accel = 0.974365 0.974365 0.974365[0m
+[0;32mI (70214) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (70234) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (70244) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (70504) BLE: ble read queue[0m
+[0;32mI (70674) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (70674) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (70724) LSM6DS3: [0m
+[0;32mI (70734) LSM6DS3: gyro = 121.719360 121.719360 121.719360[0m
+[0;32mI (70734) LSM6DS3: accel = 0.973755 0.973755 0.973755[0m
+[0;32mI (70734) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (70754) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (70754) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (71194) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (71194) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (71254) LSM6DS3: [0m
+[0;32mI (71254) LSM6DS3: gyro = 122.009277 122.009277 122.009277[0m
+[0;32mI (71254) LSM6DS3: accel = 0.976074 0.976074 0.976074[0m
+[0;32mI (71254) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (71274) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (71284) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (71504) BLE: ble read queue[0m
+[0;32mI (71714) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (71714) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (71764) LSM6DS3: [0m
+[0;32mI (71764) LSM6DS3: gyro = 122.039795 122.039795 122.039795[0m
+[0;32mI (71774) LSM6DS3: accel = 0.976318 0.976318 0.976318[0m
+[0;32mI (71774) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (71794) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (71794) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (72234) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (72234) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (72294) LSM6DS3: [0m
+[0;32mI (72294) LSM6DS3: gyro = 122.543335 3.417969 -7.171631[0m
+[0;32mI (72294) LSM6DS3: accel = -0.016357 0.009155 0.200806[0m
+[0;32mI (72294) LSM6DS3: num_fifo_samples = 1[0m
+[1;31mE (72314) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (72324) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (72504) BLE: ble read queue[0m
+[0;32mI (72754) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (72754) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (72804) LSM6DS3: [0m
+[0;32mI (72804) LSM6DS3: gyro = 121.948242 121.948242 121.948242[0m
+[0;32mI (72814) LSM6DS3: accel = 0.975586 0.975586 0.975586[0m
+[0;32mI (72814) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (72834) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (72834) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (73274) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (73274) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (73324) LSM6DS3: [0m
+[0;32mI (73334) LSM6DS3: gyro = 122.009277 122.009277 122.009277[0m
+[0;32mI (73334) LSM6DS3: accel = 0.976074 0.976074 0.976074[0m
+[0;32mI (73334) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (73354) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (73364) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (73504) BLE: ble read queue[0m
+[0;32mI (73794) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (73794) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (73854) LSM6DS3: [0m
+[0;32mI (73854) LSM6DS3: gyro = 121.932983 121.932983 121.932983[0m
+[0;32mI (73854) LSM6DS3: accel = 0.975464 0.975464 0.975464[0m
+[0;32mI (73854) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (73874) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (73874) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (74314) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (74314) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (74364) LSM6DS3: [0m
+[0;32mI (74364) LSM6DS3: gyro = 121.871948 121.871948 121.871948[0m
+[0;32mI (74374) LSM6DS3: accel = 0.974976 0.974976 0.974976[0m
+[0;32mI (74374) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (74394) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (74404) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (74504) BLE: ble read queue[0m
+[0;32mI (74834) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (74834) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (74894) LSM6DS3: [0m
+[0;32mI (74894) LSM6DS3: gyro = 121.292114 121.292114 121.292114[0m
+[0;32mI (74894) LSM6DS3: accel = 0.970337 0.970337 0.970337[0m
+[0;32mI (74894) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (74914) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (74914) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (75354) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (75354) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (75404) LSM6DS3: [0m
+[0;32mI (75404) LSM6DS3: gyro = 122.055054 122.055054 122.055054[0m
+[0;32mI (75414) LSM6DS3: accel = 0.976440 0.976440 0.976440[0m
+[0;32mI (75414) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (75434) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (75444) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (75504) BLE: ble read queue[0m
+[0;32mI (75874) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (75874) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (75934) LSM6DS3: [0m
+[0;32mI (75934) LSM6DS3: gyro = 122.360229 122.360229 122.360229[0m
+[0;32mI (75934) LSM6DS3: accel = 0.978882 0.978882 0.978882[0m
+[0;32mI (75934) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (75954) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (75954) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (76394) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (76394) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (76444) LSM6DS3: [0m
+[0;32mI (76444) LSM6DS3: gyro = 122.055054 122.055054 122.055054[0m
+[0;32mI (76454) LSM6DS3: accel = 0.976440 0.976440 0.976440[0m
+[0;32mI (76454) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (76474) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (76474) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (76504) BLE: ble read queue[0m
+[0;32mI (76914) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (76914) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (76974) LSM6DS3: [0m
+[0;32mI (76974) LSM6DS3: gyro = 121.139526 121.139526 121.139526[0m
+[0;32mI (76974) LSM6DS3: accel = 0.969116 0.969116 0.969116[0m
+[0;32mI (76974) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (76994) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (76994) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (77434) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (77434) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (77484) LSM6DS3: [0m
+[0;32mI (77484) LSM6DS3: gyro = 121.704102 121.704102 121.704102[0m
+[0;32mI (77494) LSM6DS3: accel = 0.973633 0.973633 0.973633[0m
+[0;32mI (77494) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (77504) BLE: ble read queue[0m
+[1;31mE (77524) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (77524) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (77964) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (77964) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (78014) LSM6DS3: [0m
+[0;32mI (78014) LSM6DS3: gyro = 121.795654 121.795654 121.795654[0m
+[0;32mI (78014) LSM6DS3: accel = 0.974365 0.974365 0.974365[0m
+[0;32mI (78024) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (78044) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (78054) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (78484) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (78484) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (78504) BLE: ble read queue[0m
+[0;32mI (78544) LSM6DS3: [0m
+[0;32mI (78544) LSM6DS3: gyro = 122.817993 122.817993 122.817993[0m
+[0;32mI (78544) LSM6DS3: accel = 0.982544 0.982544 0.982544[0m
+[0;32mI (78544) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (78574) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (78574) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (79014) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (79014) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (79064) LSM6DS3: [0m
+[0;32mI (79064) LSM6DS3: gyro = 122.131348 122.131348 122.131348[0m
+[0;32mI (79074) LSM6DS3: accel = 0.977051 0.977051 0.977051[0m
+[0;32mI (79074) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (79094) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (79094) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (79504) BLE: ble read queue[0m
+[0;32mI (79534) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (79534) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (79584) LSM6DS3: [0m
+[0;32mI (79584) LSM6DS3: gyro = 121.856689 121.856689 121.856689[0m
+[0;32mI (79594) LSM6DS3: accel = 0.974854 0.974854 0.974854[0m
+[0;32mI (79594) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (79614) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (79614) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (80054) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (80054) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (80114) LSM6DS3: [0m
+[0;32mI (80114) LSM6DS3: gyro = 122.528076 122.528076 122.528076[0m
+[0;32mI (80114) LSM6DS3: accel = 0.980225 0.980225 0.980225[0m
+[0;32mI (80114) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (80144) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (80144) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (80504) BLE: ble read queue[0m
+[0;32mI (80584) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (80584) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (80634) LSM6DS3: [0m
+[0;32mI (80634) LSM6DS3: gyro = 122.283936 122.283936 122.283936[0m
+[0;32mI (80644) LSM6DS3: accel = 0.978271 0.978271 0.978271[0m
+[0;32mI (80644) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (80674) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (80674) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (81114) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (81114) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (81164) LSM6DS3: [0m
+[0;32mI (81164) LSM6DS3: gyro = 122.177124 122.177124 122.177124[0m
+[0;32mI (81174) LSM6DS3: accel = 0.977417 0.977417 0.977417[0m
+[0;32mI (81174) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (81204) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (81204) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (81504) BLE: ble read queue[0m
+[0;32mI (81644) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (81644) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (81694) LSM6DS3: [0m
+[0;32mI (81694) LSM6DS3: gyro = 122.787476 122.787476 122.787476[0m
+[0;32mI (81704) LSM6DS3: accel = 0.982300 0.982300 0.982300[0m
+[0;32mI (81704) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (81734) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (81734) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (82174) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (82174) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (82234) LSM6DS3: [0m
+[0;32mI (82234) LSM6DS3: gyro = 121.170044 121.170044 121.170044[0m
+[0;32mI (82234) LSM6DS3: accel = 0.969360 0.969360 0.969360[0m
+[0;32mI (82234) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (82254) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (82254) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (82504) BLE: ble read queue[0m
+[0;32mI (82694) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (82694) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (82744) LSM6DS3: [0m
+[0;32mI (82744) LSM6DS3: gyro = 121.887207 121.887207 121.887207[0m
+[0;32mI (82754) LSM6DS3: accel = 0.975098 0.975098 0.975098[0m
+[0;32mI (82754) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (82774) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (82774) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (83214) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (83214) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (83264) LSM6DS3: [0m
+[0;32mI (83264) LSM6DS3: gyro = 122.238159 122.238159 122.238159[0m
+[0;32mI (83274) LSM6DS3: accel = 0.977905 0.977905 0.977905[0m
+[0;32mI (83274) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (83304) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (83304) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (83504) BLE: ble read queue[0m
+[0;32mI (83744) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (83744) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (83794) LSM6DS3: [0m
+[0;32mI (83794) LSM6DS3: gyro = 122.055054 122.055054 122.055054[0m
+[0;32mI (83804) LSM6DS3: accel = 0.976440 0.976440 0.976440[0m
+[0;32mI (83804) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (83834) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (83834) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (84274) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (84274) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (84324) LSM6DS3: [0m
+[0;32mI (84324) LSM6DS3: gyro = 121.673584 121.673584 121.673584[0m
+[0;32mI (84334) LSM6DS3: accel = 0.973389 0.973389 0.973389[0m
+[0;32mI (84334) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (84364) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (84364) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (84504) BLE: ble read queue[0m
+[0;32mI (84804) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (84804) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (84854) LSM6DS3: [0m
+[0;32mI (84854) LSM6DS3: gyro = 122.253418 122.253418 122.253418[0m
+[0;32mI (84864) LSM6DS3: accel = 0.978027 0.978027 0.978027[0m
+[0;32mI (84864) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (84894) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (84894) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (85334) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (85334) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (85384) LSM6DS3: [0m
+[0;32mI (85384) LSM6DS3: gyro = 122.177124 122.177124 122.177124[0m
+[0;32mI (85394) LSM6DS3: accel = 0.977417 0.977417 0.977417[0m
+[0;32mI (85394) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (85424) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (85424) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (85504) BLE: ble read queue[0m
+[0;32mI (85864) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (85864) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (85924) LSM6DS3: [0m
+[0;32mI (85924) LSM6DS3: gyro = 122.482300 122.482300 122.482300[0m
+[0;32mI (85924) LSM6DS3: accel = 0.979858 0.979858 0.979858[0m
+[0;32mI (85924) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (85954) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (85954) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (86394) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (86394) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (86454) LSM6DS3: [0m
+[0;32mI (86454) LSM6DS3: gyro = 122.177124 122.177124 122.177124[0m
+[0;32mI (86454) LSM6DS3: accel = 0.977417 0.977417 0.977417[0m
+[0;32mI (86454) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (86484) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (86484) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (86504) BLE: ble read queue[0m
+[0;32mI (86924) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (86924) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (86974) LSM6DS3: [0m
+[0;32mI (86974) LSM6DS3: gyro = 122.406006 122.406006 122.406006[0m
+[0;32mI (86984) LSM6DS3: accel = 0.979248 0.979248 0.979248[0m
+[0;32mI (86984) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (87014) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (87014) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (87454) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (87454) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (87504) BLE: ble read queue[0m
+[0;32mI (87514) LSM6DS3: [0m
+[0;32mI (87514) LSM6DS3: gyro = 122.207642 122.207642 122.207642[0m
+[0;32mI (87514) LSM6DS3: accel = 0.977661 0.977661 0.977661[0m
+[0;32mI (87514) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (87544) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (87544) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (87984) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (87984) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (88034) LSM6DS3: [0m
+[0;32mI (88034) LSM6DS3: gyro = 122.192383 122.192383 122.192383[0m
+[0;32mI (88044) LSM6DS3: accel = 0.977539 0.977539 0.977539[0m
+[0;32mI (88044) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (88074) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (88074) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (88504) BLE: ble read queue[0m
+[0;32mI (88514) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (88514) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (88574) LSM6DS3: [0m
+[0;32mI (88574) LSM6DS3: gyro = 122.238159 122.238159 122.238159[0m
+[0;32mI (88574) LSM6DS3: accel = 0.977905 0.977905 0.977905[0m
+[0;32mI (88574) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (88604) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (88604) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (89044) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (89044) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (89094) LSM6DS3: [0m
+[0;32mI (89094) LSM6DS3: gyro = 122.283936 122.283936 122.283936[0m
+[0;32mI (89104) LSM6DS3: accel = 0.978271 0.978271 0.978271[0m
+[0;32mI (89104) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (89134) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (89134) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (89504) BLE: ble read queue[0m
+[0;32mI (89574) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (89574) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (89634) LSM6DS3: [0m
+[0;32mI (89634) LSM6DS3: gyro = 122.467041 122.467041 122.467041[0m
+[0;32mI (89634) LSM6DS3: accel = 0.979736 0.979736 0.979736[0m
+[0;32mI (89634) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (89664) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (89664) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (90104) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (90104) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (90154) LSM6DS3: [0m
+[0;32mI (90154) LSM6DS3: gyro = 121.963501 121.963501 121.963501[0m
+[0;32mI (90164) LSM6DS3: accel = 0.975708 0.975708 0.975708[0m
+[0;32mI (90164) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (90194) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (90194) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (90504) BLE: ble read queue[0m
+[0;32mI (90634) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (90634) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (90684) LSM6DS3: [0m
+[0;32mI (90684) LSM6DS3: gyro = 122.238159 122.238159 122.238159[0m
+[0;32mI (90694) LSM6DS3: accel = 0.977905 0.977905 0.977905[0m
+[0;32mI (90694) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (90724) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (90724) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (91164) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (91164) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (91214) LSM6DS3: [0m
+[0;32mI (91214) LSM6DS3: gyro = 121.948242 121.948242 121.948242[0m
+[0;32mI (91224) LSM6DS3: accel = 0.975586 0.975586 0.975586[0m
+[0;32mI (91224) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (91254) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (91254) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (91504) BLE: ble read queue[0m
+[0;32mI (91694) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (91694) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (91744) LSM6DS3: [0m
+[0;32mI (91744) LSM6DS3: gyro = 121.963501 121.963501 121.963501[0m
+[0;32mI (91754) LSM6DS3: accel = 0.975708 0.975708 0.975708[0m
+[0;32mI (91754) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (91784) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (91784) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (92224) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (92224) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (92274) LSM6DS3: [0m
+[0;32mI (92274) LSM6DS3: gyro = 122.192383 122.192383 122.192383[0m
+[0;32mI (92284) LSM6DS3: accel = 0.977539 0.977539 0.977539[0m
+[0;32mI (92284) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (92314) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (92314) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (92504) BLE: ble read queue[0m
+[0;32mI (92754) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (92754) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (92814) LSM6DS3: [0m
+[0;32mI (92814) LSM6DS3: gyro = 122.650146 122.650146 122.650146[0m
+[0;32mI (92814) LSM6DS3: accel = 0.981201 0.981201 0.981201[0m
+[0;32mI (92814) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (92844) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (92844) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (93284) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (93284) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (93334) LSM6DS3: [0m
+[0;32mI (93344) LSM6DS3: gyro = 24.810791 122.680664 122.680664[0m
+[0;32mI (93344) LSM6DS3: accel = 0.981445 0.981445 0.981445[0m
+[0;32mI (93344) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (93374) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (93374) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (93504) BLE: ble read queue[0m
+[0;32mI (93814) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (93814) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (93864) LSM6DS3: [0m
+[0;32mI (93864) LSM6DS3: gyro = 121.597290 121.597290 121.597290[0m
+[0;32mI (93874) LSM6DS3: accel = 0.972778 0.972778 0.972778[0m
+[0;32mI (93874) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (93894) DATA LOGGING: 99 raw samples sent to SD card[0m
+[1;31mE (93914) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (94354) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (94354) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (94404) LSM6DS3: [0m
+[0;32mI (94404) LSM6DS3: gyro = 121.566772 121.566772 121.566772[0m
+[0;32mI (94414) LSM6DS3: accel = 0.972534 0.972534 0.972534[0m
+[0;32mI (94414) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (94444) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (94504) BLE: ble read queue[0m
+[0;32mI (94894) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (94894) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (94944) LSM6DS3: [0m
+[0;32mI (94944) LSM6DS3: gyro = 122.009277 122.009277 122.009277[0m
+[0;32mI (94954) LSM6DS3: accel = 0.976074 0.976074 0.976074[0m
+[0;32mI (94954) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (94964) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (94974) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (95404) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (95404) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (95464) LSM6DS3: [0m
+[0;32mI (95464) LSM6DS3: gyro = 121.856689 121.856689 121.856689[0m
+[0;32mI (95464) LSM6DS3: accel = 0.974854 0.974854 0.974854[0m
+[0;32mI (95464) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (95474) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (95484) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (95504) BLE: ble read queue[0m
+[0;32mI (95914) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (95914) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (95964) LSM6DS3: [0m
+[0;32mI (95964) LSM6DS3: gyro = 122.055054 122.055054 122.055054[0m
+[0;32mI (95974) LSM6DS3: accel = 0.976440 0.976440 0.976440[0m
+[0;32mI (95974) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (95984) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (96134) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (96424) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (96424) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (96484) LSM6DS3: [0m
+[0;32mI (96484) LSM6DS3: gyro = 121.887207 121.887207 121.887207[0m
+[0;32mI (96484) LSM6DS3: accel = 0.975098 0.975098 0.975098[0m
+[0;32mI (96484) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (96494) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (96764) BLE: ble read queue[0m
+[0;32mI (96774) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (96934) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (96934) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (96984) LSM6DS3: [0m
+[0;32mI (96984) LSM6DS3: gyro = 121.688843 121.688843 121.688843[0m
+[0;32mI (96994) LSM6DS3: accel = 0.973511 0.973511 0.973511[0m
+[0;32mI (96994) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (97004) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (97014) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (97444) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (97444) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (97494) LSM6DS3: [0m
+[0;32mI (97494) LSM6DS3: gyro = 122.039795 122.039795 122.039795[0m
+[0;32mI (97494) LSM6DS3: accel = 0.976318 0.976318 0.976318[0m
+[0;32mI (97504) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (97514) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (97534) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (97544) SD_CARD: IMU orientation file size: 152064[0m
+[0;32mI (97564) SD_CARD: File written.[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (97774) BLE: ble read queue[0m
+[0;32mI (97954) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (97954) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (98164) LSM6DS3: [0m
+[0;32mI (98164) LSM6DS3: gyro = 122.329712 2.929688 -7.080078[0m
+[0;32mI (98164) LSM6DS3: accel = -0.015869 0.009277 0.202026[0m
+[0;32mI (98174) LSM6DS3: num_fifo_samples = 1[0m
+[1;31mE (98194) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (98204) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (98214) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (98224) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (98624) SD_CARD: max_idx: 1700[0m
+[0;32mI (98624) SD_CARD: IMU raw data file size: 228096[0m
+[0;32mI (98624) SD_CARD: File written.[0m
+[0;32mI (98624) SD_CARD: orientation data filename: imu_orientation_001701.bin[0m
+[0;32mI (98624) SD_CARD: orientation data filepath: /sdcard/imu_orientation_001701.bin[0m
+[0;32mI (98634) SD_CARD: Writing to new orientation data file[0m
+[0;32mI (98644) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (98644) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (98764) LSM6DS3: [0m
+[0;32mI (98764) LSM6DS3: gyro = 122.131348 122.131348 122.131348[0m
+[0;32mI (98764) LSM6DS3: accel = 0.977051 0.977051 0.977051[0m
+[0;32mI (98774) BLE: ble read queue[0m
+[0;32mI (98774) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (98794) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (98804) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (98814) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (98824) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (99234) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (99234) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (99344) LSM6DS3: [0m
+[0;32mI (99344) LSM6DS3: gyro = 25.115967 121.978760 121.978760[0m
+[0;32mI (99354) LSM6DS3: accel = 0.975830 0.975830 0.975830[0m
+[0;32mI (99354) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (99374) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (99384) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (99394) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (99404) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (99774) BLE: ble read queue[0m
+[0;32mI (99814) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (99814) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (99924) LSM6DS3: [0m
+[0;32mI (99924) LSM6DS3: gyro = 121.871948 121.871948 121.871948[0m
+[0;32mI (99924) LSM6DS3: accel = 0.974976 0.974976 0.974976[0m
+[0;32mI (99934) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (99954) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (99964) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (99974) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (99984) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (100394) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (100394) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (100514) LSM6DS3: [0m
+[0;32mI (100514) LSM6DS3: gyro = 122.421265 122.421265 122.421265[0m
+[0;32mI (100514) LSM6DS3: accel = 0.979370 0.979370 0.979370[0m
+[0;32mI (100514) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (100534) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (100544) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (100554) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (100564) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (100774) BLE: ble read queue[0m
+[0;32mI (100814) SD_CARD: FILE IS NOT NULL[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (100974) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (100974) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (101174) LSM6DS3: [0m
+[0;32mI (101174) LSM6DS3: gyro = 121.475220 121.475220 121.475220[0m
+[0;32mI (101174) LSM6DS3: accel = 0.971802 0.971802 0.971802[0m
+[0;32mI (101184) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (101214) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (101224) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (101234) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (101244) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (101654) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (101654) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (101774) BLE: ble read queue[0m
+[0;32mI (101854) LSM6DS3: [0m
+[0;32mI (101854) LSM6DS3: gyro = 122.024536 122.024536 122.024536[0m
+[0;32mI (101864) LSM6DS3: accel = 0.976196 0.976196 0.976196[0m
+[0;32mI (101864) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (101894) DATA LOGGING: SDCARD raw fail[0m
+[0;32mI (101894) SD_CARD: max_idx: 1701[0m
+[0;32mI (101894) SD_CARD: IMU raw data filename: imu_raw_001702.bin[0m
+[0;32mI (101894) SD_CARD: IMU raw data filepath: /sdcard/imu_raw_001702.bin[0m
+[0;32mI (101904) SD_CARD: Writing to new raw data file[0m
+[1;31mE (101914) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (101924) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (101924) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (102334) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (102334) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (102444) LSM6DS3: [0m
+[0;32mI (102444) LSM6DS3: gyro = 121.444702 121.444702 121.444702[0m
+[0;32mI (102454) LSM6DS3: accel = 0.971558 0.971558 0.971558[0m
+[0;32mI (102454) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (102474) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (102484) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (102494) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (102494) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (102774) BLE: ble read queue[0m
+[0;32mI (102914) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (102914) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (103024) LSM6DS3: [0m
+[0;32mI (103024) LSM6DS3: gyro = 122.314453 122.314453 122.314453[0m
+[0;32mI (103024) LSM6DS3: accel = 0.978516 0.978516 0.978516[0m
+[0;32mI (103034) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (103044) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (103054) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (103064) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (103074) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (103484) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (103484) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (103594) LSM6DS3: [0m
+[0;32mI (103594) LSM6DS3: gyro = 122.039795 2.792358 -7.080078[0m
+[0;32mI (103594) LSM6DS3: accel = -0.016113 0.008423 0.201050[0m
+[0;32mI (103604) LSM6DS3: num_fifo_samples = 1[0m
+[1;31mE (103614) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (103624) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (103634) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (103634) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (103774) BLE: ble read queue[0m
+[0;32mI (104054) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (104054) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (104084) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (104134) LSM6DS3: [0m
+[0;32mI (104134) LSM6DS3: gyro = 122.192383 122.192383 122.192383[0m
+[0;32mI (104134) LSM6DS3: accel = 0.977539 0.977539 0.977539[0m
+[0;32mI (104134) LSM6DS3: num_fifo_samples = 6[0m
+[1;31mE (104154) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (104154) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (104594) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (104594) LSM6DS3: num_fifo_samples = 294 100[0m
+[0;32mI (104644) LSM6DS3: [0m
+[0;32mI (104644) LSM6DS3: gyro = 121.597290 121.597290 121.597290[0m
+[0;32mI (104654) LSM6DS3: accel = 0.972778 0.972778 0.972778[0m
+[0;32mI (104654) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (104674) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (104674) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (104774) BLE: ble read queue[0m
+[0;32mI (105114) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (105114) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (105164) LSM6DS3: [0m
+[0;32mI (105164) LSM6DS3: gyro = 122.634888 122.634888 122.634888[0m
+[0;32mI (105174) LSM6DS3: accel = 0.981079 0.981079 0.981079[0m
+[0;32mI (105174) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (105194) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (105194) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (105634) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (105634) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (105684) LSM6DS3: [0m
+[0;32mI (105694) LSM6DS3: gyro = 121.520996 121.520996 121.520996[0m
+[0;32mI (105694) LSM6DS3: accel = 0.972168 0.972168 0.972168[0m
+[0;32mI (105694) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (105714) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (105724) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (105834) BLE: ble read queue[0m
+[0;32mI (106414) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (106414) LSM6DS3: num_fifo_samples = 451 100[0m
+[0;32mI (106464) LSM6DS3: [0m
+[0;32mI (106464) LSM6DS3: gyro = 121.917725 121.917725 121.917725[0m
+[0;32mI (106474) LSM6DS3: accel = 0.975342 0.975342 0.975342[0m
+[0;32mI (106474) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (106754) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (107044) BLE: ble read queue[0m
+[0;32mI (107054) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (107194) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (107194) LSM6DS3: num_fifo_samples = 457 100[0m
+[0;32mI (107244) LSM6DS3: [0m
+[0;32mI (107254) LSM6DS3: gyro = 122.161865 122.161865 122.161865[0m
+[0;32mI (107254) LSM6DS3: accel = 0.977295 0.977295 0.977295[0m
+[0;32mI (107254) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (107514) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (107774) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (107954) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (107954) LSM6DS3: num_fifo_samples = 445 100[0m
+[0;32mI (108004) LSM6DS3: [0m
+[0;32mI (108004) LSM6DS3: gyro = 121.643066 121.643066 121.643066[0m
+[0;32mI (108014) LSM6DS3: accel = 0.973145 0.973145 0.973145[0m
+[0;32mI (108014) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (108184) BLE: ble read queue[0m
+[1;31mE (108354) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (108374) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (108794) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (108794) LSM6DS3: num_fifo_samples = 493 100[0m
+[0;32mI (108844) LSM6DS3: [0m
+[0;32mI (108844) LSM6DS3: gyro = 122.634888 122.634888 122.634888[0m
+[0;32mI (108854) LSM6DS3: accel = 0.981079 0.981079 0.981079[0m
+[0;32mI (108854) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (108874) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (108884) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (109314) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (109314) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (109344) BLE: ble read queue[0m
+[0;32mI (109374) LSM6DS3: [0m
+[0;32mI (109374) LSM6DS3: gyro = 121.459961 121.459961 121.459961[0m
+[0;32mI (109374) LSM6DS3: accel = 0.971680 0.971680 0.971680[0m
+[0;32mI (109374) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (109404) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (109404) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (109844) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (109844) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (109894) LSM6DS3: [0m
+[0;32mI (109894) LSM6DS3: gyro = -7.095337 -2.014160 1.220703[0m
+[0;32mI (109904) LSM6DS3: accel = 0.200439 0.974365 0.974365[0m
+[0;32mI (109904) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (109924) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (109934) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (110344) BLE: ble read queue[0m
+[0;32mI (110364) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (110364) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (110414) LSM6DS3: [0m
+[0;32mI (110414) LSM6DS3: gyro = 122.451782 122.451782 122.451782[0m
+[0;32mI (110424) LSM6DS3: accel = 0.979614 0.979614 0.979614[0m
+[0;32mI (110424) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (110454) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (110454) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (110894) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (110894) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (110944) LSM6DS3: [0m
+[0;32mI (110944) LSM6DS3: gyro = 121.978760 121.978760 2.517700[0m
+[0;32mI (110954) LSM6DS3: accel = -0.057007 -0.015381 0.009277[0m
+[0;32mI (110954) LSM6DS3: num_fifo_samples = 2[0m
+[1;31mE (110974) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (110974) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (111344) BLE: ble read queue[0m
+[0;32mI (111414) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (111414) LSM6DS3: num_fifo_samples = 290 100[0m
+[0;32mI (111464) LSM6DS3: [0m
+[0;32mI (111464) LSM6DS3: gyro = 122.207642 122.207642 122.207642[0m
+[0;32mI (111474) LSM6DS3: accel = 0.977661 0.977661 0.977661[0m
+[0;32mI (111474) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (111494) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (111494) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (111934) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (111934) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (111984) LSM6DS3: [0m
+[0;32mI (111984) LSM6DS3: gyro = 122.283936 122.283936 122.283936[0m
+[0;32mI (111994) LSM6DS3: accel = 0.978271 0.978271 0.978271[0m
+[0;32mI (111994) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (112024) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (112034) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (112344) BLE: ble read queue[0m
+[0;32mI (112464) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (112464) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (112514) LSM6DS3: [0m
+[0;32mI (112514) LSM6DS3: gyro = 122.283936 122.283936 122.283936[0m
+[0;32mI (112524) LSM6DS3: accel = 0.978271 0.978271 0.978271[0m
+[0;32mI (112524) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (112554) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (112554) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (112994) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (112994) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (113054) LSM6DS3: [0m
+[0;32mI (113054) LSM6DS3: gyro = 1.281738 24.887085 122.909546[0m
+[0;32mI (113054) LSM6DS3: accel = 0.983276 0.983276 0.983276[0m
+[0;32mI (113054) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (113084) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (113084) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (113344) BLE: ble read queue[0m
+[0;32mI (113524) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (113524) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (113584) LSM6DS3: [0m
+[0;32mI (113584) LSM6DS3: gyro = 122.695923 122.695923 122.695923[0m
+[0;32mI (113584) LSM6DS3: accel = 0.981567 0.981567 0.981567[0m
+[0;32mI (113584) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (113614) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (113614) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (114054) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (114054) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (114104) LSM6DS3: [0m
+[0;32mI (114104) LSM6DS3: gyro = 121.887207 121.887207 121.887207[0m
+[0;32mI (114114) LSM6DS3: accel = 0.975098 0.975098 0.975098[0m
+[0;32mI (114114) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (114144) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (114154) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (114344) BLE: ble read queue[0m
+[0;32mI (114584) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (114584) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (114644) LSM6DS3: [0m
+[0;32mI (114644) LSM6DS3: gyro = 121.444702 121.444702 121.444702[0m
+[0;32mI (114644) LSM6DS3: accel = 0.971558 0.971558 0.971558[0m
+[0;32mI (114644) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (114674) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (114684) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (115114) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (115114) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (115174) LSM6DS3: [0m
+[0;32mI (115174) LSM6DS3: gyro = 122.146606 2.212524 -7.095337[0m
+[0;32mI (115174) LSM6DS3: accel = -0.015503 0.008301 0.199951[0m
+[0;32mI (115174) LSM6DS3: num_fifo_samples = 1[0m
+[1;31mE (115204) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (115214) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (115344) BLE: ble read queue[0m
+[0;32mI (115644) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (115644) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (115704) LSM6DS3: [0m
+[0;32mI (115704) LSM6DS3: gyro = 123.184204 123.184204 123.184204[0m
+[0;32mI (115704) LSM6DS3: accel = 0.985474 0.985474 0.985474[0m
+[0;32mI (115704) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (115734) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (115734) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (116174) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (116174) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (116224) LSM6DS3: [0m
+[0;32mI (116234) LSM6DS3: gyro = 122.024536 122.024536 122.024536[0m
+[0;32mI (116234) LSM6DS3: accel = 0.976196 0.976196 0.976196[0m
+[0;32mI (116234) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (116264) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (116274) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (116344) BLE: ble read queue[0m
+[0;32mI (116704) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (116704) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (116754) LSM6DS3: [0m
+[0;32mI (116754) LSM6DS3: gyro = 121.994019 121.994019 121.994019[0m
+[0;32mI (116764) LSM6DS3: accel = 0.975952 0.975952 0.975952[0m
+[0;32mI (116764) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (116804) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (116804) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (117244) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (117244) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (117294) LSM6DS3: [0m
+[0;32mI (117294) LSM6DS3: gyro = 121.963501 121.963501 121.963501[0m
+[0;32mI (117304) LSM6DS3: accel = 0.975708 0.975708 0.975708[0m
+[0;32mI (117304) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (117334) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (117334) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (117344) BLE: ble read queue[0m
+[0;32mI (117774) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (117774) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (117824) LSM6DS3: [0m
+[0;32mI (117824) LSM6DS3: gyro = 121.414185 121.414185 121.414185[0m
+[0;32mI (117834) LSM6DS3: accel = 0.971313 0.971313 0.971313[0m
+[0;32mI (117834) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (117864) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (117864) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (118304) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (118304) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (118344) BLE: ble read queue[0m
+[0;32mI (118364) LSM6DS3: [0m
+[0;32mI (118364) LSM6DS3: gyro = 121.658325 121.658325 121.658325[0m
+[0;32mI (118364) LSM6DS3: accel = 0.973267 0.973267 0.973267[0m
+[0;32mI (118364) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (118394) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (118404) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (118834) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (118834) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (118894) LSM6DS3: [0m
+[0;32mI (118894) LSM6DS3: gyro = 122.146606 122.146606 122.146606[0m
+[0;32mI (118894) LSM6DS3: accel = 0.977173 0.977173 0.977173[0m
+[0;32mI (118894) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (118924) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (118934) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (119344) BLE: ble read queue[0m
+[0;32mI (119364) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (119364) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (119414) LSM6DS3: [0m
+[0;32mI (119414) LSM6DS3: gyro = 121.795654 121.795654 121.795654[0m
+[0;32mI (119424) LSM6DS3: accel = 0.974365 0.974365 0.974365[0m
+[0;32mI (119424) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (119474) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (119484) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (119914) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (119914) LSM6DS3: num_fifo_samples = 313 100[0m
+[0;32mI (119964) LSM6DS3: [0m
+[0;32mI (119964) LSM6DS3: gyro = 121.704102 121.704102 121.704102[0m
+[0;32mI (119974) LSM6DS3: accel = 0.973633 0.973633 0.973633[0m
+[0;32mI (119974) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (120004) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (120004) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (120344) BLE: ble read queue[0m
+[0;32mI (120444) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (120444) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (120494) LSM6DS3: [0m
+[0;32mI (120504) LSM6DS3: gyro = 122.024536 2.655029 -7.156372[0m
+[0;32mI (120504) LSM6DS3: accel = -0.015991 0.010376 0.201294[0m
+[0;32mI (120504) LSM6DS3: num_fifo_samples = 1[0m
+[1;31mE (120544) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (120544) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (120984) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (120984) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (121044) LSM6DS3: [0m
+[0;32mI (121044) LSM6DS3: gyro = 122.558594 122.558594 122.558594[0m
+[0;32mI (121044) LSM6DS3: accel = 0.980469 0.980469 0.980469[0m
+[0;32mI (121044) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (121074) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (121074) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (121344) BLE: ble read queue[0m
+[0;32mI (121514) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (121514) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (121564) LSM6DS3: [0m
+[0;32mI (121564) LSM6DS3: gyro = 0.976562 24.826050 122.619629[0m
+[0;32mI (121574) LSM6DS3: accel = 0.980957 0.980957 0.980957[0m
+[0;32mI (121574) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (121604) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (121604) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (122044) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (122044) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (122094) LSM6DS3: [0m
+[0;32mI (122094) LSM6DS3: gyro = 121.459961 121.459961 121.459961[0m
+[0;32mI (122104) LSM6DS3: accel = 0.971680 0.971680 0.971680[0m
+[0;32mI (122104) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (122134) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (122134) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (122344) BLE: ble read queue[0m
+[0;32mI (122574) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (122574) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (122624) LSM6DS3: [0m
+[0;32mI (122624) LSM6DS3: gyro = 2.120972 -7.049561 -1.922607[0m
+[0;32mI (122634) LSM6DS3: accel = 0.009033 0.202271 0.978027[0m
+[0;32mI (122634) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (122674) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (122674) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (123114) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (123114) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (123164) LSM6DS3: [0m
+[0;32mI (123164) LSM6DS3: gyro = 122.497559 122.497559 122.497559[0m
+[0;32mI (123174) LSM6DS3: accel = 0.979980 0.979980 0.979980[0m
+[0;32mI (123174) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (123464) BLE: ble read queue[0m
+[1;31mE (123474) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (123474) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (123784) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (123784) LSM6DS3: num_fifo_samples = 385 100[0m
+[0;32mI (123844) LSM6DS3: [0m
+[0;32mI (123844) LSM6DS3: gyro = 121.520996 121.520996 121.520996[0m
+[0;32mI (123844) LSM6DS3: accel = 0.972168 0.972168 0.972168[0m
+[0;32mI (123844) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (124274) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (124404) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (124464) BLE: ble read queue[0m
+[0;32mI (124604) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (124604) LSM6DS3: num_fifo_samples = 481 100[0m
+[0;32mI (124654) LSM6DS3: [0m
+[0;32mI (124654) LSM6DS3: gyro = 122.299194 122.299194 122.299194[0m
+[0;32mI (124664) LSM6DS3: accel = 0.978394 0.978394 0.978394[0m
+[0;32mI (124664) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (125254) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (125384) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (125464) BLE: ble read queue[0m
+[0;32mI (125694) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (125694) LSM6DS3: num_fifo_samples = 649 100[0m
+[0;32mI (125744) LSM6DS3: [0m
+[0;32mI (125744) LSM6DS3: gyro = 122.238159 2.792358 -7.080078[0m
+[0;32mI (125754) LSM6DS3: accel = -0.015747 0.008667 0.201172[0m
+[0;32mI (125754) LSM6DS3: num_fifo_samples = 85[0m
+[1;31mE (126344) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (126344) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (126464) BLE: ble read queue[0m
+[0;32mI (126784) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (126784) LSM6DS3: num_fifo_samples = 733 100[0m
+[0;32mI (126834) LSM6DS3: [0m
+[0;32mI (126834) LSM6DS3: gyro = 122.055054 2.639771 -7.080078[0m
+[0;32mI (126844) LSM6DS3: accel = -0.016113 0.009766 0.201172[0m
+[0;32mI (126844) LSM6DS3: num_fifo_samples = 175[0m
+[1;31mE (127104) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (127104) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (127464) BLE: ble read queue[0m
+[0;32mI (127544) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (127544) LSM6DS3: num_fifo_samples = 613 100[0m
+[0;32mI (127594) LSM6DS3: [0m
+[0;32mI (127594) LSM6DS3: gyro = 121.520996 2.746582 -7.125854[0m
+[0;32mI (127604) LSM6DS3: accel = -0.015747 0.008301 0.202148[0m
+[0;32mI (127604) LSM6DS3: num_fifo_samples = 49[0m
+[1;31mE (127644) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (127644) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (128084) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (128084) LSM6DS3: num_fifo_samples = 349 100[0m
+[0;32mI (128134) LSM6DS3: [0m
+[0;32mI (128144) LSM6DS3: gyro = 121.978760 2.944946 -7.156372[0m
+[0;32mI (128144) LSM6DS3: accel = -0.015991 0.010376 0.201294[0m
+[0;32mI (128144) LSM6DS3: num_fifo_samples = 1[0m
+[1;31mE (128184) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (128184) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (128464) BLE: ble read queue[0m
+[0;32mI (128624) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (128624) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (128674) LSM6DS3: [0m
+[0;32mI (128674) LSM6DS3: gyro = 121.719360 121.719360 121.719360[0m
+[0;32mI (128684) LSM6DS3: accel = 0.973755 0.973755 0.973755[0m
+[0;32mI (128684) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (128734) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (128734) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (129174) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (129174) LSM6DS3: num_fifo_samples = 307 100[0m
+[0;32mI (129224) LSM6DS3: [0m
+[0;32mI (129224) LSM6DS3: gyro = 121.841431 121.841431 121.841431[0m
+[0;32mI (129234) LSM6DS3: accel = 0.974731 0.974731 0.974731[0m
+[0;32mI (129234) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (129274) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (129274) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (129464) BLE: ble read queue[0m
+[0;32mI (129714) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (129714) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (129764) LSM6DS3: [0m
+[0;32mI (129764) LSM6DS3: gyro = 122.802734 122.802734 122.802734[0m
+[0;32mI (129774) LSM6DS3: accel = 0.982422 0.982422 0.982422[0m
+[0;32mI (129774) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (129804) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (129804) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (130244) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (130244) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (130294) LSM6DS3: [0m
+[0;32mI (130294) LSM6DS3: gyro = 121.078491 121.078491 121.078491[0m
+[0;32mI (130304) LSM6DS3: accel = 0.968628 0.968628 0.968628[0m
+[0;32mI (130304) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (130344) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (130344) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (130464) BLE: ble read queue[0m
+[0;32mI (130784) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (130784) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (130834) LSM6DS3: [0m
+[0;32mI (130834) LSM6DS3: gyro = 121.597290 121.597290 121.597290[0m
+[0;32mI (130844) LSM6DS3: accel = 0.972778 0.972778 0.972778[0m
+[0;32mI (130844) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (130884) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (130884) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (131324) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (131324) LSM6DS3: num_fifo_samples = 307 100[0m
+[0;32mI (131374) LSM6DS3: [0m
+[0;32mI (131374) LSM6DS3: gyro = 121.826172 121.826172 121.826172[0m
+[0;32mI (131384) LSM6DS3: accel = 0.974609 0.974609 0.974609[0m
+[0;32mI (131384) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (131424) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (131424) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (131464) BLE: ble read queue[0m
+[0;32mI (131864) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (131864) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (131914) LSM6DS3: [0m
+[0;32mI (131914) LSM6DS3: gyro = 124.496460 124.496460 124.496460[0m
+[0;32mI (131924) LSM6DS3: accel = 0.995972 0.995972 0.995972[0m
+[0;32mI (131924) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (131954) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (132404) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (132404) LSM6DS3: num_fifo_samples = 307 100[0m
+[0;32mI (132464) BLE: ble read queue[0m
+[0;32mI (132464) LSM6DS3: [0m
+[0;32mI (132464) LSM6DS3: gyro = 121.429443 121.429443 121.429443[0m
+[0;32mI (132464) LSM6DS3: accel = 0.971436 0.971436 0.971436[0m
+[0;32mI (132464) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (132474) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (132484) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (132914) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (132914) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (132964) LSM6DS3: [0m
+[0;32mI (132964) LSM6DS3: gyro = 121.856689 121.856689 121.856689[0m
+[0;32mI (132974) LSM6DS3: accel = 0.974854 0.974854 0.974854[0m
+[0;32mI (132974) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (132984) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (132994) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (133424) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (133424) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (133464) BLE: ble read queue[0m
+[0;32mI (133484) LSM6DS3: [0m
+[0;32mI (133484) LSM6DS3: gyro = 121.963501 121.963501 121.963501[0m
+[0;32mI (133484) LSM6DS3: accel = 0.975708 0.975708 0.975708[0m
+[0;32mI (133484) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (133504) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (133514) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (133944) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (133944) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (133994) LSM6DS3: [0m
+[0;32mI (133994) LSM6DS3: gyro = 122.665405 122.665405 122.665405[0m
+[0;32mI (134004) LSM6DS3: accel = 0.981323 0.981323 0.981323[0m
+[0;32mI (134004) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (134014) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (134024) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (134454) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (134454) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (134464) BLE: ble read queue[0m
+[0;32mI (134514) LSM6DS3: [0m
+[0;32mI (134514) LSM6DS3: gyro = 121.170044 121.170044 121.170044[0m
+[0;32mI (134514) LSM6DS3: accel = 0.969360 0.969360 0.969360[0m
+[0;32mI (134514) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (134524) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (134534) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (134964) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (134964) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (135014) LSM6DS3: [0m
+[0;32mI (135014) LSM6DS3: gyro = 122.299194 122.299194 122.299194[0m
+[0;32mI (135024) LSM6DS3: accel = 0.978394 0.978394 0.978394[0m
+[0;32mI (135024) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (135034) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (135044) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (135464) BLE: ble read queue[0m
+[0;32mI (135474) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (135474) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (135534) LSM6DS3: [0m
+[0;32mI (135534) LSM6DS3: gyro = 122.497559 122.497559 122.497559[0m
+[0;32mI (135534) LSM6DS3: accel = 0.979980 0.979980 0.979980[0m
+[0;32mI (135534) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (135544) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (135554) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (136014) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (136014) LSM6DS3: num_fifo_samples = 307 100[0m
+[0;32mI (136064) LSM6DS3: [0m
+[0;32mI (136064) LSM6DS3: gyro = 121.627808 121.627808 121.627808[0m
+[0;32mI (136074) LSM6DS3: accel = 0.973022 0.973022 0.973022[0m
+[0;32mI (136074) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (136084) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (136094) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (136464) BLE: ble read queue[0m
+[0;32mI (136524) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (136524) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (136584) LSM6DS3: [0m
+[0;32mI (136584) LSM6DS3: gyro = 121.261597 121.261597 121.261597[0m
+[0;32mI (136584) LSM6DS3: accel = 0.970093 0.970093 0.970093[0m
+[0;32mI (136584) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (136594) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (136604) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (137034) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (137034) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (137084) LSM6DS3: [0m
+[0;32mI (137084) LSM6DS3: gyro = 122.253418 122.253418 122.253418[0m
+[0;32mI (137094) LSM6DS3: accel = 0.978027 0.978027 0.978027[0m
+[0;32mI (137094) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (137104) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (137114) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (137464) BLE: ble read queue[0m
+[0;32mI (137544) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (137544) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (137604) LSM6DS3: [0m
+[0;32mI (137604) LSM6DS3: gyro = 122.482300 122.482300 122.482300[0m
+[0;32mI (137604) LSM6DS3: accel = 0.979858 0.979858 0.979858[0m
+[0;32mI (137604) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (137624) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (137634) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (138064) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (138064) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (138114) LSM6DS3: [0m
+[0;32mI (138114) LSM6DS3: gyro = 121.749878 121.749878 121.749878[0m
+[0;32mI (138124) LSM6DS3: accel = 0.017334 -0.056519 -0.015381[0m
+[0;32mI (138124) LSM6DS3: num_fifo_samples = 3[0m
+[1;31mE (138134) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (138144) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (138464) BLE: ble read queue[0m
+[0;32mI (138574) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (138574) LSM6DS3: num_fifo_samples = 285 100[0m
+[0;32mI (138634) LSM6DS3: [0m
+[0;32mI (138634) LSM6DS3: gyro = 121.520996 121.520996 121.520996[0m
+[0;32mI (138634) LSM6DS3: accel = 0.972168 0.972168 0.972168[0m
+[0;32mI (138634) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (138654) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (138654) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (139094) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (139094) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (139144) LSM6DS3: [0m
+[0;32mI (139144) LSM6DS3: gyro = 123.626709 123.626709 123.626709[0m
+[0;32mI (139154) LSM6DS3: accel = 0.989014 0.989014 0.989014[0m
+[0;32mI (139154) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (139174) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (139174) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (139464) BLE: ble read queue[0m
+[0;32mI (139614) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (139614) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (139674) LSM6DS3: [0m
+[0;32mI (139674) LSM6DS3: gyro = 122.680664 122.680664 122.680664[0m
+[0;32mI (139674) LSM6DS3: accel = 0.981445 0.981445 0.981445[0m
+[0;32mI (139674) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (139694) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (139694) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (140134) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (140134) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (140184) LSM6DS3: [0m
+[0;32mI (140184) LSM6DS3: gyro = 122.512817 122.512817 122.512817[0m
+[0;32mI (140194) LSM6DS3: accel = 0.980103 0.980103 0.980103[0m
+[0;32mI (140194) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (140214) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (140224) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (140234) SD_CARD: IMU raw data file size: 228096[0m
+[0;32mI (140264) SD_CARD: File written.[0m
+[0;32mI (140264) SD_CARD: IMU orientation file size: 152064[0m
+[0;32mI (140264) SD_CARD: File written.[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (140464) BLE: ble read queue[0m
+[0;32mI (140654) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (140654) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (140864) LSM6DS3: [0m
+[0;32mI (140864) LSM6DS3: gyro = 121.902466 121.902466 121.902466[0m
+[0;32mI (140864) LSM6DS3: accel = 0.975220 0.975220 0.975220[0m
+[0;32mI (140864) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (140894) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (140904) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (140914) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (140924) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (141334) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (141334) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (141354) SD_CARD: max_idx: 1702[0m
+[0;32mI (141354) SD_CARD: IMU raw data filename: imu_raw_001703.bin[0m
+[0;32mI (141354) SD_CARD: IMU raw data filepath: /sdcard/imu_raw_001703.bin[0m
+[0;32mI (141354) SD_CARD: Writing to new raw data file[0m
+[0;32mI (141464) BLE: ble read queue[0m
+[0;32mI (141484) LSM6DS3: [0m
+[0;32mI (141484) LSM6DS3: gyro = 122.039795 122.039795 122.039795[0m
+[0;32mI (141484) LSM6DS3: accel = 0.976318 0.976318 0.976318[0m
+[0;32mI (141494) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (141514) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (141524) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (141534) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (141534) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (141954) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (141954) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (142064) LSM6DS3: [0m
+[0;32mI (142064) LSM6DS3: gyro = 121.658325 121.658325 121.658325[0m
+[0;32mI (142074) LSM6DS3: accel = 0.973267 0.973267 0.973267[0m
+[0;32mI (142074) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (142094) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (142104) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (142114) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (142114) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (142464) BLE: ble read queue[0m
+[0;32mI (142534) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (142534) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (142654) LSM6DS3: [0m
+[0;32mI (142654) LSM6DS3: gyro = 122.146606 122.146606 122.146606[0m
+[0;32mI (142654) LSM6DS3: accel = 0.977173 0.977173 0.977173[0m
+[0;32mI (142654) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (142674) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (142684) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (142694) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (142694) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (143114) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (143114) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (143234) LSM6DS3: [0m
+[0;32mI (143234) LSM6DS3: gyro = 121.994019 121.994019 121.994019[0m
+[0;32mI (143234) LSM6DS3: accel = 0.975952 0.975952 0.975952[0m
+[0;32mI (143234) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (143254) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (143264) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (143274) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (143274) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (143464) BLE: ble read queue[0m
+[0;32mI (143594) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (143594) SD_CARD: orientation data filename: imu_orientation_001703.bin[0m
+[0;32mI (143594) SD_CARD: orientation data filepath: /sdcard/imu_orientation_001703.bin[0m
+[0;32mI (143604) SD_CARD: Writing to new orientation data file[0m
+[0;32mI (143694) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (143694) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (143814) LSM6DS3: [0m
+[0;32mI (143814) LSM6DS3: gyro = 121.902466 121.902466 121.902466[0m
+[0;32mI (143814) LSM6DS3: accel = 0.975220 0.975220 0.975220[0m
+[0;32mI (143814) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (143844) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (143854) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (143864) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (143864) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (144284) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (144284) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (144404) LSM6DS3: [0m
+[0;32mI (144404) LSM6DS3: gyro = 121.337891 121.337891 121.337891[0m
+[0;32mI (144404) LSM6DS3: accel = 0.970703 0.970703 0.970703[0m
+[0;32mI (144404) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (144434) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (144444) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (144454) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (144464) BLE: ble read queue[0m
+[0;32mI (144464) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (144874) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (144874) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (144984) LSM6DS3: [0m
+[0;32mI (144984) LSM6DS3: gyro = 121.170044 121.170044 121.170044[0m
+[0;32mI (144984) LSM6DS3: accel = 0.969360 0.969360 0.969360[0m
+[0;32mI (144994) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (145014) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (145024) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (145034) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (145034) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (145454) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (145454) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (145464) BLE: ble read queue[0m
+[0;32mI (145574) LSM6DS3: [0m
+[0;32mI (145574) LSM6DS3: gyro = 122.039795 122.039795 122.039795[0m
+[0;32mI (145574) LSM6DS3: accel = 0.976318 0.976318 0.976318[0m
+[0;32mI (145574) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (145594) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (145604) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (145614) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (145614) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (145834) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (146034) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (146034) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (146084) LSM6DS3: [0m
+[0;32mI (146084) LSM6DS3: gyro = 121.475220 121.475220 121.475220[0m
+[0;32mI (146094) LSM6DS3: accel = 0.971802 0.971802 0.971802[0m
+[0;32mI (146094) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (146114) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (146114) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (146464) BLE: ble read queue[0m
+[0;32mI (146564) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (146564) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (146614) LSM6DS3: [0m
+[0;32mI (146614) LSM6DS3: gyro = 121.658325 121.658325 121.658325[0m
+[0;32mI (146624) LSM6DS3: accel = 0.973267 0.973267 0.973267[0m
+[0;32mI (146624) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (146654) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (146664) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (147094) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (147094) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (147144) LSM6DS3: [0m
+[0;32mI (147144) LSM6DS3: gyro = 122.360229 122.360229 122.360229[0m
+[0;32mI (147154) LSM6DS3: accel = 0.978882 0.978882 0.978882[0m
+[0;32mI (147154) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (147184) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (147194) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (147464) BLE: ble read queue[0m
+[0;32mI (147624) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (147624) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (147674) LSM6DS3: [0m
+[0;32mI (147674) LSM6DS3: gyro = 121.856689 2.227783 -7.080078[0m
+[0;32mI (147684) LSM6DS3: accel = -0.015625 0.009644 0.200073[0m
+[0;32mI (147684) LSM6DS3: num_fifo_samples = 1[0m
+[1;31mE (147704) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (147704) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (148144) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (148144) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (148204) LSM6DS3: [0m
+[0;32mI (148204) LSM6DS3: gyro = 121.368408 121.368408 121.368408[0m
+[0;32mI (148204) LSM6DS3: accel = 0.970947 0.970947 0.970947[0m
+[0;32mI (148204) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (148224) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (148244) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (148464) BLE: ble read queue[0m
+[0;32mI (148694) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (148694) LSM6DS3: num_fifo_samples = 307 100[0m
+[0;32mI (148754) LSM6DS3: [0m
+[0;32mI (148754) LSM6DS3: gyro = 121.398926 121.398926 121.398926[0m
+[0;32mI (148754) LSM6DS3: accel = 0.971191 0.971191 0.971191[0m
+[0;32mI (148754) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (148774) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (148774) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (149214) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (149214) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (149264) LSM6DS3: [0m
+[0;32mI (149264) LSM6DS3: gyro = 122.451782 122.451782 122.451782[0m
+[0;32mI (149274) LSM6DS3: accel = 0.979614 0.979614 0.979614[0m
+[0;32mI (149274) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (149304) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (149314) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (149464) BLE: ble read queue[0m
+[0;32mI (149744) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (149744) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (149794) LSM6DS3: [0m
+[0;32mI (149794) LSM6DS3: gyro = 121.948242 121.948242 121.948242[0m
+[0;32mI (149804) LSM6DS3: accel = 0.975586 0.975586 0.975586[0m
+[0;32mI (149804) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (149834) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (149834) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (150274) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (150274) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (150324) LSM6DS3: [0m
+[0;32mI (150324) LSM6DS3: gyro = 121.368408 121.368408 121.368408[0m
+[0;32mI (150334) LSM6DS3: accel = 0.970947 0.970947 0.970947[0m
+[0;32mI (150334) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (150364) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (150364) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (150464) BLE: ble read queue[0m
+[0;32mI (150804) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (150804) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (150854) LSM6DS3: [0m
+[0;32mI (150864) LSM6DS3: gyro = 122.085571 122.085571 122.085571[0m
+[0;32mI (150864) LSM6DS3: accel = 0.021729 -0.058105 -0.015869[0m
+[0;32mI (150864) LSM6DS3: num_fifo_samples = 3[0m
+[1;31mE (150884) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (150884) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (151324) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (151324) LSM6DS3: num_fifo_samples = 291 100[0m
+[0;32mI (151384) LSM6DS3: [0m
+[0;32mI (151384) LSM6DS3: gyro = 122.817993 122.817993 122.817993[0m
+[0;32mI (151384) LSM6DS3: accel = 0.982544 0.982544 0.982544[0m
+[0;32mI (151384) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (151414) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (151414) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (151464) BLE: ble read queue[0m
+[0;32mI (151854) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (151854) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (151904) LSM6DS3: [0m
+[0;32mI (151904) LSM6DS3: gyro = 121.688843 121.688843 121.688843[0m
+[0;32mI (151914) LSM6DS3: accel = 0.973511 0.973511 0.973511[0m
+[0;32mI (151914) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (151954) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (151954) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (152394) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (152394) LSM6DS3: num_fifo_samples = 307 100[0m
+[0;32mI (152444) LSM6DS3: [0m
+[0;32mI (152444) LSM6DS3: gyro = 121.994019 121.994019 121.994019[0m
+[0;32mI (152454) LSM6DS3: accel = 0.975952 0.975952 0.975952[0m
+[0;32mI (152454) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (152464) BLE: ble read queue[0m
+[1;31mE (152484) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (152484) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (152924) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (152924) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (152984) LSM6DS3: [0m
+[0;32mI (152984) LSM6DS3: gyro = 1.281738 24.963379 122.207642[0m
+[0;32mI (152984) LSM6DS3: accel = 0.977661 0.977661 0.977661[0m
+[0;32mI (152984) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (153014) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (153014) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (153454) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (153454) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (153464) BLE: ble read queue[0m
+[0;32mI (153514) LSM6DS3: [0m
+[0;32mI (153514) LSM6DS3: gyro = 122.695923 122.695923 122.695923[0m
+[0;32mI (153514) LSM6DS3: accel = 0.981567 0.981567 0.981567[0m
+[0;32mI (153514) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (153544) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (153544) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (153984) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (153984) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (154034) LSM6DS3: [0m
+[0;32mI (154034) LSM6DS3: gyro = 121.994019 121.994019 121.994019[0m
+[0;32mI (154044) LSM6DS3: accel = 0.975952 0.975952 0.975952[0m
+[0;32mI (154044) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (154074) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (154074) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (154464) BLE: ble read queue[0m
+[0;32mI (154514) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (154514) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (154564) LSM6DS3: [0m
+[0;32mI (154564) LSM6DS3: gyro = 122.634888 122.634888 122.634888[0m
+[0;32mI (154574) LSM6DS3: accel = 0.981079 0.981079 0.981079[0m
+[0;32mI (154574) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (154604) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (154604) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (155044) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (155044) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (155094) LSM6DS3: [0m
+[0;32mI (155094) LSM6DS3: gyro = 121.078491 121.078491 121.078491[0m
+[0;32mI (155094) LSM6DS3: accel = 0.968628 0.968628 0.968628[0m
+[0;32mI (155104) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (155134) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (155134) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (155464) BLE: ble read queue[0m
+[0;32mI (155574) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (155574) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (155624) LSM6DS3: [0m
+[0;32mI (155624) LSM6DS3: gyro = 122.055054 122.055054 122.055054[0m
+[0;32mI (155634) LSM6DS3: accel = 0.976440 0.976440 0.976440[0m
+[0;32mI (155634) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (155664) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (155664) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (156104) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (156104) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (156154) LSM6DS3: [0m
+[0;32mI (156154) LSM6DS3: gyro = 122.222900 122.222900 122.222900[0m
+[0;32mI (156164) LSM6DS3: accel = 0.977783 0.977783 0.977783[0m
+[0;32mI (156164) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (156194) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (156194) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (156464) BLE: ble read queue[0m
+[0;32mI (156634) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (156634) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (156684) LSM6DS3: [0m
+[0;32mI (156694) LSM6DS3: gyro = 121.643066 121.643066 121.643066[0m
+[0;32mI (156694) LSM6DS3: accel = 0.973145 0.973145 0.973145[0m
+[0;32mI (156694) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (156724) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (157014) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (157164) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (157164) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (157224) LSM6DS3: [0m
+[0;32mI (157224) LSM6DS3: gyro = 121.383667 2.761841 -7.064819[0m
+[0;32mI (157224) LSM6DS3: accel = -0.015747 0.011108 0.202881[0m
+[0;32mI (157224) LSM6DS3: num_fifo_samples = 1[0m
+[0;32mI (157554) BLE: ble read queue[0m
+[1;31mE (158344) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (158344) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (158784) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 1, empty = 0[0m
+[0;32mI (158784) LSM6DS3: num_fifo_samples = 979 100[0m
+[0;32mI (158844) LSM6DS3: [0m
+[0;32mI (158844) LSM6DS3: gyro = 122.436523 3.128052 -7.110596[0m
+[0;32mI (158844) LSM6DS3: accel = -0.015869 0.007935 0.201416[0m
+[0;32mI (158844) LSM6DS3: num_fifo_samples = 415[0m
+[0;32mI (158994) BLE: ble read queue[0m
+[1;31mE (159154) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (159404) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (159594) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 1, empty = 0[0m
+[0;32mI (159594) LSM6DS3: num_fifo_samples = 889 100[0m
+[0;32mI (159644) LSM6DS3: [0m
+[0;32mI (159644) LSM6DS3: gyro = 122.360229 1.861572 -7.110596[0m
+[0;32mI (159654) LSM6DS3: accel = -0.015625 0.008057 0.197632[0m
+[0;32mI (159654) LSM6DS3: num_fifo_samples = 325[0m
+[1;31mE (159684) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (159684) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (160124) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (160124) LSM6DS3: num_fifo_samples = 619 100[0m
+[0;32mI (160144) BLE: ble read queue[0m
+[0;32mI (160184) LSM6DS3: [0m
+[0;32mI (160184) LSM6DS3: gyro = 122.360229 2.838135 -7.186890[0m
+[0;32mI (160184) LSM6DS3: accel = -0.016235 0.011963 0.195435[0m
+[0;32mI (160184) LSM6DS3: num_fifo_samples = 61[0m
+[1;31mE (160214) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (160214) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (160654) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (160654) LSM6DS3: num_fifo_samples = 355 100[0m
+[0;32mI (160714) LSM6DS3: [0m
+[0;32mI (160714) LSM6DS3: gyro = 120.758057 120.758057 120.758057[0m
+[0;32mI (160714) LSM6DS3: accel = 0.966064 0.966064 0.966064[0m
+[0;32mI (160714) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (160744) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (160744) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (161144) BLE: ble read queue[0m
+[0;32mI (161184) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (161184) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (161244) LSM6DS3: [0m
+[0;32mI (161244) LSM6DS3: gyro = 121.582031 121.582031 121.582031[0m
+[0;32mI (161244) LSM6DS3: accel = 0.972656 0.972656 0.972656[0m
+[0;32mI (161244) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (161274) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (161274) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (161714) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (161714) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (161764) LSM6DS3: [0m
+[0;32mI (161764) LSM6DS3: gyro = 120.208740 120.208740 120.208740[0m
+[0;32mI (161764) LSM6DS3: accel = 0.961670 0.961670 0.961670[0m
+[0;32mI (161774) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (161804) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (161804) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (162144) BLE: ble read queue[0m
+[0;32mI (162244) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (162244) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (162304) LSM6DS3: [0m
+[0;32mI (162304) LSM6DS3: gyro = 122.116089 122.116089 122.116089[0m
+[0;32mI (162304) LSM6DS3: accel = 0.976929 0.976929 0.976929[0m
+[0;32mI (162304) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (162334) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (162334) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (162774) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (162774) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (162834) LSM6DS3: [0m
+[0;32mI (162834) LSM6DS3: gyro = 122.787476 122.787476 122.787476[0m
+[0;32mI (162834) LSM6DS3: accel = 0.982300 0.982300 0.982300[0m
+[0;32mI (162834) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (162864) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (162864) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (163144) BLE: ble read queue[0m
+[0;32mI (163304) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (163304) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (163354) LSM6DS3: [0m
+[0;32mI (163354) LSM6DS3: gyro = 122.222900 122.222900 122.222900[0m
+[0;32mI (163364) LSM6DS3: accel = 0.977783 0.977783 0.977783[0m
+[0;32mI (163364) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (163394) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (163394) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (163834) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (163834) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (163884) LSM6DS3: [0m
+[0;32mI (163884) LSM6DS3: gyro = 121.856689 121.856689 121.856689[0m
+[0;32mI (163894) LSM6DS3: accel = 0.974854 0.974854 0.974854[0m
+[0;32mI (163894) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (163924) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (163924) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (164144) BLE: ble read queue[0m
+[0;32mI (164364) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (164364) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (164414) LSM6DS3: [0m
+[0;32mI (164414) LSM6DS3: gyro = 121.215820 121.215820 121.215820[0m
+[0;32mI (164424) LSM6DS3: accel = 0.969727 0.969727 0.969727[0m
+[0;32mI (164424) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (164454) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (164454) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (164894) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (164894) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (164944) LSM6DS3: [0m
+[0;32mI (164944) LSM6DS3: gyro = 122.497559 122.497559 122.497559[0m
+[0;32mI (164954) LSM6DS3: accel = 0.979980 0.979980 0.979980[0m
+[0;32mI (164954) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (164984) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (164984) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (165144) BLE: ble read queue[0m
+[0;32mI (165424) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (165424) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (165474) LSM6DS3: [0m
+[0;32mI (165474) LSM6DS3: gyro = 121.597290 121.597290 121.597290[0m
+[0;32mI (165474) LSM6DS3: accel = 0.972778 0.972778 0.972778[0m
+[0;32mI (165484) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (165514) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (165514) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (165954) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (165954) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (166004) LSM6DS3: [0m
+[0;32mI (166004) LSM6DS3: gyro = 122.909546 122.909546 122.909546[0m
+[0;32mI (166014) LSM6DS3: accel = 0.983276 0.983276 0.983276[0m
+[0;32mI (166014) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (166054) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (166054) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (166144) BLE: ble read queue[0m
+[0;32mI (166494) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (166494) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (166544) LSM6DS3: [0m
+[0;32mI (166544) LSM6DS3: gyro = 121.887207 121.887207 121.887207[0m
+[0;32mI (166554) LSM6DS3: accel = 0.975098 0.975098 0.975098[0m
+[0;32mI (166554) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (166584) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (166584) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (167024) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (167024) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (167074) LSM6DS3: [0m
+[0;32mI (167074) LSM6DS3: gyro = 122.375488 122.375488 122.375488[0m
+[0;32mI (167084) LSM6DS3: accel = 0.979004 0.979004 0.979004[0m
+[0;32mI (167084) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (167114) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (167114) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (167144) BLE: ble read queue[0m
+[0;32mI (167554) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (167554) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (167604) LSM6DS3: [0m
+[0;32mI (167614) LSM6DS3: gyro = 121.551514 121.551514 121.551514[0m
+[0;32mI (167614) LSM6DS3: accel = 0.972412 0.972412 0.972412[0m
+[0;32mI (167614) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (167644) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (167644) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (168084) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (168084) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (168134) LSM6DS3: [0m
+[0;32mI (168134) LSM6DS3: gyro = 122.207642 122.207642 122.207642[0m
+[0;32mI (168144) BLE: ble read queue[0m
+[0;32mI (168144) LSM6DS3: accel = 0.977661 0.977661 0.977661[0m
+[0;32mI (168144) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (168174) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (168624) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (168624) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (168684) LSM6DS3: [0m
+[0;32mI (168684) LSM6DS3: gyro = 121.658325 121.658325 121.658325[0m
+[0;32mI (168684) LSM6DS3: accel = 0.973267 0.973267 0.973267[0m
+[0;32mI (168684) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (168694) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (168704) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (169134) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (169134) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (169144) BLE: ble read queue[0m
+[0;32mI (169194) LSM6DS3: [0m
+[0;32mI (169194) LSM6DS3: gyro = 121.475220 121.475220 121.475220[0m
+[0;32mI (169194) LSM6DS3: accel = 0.971802 0.971802 0.971802[0m
+[0;32mI (169194) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (169204) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (169214) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (169644) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (169644) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (169694) LSM6DS3: [0m
+[0;32mI (169694) LSM6DS3: gyro = 122.451782 122.451782 122.451782[0m
+[0;32mI (169704) LSM6DS3: accel = 0.979614 0.979614 0.979614[0m
+[0;32mI (169704) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (169714) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (169724) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (170144) BLE: ble read queue[0m
+[0;32mI (170154) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (170154) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (170214) LSM6DS3: [0m
+[0;32mI (170214) LSM6DS3: gyro = 122.009277 122.009277 122.009277[0m
+[0;32mI (170214) LSM6DS3: accel = 0.976074 0.976074 0.976074[0m
+[0;32mI (170214) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (170224) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (170234) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (170664) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (170664) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (170714) LSM6DS3: [0m
+[0;32mI (170714) LSM6DS3: gyro = 122.695923 122.695923 122.695923[0m
+[0;32mI (170724) LSM6DS3: accel = 0.981567 0.981567 0.981567[0m
+[0;32mI (170724) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (170734) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (170744) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (171144) BLE: ble read queue[0m
+[0;32mI (171174) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (171174) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (171224) LSM6DS3: [0m
+[0;32mI (171224) LSM6DS3: gyro = 121.856689 121.856689 121.856689[0m
+[0;32mI (171234) LSM6DS3: accel = 0.974854 0.974854 0.974854[0m
+[0;32mI (171234) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (171244) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (171254) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (171684) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (171684) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (171734) LSM6DS3: [0m
+[0;32mI (171734) LSM6DS3: gyro = 122.375488 122.375488 122.375488[0m
+[0;32mI (171744) LSM6DS3: accel = 0.979004 0.979004 0.979004[0m
+[0;32mI (171744) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (171754) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (171764) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (172144) BLE: ble read queue[0m
+[0;32mI (172194) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (172194) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (172254) LSM6DS3: [0m
+[0;32mI (172254) LSM6DS3: gyro = 121.704102 121.704102 121.704102[0m
+[0;32mI (172254) LSM6DS3: accel = 0.973633 0.973633 0.973633[0m
+[0;32mI (172254) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (172264) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (172274) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (172704) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (172704) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (172754) LSM6DS3: [0m
+[0;32mI (172754) LSM6DS3: gyro = 121.978760 121.978760 121.978760[0m
+[0;32mI (172764) LSM6DS3: accel = 0.975830 0.975830 0.975830[0m
+[0;32mI (172764) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (172784) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (172794) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (173144) BLE: ble read queue[0m
+[0;32mI (173224) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (173224) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (173274) LSM6DS3: [0m
+[0;32mI (173274) LSM6DS3: gyro = 122.360229 122.360229 122.360229[0m
+[0;32mI (173284) LSM6DS3: accel = 0.978882 0.978882 0.978882[0m
+[0;32mI (173284) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (173294) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (173304) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (173754) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (173754) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (173814) LSM6DS3: [0m
+[0;32mI (173814) LSM6DS3: gyro = 122.131348 122.131348 122.131348[0m
+[0;32mI (173814) LSM6DS3: accel = 0.977051 0.977051 0.977051[0m
+[0;32mI (173814) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (173834) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (173844) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (174144) BLE: ble read queue[0m
+[0;32mI (174274) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (174274) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (174324) LSM6DS3: [0m
+[0;32mI (174324) LSM6DS3: gyro = 122.436523 122.436523 122.436523[0m
+[0;32mI (174334) LSM6DS3: accel = 0.979492 0.979492 0.979492[0m
+[0;32mI (174334) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (174344) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (174354) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (174784) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (174784) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (174844) LSM6DS3: [0m
+[0;32mI (174844) LSM6DS3: gyro = 122.085571 122.085571 122.085571[0m
+[0;32mI (174844) LSM6DS3: accel = 0.976685 0.976685 0.976685[0m
+[0;32mI (174844) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (174864) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (174864) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (175144) BLE: ble read queue[0m
+[0;32mI (175304) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (175304) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (175354) LSM6DS3: [0m
+[0;32mI (175354) LSM6DS3: gyro = 122.131348 122.131348 122.131348[0m
+[0;32mI (175354) LSM6DS3: accel = 0.977051 0.977051 0.977051[0m
+[0;32mI (175364) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (175384) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (175384) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (175824) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (175824) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (175874) LSM6DS3: [0m
+[0;32mI (175874) LSM6DS3: gyro = 122.146606 122.146606 122.146606[0m
+[0;32mI (175884) LSM6DS3: accel = 0.977173 0.977173 0.977173[0m
+[0;32mI (175884) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (175894) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (175904) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (176144) BLE: ble read queue[0m
+[0;32mI (176334) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (176334) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (176394) LSM6DS3: [0m
+[0;32mI (176394) LSM6DS3: gyro = 121.856689 121.856689 121.856689[0m
+[0;32mI (176394) LSM6DS3: accel = 0.974854 0.974854 0.974854[0m
+[0;32mI (176394) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (176414) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (176424) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (176854) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (176854) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (176914) LSM6DS3: [0m
+[0;32mI (176914) LSM6DS3: gyro = 122.451782 122.451782 122.451782[0m
+[0;32mI (176914) LSM6DS3: accel = 0.979614 0.979614 0.979614[0m
+[0;32mI (176914) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (176934) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (176934) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (177144) BLE: ble read queue[0m
+[0;32mI (177374) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (177374) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (177424) LSM6DS3: [0m
+[0;32mI (177424) LSM6DS3: gyro = 121.902466 2.319336 -7.156372[0m
+[0;32mI (177424) LSM6DS3: accel = -0.015625 0.012207 0.200562[0m
+[0;32mI (177434) LSM6DS3: num_fifo_samples = 1[0m
+[1;31mE (177454) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (177464) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (177894) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (177894) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (177954) LSM6DS3: [0m
+[0;32mI (177954) LSM6DS3: gyro = 123.474121 123.474121 123.474121[0m
+[0;32mI (177954) LSM6DS3: accel = 0.987793 0.987793 0.987793[0m
+[0;32mI (177954) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (177974) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (177984) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (178144) BLE: ble read queue[0m
+[0;32mI (178414) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (178414) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (178474) LSM6DS3: [0m
+[0;32mI (178474) LSM6DS3: gyro = 1.220703 25.085449 121.826172[0m
+[0;32mI (178474) LSM6DS3: accel = 0.974609 0.974609 0.974609[0m
+[0;32mI (178474) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (178494) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (178494) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (178934) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (178934) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (178984) LSM6DS3: [0m
+[0;32mI (178984) LSM6DS3: gyro = 121.688843 121.688843 121.688843[0m
+[0;32mI (178994) LSM6DS3: accel = 0.973511 0.973511 0.973511[0m
+[0;32mI (178994) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (179014) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (179014) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (179144) BLE: ble read queue[0m
+[0;32mI (179454) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (179454) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (179504) LSM6DS3: [0m
+[0;32mI (179504) LSM6DS3: gyro = 121.917725 121.917725 121.917725[0m
+[0;32mI (179504) LSM6DS3: accel = 0.975342 0.975342 0.975342[0m
+[0;32mI (179514) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (179534) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (179544) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (179974) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (179974) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (180034) LSM6DS3: [0m
+[0;32mI (180034) LSM6DS3: gyro = 121.673584 121.673584 121.673584[0m
+[0;32mI (180034) LSM6DS3: accel = 0.973389 0.973389 0.973389[0m
+[0;32mI (180034) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (180054) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (180054) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (180144) BLE: ble read queue[0m
+[0;32mI (180494) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (180494) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (180544) LSM6DS3: [0m
+[0;32mI (180544) LSM6DS3: gyro = 121.902466 121.902466 121.902466[0m
+[0;32mI (180554) LSM6DS3: accel = 0.975220 0.975220 0.975220[0m
+[0;32mI (180554) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (180574) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (180574) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (180584) SD_CARD: IMU orientation file size: 152064[0m
+[0;32mI (180604) SD_CARD: File written.[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (181014) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (181014) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (181144) BLE: ble read queue[0m
+[0;32mI (181224) LSM6DS3: [0m
+[0;32mI (181224) LSM6DS3: gyro = 121.475220 121.475220 121.475220[0m
+[0;32mI (181224) LSM6DS3: accel = 0.971802 0.971802 0.971802[0m
+[0;32mI (181224) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (181254) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (181264) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (181274) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (181284) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (181684) SD_CARD: max_idx: 1703[0m
+[0;32mI (181684) SD_CARD: IMU raw data file size: 228096[0m
+[0;32mI (181694) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (181694) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (181694) SD_CARD: File written.[0m
+[0;32mI (181704) SD_CARD: orientation data filename: imu_orientation_001704.bin[0m
+[0;32mI (181704) SD_CARD: orientation data filepath: /sdcard/imu_orientation_001704.bin[0m
+[0;32mI (181714) SD_CARD: Writing to new orientation data file[0m
+[0;32mI (181844) LSM6DS3: [0m
+[0;32mI (181844) LSM6DS3: gyro = 121.841431 121.841431 121.841431[0m
+[0;32mI (181844) LSM6DS3: accel = 0.974731 0.974731 0.974731[0m
+[0;32mI (181854) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (181874) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (181884) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (181894) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (181894) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (182144) BLE: ble read queue[0m
+[0;32mI (182314) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (182314) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (182424) LSM6DS3: [0m
+[0;32mI (182424) LSM6DS3: gyro = 122.619629 122.619629 122.619629[0m
+[0;32mI (182424) LSM6DS3: accel = 0.980957 0.980957 0.980957[0m
+[0;32mI (182434) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (182454) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (182464) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (182474) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (182484) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (182894) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (182894) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (183014) LSM6DS3: [0m
+[0;32mI (183014) LSM6DS3: gyro = 121.963501 121.963501 121.963501[0m
+[0;32mI (183014) LSM6DS3: accel = 0.975708 0.975708 0.975708[0m
+[0;32mI (183014) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (183034) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (183044) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (183054) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (183054) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (183144) BLE: ble read queue[0m
+[0;32mI (183474) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (183474) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (183594) LSM6DS3: [0m
+[0;32mI (183594) LSM6DS3: gyro = 122.299194 122.299194 122.299194[0m
+[0;32mI (183594) LSM6DS3: accel = 0.978394 0.978394 0.978394[0m
+[0;32mI (183594) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (183624) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (183634) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (183644) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (183654) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (183974) SD_CARD: FILE IS NOT NULL[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (184064) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (184064) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (184144) BLE: ble read queue[0m
+[0;32mI (184264) LSM6DS3: [0m
+[0;32mI (184264) LSM6DS3: gyro = 121.368408 1.800537 -7.156372[0m
+[0;32mI (184274) LSM6DS3: accel = -0.015381 0.007812 0.200928[0m
+[0;32mI (184274) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (184314) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (184334) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (184344) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (184354) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (184754) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (184754) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (184944) LSM6DS3: [0m
+[0;32mI (184944) LSM6DS3: gyro = 122.177124 2.487183 -7.125854[0m
+[0;32mI (184944) LSM6DS3: accel = -0.015625 0.009521 0.201050[0m
+[0;32mI (184954) LSM6DS3: num_fifo_samples = 1[0m
+[1;31mE (184994) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (185004) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (185014) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (185024) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (185074) SD_CARD: max_idx: 1704[0m
+[0;32mI (185074) SD_CARD: IMU raw data filename: imu_raw_001705.bin[0m
+[0;32mI (185074) SD_CARD: IMU raw data filepath: /sdcard/imu_raw_001705.bin[0m
+[0;32mI (185074) SD_CARD: Writing to new raw data file[0m
+[0;32mI (185144) BLE: ble read queue[0m
+[0;32mI (185434) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (185434) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (185554) LSM6DS3: [0m
+[0;32mI (185554) LSM6DS3: gyro = 120.376587 120.376587 120.376587[0m
+[0;32mI (185554) LSM6DS3: accel = 0.963013 0.963013 0.963013[0m
+[0;32mI (185554) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (185584) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (185594) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (185604) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (185604) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (186024) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (186024) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (186144) BLE: ble read queue[0m
+[0;32mI (186154) LSM6DS3: [0m
+[0;32mI (186154) LSM6DS3: gyro = 121.994019 121.994019 121.994019[0m
+[0;32mI (186154) LSM6DS3: accel = 0.975952 0.975952 0.975952[0m
+[0;32mI (186154) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (186174) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (186184) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (186194) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (186194) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (186614) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (186614) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (186734) LSM6DS3: [0m
+[0;32mI (186734) LSM6DS3: gyro = 120.864868 120.864868 120.864868[0m
+[0;32mI (186734) LSM6DS3: accel = 0.966919 0.966919 0.966919[0m
+[0;32mI (186734) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (186764) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (186774) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (186784) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (186784) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (187144) BLE: ble read queue[0m
+[0;32mI (187204) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (187204) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (187314) LSM6DS3: [0m
+[0;32mI (187314) LSM6DS3: gyro = 121.994019 121.994019 121.994019[0m
+[0;32mI (187314) LSM6DS3: accel = 0.975952 0.975952 0.975952[0m
+[0;32mI (187324) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (187324) SD_CARD: FILE IS NOT NULL[0m
+[1;31mE (187344) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (187344) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (187794) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (187794) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (187854) LSM6DS3: [0m
+[0;32mI (187854) LSM6DS3: gyro = 121.841431 121.841431 121.841431[0m
+[0;32mI (187854) LSM6DS3: accel = 0.974731 0.974731 0.974731[0m
+[0;32mI (187854) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (187874) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (187874) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (188144) BLE: ble read queue[0m
+[0;32mI (188314) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (188314) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (188364) LSM6DS3: [0m
+[0;32mI (188364) LSM6DS3: gyro = 122.100830 122.100830 122.100830[0m
+[0;32mI (188374) LSM6DS3: accel = 0.976807 0.976807 0.976807[0m
+[0;32mI (188374) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (188404) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (188404) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (188844) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (188844) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (188904) LSM6DS3: [0m
+[0;32mI (188904) LSM6DS3: gyro = 121.795654 121.795654 121.795654[0m
+[0;32mI (188904) LSM6DS3: accel = 0.974365 0.974365 0.974365[0m
+[0;32mI (188904) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (188934) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (188934) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (189144) BLE: ble read queue[0m
+[0;32mI (189374) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (189374) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (189434) LSM6DS3: [0m
+[0;32mI (189434) LSM6DS3: gyro = 121.734619 121.734619 121.734619[0m
+[0;32mI (189434) LSM6DS3: accel = 0.973877 0.973877 0.973877[0m
+[0;32mI (189434) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (189464) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (189464) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (189904) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (189904) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (189964) LSM6DS3: [0m
+[0;32mI (189964) LSM6DS3: gyro = 122.024536 122.024536 122.024536[0m
+[0;32mI (189964) LSM6DS3: accel = 0.976196 0.976196 0.976196[0m
+[0;32mI (189964) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (189984) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (189984) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (190144) BLE: ble read queue[0m
+[0;32mI (190424) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (190424) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (190474) LSM6DS3: [0m
+[0;32mI (190474) LSM6DS3: gyro = 122.131348 122.131348 122.131348[0m
+[0;32mI (190484) LSM6DS3: accel = 0.977051 0.977051 0.977051[0m
+[0;32mI (190484) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (190514) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (190514) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (190954) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (190954) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (191004) LSM6DS3: [0m
+[0;32mI (191004) LSM6DS3: gyro = 120.925903 120.925903 120.925903[0m
+[0;32mI (191014) LSM6DS3: accel = 0.967407 0.967407 0.967407[0m
+[0;32mI (191014) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (191044) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (191044) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (191144) BLE: ble read queue[0m
+[0;32mI (191484) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (191484) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (191534) LSM6DS3: [0m
+[0;32mI (191534) LSM6DS3: gyro = 121.795654 121.795654 121.795654[0m
+[0;32mI (191544) LSM6DS3: accel = 0.974365 0.974365 0.974365[0m
+[0;32mI (191544) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (191574) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (191574) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (192014) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (192014) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (192064) LSM6DS3: [0m
+[0;32mI (192064) LSM6DS3: gyro = -1.983643 1.083374 24.856567[0m
+[0;32mI (192074) LSM6DS3: accel = 0.979370 0.979370 0.979370[0m
+[0;32mI (192074) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (192104) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (192104) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (192144) BLE: ble read queue[0m
+[0;32mI (192544) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (192544) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (192604) LSM6DS3: [0m
+[0;32mI (192604) LSM6DS3: gyro = 122.390747 122.390747 122.390747[0m
+[0;32mI (192604) LSM6DS3: accel = 0.979126 0.979126 0.979126[0m
+[0;32mI (192604) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (192624) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (192624) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (193064) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (193064) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (193114) LSM6DS3: [0m
+[0;32mI (193114) LSM6DS3: gyro = 122.314453 122.314453 122.314453[0m
+[0;32mI (193124) LSM6DS3: accel = 0.978516 0.978516 0.978516[0m
+[0;32mI (193124) LSM6DS3: num_fifo_samples = 7[0m
+[0;32mI (193144) BLE: ble read queue[0m
+[1;31mE (193164) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (193164) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (193604) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (193604) LSM6DS3: num_fifo_samples = 307 100[0m
+[0;32mI (193654) LSM6DS3: [0m
+[0;32mI (193654) LSM6DS3: gyro = 121.765137 121.765137 121.765137[0m
+[0;32mI (193664) LSM6DS3: accel = 0.974121 0.974121 0.974121[0m
+[0;32mI (193664) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (193694) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (193694) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (194134) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (194134) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (194144) BLE: ble read queue[0m
+[0;32mI (194194) LSM6DS3: [0m
+[0;32mI (194194) LSM6DS3: gyro = 122.314453 122.314453 122.314453[0m
+[0;32mI (194194) LSM6DS3: accel = 0.978516 0.978516 0.978516[0m
+[0;32mI (194194) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (194224) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (194224) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (194664) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (194664) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (194724) LSM6DS3: [0m
+[0;32mI (194724) LSM6DS3: gyro = 121.810913 121.810913 121.810913[0m
+[0;32mI (194724) LSM6DS3: accel = 0.974487 0.974487 0.974487[0m
+[0;32mI (194724) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (194754) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (194754) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (195144) BLE: ble read queue[0m
+[0;32mI (195194) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (195194) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (195244) LSM6DS3: [0m
+[0;32mI (195254) LSM6DS3: gyro = -1.983643 1.113892 25.405884[0m
+[0;32mI (195254) LSM6DS3: accel = 0.974121 0.974121 0.974121[0m
+[0;32mI (195254) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (195284) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (195284) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (195724) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (195724) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (195774) LSM6DS3: [0m
+[0;32mI (195774) LSM6DS3: gyro = 121.749878 121.749878 121.749878[0m
+[0;32mI (195784) LSM6DS3: accel = 0.973999 0.973999 0.973999[0m
+[0;32mI (195784) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (195814) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (195814) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (196144) BLE: ble read queue[0m
+[0;32mI (196254) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (196254) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (196314) LSM6DS3: [0m
+[0;32mI (196314) LSM6DS3: gyro = 121.841431 121.841431 121.841431[0m
+[0;32mI (196314) LSM6DS3: accel = 0.974731 0.974731 0.974731[0m
+[0;32mI (196314) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (196344) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (196344) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (196784) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (196784) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (196844) LSM6DS3: [0m
+[0;32mI (196844) LSM6DS3: gyro = 122.039795 122.039795 122.039795[0m
+[0;32mI (196844) LSM6DS3: accel = 0.976318 0.976318 0.976318[0m
+[0;32mI (196844) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (196874) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (196874) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (197144) BLE: ble read queue[0m
+[0;32mI (197314) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (197314) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (197374) LSM6DS3: [0m
+[0;32mI (197374) LSM6DS3: gyro = 121.322632 121.322632 121.322632[0m
+[0;32mI (197374) LSM6DS3: accel = 0.970581 0.970581 0.970581[0m
+[0;32mI (197374) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (197404) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (197404) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (197844) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (197844) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (197904) LSM6DS3: [0m
+[0;32mI (197904) LSM6DS3: gyro = 122.177124 122.177124 122.177124[0m
+[0;32mI (197904) LSM6DS3: accel = 0.977417 0.977417 0.977417[0m
+[0;32mI (197904) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (197934) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (197934) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (198144) BLE: ble read queue[0m
+[0;32mI (198374) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (198374) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (198424) LSM6DS3: [0m
+[0;32mI (198424) LSM6DS3: gyro = 121.795654 121.795654 2.456665[0m
+[0;32mI (198434) LSM6DS3: accel = -0.056641 -0.015991 0.010742[0m
+[0;32mI (198434) LSM6DS3: num_fifo_samples = 2[0m
+[1;31mE (198464) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (198464) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (198904) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (198904) LSM6DS3: num_fifo_samples = 296 100[0m
+[0;32mI (198964) LSM6DS3: [0m
+[0;32mI (198964) LSM6DS3: gyro = 121.643066 121.643066 121.643066[0m
+[0;32mI (198964) LSM6DS3: accel = 0.973145 0.973145 0.973145[0m
+[0;32mI (198964) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (198994) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (198994) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (199144) BLE: ble read queue[0m
+[0;32mI (199434) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (199434) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (199484) LSM6DS3: [0m
+[0;32mI (199484) LSM6DS3: gyro = 122.467041 2.105713 -7.263184[0m
+[0;32mI (199494) LSM6DS3: accel = -0.015625 0.014038 0.201294[0m
+[0;32mI (199494) LSM6DS3: num_fifo_samples = 1[0m
+[1;31mE (199524) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (199524) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (199964) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (199964) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (200014) LSM6DS3: [0m
+[0;32mI (200014) LSM6DS3: gyro = 121.429443 121.429443 121.429443[0m
+[0;32mI (200024) LSM6DS3: accel = 0.971436 0.971436 0.971436[0m
+[0;32mI (200024) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (200054) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (200054) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (200144) BLE: ble read queue[0m
+[0;32mI (200494) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (200494) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (200544) LSM6DS3: [0m
+[0;32mI (200544) LSM6DS3: gyro = 122.253418 122.253418 122.253418[0m
+[0;32mI (200554) LSM6DS3: accel = 0.978027 0.978027 0.978027[0m
+[0;32mI (200554) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (200584) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (200584) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (201024) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (201024) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (201084) LSM6DS3: [0m
+[0;32mI (201084) LSM6DS3: gyro = 121.704102 121.704102 121.704102[0m
+[0;32mI (201084) LSM6DS3: accel = 0.973633 0.973633 0.973633[0m
+[0;32mI (201084) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (201114) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (201114) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (201144) BLE: ble read queue[0m
+[0;32mI (201554) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (201554) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (201604) LSM6DS3: [0m
+[0;32mI (201604) LSM6DS3: gyro = 123.001099 123.001099 123.001099[0m
+[0;32mI (201614) LSM6DS3: accel = 0.029785 -0.055786 -0.017090[0m
+[0;32mI (201614) LSM6DS3: num_fifo_samples = 3[0m
+[1;31mE (201654) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (201654) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (202094) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (202094) LSM6DS3: num_fifo_samples = 303 100[0m
+[0;32mI (202144) BLE: ble read queue[0m
+[0;32mI (202154) LSM6DS3: [0m
+[0;32mI (202154) LSM6DS3: gyro = 121.490479 121.490479 121.490479[0m
+[0;32mI (202154) LSM6DS3: accel = 0.971924 0.971924 0.971924[0m
+[0;32mI (202154) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (202184) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (202184) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (202624) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (202624) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (202674) LSM6DS3: [0m
+[0;32mI (202674) LSM6DS3: gyro = 121.322632 2.746582 -7.064819[0m
+[0;32mI (202684) LSM6DS3: accel = -0.015747 0.005981 0.207397[0m
+[0;32mI (202684) LSM6DS3: num_fifo_samples = 1[0m
+[1;31mE (202714) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (202714) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (203144) BLE: ble read queue[0m
+[0;32mI (203154) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (203154) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (203214) LSM6DS3: [0m
+[0;32mI (203214) LSM6DS3: gyro = 121.826172 121.826172 121.826172[0m
+[0;32mI (203214) LSM6DS3: accel = 0.974609 0.974609 0.974609[0m
+[0;32mI (203214) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (203244) DATA LOGGING: 99 raw samples sent to SD card[0m
+[1;31mE (203254) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (203694) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (203694) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (203744) LSM6DS3: [0m
+[0;32mI (203744) LSM6DS3: gyro = 121.154785 121.154785 121.154785[0m
+[0;32mI (203754) LSM6DS3: accel = 0.969238 0.969238 0.969238[0m
+[0;32mI (203754) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (203784) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (204144) BLE: ble read queue[0m
+[0;32mI (204234) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (204234) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (204294) LSM6DS3: [0m
+[0;32mI (204294) LSM6DS3: gyro = 122.024536 122.024536 122.024536[0m
+[0;32mI (204294) LSM6DS3: accel = 0.976196 0.976196 0.976196[0m
+[0;32mI (204294) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (204304) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (204314) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (204744) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (204744) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (204794) LSM6DS3: [0m
+[0;32mI (204794) LSM6DS3: gyro = 120.269775 2.777100 -6.942749[0m
+[0;32mI (204804) LSM6DS3: accel = -0.016602 0.009399 0.206421[0m
+[0;32mI (204804) LSM6DS3: num_fifo_samples = 1[0m
+[1;31mE (204814) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (204824) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (205144) BLE: ble read queue[0m
+[0;32mI (205254) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (205254) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (205314) LSM6DS3: [0m
+[0;32mI (205314) LSM6DS3: gyro = 122.726440 122.726440 122.726440[0m
+[0;32mI (205314) LSM6DS3: accel = 0.981812 0.981812 0.981812[0m
+[0;32mI (205314) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (205324) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (205334) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (205764) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (205764) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (205814) LSM6DS3: [0m
+[0;32mI (205814) LSM6DS3: gyro = 120.437622 120.437622 120.437622[0m
+[0;32mI (205824) LSM6DS3: accel = 0.963501 0.963501 0.963501[0m
+[0;32mI (205824) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (205834) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (205844) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (206144) BLE: ble read queue[0m
+[0;32mI (206274) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (206274) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (206324) LSM6DS3: [0m
+[0;32mI (206334) LSM6DS3: gyro = 121.994019 121.994019 121.994019[0m
+[0;32mI (206334) LSM6DS3: accel = 0.975952 0.975952 0.975952[0m
+[0;32mI (206334) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (206344) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (206354) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (206784) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (206784) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (206844) LSM6DS3: [0m
+[0;32mI (206844) LSM6DS3: gyro = 122.344971 122.344971 122.344971[0m
+[0;32mI (206844) LSM6DS3: accel = 0.978760 0.978760 0.978760[0m
+[0;32mI (206844) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (206854) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (206864) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (207144) BLE: ble read queue[0m
+[0;32mI (207294) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (207294) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (207344) LSM6DS3: [0m
+[0;32mI (207344) LSM6DS3: gyro = 121.170044 2.182007 -6.896973[0m
+[0;32mI (207354) LSM6DS3: accel = -0.016113 0.007690 0.197510[0m
+[0;32mI (207354) LSM6DS3: num_fifo_samples = 1[0m
+[1;31mE (207364) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (207374) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (207804) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (207804) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (207864) LSM6DS3: [0m
+[0;32mI (207864) LSM6DS3: gyro = 122.238159 122.238159 122.238159[0m
+[0;32mI (207864) LSM6DS3: accel = 0.977905 0.977905 0.977905[0m
+[0;32mI (207864) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (207874) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (207884) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (208144) BLE: ble read queue[0m
+[0;32mI (208314) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (208314) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (208364) LSM6DS3: [0m
+[0;32mI (208364) LSM6DS3: gyro = 121.337891 121.337891 121.337891[0m
+[0;32mI (208374) LSM6DS3: accel = 0.970703 0.970703 0.970703[0m
+[0;32mI (208374) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (208384) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (208394) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (208824) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (208824) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (208874) LSM6DS3: [0m
+[0;32mI (208874) LSM6DS3: gyro = 121.780396 121.780396 121.780396[0m
+[0;32mI (208884) LSM6DS3: accel = 0.974243 0.974243 0.974243[0m
+[0;32mI (208884) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (208894) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (208904) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (209144) BLE: ble read queue[0m
+[0;32mI (209334) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (209334) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (209384) LSM6DS3: [0m
+[0;32mI (209384) LSM6DS3: gyro = 122.451782 122.451782 122.451782[0m
+[0;32mI (209394) LSM6DS3: accel = 0.979614 0.979614 0.979614[0m
+[0;32mI (209394) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (209414) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (209424) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (209854) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (209854) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (209914) LSM6DS3: [0m
+[0;32mI (209914) LSM6DS3: gyro = 122.177124 122.177124 122.177124[0m
+[0;32mI (209914) LSM6DS3: accel = 0.977417 0.977417 0.977417[0m
+[0;32mI (209914) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (209924) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (209934) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (210144) BLE: ble read queue[0m
+[0;32mI (210384) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (210384) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (210434) LSM6DS3: [0m
+[0;32mI (210434) LSM6DS3: gyro = 122.436523 122.436523 122.436523[0m
+[0;32mI (210444) LSM6DS3: accel = 0.979492 0.979492 0.979492[0m
+[0;32mI (210444) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (210454) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (210464) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (210894) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (210894) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (210954) LSM6DS3: [0m
+[0;32mI (210954) LSM6DS3: gyro = 121.887207 121.887207 121.887207[0m
+[0;32mI (210954) LSM6DS3: accel = 0.975098 0.975098 0.975098[0m
+[0;32mI (210954) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (210974) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (210974) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (211144) BLE: ble read queue[0m
+[0;32mI (211414) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (211414) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (211464) LSM6DS3: [0m
+[0;32mI (211464) LSM6DS3: gyro = 121.582031 121.582031 121.582031[0m
+[0;32mI (211474) LSM6DS3: accel = 0.972656 0.972656 0.972656[0m
+[0;32mI (211474) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (211484) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (211494) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (211924) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (211924) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (211984) LSM6DS3: [0m
+[0;32mI (211984) LSM6DS3: gyro = 121.826172 121.826172 121.826172[0m
+[0;32mI (211984) LSM6DS3: accel = 0.974609 0.974609 0.974609[0m
+[0;32mI (211984) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (211994) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (212004) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (212144) BLE: ble read queue[0m
+[0;32mI (212454) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (212454) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (212504) LSM6DS3: [0m
+[0;32mI (212504) LSM6DS3: gyro = 121.429443 121.429443 121.429443[0m
+[0;32mI (212514) LSM6DS3: accel = 0.971436 0.971436 0.971436[0m
+[0;32mI (212514) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (212524) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (212544) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (212994) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (212994) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (213044) LSM6DS3: [0m
+[0;32mI (213044) LSM6DS3: gyro = 121.704102 121.704102 121.704102[0m
+[0;32mI (213054) LSM6DS3: accel = 0.973633 0.973633 0.973633[0m
+[0;32mI (213054) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (213074) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (213074) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (213144) BLE: ble read queue[0m
+[0;32mI (213514) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (213514) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (213564) LSM6DS3: [0m
+[0;32mI (213574) LSM6DS3: gyro = 121.597290 121.597290 121.597290[0m
+[0;32mI (213574) LSM6DS3: accel = 0.972778 0.972778 0.972778[0m
+[0;32mI (213574) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (213584) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (213594) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (214044) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (214044) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (214094) LSM6DS3: [0m
+[0;32mI (214094) LSM6DS3: gyro = 122.497559 122.497559 122.497559[0m
+[0;32mI (214104) LSM6DS3: accel = 0.979980 0.979980 0.979980[0m
+[0;32mI (214104) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (214124) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (214124) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (214144) BLE: ble read queue[0m
+[0;32mI (214564) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (214564) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (214614) LSM6DS3: [0m
+[0;32mI (214614) LSM6DS3: gyro = 121.856689 121.856689 121.856689[0m
+[0;32mI (214624) LSM6DS3: accel = 0.974854 0.974854 0.974854[0m
+[0;32mI (214624) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (214644) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (214644) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (215084) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (215084) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (215134) LSM6DS3: [0m
+[0;32mI (215144) BLE: ble read queue[0m
+[0;32mI (215144) LSM6DS3: gyro = 122.451782 122.451782 122.451782[0m
+[0;32mI (215144) LSM6DS3: accel = 0.979614 0.979614 0.979614[0m
+[0;32mI (215144) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (215164) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (215174) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (215604) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (215604) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (215654) LSM6DS3: [0m
+[0;32mI (215654) LSM6DS3: gyro = 25.177002 121.978760 121.978760[0m
+[0;32mI (215654) LSM6DS3: accel = 0.975830 0.975830 0.975830[0m
+[0;32mI (215664) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (215674) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (215674) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (216114) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (216114) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (216144) BLE: ble read queue[0m
+[0;32mI (216174) LSM6DS3: [0m
+[0;32mI (216174) LSM6DS3: gyro = 123.245239 123.245239 123.245239[0m
+[0;32mI (216174) LSM6DS3: accel = 0.985962 0.985962 0.985962[0m
+[0;32mI (216174) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (216194) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (216194) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (216634) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (216634) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (216684) LSM6DS3: [0m
+[0;32mI (216694) LSM6DS3: gyro = 122.024536 2.334595 -7.156372[0m
+[0;32mI (216694) LSM6DS3: accel = -0.016235 0.007446 0.201416[0m
+[0;32mI (216694) LSM6DS3: num_fifo_samples = 1[0m
+[1;31mE (216714) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (216724) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (217144) BLE: ble read queue[0m
+[0;32mI (217154) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (217154) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (217214) LSM6DS3: [0m
+[0;32mI (217214) LSM6DS3: gyro = 122.497559 122.497559 122.497559[0m
+[0;32mI (217214) LSM6DS3: accel = 0.979980 0.979980 0.979980[0m
+[0;32mI (217214) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (217234) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (217234) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (217674) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (217674) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (217724) LSM6DS3: [0m
+[0;32mI (217724) LSM6DS3: gyro = 122.650146 122.650146 122.650146[0m
+[0;32mI (217734) LSM6DS3: accel = 0.981201 0.981201 0.981201[0m
+[0;32mI (217734) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (217754) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (217754) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (218144) BLE: ble read queue[0m
+[0;32mI (218194) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (218194) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (218254) LSM6DS3: [0m
+[0;32mI (218254) LSM6DS3: gyro = 122.375488 122.375488 122.375488[0m
+[0;32mI (218254) LSM6DS3: accel = 0.979004 0.979004 0.979004[0m
+[0;32mI (218254) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (218274) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (218274) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (218714) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (218714) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (218764) LSM6DS3: [0m
+[0;32mI (218764) LSM6DS3: gyro = 121.887207 121.887207 121.887207[0m
+[0;32mI (218774) LSM6DS3: accel = 0.975098 0.975098 0.975098[0m
+[0;32mI (218774) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (218794) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (218804) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (219144) BLE: ble read queue[0m
+[0;32mI (219234) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (219234) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (219284) LSM6DS3: [0m
+[0;32mI (219284) LSM6DS3: gyro = 122.879028 122.879028 122.879028[0m
+[0;32mI (219294) LSM6DS3: accel = 0.983032 0.983032 0.983032[0m
+[0;32mI (219294) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (219314) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (219314) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (219754) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (219754) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (219804) LSM6DS3: [0m
+[0;32mI (219814) LSM6DS3: gyro = 120.727539 120.727539 120.727539[0m
+[0;32mI (219814) LSM6DS3: accel = 0.965820 0.965820 0.965820[0m
+[0;32mI (219814) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (219834) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (219834) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (220144) BLE: ble read queue[0m
+[0;32mI (220274) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (220274) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (220324) LSM6DS3: [0m
+[0;32mI (220324) LSM6DS3: gyro = 122.467041 122.467041 122.467041[0m
+[0;32mI (220334) LSM6DS3: accel = 0.979736 0.979736 0.979736[0m
+[0;32mI (220334) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (220354) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (220354) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (220364) SD_CARD: IMU raw data file size: 228096[0m
+[0;32mI (220384) SD_CARD: File written.[0m
+[0;32mI (220384) SD_CARD: IMU orientation file size: 152064[0m
+[0;32mI (220394) SD_CARD: File written.[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (220794) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (220794) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (220994) LSM6DS3: [0m
+[0;32mI (221004) LSM6DS3: gyro = 122.161865 2.822876 -7.049561[0m
+[0;32mI (221004) LSM6DS3: accel = -0.015869 0.007080 0.204834[0m
+[0;32mI (221004) LSM6DS3: num_fifo_samples = 1[0m
+[1;31mE (221054) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (221064) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (221084) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (221094) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (221144) BLE: ble read queue[0m
+[0;32mI (221484) SD_CARD: max_idx: 1705[0m
+[0;32mI (221484) SD_CARD: IMU raw data filename: imu_raw_001706.bin[0m
+[0;32mI (221484) SD_CARD: IMU raw data filepath: /sdcard/imu_raw_001706.bin[0m
+[0;32mI (221494) SD_CARD: Writing to new raw data file[0m
+[0;32mI (221504) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (221504) LSM6DS3: num_fifo_samples = 313 100[0m
+[0;32mI (221624) LSM6DS3: [0m
+[0;32mI (221634) LSM6DS3: gyro = 122.207642 122.207642 122.207642[0m
+[0;32mI (221634) LSM6DS3: accel = 0.977661 0.977661 0.977661[0m
+[0;32mI (221634) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (221654) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (221664) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (221674) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (221674) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (222094) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (222094) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (222144) BLE: ble read queue[0m
+[0;32mI (222214) LSM6DS3: [0m
+[0;32mI (222214) LSM6DS3: gyro = 121.231079 121.231079 121.231079[0m
+[0;32mI (222214) LSM6DS3: accel = 0.969849 0.969849 0.969849[0m
+[0;32mI (222214) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (222244) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (222254) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (222264) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (222264) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (222684) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (222684) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (222794) LSM6DS3: [0m
+[0;32mI (222794) LSM6DS3: gyro = 123.382568 123.382568 123.382568[0m
+[0;32mI (222804) LSM6DS3: accel = 0.987061 0.987061 0.987061[0m
+[0;32mI (222804) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (222834) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (222844) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (222854) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (222854) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (223144) BLE: ble read queue[0m
+[0;32mI (223274) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (223274) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (223394) LSM6DS3: [0m
+[0;32mI (223394) LSM6DS3: gyro = 121.673584 121.673584 121.673584[0m
+[0;32mI (223394) LSM6DS3: accel = 0.973389 0.973389 0.973389[0m
+[0;32mI (223394) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (223424) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (223434) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (223444) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (223444) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (223744) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (223744) SD_CARD: orientation data filename: imu_orientation_001706.bin[0m
+[0;32mI (223744) SD_CARD: orientation data filepath: /sdcard/imu_orientation_001706.bin[0m
+[0;32mI (223754) SD_CARD: Writing to new orientation data file[0m
+[0;32mI (223864) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (223864) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (223984) LSM6DS3: [0m
+[0;32mI (223984) LSM6DS3: gyro = 122.756958 122.756958 122.756958[0m
+[0;32mI (223984) LSM6DS3: accel = 0.982056 0.982056 0.982056[0m
+[0;32mI (223994) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (224014) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (224024) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (224034) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (224034) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (224144) BLE: ble read queue[0m
+[0;32mI (224454) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (224454) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (224574) LSM6DS3: [0m
+[0;32mI (224574) LSM6DS3: gyro = 122.085571 122.085571 122.085571[0m
+[0;32mI (224574) LSM6DS3: accel = 0.976685 0.976685 0.976685[0m
+[0;32mI (224574) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (224604) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (224614) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (224624) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (224624) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (225044) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (225044) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (225144) BLE: ble read queue[0m
+[0;32mI (225164) LSM6DS3: [0m
+[0;32mI (225164) LSM6DS3: gyro = -7.110596 -2.029419 1.083374[0m
+[0;32mI (225164) LSM6DS3: accel = 0.199463 0.974121 0.974121[0m
+[0;32mI (225164) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (225194) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (225204) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (225214) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (225214) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (225634) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (225634) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (225754) LSM6DS3: [0m
+[0;32mI (225754) LSM6DS3: gyro = 122.390747 122.390747 122.390747[0m
+[0;32mI (225754) LSM6DS3: accel = 0.979126 0.979126 0.979126[0m
+[0;32mI (225754) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (225784) DATA LOGGING: SDCARD orientation fail[0m
+[1;31mE (225794) DATA LOGGING: SDCARD raw fail[0m
+[1;31mE (225804) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (225804) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (226014) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (226144) BLE: ble read queue[0m
+[0;32mI (226224) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (226224) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (226284) LSM6DS3: [0m
+[0;32mI (226284) LSM6DS3: gyro = 121.963501 121.963501 121.963501[0m
+[0;32mI (226284) LSM6DS3: accel = 0.975708 0.975708 0.975708[0m
+[0;32mI (226284) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (226314) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (226314) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (226754) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (226754) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (226814) LSM6DS3: [0m
+[0;32mI (226814) LSM6DS3: gyro = 122.055054 122.055054 122.055054[0m
+[0;32mI (226814) LSM6DS3: accel = 0.976440 0.976440 0.976440[0m
+[0;32mI (226814) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (226834) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (226834) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (227144) BLE: ble read queue[0m
+[0;32mI (227284) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (227284) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (227334) LSM6DS3: [0m
+[0;32mI (227334) LSM6DS3: gyro = 121.994019 121.994019 121.994019[0m
+[0;32mI (227344) LSM6DS3: accel = 0.975952 0.975952 0.975952[0m
+[0;32mI (227344) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (227364) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (227364) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (227814) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (227814) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (227864) LSM6DS3: [0m
+[0;32mI (227874) LSM6DS3: gyro = 122.283936 122.283936 122.283936[0m
+[0;32mI (227874) LSM6DS3: accel = 0.978271 0.978271 0.978271[0m
+[0;32mI (227874) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (227904) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (227904) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (228144) BLE: ble read queue[0m
+[0;32mI (228344) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (228344) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (228394) LSM6DS3: [0m
+[0;32mI (228404) LSM6DS3: gyro = 121.902466 121.902466 121.902466[0m
+[0;32mI (228404) LSM6DS3: accel = 0.975220 0.975220 0.975220[0m
+[0;32mI (228404) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (228434) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (228434) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (228874) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (228874) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (228924) LSM6DS3: [0m
+[0;32mI (228924) LSM6DS3: gyro = 121.948242 121.948242 121.948242[0m
+[0;32mI (228934) LSM6DS3: accel = 0.975586 0.975586 0.975586[0m
+[0;32mI (228934) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (228964) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (228964) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (229144) BLE: ble read queue[0m
+[0;32mI (229404) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (229404) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (229454) LSM6DS3: [0m
+[0;32mI (229454) LSM6DS3: gyro = 121.459961 121.459961 121.459961[0m
+[0;32mI (229464) LSM6DS3: accel = 0.971680 0.971680 0.971680[0m
+[0;32mI (229464) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (229494) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (229494) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (229934) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (229934) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (229994) LSM6DS3: [0m
+[0;32mI (229994) LSM6DS3: gyro = 122.314453 122.314453 122.314453[0m
+[0;32mI (229994) LSM6DS3: accel = 0.978516 0.978516 0.978516[0m
+[0;32mI (229994) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (230024) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (230024) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (230144) BLE: ble read queue[0m
+[0;32mI (230464) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (230464) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (230524) LSM6DS3: [0m
+[0;32mI (230524) LSM6DS3: gyro = 121.795654 121.795654 121.795654[0m
+[0;32mI (230524) LSM6DS3: accel = 0.974365 0.974365 0.974365[0m
+[0;32mI (230524) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (230554) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (230554) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (230994) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (230994) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (231044) LSM6DS3: [0m
+[0;32mI (231044) LSM6DS3: gyro = 122.024536 122.024536 122.024536[0m
+[0;32mI (231054) LSM6DS3: accel = 0.976196 0.976196 0.976196[0m
+[0;32mI (231054) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (231084) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (231084) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (231144) BLE: ble read queue[0m
+[0;32mI (231524) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (231524) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (231584) LSM6DS3: [0m
+[0;32mI (231584) LSM6DS3: gyro = 121.292114 121.292114 121.292114[0m
+[0;32mI (231584) LSM6DS3: accel = 0.970337 0.970337 0.970337[0m
+[0;32mI (231584) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (231614) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (231614) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (232054) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (232054) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (232114) LSM6DS3: [0m
+[0;32mI (232114) LSM6DS3: gyro = 122.314453 122.314453 122.314453[0m
+[0;32mI (232114) LSM6DS3: accel = 0.978516 0.978516 0.978516[0m
+[0;32mI (232114) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (232144) BLE: ble read queue[0m
+[1;31mE (232154) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (232154) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (232584) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (232584) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (232634) LSM6DS3: [0m
+[0;32mI (232634) LSM6DS3: gyro = 121.536255 121.536255 121.536255[0m
+[0;32mI (232644) LSM6DS3: accel = 0.972290 0.972290 0.972290[0m
+[0;32mI (232644) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (232674) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (232674) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (233114) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (233114) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (233144) BLE: ble read queue[0m
+[0;32mI (233174) LSM6DS3: [0m
+[0;32mI (233174) LSM6DS3: gyro = 122.299194 122.299194 122.299194[0m
+[0;32mI (233174) LSM6DS3: accel = 0.978394 0.978394 0.978394[0m
+[0;32mI (233174) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (233204) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (233204) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (233644) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (233644) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (233694) LSM6DS3: [0m
+[0;32mI (233694) LSM6DS3: gyro = 122.253418 122.253418 122.253418[0m
+[0;32mI (233704) LSM6DS3: accel = 0.978027 0.978027 0.978027[0m
+[0;32mI (233704) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (233744) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (233744) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (234144) BLE: ble read queue[0m
+[0;32mI (234184) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (234184) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (234234) LSM6DS3: [0m
+[0;32mI (234234) LSM6DS3: gyro = 121.704102 121.704102 121.704102[0m
+[0;32mI (234244) LSM6DS3: accel = 0.973633 0.973633 0.973633[0m
+[0;32mI (234244) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (234274) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (234274) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (234714) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (234714) LSM6DS3: num_fifo_samples = 301 100[0m
+[0;32mI (234764) LSM6DS3: [0m
+[0;32mI (234764) LSM6DS3: gyro = 121.902466 121.902466 121.902466[0m
+[0;32mI (234774) LSM6DS3: accel = 0.975220 0.975220 0.975220[0m
+[0;32mI (234774) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (234804) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (234804) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (235144) BLE: ble read queue[0m
+[0;32mI (235244) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (235244) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (235294) LSM6DS3: [0m
+[0;32mI (235294) LSM6DS3: gyro = 121.627808 121.627808 121.627808[0m
+[0;32mI (235304) LSM6DS3: accel = 0.973022 0.973022 0.973022[0m
+[0;32mI (235304) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (235334) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (235334) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (235774) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (235774) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (235834) LSM6DS3: [0m
+[0;32mI (235834) LSM6DS3: gyro = 121.704102 121.704102 121.704102[0m
+[0;32mI (235834) LSM6DS3: accel = 0.973633 0.973633 0.973633[0m
+[0;32mI (235834) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (235864) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (235864) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (236144) BLE: ble read queue[0m
+[0;32mI (236304) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (236304) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (236354) LSM6DS3: [0m
+[0;32mI (236354) LSM6DS3: gyro = 121.429443 121.429443 121.429443[0m
+[0;32mI (236364) LSM6DS3: accel = 0.971436 0.971436 0.971436[0m
+[0;32mI (236364) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (236394) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (236394) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (236834) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (236834) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (236884) LSM6DS3: [0m
+[0;32mI (236884) LSM6DS3: gyro = 121.902466 121.902466 121.902466[0m
+[0;32mI (236894) LSM6DS3: accel = 0.975220 0.975220 0.975220[0m
+[0;32mI (236894) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (236924) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (236924) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (237144) BLE: ble read queue[0m
+[0;32mI (237364) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (237364) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (237414) LSM6DS3: [0m
+[0;32mI (237414) LSM6DS3: gyro = 121.917725 121.917725 121.917725[0m
+[0;32mI (237424) LSM6DS3: accel = 0.975342 0.975342 0.975342[0m
+[0;32mI (237424) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (237454) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (237454) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (237894) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (237894) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (237954) LSM6DS3: [0m
+[0;32mI (237954) LSM6DS3: gyro = 122.406006 122.406006 122.406006[0m
+[0;32mI (237954) LSM6DS3: accel = 0.979248 0.979248 0.979248[0m
+[0;32mI (237954) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (237984) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (237984) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (238144) BLE: ble read queue[0m
+[0;32mI (238424) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (238424) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (238484) LSM6DS3: [0m
+[0;32mI (238484) LSM6DS3: gyro = 121.719360 121.719360 121.719360[0m
+[0;32mI (238484) LSM6DS3: accel = 0.973755 0.973755 0.973755[0m
+[0;32mI (238484) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (238504) DATA LOGGING: 99 raw samples sent to SD card[0m
+[1;31mE (238514) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (238954) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (238954) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (239004) LSM6DS3: [0m
+[0;32mI (239004) LSM6DS3: gyro = 121.246338 121.246338 121.246338[0m
+[0;32mI (239014) LSM6DS3: accel = 0.969971 0.969971 0.969971[0m
+[0;32mI (239014) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (239034) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (239144) BLE: ble read queue[0m
+[0;32mI (239484) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (239484) LSM6DS3: num_fifo_samples = 295 100[0m
+[0;32mI (239534) LSM6DS3: [0m
+[0;32mI (239534) LSM6DS3: gyro = 122.253418 122.253418 122.253418[0m
+[0;32mI (239544) LSM6DS3: accel = 0.978027 0.978027 0.978027[0m
+[0;32mI (239544) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (239554) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (239564) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (239994) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (239994) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (240044) LSM6DS3: [0m
+[0;32mI (240044) LSM6DS3: gyro = 121.643066 121.643066 121.643066[0m
+[0;32mI (240054) LSM6DS3: accel = 0.973145 0.973145 0.973145[0m
+[0;32mI (240054) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (240064) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (240074) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (240144) BLE: ble read queue[0m
+[0;32mI (240504) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (240504) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (240564) LSM6DS3: [0m
+[0;32mI (240564) LSM6DS3: gyro = 122.268677 122.268677 122.268677[0m
+[0;32mI (240564) LSM6DS3: accel = 0.978149 0.978149 0.978149[0m
+[0;32mI (240564) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (240574) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (240584) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (241014) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (241014) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (241064) LSM6DS3: [0m
+[0;32mI (241064) LSM6DS3: gyro = 122.497559 122.497559 122.497559[0m
+[0;32mI (241074) LSM6DS3: accel = 0.979980 0.979980 0.979980[0m
+[0;32mI (241074) LSM6DS3: num_fifo_samples = 7[0m
+[1;31mE (241084) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (241094) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (241144) BLE: ble read queue[0m
+[0;32mI (241524) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (241524) LSM6DS3: num_fifo_samples = 289 100[0m
+[0;32mI (241584) LSM6DS3: [0m
+[0;32mI (241584) LSM6DS3: gyro = 121.673584 121.673584 121.673584[0m
+[0;32mI (241584) LSM6DS3: accel = 0.973389 0.973389 0.973389[0m
+[0;32mI (241584) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (241594) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (241604) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (242034) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (242034) LSM6DS3: num_fifo_samples = 283 100[0m
+[0;32mI (242084) LSM6DS3: [0m
+[0;32mI (242084) LSM6DS3: gyro = 121.719360 121.719360 121.719360[0m
+[0;32mI (242094) LSM6DS3: accel = 0.973755 0.973755 0.973755[0m
+[0;32mI (242094) LSM6DS3: num_fifo_samples = 0[0m
+[1;31mE (242104) DATA LOGGING: BLE orientation fail[0m
+[0;32mI (242114) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (242144) BLE: ble read queue[0m

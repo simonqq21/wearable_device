@@ -45,6 +45,13 @@ i2c_master_dev_handle_t dev_handle;
 
 // ****************************************************************
 
+/* create all parameters */
+params_task_imu_t params_task_imu;
+params_task_main_datalogging_t params_task_main_datalogging;
+params_task_SD_card_datalogger_t params_task_SD_card_datalogger;
+params_task_uart_t params_task_uart;
+params_task_ble_t params_task_ble;
+
 // main
 imu_data_t data;
 void app_main(void)
@@ -63,10 +70,10 @@ void app_main(void)
     nvs_init();
     // initialize UART
     uart_configure();
-    // initialize MPU6050
-    // mpu6050_init(&dev);
-    // mpu6050_calibrate(&dev, NULL, NULL);
-    // ESP_LOGI(MAIN_TAG, "IMU calibrated");
+
+    /* initialize BT */
+    ble_configure();
+
     imu_set_offset_read_cb(NVS_read_imu_calibration_offsets);
     imu_set_offset_write_cb(NVS_write_imu_calibration_offsets);
     imu_init(dev_handle, IMU_ODR_HZ, IMU_XL_FS, IMU_G_FS, false);
@@ -87,16 +94,12 @@ void app_main(void)
     queue_orientation_UART = xQueueCreate(NUM_FIFO_TIMESTAMPS, sizeof(imu_data_t));
     queue_orientation_BLE = xQueueCreate(NUM_FIFO_TIMESTAMPS, sizeof(imu_data_t));
 
+    ESP_LOGI(MAIN_TAG, "params_task_uart = %p", &params_task_uart);
+    ESP_LOGI(MAIN_TAG, "params_task_ble = %p", &params_task_ble);
+
     /* create all streambuffers */
     // streambuffer_imu = xStreamBufferCreate(sizeof(imu_data_t) * NUM_FIFO_TIMESTAMPS, sizeof(imu_data_t) * NUM_FIFO_TIMESTAMPS);
     // streambuffer_sd = xStreamBufferCreate(sizeof(imu_data_t) * NUM_FIFO_TIMESTAMPS * 2, sizeof(imu_data_t) * NUM_FIFO_TIMESTAMPS);
-
-    /* create all parameters */
-    params_task_imu_t params_task_imu;
-    params_task_main_datalogging_t params_task_main_datalogging;
-    params_task_SD_card_datalogger_t params_task_SD_card_datalogger;
-    params_task_uart_t params_task_uart;
-    params_task_ble_t params_task_ble;
 
     /* params_task_imu */
     params_task_imu.task_handle_status_led = &task_handle_status_led;
@@ -155,7 +158,7 @@ void app_main(void)
     // micro SD card datalogging task
     xTaskCreatePinnedToCore(task_SD_card_datalogger,
                             "SD card data logging task",
-                            10000,
+                            8192, // 10000
                             &params_task_SD_card_datalogger,
                             5,
                             &task_handle_SD_card_datalogger,
@@ -167,6 +170,16 @@ void app_main(void)
                             &params_task_uart,
                             3,
                             &task_handle_uart,
+                            0);
+
+    /* BLE streaming task */
+
+    xTaskCreatePinnedToCore(task_ble_streaming,
+                            "BLE data streaming task",
+                            10000,
+                            &params_task_ble,
+                            3,
+                            &task_handle_ble,
                             0);
     while (1)
     {

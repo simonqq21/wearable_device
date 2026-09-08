@@ -39,7 +39,7 @@ void task_imu(void *params)
     /* IMU data queue */
     QueueHandle_t queue_imu = params_imu_task->queue_imu;
     /* IMU data stream buffer */
-    StreamBufferHandle_t streambuffer_imu = params_imu_task->streambuffer_imu;
+    // StreamBufferHandle_t streambuffer_imu = params_imu_task->streambuffer_imu;
     /* IMU i2c device handle */
     i2c_master_dev_handle_t dev_handle = params_imu_task->dev_handle;
 

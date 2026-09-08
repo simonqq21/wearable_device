@@ -1,0 +1,24 @@
+Command: /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/imu_module.elf /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader/bootloader.elf -m '/home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python' '/home/simonque/Documents/code/esp-idf/tools/idf.py'
+[0;33m--- esp-idf-monitor 1.9.0 on /dev/ttyUSB0 115200[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H[0m
+[0m--- 0x40080400: [0;33m_invalid_pc_placeholder[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m2235[0m
+[0m--- 0x40080644: [0;33mcall_start_cpu0[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x40092f4d: [0;33muxListRemove[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/list.c[0m[0m:[1;31m209[0m
+[0m--- 0x4000c46c: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x4000c477: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x40092f4a: [0;33muxListRemove[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/list.c[0m[0m:[1;31m209[0m
+[0m--- 0x40147309: [0;33mprvAddCurrentTaskToDelayedList[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m6368[0m
+[0m--- 0x40147715: [0;33mvTaskPlaceOnEventList[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m3768[0m
+[0m--- 0x401470b3: [0;33mxQueueSemaphoreTake[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c[0m[0m:[1;31m1829[0m
+[0m--- 0x40144355: [0;33ms_i2c_send_commands[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m538[0m
+[0m--- 0x401446a4: [0;33ms_i2c_transaction_start[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m722[0m
+[0m--- 0x40144753: [0;33ms_i2c_synchronous_transaction[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m1022[0m
+[0m--- 0x4014548e: [0;33mi2c_master_transmit_receive[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m1328[0m
+[0m--- 0x400dfa7a: [0;33mlsm6ds3_register_read[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/lsm6ds3.c[0m[0m:[1;31m20[0m
+[0m--- 0x400dfbd4: [0;33mlsm6ds3_fifo_read[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/lsm6ds3.c[0m[0m:[1;31m697[0m
+[0m--- 0x400df233: [0;33mimu_read_FIFO_calibrated[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/imu.c[0m[0m:[1;31m439[0m
+[0m--- 0x400df341: [0;33mtask_imu[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/imu.c[0m[0m:[1;31m105[0m
+[0m--- 0x40146836: [0;33mvPortTaskWrapper[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c[0m[0m:[1;31m143[0m
+[0m--- 0x40080400: [0;33m_invalid_pc_placeholder[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m2235[0m
+[0m--- 0x40080644: [0;33mcall_start_cpu0[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m
