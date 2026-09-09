@@ -113,6 +113,12 @@ void task_imu(void *params)
                     imu_data_buffer[i].timestamp = cur_timestamp;
                     cur_timestamp += IMU_LOGGING_TIMEDELTA_MS;
 
+                    // imu_data.timestamp = esp_timer_get_time() / 1000;
+                    ESP_LOGI(IMU_TAG, "timestamp=%d", imu_data_buffer[i].timestamp);
+                    ESP_LOGI(IMU_TAG, "calib accel: x=%.4f   y=%.4f   z=%.4f", imu_data_buffer[i].ax, imu_data_buffer[i].ay, imu_data_buffer[i].az);
+                    ESP_LOGI(IMU_TAG, "calib gyro:     x=%.4f   y=%.4f   z=%.4f", imu_data_buffer[i].gx, imu_data_buffer[i].gy, imu_data_buffer[i].gz);
+                    // ESP_LOGI(IMU_TAG, "temperature:  %.1f\n", imu_data_buffer[i].temp);
+
                     /* send IMU data to queue */
                     if (queue_imu != NULL)
                     {
@@ -124,12 +130,6 @@ void task_imu(void *params)
                         }
                     }
                 }
-
-                // imu_data.timestamp = esp_timer_get_time() / 1000;
-                // ESP_LOGI(IMU_TAG, "timestamp=%d", imu_data.timestamp);
-                // ESP_LOGI(IMU_TAG, "Acceleration: x=%.4f   y=%.4f   z=%.4f", imu_data.ax, imu_data.ay, imu_data.az);
-                // ESP_LOGI(IMU_TAG, "Rotation:     x=%.4f   y=%.4f   z=%.4f", imu_data.gx, imu_data.gy, imu_data.gz);
-                // ESP_LOGI(IMU_TAG, "Temperature:  %.1f\n", imu_data.temp);
 
                 // /* send IMU data to streambuffer */
                 // if (streambuffer_imu != NULL)

@@ -1,0 +1,2710 @@
+Command: /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/imu_module.elf /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader/bootloader.elf -m '/home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python' '/home/simonque/Documents/code/esp-idf/tools/idf.py'
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0040,len:6272
+load:0x40078000,len:15848
+load:0x40080400,len:3920
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v6.1-dev-2310-g44e2fa6d9c5-dirt 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Sep  1 2026 14:56:57[0m
+[0;32mI (28) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v3.1[0m
+[0;32mI (34) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (37) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (65) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (78) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=26a9ch (158364) map[0m
+[0;32mI (145) esp_image: segment 1: paddr=00036ac4 vaddr=3ffbdb60 size=05134h ( 20788) load[0m
+[0;32mI (153) esp_image: segment 2: paddr=0003bc00 vaddr=40080000 size=04418h ( 17432) load[0m
+[0;32mI (160) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=7f014h (520212) map[0m
+[0;32mI (346) esp_image: segment 4: paddr=000bf03c vaddr=40084418 size=14a44h ( 84548) load[0m
+[0;32mI (381) esp_image: segment 5: paddr=000d3a88 vaddr=50000000 size=00028h (    40) load[0m
+[0;32mI (393) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (394) boot: Disabling RNG early entropy source...[0m
+[0;32mI (404) cpu_start: Multicore app[0m
+[0;32mI (412) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (413) cpu_start: Pro cpu start user code[0m
+[0;32mI (413) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (414) app_init: Application information:[0m
+[0;32mI (418) app_init: Project name:     imu_module[0m
+[0;32mI (422) app_init: App version:      247a328-dirty[0m
+[0;32mI (427) app_init: Compile time:     Sep  9 2026 13:43:28[0m
+[0;32mI (432) app_init: ELF file SHA256:  52fc173e7...[0m
+[0;32mI (436) app_init: ESP-IDF:          v6.1-dev-2310-g44e2fa6d9c5-dirt[0m
+[0;32mI (442) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (446) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (450) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (454) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (460) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (465) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (470) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (476) heap_init: At 3FFC7228 len 00018DD8 (99 KiB): DRAM[0m
+[0;32mI (481) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (486) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (492) heap_init: At 40098E5C len 000071A4 (28 KiB): IRAM[0m
+[0;33mW (498) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (510) spi_flash: detected chip: generic[0m
+[0;32mI (514) spi_flash: flash io: dio[0m
+[0;33mW (516) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (530) coexist: coex firmware version: 093e3d2[0m
+[0;32mI (534) main_task: Started on CPU0[0m
+[0;32mI (544) main_task: Calling app_main()[0m
+[0;32mI (544) button: IoT Button Version: 4.2.0[0m
+[0;32mI (544) MAIN: I2C initialized successfully[0m
+[0;32mI (564) BTDM_INIT: BT controller compile version [045a658][0m
+[0;32mI (564) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (564) BTDM_INIT: Bluetooth MAC: d8:13:2a:7d:69:0a[0m
+[0;32mI (564) phy_init: phy_version 4863,a3a4459,Oct 28 2025,14:30:06[0m
+[0;33mW (964) BT_BTM: BTM_BleWriteAdvData, Partial data write into ADV[0m
+[0;33mW (964) BT_BTM: BTM_BleWriteScanRsp, Partial data write into ADV[0m
+[0;32mI (974) BLE: create attribute table successfully, the number handle = 4[0m
+[0;32mI (974) BLE: Advertising data set, status 0[0m
+[0;32mI (974) BLE: Scan response data set, status 0[0m
+[0;32mI (984) BLE: SERVICE_START_EVT, status 0, service_handle 40[0m
+[0;32mI (984) LSM6DS3: WHO_AM_I = 69[0m
+[0;32mI (994) BLE: Advertising start successfully[0m
+[0;32mI (1004) LSM6DS3: FIFO_CTRL1_REG_ADDR = D0[0m
+[0;32mI (1004) LSM6DS3: FIFO_CTRL2_REG_ADDR = F[0m
+[0;32mI (1004) NVS: IMU calibration offsets from blob:[0m
+[0;32mI (1004) NVS: required_size = 24[0m
+[0;32mI (1004) NVS: err=0[0m
+
+[0;32mI (1014) NVS: accel_offsets_x = 0.0442[0m
+[0;32mI (1014) NVS: accel_offsets_y = -0.0283[0m
+[0;32mI (1014) NVS: accel_offsets_z = -0.0014[0m
+[0;32mI (1024) NVS: gyro_offsets_x = 2.1893[0m
+[0;32mI (1024) NVS: gyro_offsets_y = -7.0241[0m
+[0;32mI (1024) NVS: gyro_offsets_z = -2.0038[0m
+[0;32mI (1034) IMU: IMU read calibration from NVS.[0m
+[0;32mI (1034) IMU: accel_offsets_x = 0.04[0m
+[0;32mI (1034) IMU: accel_offsets_y = -0.03[0m
+[0;32mI (1044) IMU: accel_offsets_z = -0.00[0m
+[0;32mI (1044) IMU: gyro_offsets_x = 2.19[0m
+[0;32mI (1044) IMU: gyro_offsets_y = -7.02[0m
+[0;32mI (1054) IMU: gyro_offsets_z = -2.00[0m
+[0;32mI (1054) SD_CARD: Initializing SD card[0m
+[0;32mI (1054) SD_CARD: Using SPI peripheral[0m
+[0;32mI (1064) SD_CARD: Mounting filesystem[0m
+[0;32mI (1064) sdspi_transaction: cmd=52, R1 response: command not supported[0m
+[0;32mI (1114) sdspi_transaction: cmd=5, R1 response: command not supported[0m
+[0;32mI (1164) SD_CARD: Filesystem mounted[0m
+Name: ACLCE
+Type: SDHC
+Speed: 4.00 MHz (limit: 4.00 MHz)
+Size: 60906MB
+CSD: ver=2, sector_size=512, capacity=124735488 read_bl_len=9
+SSR: bus_width=1
+[0;32mI (1164) SD_CARD: SD card initialized[0m
+[0;32mI (1174) MAIN: Starting all tasks![0m
+[0;32mI (1174) MAIN: params_task_uart = 0x3ffc3528[0m
+[0;32mI (1174) MAIN: params_task_ble = 0x3ffc3524[0m
+[0;32mI (1184) BLE: ble task started[0m
+[0;32mI (1184) BLE: params_task_ble = 0x3ffc3524[0m
+[0;32mI (7854) BUTTON: Datalogging started.[0m
+[0;32mI (7854) IMU: IMU started[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (7884) DATA LOGGING: Datalogging started.[0m
+[0;32mI (8304) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (8304) LSM6DS3: num_fifo_samples = 282[0m
+[0;32mI (8754) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (8764) LSM6DS3: num_fifo_samples = 570[0m
+[0;32mI (8964) SD_CARD: max_idx: 1805[0m
+[0;32mI (8964) SD_CARD: filename: imu_raw_001806.bin[0m
+[0;32mI (8964) SD_CARD: filepath: /sdcard/imu_raw_001806.bin[0m
+[0;32mI (8964) SD_CARD: Writing to new raw file[0m
+[0;32mI (9214) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 1, empty = 0[0m
+[0;32mI (9214) LSM6DS3: num_fifo_samples = 852 100[0m
+[0;32mI (9374) LSM6DS3: [0m
+[0;32mI (9374) LSM6DS3: raw gyro = 1.007080 -5.126953 -1.953125[0m
+[0;32mI (9374) LSM6DS3: raw accel = 0.006714 0.146240 0.988403[0m
+[0;32mI (9384) LSM6DS3: num_fifo_samples = 360[0m
+[0;32mI (9384) IMU: timestamp=1073566896[0m
+[0;32mI (9384) IMU: calib accel: x=-0.0131   y=0.1727   z=1.0413[0m
+[0;32mI (9394) IMU: calib gyro:     x=-26.1914   y=-13.8957   z=12.7307[0m
+[0;32mI (9404) IMU: timestamp=0[0m
+[0;32mI (9404) IMU: calib accel: x=-0.0169   y=0.1198   z=1.1487[0m
+[0;32mI (9404) IMU: calib gyro:     x=-24.2993   y=-7.2124   z=3.3160[0m
+[0;32mI (9414) IMU: timestamp=0[0m
+[0;32mI (9414) IMU: calib accel: x=-0.0024   y=0.1197   z=1.0953[0m
+[0;32mI (9414) IMU: calib gyro:     x=-1.4417   y=2.2328   z=-1.9788[0m
+[0;32mI (9424) IMU: timestamp=0[0m
+[0;32mI (9424) IMU: calib accel: x=-0.0649   y=0.1765   z=1.0125[0m
+[0;32mI (9434) IMU: calib gyro:     x=16.8079   y=8.5042   z=-2.4670[0m
+[0;32mI (9434) IMU: timestamp=0[0m
+[0;32mI (9444) IMU: calib accel: x=-0.0428   y=0.2067   z=0.8364[0m
+[0;32mI (9444) IMU: calib gyro:     x=20.1953   y=9.6944   z=-0.4681[0m
+[0;32mI (9454) IMU: timestamp=0[0m
+[0;32mI (9454) IMU: calib accel: x=-0.0667   y=0.1870   z=0.9093[0m
+[0;32mI (9454) IMU: calib gyro:     x=3.3038   y=-0.1323   z=0.8441[0m
+[0;32mI (9464) IMU: timestamp=0[0m
+[0;32mI (9464) IMU: calib accel: x=-0.0025   y=0.1800   z=0.9992[0m
+[0;32mI (9474) IMU: calib gyro:     x=-10.7953   y=-6.6325   z=2.4768[0m
+[0;32mI (9474) IMU: timestamp=0[0m
+[0;32mI (9474) IMU: calib accel: x=-0.0291   y=0.1589   z=1.0477[0m
+[0;32mI (9484) IMU: calib gyro:     x=-10.2917   y=-5.3966   z=0.1270[0m
+[0;32mI (9494) IMU: timestamp=0[0m
+[0;32mI (9494) IMU: calib accel: x=-0.0143   y=0.1451   z=1.0541[0m
+[0;32mI (9494) IMU: calib gyro:     x=-3.5474   y=0.4628   z=-0.5597[0m
+[0;32mI (9504) IMU: timestamp=0[0m
+[0;32mI (9504) IMU: calib accel: x=-0.0478   y=0.1815   z=0.9780[0m
+[0;32mI (9514) IMU: calib gyro:     x=7.1185   y=3.3620   z=-1.1700[0m
+[0;32mI (9514) IMU: timestamp=0[0m
+[0;32mI (9514) IMU: calib accel: x=-0.0343   y=0.1918   z=0.9274[0m
+[0;32mI (9524) IMU: calib gyro:     x=6.4624   y=4.4759   z=-1.3226[0m
+[0;32mI (9524) IMU: timestamp=0[0m
+[0;32mI (9534) IMU: calib accel: x=-0.0523   y=0.1784   z=0.9676[0m
+[0;32mI (9534) IMU: calib gyro:     x=-1.1517   y=0.7680   z=0.2795[0m
+[0;32mI (9544) IMU: timestamp=0[0m
+[0;32mI (9544) IMU: calib accel: x=-0.0306   y=0.1638   z=0.9915[0m
+[0;32mI (9544) IMU: calib gyro:     x=-3.3185   y=-3.8402   z=0.8899[0m
+[0;32mI (9554) IMU: timestamp=0[0m
+[0;32mI (9554) IMU: calib accel: x=-0.0251   y=0.1579   z=1.0356[0m
+[0;32mI (9564) IMU: calib gyro:     x=-3.6389   y=-2.7721   z=1.1646[0m
+[0;32mI (9564) IMU: timestamp=0[0m
+[0;32mI (9574) IMU: calib accel: x=-0.0230   y=0.1784   z=1.0010[0m
+[0;32mI (9574) IMU: calib gyro:     x=1.9153   y=0.2492   z=0.0049[0m
+[0;32mI (9584) IMU: timestamp=0[0m
+[0;32mI (9584) IMU: calib accel: x=-0.0324   y=0.1817   z=0.9637[0m
+[0;32mI (9584) IMU: calib gyro:     x=3.5785   y=3.1941   z=-0.9106[0m
+[0;32mI (9594) IMU: timestamp=0[0m
+[0;32mI (9594) IMU: calib accel: x=-0.0516   y=0.1732   z=0.9795[0m
+[0;32mI (9604) IMU: calib gyro:     x=0.1300   y=2.6753   z=-0.2698[0m
+[0;32mI (9604) IMU: timestamp=0[0m
+[0;32mI (9604) IMU: calib accel: x=-0.0376   y=0.1856   z=0.9678[0m
+[0;32mI (9614) IMU: calib gyro:     x=-0.0836   y=-1.4903   z=0.0964[0m
+[0;32mI (9624) IMU: timestamp=0[0m
+[0;32mI (9624) IMU: calib accel: x=-0.0191   y=0.1680   z=1.0112[0m
+[0;32mI (9624) IMU: calib gyro:     x=-2.3572   y=-2.5279   z=0.7068[0m
+[0;32mI (9634) IMU: timestamp=0[0m
+[0;32mI (9634) IMU: calib accel: x=-0.0216   y=0.1781   z=1.0063[0m
+[0;32mI (9644) IMU: calib gyro:     x=-0.7550   y=-0.8952   z=0.5389[0m
+[0;32mI (9644) IMU: timestamp=0[0m
+[0;32mI (9644) IMU: calib accel: x=-0.0334   y=0.1748   z=0.9787[0m
+[0;32mI (9654) IMU: calib gyro:     x=1.7627   y=1.2715   z=-0.3918[0m
+[0;32mI (9664) IMU: timestamp=0[0m
+[0;32mI (9664) IMU: calib accel: x=-0.0434   y=0.1689   z=0.9902[0m
+[0;32mI (9664) IMU: calib gyro:     x=0.4504   y=1.8208   z=-0.0409[0m
+[0;32mI (9674) IMU: timestamp=0[0m
+[0;32mI (9674) IMU: calib accel: x=-0.0369   y=0.1854   z=0.9672[0m
+[0;32mI (9674) IMU: calib gyro:     x=1.2439   y=-0.1170   z=-0.0256[0m
+[0;32mI (9684) IMU: timestamp=0[0m
+[0;32mI (9684) IMU: calib accel: x=-0.0308   y=0.1698   z=0.9924[0m
+[0;32mI (9694) IMU: calib gyro:     x=-1.2738   y=-0.5901   z=0.2032[0m
+[0;32mI (9694) IMU: timestamp=0[0m
+[0;32mI (9704) IMU: calib accel: x=-0.0279   y=0.1694   z=1.0051[0m
+[0;32mI (9704) IMU: calib gyro:     x=-1.3501   y=-0.4222   z=0.3864[0m
+[0;32mI (9714) IMU: timestamp=0[0m
+[0;32mI (9714) IMU: calib accel: x=-0.0308   y=0.1799   z=0.9810[0m
+[0;32mI (9714) IMU: calib gyro:     x=1.4117   y=-0.1476   z=-0.1477[0m
+[0;32mI (9724) IMU: timestamp=0[0m
+[0;32mI (9724) IMU: calib accel: x=-0.0354   y=0.1690   z=0.9947[0m
+[0;32mI (9734) IMU: calib gyro:     x=0.0079   y=1.0274   z=0.0659[0m
+[0;32mI (9734) IMU: timestamp=0[0m
+[0;32mI (9744) IMU: calib accel: x=-0.0363   y=0.1826   z=0.9747[0m
+[0;32mI (9744) IMU: calib gyro:     x=0.7251   y=0.2034   z=-0.0104[0m
+[0;32mI (9754) IMU: timestamp=0[0m
+[0;32mI (9754) IMU: calib accel: x=-0.0346   y=0.1711   z=0.9865[0m
+[0;32mI (9754) IMU: calib gyro:     x=-0.4346   y=-0.5595   z=0.0659[0m
+[0;32mI (9764) IMU: timestamp=0[0m
+[0;32mI (9764) IMU: calib accel: x=-0.0270   y=0.1684   z=1.0046[0m
+[0;32mI (9774) IMU: calib gyro:     x=-1.1670   y=-0.5138   z=0.3253[0m
+[0;32mI (9774) IMU: timestamp=0[0m
+[0;32mI (9774) IMU: calib accel: x=-0.0313   y=0.1810   z=0.9781[0m
+[0;32mI (9784) IMU: calib gyro:     x=1.0303   y=0.0203   z=-0.0256[0m
+[0;32mI (9794) IMU: timestamp=0[0m
+[0;32mI (9794) IMU: calib accel: x=-0.0367   y=0.1690   z=0.9957[0m
+[0;32mI (9794) IMU: calib gyro:     x=-0.2057   y=1.0274   z=0.0964[0m
+[0;32mI (9804) IMU: timestamp=0[0m
+[0;32mI (9804) IMU: calib accel: x=-0.0360   y=0.1835   z=0.9804[0m
+[0;32mI (9814) IMU: calib gyro:     x=0.5420   y=0.2339   z=0.0201[0m
+[0;32mI (9814) IMU: timestamp=0[0m
+[0;32mI (9814) IMU: calib accel: x=-0.0340   y=0.1730   z=0.9806[0m
+[0;32mI (9824) IMU: calib gyro:     x=0.2216   y=-0.4680   z=0.0354[0m
+[0;32mI (9824) IMU: timestamp=0[0m
+[0;32mI (9834) IMU: calib accel: x=-0.0307   y=0.1669   z=1.0027[0m
+[0;32mI (9834) IMU: calib gyro:     x=-1.1975   y=-0.0865   z=0.2643[0m
+[0;32mI (9844) IMU: timestamp=0[0m
+[0;32mI (9844) IMU: calib accel: x=-0.0313   y=0.1788   z=0.9804[0m
+[0;32mI (9844) IMU: calib gyro:     x=0.8014   y=-0.1018   z=-0.0867[0m
+[0;32mI (9854) IMU: timestamp=0[0m
+[0;32mI (9854) IMU: calib accel: x=-0.0363   y=0.1696   z=0.9910[0m
+[0;32mI (9864) IMU: calib gyro:     x=-0.1447   y=0.5544   z=0.0507[0m
+[0;32mI (9864) IMU: timestamp=0[0m
+[0;32mI (9874) IMU: calib accel: x=-0.0336   y=0.1805   z=0.9866[0m
+[0;32mI (9874) IMU: calib gyro:     x=0.1910   y=0.1729   z=0.0507[0m
+[0;32mI (9884) IMU: timestamp=0[0m
+[0;32mI (9884) IMU: calib accel: x=-0.0323   y=0.1768   z=0.9814[0m
+[0;32mI (9884) IMU: calib gyro:     x=0.5573   y=-0.3764   z=-0.0256[0m
+[0;32mI (9894) IMU: timestamp=0[0m
+[0;32mI (9894) IMU: calib accel: x=-0.0315   y=0.1657   z=1.0040[0m
+[0;32mI (9904) IMU: calib gyro:     x=-1.0907   y=0.0966   z=0.2643[0m
+[0;32mI (9904) IMU: timestamp=0[0m
+[0;32mI (9904) IMU: calib accel: x=-0.0321   y=0.1788   z=0.9809[0m
+[0;32mI (9914) IMU: calib gyro:     x=0.7404   y=-0.1323   z=0.0201[0m
+[0;32mI (9924) IMU: timestamp=0[0m
+[0;32mI (9924) IMU: calib accel: x=-0.0354   y=0.1722   z=0.9908[0m
+[0;32mI (9924) IMU: calib gyro:     x=0.1605   y=0.3560   z=0.0354[0m
+[0;32mI (9934) IMU: timestamp=0[0m
+[0;32mI (9934) IMU: calib accel: x=-0.0343   y=0.1735   z=0.9906[0m
+[0;32mI (9944) IMU: calib gyro:     x=-0.0989   y=0.4933   z=0.0964[0m
+[0;32mI (9944) IMU: timestamp=0[0m
+[0;32mI (9944) IMU: calib accel: x=-0.0336   y=0.1798   z=0.9775[0m
+[0;32mI (9954) IMU: calib gyro:     x=0.6946   y=-0.1476   z=0.0049[0m
+[0;32mI (9964) IMU: timestamp=0[0m
+[0;32mI (9964) IMU: calib accel: x=-0.0313   y=0.1689   z=1.0010[0m
+[0;32mI (9964) IMU: calib gyro:     x=-0.8923   y=-0.0560   z=0.2643[0m
+[0;32mI (9974) IMU: timestamp=0[0m
+[0;32mI (9974) IMU: calib accel: x=-0.0320   y=0.1807   z=0.9855[0m
+[0;32mI (9974) IMU: calib gyro:     x=0.3589   y=-0.1476   z=0.0659[0m
+[0;32mI (9984) IMU: timestamp=0[0m
+[0;32mI (9984) IMU: calib accel: x=-0.0356   y=0.1709   z=0.9874[0m
+[0;32mI (9994) IMU: calib gyro:     x=0.1300   y=0.2034   z=0.0507[0m
+[0;32mI (9994) IMU: timestamp=0[0m
+[0;32mI (10004) IMU: calib accel: x=-0.0342   y=0.1724   z=0.9927[0m
+[0;32mI (10004) IMU: calib gyro:     x=-0.1752   y=0.2950   z=0.1422[0m
+[0;32mI (10014) IMU: timestamp=0[0m
+[0;32mI (10014) IMU: calib accel: x=-0.0315   y=0.1815   z=0.9789[0m
+[0;32mI (10014) IMU: calib gyro:     x=0.7709   y=-0.1628   z=-0.0714[0m
+[0;32mI (10024) IMU: timestamp=0[0m
+[0;32mI (10024) IMU: calib accel: x=-0.0323   y=0.1701   z=0.9965[0m
+[0;32mI (10034) IMU: calib gyro:     x=-0.7855   y=0.3102   z=0.1727[0m
+[0;32mI (10034) IMU: timestamp=0[0m
+[0;32mI (10044) IMU: calib accel: x=-0.0315   y=0.1793   z=0.9865[0m
+[0;32mI (10044) IMU: calib gyro:     x=0.3131   y=-0.0865   z=0.0812[0m
+[0;32mI (10054) IMU: timestamp=0[0m
+[0;32mI (10054) IMU: calib accel: x=-0.0314   y=0.1754   z=0.9861[0m
+[0;32mI (10054) IMU: calib gyro:     x=0.5267   y=-0.1018   z=-0.0104[0m
+[0;32mI (10064) IMU: timestamp=0[0m
+[0;32mI (10064) IMU: calib accel: x=-0.0349   y=0.1696   z=0.9974[0m
+[0;32mI (10074) IMU: calib gyro:     x=-0.5566   y=0.4018   z=0.1727[0m
+[0;32mI (10074) IMU: timestamp=0[0m
+[0;32mI (10084) IMU: calib accel: x=-0.0354   y=0.1796   z=0.9793[0m
+[0;32mI (10084) IMU: calib gyro:     x=0.5878   y=-0.1323   z=0.0354[0m
+[0;32mI (10094) IMU: timestamp=0[0m
+[0;32mI (10094) IMU: calib accel: x=-0.0351   y=0.1705   z=0.9948[0m
+[0;32mI (10094) IMU: calib gyro:     x=-0.4041   y=-0.1170   z=0.1727[0m
+[0;32mI (10104) IMU: timestamp=0[0m
+[0;32mI (10104) IMU: calib accel: x=-0.0301   y=0.1770   z=0.9914[0m
+[0;32mI (10114) IMU: calib gyro:     x=0.1300   y=-0.0255   z=0.1117[0m
+[0;32mI (10114) IMU: timestamp=0[0m
+[0;32mI (10124) IMU: calib accel: x=-0.0356   y=0.1746   z=0.9841[0m
+[0;32mI (10124) IMU: calib gyro:     x=0.3894   y=0.2797   z=0.0201[0m
+[0;32mI (10134) IMU: timestamp=0[0m
+[0;32mI (10134) IMU: calib accel: x=-0.0341   y=0.1683   z=0.9959[0m
+[0;32mI (10134) IMU: calib gyro:     x=-0.4041   y=0.3712   z=0.1270[0m
+[0;32mI (10144) IMU: timestamp=0[0m
+[0;32mI (10144) IMU: calib accel: x=-0.0319   y=0.1800   z=0.9817[0m
+[0;32mI (10154) IMU: calib gyro:     x=0.8929   y=-0.3307   z=-0.0256[0m
+[0;32mI (10154) IMU: timestamp=0[0m
+[0;32mI (10164) IMU: calib accel: x=-0.0347   y=0.1713   z=0.9919[0m
+[0;32mI (10164) IMU: calib gyro:     x=-0.3278   y=0.1881   z=0.0812[0m
+[0;32mI (10174) IMU: timestamp=0[0m
+[0;32mI (10174) IMU: calib accel: x=-0.0337   y=0.1727   z=0.9915[0m
+[0;32mI (10174) IMU: calib gyro:     x=-0.2057   y=0.2034   z=0.1117[0m
+[0;32mI (10184) IMU: timestamp=0[0m
+[0;32mI (10184) IMU: calib accel: x=-0.0306   y=0.1792   z=0.9821[0m
+[0;32mI (10194) IMU: calib gyro:     x=0.7404   y=-0.3001   z=-0.0562[0m
+[0;32mI (10194) IMU: timestamp=0[0m
+[0;32mI (10204) IMU: calib accel: x=-0.0337   y=0.1699   z=0.9959[0m
+[0;32mI (10204) IMU: calib gyro:     x=-0.4498   y=0.2187   z=0.1270[0m
+[0;32mI (10214) IMU: timestamp=0[0m
+[0;32mI (10214) IMU: calib accel: x=-0.0330   y=0.1785   z=0.9826[0m
+[0;32mI (10214) IMU: calib gyro:     x=0.3131   y=0.0966   z=0.0354[0m
+[0;32mI (10224) IMU: timestamp=0[0m
+[0;32mI (10224) IMU: calib accel: x=-0.0330   y=0.1728   z=0.9888[0m
+[0;32mI (10234) IMU: calib gyro:     x=0.0385   y=-0.0102   z=0.0659[0m
+[0;32mI (10244) IMU: timestamp=0[0m
+[0;32mI (10244) IMU: calib accel: x=-0.0318   y=0.1730   z=0.9906[0m
+[0;32mI (10244) IMU: calib gyro:     x=-0.0684   y=0.0203   z=0.1270[0m
+[0;32mI (10254) IMU: timestamp=0[0m
+[0;32mI (10254) IMU: calib accel: x=-0.0351   y=0.1794   z=0.9794[0m
+[0;32mI (10254) IMU: calib gyro:     x=0.6030   y=0.0813   z=0.0049[0m
+[0;32mI (10264) IMU: timestamp=0[0m
+[0;32mI (10264) IMU: calib accel: x=-0.0365   y=0.1698   z=0.9963[0m
+[0;32mI (10274) IMU: calib gyro:     x=-0.5719   y=0.3865   z=0.1422[0m
+[0;32mI (10274) IMU: timestamp=0[0m
+[0;32mI (10284) IMU: calib accel: x=-0.0329   y=0.1793   z=0.9855[0m
+[0;32mI (10284) IMU: calib gyro:     x=0.3589   y=-0.2544   z=0.0507[0m
+[0;32mI (10294) IMU: timestamp=0[0m
+[0;32mI (10294) IMU: calib accel: x=-0.0331   y=0.1734   z=0.9858[0m
+[0;32mI (10294) IMU: calib gyro:     x=0.2063   y=-0.0407   z=0.0507[0m
+[0;32mI (10304) IMU: timestamp=0[0m
+[0;32mI (10304) IMU: calib accel: x=-0.0358   y=0.1694   z=0.9938[0m
+[0;32mI (10314) IMU: calib gyro:     x=-0.3735   y=0.2950   z=0.1117[0m
+[0;32mI (10314) IMU: timestamp=0[0m
+[0;32mI (10314) IMU: calib accel: x=-0.0349   y=0.1779   z=0.9808[0m
+[0;32mI (10324) IMU: calib gyro:     x=0.5573   y=0.0050   z=0.0354[0m
+[0;32mI (10334) IMU: timestamp=0[0m
+[0;32mI (10334) IMU: calib accel: x=-0.0323   y=0.1698   z=0.9936[0m
+[0;32mI (10334) IMU: calib gyro:     x=-0.3430   y=-0.0102   z=0.1270[0m
+[0;32mI (10344) IMU: timestamp=0[0m
+[0;32mI (10344) IMU: calib accel: x=-0.0317   y=0.1768   z=0.9871[0m
+[0;32mI (10354) IMU: calib gyro:     x=0.2063   y=-0.1170   z=0.0812[0m
+[0;32mI (10354) IMU: timestamp=0[0m
+[0;32mI (10354) IMU: calib accel: x=-0.0353   y=0.1761   z=0.9871[0m
+[0;32mI (10364) IMU: calib gyro:     x=0.1605   y=0.1881   z=0.0354[0m
+[0;32mI (10374) IMU: timestamp=0[0m
+[0;32mI (10374) IMU: calib accel: x=-0.0352   y=0.1682   z=0.9966[0m
+[0;32mI (10374) IMU: calib gyro:     x=-0.5109   y=0.3712   z=0.1270[0m
+[0;32mI (10384) IMU: timestamp=0[0m
+[0;32mI (10384) IMU: calib accel: x=-0.0321   y=0.1784   z=0.9815[0m
+[0;32mI (10394) IMU: calib gyro:     x=0.6793   y=-0.2696   z=-0.0256[0m
+[0;32mI (10394) IMU: timestamp=0[0m
+[0;32mI (10394) IMU: calib accel: x=-0.0329   y=0.1711   z=0.9904[0m
+[0;32mI (10404) IMU: calib gyro:     x=-0.1141   y=0.1729   z=0.0659[0m
+[0;32mI (10414) IMU: timestamp=0[0m
+[0;32mI (10414) IMU: calib accel: x=-0.0342   y=0.1737   z=0.9893[0m
+[0;32mI (10414) IMU: calib gyro:     x=-0.0684   y=0.2187   z=0.0354[0m
+[0;32mI (10424) IMU: timestamp=0[0m
+[0;32mI (10424) IMU: calib accel: x=-0.0358   y=0.1768   z=0.9837[0m
+[0;32mI (10434) IMU: calib gyro:     x=0.4352   y=-0.1170   z=0.0659[0m
+[0;32mI (10434) IMU: timestamp=0[0m
+[0;32mI (10434) IMU: calib accel: x=-0.0330   y=0.1706   z=0.9963[0m
+[0;32mI (10444) IMU: calib gyro:     x=-0.3278   y=-0.0102   z=0.1880[0m
+[0;32mI (10454) IMU: timestamp=0[0m
+[0;32mI (10454) IMU: calib accel: x=-0.0325   y=0.1789   z=0.9848[0m
+[0;32mI (10464) IMU: calib gyro:     x=0.3589   y=0.0813   z=0.0659[0m
+[0;32mI (10464) IMU: timestamp=0[0m
+[0;32mI (10464) IMU: calib accel: x=-0.0367   y=0.1701   z=0.9909[0m
+[0;32mI (10474) IMU: calib gyro:     x=-0.2209   y=0.2644   z=0.0964[0m
+[0;32mI (10474) IMU: timestamp=0[0m
+[0;32mI (10474) IMU: calib accel: x=-0.0317   y=0.1743   z=0.9899[0m
+[0;32mI (10484) IMU: calib gyro:     x=0.1147   y=-0.0865   z=0.0964[0m
+[0;32mI (10484) IMU: timestamp=0[0m
+[0;32mI (10494) IMU: calib accel: x=-0.0306   y=0.1793   z=0.9853[0m
+[0;32mI (10494) IMU: calib gyro:     x=0.5115   y=-0.1018   z=0.0049[0m
+[0;32mI (10504) IMU: timestamp=0[0m
+[0;32mI (10504) IMU: calib accel: x=-0.0341   y=0.1688   z=0.9958[0m
+[0;32mI (10514) IMU: calib gyro:     x=-0.5719   y=0.4170   z=0.1422[0m
+[0;32mI (10514) IMU: timestamp=0[0m
+[0;32mI (10514) IMU: calib accel: x=-0.0319   y=0.1783   z=0.9858[0m
+[0;32mI (10524) IMU: calib gyro:     x=0.4352   y=-0.1933   z=0.0354[0m
+[0;32mI (10534) IMU: timestamp=0[0m
+[0;32mI (10534) IMU: calib accel: x=-0.0323   y=0.1737   z=0.9882[0m
+[0;32mI (10534) IMU: calib gyro:     x=0.1300   y=-0.1323   z=0.0812[0m
+[0;32mI (10544) IMU: timestamp=0[0m
+[0;32mI (10544) IMU: calib accel: x=-0.0339   y=0.1723   z=0.9926[0m
+[0;32mI (10554) IMU: calib gyro:     x=-0.2515   y=0.2950   z=0.1117[0m
+[0;32mI (10554) IMU: timestamp=0[0m
+[0;32mI (10554) IMU: calib accel: x=-0.0356   y=0.1784   z=0.9831[0m
+[0;32mI (10564) IMU: calib gyro:     x=0.4962   y=0.0356   z=0.0201[0m
+[0;32mI (10564) IMU: timestamp=0[0m
+[0;32mI (10574) IMU: calib accel: x=-0.0341   y=0.1705   z=0.9939[0m
+[0;32mI (10574) IMU: calib gyro:     x=-0.2820   y=0.0050   z=0.0659[0m
+[0;32mI (10584) IMU: timestamp=0[0m
+[0;32mI (10584) IMU: calib accel: x=-0.0328   y=0.1779   z=0.9853[0m
+[0;32mI (10594) IMU: calib gyro:     x=0.3131   y=-0.0255   z=0.0354[0m
+[0;32mI (10594) IMU: timestamp=0[0m
+[0;32mI (10594) IMU: calib accel: x=-0.0357   y=0.1722   z=0.9832[0m
+[0;32mI (10604) IMU: calib gyro:     x=0.0690   y=0.1424   z=0.0201[0m
+[0;32mI (10604) IMU: timestamp=0[0m
+[0;32mI (10614) IMU: calib accel: x=-0.0347   y=0.1674   z=0.9789[0m
+[0;32mI (10614) IMU: calib gyro:     x=-0.1141   y=0.0050   z=0.1270[0m
+[0;32mI (10624) IMU: timestamp=0[0m
+[0;32mI (10624) IMU: calib accel: x=-0.0290   y=0.1856   z=0.9788[0m
+[0;32mI (10624) IMU: calib gyro:     x=0.6335   y=-0.3917   z=-0.0104[0m
+[0;32mI (10634) IMU: timestamp=0[0m
+[0;32mI (10634) IMU: calib accel: x=-0.0336   y=0.1801   z=1.0190[0m
+[0;32mI (10644) IMU: calib gyro:     x=-1.6095   y=0.5849   z=0.2032[0m
+[0;32mI (10644) IMU: timestamp=0[0m
+[0;32mI (10654) IMU: calib accel: x=-0.0392   y=0.1658   z=1.0041[0m
+[0;32mI (10654) IMU: calib gyro:     x=-1.3501   y=0.3865   z=0.2643[0m
+[0;32mI (10664) IMU: timestamp=0[0m
+[0;32mI (10664) IMU: calib accel: x=-0.0324   y=0.1679   z=0.9767[0m
+[0;32mI (10674) IMU: calib gyro:     x=1.8848   y=-1.6887   z=-0.0256[0m
+[0;32mI (10674) IMU: timestamp=0[0m
+[0;32mI (10674) IMU: calib accel: x=-0.0204   y=0.1882   z=0.9834[0m
+[0;32mI (10684) IMU: calib gyro:     x=1.8848   y=-0.6053   z=0.0201[0m
+[0;32mI (10694) IMU: timestamp=0[0m
+[0;32mI (10694) IMU: calib accel: x=-0.0375   y=0.1745   z=0.9898[0m
+[0;32mI (10694) IMU: calib gyro:     x=-1.1823   y=1.8971   z=0.0507[0m
+[0;32mI (10704) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (11154) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 1, empty = 1[0m
+[0;32mI (11154) LSM6DS3: num_fifo_samples = 1470 100[0m
+[0;32mI (11304) LSM6DS3: [0m
+[0;32mI (11304) LSM6DS3: raw gyro = 2.593994 -7.186890 -1.998901[0m
+[0;32mI (11304) LSM6DS3: raw accel = 0.012817 0.147705 0.983398[0m
+[0;32mI (11304) LSM6DS3: num_fifo_samples = 966[0m
+[0;32mI (11304) IMU: timestamp=1073566896[0m
+[0;32mI (11304) IMU: calib accel: x=-0.0464   y=0.1552   z=1.0009[0m
+[0;32mI (11314) IMU: calib gyro:     x=-2.3114   y=1.3326   z=0.0812[0m
+[0;32mI (11324) IMU: timestamp=0[0m
+[0;32mI (11324) IMU: calib accel: x=-0.0326   y=0.1784   z=0.9902[0m
+[0;32mI (11324) IMU: calib gyro:     x=1.6559   y=-1.7345   z=0.0201[0m
+[1;31mE (11334) DATA LOGGING: SDCARD raw fail[0m
+[0;32mI (11334) IMU: timestamp=0[0m
+[1;31mE (11344) DATA LOGGING: SDCARD orientation fail[0m
+[0;32mI (11344) IMU: calib accel: x=-0.0212   y=0.1918   z=0.9769[0m
+[0;32mI (11344) IMU: calib gyro:     x=2.3273   y=-1.2920   z=0.0507[0m
+[0;32mI (11354) IMU: timestamp=0[0m
+[0;32mI (11354) IMU: calib accel: x=-0.0325   y=0.1744   z=0.9928[0m
+[0;32mI (11364) IMU: calib gyro:     x=-1.7621   y=1.5462   z=0.1880[0m
+[0;32mI (11364) IMU: timestamp=0[0m
+[0;32mI (11374) IMU: calib accel: x=-0.0439   y=0.1666   z=0.9866[0m
+[0;32mI (11374) IMU: calib gyro:     x=-1.0754   y=1.2105   z=0.0964[0m
+[0;32mI (11384) IMU: timestamp=0[0m
+[0;32mI (11384) IMU: calib accel: x=-0.0330   y=0.1741   z=0.9900[0m
+[0;32mI (11384) IMU: calib gyro:     x=1.2897   y=-1.0478   z=-0.0104[0m
+[0;32mI (11394) IMU: timestamp=0[0m
+[0;32mI (11394) IMU: calib accel: x=-0.0285   y=0.1789   z=0.9903[0m
+[0;32mI (11404) IMU: calib gyro:     x=0.6641   y=-0.6969   z=0.1270[0m
+[0;32mI (11404) IMU: timestamp=0[0m
+[0;32mI (11414) IMU: calib accel: x=-0.0370   y=0.1709   z=0.9843[0m
+[0;32mI (11414) IMU: calib gyro:     x=-0.8771   y=0.8138   z=0.1422[0m
+[0;32mI (11424) IMU: timestamp=0[0m
+[0;32mI (11424) IMU: calib accel: x=-0.0336   y=0.1679   z=0.9966[0m
+[0;32mI (11424) IMU: calib gyro:     x=-0.8008   y=0.1424   z=0.1727[0m
+[0;32mI (11434) IMU: timestamp=0[0m
+[0;32mI (11434) IMU: calib accel: x=-0.0263   y=0.1815   z=0.9864[0m
+[0;32mI (11444) IMU: calib gyro:     x=1.2897   y=-0.6664   z=0.0354[0m
+[0;32mI (11444) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (11454) SD_CARD: filename: imu_orientation_001806.bin[0m
+[0;32mI (11454) SD_CARD: filepath: /sdcard/imu_orientation_001806.bin[0m
+[0;32mI (11464) SD_CARD: Writing to new orientation file[0m
+[0;32mI (11474) IMU: timestamp=0[0m
+[0;32mI (11474) IMU: calib accel: x=-0.0369   y=0.1737   z=0.9827[0m
+[0;32mI (11474) IMU: calib gyro:     x=0.2063   y=0.5696   z=0.0659[0m
+[0;32mI (11484) IMU: timestamp=0[0m
+[0;32mI (11484) IMU: calib accel: x=-0.0389   y=0.1650   z=0.9932[0m
+[0;32mI (11484) IMU: calib gyro:     x=-0.9534   y=0.6612   z=0.1422[0m
+[0;32mI (11494) IMU: timestamp=0[0m
+[0;32mI (11494) IMU: calib accel: x=-0.0318   y=0.1772   z=0.9900[0m
+[0;32mI (11504) IMU: calib gyro:     x=0.2521   y=-0.6969   z=0.0964[0m
+[0;32mI (11514) IMU: timestamp=0[0m
+[0;32mI (11514) IMU: calib accel: x=-0.0285   y=0.1730   z=0.9959[0m
+[0;32mI (11514) IMU: calib gyro:     x=-0.0073   y=-0.2696   z=0.0812[0m
+[0;32mI (11524) IMU: timestamp=0[0m
+[0;32mI (11524) IMU: calib accel: x=-0.0352   y=0.1763   z=0.9837[0m
+[0;32mI (11524) IMU: calib gyro:     x=0.3131   y=0.6306   z=-0.0409[0m
+[0;32mI (11534) IMU: timestamp=0[0m
+[0;32mI (11534) IMU: calib accel: x=-0.0385   y=0.1763   z=0.9834[0m
+[0;32mI (11544) IMU: calib gyro:     x=0.3741   y=0.3407   z=0.0201[0m
+[0;32mI (11544) IMU: timestamp=0[0m
+[0;32mI (11544) IMU: calib accel: x=-0.0323   y=0.1719   z=0.9916[0m
+[0;32mI (11554) IMU: calib gyro:     x=-0.2972   y=-0.3307   z=0.0964[0m
+[0;32mI (11554) IMU: timestamp=0[0m
+[0;32mI (11564) IMU: calib accel: x=-0.0296   y=0.1765   z=0.9871[0m
+[0;32mI (11564) IMU: calib gyro:     x=0.0842   y=-0.3764   z=0.0659[0m
+[0;32mI (11574) IMU: timestamp=0[0m
+[0;32mI (11574) IMU: calib accel: x=-0.0352   y=0.1702   z=0.9952[0m
+[0;32mI (11574) IMU: calib gyro:     x=-0.3735   y=0.3102   z=0.0964[0m
+[0;32mI (11584) IMU: timestamp=0[0m
+[0;32mI (11594) IMU: calib accel: x=-0.0345   y=0.1745   z=0.9881[0m
+[0;32mI (11594) IMU: calib gyro:     x=0.3741   y=0.2492   z=0.0354[0m
+[0;32mI (11604) IMU: timestamp=0[0m
+[0;32mI (11604) IMU: calib accel: x=-0.0330   y=0.1790   z=0.9822[0m
+[0;32mI (11604) IMU: calib gyro:     x=0.5878   y=-0.0713   z=0.0049[0m
+[0;32mI (11614) IMU: timestamp=0[0m
+[0;32mI (11614) IMU: calib accel: x=-0.0339   y=0.1728   z=0.9935[0m
+[0;32mI (11614) IMU: calib gyro:     x=-0.4346   y=0.0966   z=0.1575[0m
+[0;32mI (11624) IMU: timestamp=0[0m
+[0;32mI (11624) IMU: calib accel: x=-0.0330   y=0.1759   z=0.9860[0m
+[0;32mI (11634) IMU: calib gyro:     x=0.0690   y=-0.0865   z=0.0507[0m
+[0;32mI (11644) IMU: timestamp=0[0m
+[0;32mI (11644) IMU: calib accel: x=-0.0329   y=0.1723   z=0.9937[0m
+[0;32mI (11644) IMU: calib gyro:     x=0.0385   y=0.0661   z=0.0354[0m
+[0;32mI (11654) IMU: timestamp=0[0m
+[0;32mI (11654) IMU: calib accel: x=-0.0330   y=0.1730   z=0.9897[0m
+[0;32mI (11664) IMU: calib gyro:     x=0.2216   y=0.1729   z=0.0659[0m
+[0;32mI (11664) IMU: timestamp=0[0m
+[0;32mI (11664) IMU: calib accel: x=-0.0346   y=0.1761   z=0.9843[0m
+[0;32mI (11674) IMU: calib gyro:     x=0.2673   y=0.1424   z=-0.0104[0m
+[0;32mI (11684) IMU: timestamp=0[0m
+[0;32mI (11684) IMU: calib accel: x=-0.0352   y=0.1694   z=0.9939[0m
+[0;32mI (11684) IMU: calib gyro:     x=-0.4193   y=0.1424   z=0.1270[0m
+[0;32mI (11694) IMU: timestamp=0[0m
+[0;32mI (11694) IMU: calib accel: x=-0.0321   y=0.1767   z=0.9861[0m
+[0;32mI (11694) IMU: calib gyro:     x=0.3131   y=-0.3307   z=0.0659[0m
+[0;32mI (11704) IMU: timestamp=0[0m
+[0;32mI (11704) IMU: calib accel: x=-0.0323   y=0.1755   z=0.9875[0m
+[0;32mI (11714) IMU: calib gyro:     x=0.0079   y=0.1271   z=0.0659[0m
+[0;32mI (11724) IMU: timestamp=0[0m
+[0;32mI (11724) IMU: calib accel: x=-0.0353   y=0.1721   z=0.9893[0m
+[0;32mI (11724) IMU: calib gyro:     x=-0.0989   y=0.3560   z=0.0049[0m
+[0;32mI (11734) IMU: timestamp=0[0m
+[0;32mI (11734) IMU: calib accel: x=-0.0325   y=0.1766   z=0.9842[0m
+[0;32mI (11734) IMU: calib gyro:     x=0.3741   y=-0.0713   z=0.0201[0m
+[0;32mI (11744) IMU: timestamp=0[0m
+[0;32mI (11744) IMU: calib accel: x=-0.0317   y=0.1700   z=0.9961[0m
+[0;32mI (11754) IMU: calib gyro:     x=-0.3888   y=-0.1170   z=0.1422[0m
+[0;32mI (11754) IMU: timestamp=0[0m
+[0;32mI (11764) IMU: calib accel: x=-0.0320   y=0.1746   z=0.9891[0m
+[0;32mI (11764) IMU: calib gyro:     x=0.1910   y=-0.0560   z=0.0964[0m
+[0;32mI (11774) IMU: timestamp=0[0m
+[0;32mI (11774) IMU: calib accel: x=-0.0342   y=0.1737   z=0.9882[0m
+[0;32mI (11774) IMU: calib gyro:     x=0.2216   y=0.1729   z=0.0049[0m
+[0;32mI (11784) IMU: timestamp=0[0m
+[0;32mI (11784) IMU: calib accel: x=-0.0337   y=0.1737   z=0.9897[0m
+[0;32mI (11794) IMU: calib gyro:     x=0.0385   y=0.2339   z=0.0507[0m
+[0;32mI (11794) IMU: timestamp=0[0m
+[0;32mI (11794) IMU: calib accel: x=-0.0337   y=0.1777   z=0.9828[0m
+[0;32mI (11804) IMU: calib gyro:     x=0.3741   y=-0.1628   z=0.0049[0m
+[0;32mI (11814) IMU: timestamp=0[0m
+[0;32mI (11814) IMU: calib accel: x=-0.0340   y=0.1700   z=0.9960[0m
+[0;32mI (11814) IMU: calib gyro:     x=-0.5109   y=0.0050   z=0.1270[0m
+[0;32mI (11824) IMU: timestamp=0[0m
+[0;32mI (11824) IMU: calib accel: x=-0.0331   y=0.1739   z=0.9905[0m
+[0;32mI (11834) IMU: calib gyro:     x=0.0385   y=-0.0560   z=0.1117[0m
+[0;32mI (11834) IMU: timestamp=0[0m
+[0;32mI (11844) IMU: calib accel: x=-0.0342   y=0.1757   z=0.9865[0m
+[0;32mI (11844) IMU: calib gyro:     x=0.3894   y=-0.0255   z=0.0507[0m
+[0;32mI (11854) IMU: timestamp=0[0m
+[0;32mI (11854) IMU: calib accel: x=-0.0330   y=0.1717   z=0.9904[0m
+[0;32mI (11854) IMU: calib gyro:     x=-0.0531   y=0.1576   z=0.0507[0m
+[0;32mI (11864) IMU: timestamp=0[0m
+[0;32mI (11864) IMU: calib accel: x=-0.0346   y=0.1771   z=0.9854[0m
+[0;32mI (11874) IMU: calib gyro:     x=0.1453   y=0.1271   z=0.0507[0m
+[0;32mI (11874) IMU: timestamp=0[0m
+[0;32mI (11874) IMU: calib accel: x=-0.0335   y=0.1706   z=0.9933[0m
+[0;32mI (11884) IMU: calib gyro:     x=-0.2667   y=-0.0407   z=0.1727[0m
+[0;32mI (11894) IMU: timestamp=0[0m
+[0;32mI (11894) IMU: calib accel: x=-0.0301   y=0.1757   z=0.9885[0m
+[0;32mI (11894) IMU: calib gyro:     x=0.3131   y=-0.1628   z=0.0812[0m
+[0;32mI (11904) IMU: timestamp=0[0m
+[0;32mI (11904) IMU: calib accel: x=-0.0342   y=0.1767   z=0.9841[0m
+[0;32mI (11914) IMU: calib gyro:     x=0.2368   y=0.2492   z=-0.0562[0m
+[0;32mI (11914) IMU: timestamp=0[0m
+[0;32mI (11924) IMU: calib accel: x=-0.0367   y=0.1705   z=0.9925[0m
+[0;32mI (11924) IMU: calib gyro:     x=-0.4041   y=0.4475   z=0.0964[0m
+[0;32mI (11934) IMU: timestamp=0[0m
+[0;32mI (11934) IMU: calib accel: x=-0.0324   y=0.1772   z=0.9842[0m
+[0;32mI (11934) IMU: calib gyro:     x=0.3284   y=-0.3917   z=0.0964[0m
+[0;32mI (11944) IMU: timestamp=0[0m
+[0;32mI (11944) IMU: calib accel: x=-0.0308   y=0.1734   z=0.9937[0m
+[0;32mI (11954) IMU: calib gyro:     x=-0.1447   y=-0.2544   z=0.1575[0m
+[0;32mI (11954) IMU: timestamp=0[0m
+[0;32mI (11954) IMU: calib accel: x=-0.0339   y=0.1718   z=0.9920[0m
+[0;32mI (11964) IMU: calib gyro:     x=-0.2515   y=0.3407   z=0.1270[0m
+[0;32mI (11974) IMU: timestamp=0[0m
+[0;32mI (11974) IMU: calib accel: x=-0.0339   y=0.1749   z=0.9847[0m
+[0;32mI (11974) IMU: calib gyro:     x=0.3436   y=0.1424   z=0.0201[0m
+[0;32mI (11984) IMU: timestamp=0[0m
+[0;32mI (11984) IMU: calib accel: x=-0.0312   y=0.1729   z=0.9892[0m
+[0;32mI (11994) IMU: calib gyro:     x=0.1605   y=-0.2086   z=0.1117[0m
+[0;32mI (11994) IMU: timestamp=0[0m
+[0;32mI (12004) IMU: calib accel: x=-0.0313   y=0.1796   z=0.9872[0m
+[0;32mI (12004) IMU: calib gyro:     x=0.0995   y=0.0203   z=0.0812[0m
+[0;32mI (12014) IMU: timestamp=0[0m
+[0;32mI (12014) IMU: calib accel: x=-0.0337   y=0.1693   z=0.9920[0m
+[0;32mI (12014) IMU: calib gyro:     x=-0.4498   y=0.3407   z=0.0812[0m
+[0;32mI (12024) IMU: timestamp=0[0m
+[0;32mI (12024) IMU: calib accel: x=-0.0319   y=0.1744   z=0.9888[0m
+[0;32mI (12034) IMU: calib gyro:     x=0.2673   y=-0.1323   z=0.1117[0m
+[0;32mI (12034) IMU: timestamp=0[0m
+[0;32mI (12044) IMU: calib accel: x=-0.0307   y=0.1788   z=0.9832[0m
+[0;32mI (12044) IMU: calib gyro:     x=0.7251   y=-0.1933   z=0.0964[0m
+[0;32mI (12054) IMU: timestamp=0[0m
+[0;32mI (12054) IMU: calib accel: x=-0.0362   y=0.1705   z=0.9952[0m
+[0;32mI (12054) IMU: calib gyro:     x=-0.6635   y=0.6612   z=0.1270[0m
+[0;32mI (12064) IMU: timestamp=0[0m
+[0;32mI (12064) IMU: calib accel: x=-0.0374   y=0.1733   z=0.9876[0m
+[0;32mI (12074) IMU: calib gyro:     x=-0.1294   y=0.1271   z=0.1117[0m
+[0;32mI (12074) IMU: timestamp=0[0m
+[0;32mI (12074) IMU: calib accel: x=-0.0310   y=0.1744   z=0.9880[0m
+[0;32mI (12084) IMU: calib gyro:     x=0.4352   y=-0.5901   z=0.1575[0m
+[0;32mI (12094) IMU: timestamp=0[0m
+[0;32mI (12094) IMU: calib accel: x=-0.0318   y=0.1751   z=0.9910[0m
+[0;32mI (12094) IMU: calib gyro:     x=0.0842   y=0.1576   z=0.0812[0m
+[0;32mI (12104) IMU: timestamp=0[0m
+[0;32mI (12104) IMU: calib accel: x=-0.0369   y=0.1743   z=0.9849[0m
+[0;32mI (12114) IMU: calib gyro:     x=-0.0836   y=0.5696   z=0.0812[0m
+[0;32mI (12114) IMU: timestamp=0[0m
+[0;32mI (12114) IMU: calib accel: x=-0.0339   y=0.1701   z=0.9919[0m
+[0;32mI (12124) IMU: calib gyro:     x=-0.1294   y=-0.1018   z=0.1422[0m
+[0;32mI (12134) IMU: timestamp=0[0m
+[0;32mI (12134) IMU: calib accel: x=-0.0282   y=0.1792   z=0.9882[0m
+[0;32mI (12134) IMU: calib gyro:     x=0.4504   y=-0.6053   z=0.0812[0m
+[0;32mI (12144) IMU: timestamp=0[0m
+[0;32mI (12144) IMU: calib accel: x=-0.0330   y=0.1737   z=0.9883[0m
+[0;32mI (12154) IMU: calib gyro:     x=-0.0378   y=0.3102   z=0.0964[0m
+[0;32mI (12154) IMU: timestamp=0[0m
+[0;32mI (12154) IMU: calib accel: x=-0.0364   y=0.1701   z=0.9919[0m
+[0;32mI (12164) IMU: calib gyro:     x=-0.2362   y=0.5696   z=0.0812[0m
+[0;32mI (12174) IMU: timestamp=0[0m
+[0;32mI (12174) IMU: calib accel: x=-0.0309   y=0.1784   z=0.9839[0m
+[0;32mI (12174) IMU: calib gyro:     x=0.6946   y=-0.2544   z=0.0201[0m
+[0;32mI (12184) IMU: timestamp=0[0m
+[0;32mI (12184) IMU: calib accel: x=-0.0331   y=0.1718   z=0.9909[0m
+[0;32mI (12194) IMU: calib gyro:     x=-0.0989   y=0.0356   z=0.1422[0m
+[0;32mI (12194) IMU: timestamp=0[0m
+[0;32mI (12194) IMU: calib accel: x=-0.0353   y=0.1729   z=0.9902[0m
+[0;32mI (12204) IMU: calib gyro:     x=-0.1447   y=0.3255   z=0.0812[0m
+[0;32mI (12214) IMU: timestamp=0[0m
+[0;32mI (12214) IMU: calib accel: x=-0.0340   y=0.1746   z=0.9894[0m
+[0;32mI (12214) IMU: calib gyro:     x=0.1758   y=0.0813   z=0.0049[0m
+[0;32mI (12224) IMU: timestamp=0[0m
+[0;32mI (12224) IMU: calib accel: x=-0.0337   y=0.1732   z=0.9886[0m
+[0;32mI (12234) IMU: calib gyro:     x=0.1758   y=-0.0407   z=0.0507[0m
+[0;32mI (12234) IMU: timestamp=0[0m
+[0;32mI (12234) IMU: calib accel: x=-0.0331   y=0.1763   z=0.9837[0m
+[0;32mI (12244) IMU: calib gyro:     x=0.2979   y=0.0966   z=0.0812[0m
+[0;32mI (12254) IMU: timestamp=0[0m
+[0;32mI (12254) IMU: calib accel: x=-0.0351   y=0.1710   z=0.9925[0m
+[0;32mI (12254) IMU: calib gyro:     x=-0.3735   y=0.3712   z=0.1422[0m
+[0;32mI (12264) IMU: timestamp=0[0m
+[0;32mI (12264) IMU: calib accel: x=-0.0330   y=0.1734   z=0.9898[0m
+[0;32mI (12264) IMU: calib gyro:     x=-0.0378   y=-0.0102   z=0.0812[0m
+[0;32mI (12274) IMU: timestamp=0[0m
+[0;32mI (12274) IMU: calib accel: x=-0.0297   y=0.1759   z=0.9847[0m
+[0;32mI (12284) IMU: calib gyro:     x=0.4199   y=-0.1628   z=0.0201[0m
+[0;32mI (12284) IMU: timestamp=0[0m
+[0;32mI (12294) IMU: calib accel: x=-0.0324   y=0.1730   z=0.9922[0m
+[0;32mI (12294) IMU: calib gyro:     x=-0.1752   y=0.2950   z=0.1117[0m
+[0;32mI (12304) IMU: timestamp=0[0m
+[0;32mI (12304) IMU: calib accel: x=-0.0341   y=0.1741   z=0.9875[0m
+[0;32mI (12304) IMU: calib gyro:     x=0.0690   y=0.3102   z=0.0964[0m
+[0;32mI (12314) IMU: timestamp=0[0m
+[0;32mI (12314) IMU: calib accel: x=-0.0342   y=0.1727   z=0.9904[0m
+[0;32mI (12324) IMU: calib gyro:     x=0.0079   y=-0.0713   z=0.0812[0m
+[0;32mI (12334) IMU: timestamp=0[0m
+[0;32mI (12334) IMU: calib accel: x=-0.0307   y=0.1751   z=0.9891[0m
+[0;32mI (12334) IMU: calib gyro:     x=0.2979   y=-0.1933   z=0.1270[0m
+[0;32mI (12344) IMU: timestamp=0[0m
+[0;32mI (12344) IMU: calib accel: x=-0.0337   y=0.1771   z=0.9842[0m
+[0;32mI (12344) IMU: calib gyro:     x=0.1758   y=0.3255   z=0.0507[0m
+[0;32mI (12354) IMU: timestamp=0[0m
+[0;32mI (12354) IMU: calib accel: x=-0.0369   y=0.1709   z=0.9908[0m
+[0;32mI (12364) IMU: calib gyro:     x=-0.3125   y=0.3865   z=0.1117[0m
+[0;32mI (12364) IMU: timestamp=0[0m
+[0;32mI (12374) IMU: calib accel: x=-0.0319   y=0.1756   z=0.9856[0m
+[0;32mI (12374) IMU: calib gyro:     x=0.2826   y=-0.2696   z=0.0659[0m
+[0;32mI (12384) IMU: timestamp=0[0m
+[0;32mI (12384) IMU: calib accel: x=-0.0319   y=0.1744   z=0.9889[0m
+[0;32mI (12384) IMU: calib gyro:     x=0.0079   y=-0.1170   z=0.1117[0m
+[0;32mI (12394) IMU: timestamp=0[0m
+[0;32mI (12394) IMU: calib accel: x=-0.0359   y=0.1713   z=0.9916[0m
+[0;32mI (12404) IMU: calib gyro:     x=-0.2972   y=0.2797   z=0.0812[0m
+[0;32mI (12404) IMU: timestamp=0[0m
+[0;32mI (12414) IMU: calib accel: x=-0.0337   y=0.1757   z=0.9838[0m
+[0;32mI (12414) IMU: calib gyro:     x=0.3741   y=0.0508   z=0.0812[0m
+[0;32mI (12424) IMU: timestamp=0[0m
+[0;32mI (12424) IMU: calib accel: x=-0.0314   y=0.1738   z=0.9906[0m
+[0;32mI (12424) IMU: calib gyro:     x=0.1605   y=-0.1018   z=0.0659[0m
+[0;32mI (12434) IMU: timestamp=0[0m
+[0;32mI (12434) IMU: calib accel: x=-0.0325   y=0.1750   z=0.9872[0m
+[0;32mI (12444) IMU: calib gyro:     x=-0.0989   y=0.1271   z=0.0812[0m
+[0;32mI (12444) IMU: timestamp=0[0m
+[0;32mI (12454) IMU: calib accel: x=-0.0335   y=0.1721   z=0.9891[0m
+[0;32mI (12454) IMU: calib gyro:     x=-0.1294   y=0.1424   z=0.0659[0m
+[0;32mI (12464) IMU: timestamp=0[0m
+[0;32mI (12464) IMU: calib accel: x=-0.0307   y=0.1738   z=0.9909[0m
+[0;32mI (12464) IMU: calib gyro:     x=0.1910   y=-0.1323   z=0.0049[0m
+[0;32mI (12474) IMU: timestamp=0[0m
+[0;32mI (12474) IMU: calib accel: x=-0.0321   y=0.1768   z=0.9843[0m
+[0;32mI (12484) IMU: calib gyro:     x=0.4962   y=0.0356   z=0.0201[0m
+[0;32mI (12484) IMU: timestamp=0[0m
+[0;32mI (12494) IMU: calib accel: x=-0.0369   y=0.1709   z=0.9894[0m
+[0;32mI (12494) IMU: calib gyro:     x=-0.3430   y=0.4475   z=0.1422[0m
+[0;32mI (12504) IMU: timestamp=0[0m
+[0;32mI (12504) IMU: calib accel: x=-0.0341   y=0.1739   z=0.9871[0m
+[0;32mI (12504) IMU: calib gyro:     x=0.1605   y=-0.0407   z=0.1422[0m
+[0;32mI (12514) IMU: timestamp=0[0m
+[0;32mI (12514) IMU: calib accel: x=-0.0304   y=0.1771   z=0.9859[0m
+[0;32mI (12524) IMU: calib gyro:     x=0.3589   y=-0.3459   z=0.0964[0m
+[0;32mI (12524) IMU: timestamp=0[0m
+[0;32mI (12524) IMU: calib accel: x=-0.0347   y=0.1707   z=0.9910[0m
+[0;32mI (12534) IMU: calib gyro:     x=-0.2209   y=0.3560   z=0.1117[0m
+[0;32mI (12544) IMU: timestamp=0[0m
+[0;32mI (12544) IMU: calib accel: x=-0.0359   y=0.1749   z=0.9850[0m
+[0;32mI (12544) IMU: calib gyro:     x=0.0995   y=0.2339   z=0.0354[0m
+[0;32mI (12554) IMU: timestamp=0[0m
+[0;32mI (12554) IMU: calib accel: x=-0.0331   y=0.1738   z=0.9891[0m
+[0;32mI (12564) IMU: calib gyro:     x=0.0690   y=-0.1476   z=0.0507[0m
+[0;32mI (12574) IMU: timestamp=0[0m
+[0;32mI (12574) IMU: calib accel: x=-0.0304   y=0.1751   z=0.9882[0m
+[0;32mI (12574) IMU: calib gyro:     x=0.1453   y=-0.0560   z=0.0812[0m
+[0;32mI (12584) IMU: timestamp=0[0m
+[0;32mI (12584) IMU: calib accel: x=-0.0337   y=0.1740   z=0.9886[0m
+[0;32mI (12584) IMU: calib gyro:     x=-0.0531   y=0.3255   z=0.0812[0m
+[0;32mI (12594) IMU: timestamp=0[0m
+[0;32mI (12594) IMU: calib accel: x=-0.0349   y=0.1721   z=0.9905[0m
+[0;32mI (12604) IMU: calib gyro:     x=-0.1599   y=0.0661   z=0.0507[0m
+[0;32mI (12604) IMU: timestamp=0[0m
+[0;32mI (12614) IMU: calib accel: x=-0.0314   y=0.1768   z=0.9837[0m
+[0;32mI (12614) IMU: calib gyro:     x=0.4657   y=-0.2086   z=0.0659[0m
+[0;32mI (12624) IMU: timestamp=0[0m
+[0;32mI (12624) IMU: calib accel: x=-0.0336   y=0.1735   z=0.9899[0m
+[0;32mI (12624) IMU: calib gyro:     x=-0.1447   y=0.1424   z=0.0964[0m
+[0;32mI (12634) IMU: timestamp=0[0m
+[0;32mI (12634) IMU: calib accel: x=-0.0347   y=0.1718   z=0.9882[0m
+[0;32mI (12644) IMU: calib gyro:     x=-0.1752   y=0.2339   z=0.0964[0m
+[0;32mI (12644) IMU: timestamp=0[0m
+[0;32mI (12654) IMU: calib accel: x=-0.0314   y=0.1760   z=0.9848[0m
+[0;32mI (12654) IMU: calib gyro:     x=0.4047   y=-0.1628   z=0.0049[0m
+[0;32mI (12664) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (13114) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (13114) LSM6DS3: num_fifo_samples = 2100 100[0m
+[0;32mI (13274) LSM6DS3: [0m
+[0;32mI (13274) LSM6DS3: raw gyro = 2.090454 -6.851196 -1.846313[0m
+[0;32mI (13274) LSM6DS3: raw accel = 0.009888 0.146851 0.989380[0m
+[0;32mI (13284) LSM6DS3: num_fifo_samples = 1608[0m
+[0;32mI (13284) IMU: timestamp=1073566896[0m
+[0;32mI (13284) IMU: calib accel: x=-0.0329   y=0.1730   z=0.9911[0m
+[0;32mI (13284) IMU: calib gyro:     x=-0.0989   y=0.0356   z=0.0659[0m
+[0;32mI (13294) IMU: timestamp=0[0m
+[0;32mI (13294) IMU: calib accel: x=-0.0337   y=0.1754   z=0.9886[0m
+[0;32mI (13304) IMU: calib gyro:     x=-0.0073   y=0.2187   z=0.0507[0m
+[0;32mI (13304) IMU: timestamp=0[0m
+[0;32mI (13304) IMU: calib accel: x=-0.0349   y=0.1706   z=0.9902[0m
+[1;31mE (13314) DATA LOGGING: SDCARD raw fail[0m
+[0;32mI (13324) IMU: calib gyro:     x=-0.0531   y=0.0203   z=0.0659[0m
+[0;32mI (13324) IMU: timestamp=0[0m
+[0;32mI (13324) IMU: calib accel: x=-0.0314   y=0.1739   z=0.9888[0m
+[1;31mE (13334) DATA LOGGING: SDCARD orientation fail[0m
+[0;32mI (13334) IMU: calib gyro:     x=0.2673   y=-0.1933   z=0.1117[0m
+[0;32mI (13344) IMU: timestamp=0[0m
+[0;32mI (13344) IMU: calib accel: x=-0.0307   y=0.1781   z=0.9852[0m
+[0;32mI (13344) IMU: calib gyro:     x=0.3131   y=0.0813   z=0.0201[0m
+[0;32mI (13354) IMU: timestamp=0[0m
+[0;32mI (13354) IMU: calib accel: x=-0.0363   y=0.1719   z=0.9909[0m
+[0;32mI (13364) IMU: calib gyro:     x=-0.3735   y=0.3865   z=0.0507[0m
+[0;32mI (13364) IMU: timestamp=0[0m
+[0;32mI (13374) IMU: calib accel: x=-0.0329   y=0.1750   z=0.9888[0m
+[0;32mI (13374) IMU: calib gyro:     x=0.1605   y=-0.1628   z=0.0201[0m
+[0;32mI (13384) IMU: timestamp=0[0m
+[0;32mI (13384) IMU: calib accel: x=-0.0306   y=0.1752   z=0.9883[0m
+[0;32mI (13384) IMU: calib gyro:     x=0.2673   y=-0.2696   z=0.0201[0m
+[0;32mI (13394) IMU: timestamp=0[0m
+[0;32mI (13394) IMU: calib accel: x=-0.0324   y=0.1713   z=0.9891[0m
+[0;32mI (13404) IMU: calib gyro:     x=-0.0531   y=0.2339   z=0.0507[0m
+[0;32mI (13414) IMU: timestamp=0[0m
+[0;32mI (13414) IMU: calib accel: x=-0.0354   y=0.1739   z=0.9863[0m
+[0;32mI (13414) IMU: calib gyro:     x=0.2063   y=0.2187   z=0.0354[0m
+[0;32mI (13424) IMU: timestamp=0[0m
+[0;32mI (13424) IMU: calib accel: x=-0.0335   y=0.1727   z=0.9895[0m
+[0;32mI (13424) IMU: calib gyro:     x=0.0079   y=-0.1018   z=0.1422[0m
+[0;32mI (13434) IMU: timestamp=0[0m
+[0;32mI (13434) IMU: calib accel: x=-0.0317   y=0.1755   z=0.9853[0m
+[0;32mI (13444) IMU: calib gyro:     x=0.1910   y=-0.1781   z=0.0964[0m
+[0;32mI (13444) IMU: timestamp=0[0m
+[0;32mI (13454) IMU: calib accel: x=-0.0332   y=0.1744   z=0.9893[0m
+[0;32mI (13454) IMU: calib gyro:     x=-0.0684   y=0.2339   z=0.0659[0m
+[0;32mI (13464) IMU: timestamp=0[0m
+[0;32mI (13464) IMU: calib accel: x=-0.0342   y=0.1721   z=0.9910[0m
+[0;32mI (13464) IMU: calib gyro:     x=-0.1752   y=0.2492   z=0.0964[0m
+[0;32mI (13474) IMU: timestamp=0[0m
+[0;32mI (13474) IMU: calib accel: x=-0.0318   y=0.1757   z=0.9853[0m
+[0;32mI (13484) IMU: calib gyro:     x=0.3436   y=-0.1018   z=0.0201[0m
+[0;32mI (13484) IMU: timestamp=0[0m
+[0;32mI (13484) IMU: calib accel: x=-0.0331   y=0.1735   z=0.9898[0m
+[0;32mI (13494) IMU: calib gyro:     x=0.0385   y=-0.0255   z=0.0964[0m
+[0;32mI (13504) IMU: timestamp=0[0m
+[0;32mI (13504) IMU: calib accel: x=-0.0339   y=0.1746   z=0.9889[0m
+[0;32mI (13504) IMU: calib gyro:     x=0.0079   y=0.1576   z=0.0964[0m
+[0;32mI (13514) IMU: timestamp=0[0m
+[0;32mI (13514) IMU: calib accel: x=-0.0349   y=0.1738   z=0.9894[0m
+[0;32mI (13524) IMU: calib gyro:     x=-0.0073   y=0.1576   z=0.0964[0m
+[0;32mI (13524) IMU: timestamp=0[0m
+[0;32mI (13524) IMU: calib accel: x=-0.0321   y=0.1730   z=0.9904[0m
+[0;32mI (13534) IMU: calib gyro:     x=0.0842   y=0.0050   z=0.1117[0m
+[0;32mI (13544) IMU: timestamp=0[0m
+[0;32mI (13544) IMU: calib accel: x=-0.0310   y=0.1760   z=0.9842[0m
+[0;32mI (13544) IMU: calib gyro:     x=0.4047   y=-0.0255   z=0.0659[0m
+[0;32mI (13554) IMU: timestamp=0[0m
+[0;32mI (13554) IMU: calib accel: x=-0.0354   y=0.1739   z=0.9916[0m
+[0;32mI (13564) IMU: calib gyro:     x=-0.2515   y=0.2797   z=0.1117[0m
+[0;32mI (13564) IMU: timestamp=0[0m
+[0;32mI (13564) IMU: calib accel: x=-0.0342   y=0.1728   z=0.9905[0m
+[0;32mI (13574) IMU: calib gyro:     x=-0.0531   y=0.1881   z=0.0812[0m
+[0;32mI (13584) IMU: timestamp=0[0m
+[0;32mI (13584) IMU: calib accel: x=-0.0324   y=0.1763   z=0.9855[0m
+[0;32mI (13584) IMU: calib gyro:     x=0.3589   y=-0.1933   z=0.0812[0m
+[0;32mI (13594) IMU: timestamp=0[0m
+[0;32mI (13594) IMU: calib accel: x=-0.0331   y=0.1734   z=0.9894[0m
+[0;32mI (13604) IMU: calib gyro:     x=0.0232   y=0.0813   z=0.0812[0m
+[0;32mI (13604) IMU: timestamp=0[0m
+[0;32mI (13604) IMU: calib accel: x=-0.0345   y=0.1760   z=0.9859[0m
+[0;32mI (13614) IMU: calib gyro:     x=0.0537   y=0.2187   z=0.0507[0m
+[0;32mI (13624) IMU: timestamp=0[0m
+[0;32mI (13624) IMU: calib accel: x=-0.0335   y=0.1728   z=0.9903[0m
+[0;32mI (13624) IMU: calib gyro:     x=-0.0684   y=-0.0255   z=0.0812[0m
+[0;32mI (13634) IMU: timestamp=0[0m
+[0;32mI (13634) IMU: calib accel: x=-0.0323   y=0.1734   z=0.9892[0m
+[0;32mI (13644) IMU: calib gyro:     x=0.1605   y=-0.1018   z=0.0964[0m
+[0;32mI (13644) IMU: timestamp=0[0m
+[0;32mI (13644) IMU: calib accel: x=-0.0337   y=0.1749   z=0.9874[0m
+[0;32mI (13654) IMU: calib gyro:     x=0.1453   y=0.1881   z=0.0354[0m
+[0;32mI (13664) IMU: timestamp=0[0m
+[0;32mI (13664) IMU: calib accel: x=-0.0354   y=0.1716   z=0.9914[0m
+[0;32mI (13664) IMU: calib gyro:     x=-0.1599   y=0.2187   z=0.0812[0m
+[0;32mI (13674) IMU: timestamp=0[0m
+[0;32mI (13674) IMU: calib accel: x=-0.0320   y=0.1766   z=0.9869[0m
+[0;32mI (13684) IMU: calib gyro:     x=0.4504   y=-0.0713   z=0.0049[0m
+[0;32mI (13684) IMU: timestamp=0[0m
+[0;32mI (13684) IMU: calib accel: x=-0.0329   y=0.1749   z=0.9898[0m
+[0;32mI (13694) IMU: calib gyro:     x=0.0385   y=0.0050   z=0.0354[0m
+[0;32mI (13694) IMU: timestamp=0[0m
+[0;32mI (13704) IMU: calib accel: x=-0.0351   y=0.1727   z=0.9903[0m
+[0;32mI (13704) IMU: calib gyro:     x=-0.1752   y=0.2644   z=0.0507[0m
+[0;32mI (13714) IMU: timestamp=0[0m
+[0;32mI (13714) IMU: calib accel: x=-0.0341   y=0.1752   z=0.9863[0m
+[0;32mI (13714) IMU: calib gyro:     x=0.3284   y=-0.0713   z=0.0049[0m
+[0;32mI (13734) IMU: timestamp=0[0m
+[0;32mI (13734) IMU: calib accel: x=-0.0340   y=0.1733   z=0.9900[0m
+[0;32mI (13734) IMU: calib gyro:     x=0.0537   y=-0.0407   z=0.0812[0m
+[0;32mI (13734) IMU: timestamp=0[0m
+[0;32mI (13744) IMU: calib accel: x=-0.0342   y=0.1756   z=0.9864[0m
+[0;32mI (13744) IMU: calib gyro:     x=0.0690   y=0.0966   z=0.1117[0m
+[0;32mI (13754) IMU: timestamp=0[0m
+[0;32mI (13754) IMU: calib accel: x=-0.0318   y=0.1739   z=0.9886[0m
+[0;32mI (13754) IMU: calib gyro:     x=-0.0226   y=0.0050   z=0.0964[0m
+[0;32mI (13764) IMU: timestamp=0[0m
+[0;32mI (13764) IMU: calib accel: x=-0.0313   y=0.1745   z=0.9905[0m
+[0;32mI (13774) IMU: calib gyro:     x=0.0995   y=-0.0255   z=0.0659[0m
+[0;32mI (13784) IMU: timestamp=0[0m
+[0;32mI (13784) IMU: calib accel: x=-0.0330   y=0.1760   z=0.9863[0m
+[0;32mI (13784) IMU: calib gyro:     x=0.2216   y=0.0661   z=0.0201[0m
+[0;32mI (13794) IMU: timestamp=0[0m
+[0;32mI (13794) IMU: calib accel: x=-0.0353   y=0.1721   z=0.9903[0m
+[0;32mI (13804) IMU: calib gyro:     x=-0.0531   y=0.2797   z=0.0659[0m
+[0;32mI (13804) IMU: timestamp=0[0m
+[0;32mI (13804) IMU: calib accel: x=-0.0315   y=0.1760   z=0.9880[0m
+[0;32mI (13814) IMU: calib gyro:     x=0.2368   y=-0.0102   z=0.1117[0m
+[0;32mI (13814) IMU: timestamp=0[0m
+[0;32mI (13824) IMU: calib accel: x=-0.0335   y=0.1741   z=0.9871[0m
+[0;32mI (13824) IMU: calib gyro:     x=0.1605   y=0.0203   z=0.0659[0m
+[0;32mI (13834) IMU: timestamp=0[0m
+[0;32mI (13834) IMU: calib accel: x=-0.0337   y=0.1743   z=0.9891[0m
+[0;32mI (13834) IMU: calib gyro:     x=-0.0378   y=0.1576   z=0.0964[0m
+[0;32mI (13844) IMU: timestamp=0[0m
+[0;32mI (13844) IMU: calib accel: x=-0.0351   y=0.1763   z=0.9870[0m
+[0;32mI (13854) IMU: calib gyro:     x=0.2826   y=0.1118   z=0.1117[0m
+[0;32mI (13854) IMU: timestamp=0[0m
+[0;32mI (13864) IMU: calib accel: x=-0.0354   y=0.1727   z=0.9916[0m
+[0;32mI (13864) IMU: calib gyro:     x=-0.0531   y=0.1271   z=0.1117[0m
+[0;32mI (13874) IMU: timestamp=0[0m
+[0;32mI (13874) IMU: calib accel: x=-0.0332   y=0.1748   z=0.9882[0m
+[0;32mI (13874) IMU: calib gyro:     x=0.1300   y=0.0203   z=0.1270[0m
+[0;32mI (13884) IMU: timestamp=0[0m
+[0;32mI (13884) IMU: calib accel: x=-0.0321   y=0.1745   z=0.9874[0m
+[0;32mI (13894) IMU: calib gyro:     x=0.1453   y=0.0356   z=0.0964[0m
+[0;32mI (13894) IMU: timestamp=0[0m
+[0;32mI (13904) IMU: calib accel: x=-0.0329   y=0.1732   z=0.9911[0m
+[0;32mI (13904) IMU: calib gyro:     x=-0.0836   y=0.1118   z=0.0659[0m
+[0;32mI (13914) IMU: timestamp=0[0m
+[0;32mI (13914) IMU: calib accel: x=-0.0323   y=0.1755   z=0.9842[0m
+[0;32mI (13914) IMU: calib gyro:     x=0.2521   y=-0.0255   z=0.0354[0m
+[0;32mI (13924) IMU: timestamp=0[0m
+[0;32mI (13924) IMU: calib accel: x=-0.0330   y=0.1740   z=0.9895[0m
+[0;32mI (13934) IMU: calib gyro:     x=0.0232   y=0.0050   z=0.0964[0m
+[0;32mI (13934) IMU: timestamp=0[0m
+[0;32mI (13944) IMU: calib accel: x=-0.0326   y=0.1746   z=0.9904[0m
+[0;32mI (13944) IMU: calib gyro:     x=0.0079   y=0.0050   z=0.0659[0m
+[0;32mI (13954) IMU: timestamp=0[0m
+[0;32mI (13954) IMU: calib accel: x=-0.0335   y=0.1738   z=0.9881[0m
+[0;32mI (13964) IMU: calib gyro:     x=0.0690   y=0.1118   z=0.0507[0m
+[0;32mI (13964) IMU: timestamp=0[0m
+[0;32mI (13964) IMU: calib accel: x=-0.0335   y=0.1728   z=0.9909[0m
+[0;32mI (13974) IMU: calib gyro:     x=0.0842   y=0.0508   z=0.1117[0m
+[0;32mI (13974) IMU: timestamp=0[0m
+[0;32mI (13974) IMU: calib accel: x=-0.0320   y=0.1773   z=0.9872[0m
+[0;32mI (13984) IMU: calib gyro:     x=0.2826   y=0.0050   z=0.0201[0m
+[0;32mI (13984) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (13994) IMU: timestamp=0[0m
+[0;32mI (13994) IMU: calib accel: x=-0.0358   y=0.1746   z=0.9911[0m
+[0;32mI (14004) IMU: calib gyro:     x=-0.1904   y=0.2187   z=0.0659[0m
+[0;32mI (14004) IMU: timestamp=0[0m
+[0;32mI (14004) IMU: calib accel: x=-0.0342   y=0.1722   z=0.9888[0m
+[0;32mI (14014) IMU: calib gyro:     x=-0.0531   y=0.0203   z=0.0659[0m
+[0;32mI (14024) IMU: timestamp=0[0m
+[0;32mI (14024) IMU: calib accel: x=-0.0304   y=0.1771   z=0.9850[0m
+[0;32mI (14024) IMU: calib gyro:     x=0.4657   y=-0.1628   z=0.0812[0m
+[0;32mI (14034) IMU: timestamp=0[0m
+[0;32mI (14034) IMU: calib accel: x=-0.0320   y=0.1739   z=0.9899[0m
+[0;32mI (14044) IMU: calib gyro:     x=-0.1294   y=0.1729   z=0.0659[0m
+[0;32mI (14044) IMU: timestamp=0[0m
+[0;32mI (14044) IMU: calib accel: x=-0.0360   y=0.1719   z=0.9895[0m
+[0;32mI (14054) IMU: calib gyro:     x=-0.1752   y=0.3560   z=0.0507[0m
+[0;32mI (14064) IMU: timestamp=0[0m
+[0;32mI (14064) IMU: calib accel: x=-0.0326   y=0.1730   z=0.9897[0m
+[0;32mI (14064) IMU: calib gyro:     x=0.1605   y=-0.1018   z=0.0659[0m
+[0;32mI (14074) IMU: timestamp=0[0m
+[0;32mI (14074) IMU: calib accel: x=-0.0292   y=0.1760   z=0.9887[0m
+[0;32mI (14084) IMU: calib gyro:     x=0.1758   y=-0.2086   z=0.0201[0m
+[0;32mI (14084) IMU: timestamp=0[0m
+[0;32mI (14084) IMU: calib accel: x=-0.0352   y=0.1760   z=0.9864[0m
+[0;32mI (14094) IMU: calib gyro:     x=0.0537   y=0.3255   z=0.0812[0m
+[0;32mI (14104) IMU: timestamp=0[0m
+[0;32mI (14104) IMU: calib accel: x=-0.0345   y=0.1716   z=0.9897[0m
+[0;32mI (14104) IMU: calib gyro:     x=-0.1752   y=0.2339   z=0.1422[0m
+[0;32mI (14114) IMU: timestamp=0[0m
+[0;32mI (14114) IMU: calib accel: x=-0.0312   y=0.1752   z=0.9877[0m
+[0;32mI (14124) IMU: calib gyro:     x=0.2063   y=-0.3459   z=0.1270[0m
+[0;32mI (14124) IMU: timestamp=0[0m
+[0;32mI (14124) IMU: calib accel: x=-0.0337   y=0.1744   z=0.9898[0m
+[0;32mI (14134) IMU: calib gyro:     x=-0.0073   y=-0.0865   z=0.1270[0m
+[0;32mI (14144) IMU: timestamp=0[0m
+[0;32mI (14144) IMU: calib accel: x=-0.0346   y=0.1706   z=0.9919[0m
+[0;32mI (14144) IMU: calib gyro:     x=-0.2362   y=0.3102   z=0.1422[0m
+[0;32mI (14154) IMU: timestamp=0[0m
+[0;32mI (14154) IMU: calib accel: x=-0.0335   y=0.1757   z=0.9869[0m
+[0;32mI (14164) IMU: calib gyro:     x=0.2979   y=-0.0713   z=0.0812[0m
+[0;32mI (14164) IMU: timestamp=0[0m
+[0;32mI (14164) IMU: calib accel: x=-0.0306   y=0.1752   z=0.9878[0m
+[0;32mI (14174) IMU: calib gyro:     x=0.2673   y=-0.1018   z=0.1117[0m
+[0;32mI (14184) IMU: timestamp=0[0m
+[0;32mI (14184) IMU: calib accel: x=-0.0340   y=0.1738   z=0.9882[0m
+[0;32mI (14184) IMU: calib gyro:     x=-0.0684   y=0.2797   z=0.0507[0m
+[0;32mI (14194) IMU: timestamp=0[0m
+[0;32mI (14194) IMU: calib accel: x=-0.0346   y=0.1728   z=0.9897[0m
+[0;32mI (14204) IMU: calib gyro:     x=-0.1447   y=0.1576   z=0.0812[0m
+[0;32mI (14204) IMU: timestamp=0[0m
+[0;32mI (14204) IMU: calib accel: x=-0.0309   y=0.1733   z=0.9909[0m
+[0;32mI (14214) IMU: calib gyro:     x=0.1300   y=-0.1170   z=0.1117[0m
+[0;32mI (14224) IMU: timestamp=0[0m
+[0;32mI (14224) IMU: calib accel: x=-0.0320   y=0.1765   z=0.9872[0m
+[0;32mI (14224) IMU: calib gyro:     x=0.3131   y=-0.0102   z=0.0507[0m
+[0;32mI (14234) IMU: timestamp=0[0m
+[0;32mI (14234) IMU: calib accel: x=-0.0367   y=0.1726   z=0.9913[0m
+[0;32mI (14244) IMU: calib gyro:     x=-0.1904   y=0.4018   z=0.0964[0m
+[0;32mI (14244) IMU: timestamp=0[0m
+[0;32mI (14244) IMU: calib accel: x=-0.0349   y=0.1741   z=0.9888[0m
+[0;32mI (14254) IMU: calib gyro:     x=0.0537   y=0.0508   z=0.0812[0m
+[0;32mI (14254) IMU: timestamp=0[0m
+[0;32mI (14264) IMU: calib accel: x=-0.0324   y=0.1762   z=0.9866[0m
+[0;32mI (14264) IMU: calib gyro:     x=0.3436   y=-0.2544   z=0.0659[0m
+[0;32mI (14274) IMU: timestamp=0[0m
+[0;32mI (14274) IMU: calib accel: x=-0.0343   y=0.1729   z=0.9897[0m
+[0;32mI (14274) IMU: calib gyro:     x=-0.0684   y=0.2187   z=0.0659[0m
+[0;32mI (14284) IMU: timestamp=0[0m
+[0;32mI (14284) IMU: calib accel: x=-0.0357   y=0.1745   z=0.9878[0m
+[0;32mI (14294) IMU: calib gyro:     x=-0.0378   y=0.2492   z=0.0812[0m
+[0;32mI (14294) IMU: timestamp=0[0m
+[0;32mI (14304) IMU: calib accel: x=-0.0348   y=0.1729   z=0.9909[0m
+[0;32mI (14304) IMU: calib gyro:     x=-0.0684   y=0.0203   z=0.0964[0m
+[0;32mI (14314) IMU: timestamp=0[0m
+[0;32mI (14314) IMU: calib accel: x=-0.0321   y=0.1745   z=0.9885[0m
+[0;32mI (14314) IMU: calib gyro:     x=0.1758   y=-0.1476   z=0.0507[0m
+[0;32mI (14324) IMU: timestamp=0[0m
+[0;32mI (14324) IMU: calib accel: x=-0.0334   y=0.1750   z=0.9870[0m
+[0;32mI (14334) IMU: calib gyro:     x=0.1300   y=0.1271   z=0.0507[0m
+[0;32mI (14334) IMU: timestamp=0[0m
+[0;32mI (14344) IMU: calib accel: x=-0.0362   y=0.1727   z=0.9903[0m
+[0;32mI (14344) IMU: calib gyro:     x=-0.1599   y=0.3407   z=0.0507[0m
+[0;32mI (14354) IMU: timestamp=0[0m
+[0;32mI (14354) IMU: calib accel: x=-0.0330   y=0.1754   z=0.9848[0m
+[0;32mI (14354) IMU: calib gyro:     x=0.2979   y=-0.1170   z=0.0354[0m
+[0;32mI (14364) IMU: timestamp=0[0m
+[0;32mI (14364) IMU: calib accel: x=-0.0309   y=0.1754   z=0.9892[0m
+[0;32mI (14374) IMU: calib gyro:     x=0.0385   y=-0.0865   z=0.0812[0m
+[0;32mI (14374) IMU: timestamp=0[0m
+[0;32mI (14384) IMU: calib accel: x=-0.0349   y=0.1729   z=0.9906[0m
+[0;32mI (14384) IMU: calib gyro:     x=-0.1904   y=0.2034   z=0.0812[0m
+[0;32mI (14394) IMU: timestamp=0[0m
+[0;32mI (14394) IMU: calib accel: x=-0.0352   y=0.1732   z=0.9872[0m
+[0;32mI (14394) IMU: calib gyro:     x=0.0842   y=0.1424   z=0.0659[0m
+[0;32mI (14404) IMU: timestamp=0[0m
+[0;32mI (14404) IMU: calib accel: x=-0.0326   y=0.1733   z=0.9897[0m
+[0;32mI (14414) IMU: calib gyro:     x=0.2063   y=-0.0865   z=-0.0104[0m
+[0;32mI (14414) IMU: timestamp=0[0m
+[0;32mI (14424) IMU: calib accel: x=-0.0323   y=0.1760   z=0.9864[0m
+[0;32mI (14424) IMU: calib gyro:     x=0.1147   y=0.0813   z=0.0507[0m
+[0;32mI (14434) IMU: timestamp=0[0m
+[0;32mI (14434) IMU: calib accel: x=-0.0339   y=0.1721   z=0.9882[0m
+[0;32mI (14434) IMU: calib gyro:     x=-0.2209   y=0.2644   z=0.0812[0m
+[0;32mI (14444) IMU: timestamp=0[0m
+[0;32mI (14444) IMU: calib accel: x=-0.0323   y=0.1728   z=0.9891[0m
+[0;32mI (14454) IMU: calib gyro:     x=0.1300   y=-0.1018   z=0.0812[0m
+[0;32mI (14454) IMU: timestamp=0[0m
+[0;32mI (14464) IMU: calib accel: x=-0.0324   y=0.1756   z=0.9865[0m
+[0;32mI (14464) IMU: calib gyro:     x=0.2521   y=-0.1018   z=0.0507[0m
+[0;32mI (14474) IMU: timestamp=0[0m
+[0;32mI (14474) IMU: calib accel: x=-0.0358   y=0.1721   z=0.9906[0m
+[0;32mI (14474) IMU: calib gyro:     x=-0.3125   y=0.2644   z=0.1575[0m
+[0;32mI (14484) IMU: timestamp=0[0m
+[0;32mI (14484) IMU: calib accel: x=-0.0337   y=0.1741   z=0.9872[0m
+[0;32mI (14494) IMU: calib gyro:     x=0.0690   y=-0.0713   z=0.0659[0m
+[0;32mI (14494) IMU: timestamp=0[0m
+[0;32mI (14504) IMU: calib accel: x=-0.0320   y=0.1746   z=0.9876[0m
+[0;32mI (14504) IMU: calib gyro:     x=0.2368   y=-0.1323   z=0.0507[0m
+[0;32mI (14514) IMU: timestamp=0[0m
+[0;32mI (14514) IMU: calib accel: x=-0.0334   y=0.1737   z=0.9899[0m
+[0;32mI (14514) IMU: calib gyro:     x=-0.1294   y=0.2187   z=0.0964[0m
+[0;32mI (14524) IMU: timestamp=0[0m
+[0;32mI (14524) IMU: calib accel: x=-0.0357   y=0.1730   z=0.9891[0m
+[0;32mI (14534) IMU: calib gyro:     x=0.0690   y=0.1729   z=0.0659[0m
+[0;32mI (14534) IMU: timestamp=0[0m
+[0;32mI (14534) IMU: calib accel: x=-0.0332   y=0.1732   z=0.9898[0m
+[0;32mI (14544) IMU: calib gyro:     x=0.1453   y=-0.0865   z=0.1117[0m
+[0;32mI (14554) IMU: timestamp=0[0m
+[0;32mI (14554) IMU: calib accel: x=-0.0315   y=0.1757   z=0.9865[0m
+[0;32mI (14554) IMU: calib gyro:     x=0.2216   y=0.0050   z=0.0354[0m
+[0;32mI (14564) IMU: timestamp=0[0m
+[0;32mI (14564) IMU: calib accel: x=-0.0347   y=0.1732   z=0.9883[0m
+[0;32mI (14574) IMU: calib gyro:     x=-0.0684   y=0.3712   z=0.0049[0m
+[0;32mI (14574) IMU: timestamp=0[0m
+[0;32mI (14574) IMU: calib accel: x=-0.0351   y=0.1724   z=0.9899[0m
+[0;32mI (14584) IMU: calib gyro:     x=-0.0531   y=0.2034   z=0.0964[0m
+[0;32mI (14594) IMU: timestamp=0[0m
+[0;32mI (14594) IMU: calib accel: x=-0.0318   y=0.1762   z=0.9854[0m
+[0;32mI (14594) IMU: calib gyro:     x=0.3436   y=-0.2849   z=0.0964[0m
+[0;32mI (14604) IMU: timestamp=0[0m
+[0;32mI (14604) IMU: calib accel: x=-0.0343   y=0.1751   z=0.9908[0m
+[0;32mI (14614) IMU: calib gyro:     x=-0.0989   y=0.1729   z=0.1575[0m
+[0;32mI (14614) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (15074) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (15074) LSM6DS3: num_fifo_samples = 2730 100[0m
+[0;32mI (15144) LSM6DS3: [0m
+[0;32mI (15144) LSM6DS3: raw gyro = 2.243042 -6.912231 -1.876831[0m
+[0;32mI (15144) LSM6DS3: raw accel = 0.011230 0.145996 0.987183[0m
+[0;32mI (15144) LSM6DS3: num_fifo_samples = 2178[0m
+[0;32mI (15144) IMU: timestamp=1073566896[0m
+[0;32mI (15154) IMU: calib accel: x=-0.0353   y=0.1712   z=0.9883[0m
+[0;32mI (15154) IMU: calib gyro:     x=-0.1294   y=0.3255   z=0.0659[0m
+[0;32mI (15164) IMU: timestamp=0[0m
+[0;32mI (15164) IMU: calib accel: x=-0.0321   y=0.1757   z=0.9872[0m
+[0;32mI (15164) IMU: calib gyro:     x=0.2216   y=-0.0713   z=0.0659[0m
+[0;32mI (15174) IMU: timestamp=0[0m
+[0;32mI (15184) IMU: calib accel: x=-0.0315   y=0.1757   z=0.9870[0m
+[0;32mI (15184) IMU: calib gyro:     x=0.0995   y=-0.1170   z=0.0812[0m
+[0;32mI (15194) IMU: timestamp=0[0m
+[0;32mI (15194) IMU: calib accel: x=-0.0341   y=0.1740   z=0.9876[0m
+[0;32mI (15194) IMU: calib gyro:     x=-0.0226   y=0.2034   z=0.0507[0m
+[0;32mI (15204) IMU: timestamp=0[0m
+[0;32mI (15204) IMU: calib accel: x=-0.0368   y=0.1713   z=0.9900[0m
+[0;32mI (15204) IMU: calib gyro:     x=-0.1141   y=0.1881   z=0.0507[0m
+[0;32mI (15214) IMU: timestamp=0[0m
+[0;32mI (15214) IMU: calib accel: x=-0.0320   y=0.1752   z=0.9888[0m
+[0;32mI (15224) IMU: calib gyro:     x=0.2521   y=-0.2086   z=0.0812[0m
+[0;32mI (15234) IMU: timestamp=0[0m
+[0;32mI (15234) IMU: calib accel: x=-0.0315   y=0.1745   z=0.9849[0m
+[0;32mI (15234) IMU: calib gyro:     x=0.2368   y=-0.0560   z=0.0964[0m
+[0;32mI (15244) IMU: timestamp=0[0m
+[0;32mI (15244) IMU: calib accel: x=-0.0349   y=0.1712   z=0.9910[0m
+[0;32mI (15244) IMU: calib gyro:     x=-0.2209   y=0.3255   z=0.1422[0m
+[0;32mI (15254) IMU: timestamp=0[0m
+[0;32mI (15254) IMU: calib accel: x=-0.0334   y=0.1741   z=0.9870[0m
+[0;32mI (15264) IMU: calib gyro:     x=0.1605   y=-0.0407   z=0.0964[0m
+[0;32mI (15264) IMU: timestamp=0[0m
+[0;32mI (15274) IMU: calib accel: x=-0.0318   y=0.1752   z=0.9871[0m
+[0;32mI (15274) IMU: calib gyro:     x=0.1300   y=-0.0713   z=0.0507[0m
+[0;32mI (15284) IMU: timestamp=0[0m
+[0;32mI (15284) IMU: calib accel: x=-0.0317   y=0.1735   z=0.9886[0m
+[0;32mI (15284) IMU: calib gyro:     x=-0.0226   y=0.2034   z=0.0507[0m
+[0;32mI (15294) IMU: timestamp=0[0m
+[0;32mI (15294) IMU: calib accel: x=-0.0349   y=0.1744   z=0.9876[0m
+[0;32mI (15304) IMU: calib gyro:     x=0.0232   y=0.1118   z=0.0964[0m
+[0;32mI (15304) IMU: timestamp=0[0m
+[0;32mI (15314) IMU: calib accel: x=-0.0340   y=0.1722   z=0.9902[0m
+[0;32mI (15314) IMU: calib gyro:     x=0.0079   y=-0.0560   z=0.0659[0m
+[0;32mI (15324) IMU: timestamp=0[0m
+[0;32mI (15324) IMU: calib accel: x=-0.0330   y=0.1756   z=0.9871[0m
+[0;32mI (15324) IMU: calib gyro:     x=0.0842   y=-0.0713   z=0.0812[0m
+[0;32mI (15334) IMU: timestamp=0[0m
+[0;32mI (15334) IMU: calib accel: x=-0.0343   y=0.1744   z=0.9899[0m
+[0;32mI (15344) IMU: calib gyro:     x=-0.0378   y=0.2339   z=0.1117[0m
+[0;32mI (15344) IMU: timestamp=0[0m
+[0;32mI (15354) IMU: calib accel: x=-0.0328   y=0.1748   z=0.9876[0m
+[0;32mI (15354) IMU: calib gyro:     x=0.0537   y=0.1271   z=0.0812[0m
+[0;32mI (15364) IMU: timestamp=0[0m
+[0;32mI (15364) IMU: calib accel: x=-0.0330   y=0.1762   z=0.9859[0m
+[0;32mI (15364) IMU: calib gyro:     x=0.1758   y=-0.0255   z=0.1117[0m
+[0;32mI (15374) IMU: timestamp=0[0m
+[0;32mI (15374) IMU: calib accel: x=-0.0330   y=0.1737   z=0.9886[0m
+[0;32mI (15384) IMU: calib gyro:     x=-0.1141   y=0.0508   z=-0.0104[0m
+[0;32mI (15384) IMU: timestamp=0[0m
+[0;32mI (15394) IMU: calib accel: x=-0.0332   y=0.1733   z=0.9887[0m
+[0;32mI (15394) IMU: calib gyro:     x=0.0232   y=0.0203   z=0.0964[0m
+[0;32mI (15404) IMU: timestamp=0[0m
+[0;32mI (15404) IMU: calib accel: x=-0.0345   y=0.1744   z=0.9894[0m
+[0;32mI (15404) IMU: calib gyro:     x=0.0995   y=0.0508   z=0.0812[0m
+[0;32mI (15414) IMU: timestamp=0[0m
+[0;32mI (15414) IMU: calib accel: x=-0.0334   y=0.1733   z=0.9885[0m
+[0;32mI (15424) IMU: calib gyro:     x=0.1605   y=0.0356   z=0.0049[0m
+[0;32mI (15424) IMU: timestamp=0[0m
+[0;32mI (15424) IMU: calib accel: x=-0.0346   y=0.1763   z=0.9856[0m
+[0;32mI (15434) IMU: calib gyro:     x=0.2368   y=0.0508   z=0.0201[0m
+[0;32mI (15444) IMU: timestamp=0[0m
+[0;32mI (15444) IMU: calib accel: x=-0.0343   y=0.1737   z=0.9889[0m
+[0;32mI (15444) IMU: calib gyro:     x=-0.1294   y=0.1576   z=0.1117[0m
+[0;32mI (15454) IMU: timestamp=0[0m
+[0;32mI (15454) IMU: calib accel: x=-0.0321   y=0.1746   z=0.9865[0m
+[0;32mI (15464) IMU: calib gyro:     x=0.2063   y=0.0050   z=0.0659[0m
+[0;32mI (15464) IMU: timestamp=0[0m
+[0;32mI (15464) IMU: calib accel: x=-0.0320   y=0.1739   z=0.9878[0m
+[0;32mI (15474) IMU: calib gyro:     x=0.2216   y=-0.0102   z=0.0507[0m
+[0;32mI (15484) IMU: timestamp=0[0m
+[0;32mI (15484) IMU: calib accel: x=-0.0352   y=0.1728   z=0.9893[0m
+[0;32mI (15484) IMU: calib gyro:     x=-0.0073   y=0.1729   z=0.0812[0m
+[0;32mI (15494) IMU: timestamp=0[0m
+[0;32mI (15494) IMU: calib accel: x=-0.0346   y=0.1735   z=0.9876[0m
+[0;32mI (15504) IMU: calib gyro:     x=0.0385   y=0.0813   z=0.0964[0m
+[0;32mI (15504) IMU: timestamp=0[0m
+[0;32mI (15504) IMU: calib accel: x=-0.0336   y=0.1746   z=0.9881[0m
+[0;32mI (15514) IMU: calib gyro:     x=-0.0836   y=-0.0713   z=0.0659[0m
+[0;32mI (15524) IMU: timestamp=0[0m
+[0;32mI (15524) IMU: calib accel: x=-0.0326   y=0.1748   z=0.9878[0m
+[0;32mI (15524) IMU: calib gyro:     x=0.0537   y=0.0203   z=0.0812[0m
+[0;32mI (15534) IMU: timestamp=0[0m
+[0;32mI (15534) IMU: calib accel: x=-0.0341   y=0.1739   z=0.9883[0m
+[0;32mI (15544) IMU: calib gyro:     x=-0.0073   y=0.2187   z=0.0964[0m
+[0;32mI (15544) IMU: timestamp=0[0m
+[0;32mI (15544) IMU: calib accel: x=-0.0336   y=0.1730   z=0.9888[0m
+[0;32mI (15554) IMU: calib gyro:     x=0.0232   y=0.0508   z=0.0507[0m
+[0;32mI (15564) IMU: timestamp=0[0m
+[0;32mI (15564) IMU: calib accel: x=-0.0323   y=0.1755   z=0.9855[0m
+[0;32mI (15564) IMU: calib gyro:     x=0.1910   y=-0.1476   z=0.0354[0m
+[0;32mI (15574) IMU: timestamp=0[0m
+[0;32mI (15574) IMU: calib accel: x=-0.0330   y=0.1743   z=0.9895[0m
+[0;32mI (15584) IMU: calib gyro:     x=-0.0989   y=0.0203   z=0.0964[0m
+[0;32mI (15584) IMU: timestamp=0[0m
+[0;32mI (15584) IMU: calib accel: x=-0.0335   y=0.1743   z=0.9893[0m
+[0;32mI (15594) IMU: calib gyro:     x=-0.0073   y=0.0966   z=0.1117[0m
+[0;32mI (15604) IMU: timestamp=0[0m
+[0;32mI (15604) IMU: calib accel: x=-0.0326   y=0.1751   z=0.9859[0m
+[0;32mI (15604) IMU: calib gyro:     x=0.2063   y=0.0356   z=0.0049[0m
+[0;32mI (15614) IMU: timestamp=0[0m
+[0;32mI (15614) IMU: calib accel: x=-0.0345   y=0.1749   z=0.9903[0m
+[0;32mI (15624) IMU: calib gyro:     x=0.0385   y=0.1118   z=0.1117[0m
+[0;32mI (15624) IMU: timestamp=0[0m
+[0;32mI (15624) IMU: calib accel: x=-0.0347   y=0.1743   z=0.9898[0m
+[0;32mI (15634) IMU: calib gyro:     x=-0.0684   y=0.1729   z=0.1117[0m
+[0;32mI (15644) IMU: timestamp=0[0m
+[0;32mI (15644) IMU: calib accel: x=-0.0325   y=0.1726   z=0.9880[0m
+[0;32mI (15644) IMU: calib gyro:     x=0.0690   y=0.0203   z=0.1270[0m
+[0;32mI (15654) IMU: timestamp=0[0m
+[0;32mI (15654) IMU: calib accel: x=-0.0317   y=0.1748   z=0.9893[0m
+[0;32mI (15664) IMU: calib gyro:     x=0.2979   y=-0.0407   z=0.1117[0m
+[0;32mI (15664) IMU: timestamp=0[0m
+[0;32mI (15664) IMU: calib accel: x=-0.0343   y=0.1735   z=0.9881[0m
+[0;32mI (15674) IMU: calib gyro:     x=0.0079   y=0.1424   z=0.0659[0m
+[0;32mI (15674) IMU: timestamp=0[0m
+[0;32mI (15684) IMU: calib accel: x=-0.0335   y=0.1716   z=0.9899[0m
+[0;32mI (15684) IMU: calib gyro:     x=-0.1294   y=0.1271   z=0.0964[0m
+[0;32mI (15694) IMU: timestamp=0[0m
+[0;32mI (15694) IMU: calib accel: x=-0.0315   y=0.1748   z=0.9854[0m
+[0;32mI (15704) IMU: calib gyro:     x=0.2521   y=-0.2238   z=0.0507[0m
+[0;32mI (15704) IMU: timestamp=0[0m
+[0;32mI (15704) IMU: calib accel: x=-0.0318   y=0.1757   z=0.9876[0m
+[0;32mI (15714) IMU: calib gyro:     x=0.1605   y=0.0203   z=0.0812[0m
+[0;32mI (15714) IMU: timestamp=0[0m
+[0;32mI (15724) IMU: calib accel: x=-0.0351   y=0.1732   z=0.9886[0m
+[0;32mI (15724) IMU: calib gyro:     x=-0.0684   y=0.3255   z=0.0659[0m
+[0;32mI (15734) IMU: timestamp=0[0m
+[0;32mI (15734) IMU: calib accel: x=-0.0347   y=0.1734   z=0.9883[0m
+[0;32mI (15734) IMU: calib gyro:     x=-0.0378   y=0.0050   z=0.1117[0m
+[0;32mI (15744) IMU: timestamp=0[0m
+[0;32mI (15744) IMU: calib accel: x=-0.0314   y=0.1730   z=0.9909[0m
+[0;32mI (15754) IMU: calib gyro:     x=0.0385   y=-0.2238   z=0.1880[0m
+[0;32mI (15754) IMU: timestamp=0[0m
+[0;32mI (15764) IMU: calib accel: x=-0.0328   y=0.1751   z=0.9876[0m
+[0;32mI (15764) IMU: calib gyro:     x=0.1147   y=0.0661   z=0.0964[0m
+[0;32mI (15774) IMU: timestamp=0[0m
+[0;32mI (15774) IMU: calib accel: x=-0.0334   y=0.1739   z=0.9885[0m
+[0;32mI (15774) IMU: calib gyro:     x=-0.0226   y=0.1729   z=0.1270[0m
+[0;32mI (15784) IMU: timestamp=0[0m
+[0;32mI (15784) IMU: calib accel: x=-0.0342   y=0.1735   z=0.9897[0m
+[0;32mI (15794) IMU: calib gyro:     x=0.0079   y=0.0661   z=0.0812[0m
+[0;32mI (15794) IMU: timestamp=0[0m
+[0;32mI (15804) IMU: calib accel: x=-0.0318   y=0.1730   z=0.9877[0m
+[0;32mI (15804) IMU: calib gyro:     x=0.1453   y=-0.0865   z=0.0659[0m
+[0;32mI (15814) IMU: timestamp=0[0m
+[0;32mI (15814) IMU: calib accel: x=-0.0324   y=0.1733   z=0.9910[0m
+[0;32mI (15814) IMU: calib gyro:     x=-0.0226   y=0.0508   z=0.0812[0m
+[0;32mI (15824) IMU: timestamp=0[0m
+[0;32mI (15824) IMU: calib accel: x=-0.0343   y=0.1748   z=0.9888[0m
+[0;32mI (15834) IMU: calib gyro:     x=0.1453   y=0.1271   z=0.0201[0m
+[0;32mI (15834) IMU: timestamp=0[0m
+[0;32mI (15844) IMU: calib accel: x=-0.0352   y=0.1743   z=0.9881[0m
+[0;32mI (15844) IMU: calib gyro:     x=0.0842   y=0.0661   z=0.0659[0m
+[0;32mI (15854) IMU: timestamp=0[0m
+[0;32mI (15854) IMU: calib accel: x=-0.0337   y=0.1728   z=0.9872[0m
+[0;32mI (15854) IMU: calib gyro:     x=0.0537   y=-0.0255   z=0.1422[0m
+[0;32mI (15864) IMU: timestamp=0[0m
+[0;32mI (15864) IMU: calib accel: x=-0.0312   y=0.1737   z=0.9887[0m
+[0;32mI (15874) IMU: calib gyro:     x=0.1147   y=-0.0255   z=0.0964[0m
+[0;32mI (15874) IMU: timestamp=0[0m
+[0;32mI (15884) IMU: calib accel: x=-0.0340   y=0.1712   z=0.9910[0m
+[0;32mI (15884) IMU: calib gyro:     x=-0.1294   y=0.1118   z=0.1117[0m
+[0;32mI (15894) IMU: timestamp=0[0m
+[0;32mI (15894) IMU: calib accel: x=-0.0339   y=0.1746   z=0.9886[0m
+[0;32mI (15894) IMU: calib gyro:     x=0.1453   y=0.0508   z=0.0354[0m
+[0;32mI (15904) IMU: timestamp=0[0m
+[0;32mI (15904) IMU: calib accel: x=-0.0334   y=0.1762   z=0.9872[0m
+[0;32mI (15914) IMU: calib gyro:     x=0.1758   y=0.0050   z=0.0354[0m
+[0;32mI (15914) IMU: timestamp=0[0m
+[0;32mI (15924) IMU: calib accel: x=-0.0323   y=0.1746   z=0.9894[0m
+[0;32mI (15924) IMU: calib gyro:     x=-0.1599   y=0.0966   z=0.1270[0m
+[0;32mI (15934) IMU: timestamp=0[0m
+[0;32mI (15934) IMU: calib accel: x=-0.0328   y=0.1727   z=0.9877[0m
+[0;32mI (15934) IMU: calib gyro:     x=0.0385   y=0.0203   z=0.1117[0m
+[0;32mI (15944) IMU: timestamp=0[0m
+[0;32mI (15944) IMU: calib accel: x=-0.0314   y=0.1745   z=0.9887[0m
+[0;32mI (15954) IMU: calib gyro:     x=0.2063   y=-0.1018   z=0.0354[0m
+[0;32mI (15954) IMU: timestamp=0[0m
+[0;32mI (15954) IMU: calib accel: x=-0.0318   y=0.1760   z=0.9869[0m
+[0;32mI (15964) IMU: calib gyro:     x=0.2216   y=0.0813   z=0.0507[0m
+[0;32mI (15974) IMU: timestamp=0[0m
+[0;32mI (15974) IMU: calib accel: x=-0.0346   y=0.1733   z=0.9867[0m
+[0;32mI (15974) IMU: calib gyro:     x=-0.0073   y=0.3102   z=0.0812[0m
+[0;32mI (15984) IMU: timestamp=0[0m
+[0;32mI (15984) IMU: calib accel: x=-0.0325   y=0.1716   z=0.9900[0m
+[0;32mI (15994) IMU: calib gyro:     x=0.0385   y=-0.0255   z=0.0659[0m
+[0;32mI (15994) IMU: timestamp=0[0m
+[0;32mI (15994) IMU: calib accel: x=-0.0319   y=0.1751   z=0.9878[0m
+[0;32mI (16004) IMU: calib gyro:     x=0.3284   y=-0.1781   z=0.1117[0m
+[0;32mI (16014) IMU: timestamp=0[0m
+[0;32mI (16014) IMU: calib accel: x=-0.0365   y=0.1730   z=0.9909[0m
+[0;32mI (16014) IMU: calib gyro:     x=-0.0226   y=0.2797   z=0.0354[0m
+[0;32mI (16024) IMU: timestamp=0[0m
+[0;32mI (16024) IMU: calib accel: x=-0.0362   y=0.1730   z=0.9895[0m
+[0;32mI (16034) IMU: calib gyro:     x=-0.0073   y=0.2339   z=0.0964[0m
+[0;32mI (16034) IMU: timestamp=0[0m
+[0;32mI (16034) IMU: calib accel: x=-0.0326   y=0.1738   z=0.9886[0m
+[0;32mI (16044) IMU: calib gyro:     x=0.2826   y=-0.1476   z=0.0659[0m
+[0;32mI (16054) IMU: timestamp=0[0m
+[0;32mI (16054) IMU: calib accel: x=-0.0336   y=0.1732   z=0.9881[0m
+[0;32mI (16054) IMU: calib gyro:     x=-0.0073   y=0.0356   z=0.0964[0m
+[0;32mI (16064) IMU: timestamp=0[0m
+[0;32mI (16064) IMU: calib accel: x=-0.0339   y=0.1733   z=0.9883[0m
+[0;32mI (16074) IMU: calib gyro:     x=0.0079   y=0.2492   z=0.0812[0m
+[0;32mI (16074) IMU: timestamp=0[0m
+[0;32mI (16074) IMU: calib accel: x=-0.0348   y=0.1739   z=0.9902[0m
+[0;32mI (16084) IMU: calib gyro:     x=0.0385   y=0.0508   z=0.0507[0m
+[0;32mI (16094) IMU: timestamp=0[0m
+[0;32mI (16094) IMU: calib accel: x=-0.0313   y=0.1741   z=0.9881[0m
+[0;32mI (16094) IMU: calib gyro:     x=0.2979   y=-0.1018   z=0.0964[0m
+[0;32mI (16104) IMU: timestamp=0[0m
+[0;32mI (16104) IMU: calib accel: x=-0.0312   y=0.1743   z=0.9886[0m
+[0;32mI (16114) IMU: calib gyro:     x=0.0537   y=0.0966   z=0.0354[0m
+[0;32mI (16114) IMU: timestamp=0[0m
+[0;32mI (16114) IMU: calib accel: x=-0.0346   y=0.1727   z=0.9906[0m
+[0;32mI (16124) IMU: calib gyro:     x=-0.0989   y=0.1881   z=0.0964[0m
+[0;32mI (16134) IMU: timestamp=0[0m
+[0;32mI (16134) IMU: calib accel: x=-0.0326   y=0.1751   z=0.9889[0m
+[0;32mI (16134) IMU: calib gyro:     x=0.0842   y=0.0050   z=0.0812[0m
+[0;32mI (16144) IMU: timestamp=0[0m
+[0;32mI (16144) IMU: calib accel: x=-0.0329   y=0.1743   z=0.9865[0m
+[0;32mI (16154) IMU: calib gyro:     x=0.1910   y=0.0356   z=0.0659[0m
+[0;32mI (16154) IMU: timestamp=0[0m
+[0;32mI (16154) IMU: calib accel: x=-0.0342   y=0.1737   z=0.9895[0m
+[0;32mI (16164) IMU: calib gyro:     x=0.0079   y=0.1576   z=0.0812[0m
+[0;32mI (16164) IMU: timestamp=0[0m
+[0;32mI (16174) IMU: calib accel: x=-0.0339   y=0.1743   z=0.9878[0m
+[0;32mI (16174) IMU: calib gyro:     x=0.0690   y=0.0356   z=0.0354[0m
+[0;32mI (16184) IMU: timestamp=0[0m
+[0;32mI (16184) IMU: calib accel: x=-0.0330   y=0.1729   z=0.9898[0m
+[0;32mI (16194) IMU: calib gyro:     x=0.0232   y=0.0050   z=0.0507[0m
+[0;32mI (16194) IMU: timestamp=0[0m
+[0;32mI (16194) IMU: calib accel: x=-0.0326   y=0.1744   z=0.9878[0m
+[0;32mI (16204) IMU: calib gyro:     x=0.1910   y=0.0356   z=0.1117[0m
+[0;32mI (16204) IMU: timestamp=0[0m
+[0;32mI (16214) IMU: calib accel: x=-0.0352   y=0.1732   z=0.9877[0m
+[0;32mI (16214) IMU: calib gyro:     x=0.0995   y=0.1576   z=0.0964[0m
+[0;32mI (16224) IMU: timestamp=0[0m
+[0;32mI (16224) IMU: calib accel: x=-0.0347   y=0.1722   z=0.9891[0m
+[0;32mI (16224) IMU: calib gyro:     x=-0.0531   y=0.1424   z=0.0659[0m
+[0;32mI (16234) IMU: timestamp=0[0m
+[0;32mI (16234) IMU: calib accel: x=-0.0332   y=0.1746   z=0.9877[0m
+[0;32mI (16244) IMU: calib gyro:     x=0.1147   y=-0.0865   z=0.0507[0m
+[0;32mI (16244) IMU: timestamp=0[0m
+[0;32mI (16254) IMU: calib accel: x=-0.0323   y=0.1735   z=0.9909[0m
+[0;32mI (16254) IMU: calib gyro:     x=0.0690   y=0.0356   z=0.1117[0m
+[0;32mI (16264) IMU: timestamp=0[0m
+[0;32mI (16264) IMU: calib accel: x=-0.0325   y=0.1740   z=0.9888[0m
+[0;32mI (16264) IMU: calib gyro:     x=0.0385   y=0.2339   z=0.0507[0m
+[0;32mI (16274) IMU: timestamp=0[0m
+[0;32mI (16274) IMU: calib accel: x=-0.0331   y=0.1733   z=0.9865[0m
+[0;32mI (16284) IMU: calib gyro:     x=0.0842   y=0.1271   z=0.0812[0m
+[0;32mI (16284) IMU: timestamp=0[0m
+[0;32mI (16294) IMU: calib accel: x=-0.0324   y=0.1754   z=0.9880[0m
+[0;32mI (16294) IMU: calib gyro:     x=0.1147   y=0.0508   z=0.0964[0m
+[0;32mI (16304) IMU: timestamp=0[0m
+[0;32mI (16304) IMU: calib accel: x=-0.0321   y=0.1752   z=0.9887[0m
+[0;32mI (16304) IMU: calib gyro:     x=0.0079   y=0.0508   z=0.0201[0m
+[0;32mI (16314) IMU: timestamp=0[0m
+[0;32mI (16314) IMU: calib accel: x=-0.0341   y=0.1740   z=0.9888[0m
+[0;32mI (16324) IMU: calib gyro:     x=-0.0531   y=0.1271   z=0.0659[0m
+[0;32mI (16324) IMU: timestamp=0[0m
+[0;32mI (16334) IMU: calib accel: x=-0.0320   y=0.1750   z=0.9875[0m
+[0;32mI (16334) IMU: calib gyro:     x=0.1453   y=0.0661   z=0.0354[0m
+[0;32mI (16344) IMU: timestamp=0[0m
+[0;32mI (16344) IMU: calib accel: x=-0.0323   y=0.1757   z=0.9888[0m
+[0;32mI (16344) IMU: calib gyro:     x=0.1605   y=0.0508   z=0.0812[0m
+[0;32mI (16354) IMU: timestamp=0[0m
+[0;32mI (16354) IMU: calib accel: x=-0.0347   y=0.1729   z=0.9889[0m
+[0;32mI (16364) IMU: calib gyro:     x=-0.0378   y=0.2034   z=0.0659[0m
+[0;32mI (16364) IMU: timestamp=0[0m
+[0;32mI (16364) IMU: calib accel: x=-0.0340   y=0.1737   z=0.9883[0m
+[0;32mI (16374) IMU: calib gyro:     x=0.0995   y=-0.0255   z=0.0659[0m
+[0;32mI (16384) IMU: timestamp=0[0m
+[0;32mI (16384) IMU: calib accel: x=-0.0323   y=0.1754   z=0.9861[0m
+[0;32mI (16384) IMU: calib gyro:     x=0.1605   y=-0.1170   z=0.0354[0m
+[0;32mI (16394) IMU: timestamp=0[0m
+[0;32mI (16394) IMU: calib accel: x=-0.0337   y=0.1740   z=0.9893[0m
+[0;32mI (16404) IMU: calib gyro:     x=0.0385   y=0.0966   z=0.0659[0m
+[0;32mI (16404) IMU: timestamp=0[0m
+[0;32mI (16404) IMU: calib accel: x=-0.0342   y=0.1737   z=0.9893[0m
+[0;32mI (16414) IMU: calib gyro:     x=-0.0226   y=0.1424   z=0.1270[0m
+[0;32mI (16424) IMU: timestamp=0[0m
+[0;32mI (16424) IMU: calib accel: x=-0.0337   y=0.1735   z=0.9899[0m
+[0;32mI (16424) IMU: calib gyro:     x=0.0385   y=-0.1933   z=0.0659[0m
+[0;32mI (16434) IMU: timestamp=0[0m
+[0;32mI (16434) IMU: calib accel: x=-0.0313   y=0.1752   z=0.9883[0m
+[0;32mI (16444) IMU: calib gyro:     x=0.1300   y=-0.0865   z=0.0201[0m
+[0;32mI (16444) IMU: timestamp=0[0m
+[0;32mI (16444) IMU: calib accel: x=-0.0341   y=0.1741   z=0.9883[0m
+[0;32mI (16454) IMU: calib gyro:     x=-0.0531   y=0.2644   z=0.0812[0m
+[0;32mI (16464) IMU: timestamp=0[0m
+[0;32mI (16464) IMU: calib accel: x=-0.0330   y=0.1743   z=0.9886[0m
+[0;32mI (16464) IMU: calib gyro:     x=0.0537   y=0.1118   z=0.1270[0m
+[0;32mI (16474) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (16924) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 1, empty = 1[0m
+[0;32mI (16924) LSM6DS3: num_fifo_samples = 3294 100[0m
+[0;32mI (16994) LSM6DS3: [0m
+[0;32mI (16994) LSM6DS3: raw gyro = 2.319336 -7.019043 -1.922607[0m
+[0;32mI (16994) LSM6DS3: raw accel = 0.011353 0.146118 0.987183[0m
+[0;32mI (16994) LSM6DS3: num_fifo_samples = 2742[0m
+[0;32mI (16994) IMU: timestamp=1073566896[0m
+[0;32mI (17004) IMU: calib accel: x=-0.0313   y=0.1754   z=0.9872[0m
+[0;32mI (17004) IMU: calib gyro:     x=0.2216   y=-0.1018   z=0.1270[0m
+[0;32mI (17014) IMU: timestamp=0[0m
+[0;32mI (17014) IMU: calib accel: x=-0.0348   y=0.1740   z=0.9911[0m
+[0;32mI (17014) IMU: calib gyro:     x=-0.1752   y=0.0203   z=0.0812[0m
+[0;32mI (17024) IMU: timestamp=0[0m
+[0;32mI (17034) IMU: calib accel: x=-0.0341   y=0.1721   z=0.9888[0m
+[0;32mI (17034) IMU: calib gyro:     x=-0.0684   y=0.1576   z=0.0659[0m
+[0;32mI (17034) IMU: timestamp=0[0m
+[0;32mI (17044) IMU: calib accel: x=-0.0331   y=0.1740   z=0.9878[0m
+[0;32mI (17044) IMU: calib gyro:     x=0.1605   y=0.0508   z=0.0812[0m
+[0;32mI (17054) IMU: timestamp=0[0m
+[0;32mI (17054) IMU: calib accel: x=-0.0335   y=0.1740   z=0.9876[0m
+[0;32mI (17054) IMU: calib gyro:     x=0.1300   y=0.0203   z=0.0964[0m
+[0;32mI (17064) IMU: timestamp=0[0m
+[0;32mI (17064) IMU: calib accel: x=-0.0340   y=0.1735   z=0.9869[0m
+[0;32mI (17074) IMU: calib gyro:     x=0.0385   y=0.1576   z=0.0964[0m
+[0;32mI (17074) IMU: timestamp=0[0m
+[0;32mI (17084) IMU: calib accel: x=-0.0341   y=0.1726   z=0.9906[0m
+[0;32mI (17084) IMU: calib gyro:     x=0.0079   y=0.0661   z=0.1270[0m
+[0;32mI (17094) IMU: timestamp=0[0m
+[0;32mI (17094) IMU: calib accel: x=-0.0329   y=0.1755   z=0.9877[0m
+[0;32mI (17094) IMU: calib gyro:     x=0.1605   y=-0.0713   z=0.0507[0m
+[0;32mI (17104) IMU: timestamp=0[0m
+[0;32mI (17104) IMU: calib accel: x=-0.0320   y=0.1748   z=0.9876[0m
+[0;32mI (17114) IMU: calib gyro:     x=0.0385   y=0.0203   z=0.0507[0m
+[0;32mI (17114) IMU: timestamp=0[0m
+[0;32mI (17124) IMU: calib accel: x=-0.0340   y=0.1724   z=0.9904[0m
+[0;32mI (17124) IMU: calib gyro:     x=-0.0378   y=0.0966   z=0.1117[0m
+[0;32mI (17134) IMU: timestamp=0[0m
+[0;32mI (17134) IMU: calib accel: x=-0.0337   y=0.1748   z=0.9899[0m
+[0;32mI (17134) IMU: calib gyro:     x=0.1453   y=-0.0255   z=0.0659[0m
+[0;32mI (17144) IMU: timestamp=0[0m
+[0;32mI (17144) IMU: calib accel: x=-0.0319   y=0.1737   z=0.9877[0m
+[0;32mI (17154) IMU: calib gyro:     x=0.1758   y=-0.0255   z=0.0659[0m
+[0;32mI (17154) IMU: timestamp=0[0m
+[0;32mI (17164) IMU: calib accel: x=-0.0329   y=0.1756   z=0.9878[0m
+[0;32mI (17164) IMU: calib gyro:     x=0.1605   y=0.0508   z=0.0812[0m
+[0;32mI (17174) IMU: timestamp=0[0m
+[0;32mI (17174) IMU: calib accel: x=-0.0345   y=0.1745   z=0.9880[0m
+[0;32mI (17174) IMU: calib gyro:     x=0.0385   y=0.0966   z=0.0507[0m
+[0;32mI (17184) IMU: timestamp=0[0m
+[0;32mI (17184) IMU: calib accel: x=-0.0339   y=0.1723   z=0.9903[0m
+[0;32mI (17194) IMU: calib gyro:     x=-0.1904   y=0.0661   z=0.0964[0m
+[0;32mI (17194) IMU: timestamp=0[0m
+[0;32mI (17194) IMU: calib accel: x=-0.0324   y=0.1746   z=0.9894[0m
+[0;32mI (17204) IMU: calib gyro:     x=0.0842   y=-0.0255   z=0.0812[0m
+[0;32mI (17214) IMU: timestamp=0[0m
+[0;32mI (17214) IMU: calib accel: x=-0.0329   y=0.1735   z=0.9899[0m
+[0;32mI (17214) IMU: calib gyro:     x=0.0690   y=0.1576   z=0.0964[0m
+[0;32mI (17224) IMU: timestamp=0[0m
+[0;32mI (17224) IMU: calib accel: x=-0.0339   y=0.1743   z=0.9878[0m
+[0;32mI (17234) IMU: calib gyro:     x=0.1147   y=0.1576   z=0.0507[0m
+[0;32mI (17234) IMU: timestamp=0[0m
+[0;32mI (17234) IMU: calib accel: x=-0.0339   y=0.1750   z=0.9887[0m
+[0;32mI (17244) IMU: calib gyro:     x=0.1147   y=0.0813   z=0.1270[0m
+[0;32mI (17254) IMU: timestamp=0[0m
+[0;32mI (17254) IMU: calib accel: x=-0.0332   y=0.1735   z=0.9898[0m
+[0;32mI (17254) IMU: calib gyro:     x=-0.0073   y=0.0356   z=0.0812[0m
+[0;32mI (17264) IMU: timestamp=0[0m
+[0;32mI (17264) IMU: calib accel: x=-0.0319   y=0.1743   z=0.9894[0m
+[0;32mI (17274) IMU: calib gyro:     x=0.0690   y=-0.0102   z=0.0507[0m
+[0;32mI (17274) IMU: timestamp=0[0m
+[0;32mI (17274) IMU: calib accel: x=-0.0345   y=0.1728   z=0.9887[0m
+[0;32mI (17284) IMU: calib gyro:     x=0.0232   y=0.0966   z=0.0964[0m
+[0;32mI (17294) IMU: timestamp=0[0m
+[0;32mI (17294) IMU: calib accel: x=-0.0337   y=0.1744   z=0.9885[0m
+[0;32mI (17294) IMU: calib gyro:     x=0.0995   y=0.0966   z=0.1117[0m
+[0;32mI (17304) IMU: timestamp=0[0m
+[0;32mI (17304) IMU: calib accel: x=-0.0329   y=0.1745   z=0.9882[0m
+[0;32mI (17314) IMU: calib gyro:     x=0.1453   y=0.0508   z=0.1117[0m
+[0;32mI (17314) IMU: timestamp=0[0m
+[0;32mI (17314) IMU: calib accel: x=-0.0334   y=0.1741   z=0.9899[0m
+[0;32mI (17324) IMU: calib gyro:     x=0.0232   y=-0.0102   z=0.0659[0m
+[0;32mI (17334) IMU: timestamp=0[0m
+[0;32mI (17334) IMU: calib accel: x=-0.0328   y=0.1744   z=0.9878[0m
+[0;32mI (17334) IMU: calib gyro:     x=0.0995   y=0.0508   z=0.0354[0m
+[0;32mI (17344) IMU: timestamp=0[0m
+[0;32mI (17344) IMU: calib accel: x=-0.0339   y=0.1748   z=0.9876[0m
+[0;32mI (17354) IMU: calib gyro:     x=0.1453   y=0.0508   z=0.0812[0m
+[0;32mI (17354) IMU: timestamp=0[0m
+[0;32mI (17354) IMU: calib accel: x=-0.0341   y=0.1738   z=0.9883[0m
+[0;32mI (17364) IMU: calib gyro:     x=0.0079   y=0.0356   z=0.1117[0m
+[0;32mI (17364) IMU: timestamp=0[0m
+[0;32mI (17374) IMU: calib accel: x=-0.0342   y=0.1740   z=0.9891[0m
+[0;32mI (17374) IMU: calib gyro:     x=0.0232   y=0.1118   z=0.1270[0m
+[0;32mI (17384) IMU: timestamp=0[0m
+[0;32mI (17384) IMU: calib accel: x=-0.0334   y=0.1730   z=0.9906[0m
+[0;32mI (17394) IMU: calib gyro:     x=0.0690   y=-0.0407   z=0.0049[0m
+[0;32mI (17394) IMU: timestamp=0[0m
+[0;32mI (17394) IMU: calib accel: x=-0.0340   y=0.1752   z=0.9880[0m
+[0;32mI (17404) IMU: calib gyro:     x=0.1758   y=-0.0102   z=0.0049[0m
+[0;32mI (17404) IMU: timestamp=0[0m
+[0;32mI (17414) IMU: calib accel: x=-0.0353   y=0.1754   z=0.9877[0m
+[0;32mI (17414) IMU: calib gyro:     x=0.0232   y=0.2034   z=0.0507[0m
+[0;32mI (17424) IMU: timestamp=0[0m
+[0;32mI (17424) IMU: calib accel: x=-0.0353   y=0.1732   z=0.9903[0m
+[0;32mI (17434) IMU: calib gyro:     x=-0.0684   y=0.1118   z=0.0964[0m
+[0;32mI (17434) IMU: timestamp=0[0m
+[0;32mI (17434) IMU: calib accel: x=-0.0326   y=0.1745   z=0.9880[0m
+[0;32mI (17444) IMU: calib gyro:     x=0.1300   y=-0.0713   z=0.0964[0m
+[0;32mI (17444) IMU: timestamp=0[0m
+[0;32mI (17454) IMU: calib accel: x=-0.0319   y=0.1750   z=0.9889[0m
+[0;32mI (17454) IMU: calib gyro:     x=0.0232   y=0.1271   z=0.1270[0m
+[0;32mI (17464) IMU: timestamp=0[0m
+[0;32mI (17464) IMU: calib accel: x=-0.0336   y=0.1741   z=0.9865[0m
+[0;32mI (17464) IMU: calib gyro:     x=0.0079   y=0.1729   z=0.1422[0m
+[0;32mI (17474) IMU: timestamp=0[0m
+[0;32mI (17474) IMU: calib accel: x=-0.0336   y=0.1743   z=0.9883[0m
+[0;32mI (17484) IMU: calib gyro:     x=0.1605   y=0.0966   z=0.0507[0m
+[0;32mI (17484) IMU: timestamp=0[0m
+[0;32mI (17494) IMU: calib accel: x=-0.0331   y=0.1745   z=0.9878[0m
+[0;32mI (17494) IMU: calib gyro:     x=0.0690   y=-0.0102   z=0.0659[0m
+[0;32mI (17504) IMU: timestamp=0[0m
+[0;32mI (17504) IMU: calib accel: x=-0.0336   y=0.1744   z=0.9886[0m
+[0;32mI (17504) IMU: calib gyro:     x=0.0537   y=0.0966   z=0.0049[0m
+[0;32mI (17514) IMU: timestamp=0[0m
+[0;32mI (17514) IMU: calib accel: x=-0.0339   y=0.1723   z=0.9893[0m
+[0;32mI (17524) IMU: calib gyro:     x=0.0537   y=0.1271   z=0.0354[0m
+[0;32mI (17524) IMU: timestamp=0[0m
+[0;32mI (17534) IMU: calib accel: x=-0.0334   y=0.1752   z=0.9880[0m
+[0;32mI (17534) IMU: calib gyro:     x=0.1300   y=0.0508   z=0.0507[0m
+[0;32mI (17544) IMU: timestamp=0[0m
+[0;32mI (17544) IMU: calib accel: x=-0.0336   y=0.1749   z=0.9870[0m
+[0;32mI (17544) IMU: calib gyro:     x=0.0995   y=0.0050   z=0.0354[0m
+[0;32mI (17554) IMU: timestamp=0[0m
+[0;32mI (17554) IMU: calib accel: x=-0.0336   y=0.1721   z=0.9882[0m
+[0;32mI (17564) IMU: calib gyro:     x=-0.0836   y=0.0203   z=0.0049[0m
+[0;32mI (17564) IMU: timestamp=0[0m
+[0;32mI (17574) IMU: calib accel: x=-0.0324   y=0.1748   z=0.9885[0m
+[0;32mI (17574) IMU: calib gyro:     x=0.1758   y=0.0203   z=0.0964[0m
+[0;32mI (17584) IMU: timestamp=0[0m
+[0;32mI (17584) IMU: calib accel: x=-0.0342   y=0.1749   z=0.9905[0m
+[0;32mI (17584) IMU: calib gyro:     x=0.0690   y=0.1576   z=0.0354[0m
+[0;32mI (17594) IMU: timestamp=0[0m
+[0;32mI (17594) IMU: calib accel: x=-0.0345   y=0.1733   z=0.9881[0m
+[0;32mI (17604) IMU: calib gyro:     x=0.0079   y=0.0966   z=0.0354[0m
+[0;32mI (17604) IMU: timestamp=0[0m
+[0;32mI (17604) IMU: calib accel: x=-0.0343   y=0.1745   z=0.9899[0m
+[0;32mI (17614) IMU: calib gyro:     x=-0.0073   y=-0.0560   z=0.0201[0m
+[0;32mI (17624) IMU: timestamp=0[0m
+[0;32mI (17624) IMU: calib accel: x=-0.0325   y=0.1744   z=0.9908[0m
+[0;32mI (17624) IMU: calib gyro:     x=-0.0378   y=0.0050   z=0.1422[0m
+[0;32mI (17634) IMU: timestamp=0[0m
+[0;32mI (17634) IMU: calib accel: x=-0.0325   y=0.1749   z=0.9888[0m
+[0;32mI (17644) IMU: calib gyro:     x=0.0537   y=0.1424   z=0.0812[0m
+[0;32mI (17644) IMU: timestamp=0[0m
+[0;32mI (17644) IMU: calib accel: x=-0.0329   y=0.1754   z=0.9889[0m
+[0;32mI (17654) IMU: calib gyro:     x=0.1605   y=0.0813   z=0.0507[0m
+[0;32mI (17664) IMU: timestamp=0[0m
+[0;32mI (17664) IMU: calib accel: x=-0.0330   y=0.1743   z=0.9888[0m
+[0;32mI (17664) IMU: calib gyro:     x=0.0537   y=-0.0560   z=0.0964[0m
+[0;32mI (17674) IMU: timestamp=0[0m
+[0;32mI (17674) IMU: calib accel: x=-0.0339   y=0.1732   z=0.9883[0m
+[0;32mI (17684) IMU: calib gyro:     x=-0.0684   y=-0.0255   z=0.0964[0m
+[0;32mI (17684) IMU: timestamp=0[0m
+[0;32mI (17684) IMU: calib accel: x=-0.0346   y=0.1726   z=0.9886[0m
+[0;32mI (17694) IMU: calib gyro:     x=0.0079   y=0.0203   z=0.0812[0m
+[0;32mI (17704) IMU: timestamp=0[0m
+[0;32mI (17704) IMU: calib accel: x=-0.0326   y=0.1759   z=0.9880[0m
+[0;32mI (17704) IMU: calib gyro:     x=0.1300   y=0.0203   z=0.0964[0m
+[0;32mI (17714) IMU: timestamp=0[0m
+[0;32mI (17714) IMU: calib accel: x=-0.0341   y=0.1763   z=0.9866[0m
+[0;32mI (17724) IMU: calib gyro:     x=0.0079   y=0.1118   z=0.0507[0m
+[0;32mI (17724) IMU: timestamp=0[0m
+[0;32mI (17724) IMU: calib accel: x=-0.0347   y=0.1734   z=0.9883[0m
+[0;32mI (17734) IMU: calib gyro:     x=-0.0531   y=0.0813   z=0.0964[0m
+[0;32mI (17744) IMU: timestamp=0[0m
+[0;32mI (17744) IMU: calib accel: x=-0.0319   y=0.1746   z=0.9883[0m
+[0;32mI (17744) IMU: calib gyro:     x=0.0537   y=-0.0560   z=0.0201[0m
+[0;32mI (17754) IMU: timestamp=0[0m
+[0;32mI (17754) IMU: calib accel: x=-0.0324   y=0.1739   z=0.9909[0m
+[0;32mI (17764) IMU: calib gyro:     x=-0.1141   y=0.0356   z=0.0507[0m
+[0;32mI (17764) IMU: timestamp=0[0m
+[0;32mI (17764) IMU: calib accel: x=-0.0341   y=0.1738   z=0.9886[0m
+[0;32mI (17774) IMU: calib gyro:     x=0.0232   y=0.1424   z=0.0964[0m
+[0;32mI (17784) IMU: timestamp=0[0m
+[0;32mI (17784) IMU: calib accel: x=-0.0331   y=0.1741   z=0.9888[0m
+[0;32mI (17784) IMU: calib gyro:     x=0.1910   y=0.0813   z=0.0507[0m
+[0;32mI (17794) IMU: timestamp=0[0m
+[0;32mI (17794) IMU: calib accel: x=-0.0331   y=0.1766   z=0.9885[0m
+[0;32mI (17804) IMU: calib gyro:     x=0.0385   y=0.0356   z=0.0812[0m
+[0;32mI (17804) IMU: timestamp=0[0m
+[0;32mI (17804) IMU: calib accel: x=-0.0336   y=0.1737   z=0.9870[0m
+[0;32mI (17814) IMU: calib gyro:     x=0.0995   y=0.1118   z=0.0659[0m
+[0;32mI (17814) IMU: timestamp=0[0m
+[0;32mI (17824) IMU: calib accel: x=-0.0345   y=0.1746   z=0.9871[0m
+[0;32mI (17824) IMU: calib gyro:     x=0.1147   y=0.0050   z=0.0354[0m
+[0;32mI (17834) IMU: timestamp=0[0m
+[0;32mI (17834) IMU: calib accel: x=-0.0330   y=0.1760   z=0.9878[0m
+[0;32mI (17844) IMU: calib gyro:     x=0.1758   y=-0.0560   z=0.0354[0m
+[0;32mI (17844) IMU: timestamp=0[0m
+[0;32mI (17844) IMU: calib accel: x=-0.0346   y=0.1740   z=0.9903[0m
+[0;32mI (17854) IMU: calib gyro:     x=-0.0378   y=0.1118   z=0.0964[0m
+[0;32mI (17854) IMU: timestamp=0[0m
+[0;32mI (17864) IMU: calib accel: x=-0.0352   y=0.1722   z=0.9903[0m
+[0;32mI (17864) IMU: calib gyro:     x=-0.0684   y=-0.0407   z=0.0507[0m
+[0;32mI (17874) IMU: timestamp=0[0m
+[0;32mI (17874) IMU: calib accel: x=-0.0321   y=0.1748   z=0.9888[0m
+[0;32mI (17884) IMU: calib gyro:     x=0.2216   y=-0.1323   z=0.0049[0m
+[0;32mI (17884) IMU: timestamp=0[0m
+[0;32mI (17884) IMU: calib accel: x=-0.0331   y=0.1746   z=0.9880[0m
+[0;32mI (17894) IMU: calib gyro:     x=0.0690   y=0.2187   z=0.0659[0m
+[0;32mI (17894) IMU: timestamp=0[0m
+[0;32mI (17904) IMU: calib accel: x=-0.0337   y=0.1738   z=0.9866[0m
+[0;32mI (17904) IMU: calib gyro:     x=0.0232   y=0.1881   z=0.0964[0m
+[0;32mI (17914) IMU: timestamp=0[0m
+[0;32mI (17914) IMU: calib accel: x=-0.0328   y=0.1741   z=0.9880[0m
+[0;32mI (17914) IMU: calib gyro:     x=0.0690   y=-0.1628   z=0.0354[0m
+[0;32mI (17924) IMU: timestamp=0[0m
+[0;32mI (17924) IMU: calib accel: x=-0.0331   y=0.1721   z=0.9906[0m
+[0;32mI (17934) IMU: calib gyro:     x=-0.0531   y=-0.0713   z=0.1880[0m
+[0;32mI (17934) IMU: timestamp=0[0m
+[0;32mI (17944) IMU: calib accel: x=-0.0339   y=0.1735   z=0.9895[0m
+[0;32mI (17944) IMU: calib gyro:     x=-0.0226   y=0.1118   z=0.1422[0m
+[0;32mI (17954) IMU: timestamp=0[0m
+[0;32mI (17954) IMU: calib accel: x=-0.0337   y=0.1748   z=0.9895[0m
+[0;32mI (17954) IMU: calib gyro:     x=0.0690   y=0.1576   z=0.0964[0m
+[0;32mI (17964) IMU: timestamp=0[0m
+[0;32mI (17964) IMU: calib accel: x=-0.0328   y=0.1761   z=0.9883[0m
+[0;32mI (17974) IMU: calib gyro:     x=0.2368   y=-0.0255   z=0.1117[0m
+[0;32mI (17974) IMU: timestamp=0[0m
+[0;32mI (17984) IMU: calib accel: x=-0.0323   y=0.1724   z=0.9888[0m
+[0;32mI (17984) IMU: calib gyro:     x=-0.0378   y=0.0813   z=0.0507[0m
+[0;32mI (17994) IMU: timestamp=0[0m
+[0;32mI (17994) IMU: calib accel: x=-0.0341   y=0.1722   z=0.9900[0m
+[0;32mI (17994) IMU: calib gyro:     x=-0.1141   y=0.0508   z=0.0201[0m
+[0;32mI (18004) IMU: timestamp=0[0m
+[0;32mI (18004) IMU: calib accel: x=-0.0324   y=0.1756   z=0.9878[0m
+[0;32mI (18014) IMU: calib gyro:     x=0.2368   y=-0.0560   z=0.0507[0m
+[0;32mI (18014) IMU: timestamp=0[0m
+[0;32mI (18024) IMU: calib accel: x=-0.0331   y=0.1748   z=0.9895[0m
+[0;32mI (18024) IMU: calib gyro:     x=0.1147   y=0.1271   z=0.1117[0m
+[0;32mI (18034) IMU: timestamp=0[0m
+[0;32mI (18034) IMU: calib accel: x=-0.0353   y=0.1744   z=0.9905[0m
+[0;32mI (18034) IMU: calib gyro:     x=-0.0989   y=0.1576   z=0.0201[0m
+[0;32mI (18044) IMU: timestamp=0[0m
+[0;32mI (18044) IMU: calib accel: x=-0.0335   y=0.1739   z=0.9902[0m
+[0;32mI (18054) IMU: calib gyro:     x=0.0690   y=-0.1323   z=0.0507[0m
+[0;32mI (18054) IMU: timestamp=0[0m
+[0;32mI (18064) IMU: calib accel: x=-0.0319   y=0.1746   z=0.9900[0m
+[0;32mI (18064) IMU: calib gyro:     x=0.1300   y=-0.0865   z=0.0812[0m
+[0;32mI (18074) IMU: timestamp=0[0m
+[0;32mI (18074) IMU: calib accel: x=-0.0328   y=0.1739   z=0.9864[0m
+[0;32mI (18074) IMU: calib gyro:     x=0.1910   y=0.2034   z=0.1270[0m
+[0;32mI (18084) IMU: timestamp=0[0m
+[0;32mI (18084) IMU: calib accel: x=-0.0353   y=0.1744   z=0.9898[0m
+[0;32mI (18094) IMU: calib gyro:     x=0.0690   y=0.1424   z=0.0964[0m
+[0;32mI (18094) IMU: timestamp=0[0m
+[0;32mI (18104) IMU: calib accel: x=-0.0343   y=0.1744   z=0.9906[0m
+[0;32mI (18104) IMU: calib gyro:     x=0.0842   y=-0.0865   z=0.0812[0m
+[0;32mI (18114) IMU: timestamp=0[0m
+[0;32mI (18114) IMU: calib accel: x=-0.0331   y=0.1730   z=0.9902[0m
+[0;32mI (18114) IMU: calib gyro:     x=0.0995   y=-0.0560   z=0.1117[0m
+[0;32mI (18124) IMU: timestamp=0[0m
+[0;32mI (18124) IMU: calib accel: x=-0.0336   y=0.1749   z=0.9900[0m
+[0;32mI (18134) IMU: calib gyro:     x=0.0690   y=0.0966   z=0.0964[0m
+[0;32mI (18134) IMU: timestamp=0[0m
+[0;32mI (18144) IMU: calib accel: x=-0.0339   y=0.1751   z=0.9882[0m
+[0;32mI (18144) IMU: calib gyro:     x=0.1605   y=0.1729   z=0.1117[0m
+[0;32mI (18154) IMU: timestamp=0[0m
+[0;32mI (18154) IMU: calib accel: x=-0.0341   y=0.1737   z=0.9888[0m
+[0;32mI (18154) IMU: calib gyro:     x=0.0385   y=0.1424   z=0.0964[0m
+[0;32mI (18164) IMU: timestamp=0[0m
+[0;32mI (18164) IMU: calib accel: x=-0.0332   y=0.1740   z=0.9902[0m
+[0;32mI (18174) IMU: calib gyro:     x=-0.0226   y=-0.0865   z=0.0659[0m
+[0;32mI (18174) IMU: timestamp=0[0m
+[0;32mI (18174) IMU: calib accel: x=-0.0331   y=0.1745   z=0.9892[0m
+[0;32mI (18184) IMU: calib gyro:     x=0.1605   y=0.0203   z=0.0201[0m
+[0;32mI (18194) IMU: timestamp=0[0m
+[0;32mI (18194) IMU: calib accel: x=-0.0335   y=0.1732   z=0.9895[0m
+[0;32mI (18194) IMU: calib gyro:     x=0.0537   y=0.2950   z=0.0812[0m
+[0;32mI (18204) IMU: timestamp=0[0m
+[0;32mI (18204) IMU: calib accel: x=-0.0345   y=0.1737   z=0.9883[0m
+[0;32mI (18214) IMU: calib gyro:     x=0.0690   y=0.1118   z=0.0659[0m
+[0;32mI (18214) IMU: timestamp=0[0m
+[0;32mI (18214) IMU: calib accel: x=-0.0328   y=0.1749   z=0.9897[0m
+[0;32mI (18224) IMU: calib gyro:     x=0.1605   y=-0.0255   z=0.0507[0m
+[0;32mI (18234) IMU: timestamp=0[0m
+[0;32mI (18234) IMU: calib accel: x=-0.0337   y=0.1749   z=0.9903[0m
+[0;32mI (18234) IMU: calib gyro:     x=-0.0073   y=0.0508   z=0.0964[0m
+[0;32mI (18244) IMU: timestamp=0[0m
+[0;32mI (18244) IMU: calib accel: x=-0.0339   y=0.1741   z=0.9897[0m
+[0;32mI (18254) IMU: calib gyro:     x=0.0842   y=0.1271   z=0.0507[0m
+[0;32mI (18254) IMU: timestamp=0[0m
+[0;32mI (18254) IMU: calib accel: x=-0.0337   y=0.1743   z=0.9898[0m
+[0;32mI (18264) IMU: calib gyro:     x=0.1147   y=0.0966   z=0.1117[0m
+[0;32mI (18274) IMU: timestamp=0[0m
+[0;32mI (18274) IMU: calib accel: x=-0.0321   y=0.1752   z=0.9877[0m
+[0;32mI (18274) IMU: calib gyro:     x=0.2368   y=-0.0407   z=0.1270[0m
+[0;32mI (18284) IMU: timestamp=0[0m
+[0;32mI (18284) IMU: calib accel: x=-0.0343   y=0.1735   z=0.9881[0m
+[0;32mI (18294) IMU: calib gyro:     x=-0.0073   y=0.0356   z=0.0507[0m
+[0;32mI (18294) IMU: timestamp=0[0m
+[0;32mI (18294) IMU: calib accel: x=-0.0340   y=0.1745   z=0.9904[0m
+[0;32mI (18304) IMU: calib gyro:     x=-0.0226   y=0.0661   z=0.0659[0m
+[0;32mI (18314) IMU: timestamp=0[0m
+[0;32mI (18314) IMU: calib accel: x=-0.0329   y=0.1744   z=0.9886[0m
+[0;32mI (18314) IMU: calib gyro:     x=0.1300   y=0.0050   z=0.0812[0m
+[0;32mI (18324) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (18774) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 1, empty = 1[0m
+[0;32mI (18774) LSM6DS3: num_fifo_samples = 3858 100[0m
+[0;32mI (18844) LSM6DS3: [0m
+[0;32mI (18844) LSM6DS3: raw gyro = 2.151489 -6.805420 -1.907349[0m
+[0;32mI (18844) LSM6DS3: raw accel = 0.008545 0.145142 0.988647[0m
+[0;32mI (18844) LSM6DS3: num_fifo_samples = 3306[0m
+[0;32mI (18844) IMU: timestamp=1073566896[0m
+[0;32mI (18854) IMU: calib accel: x=-0.0324   y=0.1740   z=0.9887[0m
+[0;32mI (18854) IMU: calib gyro:     x=-0.0073   y=-0.0560   z=0.0507[0m
+[0;32mI (18864) IMU: timestamp=0[0m
+[0;32mI (18864) IMU: calib accel: x=-0.0332   y=0.1740   z=0.9882[0m
+[0;32mI (18874) IMU: calib gyro:     x=0.0079   y=0.1271   z=0.0812[0m
+[0;32mI (18874) IMU: timestamp=0[0m
+[0;32mI (18874) IMU: calib accel: x=-0.0332   y=0.1749   z=0.9876[0m
+[0;32mI (18884) IMU: calib gyro:     x=0.1147   y=0.0508   z=0.0659[0m
+[0;32mI (18884) IMU: timestamp=0[0m
+[0;32mI (18894) IMU: calib accel: x=-0.0326   y=0.1757   z=0.9883[0m
+[0;32mI (18894) IMU: calib gyro:     x=-0.0378   y=-0.0102   z=0.0354[0m
+[0;32mI (18904) IMU: timestamp=0[0m
+[0;32mI (18904) IMU: calib accel: x=-0.0320   y=0.1746   z=0.9869[0m
+[0;32mI (18914) IMU: calib gyro:     x=0.0232   y=0.1271   z=0.0507[0m
+[0;32mI (18914) IMU: timestamp=0[0m
+[0;32mI (18914) IMU: calib accel: x=-0.0342   y=0.1737   z=0.9889[0m
+[0;32mI (18924) IMU: calib gyro:     x=0.0995   y=0.1271   z=0.0964[0m
+[0;32mI (18924) IMU: timestamp=0[0m
+[0;32mI (18934) IMU: calib accel: x=-0.0331   y=0.1737   z=0.9881[0m
+[0;32mI (18934) IMU: calib gyro:     x=0.0690   y=0.0356   z=0.0659[0m
+[0;32mI (18944) IMU: timestamp=0[0m
+[0;32mI (18944) IMU: calib accel: x=-0.0330   y=0.1749   z=0.9897[0m
+[0;32mI (18944) IMU: calib gyro:     x=0.1147   y=0.0508   z=0.0964[0m
+[0;32mI (18954) IMU: timestamp=0[0m
+[0;32mI (18954) IMU: calib accel: x=-0.0320   y=0.1737   z=0.9900[0m
+[0;32mI (18964) IMU: calib gyro:     x=0.0232   y=0.1424   z=0.1117[0m
+[0;32mI (18964) IMU: timestamp=0[0m
+[0;32mI (18974) IMU: calib accel: x=-0.0328   y=0.1749   z=0.9881[0m
+[0;32mI (18974) IMU: calib gyro:     x=0.0690   y=0.0661   z=0.0354[0m
+[0;32mI (18984) IMU: timestamp=0[0m
+[0;32mI (18984) IMU: calib accel: x=-0.0329   y=0.1750   z=0.9870[0m
+[0;32mI (18984) IMU: calib gyro:     x=0.0537   y=0.0050   z=0.0812[0m
+[0;32mI (18994) IMU: timestamp=0[0m
+[0;32mI (18994) IMU: calib accel: x=-0.0331   y=0.1744   z=0.9894[0m
+[0;32mI (19004) IMU: calib gyro:     x=0.0232   y=-0.0255   z=0.0659[0m
+[0;32mI (19004) IMU: timestamp=0[0m
+[0;32mI (19014) IMU: calib accel: x=-0.0335   y=0.1750   z=0.9882[0m
+[0;32mI (19014) IMU: calib gyro:     x=0.0232   y=0.0966   z=0.0659[0m
+[0;32mI (19024) IMU: timestamp=0[0m
+[0;32mI (19024) IMU: calib accel: x=-0.0335   y=0.1734   z=0.9914[0m
+[0;32mI (19024) IMU: calib gyro:     x=-0.0073   y=0.0966   z=0.0049[0m
+[0;32mI (19034) IMU: timestamp=0[0m
+[0;32mI (19034) IMU: calib accel: x=-0.0325   y=0.1748   z=0.9860[0m
+[0;32mI (19044) IMU: calib gyro:     x=0.2521   y=0.0050   z=-0.0104[0m
+[0;32mI (19044) IMU: timestamp=0[0m
+[0;32mI (19054) IMU: calib accel: x=-0.0340   y=0.1741   z=0.9885[0m
+[0;32mI (19054) IMU: calib gyro:     x=0.0690   y=0.1424   z=0.0812[0m
+[0;32mI (19064) IMU: timestamp=0[0m
+[0;32mI (19064) IMU: calib accel: x=-0.0343   y=0.1738   z=0.9903[0m
+[0;32mI (19064) IMU: calib gyro:     x=-0.0378   y=0.1424   z=0.1117[0m
+[0;32mI (19074) IMU: timestamp=0[0m
+[0;32mI (19074) IMU: calib accel: x=-0.0324   y=0.1744   z=0.9885[0m
+[0;32mI (19084) IMU: calib gyro:     x=0.1300   y=0.0661   z=0.0659[0m
+[0;32mI (19084) IMU: timestamp=0[0m
+[0;32mI (19084) IMU: calib accel: x=-0.0325   y=0.1748   z=0.9880[0m
+[0;32mI (19094) IMU: calib gyro:     x=0.1453   y=0.1118   z=0.1117[0m
+[0;32mI (19104) IMU: timestamp=0[0m
+[0;32mI (19104) IMU: calib accel: x=-0.0347   y=0.1734   z=0.9898[0m
+[0;32mI (19104) IMU: calib gyro:     x=0.0537   y=0.1424   z=0.0354[0m
+[0;32mI (19114) IMU: timestamp=0[0m
+[0;32mI (19114) IMU: calib accel: x=-0.0356   y=0.1737   z=0.9904[0m
+[0;32mI (19124) IMU: calib gyro:     x=-0.0684   y=0.1271   z=0.1117[0m
+[0;32mI (19124) IMU: timestamp=0[0m
+[0;32mI (19124) IMU: calib accel: x=-0.0330   y=0.1748   z=0.9893[0m
+[0;32mI (19134) IMU: calib gyro:     x=0.0537   y=-0.1170   z=0.0812[0m
+[0;32mI (19144) IMU: timestamp=0[0m
+[0;32mI (19144) IMU: calib accel: x=-0.0321   y=0.1754   z=0.9886[0m
+[0;32mI (19144) IMU: calib gyro:     x=0.1300   y=0.0508   z=0.0507[0m
+[0;32mI (19154) IMU: timestamp=0[0m
+[0;32mI (19154) IMU: calib accel: x=-0.0343   y=0.1737   z=0.9877[0m
+[0;32mI (19164) IMU: calib gyro:     x=-0.0684   y=0.2644   z=0.0354[0m
+[0;32mI (19164) IMU: timestamp=0[0m
+[0;32mI (19164) IMU: calib accel: x=-0.0341   y=0.1739   z=0.9889[0m
+[0;32mI (19174) IMU: calib gyro:     x=0.0690   y=0.0356   z=0.0354[0m
+[0;32mI (19184) IMU: timestamp=0[0m
+[0;32mI (19184) IMU: calib accel: x=-0.0329   y=0.1744   z=0.9895[0m
+[0;32mI (19184) IMU: calib gyro:     x=0.1147   y=-0.1323   z=0.0964[0m
+[0;32mI (19194) IMU: timestamp=0[0m
+[0;32mI (19194) IMU: calib accel: x=-0.0340   y=0.1724   z=0.9905[0m
+[0;32mI (19204) IMU: calib gyro:     x=-0.0226   y=0.1271   z=0.1422[0m
+[0;32mI (19204) IMU: timestamp=0[0m
+[0;32mI (19204) IMU: calib accel: x=-0.0336   y=0.1740   z=0.9892[0m
+[0;32mI (19214) IMU: calib gyro:     x=0.0690   y=0.0966   z=0.0964[0m
+[0;32mI (19224) IMU: timestamp=0[0m
+[0;32mI (19224) IMU: calib accel: x=-0.0317   y=0.1737   z=0.9891[0m
+[0;32mI (19224) IMU: calib gyro:     x=0.2826   y=-0.0865   z=0.0964[0m
+[0;32mI (19234) IMU: timestamp=0[0m
+[0;32mI (19234) IMU: calib accel: x=-0.0325   y=0.1760   z=0.9882[0m
+[0;32mI (19244) IMU: calib gyro:     x=0.0995   y=0.1271   z=0.0659[0m
+[0;32mI (19244) IMU: timestamp=0[0m
+[0;32mI (19244) IMU: calib accel: x=-0.0342   y=0.1735   z=0.9897[0m
+[0;32mI (19254) IMU: calib gyro:     x=-0.1294   y=0.2644   z=0.0659[0m
+[0;32mI (19264) IMU: timestamp=0[0m
+[0;32mI (19264) IMU: calib accel: x=-0.0335   y=0.1738   z=0.9891[0m
+[0;32mI (19264) IMU: calib gyro:     x=0.0842   y=-0.0865   z=0.0507[0m
+[0;32mI (19274) IMU: timestamp=0[0m
+[0;32mI (19274) IMU: calib accel: x=-0.0312   y=0.1744   z=0.9874[0m
+[0;32mI (19284) IMU: calib gyro:     x=0.3131   y=-0.0865   z=0.0964[0m
+[0;32mI (19284) IMU: timestamp=0[0m
+[0;32mI (19284) IMU: calib accel: x=-0.0352   y=0.1735   z=0.9885[0m
+[0;32mI (19294) IMU: calib gyro:     x=0.0537   y=0.2187   z=0.0354[0m
+[0;32mI (19294) IMU: timestamp=0[0m
+[0;32mI (19304) IMU: calib accel: x=-0.0354   y=0.1722   z=0.9883[0m
+[0;32mI (19304) IMU: calib gyro:     x=-0.0836   y=0.1881   z=0.0507[0m
+[0;32mI (19314) IMU: timestamp=0[0m
+[0;32mI (19314) IMU: calib accel: x=-0.0310   y=0.1749   z=0.9875[0m
+[0;32mI (19324) IMU: calib gyro:     x=0.2368   y=-0.1170   z=0.0507[0m
+[0;32mI (19324) IMU: timestamp=0[0m
+[0;32mI (19324) IMU: calib accel: x=-0.0318   y=0.1749   z=0.9894[0m
+[0;32mI (19334) IMU: calib gyro:     x=0.1605   y=0.0356   z=0.0049[0m
+[0;32mI (19334) IMU: timestamp=0[0m
+[0;32mI (19344) IMU: calib accel: x=-0.0337   y=0.1743   z=0.9889[0m
+[0;32mI (19344) IMU: calib gyro:     x=-0.0531   y=0.3255   z=-0.0104[0m
+[0;32mI (19354) IMU: timestamp=0[0m
+[0;32mI (19354) IMU: calib accel: x=-0.0331   y=0.1734   z=0.9883[0m
+[0;32mI (19364) IMU: calib gyro:     x=0.0537   y=0.0813   z=0.0049[0m
+[0;32mI (19364) IMU: timestamp=0[0m
+[0;32mI (19364) IMU: calib accel: x=-0.0304   y=0.1752   z=0.9887[0m
+[0;32mI (19374) IMU: calib gyro:     x=0.2673   y=-0.2391   z=0.0659[0m
+[0;32mI (19374) IMU: timestamp=0[0m
+[0;32mI (19384) IMU: calib accel: x=-0.0331   y=0.1744   z=0.9883[0m
+[0;32mI (19384) IMU: calib gyro:     x=-0.0073   y=0.1576   z=0.0659[0m
+[0;32mI (19394) IMU: timestamp=0[0m
+[0;32mI (19394) IMU: calib accel: x=-0.0353   y=0.1713   z=0.9893[0m
+[0;32mI (19394) IMU: calib gyro:     x=-0.1599   y=0.3102   z=0.0049[0m
+[0;32mI (19404) IMU: timestamp=0[0m
+[0;32mI (19404) IMU: calib accel: x=-0.0332   y=0.1745   z=0.9877[0m
+[0;32mI (19414) IMU: calib gyro:     x=0.3436   y=-0.1323   z=0.0812[0m
+[0;32mI (19414) IMU: timestamp=0[0m
+[0;32mI (19424) IMU: calib accel: x=-0.0317   y=0.1746   z=0.9888[0m
+[0;32mI (19424) IMU: calib gyro:     x=0.1453   y=-0.0865   z=0.1117[0m
+[0;32mI (19434) IMU: timestamp=0[0m
+[0;32mI (19434) IMU: calib accel: x=-0.0357   y=0.1724   z=0.9891[0m
+[0;32mI (19434) IMU: calib gyro:     x=-0.1752   y=0.2950   z=0.1117[0m
+[0;32mI (19444) IMU: timestamp=0[0m
+[0;32mI (19444) IMU: calib accel: x=-0.0329   y=0.1727   z=0.9886[0m
+[0;32mI (19454) IMU: calib gyro:     x=0.0842   y=0.0356   z=0.0964[0m
+[0;32mI (19454) IMU: timestamp=0[0m
+[0;32mI (19464) IMU: calib accel: x=-0.0318   y=0.1761   z=0.9876[0m
+[0;32mI (19464) IMU: calib gyro:     x=0.2826   y=-0.2086   z=0.0812[0m
+[0;32mI (19474) IMU: timestamp=0[0m
+[0;32mI (19474) IMU: calib accel: x=-0.0341   y=0.1743   z=0.9863[0m
+[0;32mI (19474) IMU: calib gyro:     x=0.0842   y=0.1424   z=0.0812[0m
+[0;32mI (19484) IMU: timestamp=0[0m
+[0;32mI (19484) IMU: calib accel: x=-0.0345   y=0.1718   z=0.9883[0m
+[0;32mI (19494) IMU: calib gyro:     x=-0.1447   y=0.2339   z=0.1270[0m
+[0;32mI (19494) IMU: timestamp=0[0m
+[0;32mI (19504) IMU: calib accel: x=-0.0326   y=0.1739   z=0.9894[0m
+[0;32mI (19504) IMU: calib gyro:     x=0.1300   y=-0.1170   z=0.1117[0m
+[0;32mI (19514) IMU: timestamp=0[0m
+[0;32mI (19514) IMU: calib accel: x=-0.0319   y=0.1763   z=0.9867[0m
+[0;32mI (19514) IMU: calib gyro:     x=0.1605   y=-0.0407   z=0.0812[0m
+[0;32mI (19524) IMU: timestamp=0[0m
+[0;32mI (19524) IMU: calib accel: x=-0.0343   y=0.1733   z=0.9877[0m
+[0;32mI (19534) IMU: calib gyro:     x=-0.0531   y=0.2644   z=0.0659[0m
+[0;32mI (19534) IMU: timestamp=0[0m
+[0;32mI (19544) IMU: calib accel: x=-0.0347   y=0.1743   z=0.9904[0m
+[0;32mI (19544) IMU: calib gyro:     x=-0.0073   y=0.1424   z=0.1270[0m
+[0;32mI (19554) IMU: timestamp=0[0m
+[0;32mI (19554) IMU: calib accel: x=-0.0328   y=0.1744   z=0.9883[0m
+[0;32mI (19554) IMU: calib gyro:     x=0.1300   y=-0.0560   z=0.1117[0m
+[0;32mI (19564) IMU: timestamp=0[0m
+[0;32mI (19564) IMU: calib accel: x=-0.0328   y=0.1730   z=0.9891[0m
+[0;32mI (19574) IMU: calib gyro:     x=0.0232   y=0.0966   z=0.1117[0m
+[0;32mI (19574) IMU: timestamp=0[0m
+[0;32mI (19584) IMU: calib accel: x=-0.0351   y=0.1729   z=0.9895[0m
+[0;32mI (19584) IMU: calib gyro:     x=-0.0378   y=0.2034   z=0.0812[0m
+[0;32mI (19594) IMU: timestamp=0[0m
+[0;32mI (19594) IMU: calib accel: x=-0.0346   y=0.1733   z=0.9898[0m
+[0;32mI (19594) IMU: calib gyro:     x=0.0232   y=0.1271   z=0.1117[0m
+[0;32mI (19604) IMU: timestamp=0[0m
+[0;32mI (19604) IMU: calib accel: x=-0.0321   y=0.1746   z=0.9871[0m
+[0;32mI (19614) IMU: calib gyro:     x=0.2216   y=-0.0560   z=0.0812[0m
+[0;32mI (19614) IMU: timestamp=0[0m
+[0;32mI (19624) IMU: calib accel: x=-0.0325   y=0.1743   z=0.9881[0m
+[0;32mI (19624) IMU: calib gyro:     x=0.0995   y=0.0508   z=0.0964[0m
+[0;32mI (19634) IMU: timestamp=0[0m
+[0;32mI (19634) IMU: calib accel: x=-0.0345   y=0.1732   z=0.9900[0m
+[0;32mI (19634) IMU: calib gyro:     x=-0.0378   y=0.2034   z=0.0354[0m
+[0;32mI (19644) IMU: timestamp=0[0m
+[0;32mI (19644) IMU: calib accel: x=-0.0330   y=0.1743   z=0.9877[0m
+[0;32mI (19654) IMU: calib gyro:     x=0.1758   y=-0.0407   z=0.0354[0m
+[0;32mI (19654) IMU: timestamp=0[0m
+[0;32mI (19654) IMU: calib accel: x=-0.0306   y=0.1738   z=0.9883[0m
+[0;32mI (19664) IMU: calib gyro:     x=0.1758   y=-0.0713   z=0.0354[0m
+[0;32mI (19674) IMU: timestamp=0[0m
+[0;32mI (19674) IMU: calib accel: x=-0.0339   y=0.1738   z=0.9893[0m
+[0;32mI (19674) IMU: calib gyro:     x=-0.0989   y=0.1576   z=0.0964[0m
+[0;32mI (19684) IMU: timestamp=0[0m
+[0;32mI (19684) IMU: calib accel: x=-0.0335   y=0.1723   z=0.9874[0m
+[0;32mI (19694) IMU: calib gyro:     x=0.0385   y=0.0966   z=0.0659[0m
+[0;32mI (19694) IMU: timestamp=0[0m
+[0;32mI (19694) IMU: calib accel: x=-0.0312   y=0.1735   z=0.9887[0m
+[0;32mI (19704) IMU: calib gyro:     x=0.2216   y=-0.1170   z=0.0507[0m
+[0;32mI (19714) IMU: timestamp=0[0m
+[0;32mI (19714) IMU: calib accel: x=-0.0317   y=0.1751   z=0.9886[0m
+[0;32mI (19714) IMU: calib gyro:     x=0.1147   y=0.0813   z=0.0964[0m
+[0;32mI (19724) IMU: timestamp=0[0m
+[0;32mI (19724) IMU: calib accel: x=-0.0354   y=0.1721   z=0.9883[0m
+[0;32mI (19734) IMU: calib gyro:     x=-0.1447   y=0.2950   z=0.0964[0m
+[0;32mI (19734) IMU: timestamp=0[0m
+[0;32mI (19734) IMU: calib accel: x=-0.0343   y=0.1724   z=0.9858[0m
+[0;32mI (19744) IMU: calib gyro:     x=0.0842   y=-0.1323   z=0.0507[0m
+[0;32mI (19754) IMU: timestamp=0[0m
+[0;32mI (19754) IMU: calib accel: x=-0.0313   y=0.1773   z=0.9870[0m
+[0;32mI (19754) IMU: calib gyro:     x=0.3131   y=-0.2086   z=0.0507[0m
+[0;32mI (19764) IMU: timestamp=0[0m
+[0;32mI (19764) IMU: calib accel: x=-0.0353   y=0.1729   z=0.9905[0m
+[0;32mI (19774) IMU: calib gyro:     x=-0.1447   y=0.3560   z=0.0201[0m
+[0;32mI (19774) IMU: timestamp=0[0m
+[0;32mI (19774) IMU: calib accel: x=-0.0362   y=0.1711   z=0.9892[0m
+[0;32mI (19784) IMU: calib gyro:     x=-0.0989   y=0.2339   z=0.0659[0m
+[0;32mI (19794) IMU: timestamp=0[0m
+[0;32mI (19794) IMU: calib accel: x=-0.0314   y=0.1739   z=0.9881[0m
+[0;32mI (19794) IMU: calib gyro:     x=0.4047   y=-0.3001   z=0.1270[0m
+[0;32mI (19804) IMU: timestamp=0[0m
+[0;32mI (19804) IMU: calib accel: x=-0.0320   y=0.1762   z=0.9874[0m
+[0;32mI (19814) IMU: calib gyro:     x=0.2673   y=0.0813   z=0.0812[0m
+[0;32mI (19814) IMU: timestamp=0[0m
+[0;32mI (19814) IMU: calib accel: x=-0.0374   y=0.1713   z=0.9909[0m
+[0;32mI (19824) IMU: calib gyro:     x=-0.1904   y=0.3560   z=0.0659[0m
+[0;32mI (19834) IMU: timestamp=0[0m
+[0;32mI (19834) IMU: calib accel: x=-0.0343   y=0.1717   z=0.9894[0m
+[0;32mI (19834) IMU: calib gyro:     x=0.0537   y=-0.0102   z=0.0812[0m
+[0;32mI (19844) IMU: timestamp=0[0m
+[0;32mI (19844) IMU: calib accel: x=-0.0309   y=0.1757   z=0.9861[0m
+[0;32mI (19854) IMU: calib gyro:     x=0.3436   y=-0.2391   z=0.1117[0m
+[0;32mI (19854) IMU: timestamp=0[0m
+[0;32mI (19854) IMU: calib accel: x=-0.0336   y=0.1734   z=0.9875[0m
+[0;32mI (19864) IMU: calib gyro:     x=-0.1294   y=0.2644   z=0.0201[0m
+[0;32mI (19874) IMU: timestamp=0[0m
+[0;32mI (19874) IMU: calib accel: x=-0.0368   y=0.1717   z=0.9903[0m
+[0;32mI (19874) IMU: calib gyro:     x=-0.2209   y=0.3865   z=0.0659[0m
+[0;32mI (19884) IMU: timestamp=0[0m
+[0;32mI (19884) IMU: calib accel: x=-0.0331   y=0.1746   z=0.9893[0m
+[0;32mI (19894) IMU: calib gyro:     x=0.3436   y=-0.1781   z=0.0354[0m
+[0;32mI (19894) IMU: timestamp=0[0m
+[0;32mI (19894) IMU: calib accel: x=-0.0301   y=0.1757   z=0.9880[0m
+[0;32mI (19904) IMU: calib gyro:     x=0.2063   y=-0.1170   z=0.0354[0m
+[0;32mI (19904) IMU: timestamp=0[0m
+[0;32mI (19914) IMU: calib accel: x=-0.0351   y=0.1728   z=0.9882[0m
+[0;32mI (19914) IMU: calib gyro:     x=-0.1599   y=0.3255   z=0.0354[0m
+[0;32mI (19924) IMU: timestamp=0[0m
+[0;32mI (19924) IMU: calib accel: x=-0.0340   y=0.1735   z=0.9888[0m
+[0;32mI (19934) IMU: calib gyro:     x=0.0537   y=0.0661   z=0.0507[0m
+[0;32mI (19934) IMU: timestamp=0[0m
+[0;32mI (19934) IMU: calib accel: x=-0.0317   y=0.1757   z=0.9888[0m
+[0;32mI (19944) IMU: calib gyro:     x=0.2521   y=-0.1628   z=0.0507[0m
+[0;32mI (19944) IMU: timestamp=0[0m
+[0;32mI (19954) IMU: calib accel: x=-0.0314   y=0.1739   z=0.9871[0m
+[0;32mI (19954) IMU: calib gyro:     x=0.0537   y=0.1271   z=0.0659[0m
+[0;32mI (19964) IMU: timestamp=0[0m
+[0;32mI (19964) IMU: calib accel: x=-0.0353   y=0.1733   z=0.9910[0m
+[0;32mI (19974) IMU: calib gyro:     x=-0.1294   y=0.2339   z=0.0354[0m
+[0;32mI (19974) IMU: timestamp=0[0m
+[0;32mI (19974) IMU: calib accel: x=-0.0337   y=0.1741   z=0.9894[0m
+[0;32mI (19984) IMU: calib gyro:     x=0.0385   y=-0.0102   z=0.0201[0m
+[0;32mI (19984) IMU: timestamp=0[0m
+[0;32mI (19994) IMU: calib accel: x=-0.0326   y=0.1749   z=0.9872[0m
+[0;32mI (19994) IMU: calib gyro:     x=0.1758   y=-0.0255   z=0.0659[0m
+[0;32mI (20004) IMU: timestamp=0[0m
+[0;32mI (20004) IMU: calib accel: x=-0.0334   y=0.1733   z=0.9881[0m
+[0;32mI (20004) IMU: calib gyro:     x=0.0842   y=0.2339   z=0.0812[0m
+[0;32mI (20014) IMU: timestamp=0[0m
+[0;32mI (20014) IMU: calib accel: x=-0.0349   y=0.1740   z=0.9894[0m
+[0;32mI (20024) IMU: calib gyro:     x=0.0690   y=0.1576   z=0.1117[0m
+[0;32mI (20024) IMU: timestamp=0[0m
+[0;32mI (20034) IMU: calib accel: x=-0.0317   y=0.1749   z=0.9886[0m
+[0;32mI (20034) IMU: calib gyro:     x=0.1605   y=-0.1323   z=0.0507[0m
+[0;32mI (20044) IMU: timestamp=0[0m
+[0;32mI (20044) IMU: calib accel: x=-0.0325   y=0.1735   z=0.9893[0m
+[0;32mI (20044) IMU: calib gyro:     x=0.0537   y=-0.0407   z=0.0964[0m
+[0;32mI (20054) IMU: timestamp=0[0m
+[0;32mI (20054) IMU: calib accel: x=-0.0328   y=0.1738   z=0.9909[0m
+[0;32mI (20064) IMU: calib gyro:     x=-0.0989   y=0.1576   z=0.1422[0m
+[0;32mI (20064) IMU: timestamp=0[0m
+[0;32mI (20074) IMU: calib accel: x=-0.0341   y=0.1735   z=0.9904[0m
+[0;32mI (20074) IMU: calib gyro:     x=0.0079   y=0.0966   z=0.0964[0m
+[0;32mI (20084) IMU: timestamp=0[0m
+[0;32mI (20084) IMU: calib accel: x=-0.0325   y=0.1755   z=0.9875[0m
+[0;32mI (20084) IMU: calib gyro:     x=0.2521   y=-0.1781   z=0.0659[0m
+[0;32mI (20094) IMU: timestamp=0[0m
+[0;32mI (20094) IMU: calib accel: x=-0.0324   y=0.1750   z=0.9876[0m
+[0;32mI (20104) IMU: calib gyro:     x=0.1147   y=0.0813   z=0.0507[0m
+[0;32mI (20104) IMU: timestamp=0[0m
+[0;32mI (20114) IMU: calib accel: x=-0.0342   y=0.1728   z=0.9882[0m
+[0;32mI (20114) IMU: calib gyro:     x=-0.1141   y=0.2187   z=0.0507[0m
+[0;32mI (20124) IMU: timestamp=0[0m
+[0;32mI (20124) IMU: calib accel: x=-0.0336   y=0.1741   z=0.9881[0m
+[0;32mI (20124) IMU: calib gyro:     x=0.0537   y=-0.0407   z=0.0964[0m
+[0;32mI (20134) IMU: timestamp=0[0m
+[0;32mI (20134) IMU: calib accel: x=-0.0319   y=0.1743   z=0.9880[0m
+[0;32mI (20144) IMU: calib gyro:     x=0.1453   y=-0.1018   z=0.0812[0m
+[0;32mI (20144) IMU: timestamp=0[0m
+[0;32mI (20154) IMU: calib accel: x=-0.0334   y=0.1750   z=0.9897[0m
+[0;32mI (20154) IMU: calib gyro:     x=0.0842   y=0.1424   z=0.0659[0m
+[0;32mI (20164) IMU: timestamp=0[0m
+[0;32mI (20164) IMU: calib accel: x=-0.0357   y=0.1734   z=0.9900[0m
+[0;32mI (20164) IMU: calib gyro:     x=-0.0378   y=0.2187   z=0.0964[0m
+[0;32mI (20174) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (20624) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (20624) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (21074) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (21074) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (21524) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (21524) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (21974) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (21974) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (22424) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (22424) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (22874) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (22874) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (23324) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (23324) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (23774) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (23774) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (24224) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (24224) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (24674) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (24674) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (25124) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (25124) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (25574) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (25574) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (26024) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (26024) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (26474) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (26474) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (26924) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (26924) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (27374) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (27374) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (27824) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (27824) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (28274) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (28274) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (28724) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (28724) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (29174) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (29174) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (29624) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (29624) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (30074) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (30074) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (30524) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (30524) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (30974) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (30974) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (31424) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (31424) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (31874) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (31874) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (32324) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (32324) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (32774) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (32774) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (33224) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (33224) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (33674) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (33674) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (34124) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (34124) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (34574) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (34574) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (35024) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (35024) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (35474) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (35474) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (35924) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (35924) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (36374) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (36374) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (36824) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (36824) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (37274) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (37274) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (37724) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (37724) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (38174) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (38174) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (38624) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (38624) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (39074) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (39074) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (39524) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (39524) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (39974) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (39974) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (40424) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (40424) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (40874) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (40874) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (41324) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (41324) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (41774) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (41774) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (42224) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (42224) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (42674) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (42674) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (43124) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (43124) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (43574) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (43574) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (44024) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (44024) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (44474) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (44474) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (44924) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (44924) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (45374) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (45374) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (45824) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (45824) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (46274) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (46274) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (46724) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (46724) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (47174) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (47174) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (47624) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (47624) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (48074) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (48074) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (48524) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (48524) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (48974) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (48974) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (49424) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (49424) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (49874) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (49874) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (50324) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (50324) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (50774) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (50774) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (51224) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (51224) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (51674) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (51674) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (52124) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (52124) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (52574) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (52574) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (53024) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (53024) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (53474) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (53474) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (53924) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (53924) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (54374) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (54374) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (54824) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (54824) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (55274) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (55274) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (55724) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (55724) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (56174) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (56174) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (56624) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (56624) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (57074) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (57074) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (57524) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (57524) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (57974) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (57974) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (58424) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (58424) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (58874) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (58874) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (59324) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (59324) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (59774) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (59774) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (60224) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (60224) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (60674) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (60674) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (61124) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (61124) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (61574) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (61574) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (62024) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (62024) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (62474) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (62474) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (62924) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (62924) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (63374) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (63374) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (63824) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (63824) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (64274) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (64274) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (64724) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (64724) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (65174) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (65174) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (65624) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (65624) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (66074) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (66074) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (66524) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (66524) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (66974) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (66974) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (67424) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (67424) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (67874) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (67874) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (68324) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (68324) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (68774) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (68774) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (69224) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (69224) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (69674) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (69674) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (70124) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (70124) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (70574) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (70574) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (71024) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (71024) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (71474) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (71474) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (71924) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (71924) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (72374) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (72374) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (72824) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (72824) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (73274) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (73274) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (73724) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (73724) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (74174) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (74174) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (74624) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (74624) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (75074) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (75074) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (75524) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (75524) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (75974) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (75974) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (76424) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (76424) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (76874) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (76874) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (77324) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (77324) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (77774) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (77774) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (78224) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (78224) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (78674) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (78674) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (79124) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (79124) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (79574) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (79574) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (80024) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (80024) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (80474) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (80474) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (80924) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (80924) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (81374) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (81374) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (81824) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (81824) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (82274) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (82274) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (82724) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (82724) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (83174) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (83174) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (83624) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (83624) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (84074) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (84074) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (84524) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (84524) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (84974) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (84974) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (85424) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (85424) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (85874) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (85874) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (86324) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (86324) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (86774) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (86774) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (87224) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (87224) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (87674) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (87674) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (88124) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (88124) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (88574) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (88574) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (89024) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (89024) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (89474) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (89474) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (89924) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (89924) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (90374) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (90374) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (90824) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (90824) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (91274) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (91274) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (91724) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (91724) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (92174) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (92174) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (92624) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (92624) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (93074) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (93074) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (93524) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (93524) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (93974) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (93974) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (94424) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (94424) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (94874) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (94874) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (95324) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (95324) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (95774) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (95774) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (96224) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (96224) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (96674) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (96674) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (97124) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (97124) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (97574) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (97574) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (98024) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (98024) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (98474) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (98474) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (98924) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (98924) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (99374) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (99374) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (99824) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (99824) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (100274) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (100274) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (100724) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (100724) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (101174) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (101174) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (101624) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (101624) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (102074) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (102074) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (102524) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (102524) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (102974) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (102974) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (103424) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (103424) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (103874) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (103874) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (104324) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (104324) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (104774) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (104774) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (105224) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (105224) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (105674) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (105674) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (106124) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (106124) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (106574) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (106574) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (107024) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (107024) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (107474) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (107474) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (107924) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (107924) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (108374) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (108374) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (108824) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (108824) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (109274) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (109274) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (109724) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (109724) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (110174) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (110174) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (110624) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (110624) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (111074) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (111074) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (111524) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (111524) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (111974) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (111974) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (112424) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (112424) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (112874) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (112874) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (113324) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (113324) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (113774) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (113774) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (114224) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (114224) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (114674) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (114674) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (115124) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (115124) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (115574) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (115574) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (116024) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (116024) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (116474) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (116474) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (116924) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (116924) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (117374) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (117374) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (117824) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (117824) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (118274) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (118274) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (118724) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (118724) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (119174) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (119174) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (119624) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (119624) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (120074) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (120074) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (120524) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (120524) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (120974) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (120974) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (121424) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (121424) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (121874) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (121874) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (122324) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (122324) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (122774) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (122774) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (123224) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (123224) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (123674) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (123674) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (124124) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (124124) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (124574) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (124574) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (125024) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (125024) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (125474) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (125474) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (125924) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (125924) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (126374) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (126374) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (126824) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (126824) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (127274) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (127274) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (127724) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (127724) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (128174) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (128174) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (128624) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (128624) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (129074) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (129074) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (129524) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (129524) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (129974) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (129974) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (130424) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (130424) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (130874) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (130874) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (131324) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (131324) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (131774) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (131774) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (132224) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (132224) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (132674) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (132674) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (133124) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (133124) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (133574) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (133574) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (134024) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (134024) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (134474) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (134474) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (134924) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (134924) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (135374) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (135374) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (135824) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (135824) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (136274) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (136274) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (136724) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (136724) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (137174) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (137174) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (137624) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (137624) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (138074) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (138074) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (138524) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (138524) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (138974) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (138974) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (139424) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (139424) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (139874) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (139874) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (140324) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (140324) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (140774) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (140774) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (141224) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (141224) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (141674) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (141674) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (142124) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (142124) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (142574) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (142574) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (143024) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (143024) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (143474) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (143474) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (143924) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (143924) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (144374) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (144374) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (144824) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (144824) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (145274) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (145274) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (145724) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (145724) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (146174) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (146174) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (146624) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (146624) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (147074) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (147074) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (147524) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (147524) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (147974) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (147974) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (148424) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (148424) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (148874) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (148874) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (149324) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (149324) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (149774) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (149774) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (150224) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (150224) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (150674) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (150674) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (151124) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (151124) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (151574) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (151574) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (152024) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (152024) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (152474) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (152474) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (152924) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (152924) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (153374) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (153374) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (153824) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (153824) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (154274) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (154274) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (154724) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (154724) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (155174) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (155174) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (155624) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (155624) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (156074) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (156074) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (156524) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (156524) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (156974) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (156974) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (157424) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (157424) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (157874) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (157874) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (158324) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (158324) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (158774) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (158774) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (159224) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (159224) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (159674) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (159674) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (160124) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (160124) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (160574) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (160574) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (161024) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (161024) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (161474) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (161474) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (161924) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (161924) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (162374) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (162374) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (162824) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (162824) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (163274) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (163274) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (163724) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (163724) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (164174) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (164174) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (164624) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (164624) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (165074) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (165074) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (165524) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (165524) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (165974) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (165974) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (166424) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (166424) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (166874) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (166874) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (167324) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (167324) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (167774) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (167774) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (168224) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (168224) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (168674) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (168674) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (169124) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (169124) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (169574) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (169574) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (170024) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (170024) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (170474) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (170474) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (170924) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (170924) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (171374) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (171374) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (171824) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (171824) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (172274) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (172274) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (172724) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (172724) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (173174) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (173174) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (173624) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (173624) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (174074) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (174074) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (174524) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (174524) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (174974) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (174974) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (175424) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (175424) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (175874) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (175874) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (176324) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (176324) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (176774) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (176774) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (177224) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (177224) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (177674) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (177674) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (178124) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (178124) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (178574) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (178574) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (179024) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (179024) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (179474) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (179474) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (179924) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (179924) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (180374) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (180374) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (180824) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (180824) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (181274) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (181274) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (181724) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (181724) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (182174) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (182174) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (182624) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (182624) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (183074) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (183074) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (183524) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (183524) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (183974) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (183974) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (184424) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (184424) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (184874) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (184874) LSM6DS3: num_fifo_samples = 0[0m
+[0;32mI (185324) LSM6DS3: FIFO watermark = 0, overrun = 0, full_smart = 0, empty = 0[0m
+[0;32mI (185324) LSM6DS3: num_fifo_samples = 0[0m

@@ -1,6 +1,7 @@
 #include "lsm6ds3.h"
 
 static uint8_t data[12];
+static uint8_t lsm6ds3_fifo_mode_value;
 float gyro_fs_cf, accel_fs_cf;
 
 /**
@@ -343,6 +344,7 @@ void lsm6ds3_set_fifo_operation_mode(i2c_master_dev_handle_t dev_handle, lsm6ds3
     /* read */
     ESP_ERROR_CHECK(lsm6ds3_register_read(dev_handle, LSM6DS3_FIFO_CTRL5_REG_ADDR, data, 1));
     /* modify */
+    lsm6ds3_fifo_mode_value = fifo_mode;
     read_modify_write(FIFO_CTRL5_MODE_2, FIFO_CTRL5_MODE_0, fifo_mode, data);
     /* write */
     ESP_ERROR_CHECK(lsm6ds3_register_write_byte(dev_handle, LSM6DS3_FIFO_CTRL5_REG_ADDR, data[0]));
@@ -544,7 +546,7 @@ void lsm6ds3_fifo_reset_start(i2c_master_dev_handle_t dev_handle)
 
     /* start FIFO in FIFO mode
     FIFO mode = 0b001 for FIFO mode*/
-    lsm6ds3_set_fifo_operation_mode(dev_handle, LSM6DS3_FIFO_MODE_FIFO);
+    lsm6ds3_set_fifo_operation_mode(dev_handle, LSM6DS3_FIFO_MODE_CONTINUOUS);
     // ESP_ERROR_CHECK(lsm6ds3_register_read(dev_handle, LSM6DS3_FIFO_CTRL5_REG_ADDR, &data[0], 1));
     // ESP_LOGI(LSM6DS3_TAG, "FIFO_CTRL5_REG_ADDR = %X", data[0]);
 }
@@ -675,7 +677,7 @@ uint16_t lsm6ds3_fifo_read(i2c_master_dev_handle_t dev_handle, lsm6ds3_data_t *l
         ((status2_reg & FIFO_STATUS2_WATERM) == 1 &&
          (status2_reg & FIFO_STATUS2_OVER_RUN) == 0 &&
          (status2_reg & FIFO_STATUS2_FIFO_FULL_SMART) == 1 &&
-         (status2_reg & FIFO_STATUS2_FIFO_EMPTY) == 0)|| (status2_reg & FIFO_STATUS2_WATERM) == 1
+         (status2_reg & FIFO_STATUS2_FIFO_EMPTY) == 0)||
      */
     if (num_fifo_samples > num_samples_to_read)
     {
@@ -714,9 +716,20 @@ uint16_t lsm6ds3_fifo_read(i2c_master_dev_handle_t dev_handle, lsm6ds3_data_t *l
         }
 
         // ESP_LOGI(LSM6DS3_TAG, "temperature = %f\n", lsm6ds3_data.temp);
-        ESP_LOGI(LSM6DS3_TAG, "");
-        ESP_LOGI(LSM6DS3_TAG, "gyro = %f %f %f", lsm6ds3_fifo_buffer[num_timesteps - 1].gyro[0], lsm6ds3_fifo_buffer[num_timesteps - 1].gyro[1], lsm6ds3_fifo_buffer[num_timesteps - 1].gyro[2]);
-        ESP_LOGI(LSM6DS3_TAG, "accel = %f %f %f", lsm6ds3_fifo_buffer[num_timesteps - 1].accel[0], lsm6ds3_fifo_buffer[num_timesteps - 1].accel[1], lsm6ds3_fifo_buffer[num_timesteps - 1].accel[2]);
+        ESP_LOGI(LSM6DS3_TAG, "raw gyro = %f %f %f",
+                 lsm6ds3_fifo_buffer[num_timesteps - 1].gyro[0],
+                 lsm6ds3_fifo_buffer[num_timesteps - 1].gyro[1],
+                 lsm6ds3_fifo_buffer[num_timesteps - 1].gyro[2]);
+        ESP_LOGI(LSM6DS3_TAG, "raw accel = %f %f %f",
+                 lsm6ds3_fifo_buffer[num_timesteps - 1].accel[0],
+                 lsm6ds3_fifo_buffer[num_timesteps - 1].accel[1],
+                 lsm6ds3_fifo_buffer[num_timesteps - 1].accel[2]);
+    }
+    /* reset start the LSM6DS3 FIFO when it stops working due to overflow */
+    else if (num_fifo_samples == 0 && lsm6ds3_fifo_mode_value != LSM6DS3_FIFO_MODE_BYPASS)
+    {
+        ESP_LOGI(LSM6DS3_TAG, "overflow");
+        lsm6ds3_fifo_reset_start(dev_handle);
     }
 
     num_fifo_samples = lsm6ds3_fifo_get_num_samples(dev_handle);
