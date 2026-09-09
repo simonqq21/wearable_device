@@ -2,6 +2,7 @@
 #define DATALOGGING_H
 
 #include "common.h"
+#include "Fusion.h"
 
 /**
  * @brief datalogging task params

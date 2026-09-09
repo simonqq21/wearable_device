@@ -1,5 +1,4 @@
 #include "datalogging.h"
-#include "Fusion.h"
 
 /**
  * @brief FreeRTOS task to get sensor data, perform sensor fusion, and distribute them to the SD card
@@ -9,12 +8,87 @@
  */
 #define DATALOGGING_TAG "DATA LOGGING"
 
+/**
+ * @brief IMU complementary filter
+ *
+ * @param imu_data calibrated IMU data
+ * @param dt time delta between IMU data samples
+ * @param alpha complementary filter parameter
+ */
+orientation_data_t complementary_filter(imu_data_t *imu_data, int dt, float alpha)
+{
+    orientation_data_t complementary_filter_result;
+    float acc_roll, acc_pitch;
+    static float gyro_roll = 0.0, gyro_pitch = 0.0, gyro_yaw = 0.0;
+
+    /* get angles from accelerometer
+    roll happens around the x-axis, pitch happens around the y-axis, and yaw happens around the z-axis. */
+    acc_roll = atan2f(imu_data->ay,
+                      sqrt(imu_data->ax * imu_data->ax + imu_data->az * imu_data->az)) *
+               180.0 / M_PI;
+    acc_pitch = atan2f(imu_data->ax,
+                       sqrt(imu_data->ay * imu_data->ay + imu_data->az * imu_data->az)) *
+                180.0 / M_PI;
+
+    if (alpha == 0.0)
+    {
+        gyro_roll = acc_roll;
+        gyro_pitch = acc_pitch;
+        gyro_yaw = 0;
+    }
+    /* integrate gyroscope angles */
+    else
+    {
+        if (fabsf(imu_data->gx) < GYRO_DEADBAND)
+        {
+            imu_data->gx = 0;
+        }
+        else
+        {
+            gyro_roll += imu_data->gx * dt / 1000000.0;
+        }
+        if (fabsf(imu_data->gy) < GYRO_DEADBAND)
+        {
+            imu_data->gy = 0;
+        }
+        else
+        {
+            gyro_pitch += imu_data->gy * dt / 1000000.0;
+        }
+        if (fabsf(imu_data->gz) < GYRO_DEADBAND)
+        {
+            imu_data->gz = 0;
+        }
+        else
+        {
+            gyro_yaw += imu_data->gz * dt / 1000000.0;
+        }
+    }
+
+    /* accel only */
+    // complementary_filter_result.euler_angle.timestamp = imu_data->timestamp;
+    // complementary_filter_result.euler_angle.x = acc_roll;
+    // complementary_filter_result.euler_angle.y = acc_pitch;
+    // complementary_filter_result.euler_angle.z = gyro_yaw;
+
+    /* combine the accelerometer and gyroscope angles */
+    gyro_roll = alpha * gyro_roll + (1.0 - alpha) * acc_roll;
+    gyro_pitch = alpha * gyro_pitch + (1.0 - alpha) * acc_pitch;
+    complementary_filter_result.euler_angle.timestamp = imu_data->timestamp;
+    complementary_filter_result.euler_angle.x = gyro_roll;
+    complementary_filter_result.euler_angle.y = gyro_pitch;
+    complementary_filter_result.euler_angle.z = gyro_yaw;
+
+    return complementary_filter_result;
+}
+
 void task_main_datalogging(void *params)
 {
     cmd_task_datalogging_t datalogging_task_cmd, prev_datalogging_task_cmd;
     // uint8_t imu_data_received;
     imu_data_t imu_data;
     orientation_data_t orientation_data;
+    int64_t prev_timestamp = 0;
 
     /* datalogging task params */
     params_task_main_datalogging_t *datalogging_params = (params_task_main_datalogging_t *)params;
@@ -101,6 +175,12 @@ void task_main_datalogging(void *params)
             xQueueReset(queue_orientation_sdcard);
             xQueueReset(queue_orientation_UART);
             xQueueReset(queue_orientation_BLE);
+
+            xQueueReceive(queue_imu, (void *)&imu_data, portMAX_DELAY);
+            /* initialize complementary filter */
+            orientation_data = complementary_filter(&imu_data, imu_data.timestamp - prev_timestamp, 0.0);
+
+            prev_timestamp = 0;
         }
         /* if datalogging is ongoing */
         if (datalogging_task_cmd == CMD_DATALOGGING_GO && prev_datalogging_task_cmd == CMD_DATALOGGING_GO)
@@ -127,110 +207,124 @@ void task_main_datalogging(void *params)
                     }
                 }
 
-                /* Fusion AHRS sensor fusion */
-                // Read sensors (replace with actual sensor data)
-                const uint64_t timestamp = imu_data.timestamp;
-                FusionVector gyroscope = {{imu_data.gx, imu_data.gy, imu_data.gz}};
-                FusionVector accelerometer = {{imu_data.ax, imu_data.ay, imu_data.az}};
-                // FusionVector magnetometer = {1.0f, 0.0f, 0.0f};
-
-                // Apply calibration
-                gyroscope = FusionModelInertial(gyroscope, gyroscopeMisalignment, gyroscopeSensitivity, gyroscopeOffset);
-
-                accelerometer = FusionModelInertial(accelerometer, accelerometerMisalignment, accelerometerSensitivity, accelerometerOffset);
-
-                // magnetometer = FusionModelMagnetic(magnetometer, softIronMatrix, hardIronOffset);
-
-                // Update bias algorithm
-                gyroscope = FusionBiasUpdate(&bias, gyroscope);
-
-                // Calculate delta time to compensate for gyroscope sample clock errors
-                static uint64_t previousTimestamp = 0;
-                const float deltaTime = (float)(timestamp - previousTimestamp);
-                previousTimestamp = timestamp;
-
-                FusionAhrsSetSamplePeriod(&ahrs, deltaTime);
-
-                // Update AHRS algorithm
-                // FusionAhrsUpdate(&ahrs, gyroscope, accelerometer, magnetometer);
-                FusionAhrsUpdateNoMagnetometer(&ahrs, gyroscope, accelerometer);
-
-                // Print AHRS outputs
-                const FusionEuler euler = FusionQuaternionToEuler(FusionAhrsGetQuaternion(&ahrs));
-
-                const FusionVector earth = FusionAhrsGetEarthAcceleration(&ahrs);
-
-                // printf("Roll %0.1f, Pitch %0.1f, Yaw %0.1f, X %0.1f, Y %0.1f, Z %0.1f\n",
-                //        euler.angle.roll, euler.angle.pitch, euler.angle.yaw,
-                //        earth.axis.x, earth.axis.y, earth.axis.z);
-
-                /* if orientation format is in euler angles, stream euler angles. */
-                if (ORIENTATION_FORMAT == ORIENTATION_EULER)
+                if (prev_timestamp > 0)
                 {
-                    /* dummy euler angle values */
-                    orientation_data.euler_angle.timestamp = imu_data.timestamp;
-                    orientation_data.euler_angle.x = 30;
-                    orientation_data.euler_angle.y = 40;
-                    orientation_data.euler_angle.z = 50;
-                }
-                /* else if orientation format is in quaternions, stream quaternions. */
-                else if (ORIENTATION_FORMAT == ORIENTATION_QUATERNION)
-                {
-                    /* dummy quaternion values */
-                    orientation_data.quaternion.timestamp = imu_data.timestamp;
-                    orientation_data.quaternion.w = 1;
-                    orientation_data.quaternion.x = 2;
-                    orientation_data.quaternion.y = 3;
-                    orientation_data.quaternion.z = 5;
-                }
+                    /* complementary filter */
+                    orientation_data = complementary_filter(&imu_data, imu_data.timestamp - prev_timestamp, ALPHA);
 
-                /* send orientation data to SD card */
-                if (queue_orientation_sdcard != NULL)
-                {
-                    if (xQueueSend(queue_orientation_sdcard, &orientation_data, 10 / portTICK_PERIOD_MS) == pdTRUE)
-                    {
-                        // ESP_LOGI(DATALOGGING_TAG, "send orientation data to SD card");
-                    }
-                    else
-                    {
-                        ESP_LOGE(DATALOGGING_TAG, "SDCARD orientation fail");
-                        xQueueReset(queue_orientation_sdcard);
-                    }
-                }
+                    ESP_LOGI(DATALOGGING_TAG, "complementary filter %lld %.2f %.2f %.2f",
+                             orientation_data.euler_angle.timestamp,
+                             orientation_data.euler_angle.x,
+                             orientation_data.euler_angle.y,
+                             orientation_data.euler_angle.z);
 
-                /* send orientation data to UART */
-                if (queue_orientation_UART != NULL)
-                {
-                    if (xQueueSend(queue_orientation_UART, &orientation_data, 10 / portTICK_PERIOD_MS) == pdTRUE)
-                    {
-                        // ESP_LOGI(DATALOGGING_TAG, "sent orientation data to UART");
-                    }
-                    else
-                    {
-                        ESP_LOGE(DATALOGGING_TAG, "UART orientation fail");
-                        xQueueReset(queue_orientation_UART);
-                    }
-                }
+                    // /* Fusion AHRS sensor fusion */
+                    // // Read sensors (replace with actual sensor data)
+                    // const uint64_t timestamp = imu_data.timestamp;
+                    // FusionVector gyroscope = {{imu_data.gx, imu_data.gy, imu_data.gz}};
+                    // FusionVector accelerometer = {{imu_data.ax, imu_data.ay, imu_data.az}};
+                    // // FusionVector magnetometer = {1.0f, 0.0f, 0.0f};
 
-                /* send orientation data to BLE */
-                if (queue_orientation_BLE != NULL)
-                {
-                    if (decimation_counter == 0)
+                    // // Apply calibration
+                    // gyroscope = FusionModelInertial(gyroscope, gyroscopeMisalignment, gyroscopeSensitivity, gyroscopeOffset);
+
+                    // accelerometer = FusionModelInertial(accelerometer, accelerometerMisalignment, accelerometerSensitivity, accelerometerOffset);
+
+                    // // magnetometer = FusionModelMagnetic(magnetometer, softIronMatrix, hardIronOffset);
+
+                    // // Update bias algorithm
+                    // gyroscope = FusionBiasUpdate(&bias, gyroscope);
+
+                    // // Calculate delta time to compensate for gyroscope sample clock errors
+                    // static uint64_t previousTimestamp = 0;
+                    // const float deltaTime = (float)(timestamp - previousTimestamp);
+                    // previousTimestamp = timestamp;
+
+                    // FusionAhrsSetSamplePeriod(&ahrs, deltaTime);
+
+                    // // Update AHRS algorithm
+                    // // FusionAhrsUpdate(&ahrs, gyroscope, accelerometer, magnetometer);
+                    // FusionAhrsUpdateNoMagnetometer(&ahrs, gyroscope, accelerometer);
+
+                    // // Print AHRS outputs
+                    // const FusionEuler euler = FusionQuaternionToEuler(FusionAhrsGetQuaternion(&ahrs));
+
+                    // const FusionVector earth = FusionAhrsGetEarthAcceleration(&ahrs);
+
+                    // // printf("Roll %0.1f, Pitch %0.1f, Yaw %0.1f, X %0.1f, Y %0.1f, Z %0.1f\n",
+                    // //        euler.angle.roll, euler.angle.pitch, euler.angle.yaw,
+                    // //        earth.axis.x, earth.axis.y, earth.axis.z);
+
+                    /* dummy orientation values */
+                    /* if orientation format is in euler angles, stream euler angles. */
+                    // if (ORIENTATION_FORMAT == ORIENTATION_EULER)
+                    // {
+                    //     /* dummy euler angle values */
+                    //     orientation_data.euler_angle.timestamp = imu_data.timestamp;
+                    //     orientation_data.euler_angle.x = 30;
+                    //     orientation_data.euler_angle.y = 40;
+                    //     orientation_data.euler_angle.z = 50;
+                    // }
+                    // /* else if orientation format is in quaternions, stream quaternions. */
+                    // else if (ORIENTATION_FORMAT == ORIENTATION_QUATERNION)
+                    // {
+                    //     /* dummy quaternion values */
+                    //     orientation_data.quaternion.timestamp = imu_data.timestamp;
+                    //     orientation_data.quaternion.w = 1;
+                    //     orientation_data.quaternion.x = 2;
+                    //     orientation_data.quaternion.y = 3;
+                    //     orientation_data.quaternion.z = 5;
+                    // }
+
+                    /* send orientation data to SD card */
+                    if (queue_orientation_sdcard != NULL)
                     {
-                        if (xQueueSend(queue_orientation_BLE, &orientation_data, 10 / portTICK_PERIOD_MS) == pdTRUE)
+                        if (xQueueSend(queue_orientation_sdcard, &orientation_data, 10 / portTICK_PERIOD_MS) == pdTRUE)
                         {
-                            // ESP_LOGI(DATALOGGING_TAG, "sent orientation data to BLE");
+                            // ESP_LOGI(DATALOGGING_TAG, "send orientation data to SD card");
                         }
                         else
                         {
-                            ESP_LOGE(DATALOGGING_TAG, "BLE orientation fail");
-                            xQueueReset(queue_orientation_BLE);
+                            ESP_LOGE(DATALOGGING_TAG, "SDCARD orientation fail");
+                            xQueueReset(queue_orientation_sdcard);
                         }
                     }
-                    decimation_counter = (decimation_counter + 1) % DECIMATION_FACTOR;
-                }
 
-                num_samples_read = (num_samples_read + 1) % NUM_FIFO_TIMESTAMPS;
+                    /* send orientation data to UART */
+                    if (queue_orientation_UART != NULL)
+                    {
+                        if (xQueueSend(queue_orientation_UART, &orientation_data, 10 / portTICK_PERIOD_MS) == pdTRUE)
+                        {
+                            // ESP_LOGI(DATALOGGING_TAG, "sent orientation data to UART");
+                        }
+                        else
+                        {
+                            ESP_LOGE(DATALOGGING_TAG, "UART orientation fail");
+                            xQueueReset(queue_orientation_UART);
+                        }
+                    }
+
+                    /* send orientation data to BLE */
+                    if (queue_orientation_BLE != NULL)
+                    {
+                        if (decimation_counter == 0)
+                        {
+                            if (xQueueSend(queue_orientation_BLE, &orientation_data, 10 / portTICK_PERIOD_MS) == pdTRUE)
+                            {
+                                // ESP_LOGI(DATALOGGING_TAG, "sent orientation data to BLE");
+                            }
+                            else
+                            {
+                                ESP_LOGE(DATALOGGING_TAG, "BLE orientation fail");
+                                xQueueReset(queue_orientation_BLE);
+                            }
+                        }
+                        decimation_counter = (decimation_counter + 1) % DECIMATION_FACTOR;
+                    }
+
+                    num_samples_read = (num_samples_read + 1) % NUM_FIFO_TIMESTAMPS;
+                }
+                prev_timestamp = imu_data.timestamp;
             }
 
             /* test FIFO overflow */

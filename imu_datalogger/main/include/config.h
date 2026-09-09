@@ -11,11 +11,11 @@
 #define NUM_FIFO_TIMESTAMPS 100
 
 /* logging frequency of the IMU */
-#define IMU_ODR_HZ 104
+#define IMU_ODR_HZ 416
 /* IMU accelerometer full scale */
 #define IMU_XL_FS 4
 /* IMU gyroscope full scale*/
-#define IMU_G_FS 500
+#define IMU_G_FS 1000
 /* maximum duration per datalog file in seconds */
 #define DATALOG_FILE_DURATION_S (60)
 /* Set ORIENTATION_FORMAT to 1 to stream quaternions, or 0 to stream euler angles */
@@ -23,4 +23,6 @@
 #define ORIENTATION_QUATERNION 1
 #define ORIENTATION_FORMAT ORIENTATION_EULER
 
+#define ALPHA 0.98
+#define GYRO_DEADBAND 0.01f
 #endif

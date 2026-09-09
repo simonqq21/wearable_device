@@ -54,7 +54,10 @@ void task_imu(void *params)
         if (imu_task_cmd == CMD_IMU_READ_LOOP)
         {
             /* delay for half the time to fill the FIFO */
-            imu_task_delay_period = IMU_LOGGING_TIMEDELTA_MS * NUM_FIFO_TIMESTAMPS / 2;
+            // imu_task_delay_period = IMU_LOGGING_TIMEDELTA_MS * NUM_FIFO_TIMESTAMPS / 2;
+
+            /* delay per IMU measurement */
+            imu_task_delay_period = IMU_LOGGING_TIMEDELTA_MS;
         }
         else
         {
@@ -90,59 +93,101 @@ void task_imu(void *params)
         else if (imu_task_cmd == CMD_IMU_READ_LOOP && prev_imu_task_cmd == CMD_IMU_STOP)
         {
             /* set initial timestamp */
-            cur_timestamp = esp_timer_get_time() / 1000;
+            cur_timestamp = esp_timer_get_time();
+            ESP_LOGI(IMU_TAG, "cur_timestamp start = %lld\n", cur_timestamp);
             /* reset FIFO */
-            lsm6ds3_fifo_reset_start(dev_handle);
+            // lsm6ds3_fifo_reset_start(dev_handle);
 
             ESP_LOGI(IMU_TAG, "IMU started");
         }
         /* runs continously when logging data */
         else if (imu_task_cmd == CMD_IMU_READ_LOOP && prev_imu_task_cmd == CMD_IMU_READ_LOOP)
         {
+            /* read one sample from IMU */
+            if (imu_measure_calibrated(dev_handle, &imu_data_buffer[0]) == 0)
+            {
+                imu_data_buffer[0].timestamp = esp_timer_get_time();
+                // ESP_LOGI(IMU_TAG, "calib IMU data %lld %.4f %.4f %.4f %.4f %.4f %.4f ",
+                //          imu_data_buffer[0].timestamp,
+                //          imu_data_buffer[0].ax,
+                //          imu_data_buffer[0].ay,
+                //          imu_data_buffer[0].az,
+                //          imu_data_buffer[0].gx,
+                //          imu_data_buffer[0].gy,
+                //          imu_data_buffer[0].gz);
+
+                /* send IMU data to queue */
+                if (queue_imu != NULL)
+                {
+                    if (xQueueSend(queue_imu,
+                                   &imu_data_buffer[0],
+                                   (imu_task_delay_period / portTICK_PERIOD_MS)) != pdTRUE)
+                    {
+                        ESP_LOGE(IMU_TAG, "ERROR: Could not put item on IMU queue.");
+                    }
+                }
+            }
+
             // ESP_LOGI(IMU_TAG, "IMU read");
             // imu_measure(&imu_data);
             /* read IMU FIFO buffer */
-            num_samples_read = imu_read_FIFO_calibrated(dev_handle, lsm6ds3_fifo_buffer, imu_data_buffer, NUM_FIFO_TIMESTAMPS);
+            // num_samples_read = imu_read_FIFO_calibrated(dev_handle, lsm6ds3_fifo_buffer, imu_data_buffer, NUM_FIFO_TIMESTAMPS);
 
-            /* if samples were read from the IMU FIFO buffer, send it to the queue / streambuffer. */
-            if (num_samples_read > 0)
-            {
-                for (int i = 0; i < num_samples_read; i++)
-                {
-                    /* add timestamp to each IMU data in the FIFO */
-                    imu_data_buffer[i].timestamp = cur_timestamp;
-                    cur_timestamp += IMU_LOGGING_TIMEDELTA_MS;
+            // /* if samples were read from the IMU FIFO buffer, send it to the queue / streambuffer. */
+            // if (num_samples_read > 0)
+            // {
+            //     ESP_LOGI(IMU_TAG, "num_samples_read = %d\n", num_samples_read);
+            //     for (int i = 0; i < num_samples_read; i++)
+            //     {
+            //         /* add timestamp to each IMU data in the FIFO */
+            //         imu_data_buffer[i].timestamp = cur_timestamp;
+            //         cur_timestamp += IMU_LOGGING_TIMEDELTA_MS * 1000;
+            //         // ESP_LOGI(IMU_TAG, "cur_timestamp = %lld %d", cur_timestamp, i);
 
-                    // imu_data.timestamp = esp_timer_get_time() / 1000;
-                    ESP_LOGI(IMU_TAG, "timestamp=%d", imu_data_buffer[i].timestamp);
-                    ESP_LOGI(IMU_TAG, "calib accel: x=%.4f   y=%.4f   z=%.4f", imu_data_buffer[i].ax, imu_data_buffer[i].ay, imu_data_buffer[i].az);
-                    ESP_LOGI(IMU_TAG, "calib gyro:     x=%.4f   y=%.4f   z=%.4f", imu_data_buffer[i].gx, imu_data_buffer[i].gy, imu_data_buffer[i].gz);
-                    // ESP_LOGI(IMU_TAG, "temperature:  %.1f\n", imu_data_buffer[i].temp);
+            //         // imu_data.timestamp = esp_timer_get_time() / 1000;
+            //         // ESP_LOGI(IMU_TAG, "calib IMU data %lld %.4f %.4f %.4f %.4f %.4f %.4f ",
+            //         //          imu_data_buffer[i].timestamp,
+            //         //          imu_data_buffer[i].ax,
+            //         //          imu_data_buffer[i].ay,
+            //         //          imu_data_buffer[i].az,
+            //         //          imu_data_buffer[i].gx,
+            //         //          imu_data_buffer[i].gy,
+            //         //          imu_data_buffer[i].gz);
 
-                    /* send IMU data to queue */
-                    if (queue_imu != NULL)
-                    {
-                        if (xQueueSend(queue_imu,
-                                       &imu_data_buffer[i],
-                                       (imu_task_delay_period / portTICK_PERIOD_MS)) != pdTRUE)
-                        {
-                            ESP_LOGE(IMU_TAG, "ERROR: Could not put item on IMU queue.");
-                        }
-                    }
-                }
+            //         // ESP_LOGI(IMU_TAG, "temperature:  %.1f\n", imu_data_buffer[i].temp);
 
-                // /* send IMU data to streambuffer */
-                // if (streambuffer_imu != NULL)
-                // {
-                //     if (xStreamBufferSend(streambuffer_imu,
-                //                           imu_data_buffer,
-                //                           sizeof(imu_data_t) * num_samples_read,
-                //                           10 / portTICK_PERIOD_MS) == 0)
-                //     {
-                //         ESP_LOGE(IMU_TAG, "ERROR: Could not put item on IMU stream buffer.");
-                //     }
-                // }
-            }
+            //         /* send IMU data to queue */
+            //         if (queue_imu != NULL)
+            //         {
+            //             if (xQueueSend(queue_imu,
+            //                            &imu_data_buffer[i],
+            //                            (imu_task_delay_period / portTICK_PERIOD_MS)) != pdTRUE)
+            //             {
+            //                 ESP_LOGE(IMU_TAG, "ERROR: Could not put item on IMU queue.");
+            //             }
+            //         }
+            //     }
+
+            //     ESP_LOGI(IMU_TAG, "calib IMU data %lld %.4f %.4f %.4f %.4f %.4f %.4f ",
+            //              imu_data_buffer[num_samples_read - 1].timestamp,
+            //              imu_data_buffer[num_samples_read - 1].ax,
+            //              imu_data_buffer[num_samples_read - 1].ay,
+            //              imu_data_buffer[num_samples_read - 1].az,
+            //              imu_data_buffer[num_samples_read - 1].gx,
+            //              imu_data_buffer[num_samples_read - 1].gy,
+            //              imu_data_buffer[num_samples_read - 1].gz);
+            //     // /* send IMU data to streambuffer */
+            //     // if (streambuffer_imu != NULL)
+            //     // {
+            //     //     if (xStreamBufferSend(streambuffer_imu,
+            //     //                           imu_data_buffer,
+            //     //                           sizeof(imu_data_t) * num_samples_read,
+            //     //                           10 / portTICK_PERIOD_MS) == 0)
+            //     //     {
+            //     //         ESP_LOGE(IMU_TAG, "ERROR: Could not put item on IMU stream buffer.");
+            //     //     }
+            //     // }
+            // }
         }
         /* runs when datalogging is stopped */
         else if (imu_task_cmd == CMD_IMU_STOP && prev_imu_task_cmd == CMD_IMU_READ_LOOP)
@@ -195,7 +240,7 @@ void imu_calibrate(i2c_master_dev_handle_t dev_handle, lsm6ds3_data_t *lsm6ds3_f
     offsets.oGx = 0;
     offsets.oGy = 0;
     offsets.oGz = 0;
-    int num_samples_to_average = NUM_FIFO_TIMESTAMPS;
+    int num_samples_to_average = 1500;
     int num_samples_to_read = 0;
     uint16_t num_samples_taken = 0;
     uint16_t num_samples_taken_from_fifo = 0;
@@ -204,48 +249,66 @@ void imu_calibrate(i2c_master_dev_handle_t dev_handle, lsm6ds3_data_t *lsm6ds3_f
     vTaskDelay(pdMS_TO_TICKS(3000));
 
     /* start reading data from FIFO */
-    lsm6ds3_fifo_reset_start(dev_handle);
+    // lsm6ds3_fifo_reset_start(dev_handle);
 
     while (num_samples_taken < num_samples_to_average)
     {
-        /* split the number of samples to read into chunks that can fit in the FIFO */
-        if ((num_samples_to_average - num_samples_taken) > NUM_FIFO_TIMESTAMPS)
-        {
-            num_samples_to_read = NUM_FIFO_TIMESTAMPS;
-        }
-        else
-        {
-            num_samples_to_read = (num_samples_to_average - num_samples_taken);
-        }
+        // /* split the number of samples to read into chunks that can fit in the FIFO */
+        // if ((num_samples_to_average - num_samples_taken) > NUM_FIFO_TIMESTAMPS)
+        // {
+        //     num_samples_to_read = NUM_FIFO_TIMESTAMPS;
+        // }
+        // else
+        // {
+        //     num_samples_to_read = (num_samples_to_average - num_samples_taken);
+        // }
 
         /* read samples from IMU FIFO */
-        num_samples_taken_from_fifo = lsm6ds3_fifo_read(dev_handle, lsm6ds3_fifo_buffer, num_samples_to_read);
+        // num_samples_taken_from_fifo = lsm6ds3_fifo_read(dev_handle, lsm6ds3_fifo_buffer, num_samples_to_read);
 
-        /* if FIFO data was read */
-        if (num_samples_taken_from_fifo > 0)
-        {
-            num_samples_taken += num_samples_taken_from_fifo;
+        lsm6ds3_read_raw_data(dev_handle, &lsm6ds3_fifo_buffer[0]);
+        offsets.oAx += lsm6ds3_fifo_buffer[0].accel[0];
+        offsets.oAy += lsm6ds3_fifo_buffer[0].accel[1];
+        offsets.oAz += lsm6ds3_fifo_buffer[0].accel[2] - 1; // account for gravity
+        offsets.oGx += lsm6ds3_fifo_buffer[0].gyro[0];
+        offsets.oGy += lsm6ds3_fifo_buffer[0].gyro[1];
+        offsets.oGz += lsm6ds3_fifo_buffer[0].gyro[2];
+        vTaskDelay(IMU_LOGGING_TIMEDELTA_MS / portTICK_PERIOD_MS);
+        num_samples_taken++;
 
-            /* sum up the values */
-            for (int i = 0; i < num_samples_taken_from_fifo; i++)
-            {
-                offsets.oAx += lsm6ds3_fifo_buffer[i].accel[0];
-                offsets.oAy += lsm6ds3_fifo_buffer[i].accel[1];
-                offsets.oAz += lsm6ds3_fifo_buffer[i].accel[2] - 1; // account for gravity
-                offsets.oGx += lsm6ds3_fifo_buffer[i].gyro[0];
-                offsets.oGy += lsm6ds3_fifo_buffer[i].gyro[1];
-                offsets.oGz += lsm6ds3_fifo_buffer[i].gyro[2];
-            }
+        // /* if FIFO data was read */
+        // if (num_samples_taken_from_fifo > 0)
+        // {
+        //     num_samples_taken += num_samples_taken_from_fifo;
 
-            ESP_LOGI(IMU_TAG, "num_samples_taken_from_fifo = %d\n", num_samples_taken_from_fifo);
-            ESP_LOGI(IMU_TAG, "accel_offsets_x = %.4f", offsets.oAx);
-            ESP_LOGI(IMU_TAG, "accel_offsets_y = %.4f", offsets.oAy);
-            ESP_LOGI(IMU_TAG, "accel_offsets_z = %.4f", offsets.oAz);
-            ESP_LOGI(IMU_TAG, "gyro_offsets_x = %.4f", offsets.oGx);
-            ESP_LOGI(IMU_TAG, "gyro_offsets_y = %.4f", offsets.oGy);
-            ESP_LOGI(IMU_TAG, "gyro_offsets_z = %.4f", offsets.oGz);
-        }
+        //     /* sum up the values */
+        //     for (int i = 0; i < num_samples_taken_from_fifo; i++)
+        //     {
+        //         offsets.oAx += lsm6ds3_fifo_buffer[i].accel[0];
+        //         offsets.oAy += lsm6ds3_fifo_buffer[i].accel[1];
+        //         offsets.oAz += lsm6ds3_fifo_buffer[i].accel[2] - 1; // account for gravity
+        //         offsets.oGx += lsm6ds3_fifo_buffer[i].gyro[0];
+        //         offsets.oGy += lsm6ds3_fifo_buffer[i].gyro[1];
+        //         offsets.oGz += lsm6ds3_fifo_buffer[i].gyro[2];
+        //     }
+
+        //     ESP_LOGI(IMU_TAG, "num_samples_taken_from_fifo = %d\n", num_samples_taken_from_fifo);
+        //     ESP_LOGI(IMU_TAG, "accel_offsets_x = %.4f", offsets.oAx);
+        //     ESP_LOGI(IMU_TAG, "accel_offsets_y = %.4f", offsets.oAy);
+        //     ESP_LOGI(IMU_TAG, "accel_offsets_z = %.4f", offsets.oAz);
+        //     ESP_LOGI(IMU_TAG, "gyro_offsets_x = %.4f", offsets.oGx);
+        //     ESP_LOGI(IMU_TAG, "gyro_offsets_y = %.4f", offsets.oGy);
+        //     ESP_LOGI(IMU_TAG, "gyro_offsets_z = %.4f", offsets.oGz);
+        // }
     }
+
+    ESP_LOGI(IMU_TAG, "num_samples_taken_from_fifo = %d\n", num_samples_taken);
+    ESP_LOGI(IMU_TAG, "accel_offsets_x = %.4f", offsets.oAx);
+    ESP_LOGI(IMU_TAG, "accel_offsets_y = %.4f", offsets.oAy);
+    ESP_LOGI(IMU_TAG, "accel_offsets_z = %.4f", offsets.oAz);
+    ESP_LOGI(IMU_TAG, "gyro_offsets_x = %.4f", offsets.oGx);
+    ESP_LOGI(IMU_TAG, "gyro_offsets_y = %.4f", offsets.oGy);
+    ESP_LOGI(IMU_TAG, "gyro_offsets_z = %.4f", offsets.oGz);
 
     /* stop and reset FIFO */
     lsm6ds3_fifo_reset(dev_handle);
@@ -365,7 +428,7 @@ void imu_init(i2c_master_dev_handle_t dev_handle, uint16_t sample_rate, uint16_t
     lsm6ds3_init_all(dev_handle, IMU_ODR_HZ, IMU_XL_FS, IMU_G_FS);
 
     /* enable FIFO */
-    lsm6ds3_fifo_init(dev_handle, IMU_ODR_HZ);
+    // lsm6ds3_fifo_init(dev_handle, IMU_ODR_HZ);
 
     // /* calibrate IMU and save calibration offsets to NVS */
     // if (calibrate_imu)
@@ -458,13 +521,14 @@ uint16_t imu_read_FIFO_calibrated(i2c_master_dev_handle_t dev_handle, lsm6ds3_da
  * @param dev_handle i2c handle of the IMU
  * @param data pointer to destination struct
  */
-esp_err_t imu_measure_raw(i2c_master_dev_handle_t dev_handle, imu_data_t *data)
+int imu_measure_raw(i2c_master_dev_handle_t dev_handle, imu_data_t *data)
 {
+
     // measure LSM6DS3
     lsm6ds3_data_t lsm6ds3_data;
-    lsm6ds3_read_raw_data(dev_handle, &lsm6ds3_data);
+    int val = lsm6ds3_read_raw_data(dev_handle, &lsm6ds3_data);
     __imu_convert_vals(&lsm6ds3_data, data);
-    return ESP_OK;
+    return val;
 }
 
 /**
@@ -505,13 +569,13 @@ void imu_apply_calibration(imu_data_t *data)
  * @param dev_handle i2c handle of the IMU
  * @param imu__data pointer to IMU data struct
  */
-esp_err_t imu_measure_calibrated(i2c_master_dev_handle_t dev_handle, imu_data_t *data)
+int imu_measure_calibrated(i2c_master_dev_handle_t dev_handle, imu_data_t *data)
 {
     // measure IMU
-    ESP_ERROR_CHECK(imu_measure_raw(dev_handle, data));
+    int val = imu_measure_raw(dev_handle, data);
     // apply calibration offsets
     imu_apply_calibration(data);
-    return ESP_OK;
+    return val;
 }
 
 // void acc_to_euler(imu_data_t *data, euler_angles_t *euler_angles)

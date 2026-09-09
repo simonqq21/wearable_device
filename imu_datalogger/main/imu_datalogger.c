@@ -158,7 +158,7 @@ void app_main(void)
     // micro SD card datalogging task
     xTaskCreatePinnedToCore(task_SD_card_datalogger,
                             "SD card data logging task",
-                            8192, // 10000
+                            10000, //
                             &params_task_SD_card_datalogger,
                             5,
                             &task_handle_SD_card_datalogger,

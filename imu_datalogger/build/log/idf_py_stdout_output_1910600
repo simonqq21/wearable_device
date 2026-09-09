@@ -1,0 +1,54 @@
+Command: ninja all
+[1/10] Performing build step for 'bootloader'
+[1/1] cd /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader && /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader/bootloader.bin
+Bootloader binary size 0x6610 bytes. 0x9f0 bytes (9%) free.
+[2/10] No install step for 'bootloader'
+[3/10] Completed 'bootloader'
+[4/10] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/src/datalogging.c.obj
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/datalogging.c: In function 'task_main_datalogging':
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/datalogging.c:93:24: warning: unused variable 'accelerometerOffset' [-Wunused-variable]
+   93 |     const FusionVector accelerometerOffset = {{0.0f, 0.0f, 0.0f}};
+      |                        ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/datalogging.c:92:24: warning: unused variable 'accelerometerSensitivity' [-Wunused-variable]
+   92 |     const FusionVector accelerometerSensitivity = {{1.0f, 1.0f, 1.0f}};
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/datalogging.c:91:24: warning: unused variable 'accelerometerMisalignment' [-Wunused-variable]
+   91 |     const FusionMatrix accelerometerMisalignment = {{1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f}};
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/datalogging.c:89:24: warning: unused variable 'gyroscopeOffset' [-Wunused-variable]
+   89 |     const FusionVector gyroscopeOffset = {{0.0f, 0.0f, 0.0f}};
+      |                        ^~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/datalogging.c:88:24: warning: unused variable 'gyroscopeSensitivity' [-Wunused-variable]
+   88 |     const FusionVector gyroscopeSensitivity = {{1.0f, 1.0f, 1.0f}};
+      |                        ^~~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/datalogging.c:87:24: warning: unused variable 'gyroscopeMisalignment' [-Wunused-variable]
+   87 |     const FusionMatrix gyroscopeMisalignment = {{1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f}};
+      |                        ^~~~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/datalogging.c:74:9: warning: unused variable 'num_bytes_read' [-Wunused-variable]
+   74 |     int num_bytes_read = 0;
+      |         ^~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/datalogging.c:65:26: warning: unused variable 'streambuffer_sd' [-Wunused-variable]
+   65 |     StreamBufferHandle_t streambuffer_sd = datalogging_params->streambuffer_sd;
+      |                          ^~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/datalogging.c:64:26: warning: unused variable 'streambuffer_imu' [-Wunused-variable]
+   64 |     StreamBufferHandle_t streambuffer_imu = datalogging_params->streambuffer_imu;
+      |                          ^~~~~~~~~~~~~~~~
+[5/10] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/src/lsm6ds3.c.obj
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/lsm6ds3.c: In function 'lsm6ds3_fifo_read':
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/lsm6ds3.c:673:13: warning: unused variable 'status2_reg' [-Wunused-variable]
+  673 |     uint8_t status2_reg = lsm6ds3_read_fifo_status2_reg(dev_handle);
+      |             ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/lsm6ds3.c:630:14: warning: unused variable 'fifo_pattern' [-Wunused-variable]
+  630 |     uint16_t fifo_pattern;
+      |              ^~~~~~~~~~~~
+[6/10] Linking C static library esp-idf/main/libmain.a
+[7/10] Generating esp-idf/esp_system/ld/sections.ld
+[8/10] Linking CXX executable imu_module.elf
+[9/10] Generating binary image from built executable
+esptool v5.2.dev3
+Creating ESP32 image...
+Merged 2 ELF sections.
+Successfully created ESP32 image.
+Generated /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/imu_module.bin
+[10/10] cd /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build && /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/partition_table/partition-table.bin /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/imu_module.bin
+imu_module.bin binary size 0xc2a20 bytes. Smallest app partition is 0x100000 bytes. 0x3d5e0 bytes (24%) free.

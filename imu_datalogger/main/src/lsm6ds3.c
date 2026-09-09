@@ -1,6 +1,6 @@
 #include "lsm6ds3.h"
 
-static uint8_t data[12];
+static uint8_t data[14];
 static uint8_t lsm6ds3_fifo_mode_value;
 float gyro_fs_cf, accel_fs_cf;
 
@@ -44,6 +44,11 @@ void lsm6ds3_init_accel(i2c_master_dev_handle_t dev_handle, uint16_t odr, uint16
 {
     /* set accelerometer power to normal power */
     lsm6ds3_set_accel_power(dev_handle, LSM6DS3_XL_HM_MODE_HP);
+
+    /* enable LPF1 */
+    ESP_ERROR_CHECK(lsm6ds3_register_read(dev_handle, LSM6DS3_CTRL1_XL_REG_ADDR, data, 1));
+    read_modify_write(CTRL1_XL_LPF1_BW_SEL, CTRL1_XL_LPF1_BW_SEL, 1, data);
+    ESP_ERROR_CHECK(lsm6ds3_register_write_byte(dev_handle, LSM6DS3_CTRL1_XL_REG_ADDR, data[0]));
 
     /* set accelerometer FS */
     switch (xl_fs)
@@ -147,12 +152,17 @@ void lsm6ds3_init_gyro(i2c_master_dev_handle_t dev_handle, uint16_t odr, uint16_
     default:
         lsm6ds3_set_gyro_odr(dev_handle, LSM6DS3_DEFAULT_ODR);
     }
+
+    /* enable gyroscope LPF1 */
+    ESP_ERROR_CHECK(lsm6ds3_register_read(dev_handle, LSM6DS3_CTRL4_C_REG_ADDR, data, 1));
+    read_modify_write(CTRL4_C_LPF1_SEL_G, CTRL4_C_LPF1_SEL_G, 1, data);
+    ESP_ERROR_CHECK(lsm6ds3_register_write_byte(dev_handle, LSM6DS3_CTRL4_C_REG_ADDR, data[0]));
 }
 
 /**
  * @brief initialize LSM6DS3
  */
-void lsm6ds3_init_all(i2c_master_dev_handle_t dev_handle, uint8_t odr, uint16_t xl_fs, uint16_t g_fs)
+void lsm6ds3_init_all(i2c_master_dev_handle_t dev_handle, uint16_t odr, uint16_t xl_fs, uint16_t g_fs)
 {
     /* reset lsm6ds3 */
     lsm6ds3_reset(dev_handle);
@@ -276,7 +286,7 @@ void lsm6ds3_set_gyro_fs(i2c_master_dev_handle_t dev_handle, lsm6ds3_g_fs g_fs)
         gyro_fs_cf = 2000;
         break;
     default:
-        gyro_fs_cf = 1;
+        gyro_fs_cf = 1000;
     }
     /* read */
     ESP_ERROR_CHECK(lsm6ds3_register_read(dev_handle, LSM6DS3_CTRL2_G_REG_ADDR, data, 1));
@@ -378,51 +388,41 @@ uint8_t lsm6ds3_check_accel_data_available(i2c_master_dev_handle_t dev_handle)
 }
 
 /**
- * @brief read temperature from LSM6DS3
+ * @brief read temperature on the LSM6DS3
+ *
+ *
  */
 void lsm6ds3_read_temperature(i2c_master_dev_handle_t dev_handle, float *temp)
 {
     int16_t temp_raw;
-    float temp1;
     ESP_ERROR_CHECK(lsm6ds3_register_read(dev_handle, LSM6DS3_OUT_TEMP_L_REG_ADDR, data, 2));
+
     temp_raw = (data[1] << 8) | data[0];
-    ESP_LOGI(LSM6DS3_TAG, "temp_raw = %d", temp_raw);
-    temp1 = temp_raw / 256.0 + 25.0;
-    ESP_LOGI(LSM6DS3_TAG, "temp1 = %f", temp1);
+    // ESP_LOGI(LSM6DS3_TAG, "temp1 = %f", temp1);
     *temp = temp_raw / 256.0 + 25.0;
 }
 
 /**
- * @brief read gyroscope from LSM6DS3
+ * @brief read gyroscope, and accelerometer on the LSM6DS3
+ *
+ *
  */
-void lsm6ds3_read_gyroscope(i2c_master_dev_handle_t dev_handle, float g[3])
+void lsm6ds3_read_motion(i2c_master_dev_handle_t dev_handle, float g[3], float a[3])
 {
-    int16_t g_raw[3];
-    g_raw[0] = 0;
-    g_raw[1] = 0;
-    g_raw[2] = 0;
-    ESP_ERROR_CHECK(lsm6ds3_register_read(dev_handle, LSM6DS3_OUTX_L_G_REG_ADDR, data, 6));
+    int16_t g_raw[3], a_raw[3];
+
+    ESP_ERROR_CHECK(lsm6ds3_register_read(dev_handle, LSM6DS3_OUTX_L_G_REG_ADDR, data, 12));
+
     g_raw[0] = (data[1] << 8) | data[0];
     g_raw[1] = (data[3] << 8) | data[2];
     g_raw[2] = (data[5] << 8) | data[4];
+    a_raw[0] = (data[7] << 8) | data[6];
+    a_raw[1] = (data[9] << 8) | data[8];
+    a_raw[2] = (data[11] << 8) | data[10];
+
     g[0] = g_raw[0] / 32768.0 * gyro_fs_cf;
     g[1] = g_raw[1] / 32768.0 * gyro_fs_cf;
     g[2] = g_raw[2] / 32768.0 * gyro_fs_cf;
-}
-
-/**
- * @brief read gyroscope from LSM6DS3
- */
-void lsm6ds3_read_accelerometer(i2c_master_dev_handle_t dev_handle, float a[3])
-{
-    int16_t a_raw[3];
-    a_raw[0] = 0;
-    a_raw[1] = 0;
-    a_raw[2] = 0;
-    ESP_ERROR_CHECK(lsm6ds3_register_read(dev_handle, LSM6DS3_OUTX_L_XL_REG_ADDR, data, 6));
-    a_raw[0] = (data[1] << 8) | data[0];
-    a_raw[1] = (data[3] << 8) | data[2];
-    a_raw[2] = (data[5] << 8) | data[4];
     a[0] = a_raw[0] / 32768.0 * accel_fs_cf;
     a[1] = a_raw[1] / 32768.0 * accel_fs_cf;
     a[2] = a_raw[2] / 32768.0 * accel_fs_cf;
@@ -431,24 +431,23 @@ void lsm6ds3_read_accelerometer(i2c_master_dev_handle_t dev_handle, float a[3])
 /**
  * @brief read raw temperature, gyroscope, and accelerometer values from LSM6DS3
  */
-void lsm6ds3_read_raw_data(i2c_master_dev_handle_t dev_handle, lsm6ds3_data_t *data)
+int lsm6ds3_read_raw_data(i2c_master_dev_handle_t dev_handle, lsm6ds3_data_t *data)
 {
-    /* read temperature if available*/
+    /* read raw data if temperature, gyroscope, and accelerometer available*/
     if (lsm6ds3_check_temp_data_available(dev_handle))
     {
         lsm6ds3_read_temperature(dev_handle, &data->temp);
     }
-    /* read gyroscope if new data available */
-    if (lsm6ds3_check_gyro_data_available(dev_handle))
+    /* read raw data if temperature, gyroscope, and accelerometer available*/
+    if (
+        lsm6ds3_check_gyro_data_available(dev_handle) &&
+        lsm6ds3_check_accel_data_available(dev_handle))
     {
-        lsm6ds3_read_gyroscope(dev_handle, data->gyro);
+        lsm6ds3_read_motion(dev_handle, data->gyro, data->accel);
+        return 0;
     }
-
-    /* read gyroscope if new data available */
-    if (lsm6ds3_check_accel_data_available(dev_handle))
-    {
-        lsm6ds3_read_accelerometer(dev_handle, data->accel);
-    }
+    else
+        return 1;
 }
 
 /**

@@ -1,0 +1,380 @@
+Command: /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/imu_module.elf /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader/bootloader.elf -m '/home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python' '/home/simonque/Documents/code/esp-idf/tools/idf.py'
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0040,len:6272
+load:0x40078000,len:15848
+load:0x40080400,len:3920
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v6.1-dev-2310-g44e2fa6d9c5-dirt 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Sep  1 2026 14:56:57[0m
+[0;32mI (28) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v3.1[0m
+[0;32mI (34) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (37) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (65) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (78) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=26aech (158444) map[0m
+[0;32mI (145) esp_image: segment 1: paddr=00036b14 vaddr=3ffbdb60 size=05134h ( 20788) load[0m
+[0;32mI (153) esp_image: segment 2: paddr=0003bc50 vaddr=40080000 size=043c8h ( 17352) load[0m
+[0;32mI (160) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=7ded8h (515800) map[0m
+[0;32mI (344) esp_image: segment 4: paddr=000bdf00 vaddr=400843c8 size=14a94h ( 84628) load[0m
+[0;32mI (379) esp_image: segment 5: paddr=000d299c vaddr=50000000 size=00028h (    40) load[0m
+[0;32mI (392) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (392) boot: Disabling RNG early entropy source...[0m
+[0;32mI (402) cpu_start: Multicore app[0m
+[0;32mI (411) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (411) cpu_start: Pro cpu start user code[0m
+[0;32mI (411) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (413) app_init: Application information:[0m
+[0;32mI (417) app_init: Project name:     imu_module[0m
+[0;32mI (421) app_init: App version:      8f26657-dirty[0m
+[0;32mI (425) app_init: Compile time:     Sep  9 2026 15:32:12[0m
+[0;32mI (430) app_init: ELF file SHA256:  a9d241e24...[0m
+[0;32mI (435) app_init: ESP-IDF:          v6.1-dev-2310-g44e2fa6d9c5-dirt[0m
+[0;32mI (441) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (444) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (448) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (453) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (459) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (464) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (469) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (474) heap_init: At 3FFC7228 len 00018DD8 (99 KiB): DRAM[0m
+[0;32mI (479) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (485) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (490) heap_init: At 40098E5C len 000071A4 (28 KiB): IRAM[0m
+[0;33mW (497) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (508) spi_flash: detected chip: generic[0m
+[0;32mI (512) spi_flash: flash io: dio[0m
+[0;33mW (515) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (528) coexist: coex firmware version: 093e3d2[0m
+[0;32mI (532) main_task: Started on CPU0[0m
+[0;32mI (542) main_task: Calling app_main()[0m
+[0;32mI (542) button: IoT Button Version: 4.2.0[0m
+[0;32mI (542) MAIN: I2C initialized successfully[0m
+[0;32mI (552) BTDM_INIT: BT controller compile version [045a658][0m
+[0;32mI (562) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (562) BTDM_INIT: Bluetooth MAC: d8:13:2a:7d:69:0a[0m
+[0;32mI (562) phy_init: phy_version 4863,a3a4459,Oct 28 2025,14:30:06[0m
+[0;33mW (972) BT_BTM: BTM_BleWriteAdvData, Partial data write into ADV[0m
+[0;33mW (972) BT_BTM: BTM_BleWriteScanRsp, Partial data write into ADV[0m
+[0;32mI (982) BLE: create attribute table successfully, the number handle = 4[0m
+[0;32mI (982) BLE: Advertising data set, status 0[0m
+[0;32mI (982) BLE: Scan response data set, status 0[0m
+[0;32mI (982) BLE: SERVICE_START_EVT, status 0, service_handle 40[0m
+[0;32mI (992) LSM6DS3: WHO_AM_I = 69[0m
+[0;32mI (1002) BLE: Advertising start successfully[0m
+[0;32mI (1012) LSM6DS3: FIFO_CTRL1_REG_ADDR = D0[0m
+[0;32mI (1012) LSM6DS3: FIFO_CTRL2_REG_ADDR = F[0m
+[0;32mI (1012) NVS: IMU calibration offsets from blob:[0m
+[0;32mI (1012) NVS: required_size = 24[0m
+[0;32mI (1012) NVS: err=0[0m
+
+[0;32mI (1012) NVS: accel_offsets_x = 0.0442[0m
+[0;32mI (1022) NVS: accel_offsets_y = -0.0283[0m
+[0;32mI (1022) NVS: accel_offsets_z = -0.0014[0m
+[0;32mI (1022) NVS: gyro_offsets_x = 2.1893[0m
+[0;32mI (1032) NVS: gyro_offsets_y = -7.0241[0m
+[0;32mI (1032) NVS: gyro_offsets_z = -2.0038[0m
+[0;32mI (1042) IMU: IMU read calibration from NVS.[0m
+[0;32mI (1042) IMU: accel_offsets_x = 0.04[0m
+[0;32mI (1042) IMU: accel_offsets_y = -0.03[0m
+[0;32mI (1052) IMU: accel_offsets_z = -0.00[0m
+[0;32mI (1052) IMU: gyro_offsets_x = 2.19[0m
+[0;32mI (1052) IMU: gyro_offsets_y = -7.02[0m
+[0;32mI (1062) IMU: gyro_offsets_z = -2.00[0m
+[0;32mI (1062) SD_CARD: Initializing SD card[0m
+[0;32mI (1062) SD_CARD: Using SPI peripheral[0m
+[0;32mI (1072) SD_CARD: Mounting filesystem[0m
+[0;32mI (1072) sdspi_transaction: cmd=52, R1 response: command not supported[0m
+[0;32mI (1122) sdspi_transaction: cmd=5, R1 response: command not supported[0m
+[0;32mI (1172) SD_CARD: Filesystem mounted[0m
+Name: ACLCE
+Type: SDHC
+Speed: 4.00 MHz (limit: 4.00 MHz)
+Size: 60906MB
+CSD: ver=2, sector_size=512, capacity=124735488 read_bl_len=9
+SSR: bus_width=1
+[0;32mI (1172) SD_CARD: SD card initialized[0m
+[0;32mI (1182) MAIN: Starting all tasks![0m
+[0;32mI (1182) MAIN: params_task_uart = 0x3ffc3528[0m
+[0;32mI (1182) MAIN: params_task_ble = 0x3ffc3524[0m
+[0;32mI (1192) BLE: ble task started[0m
+[0;32mI (1192) BLE: params_task_ble = 0x3ffc3524[0m
+[0;32mI (15072) BUTTON: Datalogging started.[0m
+[0;32mI (15072) IMU: cur_timestamp start = 14579758[0m
+
+[0;32mI (15072) IMU: IMU started[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (15092) DATA LOGGING: Datalogging started.[0m
+[0;32mI (15522) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (15532) LSM6DS3: num_fifo_samples = 288[0m
+[0;32mI (15982) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (15982) LSM6DS3: num_fifo_samples = 576[0m
+[0;32mI (16202) SD_CARD: max_idx: 1827[0m
+[0;32mI (16202) SD_CARD: filename: imu_raw_001828.bin[0m
+[0;32mI (16202) SD_CARD: filepath: /sdcard/imu_raw_001828.bin[0m
+[0;32mI (16202) SD_CARD: Writing to new raw file[0m
+[0;32mI (16442) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 1, empty = 0[0m
+[0;32mI (16442) LSM6DS3: num_fifo_samples = 858 100[0m
+[0;32mI (16562) LSM6DS3: raw gyro = 1.617432 -7.003784 -1.647949[0m
+[0;32mI (16572) LSM6DS3: raw accel = 0.127808 0.086426 0.991211[0m
+[0;32mI (16572) LSM6DS3: num_fifo_samples = 342[0m
+[0;32mI (16572) IMU: num_samples_read = 100[0m
+
+[0;32mI (16572) IMU: cur_timestamp = 100 14579767[0m
+[0;32mI (16582) IMU: calib IMU data 100 0.0000 0.0859 0.1043 0.9051 12.9932 -1.2309 [0m
+[0;32mI (16582) IMU: cur_timestamp = 0 14579776[0m
+[0;32mI (16592) IMU: calib IMU data 0 0.0000 0.1040 0.1909 0.9677 14.4885 -4.7862 [0m
+[0;32mI (16592) DATA LOGGING: complementary filter 0 0.0000 128.0107 -42.0942[0m
+[0;32mI (16602) IMU: cur_timestamp = 0 14579785[0m
+[0;32mI (16602) IMU: calib IMU data 0 0.0000 0.0777 0.1390 0.9284 15.9381 -7.1361 [0m
+[0;32mI (16612) DATA LOGGING: complementary filter 0 0.0000 268.5327 -105.0601[0m
+[0;32mI (16622) IMU: cur_timestamp = 0 14579794[0m
+[0;32mI (16622) IMU: calib IMU data 0 0.0000 0.0680 0.1240 1.0901 11.1774 -6.7546 [0m
+[0;32mI (16632) DATA LOGGING: complementary filter 0 0.0000 367.0768 -164.6595[0m
+[0;32mI (16632) IMU: cur_timestamp = 0 14579803[0m
+[0;32mI (16642) IMU: calib IMU data 0 0.0000 0.0734 0.1164 0.9870 -0.8466 -1.7192 [0m
+[0;32mI (16642) DATA LOGGING: complementary filter 0 0.0000 359.6148 -179.8092[0m
+[0;32mI (16652) IMU: cur_timestamp = 0 14579812[0m
+[0;32mI (16652) IMU: calib IMU data 0 0.0000 0.0981 0.0943 1.0029 -10.4596 1.1189 [0m
+[0;32mI (16662) DATA LOGGING: complementary filter 0 0.0000 267.3340 -169.9136[0m
+[0;32mI (16672) IMU: cur_timestamp = 0 14579821[0m
+[0;32mI (16672) IMU: calib IMU data 0 0.0000 0.0749 0.0882 0.9675 -15.0677 2.7058 [0m
+[0;32mI (16682) DATA LOGGING: complementary filter 0 0.0000 134.4334 -146.0711[0m
+[0;32mI (16682) IMU: cur_timestamp = 0 14579830[0m
+[0;32mI (16692) IMU: calib IMU data 0 0.0000 0.0820 0.1084 1.0324 -15.2203 2.0650 [0m
+[0;32mI (16702) DATA LOGGING: complementary filter 0 0.0000 0.2056 -127.8559[0m
+[0;32mI (16702) IMU: cur_timestamp = 0 14579839[0m
+[0;32mI (16702) IMU: calib IMU data 0 0.0000 0.0794 0.0802 0.9928 -10.9021 2.8889 [0m
+[0;32mI (16712) DATA LOGGING: complementary filter 0 0.0000 -95.9784 -102.3746[0m
+[0;32mI (16722) IMU: cur_timestamp = 0 14579848[0m
+[0;32mI (16722) IMU: calib IMU data 0 0.0000 0.0811 0.0969 1.0025 -4.5697 2.6448 [0m
+[0;32mI (16732) DATA LOGGING: complementary filter 0 0.0000 -136.2651 -79.0464[0m
+[0;32mI (16742) IMU: cur_timestamp = 0 14579857[0m
+[0;32mI (16742) IMU: calib IMU data 0 0.0000 0.0798 0.0816 0.9761 -0.4651 1.7140 [0m
+[0;32mI (16752) DATA LOGGING: complementary filter 0 0.0000 -140.3820 -63.9278[0m
+[0;32mI (16752) IMU: cur_timestamp = 0 14579866[0m
+[0;32mI (16752) IMU: calib IMU data 0 0.0000 0.0818 0.0942 0.9516 3.9447 0.6154 [0m
+[0;32mI (16762) DATA LOGGING: complementary filter 0 0.0000 -105.5723 -58.4955[0m
+[0;32mI (16772) IMU: cur_timestamp = 0 14579875[0m
+[0;32mI (16772) IMU: calib IMU data 0 0.0000 0.0744 0.1016 0.9495 4.3872 -3.1230 [0m
+[0;32mI (16782) DATA LOGGING: complementary filter 0 0.0000 -66.8680 -86.0491[0m
+[0;32mI (16792) IMU: cur_timestamp = 0 14579884[0m
+[0;32mI (16792) IMU: calib IMU data 0 0.0000 0.0894 0.1097 0.9686 3.8837 -6.0680 [0m
+[0;32mI (16802) DATA LOGGING: complementary filter 0 0.0000 -32.6072 -139.5528[0m
+[0;32mI (16802) IMU: cur_timestamp = 0 14579893[0m
+[0;32mI (16812) IMU: calib IMU data 0 0.0000 0.0899 0.1191 1.0085 2.5409 -8.0363 [0m
+[0;32mI (16812) DATA LOGGING: complementary filter 0 0.0000 -10.1910 -210.4370[0m
+[0;32mI (16822) IMU: cur_timestamp = 0 14579902[0m
+[0;32mI (16822) IMU: calib IMU data 0 0.0000 0.0947 0.1632 1.0341 4.1583 -7.3955 [0m
+[0;32mI (16832) DATA LOGGING: complementary filter 0 0.0000 26.5298 -275.6630[0m
+[0;32mI (16842) IMU: cur_timestamp = 0 14579911[0m
+[0;32mI (16842) IMU: calib IMU data 0 0.0000 0.0796 0.1029 0.9837 6.7981 -4.7862 [0m
+[0;32mI (16852) DATA LOGGING: complementary filter 0 0.0000 86.4295 -317.8888[0m
+[0;32mI (16852) IMU: cur_timestamp = 0 14579920[0m
+[0;32mI (16862) IMU: calib IMU data 0 0.0000 0.0775 0.1134 1.0069 4.8602 -3.0467 [0m
+[0;32mI (16862) DATA LOGGING: complementary filter 0 0.0000 129.3058 -344.7654[0m
+[0;32mI (16872) IMU: cur_timestamp = 0 14579929[0m
+[0;32mI (16872) IMU: calib IMU data 0 0.0000 0.0896 0.0915 0.9800 3.4412 -1.6734 [0m
+[0;32mI (16882) DATA LOGGING: complementary filter 0 0.0000 159.6350 -359.5086[0m
+[0;32mI (16892) IMU: cur_timestamp = 0 14579938[0m
+[0;32mI (16892) IMU: calib IMU data 0 0.0000 0.0947 0.1315 0.9910 5.3333 -1.6887 [0m
+[0;32mI (16902) DATA LOGGING: complementary filter 0 0.0000 206.7186 -374.3986[0m
+[0;32mI (16902) IMU: cur_timestamp = 0 14579947[0m
+[0;32mI (16912) IMU: calib IMU data 0 0.0000 0.0940 0.0916 1.0220 4.9518 -1.0020 [0m
+[0;32mI (16912) DATA LOGGING: complementary filter 0 0.0000 250.3448 -383.2402[0m
+[0;32mI (16922) IMU: cur_timestamp = 0 14579956[0m
+[0;32mI (16922) IMU: calib IMU data 0 0.0000 0.0816 0.1192 0.9800 5.6232 0.3712 [0m
+[0;32mI (16932) DATA LOGGING: complementary filter 0 0.0000 299.9773 -379.9759[0m
+[0;32mI (16942) IMU: cur_timestamp = 0 14579965[0m
+[0;32mI (16942) IMU: calib IMU data 0 0.0000 0.0914 0.1098 0.9700 4.0668 0.1881 [0m
+[0;32mI (16952) DATA LOGGING: complementary filter 0 0.0000 335.8366 -378.3041[0m
+[0;32mI (16952) IMU: cur_timestamp = 0 14579974[0m
+[0;32mI (16962) IMU: calib IMU data 0 0.0000 0.0888 0.1181 0.9767 1.0455 0.2339 [0m
+[0;32mI (16962) DATA LOGGING: complementary filter 0 0.0000 345.0670 -376.2447[0m
+[0;32mI (16972) IMU: cur_timestamp = 0 14579983[0m
+[0;32mI (16972) IMU: calib IMU data 0 0.0000 0.0926 0.1262 0.9828 -2.3419 -0.1323 [0m
+[0;32mI (16982) DATA LOGGING: complementary filter 0 0.0000 324.4196 -377.4080[0m
+[0;32mI (16992) IMU: cur_timestamp = 0 14579992[0m
+[0;32mI (16992) IMU: calib IMU data 0 0.0000 0.0864 0.1333 0.9982 -3.5168 -0.1323 [0m
+[0;32mI (17002) DATA LOGGING: complementary filter 0 0.0000 293.4068 -378.5835[0m
+[0;32mI (17002) IMU: cur_timestamp = 0 14580001[0m
+[0;32mI (17012) IMU: calib IMU data 0 0.0000 0.0802 0.1126 0.9938 -2.0215 -0.2086 [0m
+[0;32mI (17012) DATA LOGGING: complementary filter 0 0.0000 275.5547 -380.4297[0m
+[0;32mI (17022) IMU: cur_timestamp = 0 14580010[0m
+[0;32mI (17022) IMU: calib IMU data 0 0.0000 0.0902 0.0782 0.9975 -0.8618 -0.5290 [0m
+[0;32mI (17032) DATA LOGGING: complementary filter 0 0.0000 267.9139 -385.0843[0m
+[0;32mI (17042) IMU: cur_timestamp = 0 14580019[0m
+[0;32mI (17042) IMU: calib IMU data 0 0.0000 0.0904 0.1037 0.9976 0.5115 -0.1018 [0m
+[0;32mI (17052) DATA LOGGING: complementary filter 0 0.0000 272.4540 -385.9819[0m
+[0;32mI (17062) IMU: cur_timestamp = 0 14580028[0m
+[0;32mI (17062) IMU: calib IMU data 0 0.0000 0.0893 0.1148 0.9880 2.2662 0.3865 [0m
+[0;32mI (17062) DATA LOGGING: complementary filter 0 0.0000 292.4561 -382.5734[0m
+[0;32mI (17072) IMU: cur_timestamp = 0 14580037[0m
+[0;32mI (17072) IMU: calib IMU data 0 0.0000 0.0904 0.1152 0.9877 2.5867 0.5391 [0m
+[0;32mI (17082) DATA LOGGING: complementary filter 0 0.0000 315.2709 -377.8173[0m
+[0;32mI (17092) IMU: cur_timestamp = 0 14580046[0m
+[0;32mI (17092) IMU: calib IMU data 0 0.0000 0.0886 0.1174 0.9870 2.6172 0.8748 [0m
+[0;32mI (17102) DATA LOGGING: complementary filter 0 0.0000 338.3571 -370.1037[0m
+[0;32mI (17102) IMU: cur_timestamp = 0 14580055[0m
+[0;32mI (17112) IMU: calib IMU data 0 0.0000 0.0981 0.1135 0.9895 2.2815 1.1037 [0m
+[0;32mI (17122) DATA LOGGING: complementary filter 0 0.0000 358.4750 -360.3587[0m
+[0;32mI (17122) IMU: cur_timestamp = 0 14580064[0m
+[0;32mI (17132) IMU: calib IMU data 0 0.0000 0.0910 0.1368 0.9908 2.5562 1.9582 [0m
+[0;32mI (17132) DATA LOGGING: complementary filter 0 0.0000 381.0466 -343.0962[0m
+[0;32mI (17142) IMU: cur_timestamp = 0 14580073[0m
+[0;32mI (17142) IMU: calib IMU data 0 0.0000 0.0716 0.1220 0.9802 2.8156 2.4312 [0m
+[0;32mI (17152) DATA LOGGING: complementary filter 0 0.0000 405.8648 -321.6743[0m
+[0;32mI (17162) IMU: cur_timestamp = 0 14580082[0m
+[0;32mI (17162) IMU: calib IMU data 0 0.0000 0.0816 0.1289 0.9831 0.6641 0.4170 [0m
+[0;32mI (17162) BUTTON: Datalogging stopped.[0m
+[0;32mI (17172) DATA LOGGING: complementary filter 0 0.0000 411.7291 -317.9850[0m
+[0;32mI (17182) DATA LOGGING: Datalogging stopped.[0m
+[0;32mI (17182) IMU: cur_timestamp = 0 14580091[0m
+[0;32mI (17182) IMU: calib IMU data 0 0.0000 0.0911 0.1311 0.9891 -1.1670 -0.9258 [0m
+[0;32mI (17192) IMU: cur_timestamp = 0 14580100[0m
+[0;32mI (17192) IMU: calib IMU data 0 0.0000 0.0885 0.1190 0.9888 -1.2433 -0.6206 [0m
+[0;32mI (17202) IMU: cur_timestamp = 1 14580109[0m
+[0;32mI (17202) IMU: calib IMU data 1 0.0000 0.0848 0.1016 0.9911 -1.1823 -0.3917 [0m
+[0;32mI (17212) IMU: cur_timestamp = 2 14580118[0m
+[0;32mI (17212) IMU: calib IMU data 2 0.0000 0.0863 0.0987 0.9882 -1.5179 -0.4832 [0m
+[0;32mI (17222) IMU: cur_timestamp = 3 14580127[0m
+[0;32mI (17222) IMU: calib IMU data 3 0.0000 0.0910 0.1109 0.9895 -1.5790 -0.1323 [0m
+[0;32mI (17232) IMU: cur_timestamp = 4 14580136[0m
+[0;32mI (17242) IMU: calib IMU data 4 0.0000 0.0918 0.1171 0.9883 -1.1670 0.5391 [0m
+[0;32mI (17242) IMU: cur_timestamp = 5 14580145[0m
+[0;32mI (17252) IMU: calib IMU data 5 0.0000 0.0904 0.1213 0.9819 -1.5027 0.9206 [0m
+[0;32mI (17252) IMU: cur_timestamp = 6 14580154[0m
+[0;32mI (17262) IMU: calib IMU data 6 0.0000 0.0869 0.1192 0.9848 -2.7539 0.9816 [0m
+[0;32mI (17262) IMU: cur_timestamp = 7 14580163[0m
+[0;32mI (17272) IMU: calib IMU data 7 0.0000 0.0796 0.1157 0.9897 -3.9136 0.6764 [0m
+[0;32mI (17272) IMU: cur_timestamp = 8 14580172[0m
+[0;32mI (17282) IMU: calib IMU data 8 0.0000 0.0815 0.1142 0.9905 -4.1882 0.1118 [0m
+[0;32mI (17282) IMU: cur_timestamp = 9 14580181[0m
+[0;32mI (17292) IMU: calib IMU data 9 0.0000 0.0866 0.1112 0.9968 -3.9136 -0.3307 [0m
+[0;32mI (17292) IMU: cur_timestamp = 10 14580190[0m
+[0;32mI (17302) IMU: calib IMU data 10 0.0000 0.0870 0.1125 0.9954 -2.8760 -0.1628 [0m
+[0;32mI (17312) IMU: cur_timestamp = 11 14580199[0m
+[0;32mI (17312) IMU: calib IMU data 11 0.0000 0.0838 0.1118 0.9936 -1.7621 -0.0102 [0m
+[0;32mI (17322) IMU: cur_timestamp = 12 14580208[0m
+[0;32mI (17322) IMU: calib IMU data 12 0.0000 0.0827 0.1103 0.9919 -0.8466 -0.1018 [0m
+[0;32mI (17332) IMU: cur_timestamp = 13 14580217[0m
+[0;32mI (17332) IMU: calib IMU data 13 0.0000 0.0909 0.1101 0.9924 -0.1141 -0.4680 [0m
+[0;32mI (17342) IMU: cur_timestamp = 14 14580226[0m
+[0;32mI (17342) IMU: calib IMU data 14 0.0000 0.0922 0.1109 0.9909 0.3741 -0.2849 [0m
+[0;32mI (17352) IMU: cur_timestamp = 15 14580235[0m
+[0;32mI (17352) IMU: calib IMU data 15 0.0000 0.0926 0.1145 0.9865 0.8472 0.2644 [0m
+[0;32mI (17362) IMU: cur_timestamp = 16 14580244[0m
+[0;32mI (17362) IMU: calib IMU data 16 0.0000 0.0896 0.1154 0.9865 0.7556 0.7832 [0m
+[0;32mI (17372) IMU: cur_timestamp = 17 14580253[0m
+[0;32mI (17372) IMU: calib IMU data 17 0.0000 0.0861 0.1163 0.9936 0.3894 1.0884 [0m
+[0;32mI (17382) IMU: cur_timestamp = 18 14580262[0m
+[0;32mI (17382) IMU: calib IMU data 18 0.0000 0.0853 0.1184 1.0015 0.1758 1.0579 [0m
+[0;32mI (17392) IMU: cur_timestamp = 19 14580271[0m
+[0;32mI (17392) IMU: calib IMU data 19 0.0000 0.0911 0.1206 1.0027 -0.1599 1.3631 [0m
+[0;32mI (17402) IMU: cur_timestamp = 20 14580280[0m
+[0;32mI (17402) IMU: calib IMU data 20 0.0000 0.0854 0.1187 0.9983 -0.6482 2.2633 [0m
+[0;32mI (17412) IMU: cur_timestamp = 21 14580289[0m
+[0;32mI (17412) IMU: calib IMU data 21 0.0000 0.0774 0.1154 0.9841 -1.0754 2.7821 [0m
+[0;32mI (17422) IMU: cur_timestamp = 22 14580298[0m
+[0;32mI (17422) IMU: calib IMU data 22 0.0000 0.0868 0.2247 0.9250 -0.9381 1.7903 [0m
+[0;32mI (17432) IMU: cur_timestamp = 23 14580307[0m
+[0;32mI (17442) IMU: calib IMU data 23 0.0000 0.0813 0.1679 0.9332 0.8319 -2.4211 [0m
+[0;32mI (17442) IMU: cur_timestamp = 24 14580316[0m
+[0;32mI (17452) IMU: calib IMU data 24 0.0000 0.1203 0.1291 1.1740 1.8695 -6.5410 [0m
+[0;32mI (17452) IMU: cur_timestamp = 25 14580325[0m
+[0;32mI (17462) IMU: calib IMU data 25 0.0000 0.0726 0.0949 1.0217 2.1747 -3.0162 [0m
+[0;32mI (17462) IMU: cur_timestamp = 26 14580334[0m
+[0;32mI (17472) IMU: calib IMU data 26 0.0000 0.0875 0.0789 0.9766 7.5610 1.6988 [0m
+[0;32mI (17472) IMU: cur_timestamp = 27 14580343[0m
+[0;32mI (17482) IMU: calib IMU data 27 0.0000 0.0798 0.0197 0.9928 6.6302 0.9816 [0m
+[0;32mI (17482) IMU: cur_timestamp = 28 14580352[0m
+[0;32mI (17492) IMU: calib IMU data 28 0.0000 0.0818 0.1206 0.9745 3.0902 -0.2391 [0m
+[0;32mI (17502) IMU: cur_timestamp = 29 14580361[0m
+[0;32mI (17502) IMU: calib IMU data 29 0.0000 0.0935 0.1224 0.9764 0.2979 -0.4527 [0m
+[0;32mI (17512) IMU: cur_timestamp = 30 14580370[0m
+[0;32mI (17512) IMU: calib IMU data 30 0.0000 0.0958 0.1247 0.9799 -1.9910 0.4475 [0m
+[0;32mI (17522) IMU: cur_timestamp = 31 14580379[0m
+[0;32mI (17522) IMU: calib IMU data 31 0.0000 0.0761 0.1311 0.9714 -4.0204 1.8361 [0m
+[0;32mI (17532) IMU: cur_timestamp = 32 14580388[0m
+[0;32mI (17532) IMU: calib IMU data 32 0.0000 0.0905 0.1134 0.9927 -7.3163 0.2950 [0m
+[0;32mI (17542) IMU: cur_timestamp = 33 14580397[0m
+[0;32mI (17542) IMU: calib IMU data 33 0.0000 0.0811 0.1176 0.9919 -7.0111 0.7680 [0m
+[0;32mI (17552) IMU: cur_timestamp = 34 14580406[0m
+[0;32mI (17552) IMU: calib IMU data 34 0.0000 0.0919 0.1029 1.0042 -6.3245 0.6612 [0m
+[0;32mI (17562) IMU: cur_timestamp = 35 14580415[0m
+[0;32mI (17562) IMU: calib IMU data 35 0.0000 0.0780 0.1134 1.0011 -4.1425 0.5696 [0m
+[0;32mI (17572) IMU: cur_timestamp = 36 14580424[0m
+[0;32mI (17572) IMU: calib IMU data 36 0.0000 0.0783 0.1075 0.9903 -2.0215 0.1576 [0m
+[0;32mI (17582) IMU: cur_timestamp = 37 14580433[0m
+[0;32mI (17582) IMU: calib IMU data 37 0.0000 0.0997 0.0993 1.0032 -0.9381 -0.8647 [0m
+[0;32mI (17592) IMU: cur_timestamp = 38 14580442[0m
+[0;32mI (17592) IMU: calib IMU data 38 0.0000 0.0730 0.1221 0.9848 1.7169 0.4018 [0m
+[0;32mI (17602) IMU: cur_timestamp = 39 14580451[0m
+[0;32mI (17612) IMU: calib IMU data 39 0.0000 0.0921 0.1054 0.9941 1.3354 -0.3001 [0m
+[0;32mI (17612) IMU: cur_timestamp = 40 14580460[0m
+[0;32mI (17622) IMU: calib IMU data 40 0.0000 0.0844 0.1181 0.9864 1.6559 0.0508 [0m
+[0;32mI (17622) IMU: cur_timestamp = 41 14580469[0m
+[0;32mI (17632) IMU: calib IMU data 41 0.0000 0.0822 0.1178 0.9855 1.2134 0.1881 [0m
+[0;32mI (17632) IMU: cur_timestamp = 42 14580478[0m
+[0;32mI (17642) IMU: calib IMU data 42 0.0000 0.0894 0.1138 0.9865 -0.2972 -0.2544 [0m
+[0;32mI (17642) IMU: cur_timestamp = 43 14580487[0m
+[0;32mI (17652) IMU: calib IMU data 43 0.0000 0.0813 0.1180 0.9836 -0.4498 0.1881 [0m
+[0;32mI (17652) IMU: cur_timestamp = 44 14580496[0m
+[0;32mI (17662) IMU: calib IMU data 44 0.0000 0.0869 0.1119 0.9928 -1.3806 -0.1476 [0m
+[0;32mI (17662) IMU: cur_timestamp = 45 14580505[0m
+[0;32mI (17672) IMU: calib IMU data 45 0.0000 0.0835 0.1132 0.9915 -1.5179 -0.1170 [0m
+[0;32mI (17682) IMU: cur_timestamp = 46 14580514[0m
+[0;32mI (17682) IMU: calib IMU data 46 0.0000 0.0828 0.1112 0.9926 -1.1517 -0.1476 [0m
+[0;32mI (17692) IMU: cur_timestamp = 47 14580523[0m
+[0;32mI (17692) IMU: calib IMU data 47 0.0000 0.0868 0.1119 0.9938 -0.4041 -0.1018 [0m
+[0;32mI (17702) IMU: cur_timestamp = 48 14580532[0m
+[0;32mI (17702) IMU: calib IMU data 48 0.0000 0.0853 0.1141 0.9915 0.2673 -0.0102 [0m
+[0;32mI (17712) IMU: cur_timestamp = 49 14580541[0m
+[0;32mI (17712) IMU: calib IMU data 49 0.0000 0.0860 0.1115 0.9925 0.5725 -0.0560 [0m
+[0;32mI (17722) IMU: cur_timestamp = 50 14580550[0m
+[0;32mI (17722) IMU: calib IMU data 50 0.0000 0.0844 0.1119 0.9946 1.3660 0.0203 [0m
+[0;32mI (17732) IMU: cur_timestamp = 51 14580559[0m
+[0;32mI (17732) IMU: calib IMU data 51 0.0000 0.0879 0.1131 0.9915 2.3578 0.1271 [0m
+[0;32mI (17742) IMU: cur_timestamp = 52 14580568[0m
+[0;32mI (17742) IMU: calib IMU data 52 0.0000 0.0857 0.1145 0.9880 2.7240 0.2034 [0m
+[0;32mI (17752) IMU: cur_timestamp = 53 14580577[0m
+[0;32mI (17752) IMU: calib IMU data 53 0.0000 0.0838 0.1168 0.9858 2.5867 0.2644 [0m
+[0;32mI (17762) IMU: cur_timestamp = 54 14580586[0m
+[0;32mI (17762) IMU: calib IMU data 54 0.0000 0.0855 0.1180 0.9855 1.9763 0.2797 [0m
+[0;32mI (17772) IMU: cur_timestamp = 55 14580595[0m
+[0;32mI (17772) IMU: calib IMU data 55 0.0000 0.0865 0.1173 0.9852 0.9235 0.2644 [0m
+[0;32mI (17782) IMU: cur_timestamp = 56 14580604[0m
+[0;32mI (17792) IMU: calib IMU data 56 0.0000 0.0824 0.1181 0.9861 0.1910 0.3560 [0m
+[0;32mI (17792) IMU: cur_timestamp = 57 14580613[0m
+[0;32mI (17792) IMU: calib IMU data 57 0.0000 0.0825 0.1173 0.9875 -0.3430 0.2339 [0m
+[0;32mI (17802) IMU: cur_timestamp = 58 14580622[0m
+[0;32mI (17812) IMU: calib IMU data 58 0.0000 0.0835 0.1185 0.9910 -0.8618 -0.0255 [0m
+[0;32mI (17812) IMU: cur_timestamp = 59 14580631[0m
+[0;32mI (17822) IMU: calib IMU data 59 0.0000 0.0857 0.1153 0.9889 -1.1517 -0.0865 [0m
+[0;32mI (17822) IMU: cur_timestamp = 60 14580640[0m
+[0;32mI (17832) IMU: calib IMU data 60 0.0000 0.0841 0.1152 0.9892 -0.9839 0.0508 [0m
+[0;32mI (17832) IMU: cur_timestamp = 61 14580649[0m
+[0;32mI (17842) IMU: calib IMU data 61 0.0000 0.0816 0.1142 0.9899 -0.6329 0.2034 [0m
+[0;32mI (17842) IMU: cur_timestamp = 62 14580658[0m
+[0;32mI (17852) IMU: calib IMU data 62 0.0000 0.0836 0.1147 0.9926 -0.5719 0.0203 [0m
+[0;32mI (17852) IMU: IMU stopped[0m
+[0;32mI (18632) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (18632) SD_CARD: filename: imu_orientation_001828.bin[0m
+[0;32mI (18632) SD_CARD: filepath: /sdcard/imu_orientation_001828.bin[0m
+[0;32mI (18642) SD_CARD: Writing to new orientation file[0m
+[0;32mI (21012) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (21012) SD_CARD: IMU raw data file size: 0[0m
+[0;32mI (21012) SD_CARD: IMU orientation file size: 0[0m
+[0;32mI (21032) SD_CARD: Files written.[0m

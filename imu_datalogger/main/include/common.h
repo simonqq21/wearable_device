@@ -2,17 +2,18 @@
 #define COMMON_H
 
 #include <stdio.h>
+#include <math.h>
 #include <dirent.h>
 #include <inttypes.h>
+#include <string.h>
+#include <sys/unistd.h>
+#include <sys/stat.h>
+
 #include <freertos/FreeRTOS.h>
 #include <freertos/task.h>
 #include <freertos/queue.h>
 #include <freertos/stream_buffer.h>
 #include "freertos/semphr.h"
-
-#include <string.h>
-#include <sys/unistd.h>
-#include <sys/stat.h>
 
 #include <esp_err.h>
 #include <esp_log.h>
@@ -40,7 +41,7 @@ typedef struct
 /* IMU data struct */
 typedef struct __attribute__((packed))
 {
-    uint64_t timestamp;
+    int64_t timestamp;
     float ax, ay, az; // IMU model-agnostic
     float gx, gy, gz;
     float temp;
@@ -49,14 +50,14 @@ typedef struct __attribute__((packed))
 /* Euler angle */
 typedef struct __attribute__((packed))
 {
-    uint64_t timestamp;
+    int64_t timestamp;
     float x, y, z;
 } euler_angle_t;
 
 /* Quaternion */
 typedef struct __attribute__((packed))
 {
-    uint64_t timestamp;
+    int64_t timestamp;
     float w, x, y, z;
 } quaternion_t;
 

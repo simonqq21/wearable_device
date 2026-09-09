@@ -194,7 +194,7 @@ typedef enum
 /**
  * CTRL4_C bits
  */
-
+#define CTRL4_C_LPF1_SEL_G (1)
 /**
  * CTRL5_C bits
  */
@@ -327,6 +327,7 @@ typedef struct
     float accel[3];
 
 } lsm6ds3_data_t;
+
 esp_err_t lsm6ds3_register_read(i2c_master_dev_handle_t dev_handle,
                                 uint8_t reg_addr,
                                 uint8_t *data,
@@ -337,7 +338,7 @@ esp_err_t lsm6ds3_register_write_byte(i2c_master_dev_handle_t dev_handle,
 
 void lsm6ds3_init_accel(i2c_master_dev_handle_t dev_handle, uint16_t odr, uint16_t xl_fs);
 void lsm6ds3_init_gyro(i2c_master_dev_handle_t dev_handle, uint16_t odr, uint16_t g_fs);
-void lsm6ds3_init_all(i2c_master_dev_handle_t dev_handle, uint8_t odr, uint16_t xl_fs, uint16_t g_fs);
+void lsm6ds3_init_all(i2c_master_dev_handle_t dev_handle, uint16_t odr, uint16_t xl_fs, uint16_t g_fs);
 
 void lsm6ds3_reset(i2c_master_dev_handle_t dev_handle);
 
@@ -365,9 +366,8 @@ uint8_t lsm6ds3_check_gyro_data_available(i2c_master_dev_handle_t dev_handle);
 uint8_t lsm6ds3_check_accel_data_available(i2c_master_dev_handle_t dev_handle);
 
 void lsm6ds3_read_temperature(i2c_master_dev_handle_t dev_handle, float *temp);
-void lsm6ds3_read_gyroscope(i2c_master_dev_handle_t dev_handle, float g[3]);
-void lsm6ds3_read_accelerometer(i2c_master_dev_handle_t dev_handle, float a[3]);
-void lsm6ds3_read_raw_data(i2c_master_dev_handle_t dev_handle, lsm6ds3_data_t *data);
+void lsm6ds3_read_motion(i2c_master_dev_handle_t dev_handle, float g[3], float a[3]);
+int lsm6ds3_read_raw_data(i2c_master_dev_handle_t dev_handle, lsm6ds3_data_t *data);
 
 void read_modify_write(uint8_t bit_start,
                        uint8_t bit_end,

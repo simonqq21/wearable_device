@@ -1,6 +1,5 @@
 #include "sd_card.h"
 
-const int IMU_EXPECTED_LEN = strlen("imu_000000.bin");
 uint8_t sd_card_initialized = 0;
 extern QueueHandle_t queue_imu;
 
@@ -133,7 +132,6 @@ void task_SD_card_datalogger(void *params)
                 ESP_LOGI(SD_CARD_TAG, "Writing to new orientation file");
                 f_orientation = open_file(f_orientation, filepath, &orientation_file_size);
             }
-            // ESP_LOGI(SD_CARD_TAG, "t5");
         }
 
         /* run continuously while datalogging is ongoing */

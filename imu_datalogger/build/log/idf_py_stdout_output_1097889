@@ -1,0 +1,330 @@
+Command: /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/imu_module.elf /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader/bootloader.elf -m '/home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python' '/home/simonque/Documents/code/esp-idf/tools/idf.py'
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0040,len:6272
+load:0x40078000,len:15848
+load:0x40080400,len:3920
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v6.1-dev-2310-g44e2fa6d9c5-dirt 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Sep  1 2026 14:56:57[0m
+[0;32mI (28) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v3.1[0m
+[0;32mI (34) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (37) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (65) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (78) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=26acch (158412) map[0m
+[0;32mI (145) esp_image: segment 1: paddr=00036af4 vaddr=3ffbdb60 size=05134h ( 20788) load[0m
+[0;32mI (153) esp_image: segment 2: paddr=0003bc30 vaddr=40080000 size=043e8h ( 17384) load[0m
+[0;32mI (160) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=7deach (515756) map[0m
+[0;32mI (344) esp_image: segment 4: paddr=000bded4 vaddr=400843e8 size=14a74h ( 84596) load[0m
+[0;32mI (379) esp_image: segment 5: paddr=000d2950 vaddr=50000000 size=00028h (    40) load[0m
+[0;32mI (392) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (392) boot: Disabling RNG early entropy source...[0m
+[0;32mI (403) cpu_start: Multicore app[0m
+[0;32mI (411) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (411) cpu_start: Pro cpu start user code[0m
+[0;32mI (411) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (413) app_init: Application information:[0m
+[0;32mI (417) app_init: Project name:     imu_module[0m
+[0;32mI (421) app_init: App version:      8f26657-dirty[0m
+[0;32mI (425) app_init: Compile time:     Sep  9 2026 15:32:12[0m
+[0;32mI (430) app_init: ELF file SHA256:  740308de2...[0m
+[0;32mI (435) app_init: ESP-IDF:          v6.1-dev-2310-g44e2fa6d9c5-dirt[0m
+[0;32mI (441) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (444) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (448) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (453) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (459) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (464) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (469) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (474) heap_init: At 3FFC7228 len 00018DD8 (99 KiB): DRAM[0m
+[0;32mI (479) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (485) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (490) heap_init: At 40098E5C len 000071A4 (28 KiB): IRAM[0m
+[0;33mW (497) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (508) spi_flash: detected chip: generic[0m
+[0;32mI (512) spi_flash: flash io: dio[0m
+[0;33mW (515) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (528) coexist: coex firmware version: 093e3d2[0m
+[0;32mI (532) main_task: Started on CPU0[0m
+[0;32mI (542) main_task: Calling app_main()[0m
+[0;32mI (542) button: IoT Button Version: 4.2.0[0m
+[0;32mI (542) MAIN: I2C initialized successfully[0m
+[0;32mI (562) BTDM_INIT: BT controller compile version [045a658][0m
+[0;32mI (562) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (562) BTDM_INIT: Bluetooth MAC: d8:13:2a:7d:69:0a[0m
+[0;32mI (562) phy_init: phy_version 4863,a3a4459,Oct 28 2025,14:30:06[0m
+[0;33mW (972) BT_BTM: BTM_BleWriteAdvData, Partial data write into ADV[0m
+[0;33mW (972) BT_BTM: BTM_BleWriteScanRsp, Partial data write into ADV[0m
+[0;32mI (982) BLE: create attribute table successfully, the number handle = 4[0m
+[0;32mI (982) BLE: Advertising data set, status 0[0m
+[0;32mI (982) BLE: Scan response data set, status 0[0m
+[0;32mI (982) BLE: SERVICE_START_EVT, status 0, service_handle 40[0m
+[0;32mI (992) LSM6DS3: WHO_AM_I = 69[0m
+[0;32mI (1002) BLE: Advertising start successfully[0m
+[0;32mI (1012) LSM6DS3: FIFO_CTRL1_REG_ADDR = D0[0m
+[0;32mI (1012) LSM6DS3: FIFO_CTRL2_REG_ADDR = F[0m
+[0;32mI (1012) NVS: IMU calibration offsets from blob:[0m
+[0;32mI (1012) NVS: required_size = 24[0m
+[0;32mI (1012) NVS: err=0[0m
+
+[0;32mI (1012) NVS: accel_offsets_x = 0.0442[0m
+[0;32mI (1022) NVS: accel_offsets_y = -0.0283[0m
+[0;32mI (1022) NVS: accel_offsets_z = -0.0014[0m
+[0;32mI (1022) NVS: gyro_offsets_x = 2.1893[0m
+[0;32mI (1032) NVS: gyro_offsets_y = -7.0241[0m
+[0;32mI (1032) NVS: gyro_offsets_z = -2.0038[0m
+[0;32mI (1032) IMU: IMU read calibration from NVS.[0m
+[0;32mI (1042) IMU: accel_offsets_x = 0.04[0m
+[0;32mI (1042) IMU: accel_offsets_y = -0.03[0m
+[0;32mI (1052) IMU: accel_offsets_z = -0.00[0m
+[0;32mI (1052) IMU: gyro_offsets_x = 2.19[0m
+[0;32mI (1052) IMU: gyro_offsets_y = -7.02[0m
+[0;32mI (1062) IMU: gyro_offsets_z = -2.00[0m
+[0;32mI (1062) SD_CARD: Initializing SD card[0m
+[0;32mI (1062) SD_CARD: Using SPI peripheral[0m
+[0;32mI (1072) SD_CARD: Mounting filesystem[0m
+[0;32mI (1072) sdspi_transaction: cmd=52, R1 response: command not supported[0m
+[0;32mI (1122) sdspi_transaction: cmd=5, R1 response: command not supported[0m
+[0;32mI (1172) SD_CARD: Filesystem mounted[0m
+Name: ACLCE
+Type: SDHC
+Speed: 4.00 MHz (limit: 4.00 MHz)
+Size: 60906MB
+CSD: ver=2, sector_size=512, capacity=124735488 read_bl_len=9
+SSR: bus_width=1
+[0;32mI (1172) SD_CARD: SD card initialized[0m
+[0;32mI (1182) MAIN: Starting all tasks![0m
+[0;32mI (1182) MAIN: params_task_uart = 0x3ffc3528[0m
+[0;32mI (1182) MAIN: params_task_ble = 0x3ffc3524[0m
+[0;32mI (1192) BLE: ble task started[0m
+[0;32mI (1192) BLE: params_task_ble = 0x3ffc3524[0m
+[0;32mI (9022) BUTTON: Datalogging started.[0m
+[0;32mI (9022) IMU: cur_timestamp start = 8529886[0m
+
+[0;32mI (9022) IMU: IMU started[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (9092) DATA LOGGING: Datalogging started.[0m
+[0;32mI (9472) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (9472) LSM6DS3: num_fifo_samples = 288[0m
+[0;32mI (9932) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (9932) LSM6DS3: num_fifo_samples = 576[0m
+[0;32mI (10172) SD_CARD: max_idx: 1831[0m
+[0;32mI (10182) SD_CARD: filename: imu_raw_001832.bin[0m
+[0;32mI (10182) SD_CARD: filepath: /sdcard/imu_raw_001832.bin[0m
+[0;32mI (10182) SD_CARD: Writing to new raw file[0m
+[0;32mI (10382) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 1, empty = 0[0m
+[0;32mI (10382) LSM6DS3: num_fifo_samples = 852 100[0m
+[0;32mI (10502) LSM6DS3: raw gyro = 2.960205 -6.881714 -0.549316[0m
+[0;32mI (10512) LSM6DS3: raw accel = 0.134766 0.086670 0.988770[0m
+[0;32mI (10512) LSM6DS3: num_fifo_samples = 336[0m
+[0;32mI (10512) IMU: num_samples_read = 100[0m
+
+[0;32mI (10512) IMU: calib IMU data 8529886 0.0577 -0.0557 0.8458 18.7305 -2.7873 10.4266 [0m
+[0;32mI (10522) IMU: calib IMU data 8529895 0.1905 0.4326 1.3860 42.6105 -6.0222 17.7356 [0m
+[0;32mI (10532) DATA LOGGING: complementary filter 0 0.0000 376.1680 -52.9662[0m
+[0;32mI (10532) IMU: calib IMU data 8529904 0.1175 0.2017 1.3920 31.1816 6.6884 7.7869 [0m
+[0;32mI (10542) DATA LOGGING: complementary filter 0 0.0000 651.0108 5.9714[0m
+[0;32mI (10552) IMU: calib IMU data 8529913 -0.0343 0.1370 0.6950 20.1190 4.2317 1.7596 [0m
+[0;32mI (10552) DATA LOGGING: complementary filter 0 0.0000 828.5190 43.1441[0m
+[0;32mI (10562) IMU: calib IMU data 8529922 0.1521 0.1036 0.8710 -3.6084 -8.3415 -0.5444 [0m
+[0;32mI (10572) DATA LOGGING: complementary filter 0 0.0000 796.6038 -30.1759[0m
+[0;32mI (10572) IMU: calib IMU data 8529931 0.1074 0.1771 1.0667 -17.7075 -3.2909 -2.1924 [0m
+[0;32mI (10582) DATA LOGGING: complementary filter 0 0.0000 640.4774 -59.2846[0m
+[0;32mI (10592) IMU: calib IMU data 8529940 0.0565 -0.0160 0.9032 -25.9930 -0.0407 -3.5199 [0m
+[0;32mI (10602) DATA LOGGING: complementary filter 0 0.0000 411.0109 -59.6858[0m
+[0;32mI (10602) IMU: calib IMU data 8529949 0.1064 0.0849 1.0499 -22.4835 -2.8789 -1.6278 [0m
+[0;32mI (10612) DATA LOGGING: complementary filter 0 0.0000 212.8185 -85.0336[0m
+[0;32mI (10622) IMU: calib IMU data 8529958 0.0660 0.1097 1.0605 -1.8842 1.9124 0.2185 [0m
+[0;32mI (10622) DATA LOGGING: complementary filter 0 0.0000 196.2262 -68.2109[0m
+[0;32mI (10632) IMU: calib IMU data 8529967 0.1156 0.1336 1.0812 12.8711 1.1952 1.5308 [0m
+[0;32mI (10642) DATA LOGGING: complementary filter 0 0.0000 309.7714 -57.6188[0m
+[0;32mI (10642) IMU: calib IMU data 8529976 0.0763 0.0870 1.0707 21.4160 0.9053 2.5989 [0m
+[0;32mI (10652) DATA LOGGING: complementary filter 0 0.0000 498.6132 -49.6740[0m
+[0;32mI (10662) IMU: calib IMU data 8529985 0.0883 0.1552 0.8558 18.2269 1.2715 2.2021 [0m
+[0;32mI (10662) DATA LOGGING: complementary filter 0 0.0000 659.4866 -38.4244[0m
+[0;32mI (10672) IMU: calib IMU data 8529994 0.1049 0.1563 0.9559 6.2946 -0.3307 1.1340 [0m
+[0;32mI (10682) DATA LOGGING: complementary filter 0 0.0000 714.9847 -41.3331[0m
+[0;32mI (10682) IMU: calib IMU data 8530003 0.0765 0.1546 0.9397 -5.8972 0.0050 -1.0175 [0m
+[0;32mI (10692) DATA LOGGING: complementary filter 0 0.0000 662.9729 -41.3205[0m
+[0;32mI (10702) IMU: calib IMU data 8530012 0.1058 0.1178 0.9612 -17.5092 -2.0091 -1.5820 [0m
+[0;32mI (10712) DATA LOGGING: complementary filter 0 0.0000 508.4947 -59.0082[0m
+[0;32mI (10712) IMU: calib IMU data 8530021 0.0800 0.0925 1.0520 -19.0503 -1.0783 -1.9025 [0m
+[0;32mI (10722) DATA LOGGING: complementary filter 0 0.0000 340.4325 -68.5571[0m
+[0;32mI (10732) IMU: calib IMU data 8530030 0.0791 0.0646 1.0550 -10.5206 -0.6816 -0.8954 [0m
+[0;32mI (10732) DATA LOGGING: complementary filter 0 0.0000 247.6103 -74.5701[0m
+[0;32mI (10742) IMU: calib IMU data 8530039 0.1012 0.0847 1.0359 4.3414 -0.0255 1.1188 [0m
+[0;32mI (10752) DATA LOGGING: complementary filter 0 0.0000 285.9248 -74.7692[0m
+[0;32mI (10752) IMU: calib IMU data 8530048 0.0710 0.1173 0.9826 15.1447 1.8513 1.5002 [0m
+[0;32mI (10762) DATA LOGGING: complementary filter 0 0.0000 419.5434 -58.4694[0m
+[0;32mI (10772) IMU: calib IMU data 8530057 0.1002 0.1314 0.9552 14.8395 0.8138 2.0801 [0m
+[0;32mI (10772) DATA LOGGING: complementary filter 0 0.0000 550.4476 -51.2556[0m
+[0;32mI (10782) IMU: calib IMU data 8530066 0.0927 0.1497 0.9430 8.2324 0.4933 1.1493 [0m
+[0;32mI (10792) DATA LOGGING: complementary filter 0 0.0000 623.0813 -46.9122[0m
+[0;32mI (10792) IMU: calib IMU data 8530075 0.0925 0.1484 0.9449 -1.2433 0.0050 -0.2393 [0m
+[0;32mI (10802) DATA LOGGING: complementary filter 0 0.0000 612.1136 -46.8683[0m
+[0;32mI (10812) IMU: calib IMU data 8530084 0.0963 0.1232 0.9733 -10.6885 -1.1546 -1.0785 [0m
+[0;32mI (10812) DATA LOGGING: complementary filter 0 0.0000 517.8072 -57.0505[0m
+[0;32mI (10822) IMU: calib IMU data 8530093 0.0763 0.1037 0.9748 -14.2590 -0.9410 -1.8109 [0m
+[0;32mI (10832) DATA LOGGING: complementary filter 0 0.0000 392.0200 -65.3733[0m
+[0;32mI (10842) IMU: calib IMU data 8530102 0.1067 0.0703 1.0192 -15.3119 -1.1852 0.7373 [0m
+[0;32mI (10842) DATA LOGGING: complementary filter 0 0.0000 256.9265 -75.7961[0m
+[0;32mI (10852) IMU: calib IMU data 8530111 0.0992 0.0631 1.0489 -8.6591 0.3712 2.6904 [0m
+[0;32mI (10862) DATA LOGGING: complementary filter 0 0.0000 180.5437 -72.5330[0m
+[0;32mI (10862) IMU: calib IMU data 8530120 0.0708 0.1173 0.9925 3.7616 3.3772 2.3547 [0m
+[0;32mI (10872) DATA LOGGING: complementary filter 0 0.0000 213.7869 -42.7728[0m
+[0;32mI (10882) IMU: calib IMU data 8530129 0.0699 0.1345 0.9721 5.2875 2.3549 1.0883 [0m
+[0;32mI (10882) DATA LOGGING: complementary filter 0 0.0000 260.4451 -22.0022[0m
+[0;32mI (10892) IMU: calib IMU data 8530138 0.0669 0.1239 0.9797 0.3741 -1.4140 0.1575 [0m
+[0;32mI (10902) DATA LOGGING: complementary filter 0 0.0000 263.7317 -34.4779[0m
+[0;32mI (10902) IMU: calib IMU data 8530147 0.1030 0.0983 1.0025 -2.3419 -4.1454 -0.5750 [0m
+[0;32mI (10912) DATA LOGGING: complementary filter 0 0.0000 243.0437 -71.0007[0m
+[0;32mI (10922) IMU: calib IMU data 8530156 0.1167 0.1062 0.9864 -0.1904 -2.6805 -0.4224 [0m
+[0;32mI (10922) DATA LOGGING: complementary filter 0 0.0000 241.3746 -94.6254[0m
+[0;32mI (10932) IMU: calib IMU data 8530165 0.0913 0.1156 0.9789 1.1218 -0.0407 0.1270 [0m
+[0;32mI (10942) DATA LOGGING: complementary filter 0 0.0000 251.2812 -95.0131[0m
+[0;32mI (10942) IMU: calib IMU data 8530174 0.0810 0.1214 0.9823 0.0842 0.0508 0.1422 [0m
+[0;32mI (10952) DATA LOGGING: complementary filter 0 0.0000 252.0305 -94.5771[0m
+[0;32mI (10962) IMU: calib IMU data 8530183 0.0440 0.0534 0.9975 -2.0825 -1.0936 1.3934 [0m
+[0;32mI (10962) DATA LOGGING: complementary filter 0 0.0000 233.5835 -104.2658[0m
+[0;32mI (10972) IMU: calib IMU data 8530192 0.0909 0.0655 0.9972 -5.5768 -4.7862 6.4136 [0m
+[0;32mI (10982) DATA LOGGING: complementary filter 0 0.0000 184.4099 -146.4268[0m
+[0;32mI (10982) IMU: calib IMU data 8530201 0.1323 0.0803 1.0060 -4.8596 -4.9236 11.1438 [0m
+[0;32mI (10992) DATA LOGGING: complementary filter 0 0.0000 141.5636 -189.8071[0m
+[0;32mI (11002) IMU: calib IMU data 8530210 0.1294 0.1196 0.9981 0.2216 -0.6358 13.2037 [0m
+[0;32mI (11002) DATA LOGGING: complementary filter 0 0.0000 143.5628 -195.4179[0m
+[0;32mI (11012) IMU: calib IMU data 8530219 0.1063 0.1542 0.9898 4.7687 3.4077 11.7542 [0m
+[0;32mI (11022) DATA LOGGING: complementary filter 0 0.0000 185.6632 -165.3871[0m
+[0;32mI (11022) IMU: calib IMU data 8530228 0.0890 0.2000 0.9646 6.7371 5.1778 7.4359 [0m
+[0;32mI (11032) DATA LOGGING: complementary filter 0 0.0000 245.1412 -119.7372[0m
+[0;32mI (11042) IMU: calib IMU data 8530237 0.0745 0.1329 0.9765 2.6019 2.5685 2.5836 [0m
+[0;32mI (11052) DATA LOGGING: complementary filter 0 0.0000 268.0114 -97.0996[0m
+[0;32mI (11052) IMU: calib IMU data 8530246 0.0919 0.1119 0.9926 -1.5637 -0.5290 0.3864 [0m
+[0;32mI (11062) DATA LOGGING: complementary filter 0 0.0000 254.1930 -101.7469[0m
+[0;32mI (11072) IMU: calib IMU data 8530255 0.0979 0.0969 0.9970 -1.3806 -0.4832 0.1575 [0m
+[0;32mI (11072) DATA LOGGING: complementary filter 0 0.0000 241.9983 -106.0027[0m
+[0;32mI (11082) IMU: calib IMU data 8530264 0.0998 0.1019 0.9977 1.0455 0.7375 1.0577 [0m
+[0;32mI (11092) DATA LOGGING: complementary filter 0 0.0000 251.2255 -99.4962[0m
+[0;32mI (11092) IMU: calib IMU data 8530273 0.0788 0.1273 0.9864 3.3649 1.9276 1.4392 [0m
+[0;32mI (11102) DATA LOGGING: complementary filter 0 0.0000 280.9342 -82.5175[0m
+[0;32mI (11112) IMU: calib IMU data 8530282 0.0869 0.1114 0.9965 2.4646 0.4933 0.4932 [0m
+[0;32mI (11112) DATA LOGGING: complementary filter 0 0.0000 302.6525 -78.1580[0m
+[0;32mI (11122) IMU: calib IMU data 8530291 0.0896 0.1093 0.9924 2.8156 -0.6816 0.0964 [0m
+[0;32mI (11132) DATA LOGGING: complementary filter 0 0.0000 327.4838 -84.1663[0m
+[0;32mI (11132) IMU: calib IMU data 8530300 0.0898 0.1135 0.9895 4.2957 -0.3154 -0.9412 [0m
+[0;32mI (11142) DATA LOGGING: complementary filter 0 0.0000 365.3765 -86.9476[0m
+[0;32mI (11152) IMU: calib IMU data 8530309 0.0955 0.1135 0.9927 4.7992 -0.2238 -0.9717 [0m
+[0;32mI (11152) DATA LOGGING: complementary filter 0 0.0000 407.7049 -88.9157[0m
+[0;32mI (11162) IMU: calib IMU data 8530318 0.0860 0.1258 0.9776 5.3638 0.1729 -0.8191 [0m
+[0;32mI (11172) DATA LOGGING: complementary filter 0 0.0000 455.0297 -87.4004[0m
+[0;32mI (11172) IMU: calib IMU data 8530327 0.0911 0.1213 0.9836 3.5022 -0.3154 -1.2921 [0m
+[0;32mI (11182) DATA LOGGING: complementary filter 0 0.0000 485.9129 -90.1769[0m
+[0;32mI (11192) IMU: calib IMU data 8530336 0.0898 0.1214 0.9812 1.9458 -0.4070 -1.5668 [0m
+[0;32mI (11202) DATA LOGGING: complementary filter 0 0.0000 503.0754 -93.7675[0m
+[0;32mI (11202) IMU: calib IMU data 8530345 0.0949 0.1170 0.9830 0.5420 -0.7121 -1.0785 [0m
+[0;32mI (11212) DATA LOGGING: complementary filter 0 0.0000 507.8504 -100.0427[0m
+[0;32mI (11222) IMU: calib IMU data 8530354 0.0953 0.1173 0.9839 -0.3888 -0.3764 -0.4071 [0m
+[0;32mI (11222) DATA LOGGING: complementary filter 0 0.0000 504.4214 -103.3626[0m
+[0;32mI (11232) IMU: calib IMU data 8530363 0.0886 0.1179 0.9843 -0.7245 0.2644 -0.1630 [0m
+[0;32mI (11242) DATA LOGGING: complementary filter 0 0.0000 498.0321 -101.0380[0m
+[0;32mI (11242) IMU: calib IMU data 8530372 0.0903 0.1199 0.9849 -1.2128 0.0203 -0.2393 [0m
+[0;32mI (11252) DATA LOGGING: complementary filter 0 0.0000 487.3378 -100.8571[0m
+[0;32mI (11262) IMU: calib IMU data 8530381 0.0911 0.1170 0.9892 -1.5637 -0.1781 -0.1935 [0m
+[0;32mI (11262) DATA LOGGING: complementary filter 0 0.0000 473.5418 -102.4271[0m
+[0;32mI (11272) IMU: calib IMU data 8530390 0.0910 0.1174 0.9847 -1.7010 -0.1018 -0.1935 [0m
+[0;32mI (11282) DATA LOGGING: complementary filter 0 0.0000 458.5396 -103.3245[0m
+[0;32mI (11282) IMU: calib IMU data 8530399 0.0888 0.1152 0.9928 -1.8079 -0.1018 -0.0867 [0m
+[0;32mI (11292) DATA LOGGING: complementary filter 0 0.0000 442.5907 -104.2254[0m
+[0;32mI (11302) IMU: calib IMU data 8530408 0.0925 0.1137 0.9909 -1.7010 -0.3764 0.0507 [0m
+[0;32mI (11312) DATA LOGGING: complementary filter 0 0.0000 427.5860 -107.5412[0m
+[0;32mI (11312) IMU: calib IMU data 8530417 0.0936 0.1085 0.9969 -0.8008 -0.1628 -0.1019 [0m
+[0;32mI (11322) DATA LOGGING: complementary filter 0 0.0000 420.5164 -108.9765[0m
+[0;32mI (11332) IMU: calib IMU data 8530426 0.0890 0.1169 0.9885 1.1066 0.4475 -0.0867 [0m
+[0;32mI (11332) DATA LOGGING: complementary filter 0 0.0000 430.2870 -105.0337[0m
+[0;32mI (11342) IMU: calib IMU data 8530435 0.0903 0.1219 0.9806 1.2592 0.4323 0.0812 [0m
+[0;32mI (11352) DATA LOGGING: complementary filter 0 0.0000 441.3995 -101.2187[0m
+[0;32mI (11352) IMU: calib IMU data 8530444 0.0920 0.1197 0.9854 0.0537 -0.0102 -0.0256 [0m
+[0;32mI (11362) DATA LOGGING: complementary filter 0 0.0000 441.8701 -101.3074[0m
+[0;32mI (11372) IMU: calib IMU data 8530453 0.0911 0.1123 0.9915 -0.8313 -0.2238 -0.1935 [0m
+[0;32mI (11372) DATA LOGGING: complementary filter 0 0.0000 434.5287 -103.2833[0m
+[0;32mI (11382) IMU: calib IMU data 8530462 0.0887 0.1167 0.9881 -0.2972 0.2950 -0.1477 [0m
+[0;32mI (11392) DATA LOGGING: complementary filter 0 0.0000 431.9125 -100.6843[0m
+[0;32mI (11392) IMU: calib IMU data 8530471 0.0888 0.1191 0.9871 0.0232 0.3102 -0.0562 [0m
+[0;32mI (11402) DATA LOGGING: complementary filter 0 0.0000 432.1200 -97.9480[0m
+[0;32mI (11412) IMU: calib IMU data 8530480 0.0911 0.1180 0.9880 -0.2667 -0.0560 -0.0104 [0m
+[0;32mI (11412) DATA LOGGING: complementary filter 0 0.0000 429.7661 -98.4393[0m
+[0;32mI (11422) IMU: calib IMU data 8530489 0.0924 0.1163 0.9897 -0.3735 -0.0865 0.0354 [0m
+[0;32mI (11432) DATA LOGGING: complementary filter 0 0.0000 426.4694 -99.2012[0m
+[0;32mI (11432) IMU: calib IMU data 8530498 0.0890 0.1157 0.9904 -0.1447 -0.1323 0.0812 [0m
+[0;32mI (11442) DATA LOGGING: complementary filter 0 0.0000 425.1927 -100.3720[0m
+[0;32mI (11452) IMU: calib IMU data 8530507 0.0918 0.1196 0.9828 0.2521 -0.0407 0.1270 [0m
+[0;32mI (11462) DATA LOGGING: complementary filter 0 0.0000 427.4215 -100.7274[0m
+[0;32mI (11462) IMU: calib IMU data 8530516 0.0921 0.1195 0.9827 -0.4346 0.0508 0.1727 [0m
+[0;32mI (11472) DATA LOGGING: complementary filter 0 0.0000 423.5885 -100.2788[0m
+[0;32mI (11482) IMU: calib IMU data 8530525 0.0908 0.1174 0.9897 -1.3654 -0.0713 -0.1630 [0m
+[0;32mI (11482) DATA LOGGING: complementary filter 0 0.0000 411.5427 -100.9095[0m
+[0;32mI (11492) IMU: calib IMU data 8530534 0.0891 0.1136 0.9902 -1.5179 0.0050 -0.1782 [0m
+[0;32mI (11502) DATA LOGGING: complementary filter 0 0.0000 398.1501 -100.8671[0m
+[0;32mI (11502) IMU: calib IMU data 8530543 0.0905 0.1151 0.9886 -0.9076 0.0508 -0.0104 [0m
+[0;32mI (11512) DATA LOGGING: complementary filter 0 0.0000 390.1470 -100.4171[0m
+[0;32mI (11522) IMU: calib IMU data 8530552 0.0890 0.1181 0.9861 -0.8923 0.0203 -0.0867 [0m
+[0;32mI (11522) DATA LOGGING: complementary filter 0 0.0000 382.2804 -100.2397[0m
+[0;32mI (11532) IMU: calib IMU data 8530561 0.0911 0.1153 0.9885 -1.4569 0.0203 -0.1019 [0m
+[0;32mI (11542) DATA LOGGING: complementary filter 0 0.0000 369.4269 -100.0584[0m
+[0;32mI (11542) IMU: calib IMU data 8530570 0.0902 0.1169 0.9898 -1.5637 0.0050 -0.1630 [0m
+[0;32mI (11552) DATA LOGGING: complementary filter 0 0.0000 355.6366 -100.0152[0m
+[0;32mI (11562) IMU: calib IMU data 8530579 0.0908 0.1143 0.9875 -1.4264 0.1271 -0.1324 [0m
+[0;32mI (11572) DATA LOGGING: complementary filter 0 0.0000 343.0532 -98.8932[0m
+[0;32mI (11572) IMU: calib IMU data 8530588 0.0943 0.1134 0.9909 -1.5485 0.0203 0.2490 [0m
+[0;32mI (11582) DATA LOGGING: complementary filter 0 0.0000 329.3942 -98.7105[0m
+[0;32mI (11582) IMU: calib IMU data 8530597 0.0929 0.1131 0.9905 -1.2433 0.3865 0.6305 [0m
+[0;32mI (11592) DATA LOGGING: complementary filter 0 0.0000 318.4282 -95.3032[0m
+[0;32mI (11602) IMU: calib IMU data 8530606 0.0880 0.1160 0.9900 -0.5261 0.8748 0.8289 [0m
+[0;32mI (11612) DATA LOGGING: complementary filter 0 0.0000 313.7912 -87.5931[0m
+[0;32mI (11612) IMU: calib IMU data 8530615 0.0861 0.1176 0.9871 -0.2667 0.7069 0.7678 [0m
+[0;32mI (11622) DATA LOGGING: complementary filter 0 0.0000 311.4409 -81.3597[0m
+[0;32mI (11632) IMU: calib IMU data 8530624 0.0875 0.1160 0.9892 -0.6024 0.2034 0.5084 [0m
+[0;32mI (11632) DATA LOGGING: complementary filter 0 0.0000 306.1255 -79.5644[0m
+[0;32mI (11642) IMU: calib IMU data 8530633 0.0899 0.1134 0.9893 -0.7855 -0.1476 0.2643 [0m
+[0;32mI (11652) DATA LOGGING: complementary filter 0 0.0000 299.1941 -80.8630[0m
+[0;32mI (11652) IMU: calib IMU data 8530642 0.0922 0.1149 0.9875 -0.5719 -0.0255 0.4474 [0m
+[0;32mI (11662) DATA LOGGING: complementary filter 0 0.0000 294.1519 -81.0849[0m
+[0;32mI (11672) IMU: calib IMU data 8530651 0.0922 0.1148 0.9886 -0.7550 -0.0407 0.6610 [0m
+[0;32mI (11672) DATA LOGGING: complementary filter 0 0.0000 287.4925 -81.4444[0m
+[0;32mI (11682) BUTTON: Datalogging stopped.[0m
+[0;32mI (11682) DATA LOGGING: Datalogging stopped.[0m
+[0;32mI (11692) IMU: calib IMU data 8530660 0.0899 0.1159 0.9892 -0.7397 0.1729 0.4016 [0m
+[0;32mI (11692) IMU: calib IMU data 8530669 0.0888 0.1140 0.9899 -0.9686 0.3102 0.3864 [0m
+[0;32mI (11702) IMU: calib IMU data 8530678 0.0882 0.1153 0.9898 -1.1517 0.2797 0.3864 [0m
+[0;32mI (11712) IMU: calib IMU data 8530687 0.0869 0.1152 0.9887 -0.9381 0.0966 0.2338 [0m
+[0;32mI (11722) IMU: calib IMU data 8530696 0.0905 0.1126 0.9877 -0.9229 -0.0713 0.1117 [0m
+[0;32mI (11722) IMU: calib IMU data 8530705 0.0946 0.1121 0.9893 -0.9534 0.0050 0.4626 [0m
+[0;32mI (11732) IMU: calib IMU data 8530714 0.0896 0.1125 0.9939 -0.8313 0.3102 0.8136 [0m
+[0;32mI (11742) IMU: calib IMU data 8530723 0.0876 0.1148 0.9881 0.0690 0.5849 0.7678 [0m
+[0;32mI (11752) IMU: calib IMU data 8530732 0.0872 0.1156 0.9872 0.2063 0.3102 0.3558 [0m
+[0;32mI (11752) IMU: calib IMU data 8530741 0.0882 0.1151 0.9892 -0.2209 -0.0865 0.0964 [0m
+[0;32mI (11762) IMU: calib IMU data 8530750 0.0913 0.1112 0.9914 -0.3583 -0.2086 0.3253 [0m
+[0;32mI (11772) IMU: calib IMU data 8530759 0.0898 0.1126 0.9914 0.0995 -0.2696 0.8899 [0m
+[0;32mI (11772) IMU: calib IMU data 8530768 0.0935 0.1126 0.9885 0.5878 -0.2391 1.5155 [0m
+[0;32mI (11782) IMU: calib IMU data 8530777 0.0905 0.1149 0.9902 0.7709 0.1424 1.4545 [0m
+[0;32mI (11792) IMU: IMU stopped[0m
+[0;32mI (12602) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (12602) SD_CARD: filename: imu_orientation_001832.bin[0m
+[0;32mI (12602) SD_CARD: filepath: /sdcard/imu_orientation_001832.bin[0m
+[0;32mI (12612) SD_CARD: Writing to new orientation file[0m
+[0;32mI (14952) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (14952) SD_CARD: IMU raw data file size: 0[0m
+[0;32mI (14952) SD_CARD: IMU orientation file size: 0[0m
+[0;32mI (14962) SD_CARD: Files written.[0m

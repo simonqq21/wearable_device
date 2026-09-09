@@ -11,7 +11,7 @@
 #define IMU_TAG "IMU"
 
 /* IMU logging timedelta in ms */
-#define IMU_LOGGING_TIMEDELTA_MS (1000 / IMU_ODR_HZ)
+#define IMU_LOGGING_TIMEDELTA_MS ceil(1000 / IMU_ODR_HZ + 5)
 
 /**
  * @brief parameters for IMU task
@@ -44,10 +44,10 @@ void imu_init(i2c_master_dev_handle_t dev_handle, uint16_t sample_rate, uint16_t
 
 uint16_t imu_read_FIFO_calibrated(i2c_master_dev_handle_t dev_handle, lsm6ds3_data_t *lsm6ds3_fifo_buffer, imu_data_t *imu_data_buffer, uint16_t num_samples);
 
-esp_err_t imu_measure_raw(i2c_master_dev_handle_t dev_handle, imu_data_t *data);
+int imu_measure_raw(i2c_master_dev_handle_t dev_handle, imu_data_t *data);
 void __imu_convert_vals(lsm6ds3_data_t *lsm6ds3_data, imu_data_t *imu_data);
 void imu_apply_calibration(imu_data_t *data);
-
+esp_err_t imu_measure_calibrated(i2c_master_dev_handle_t dev_handle, imu_data_t *data);
 // void mpu6050_preprocess(imu_data_t *data);
 // void task_imu(void *pvParameters);
 

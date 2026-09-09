@@ -1,0 +1,1665 @@
+Command: /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/imu_module.elf /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader/bootloader.elf -m '/home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python' '/home/simonque/Documents/code/esp-idf/tools/idf.py'
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0040,len:6272
+load:0x40078000,len:15848
+load:0x40080400,len:3920
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v6.1-dev-2310-g44e2fa6d9c5-dirt 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Sep  1 2026 14:56:57[0m
+[0;32mI (28) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v3.1[0m
+[0;32mI (34) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (37) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (65) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (78) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=26aech (158444) map[0m
+[0;32mI (145) esp_image: segment 1: paddr=00036b14 vaddr=3ffbdb60 size=05134h ( 20788) load[0m
+[0;32mI (153) esp_image: segment 2: paddr=0003bc50 vaddr=40080000 size=043c8h ( 17352) load[0m
+[0;32mI (160) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=7de44h (515652) map[0m
+[0;32mI (344) esp_image: segment 4: paddr=000bde6c vaddr=400843c8 size=14a94h ( 84628) load[0m
+[0;32mI (379) esp_image: segment 5: paddr=000d2908 vaddr=50000000 size=00028h (    40) load[0m
+[0;32mI (392) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (392) boot: Disabling RNG early entropy source...[0m
+[0;32mI (403) cpu_start: Multicore app[0m
+[0;32mI (411) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (411) cpu_start: Pro cpu start user code[0m
+[0;32mI (411) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (413) app_init: Application information:[0m
+[0;32mI (417) app_init: Project name:     imu_module[0m
+[0;32mI (421) app_init: App version:      8f26657-dirty[0m
+[0;32mI (425) app_init: Compile time:     Sep  9 2026 15:32:12[0m
+[0;32mI (430) app_init: ELF file SHA256:  0ea95daf0...[0m
+[0;32mI (435) app_init: ESP-IDF:          v6.1-dev-2310-g44e2fa6d9c5-dirt[0m
+[0;32mI (441) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (445) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (449) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (453) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (459) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (464) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (469) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (474) heap_init: At 3FFC7228 len 00018DD8 (99 KiB): DRAM[0m
+[0;32mI (479) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (485) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (490) heap_init: At 40098E5C len 000071A4 (28 KiB): IRAM[0m
+[0;33mW (497) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (508) spi_flash: detected chip: generic[0m
+[0;32mI (512) spi_flash: flash io: dio[0m
+[0;33mW (515) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (528) coexist: coex firmware version: 093e3d2[0m
+[0;32mI (532) main_task: Started on CPU0[0m
+[0;32mI (542) main_task: Calling app_main()[0m
+[0;32mI (542) button: IoT Button Version: 4.2.0[0m
+[0;32mI (542) MAIN: I2C initialized successfully[0m
+[0;32mI (552) BTDM_INIT: BT controller compile version [045a658][0m
+[0;32mI (562) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (562) BTDM_INIT: Bluetooth MAC: d8:13:2a:7d:69:0a[0m
+[0;32mI (562) phy_init: phy_version 4863,a3a4459,Oct 28 2025,14:30:06[0m
+[0;33mW (962) BT_BTM: BTM_BleWriteAdvData, Partial data write into ADV[0m
+[0;33mW (972) BT_BTM: BTM_BleWriteScanRsp, Partial data write into ADV[0m
+[0;32mI (972) BLE: create attribute table successfully, the number handle = 4[0m
+[0;32mI (982) BLE: Advertising data set, status 0[0m
+[0;32mI (982) BLE: Scan response data set, status 0[0m
+[0;32mI (982) BLE: SERVICE_START_EVT, status 0, service_handle 40[0m
+[0;32mI (992) LSM6DS3: WHO_AM_I = 69[0m
+[0;32mI (1002) BLE: Advertising start successfully[0m
+[0;32mI (1012) LSM6DS3: FIFO_CTRL1_REG_ADDR = D0[0m
+[0;32mI (1012) LSM6DS3: FIFO_CTRL2_REG_ADDR = F[0m
+[0;32mI (1012) NVS: IMU calibration offsets from blob:[0m
+[0;32mI (1012) NVS: required_size = 24[0m
+[0;32mI (1012) NVS: err=0[0m
+
+[0;32mI (1012) NVS: accel_offsets_x = 0.0442[0m
+[0;32mI (1022) NVS: accel_offsets_y = -0.0283[0m
+[0;32mI (1022) NVS: accel_offsets_z = -0.0014[0m
+[0;32mI (1022) NVS: gyro_offsets_x = 2.1893[0m
+[0;32mI (1032) NVS: gyro_offsets_y = -7.0241[0m
+[0;32mI (1032) NVS: gyro_offsets_z = -2.0038[0m
+[0;32mI (1032) IMU: IMU read calibration from NVS.[0m
+[0;32mI (1042) IMU: accel_offsets_x = 0.04[0m
+[0;32mI (1042) IMU: accel_offsets_y = -0.03[0m
+[0;32mI (1042) IMU: accel_offsets_z = -0.00[0m
+[0;32mI (1052) IMU: gyro_offsets_x = 2.19[0m
+[0;32mI (1052) IMU: gyro_offsets_y = -7.02[0m
+[0;32mI (1052) IMU: gyro_offsets_z = -2.00[0m
+[0;32mI (1062) SD_CARD: Initializing SD card[0m
+[0;32mI (1062) SD_CARD: Using SPI peripheral[0m
+[0;32mI (1062) SD_CARD: Mounting filesystem[0m
+[0;32mI (1072) sdspi_transaction: cmd=52, R1 response: command not supported[0m
+[0;32mI (1112) sdspi_transaction: cmd=5, R1 response: command not supported[0m
+[0;32mI (1162) SD_CARD: Filesystem mounted[0m
+Name: ACLCE
+Type: SDHC
+Speed: 4.00 MHz (limit: 4.00 MHz)
+Size: 60906MB
+CSD: ver=2, sector_size=512, capacity=124735488 read_bl_len=9
+SSR: bus_width=1
+[0;32mI (1162) SD_CARD: SD card initialized[0m
+[0;32mI (1172) MAIN: Starting all tasks![0m
+[0;32mI (1172) MAIN: params_task_uart = 0x3ffc3528[0m
+[0;32mI (1172) MAIN: params_task_ble = 0x3ffc3524[0m
+[0;32mI (1182) BLE: ble task started[0m
+[0;32mI (1182) BLE: params_task_ble = 0x3ffc3524[0m
+[0;32mI (89422) BUTTON: Datalogging started.[0m
+[0;32mI (89422) IMU: cur_timestamp start = 1[0m
+
+[0;32mI (89422) IMU: IMU started[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (89482) DATA LOGGING: Datalogging started.[0m
+[0;32mI (89872) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (89872) LSM6DS3: num_fifo_samples = 282[0m
+[0;32mI (90332) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (90332) LSM6DS3: num_fifo_samples = 570[0m
+[0;32mI (90542) SD_CARD: max_idx: 1810[0m
+[0;32mI (90542) SD_CARD: filename: imu_raw_001811.bin[0m
+[0;32mI (90542) SD_CARD: filepath: /sdcard/imu_raw_001811.bin[0m
+[0;32mI (90542) SD_CARD: Writing to new raw file[0m
+[0;32mI (90792) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 1, empty = 0[0m
+[0;32mI (90792) LSM6DS3: num_fifo_samples = 858 100[0m
+[0;32mI (90922) LSM6DS3: raw gyro = 8.911133 -4.455566 39.306641[0m
+[0;32mI (90922) LSM6DS3: raw accel = 0.156250 0.229370 0.877563[0m
+[0;32mI (90922) LSM6DS3: num_fifo_samples = 342[0m
+[0;32mI (90922) IMU: timestamp=1073566896[0m
+[0;32mI (90922) IMU: calib accel: x=0.0462   y=0.1208   z=0.9980[0m
+[0;32mI (90932) IMU: calib gyro:     x=34.1571   y=-18.3971   z=11.1285[0m
+[0;32mI (90942) IMU: timestamp=0[0m
+[0;32mI (90942) IMU: calib accel: x=0.0910   y=0.0542   z=0.9858[0m
+[0;32mI (90942) IMU: calib gyro:     x=39.9554   y=-20.9148   z=7.3291[0m
+[0;32mI (90952) DATA LOGGING: complementary filter 0 0.0000 352.4081 -184.4664[0m
+[0;32mI (90962) IMU: timestamp=0[0m
+[0;32mI (90962) IMU: calib accel: x=0.0693   y=0.0385   z=0.9762[0m
+[0;32mI (90962) IMU: calib gyro:     x=45.3876   y=-21.2810   z=10.8081[0m
+[0;32mI (90972) DATA LOGGING: complementary filter 0 0.0000 752.7262 -372.1650[0m
+[0;32mI (90972) IMU: timestamp=0[0m
+[0;32mI (90982) IMU: calib accel: x=0.0881   y=0.0858   z=0.9903[0m
+[0;32mI (90982) IMU: calib gyro:     x=48.9734   y=-22.3491   z=15.7825[0m
+[0;32mI (90992) DATA LOGGING: complementary filter 0 0.0000 1184.6725 -569.2836[0m
+[0;32mI (90992) IMU: timestamp=0[0m
+[0;32mI (91002) IMU: calib accel: x=0.1015   y=0.0844   z=1.0262[0m
+[0;32mI (91002) IMU: calib gyro:     x=52.3761   y=-20.9300   z=16.3623[0m
+[0;32mI (91012) DATA LOGGING: complementary filter 0 0.0000 1646.6295 -753.8863[0m
+[0;32mI (91012) IMU: timestamp=0[0m
+[0;32mI (91022) IMU: calib accel: x=0.2097   y=0.3898   z=1.4549[0m
+[0;32mI (91022) IMU: calib gyro:     x=54.1461   y=-18.6412   z=15.6909[0m
+[0;32mI (91032) DATA LOGGING: complementary filter 0 0.0000 2124.2019 -918.3010[0m
+[0;32mI (91032) IMU: timestamp=0[0m
+[0;32mI (91042) IMU: calib accel: x=0.0794   y=0.1558   z=1.0783[0m
+[0;32mI (91042) IMU: calib gyro:     x=33.8367   y=-0.1170   z=10.9607[0m
+[0;32mI (91052) DATA LOGGING: complementary filter 0 0.0000 2422.6392 -919.3345[0m
+[0;32mI (91062) IMU: timestamp=0[0m
+[0;32mI (91062) IMU: calib accel: x=0.0861   y=0.1761   z=0.9498[0m
+[0;32mI (91062) IMU: calib gyro:     x=19.3408   y=0.2950   z=11.3269[0m
+[0;32mI (91072) DATA LOGGING: complementary filter 0 0.0000 2593.2258 -916.7327[0m
+[0;32mI (91082) IMU: timestamp=0[0m
+[0;32mI (91082) IMU: calib accel: x=0.0791   y=-0.0141   z=0.6813[0m
+[0;32mI (91082) IMU: calib gyro:     x=2.4799   y=0.3255   z=8.4888[0m
+[0;32mI (91092) DATA LOGGING: complementary filter 0 0.0000 2615.0942 -913.8616[0m
+[0;32mI (91092) IMU: timestamp=0[0m
+[0;32mI (91102) IMU: calib accel: x=0.1202   y=0.1340   z=0.8965[0m
+[0;32mI (91102) IMU: calib gyro:     x=8.4613   y=-11.9426   z=7.9089[0m
+[0;32mI (91112) DATA LOGGING: complementary filter 0 0.0000 2689.7263 -1019.1950[0m
+[0;32mI (91122) IMU: timestamp=0[0m
+[0;32mI (91122) IMU: calib accel: x=0.1226   y=0.0668   z=0.8519[0m
+[0;32mI (91122) IMU: calib gyro:     x=4.4025   y=-7.1208   z=4.4910[0m
+[0;32mI (91132) DATA LOGGING: complementary filter 0 0.0000 2728.5544 -1082.0005[0m
+[0;32mI (91132) IMU: timestamp=0[0m
+[0;32mI (91142) IMU: calib accel: x=0.0540   y=0.1365   z=1.0480[0m
+[0;32mI (91142) IMU: calib gyro:     x=1.6864   y=6.3222   z=0.7220[0m
+[0;32mI (91152) DATA LOGGING: complementary filter 0 0.0000 2743.4299 -1026.2407[0m
+[0;32mI (91152) IMU: timestamp=0[0m
+[0;32mI (91162) IMU: calib accel: x=0.0422   y=0.0515   z=0.8958[0m
+[0;32mI (91162) IMU: calib gyro:     x=0.5878   y=0.7832   z=1.8359[0m
+[0;32mI (91172) DATA LOGGING: complementary filter 0 0.0000 2748.6128 -1019.3327[0m
+[0;32mI (91172) IMU: timestamp=0[0m
+[0;32mI (91182) IMU: calib accel: x=0.1482   y=0.1031   z=0.9252[0m
+[0;32mI (91182) IMU: calib gyro:     x=1.1676   y=-6.6783   z=2.3090[0m
+[0;32mI (91192) DATA LOGGING: complementary filter 0 0.0000 2758.9119 -1078.2333[0m
+[0;32mI (91192) IMU: timestamp=0[0m
+[0;32mI (91202) IMU: calib accel: x=0.0770   y=0.1741   z=0.9745[0m
+[0;32mI (91202) IMU: calib gyro:     x=11.3910   y=1.9429   z=0.7678[0m
+[0;32mI (91212) DATA LOGGING: complementary filter 0 0.0000 2859.3818 -1061.0985[0m
+[0;32mI (91212) IMU: timestamp=0[0m
+[0;32mI (91222) IMU: calib accel: x=0.1169   y=0.1324   z=1.0346[0m
+[0;32mI (91222) IMU: calib gyro:     x=7.1185   y=0.0966   z=1.1188[0m
+[0;32mI (91232) DATA LOGGING: complementary filter 0 0.0000 2922.1663 -1060.2460[0m
+[0;32mI (91232) IMU: timestamp=0[0m
+[0;32mI (91242) IMU: calib accel: x=0.0880   y=0.1481   z=0.9073[0m
+[0;32mI (91242) IMU: calib gyro:     x=3.2733   y=0.6764   z=0.8746[0m
+[0;32mI (91252) DATA LOGGING: complementary filter 0 0.0000 2951.0378 -1054.2802[0m
+[0;32mI (91252) IMU: timestamp=0[0m
+[0;32mI (91252) IMU: calib accel: x=0.0980   y=0.1278   z=0.9915[0m
+[0;32mI (91262) IMU: calib gyro:     x=-1.9910   y=-0.3459   z=-0.4376[0m
+[0;32mI (91262) BUTTON: Datalogging stopped.[0m
+[0;32mI (91272) DATA LOGGING: complementary filter 0 0.0000 2933.4768 -1057.3312[0m
+[0;32mI (91282) DATA LOGGING: Datalogging stopped.[0m
+[0;32mI (91282) IMU: timestamp=0[0m
+[0;32mI (91282) IMU: calib accel: x=0.1187   y=0.0860   z=0.9821[0m
+[0;32mI (91292) IMU: calib gyro:     x=-9.1779   y=-1.9481   z=-0.4224[0m
+[0;32mI (91292) IMU: timestamp=0[0m
+[0;32mI (91302) IMU: calib accel: x=0.0631   y=0.1251   z=0.9935[0m
+[0;32mI (91302) IMU: calib gyro:     x=-5.8057   y=1.5309   z=-1.0785[0m
+[0;32mI (91312) IMU: timestamp=1[0m
+[0;32mI (91312) IMU: calib accel: x=0.1213   y=0.0734   z=1.0240[0m
+[0;32mI (91312) IMU: calib gyro:     x=-6.8738   y=-2.2227   z=-0.2545[0m
+[0;32mI (91322) IMU: timestamp=2[0m
+[0;32mI (91322) IMU: calib accel: x=0.0885   y=0.1016   z=1.0086[0m
+[0;32mI (91332) IMU: calib gyro:     x=-0.1294   y=0.4018   z=0.2948[0m
+[0;32mI (91332) IMU: timestamp=3[0m
+[0;32mI (91342) IMU: calib accel: x=0.0848   y=0.1048   z=0.9927[0m
+[0;32mI (91342) IMU: calib gyro:     x=5.4248   y=1.0121   z=0.3711[0m
+[0;32mI (91352) IMU: timestamp=4[0m
+[0;32mI (91352) IMU: calib accel: x=0.1184   y=0.1068   z=0.9968[0m
+[0;32mI (91352) IMU: calib gyro:     x=5.7300   y=-0.6053   z=1.3934[0m
+[0;32mI (91362) IMU: timestamp=5[0m
+[0;32mI (91362) IMU: calib accel: x=0.0743   y=0.1236   z=0.9559[0m
+[0;32mI (91372) IMU: calib gyro:     x=7.8510   y=1.4394   z=0.6458[0m
+[0;32mI (91372) IMU: timestamp=6[0m
+[0;32mI (91382) IMU: calib accel: x=0.0816   y=0.0239   z=1.1750[0m
+[0;32mI (91382) IMU: calib gyro:     x=9.9414   y=-2.3753   z=0.8899[0m
+[0;32mI (91392) IMU: timestamp=7[0m
+[0;32mI (91392) IMU: calib accel: x=0.0625   y=0.0640   z=1.1370[0m
+[0;32mI (91392) IMU: calib gyro:     x=38.6432   y=-2.9552   z=2.7057[0m
+[0;32mI (91402) IMU: timestamp=8[0m
+[0;32mI (91402) IMU: calib accel: x=0.1258   y=0.1522   z=0.9498[0m
+[0;32mI (91412) IMU: calib gyro:     x=64.2780   y=-2.0702   z=7.9700[0m
+[0;32mI (91412) IMU: timestamp=9[0m
+[0;32mI (91412) IMU: calib accel: x=0.0804   y=0.2034   z=0.8108[0m
+[0;32mI (91422) IMU: calib gyro:     x=61.0583   y=-2.5584   z=9.2212[0m
+[0;32mI (91432) IMU: timestamp=10[0m
+[0;32mI (91432) IMU: calib accel: x=0.1333   y=0.3044   z=0.7425[0m
+[0;32mI (91432) IMU: calib gyro:     x=31.7310   y=-2.3601   z=5.2081[0m
+[0;32mI (91442) IMU: timestamp=11[0m
+[0;32mI (91442) IMU: calib accel: x=0.1767   y=0.3555   z=0.6546[0m
+[0;32mI (91452) IMU: calib gyro:     x=-17.9517   y=-2.0854   z=-0.4224[0m
+[0;32mI (91452) IMU: timestamp=12[0m
+[0;32mI (91462) IMU: calib accel: x=0.1025   y=0.2442   z=0.7900[0m
+[0;32mI (91462) IMU: calib gyro:     x=-81.6724   y=-1.1699   z=-6.1902[0m
+[0;32mI (91472) IMU: timestamp=13[0m
+[0;32mI (91472) IMU: calib accel: x=0.0901   y=0.0520   z=1.0524[0m
+[0;32mI (91472) IMU: calib gyro:     x=-123.1610   y=-3.0009   z=-10.2643[0m
+[0;32mI (91482) IMU: timestamp=14[0m
+[0;32mI (91482) IMU: calib accel: x=0.1057   y=-0.2842   z=1.6458[0m
+[0;32mI (91492) IMU: calib gyro:     x=-114.7687   y=6.5053   z=-11.1798[0m
+[0;32mI (91492) IMU: timestamp=15[0m
+[0;32mI (91502) IMU: calib accel: x=-0.1226   y=0.0162   z=1.3202[0m
+[0;32mI (91502) IMU: calib gyro:     x=-18.8824   y=22.5575   z=-6.9989[0m
+[0;32mI (91512) IMU: timestamp=16[0m
+[0;32mI (91512) IMU: calib accel: x=0.0909   y=-0.2184   z=0.6454[0m
+[0;32mI (91512) IMU: calib gyro:     x=57.2742   y=1.3631   z=3.3008[0m
+[0;32mI (91522) IMU: timestamp=17[0m
+[0;32mI (91522) IMU: calib accel: x=0.0748   y=0.1621   z=0.7820[0m
+[0;32mI (91532) IMU: calib gyro:     x=89.6686   y=-16.6118   z=13.3258[0m
+[0;32mI (91532) IMU: timestamp=18[0m
+[0;32mI (91542) IMU: calib accel: x=0.3938   y=0.3477   z=1.4174[0m
+[0;32mI (91542) IMU: calib gyro:     x=79.7809   y=-20.7774   z=14.4244[0m
+[0;32mI (91552) IMU: timestamp=19[0m
+[0;32mI (91552) IMU: calib accel: x=0.0973   y=0.3242   z=0.6199[0m
+[0;32mI (91562) IMU: calib gyro:     x=33.2416   y=11.2813   z=5.8643[0m
+[0;32mI (91562) IMU: timestamp=20[0m
+[0;32mI (91562) IMU: calib accel: x=-0.0053   y=0.2930   z=0.6167[0m
+[0;32mI (91572) IMU: calib gyro:     x=-12.4585   y=13.4785   z=-0.0104[0m
+[0;32mI (91572) IMU: timestamp=21[0m
+[0;32mI (91582) IMU: calib accel: x=0.1873   y=0.2343   z=1.0892[0m
+[0;32mI (91582) IMU: calib gyro:     x=-70.8386   y=-8.0363   z=-4.6033[0m
+[0;32mI (91592) IMU: timestamp=22[0m
+[0;32mI (91592) IMU: calib accel: x=0.1256   y=0.2424   z=1.2659[0m
+[0;32mI (91602) IMU: calib gyro:     x=-73.1274   y=-3.4282   z=-8.2501[0m
+[0;32mI (91602) IMU: timestamp=23[0m
+[0;32mI (91602) IMU: calib accel: x=0.0243   y=-0.1799   z=0.9765[0m
+[0;32mI (91612) IMU: calib gyro:     x=-67.2223   y=12.0595   z=-11.6376[0m
+[0;32mI (91622) IMU: timestamp=24[0m
+[0;32mI (91622) IMU: calib accel: x=0.0781   y=0.0472   z=1.2237[0m
+[0;32mI (91622) IMU: calib gyro:     x=-24.5129   y=2.5838   z=-3.3521[0m
+[0;32mI (91632) IMU: timestamp=25[0m
+[0;32mI (91632) IMU: calib accel: x=0.0739   y=-0.0481   z=0.9545[0m
+[0;32mI (91642) IMU: calib gyro:     x=24.9713   y=0.5696   z=1.5918[0m
+[0;32mI (91642) IMU: timestamp=26[0m
+[0;32mI (91642) IMU: calib accel: x=0.0531   y=-0.0314   z=0.7638[0m
+[0;32mI (91652) IMU: calib gyro:     x=52.4982   y=-3.7334   z=5.3302[0m
+[0;32mI (91662) IMU: timestamp=27[0m
+[0;32mI (91662) IMU: calib accel: x=0.2867   y=0.3791   z=1.6274[0m
+[0;32mI (91662) IMU: calib gyro:     x=73.2654   y=-15.6047   z=11.8152[0m
+[0;32mI (91672) IMU: timestamp=28[0m
+[0;32mI (91672) IMU: calib accel: x=0.1495   y=0.2208   z=1.0160[0m
+[0;32mI (91682) IMU: calib gyro:     x=43.3124   y=6.6273   z=6.0016[0m
+[0;32mI (91682) IMU: timestamp=29[0m
+[0;32mI (91682) IMU: calib accel: x=-0.0264   y=0.4310   z=0.7033[0m
+[0;32mI (91692) IMU: calib gyro:     x=19.8901   y=12.0747   z=3.1940[0m
+[0;32mI (91702) IMU: timestamp=30[0m
+[0;32mI (91702) IMU: calib accel: x=0.2006   y=0.1945   z=1.1921[0m
+[0;32mI (91702) IMU: calib gyro:     x=-30.9064   y=-8.2805   z=-0.3461[0m
+[0;32mI (91712) IMU: timestamp=31[0m
+[0;32mI (91712) IMU: calib accel: x=0.1158   y=0.1762   z=0.9925[0m
+[0;32mI (91722) IMU: calib gyro:     x=-47.5842   y=-8.4483   z=-5.2289[0m
+[0;32mI (91722) IMU: timestamp=32[0m
+[0;32mI (91722) IMU: calib accel: x=0.0881   y=0.1048   z=1.0113[0m
+[0;32mI (91732) IMU: calib gyro:     x=-45.7837   y=4.7658   z=-9.7455[0m
+[0;32mI (91742) IMU: timestamp=33[0m
+[0;32mI (91742) IMU: calib accel: x=0.0682   y=-0.1276   z=0.9518[0m
+[0;32mI (91742) IMU: calib gyro:     x=-32.5543   y=0.7985   z=-3.9929[0m
+[0;32mI (91752) IMU: timestamp=34[0m
+[0;32mI (91752) IMU: calib accel: x=0.1482   y=0.1716   z=1.2186[0m
+[0;32mI (91762) IMU: calib gyro:     x=10.2161   y=-4.8625   z=5.7422[0m
+[0;32mI (91762) IMU: timestamp=35[0m
+[0;32mI (91772) IMU: calib accel: x=0.1237   y=0.1306   z=1.3982[0m
+[0;32mI (91772) IMU: calib gyro:     x=27.6111   y=5.7118   z=2.5989[0m
+[0;32mI (91782) IMU: timestamp=36[0m
+[0;32mI (91782) IMU: calib accel: x=0.0020   y=0.1374   z=0.8705[0m
+[0;32mI (91782) IMU: calib gyro:     x=45.2655   y=6.1543   z=4.8572[0m
+[0;32mI (91792) IMU: timestamp=37[0m
+[0;32mI (91792) IMU: calib accel: x=0.1402   y=0.1041   z=0.9903[0m
+[0;32mI (91802) IMU: calib gyro:     x=33.4094   y=-2.9552   z=5.2386[0m
+[0;32mI (91802) IMU: timestamp=38[0m
+[0;32mI (91812) IMU: calib accel: x=0.1206   y=0.2460   z=0.8447[0m
+[0;32mI (91812) IMU: calib gyro:     x=13.2831   y=-4.3895   z=2.3090[0m
+[0;32mI (91822) IMU: timestamp=39[0m
+[0;32mI (91822) IMU: calib accel: x=0.1209   y=0.1680   z=0.8855[0m
+[0;32mI (91822) IMU: calib gyro:     x=-8.0334   y=-2.6042   z=-2.3907[0m
+[0;32mI (91832) IMU: timestamp=40[0m
+[0;32mI (91832) IMU: calib accel: x=0.1389   y=0.1157   z=0.9971[0m
+[0;32mI (91842) IMU: calib gyro:     x=-30.0824   y=-2.5584   z=-4.8016[0m
+[0;32mI (91842) IMU: timestamp=41[0m
+[0;32mI (91852) IMU: calib accel: x=0.0791   y=0.0964   z=0.9654[0m
+[0;32mI (91852) IMU: calib gyro:     x=-32.1423   y=2.3701   z=-3.8251[0m
+[0;32mI (91862) IMU: timestamp=42[0m
+[0;32mI (91862) IMU: calib accel: x=0.0964   y=0.0546   z=1.1049[0m
+[0;32mI (91872) IMU: calib gyro:     x=-27.1680   y=0.7375   z=-1.3837[0m
+[0;32mI (91872) IMU: timestamp=43[0m
+[0;32mI (91872) IMU: calib accel: x=0.0853   y=0.0553   z=1.1145[0m
+[0;32mI (91882) IMU: calib gyro:     x=-8.0182   y=1.3936   z=-0.0714[0m
+[0;32mI (91882) IMU: timestamp=44[0m
+[0;32mI (91892) IMU: calib accel: x=0.0549   y=0.0819   z=1.0146[0m
+[0;32mI (91892) IMU: calib gyro:     x=15.7245   y=2.2023   z=1.1035[0m
+[0;32mI (91902) IMU: timestamp=45[0m
+[0;32mI (91902) IMU: calib accel: x=0.1215   y=0.0899   z=1.0347[0m
+[0;32mI (91902) IMU: calib gyro:     x=25.3375   y=-2.0091   z=3.7738[0m
+[0;32mI (91912) IMU: timestamp=46[0m
+[0;32mI (91912) IMU: calib accel: x=0.0888   y=0.1619   z=0.9006[0m
+[0;32mI (91922) IMU: calib gyro:     x=31.2732   y=0.5086   z=3.4991[0m
+[0;32mI (91922) IMU: timestamp=47[0m
+[0;32mI (91932) IMU: calib accel: x=0.1229   y=0.1694   z=0.9050[0m
+[0;32mI (91932) IMU: calib gyro:     x=19.4476   y=-0.4680   z=1.5613[0m
+[0;32mI (91942) IMU: timestamp=48[0m
+[0;32mI (91942) IMU: calib accel: x=0.1235   y=0.1712   z=0.9079[0m
+[0;32mI (91942) IMU: calib gyro:     x=0.4962   y=-0.8647   z=0.3101[0m
+[0;32mI (91952) IMU: timestamp=49[0m
+[0;32mI (91952) IMU: calib accel: x=0.0818   y=0.1658   z=0.9202[0m
+[0;32mI (91962) IMU: calib gyro:     x=-15.3424   y=0.2492   z=-2.3602[0m
+[0;32mI (91962) IMU: timestamp=50[0m
+[0;32mI (91972) IMU: calib accel: x=0.1197   y=0.0783   z=1.0282[0m
+[0;32mI (91972) IMU: calib gyro:     x=-29.4263   y=-2.5432   z=-3.6267[0m
+[0;32mI (91982) IMU: timestamp=51[0m
+[0;32mI (91982) IMU: calib accel: x=0.0863   y=0.0700   z=1.0353[0m
+[0;32mI (91982) IMU: calib gyro:     x=-24.7418   y=0.1424   z=-2.4060[0m
+[0;32mI (91992) IMU: timestamp=52[0m
+[0;32mI (91992) IMU: calib accel: x=0.0893   y=0.0540   z=1.0816[0m
+[0;32mI (92002) IMU: calib gyro:     x=-12.8094   y=0.6001   z=-0.7886[0m
+[0;32mI (92002) IMU: timestamp=53[0m
+[0;32mI (92012) IMU: calib accel: x=0.1024   y=0.0684   z=1.0711[0m
+[0;32mI (92012) IMU: calib gyro:     x=4.5245   y=0.8748   z=0.9509[0m
+[0;32mI (92022) IMU: timestamp=54[0m
+[0;32mI (92022) IMU: calib accel: x=0.0656   y=0.1079   z=0.9893[0m
+[0;32mI (92022) IMU: calib gyro:     x=21.2634   y=1.8361   z=2.3090[0m
+[0;32mI (92032) IMU: timestamp=55[0m
+[0;32mI (92032) IMU: calib accel: x=0.1201   y=0.1137   z=0.9794[0m
+[0;32mI (92042) IMU: calib gyro:     x=23.4149   y=-1.1241   z=3.4534[0m
+[0;32mI (92042) IMU: timestamp=56[0m
+[0;32mI (92052) IMU: calib accel: x=0.0979   y=0.1584   z=0.9092[0m
+[0;32mI (92052) IMU: calib gyro:     x=20.4242   y=0.2950   z=2.4463[0m
+[0;32mI (92062) IMU: timestamp=57[0m
+[0;32mI (92062) IMU: calib accel: x=0.1085   y=0.1689   z=0.9101[0m
+[0;32mI (92062) IMU: calib gyro:     x=6.8134   y=-0.2086   z=0.3101[0m
+[0;32mI (92072) IMU: timestamp=58[0m
+[0;32mI (92072) IMU: calib accel: x=0.1174   y=0.1363   z=0.9509[0m
+[0;32mI (92082) IMU: calib gyro:     x=-9.7882   y=-0.8189   z=-0.9869[0m
+[0;32mI (92082) IMU: timestamp=59[0m
+[0;32mI (92092) IMU: calib accel: x=0.0758   y=0.1253   z=0.9628[0m
+[0;32mI (92092) IMU: calib gyro:     x=-18.6078   y=0.4170   z=-2.8333[0m
+[0;32mI (92102) IMU: timestamp=60[0m
+[0;32mI (92102) IMU: calib accel: x=0.1103   y=0.0648   z=1.0425[0m
+[0;32mI (92102) IMU: calib gyro:     x=-23.7958   y=-1.7192   z=-2.6349[0m
+[0;32mI (92112) IMU: timestamp=61[0m
+[0;32mI (92112) IMU: calib accel: x=0.0896   y=0.0709   z=1.0508[0m
+[0;32mI (92122) IMU: calib gyro:     x=-14.6100   y=-0.2391   z=-1.1243[0m
+[0;32mI (92122) IMU: timestamp=62[0m
+[0;32mI (92132) IMU: calib accel: x=0.0898   y=0.0679   z=1.0480[0m
+[0;32mI (92132) IMU: calib gyro:     x=-0.9076   y=0.4170   z=-0.0714[0m
+[0;32mI (92142) IMU: timestamp=63[0m
+[0;32mI (92142) IMU: calib accel: x=0.1107   y=0.0897   z=1.0372[0m
+[0;32mI (92152) IMU: calib gyro:     x=11.5131   y=0.4323   z=1.8359[0m
+[0;32mI (92152) IMU: timestamp=64[0m
+[0;32mI (92152) IMU: calib accel: x=0.0785   y=0.1362   z=0.9612[0m
+[0;32mI (92162) IMU: calib gyro:     x=21.1108   y=1.6988   z=2.4158[0m
+[0;32mI (92162) IMU: timestamp=65[0m
+[0;32mI (92172) IMU: calib accel: x=0.1145   y=0.1375   z=0.9566[0m
+[0;32mI (92172) IMU: calib gyro:     x=17.4640   y=-0.6664   z=2.4615[0m
+[0;32mI (92182) IMU: timestamp=66[0m
+[0;32mI (92182) IMU: calib accel: x=0.1045   y=0.1562   z=0.9223[0m
+[0;32mI (92192) IMU: calib gyro:     x=9.6210   y=0.0050   z=1.5155[0m
+[0;32mI (92192) IMU: timestamp=67[0m
+[0;32mI (92192) IMU: calib accel: x=0.0970   y=0.1472   z=0.9330[0m
+[0;32mI (92202) IMU: calib gyro:     x=-2.9523   y=-0.2238   z=-0.7275[0m
+[0;32mI (92202) IMU: timestamp=68[0m
+[0;32mI (92212) IMU: calib accel: x=0.1176   y=0.1229   z=0.9875[0m
+[0;32mI (92212) IMU: calib gyro:     x=-14.6863   y=-0.9715   z=-1.7499[0m
+[0;32mI (92222) IMU: timestamp=69[0m
+[0;32mI (92222) IMU: calib accel: x=0.0803   y=0.1141   z=0.9972[0m
+[0;32mI (92232) IMU: calib gyro:     x=-16.9293   y=0.2339   z=-2.5739[0m
+[0;32mI (92232) IMU: timestamp=70[0m
+[0;32mI (92232) IMU: calib accel: x=0.1285   y=0.0988   z=1.0256[0m
+[0;32mI (92242) IMU: calib gyro:     x=-16.6241   y=-0.9105   z=-0.9869[0m
+[0;32mI (92242) IMU: timestamp=71[0m
+[0;32mI (92252) IMU: calib accel: x=0.1189   y=0.1445   z=0.9684[0m
+[0;32mI (92252) IMU: calib gyro:     x=-14.5795   y=0.9358   z=2.0496[0m
+[0;32mI (92262) IMU: timestamp=72[0m
+[0;32mI (92262) IMU: calib accel: x=0.0230   y=0.0191   z=0.9615[0m
+[0;32mI (92272) IMU: calib gyro:     x=-17.9059   y=4.9794   z=2.6141[0m
+[0;32mI (92272) IMU: timestamp=73[0m
+[0;32mI (92272) IMU: calib accel: x=0.0385   y=-0.0583   z=1.1351[0m
+[0;32mI (92282) IMU: calib gyro:     x=-21.3849   y=0.9206   z=5.0555[0m
+[0;32mI (92292) IMU: timestamp=74[0m
+[0;32mI (92292) IMU: calib accel: x=0.1543   y=-0.1115   z=1.1872[0m
+[0;32mI (92292) IMU: calib gyro:     x=-16.2732   y=2.7974   z=9.8621[0m
+[0;32mI (92302) IMU: timestamp=75[0m
+[0;32mI (92302) IMU: calib accel: x=0.0835   y=-0.1226   z=1.0436[0m
+[0;32mI (92312) IMU: calib gyro:     x=-13.5571   y=14.2262   z=19.7345[0m
+[0;32mI (92312) IMU: timestamp=76[0m
+[0;32mI (92312) IMU: calib accel: x=0.0600   y=-0.1080   z=0.9950[0m
+[0;32mI (92322) IMU: calib gyro:     x=-19.4623   y=16.6371   z=29.9731[0m
+[0;32mI (92332) IMU: timestamp=77[0m
+[0;32mI (92332) IMU: calib accel: x=0.0843   y=-0.1158   z=0.9848[0m
+[0;32mI (92332) IMU: calib gyro:     x=-27.0306   y=14.1805   z=41.4325[0m
+[0;32mI (92342) IMU: timestamp=78[0m
+[0;32mI (92342) IMU: calib accel: x=0.1214   y=0.0286   z=0.9791[0m
+[0;32mI (92352) IMU: calib gyro:     x=-19.9658   y=14.7755   z=50.8014[0m
+[0;32mI (92352) IMU: timestamp=79[0m
+[0;32mI (92362) IMU: calib accel: x=0.0838   y=0.0916   z=0.8494[0m
+[0;32mI (92362) IMU: calib gyro:     x=-9.2236   y=13.0818   z=50.9082[0m
+[0;32mI (92372) IMU: timestamp=80[0m
+[0;32mI (92372) IMU: calib accel: x=0.1120   y=0.2576   z=0.8790[0m
+[0;32mI (92372) IMU: calib gyro:     x=6.7218   y=2.5685   z=41.3104[0m
+[0;32mI (92382) IMU: IMU stopped[0m
+[0;32mI (92932) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (92932) SD_CARD: filename: imu_orientation_001811.bin[0m
+[0;32mI (92932) SD_CARD: filepath: /sdcard/imu_orientation_001811.bin[0m
+[0;32mI (92932) SD_CARD: Writing to new orientation file[0m
+[0;32mI (95252) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (95252) SD_CARD: IMU raw data file size: 0[0m
+[0;32mI (95252) SD_CARD: IMU orientation file size: 0[0m
+[0;32mI (95272) SD_CARD: Files written.[0m
+[0;32mI (100922) BUTTON: Datalogging started.[0m
+[0;32mI (100922) IMU: cur_timestamp start = 81[0m
+
+[0;32mI (100922) IMU: IMU started[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (100982) DATA LOGGING: Datalogging started.[0m
+[0;32mI (101372) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (101372) LSM6DS3: num_fifo_samples = 282[0m
+[0;32mI (101392) BUTTON: Datalogging stopped.[0m
+[0;32mI (101402) IMU: IMU stopped[0m
+[0;32mI (101482) DATA LOGGING: Datalogging stopped.[0m
+[0;32mI (102032) SD_CARD: max_idx: 1811[0m
+[0;32mI (102032) SD_CARD: filename: imu_raw_001812.bin[0m
+[0;32mI (102032) SD_CARD: filepath: /sdcard/imu_raw_001812.bin[0m
+[0;32mI (102032) SD_CARD: Writing to new raw file[0m
+[0;32mI (104332) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (104332) SD_CARD: filename: imu_orientation_001812.bin[0m
+[0;32mI (104332) SD_CARD: filepath: /sdcard/imu_orientation_001812.bin[0m
+[0;32mI (104332) SD_CARD: Writing to new orientation file[0m
+[0;32mI (106632) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (106632) SD_CARD: IMU raw data file size: 0[0m
+[0;32mI (106632) SD_CARD: IMU orientation file size: 0[0m
+[0;32mI (106642) SD_CARD: Files written.[0m
+[0;32mI (108312) BUTTON: Datalogging started.[0m
+[0;32mI (108312) IMU: cur_timestamp start = 1073566896[0m
+
+[0;32mI (108312) IMU: IMU started[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (108382) DATA LOGGING: Datalogging started.[0m
+[0;32mI (108762) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (108762) LSM6DS3: num_fifo_samples = 282[0m
+[0;32mI (109212) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (109212) LSM6DS3: num_fifo_samples = 564[0m
+[0;32mI (109402) SD_CARD: max_idx: 1812[0m
+[0;32mI (109402) SD_CARD: filename: imu_raw_001813.bin[0m
+[0;32mI (109402) SD_CARD: filepath: /sdcard/imu_raw_001813.bin[0m
+[0;32mI (109402) SD_CARD: Writing to new raw file[0m
+[0;32mI (109662) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 1, empty = 0[0m
+[0;32mI (109662) LSM6DS3: num_fifo_samples = 846 100[0m
+[0;32mI (109792) LSM6DS3: raw gyro = 2.502441 -7.492065 -1.953125[0m
+[0;32mI (109792) LSM6DS3: raw accel = 0.145264 0.082520 0.985596[0m
+[0;32mI (109792) LSM6DS3: num_fifo_samples = 330[0m
+[0;32mI (109792) IMU: timestamp=1073566896[0m
+[0;32mI (109802) IMU: calib accel: x=0.1331   y=0.0860   z=1.0011[0m
+[0;32mI (109802) IMU: calib gyro:     x=1.9611   y=4.9031   z=4.0332[0m
+[0;32mI (109812) IMU: timestamp=0[0m
+[0;32mI (109812) IMU: calib accel: x=0.1189   y=0.1060   z=0.9703[0m
+[0;32mI (109822) IMU: calib gyro:     x=1.9305   y=8.8399   z=2.6294[0m
+[0;32mI (109822) DATA LOGGING: complementary filter 0 0.0000 2950.5037 -979.3630[0m
+[0;32mI (109832) IMU: timestamp=0[0m
+[0;32mI (109832) IMU: calib accel: x=0.1027   y=0.1147   z=1.0025[0m
+[0;32mI (109842) IMU: calib gyro:     x=0.8777   y=8.1532   z=2.1106[0m
+[0;32mI (109842) DATA LOGGING: complementary filter 0 0.0000 2958.2449 -907.4520[0m
+[0;32mI (109852) IMU: timestamp=0[0m
+[0;32mI (109852) IMU: calib accel: x=0.1163   y=0.0963   z=0.9887[0m
+[0;32mI (109862) IMU: calib gyro:     x=0.7404   y=5.5440   z=1.2408[0m
+[0;32mI (109862) DATA LOGGING: complementary filter 0 0.0000 2964.7747 -858.5539[0m
+[0;32mI (109872) IMU: timestamp=0[0m
+[0;32mI (109872) IMU: calib accel: x=0.1092   y=0.1245   z=0.9889[0m
+[0;32mI (109882) IMU: calib gyro:     x=1.3812   y=4.3538   z=0.5695[0m
+[0;32mI (109882) DATA LOGGING: complementary filter 0 0.0000 2976.9578 -820.1536[0m
+[0;32mI (109892) IMU: timestamp=0[0m
+[0;32mI (109892) IMU: calib accel: x=0.1291   y=0.0954   z=0.9758[0m
+[0;32mI (109902) IMU: calib gyro:     x=-0.2209   y=2.8432   z=0.0049[0m
+[0;32mI (109902) DATA LOGGING: complementary filter 0 0.0000 2975.0085 -795.0765[0m
+[0;32mI (109912) IMU: timestamp=0[0m
+[0;32mI (109912) IMU: calib accel: x=0.1369   y=0.1109   z=0.9891[0m
+[0;32mI (109922) IMU: calib gyro:     x=0.1453   y=4.2622   z=-0.1782[0m
+[0;32mI (109922) DATA LOGGING: complementary filter 0 0.0000 2976.2900 -757.4835[0m
+[0;32mI (109932) IMU: timestamp=0[0m
+[0;32mI (109932) IMU: calib accel: x=0.1203   y=0.1127   z=0.9771[0m
+[0;32mI (109942) IMU: calib gyro:     x=0.5573   y=7.2987   z=0.3253[0m
+[0;32mI (109942) DATA LOGGING: complementary filter 0 0.0000 2981.2048 -693.1089[0m
+[0;32mI (109952) IMU: timestamp=0[0m
+[0;32mI (109952) IMU: calib accel: x=0.1207   y=0.1064   z=0.9921[0m
+[0;32mI (109962) IMU: calib gyro:     x=-0.8466   y=7.1919   z=0.0354[0m
+[0;32mI (109962) DATA LOGGING: complementary filter 0 0.0000 2973.7380 -629.6762[0m
+[0;32mI (109972) IMU: timestamp=0[0m
+[0;32mI (109972) IMU: calib accel: x=0.1135   y=0.1063   z=0.9900[0m
+[0;32mI (109982) IMU: calib gyro:     x=-0.1447   y=7.6039   z=-0.3156[0m
+[0;32mI (109982) DATA LOGGING: complementary filter 0 0.0000 2972.4624 -562.6099[0m
+[0;32mI (109992) IMU: timestamp=0[0m
+[0;32mI (109992) IMU: calib accel: x=0.1048   y=0.1159   z=0.9900[0m
+[0;32mI (110002) IMU: calib gyro:     x=0.0842   y=7.0393   z=-0.1324[0m
+[0;32mI (110002) DATA LOGGING: complementary filter 0 0.0000 2973.2053 -500.5231[0m
+[0;32mI (110012) IMU: timestamp=0[0m
+[0;32mI (110012) IMU: calib accel: x=0.1222   y=0.1060   z=0.9909[0m
+[0;32mI (110022) IMU: calib gyro:     x=-0.3430   y=5.6813   z=-0.1019[0m
+[0;32mI (110022) DATA LOGGING: complementary filter 0 0.0000 2970.1799 -450.4136[0m
+[0;32mI (110032) IMU: timestamp=0[0m
+[0;32mI (110032) IMU: calib accel: x=0.1003   y=0.1120   z=0.9866[0m
+[0;32mI (110042) IMU: calib gyro:     x=0.5573   y=6.3832   z=0.5237[0m
+[0;32mI (110042) DATA LOGGING: complementary filter 0 0.0000 2975.0947 -394.1141[0m
+[0;32mI (110052) IMU: timestamp=0[0m
+[0;32mI (110052) IMU: calib accel: x=0.1113   y=0.1075   z=0.9886[0m
+[0;32mI (110062) IMU: calib gyro:     x=0.0690   y=5.0404   z=0.5084[0m
+[0;32mI (110062) DATA LOGGING: complementary filter 0 0.0000 2975.7029 -349.6573[0m
+[0;32mI (110072) IMU: timestamp=0[0m
+[0;32mI (110072) IMU: calib accel: x=0.1095   y=0.1097   z=0.9916[0m
+[0;32mI (110082) IMU: calib gyro:     x=0.0079   y=4.4606   z=0.5084[0m
+[0;32mI (110082) DATA LOGGING: complementary filter 0 0.0000 2975.7727 -310.3148[0m
+[0;32mI (110092) IMU: timestamp=0[0m
+[0;32mI (110092) IMU: calib accel: x=0.1052   y=0.1082   z=0.9919[0m
+[0;32mI (110102) IMU: calib gyro:     x=0.2216   y=4.3385   z=0.6458[0m
+[0;32mI (110102) DATA LOGGING: complementary filter 0 0.0000 2977.7271 -272.0490[0m
+[0;32mI (110112) IMU: timestamp=0[0m
+[0;32mI (110112) IMU: calib accel: x=0.1104   y=0.1114   z=0.9898[0m
+[0;32mI (110122) IMU: calib gyro:     x=0.4810   y=3.7434   z=0.6152[0m
+[0;32mI (110122) DATA LOGGING: complementary filter 0 0.0000 2981.9690 -239.0318[0m
+[0;32mI (110132) IMU: timestamp=0[0m
+[0;32mI (110132) IMU: calib accel: x=0.1148   y=0.1126   z=0.9881[0m
+[0;32mI (110142) IMU: calib gyro:     x=0.6641   y=2.9958   z=0.6305[0m
+[0;32mI (110142) DATA LOGGING: complementary filter 0 0.0000 2987.8262 -212.6091[0m
+[0;32mI (110152) IMU: timestamp=0[0m
+[0;32mI (110152) IMU: calib accel: x=0.1169   y=0.1090   z=0.9883[0m
+[0;32mI (110162) IMU: calib gyro:     x=0.2521   y=1.6530   z=0.4626[0m
+[0;32mI (110162) DATA LOGGING: complementary filter 0 0.0000 2990.0493 -198.0298[0m
+[0;32mI (110172) IMU: timestamp=0[0m
+[0;32mI (110172) IMU: calib accel: x=0.1106   y=0.1091   z=0.9893[0m
+[0;32mI (110182) IMU: calib gyro:     x=0.0995   y=1.2410   z=0.3864[0m
+[0;32mI (110182) DATA LOGGING: complementary filter 0 0.0000 2990.9268 -187.0843[0m
+[0;32mI (110192) IMU: timestamp=0[0m
+[0;32mI (110192) IMU: calib accel: x=0.1115   y=0.1087   z=0.9889[0m
+[0;32mI (110202) IMU: calib gyro:     x=0.1758   y=1.2105   z=0.2490[0m
+[0;32mI (110202) DATA LOGGING: complementary filter 0 0.0000 2992.4773 -176.4079[0m
+[0;32mI (110212) IMU: timestamp=0[0m
+[0;32mI (110212) IMU: calib accel: x=0.0991   y=0.1033   z=0.9867[0m
+[0;32mI (110222) IMU: calib gyro:     x=0.0079   y=1.4241   z=0.2185[0m
+[0;32mI (110222) DATA LOGGING: complementary filter 0 0.0000 2992.5471 -163.8475[0m
+[0;32mI (110232) IMU: timestamp=0[0m
+[0;32mI (110232) IMU: calib accel: x=0.1158   y=0.1088   z=0.9894[0m
+[0;32mI (110242) IMU: calib gyro:     x=0.1910   y=3.3315   z=0.8441[0m
+[0;32mI (110242) DATA LOGGING: complementary filter 0 0.0000 2994.2319 -134.4638[0m
+[0;32mI (110252) IMU: timestamp=0[0m
+[0;32mI (110252) IMU: calib accel: x=0.1045   y=0.1081   z=0.9864[0m
+[0;32mI (110262) IMU: calib gyro:     x=0.1453   y=3.9265   z=0.5084[0m
+[0;32mI (110262) DATA LOGGING: complementary filter 0 0.0000 2995.5132 -99.8319[0m
+[0;32mI (110272) IMU: timestamp=0[0m
+[0;32mI (110272) IMU: calib accel: x=0.1045   y=0.1094   z=0.9916[0m
+[0;32mI (110282) IMU: calib gyro:     x=-0.3888   y=2.3854   z=0.1422[0m
+[0;32mI (110282) DATA LOGGING: complementary filter 0 0.0000 2992.0840 -78.7926[0m
+[0;32mI (110292) IMU: timestamp=0[0m
+[0;32mI (110292) IMU: calib accel: x=0.1038   y=0.1096   z=0.9932[0m
+[0;32mI (110302) IMU: calib gyro:     x=-0.0836   y=1.3173   z=0.0049[0m
+[0;32mI (110302) DATA LOGGING: complementary filter 0 0.0000 2991.3464 -67.1741[0m
+[0;32mI (110312) IMU: timestamp=0[0m
+[0;32mI (110312) IMU: calib accel: x=0.1043   y=0.1082   z=0.9885[0m
+[0;32mI (110322) IMU: calib gyro:     x=0.1300   y=0.3712   z=-0.0256[0m
+[0;32mI (110322) DATA LOGGING: complementary filter 0 0.0000 2992.4929 -63.8997[0m
+[0;32mI (110332) IMU: timestamp=0[0m
+[0;32mI (110332) IMU: calib accel: x=0.1075   y=0.1076   z=0.9911[0m
+[0;32mI (110342) IMU: calib gyro:     x=0.2521   y=0.0356   z=-0.0104[0m
+[0;32mI (110342) DATA LOGGING: complementary filter 0 0.0000 2994.7163 -63.5861[0m
+[0;32mI (110352) IMU: timestamp=0[0m
+[0;32mI (110352) IMU: calib accel: x=0.1051   y=0.1120   z=0.9871[0m
+[0;32mI (110362) IMU: calib gyro:     x=0.3894   y=0.2339   z=0.0354[0m
+[0;32mI (110362) DATA LOGGING: complementary filter 0 0.0000 2998.1506 -61.5230[0m
+[0;32mI (110372) IMU: timestamp=0[0m
+[0;32mI (110372) IMU: calib accel: x=0.1121   y=0.1075   z=0.9869[0m
+[0;32mI (110382) IMU: calib gyro:     x=-0.1294   y=0.2492   z=0.1117[0m
+[0;32mI (110382) DATA LOGGING: complementary filter 0 0.0000 2997.0095 -59.3251[0m
+[0;32mI (110392) IMU: timestamp=0[0m
+[0;32mI (110392) IMU: calib accel: x=0.1101   y=0.1085   z=0.9888[0m
+[0;32mI (110402) IMU: calib gyro:     x=-0.2209   y=0.6154   z=0.3864[0m
+[0;32mI (110402) DATA LOGGING: complementary filter 0 0.0000 2995.0608 -53.8974[0m
+[0;32mI (110412) IMU: timestamp=0[0m
+[0;32mI (110412) IMU: calib accel: x=0.1019   y=0.1099   z=0.9894[0m
+[0;32mI (110422) IMU: calib gyro:     x=0.1453   y=1.1037   z=0.7068[0m
+[0;32mI (110422) DATA LOGGING: complementary filter 0 0.0000 2996.3420 -44.1632[0m
+[0;32mI (110432) IMU: timestamp=0[0m
+[0;32mI (110432) IMU: calib accel: x=0.0999   y=0.1121   z=0.9883[0m
+[0;32mI (110432) IMU: calib gyro:     x=0.1453   y=0.6764   z=0.4779[0m
+[0;32mI (110442) DATA LOGGING: complementary filter 0 0.0000 2997.6233 -38.1972[0m
+[0;32mI (110452) IMU: timestamp=0[0m
+[0;32mI (110452) IMU: calib accel: x=0.1095   y=0.1053   z=0.9906[0m
+[0;32mI (110452) IMU: calib gyro:     x=0.0690   y=0.2034   z=0.3406[0m
+[0;32mI (110462) DATA LOGGING: complementary filter 0 0.0000 2998.2314 -36.4030[0m
+[0;32mI (110472) IMU: timestamp=0[0m
+[0;32mI (110472) IMU: calib accel: x=0.1068   y=0.1099   z=0.9891[0m
+[0;32mI (110482) IMU: calib gyro:     x=0.4504   y=0.3560   z=0.6152[0m
+[0;32mI (110482) DATA LOGGING: complementary filter 0 0.0000 3002.2043 -33.2633[0m
+[0;32mI (110492) IMU: timestamp=0[0m
+[0;32mI (110492) IMU: calib accel: x=0.1024   y=0.1105   z=0.9875[0m
+[0;32mI (110502) IMU: calib gyro:     x=0.4810   y=0.5544   z=0.7068[0m
+[0;32mI (110502) DATA LOGGING: complementary filter 0 0.0000 3006.4463 -28.3740[0m
+[0;32mI (110512) IMU: timestamp=0[0m
+[0;32mI (110512) IMU: calib accel: x=0.1054   y=0.1104   z=0.9870[0m
+[0;32mI (110512) IMU: calib gyro:     x=0.1758   y=0.2339   z=0.4626[0m
+[0;32mI (110522) DATA LOGGING: complementary filter 0 0.0000 3007.9966 -26.3108[0m
+[0;32mI (110532) IMU: timestamp=0[0m
+[0;32mI (110532) IMU: calib accel: x=0.1102   y=0.1091   z=0.9867[0m
+[0;32mI (110542) IMU: calib gyro:     x=0.0537   y=0.2034   z=0.2338[0m
+[0;32mI (110542) DATA LOGGING: complementary filter 0 0.0000 3008.4705 -24.5167[0m
+[0;32mI (110552) IMU: timestamp=0[0m
+[0;32mI (110552) IMU: calib accel: x=0.1107   y=0.1091   z=0.9887[0m
+[0;32mI (110552) IMU: calib gyro:     x=-0.1752   y=0.7985   z=0.3558[0m
+[0;32mI (110562) DATA LOGGING: complementary filter 0 0.0000 3006.9255 -17.4740[0m
+[0;32mI (110572) IMU: timestamp=0[0m
+[0;32mI (110572) IMU: calib accel: x=0.1026   y=0.1097   z=0.9895[0m
+[0;32mI (110572) IMU: calib gyro:     x=-0.1447   y=1.3783   z=0.4169[0m
+[0;32mI (110582) DATA LOGGING: complementary filter 0 0.0000 3005.6499 -5.3173[0m
+[0;32mI (110592) IMU: timestamp=0[0m
+[0;32mI (110592) IMU: calib accel: x=0.1038   y=0.1103   z=0.9887[0m
+[0;32mI (110592) IMU: calib gyro:     x=-0.1752   y=1.3020   z=0.2948[0m
+[0;32mI (110602) DATA LOGGING: complementary filter 0 0.0000 3004.1047 6.1666[0m
+[0;32mI (110612) IMU: timestamp=0[0m
+[0;32mI (110612) IMU: calib accel: x=0.1080   y=0.1085   z=0.9880[0m
+[0;32mI (110612) IMU: calib gyro:     x=-0.4498   y=1.1189   z=0.1880[0m
+[0;32mI (110622) DATA LOGGING: complementary filter 0 0.0000 3000.1372 16.0357[0m
+[0;32mI (110632) IMU: timestamp=0[0m
+[0;32mI (110632) IMU: calib accel: x=0.1073   y=0.1066   z=0.9867[0m
+[0;32mI (110632) IMU: calib gyro:     x=-0.4803   y=1.5614   z=0.4169[0m
+[0;32mI (110642) DATA LOGGING: complementary filter 0 0.0000 2995.9006 29.8075[0m
+[0;32mI (110652) IMU: timestamp=0[0m
+[0;32mI (110652) IMU: calib accel: x=0.1009   y=0.1090   z=0.9894[0m
+[0;32mI (110652) IMU: calib gyro:     x=-0.2667   y=2.4007   z=0.6000[0m
+[0;32mI (110662) DATA LOGGING: complementary filter 0 0.0000 2993.5481 50.9812[0m
+[0;32mI (110672) IMU: timestamp=0[0m
+[0;32mI (110672) IMU: calib accel: x=0.0979   y=0.1112   z=0.9913[0m
+[0;32mI (110672) IMU: calib gyro:     x=-0.1599   y=2.3549   z=0.3711[0m
+[0;32mI (110682) DATA LOGGING: complementary filter 0 0.0000 2992.1377 71.7513[0m
+[0;32mI (110692) IMU: timestamp=0[0m
+[0;32mI (110692) IMU: calib accel: x=0.0966   y=0.1105   z=0.9926[0m
+[0;32mI (110702) IMU: calib gyro:     x=-0.2057   y=1.1494   z=0.1880[0m
+[0;32mI (110702) DATA LOGGING: complementary filter 0 0.0000 2990.3235 81.8894[0m
+[0;32mI (110712) IMU: timestamp=0[0m
+[0;32mI (110712) IMU: calib accel: x=0.1154   y=0.1105   z=0.9881[0m
+[0;32mI (110712) IMU: calib gyro:     x=0.1605   y=0.5544   z=0.3406[0m
+[0;32mI (110722) DATA LOGGING: complementary filter 0 0.0000 2991.7393 86.7791[0m
+[0;32mI (110732) IMU: timestamp=0[0m
+[0;32mI (110732) IMU: calib accel: x=0.0987   y=0.1114   z=0.9860[0m
+[0;32mI (110732) IMU: calib gyro:     x=0.5267   y=0.4323   z=-0.0409[0m
+[0;32mI (110742) DATA LOGGING: complementary filter 0 0.0000 2996.3853 90.5915[0m
+[0;32mI (110752) IMU: timestamp=0[0m
+[0;32mI (110752) IMU: calib accel: x=0.1074   y=0.1063   z=0.9931[0m
+[0;32mI (110752) IMU: calib gyro:     x=0.0537   y=-0.6206   z=0.0812[0m
+[0;32mI (110762) DATA LOGGING: complementary filter 0 0.0000 2996.8589 85.1182[0m
+[0;32mI (110772) IMU: timestamp=0[0m
+[0;32mI (110772) IMU: calib accel: x=0.1029   y=0.1096   z=0.9874[0m
+[0;32mI (110772) IMU: calib gyro:     x=0.1453   y=-0.2696   z=0.1880[0m
+[0;32mI (110782) DATA LOGGING: complementary filter 0 0.0000 2998.1401 82.7400[0m
+[0;32mI (110782) IMU: timestamp=0[0m
+[0;32mI (110792) IMU: calib accel: x=0.1047   y=0.1090   z=0.9886[0m
+[0;32mI (110792) IMU: calib gyro:     x=0.1300   y=-0.1933   z=0.2338[0m
+[0;32mI (110802) DATA LOGGING: complementary filter 0 0.0000 2999.2871 81.0349[0m
+[0;32mI (110812) IMU: timestamp=0[0m
+[0;32mI (110812) IMU: calib accel: x=0.1020   y=0.1091   z=0.9916[0m
+[0;32mI (110812) IMU: calib gyro:     x=0.2063   y=0.1118   z=0.3406[0m
+[0;32mI (110822) DATA LOGGING: complementary filter 0 0.0000 3001.1064 82.0214[0m
+[0;32mI (110822) IMU: timestamp=0[0m
+[0;32mI (110832) IMU: calib accel: x=0.1021   y=0.1090   z=0.9902[0m
+[0;32mI (110832) IMU: calib gyro:     x=0.3741   y=-0.2238   z=0.3406[0m
+[0;32mI (110842) DATA LOGGING: complementary filter 0 0.0000 3004.4067 80.0470[0m
+[0;32mI (110842) IMU: timestamp=0[0m
+[0;32mI (110852) IMU: calib accel: x=0.1051   y=0.1101   z=0.9877[0m
+[0;32mI (110852) IMU: calib gyro:     x=0.5115   y=-0.4375   z=0.2948[0m
+[0;32mI (110862) DATA LOGGING: complementary filter 0 0.0000 3008.9177 76.1886[0m
+[0;32mI (110862) IMU: timestamp=0[0m
+[0;32mI (110872) IMU: calib accel: x=0.1049   y=0.1109   z=0.9869[0m
+[0;32mI (110872) IMU: calib gyro:     x=0.1910   y=-0.4375   z=0.0964[0m
+[0;32mI (110882) DATA LOGGING: complementary filter 0 0.0000 3010.6030 72.3301[0m
+[0;32mI (110892) IMU: timestamp=0[0m
+[0;32mI (110892) IMU: calib accel: x=0.1037   y=0.1091   z=0.9865[0m
+[0;32mI (110892) IMU: calib gyro:     x=-0.0836   y=0.2492   z=0.0507[0m
+[0;32mI (110902) DATA LOGGING: complementary filter 0 0.0000 3009.8655 74.5278[0m
+[0;32mI (110902) IMU: timestamp=0[0m
+[0;32mI (110912) IMU: calib accel: x=0.1018   y=0.1097   z=0.9874[0m
+[0;32mI (110912) IMU: calib gyro:     x=-0.2820   y=0.6764   z=0.0659[0m
+[0;32mI (110922) DATA LOGGING: complementary filter 0 0.0000 3007.3784 80.4939[0m
+[0;32mI (110932) IMU: timestamp=0[0m
+[0;32mI (110932) IMU: calib accel: x=0.1045   y=0.1074   z=0.9908[0m
+[0;32mI (110932) IMU: calib gyro:     x=-0.4346   y=0.4781   z=0.0964[0m
+[0;32mI (110942) DATA LOGGING: complementary filter 0 0.0000 3003.5457 84.7104[0m
+[0;32mI (110942) IMU: timestamp=0[0m
+[0;32mI (110952) IMU: calib accel: x=0.1015   y=0.1088   z=0.9897[0m
+[0;32mI (110952) IMU: calib gyro:     x=-0.1752   y=0.7375   z=0.1727[0m
+[0;32mI (110962) DATA LOGGING: complementary filter 0 0.0000 3002.0007 91.2147[0m
+[0;32mI (110962) IMU: timestamp=0[0m
+[0;32mI (110972) IMU: calib accel: x=0.1014   y=0.1090   z=0.9870[0m
+[0;32mI (110972) IMU: calib gyro:     x=-0.0684   y=0.5391   z=0.0812[0m
+[0;32mI (110982) DATA LOGGING: complementary filter 0 0.0000 3001.3977 95.9695[0m
+[0;32mI (110982) IMU: timestamp=0[0m
+[0;32mI (110992) IMU: calib accel: x=0.1048   y=0.1090   z=0.9865[0m
+[0;32mI (110992) IMU: calib gyro:     x=-0.1447   y=0.3102   z=-0.0562[0m
+[0;32mI (111002) DATA LOGGING: complementary filter 0 0.0000 3000.1221 98.7056[0m
+[0;32mI (111002) IMU: timestamp=0[0m
+[0;32mI (111012) IMU: calib accel: x=0.1032   y=0.1073   z=0.9913[0m
+[0;32mI (111012) IMU: calib gyro:     x=-0.1752   y=0.4475   z=-0.0256[0m
+[0;32mI (111022) DATA LOGGING: complementary filter 0 0.0000 2998.5769 102.6529[0m
+[0;32mI (111022) IMU: timestamp=0[0m
+[0;32mI (111032) IMU: calib accel: x=0.1019   y=0.1077   z=0.9897[0m
+[0;32mI (111032) IMU: calib gyro:     x=-0.1752   y=0.6154   z=0.0659[0m
+[0;32mI (111042) DATA LOGGING: complementary filter 0 0.0000 2997.0317 108.0806[0m
+[0;32mI (111042) IMU: timestamp=0[0m
+[0;32mI (111052) IMU: calib accel: x=0.0991   y=0.1098   z=0.9899[0m
+[0;32mI (111052) IMU: calib gyro:     x=-0.1141   y=0.6001   z=0.2948[0m
+[0;32mI (111062) DATA LOGGING: complementary filter 0 0.0000 2996.0249 113.3736[0m
+[0;32mI (111062) IMU: timestamp=0[0m
+[0;32mI (111072) IMU: calib accel: x=0.1023   y=0.1079   z=0.9897[0m
+[0;32mI (111072) IMU: calib gyro:     x=0.0079   y=0.3712   z=0.3558[0m
+[0;32mI (111082) DATA LOGGING: complementary filter 0 0.0000 2996.0947 116.6481[0m
+[0;32mI (111082) IMU: timestamp=0[0m
+[0;32mI (111092) IMU: calib accel: x=0.0992   y=0.1088   z=0.9909[0m
+[0;32mI (111092) IMU: calib gyro:     x=0.0385   y=0.4933   z=0.3558[0m
+[0;32mI (111102) DATA LOGGING: complementary filter 0 0.0000 2996.4341 120.9991[0m
+[0;32mI (111102) IMU: timestamp=0[0m
+[0;32mI (111112) IMU: calib accel: x=0.1038   y=0.1080   z=0.9886[0m
+[0;32mI (111112) IMU: calib gyro:     x=0.1300   y=0.2492   z=0.3101[0m
+[0;32mI (111122) DATA LOGGING: complementary filter 0 0.0000 2997.5806 123.1969[0m
+[0;32mI (111122) IMU: timestamp=0[0m
+[0;32mI (111132) IMU: calib accel: x=0.1026   y=0.1097   z=0.9892[0m
+[0;32mI (111132) IMU: calib gyro:     x=0.0842   y=0.2644   z=0.2795[0m
+[0;32mI (111142) DATA LOGGING: complementary filter 0 0.0000 2998.3235 125.5292[0m
+[0;32mI (111142) IMU: timestamp=0[0m
+[0;32mI (111152) IMU: calib accel: x=0.1020   y=0.1086   z=0.9886[0m
+[0;32mI (111152) IMU: calib gyro:     x=0.0842   y=0.3712   z=0.3253[0m
+[0;32mI (111162) DATA LOGGING: complementary filter 0 0.0000 2999.0664 128.8036[0m
+[0;32mI (111162) IMU: timestamp=0[0m
+[0;32mI (111172) IMU: calib accel: x=0.1005   y=0.1094   z=0.9886[0m
+[0;32mI (111172) IMU: calib gyro:     x=0.0995   y=0.4323   z=0.2643[0m
+[0;32mI (111182) DATA LOGGING: complementary filter 0 0.0000 2999.9441 132.6163[0m
+[0;32mI (111182) IMU: timestamp=0[0m
+[0;32mI (111192) IMU: calib accel: x=0.1001   y=0.1090   z=0.9908[0m
+[0;32mI (111192) IMU: calib gyro:     x=0.1453   y=0.2187   z=0.3406[0m
+[0;32mI (111202) DATA LOGGING: complementary filter 0 0.0000 3001.2251 134.5448[0m
+[0;32mI (111212) IMU: timestamp=0[0m
+[0;32mI (111212) IMU: calib accel: x=0.1012   y=0.1084   z=0.9903[0m
+[0;32mI (111212) IMU: calib gyro:     x=0.0690   y=-0.0865   z=0.2643[0m
+[0;32mI (111222) DATA LOGGING: complementary filter 0 0.0000 3001.8337 133.7818[0m
+[0;32mI (111222) IMU: timestamp=0[0m
+[0;32mI (111222) IMU: calib accel: x=0.1020   y=0.1084   z=0.9887[0m
+[0;32mI (111232) IMU: calib gyro:     x=0.1147   y=-0.1018   z=0.2795[0m
+[0;32mI (111242) DATA LOGGING: complementary filter 0 0.0000 3002.8457 132.8841[0m
+[0;32mI (111242) IMU: timestamp=0[0m
+[0;32mI (111252) IMU: calib accel: x=0.1019   y=0.1086   z=0.9919[0m
+[0;32mI (111252) IMU: calib gyro:     x=0.1605   y=-0.1476   z=0.3558[0m
+[0;32mI (111262) DATA LOGGING: complementary filter 0 0.0000 3004.2617 131.5827[0m
+[0;32mI (111262) IMU: timestamp=0[0m
+[0;32mI (111272) IMU: calib accel: x=0.1012   y=0.1126   z=0.9841[0m
+[0;32mI (111272) IMU: calib gyro:     x=0.4199   y=-0.0102   z=0.3253[0m
+[0;32mI (111282) DATA LOGGING: complementary filter 0 0.0000 3007.9653 131.4925[0m
+[0;32mI (111292) IMU: timestamp=0[0m
+[0;32mI (111292) IMU: calib accel: x=0.0964   y=0.1107   z=0.9880[0m
+[0;32mI (111292) IMU: calib gyro:     x=0.5267   y=0.6612   z=0.1117[0m
+[0;32mI (111302) DATA LOGGING: complementary filter 0 0.0000 3012.6113 137.3239[0m
+[0;32mI (111302) IMU: timestamp=0[0m
+[0;32mI (111302) IMU: calib accel: x=0.1092   y=0.1041   z=0.9886[0m
+[0;32mI (111312) IMU: calib gyro:     x=-0.0378   y=-0.3001   z=-0.1172[0m
+[0;32mI (111322) DATA LOGGING: complementary filter 0 0.0000 3012.2776 134.6769[0m
+[0;32mI (111322) IMU: timestamp=0[0m
+[0;32mI (111332) IMU: calib accel: x=0.0998   y=0.1116   z=0.9915[0m
+[0;32mI (111332) IMU: calib gyro:     x=0.0079   y=0.1729   z=0.0354[0m
+[0;32mI (111342) DATA LOGGING: complementary filter 0 0.0000 3012.3477 136.2015[0m
+[0;32mI (111342) IMU: timestamp=0[0m
+[0;32mI (111352) IMU: calib accel: x=0.1001   y=0.1082   z=0.9882[0m
+[0;32mI (111352) IMU: calib gyro:     x=-0.0378   y=-0.0407   z=0.0507[0m
+[0;32mI (111362) DATA LOGGING: complementary filter 0 0.0000 3012.0139 135.8422[0m
+[0;32mI (111362) IMU: timestamp=0[0m
+[0;32mI (111362) IMU: calib accel: x=0.1019   y=0.1096   z=0.9869[0m
+[0;32mI (111372) IMU: calib gyro:     x=-0.0226   y=-0.0713   z=0.1117[0m
+[0;32mI (111382) DATA LOGGING: complementary filter 0 0.0000 3011.8145 135.2138[0m
+[0;32mI (111382) IMU: timestamp=0[0m
+[0;32mI (111392) IMU: calib accel: x=0.1034   y=0.1080   z=0.9908[0m
+[0;32mI (111392) IMU: calib gyro:     x=-0.0836   y=0.0661   z=0.0812[0m
+[0;32mI (111402) DATA LOGGING: complementary filter 0 0.0000 3011.0771 135.7965[0m
+[0;32mI (111402) IMU: timestamp=0[0m
+[0;32mI (111402) IMU: calib accel: x=0.1010   y=0.1094   z=0.9914[0m
+[0;32mI (111412) IMU: calib gyro:     x=0.0537   y=0.0508   z=0.0659[0m
+[0;32mI (111422) DATA LOGGING: complementary filter 0 0.0000 3011.5508 136.2446[0m
+[0;32mI (111422) IMU: timestamp=0[0m
+[0;32mI (111422) IMU: calib accel: x=0.0999   y=0.1087   z=0.9894[0m
+[0;32mI (111432) IMU: calib gyro:     x=0.0690   y=-0.1170   z=0.1727[0m
+[0;32mI (111442) DATA LOGGING: complementary filter 0 0.0000 3012.1592 135.2124[0m
+[0;32mI (111442) IMU: timestamp=0[0m
+[0;32mI (111442) IMU: calib accel: x=0.1054   y=0.1094   z=0.9886[0m
+[0;32mI (111452) IMU: calib gyro:     x=0.1758   y=-0.3917   z=0.1117[0m
+[0;32mI (111462) DATA LOGGING: 99 raw samples sent to SD card[0m
+[0;32mI (111462) DATA LOGGING: complementary filter 0 0.0000 3013.7095 131.7577[0m
+[0;32mI (111472) IMU: timestamp=0[0m
+[0;32mI (111472) IMU: calib accel: x=0.1021   y=0.1099   z=0.9874[0m
+[0;32mI (111482) IMU: calib gyro:     x=0.0690   y=-0.1170   z=0.1880[0m
+[0;32mI (111482) DATA LOGGING: complementary filter 0 0.0000 3014.3176 130.7254[0m
+[0;32mI (111492) IMU: timestamp=0[0m
+[0;32mI (111492) IMU: calib accel: x=0.1012   y=0.1079   z=0.9900[0m
+[0;32mI (111502) IMU: calib gyro:     x=-0.0684   y=0.3102   z=0.2338[0m
+[0;32mI (111502) DATA LOGGING: complementary filter 0 0.0000 3013.7146 133.4615[0m
+[0;32mI (111512) IMU: timestamp=0[0m
+[0;32mI (111512) IMU: calib accel: x=0.1005   y=0.1092   z=0.9880[0m
+[0;32mI (111522) IMU: calib gyro:     x=-0.0531   y=0.3102   z=0.2795[0m
+[0;32mI (111522) DATA LOGGING: complementary filter 0 0.0000 3013.2463 136.1975[0m
+[0;32mI (111532) IMU: timestamp=0[0m
+[0;32mI (111532) IMU: calib accel: x=0.1031   y=0.1103   z=0.9903[0m
+[0;32mI (111532) IMU: calib gyro:     x=0.1147   y=0.0203   z=0.2643[0m
+[0;32mI (111542) DATA LOGGING: complementary filter 0 0.0000 3014.2583 136.3766[0m
+[0;32mI (111552) IMU: timestamp=0[0m
+[0;32mI (111552) IMU: calib accel: x=0.1024   y=0.1088   z=0.9878[0m
+[0;32mI (111562) IMU: calib gyro:     x=-0.0684   y=0.1881   z=0.2338[0m
+[0;32mI (111562) DATA LOGGING: complementary filter 0 0.0000 3013.6553 138.0360[0m
+[0;32mI (111572) IMU: timestamp=0[0m
+[0;32mI (111572) IMU: calib accel: x=0.1003   y=0.1073   z=0.9900[0m
+[0;32mI (111572) IMU: calib gyro:     x=-0.0836   y=0.5544   z=0.2795[0m
+[0;32mI (111582) DATA LOGGING: complementary filter 0 0.0000 3012.9180 142.9253[0m
+[0;32mI (111592) IMU: timestamp=0[0m
+[0;32mI (111592) IMU: calib accel: x=0.0992   y=0.1098   z=0.9900[0m
+[0;32mI (111602) IMU: calib gyro:     x=0.0537   y=0.4628   z=0.4016[0m
+[0;32mI (111602) DATA LOGGING: complementary filter 0 0.0000 3013.3916 147.0072[0m
+[0;32mI (111612) IMU: timestamp=0[0m
+[0;32mI (111612) IMU: calib accel: x=0.1007   y=0.1109   z=0.9905[0m
+[0;32mI (111622) IMU: calib gyro:     x=-0.0073   y=0.2492   z=0.3558[0m
+[0;32mI (111622) DATA LOGGING: complementary filter 0 0.0000 3013.3271 149.2049[0m
+[0;32mI (111632) IMU: timestamp=0[0m
+[0;32mI (111632) IMU: calib accel: x=0.1001   y=0.1087   z=0.9898[0m
+[0;32mI (111632) IMU: calib gyro:     x=0.0079   y=0.2187   z=0.2795[0m
+[0;32mI (111642) DATA LOGGING: complementary filter 0 0.0000 3013.3970 151.1335[0m
+[0;32mI (111652) IMU: timestamp=0[0m
+[0;32mI (111652) IMU: calib accel: x=0.1014   y=0.1108   z=0.9876[0m
+[0;32mI (111662) IMU: calib gyro:     x=0.1147   y=0.0356   z=0.2338[0m
+[0;32mI (111662) DATA LOGGING: complementary filter 0 0.0000 3014.4089 151.4471[0m
+[0;32mI (111672) IMU: timestamp=0[0m
+[0;32mI (111672) IMU: calib accel: x=0.1164   y=0.1036   z=0.9858[0m
+[0;32mI (111672) IMU: calib gyro:     x=0.0690   y=0.1881   z=0.3101[0m
+[0;32mI (111682) DATA LOGGING: complementary filter 0 0.0000 3015.0173 153.1068[0m
+[0;32mI (111692) IMU: timestamp=0[0m
+[0;32mI (111692) IMU: calib accel: x=0.0940   y=0.1124   z=0.9917[0m
+[0;32mI (111692) IMU: calib gyro:     x=0.0690   y=0.8595   z=0.3558[0m
+[0;32mI (111702) DATA LOGGING: complementary filter 0 0.0000 3015.6255 160.6874[0m
+[0;32mI (111712) IMU: timestamp=0[0m
+[0;32mI (111712) IMU: calib accel: x=0.1018   y=0.1055   z=0.9911[0m
+[0;32mI (111712) IMU: calib gyro:     x=-0.2209   y=0.2187   z=0.0507[0m
+[0;32mI (111722) DATA LOGGING: complementary filter 0 0.0000 3013.6768 162.6161[0m
+[0;32mI (111732) IMU: timestamp=0[0m
+[0;32mI (111732) IMU: calib accel: x=0.0996   y=0.1103   z=0.9927[0m
+[0;32mI (111742) IMU: calib gyro:     x=0.1758   y=0.2339   z=0.1117[0m
+[0;32mI (111742) DATA LOGGING: complementary filter 0 0.0000 3015.2271 164.6792[0m
+[0;32mI (111752) IMU: timestamp=0[0m
+[0;32mI (111752) IMU: calib accel: x=0.1005   y=0.1081   z=0.9888[0m
+[0;32mI (111752) IMU: calib gyro:     x=0.2521   y=-0.2544   z=0.0507[0m
+[0;32mI (111762) DATA LOGGING: complementary filter 0 0.0000 3017.4504 162.4357[0m
+[0;32mI (111772) IMU: timestamp=0[0m
+[0;32mI (111772) IMU: calib accel: x=0.1010   y=0.1108   z=0.9870[0m
+[0;32mI (111772) IMU: calib gyro:     x=0.3131   y=-0.4680   z=0.0507[0m
+[0;32mI (111782) DATA LOGGING: complementary filter 0 0.0000 3020.2119 158.3081[0m
+[0;32mI (111832) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (111832) SD_CARD: filename: imu_orientation_001813.bin[0m
+[0;32mI (111832) SD_CARD: filepath: /sdcard/imu_orientation_001813.bin[0m
+[0;32mI (111832) SD_CARD: Writing to new orientation file[0m
+[0;32mI (112242) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 1, empty = 1[0m
+[0;32mI (112242) LSM6DS3: num_fifo_samples = 1866 100[0m
+[0;32mI (112362) LSM6DS3: raw gyro = 2.166748 -7.247925 -1.907349[0m
+[0;32mI (112372) LSM6DS3: raw accel = 0.142822 0.082153 0.987183[0m
+[0;32mI (112372) LSM6DS3: num_fifo_samples = 1350[0m
+[0;32mI (112372) IMU: timestamp=1073566896[0m
+[0;32mI (112372) IMU: calib accel: x=0.1048   y=0.1087   z=0.9894[0m
+[0;32mI (112382) IMU: calib gyro:     x=0.0690   y=-0.2696   z=-0.0104[0m
+[0;32mI (112382) IMU: timestamp=0[0m
+[1;31mE (112392) DATA LOGGING: SDCARD raw fail[0m
+[0;32mI (112392) DATA LOGGING: complementary filter 0 0.0000 3020.8203 155.9301[0m
+[0;32mI (112402) IMU: calib accel: x=0.1001   y=0.1105   z=0.9891[0m
+[0;32mI (112402) IMU: calib gyro:     x=-0.0989   y=0.2187   z=-0.0409[0m
+[0;32mI (112412) DATA LOGGING: complementary filter 0 0.0000 3019.9480 157.8586[0m
+[1;31mE (112422) DATA LOGGING: SDCARD orientation fail[0m
+[0;32mI (112412) IMU: timestamp=0[0m
+[0;32mI (112422) IMU: calib accel: x=0.0982   y=0.1087   z=0.9904[0m
+[0;32mI (112432) IMU: calib gyro:     x=-0.2209   y=0.3865   z=-0.1324[0m
+[0;32mI (112432) DATA LOGGING: complementary filter 0 0.0000 3017.9993 161.2675[0m
+[0;32mI (112442) IMU: timestamp=0[0m
+[0;32mI (112442) IMU: calib accel: x=0.1014   y=0.1097   z=0.9889[0m
+[0;32mI (112452) IMU: calib gyro:     x=-0.1752   y=0.1271   z=-0.0867[0m
+[0;32mI (112452) DATA LOGGING: complementary filter 0 0.0000 3016.4541 162.3886[0m
+[0;32mI (112462) IMU: timestamp=0[0m
+[0;32mI (112462) IMU: calib accel: x=0.1021   y=0.1086   z=0.9886[0m
+[0;32mI (112472) IMU: calib gyro:     x=-0.0226   y=0.1424   z=0.0049[0m
+[0;32mI (112472) DATA LOGGING: complementary filter 0 0.0000 3016.2551 163.6443[0m
+[0;32mI (112482) IMU: timestamp=0[0m
+[0;32mI (112482) IMU: calib accel: x=0.1010   y=0.1097   z=0.9893[0m
+[0;32mI (112492) IMU: calib gyro:     x=-0.1447   y=0.3560   z=0.1422[0m
+[0;32mI (112492) DATA LOGGING: complementary filter 0 0.0000 3014.9795 166.7841[0m
+[0;32mI (112502) IMU: timestamp=0[0m
+[0;32mI (112502) IMU: calib accel: x=0.1002   y=0.1075   z=0.9891[0m
+[0;32mI (112512) IMU: calib gyro:     x=-0.1599   y=0.3560   z=0.0964[0m
+[0;32mI (112512) DATA LOGGING: complementary filter 0 0.0000 3013.5691 169.9239[0m
+[0;32mI (112522) IMU: timestamp=0[0m
+[0;32mI (112522) IMU: calib accel: x=0.1029   y=0.1088   z=0.9881[0m
+[0;32mI (112532) IMU: calib gyro:     x=-0.1447   y=0.5544   z=0.2643[0m
+[0;32mI (112532) DATA LOGGING: complementary filter 0 0.0000 3012.2930 174.8133[0m
+[0;32mI (112542) IMU: timestamp=0[0m
+[0;32mI (112542) IMU: calib accel: x=0.0993   y=0.1084   z=0.9887[0m
+[0;32mI (112552) IMU: calib gyro:     x=-0.1294   y=0.7222   z=0.4779[0m
+[0;32mI (112552) DATA LOGGING: complementary filter 0 0.0000 3011.1519 181.1830[0m
+[0;32mI (112562) IMU: timestamp=0[0m
+[0;32mI (112562) IMU: calib accel: x=0.0996   y=0.1104   z=0.9922[0m
+[0;32mI (112562) BUTTON: Datalogging stopped.[0m
+[0;32mI (112572) IMU: calib gyro:     x=0.0537   y=0.7680   z=0.4626[0m
+[0;32mI (112582) DATA LOGGING: complementary filter 0 0.0000 3011.6255 187.9566[0m
+[0;32mI (112582) DATA LOGGING: Datalogging stopped.[0m
+[0;32mI (112592) IMU: timestamp=0[0m
+[0;32mI (112592) IMU: calib accel: x=0.0977   y=0.1096   z=0.9924[0m
+[0;32mI (112592) IMU: calib gyro:     x=-0.0531   y=0.5696   z=0.4321[0m
+[0;32mI (112602) IMU: timestamp=0[0m
+[0;32mI (112602) IMU: calib accel: x=0.0979   y=0.1087   z=0.9894[0m
+[0;32mI (112612) IMU: calib gyro:     x=0.1147   y=0.1729   z=0.3253[0m
+[0;32mI (112612) IMU: timestamp=1[0m
+[0;32mI (112622) IMU: calib accel: x=0.0992   y=0.1101   z=0.9883[0m
+[0;32mI (112622) IMU: calib gyro:     x=0.2979   y=-0.2238   z=0.2643[0m
+[0;32mI (112632) IMU: timestamp=2[0m
+[0;32mI (112632) IMU: calib accel: x=0.1018   y=0.1087   z=0.9877[0m
+[0;32mI (112632) IMU: calib gyro:     x=0.2216   y=-0.5443   z=0.1575[0m
+[0;32mI (112642) IMU: timestamp=3[0m
+[0;32mI (112642) IMU: calib accel: x=0.1021   y=0.1090   z=0.9883[0m
+[0;32mI (112652) IMU: calib gyro:     x=0.0385   y=-0.1628   z=0.1880[0m
+[0;32mI (112652) IMU: timestamp=4[0m
+[0;32mI (112662) IMU: calib accel: x=0.1014   y=0.1076   z=0.9900[0m
+[0;32mI (112662) IMU: calib gyro:     x=-0.1294   y=0.3560   z=0.1270[0m
+[0;32mI (112672) IMU: timestamp=5[0m
+[0;32mI (112672) IMU: calib accel: x=0.0982   y=0.1088   z=0.9906[0m
+[0;32mI (112682) IMU: calib gyro:     x=-0.1752   y=0.3560   z=0.2490[0m
+[0;32mI (112682) IMU: timestamp=6[0m
+[0;32mI (112682) IMU: calib accel: x=0.0984   y=0.1102   z=0.9898[0m
+[0;32mI (112692) IMU: calib gyro:     x=0.0842   y=0.2950   z=0.1880[0m
+[0;32mI (112692) IMU: timestamp=7[0m
+[0;32mI (112702) IMU: calib accel: x=0.0993   y=0.1088   z=0.9895[0m
+[0;32mI (112702) IMU: calib gyro:     x=0.0995   y=-0.0102   z=0.0507[0m
+[0;32mI (112712) IMU: timestamp=8[0m
+[0;32mI (112712) IMU: calib accel: x=0.1010   y=0.1091   z=0.9905[0m
+[0;32mI (112722) IMU: calib gyro:     x=0.1300   y=-0.1781   z=-0.0256[0m
+[0;32mI (112722) IMU: timestamp=9[0m
+[0;32mI (112722) IMU: calib accel: x=0.0987   y=0.1105   z=0.9893[0m
+[0;32mI (112732) IMU: calib gyro:     x=0.0842   y=-0.1781   z=0.0049[0m
+[0;32mI (112732) IMU: timestamp=10[0m
+[0;32mI (112742) IMU: calib accel: x=0.0984   y=0.1087   z=0.9883[0m
+[0;32mI (112742) IMU: calib gyro:     x=0.0537   y=0.0508   z=0.0964[0m
+[0;32mI (112752) IMU: timestamp=11[0m
+[0;32mI (112752) IMU: calib accel: x=0.1012   y=0.1086   z=0.9891[0m
+[0;32mI (112762) IMU: calib gyro:     x=0.0079   y=-0.1170   z=0.1575[0m
+[0;32mI (112762) IMU: timestamp=12[0m
+[0;32mI (112772) IMU: calib accel: x=0.0996   y=0.1104   z=0.9921[0m
+[0;32mI (112772) IMU: calib gyro:     x=0.0079   y=0.0508   z=0.3101[0m
+[0;32mI (112772) IMU: timestamp=13[0m
+[0;32mI (112782) IMU: calib accel: x=0.0979   y=0.1097   z=0.9898[0m
+[0;32mI (112782) IMU: calib gyro:     x=-0.0073   y=0.0356   z=0.3253[0m
+[0;32mI (112792) IMU: timestamp=14[0m
+[0;32mI (112792) IMU: calib accel: x=0.0975   y=0.1099   z=0.9898[0m
+[0;32mI (112802) IMU: calib gyro:     x=0.0232   y=-0.1628   z=0.4016[0m
+[0;32mI (112802) IMU: timestamp=15[0m
+[0;32mI (112812) IMU: calib accel: x=0.1023   y=0.1101   z=0.9883[0m
+[0;32mI (112812) IMU: calib gyro:     x=0.1758   y=-0.4680   z=0.4016[0m
+[0;32mI (112812) IMU: timestamp=16[0m
+[0;32mI (112822) IMU: calib accel: x=0.1037   y=0.1096   z=0.9883[0m
+[0;32mI (112822) IMU: calib gyro:     x=0.0385   y=-0.3307   z=0.3406[0m
+[0;32mI (112832) IMU: timestamp=17[0m
+[0;32mI (112832) IMU: calib accel: x=0.1054   y=0.1065   z=0.9874[0m
+[0;32mI (112842) IMU: calib gyro:     x=-0.0684   y=0.2797   z=0.4169[0m
+[0;32mI (112842) IMU: timestamp=18[0m
+[0;32mI (112852) IMU: calib accel: x=0.0973   y=0.1099   z=0.9891[0m
+[0;32mI (112852) IMU: calib gyro:     x=-0.0836   y=0.7069   z=0.5542[0m
+[0;32mI (112862) IMU: timestamp=19[0m
+[0;32mI (112862) IMU: calib accel: x=0.0981   y=0.1108   z=0.9897[0m
+[0;32mI (112862) IMU: calib gyro:     x=-0.1141   y=0.5544   z=0.4169[0m
+[0;32mI (112872) IMU: timestamp=20[0m
+[0;32mI (112872) IMU: calib accel: x=0.0993   y=0.1070   z=0.9905[0m
+[0;32mI (112882) IMU: calib gyro:     x=-0.1447   y=0.3712   z=0.1575[0m
+[0;32mI (112882) IMU: timestamp=21[0m
+[0;32mI (112892) IMU: calib accel: x=0.0991   y=0.1101   z=0.9893[0m
+[0;32mI (112892) IMU: calib gyro:     x=-0.0226   y=0.2797   z=0.1117[0m
+[0;32mI (112902) IMU: timestamp=22[0m
+[0;32mI (112902) IMU: calib accel: x=0.0984   y=0.1097   z=0.9897[0m
+[0;32mI (112902) IMU: calib gyro:     x=-0.0378   y=0.1576   z=0.0201[0m
+[0;32mI (112912) IMU: timestamp=23[0m
+[0;32mI (112912) IMU: calib accel: x=0.0977   y=0.1088   z=0.9885[0m
+[0;32mI (112922) IMU: calib gyro:     x=-0.0073   y=0.0050   z=-0.1172[0m
+[0;32mI (112922) IMU: timestamp=24[0m
+[0;32mI (112932) IMU: calib accel: x=0.1004   y=0.1088   z=0.9894[0m
+[0;32mI (112932) IMU: calib gyro:     x=0.0537   y=-0.2086   z=0.0354[0m
+[0;32mI (112942) IMU: timestamp=25[0m
+[0;32mI (112942) IMU: calib accel: x=0.0999   y=0.1105   z=0.9894[0m
+[0;32mI (112952) IMU: calib gyro:     x=-0.0073   y=0.0356   z=0.1727[0m
+[0;32mI (112952) IMU: timestamp=26[0m
+[0;32mI (112952) IMU: calib accel: x=0.0991   y=0.1090   z=0.9905[0m
+[0;32mI (112962) IMU: calib gyro:     x=-0.0836   y=0.1271   z=0.1575[0m
+[0;32mI (112962) IMU: timestamp=27[0m
+[0;32mI (112972) IMU: calib accel: x=0.0998   y=0.1066   z=0.9892[0m
+[0;32mI (112972) IMU: calib gyro:     x=-0.0226   y=0.0813   z=0.2490[0m
+[0;32mI (112982) IMU: timestamp=28[0m
+[0;32mI (112982) IMU: calib accel: x=0.0997   y=0.1123   z=0.9850[0m
+[0;32mI (112992) IMU: calib gyro:     x=0.0842   y=-0.1628   z=0.1575[0m
+[0;32mI (112992) IMU: timestamp=29[0m
+[0;32mI (112992) IMU: calib accel: x=0.1013   y=0.1098   z=0.9891[0m
+[0;32mI (113002) IMU: calib gyro:     x=-0.1294   y=-0.0560   z=0.2338[0m
+[0;32mI (113002) IMU: timestamp=30[0m
+[0;32mI (113012) IMU: calib accel: x=0.1019   y=0.1094   z=0.9895[0m
+[0;32mI (113012) IMU: calib gyro:     x=-0.0073   y=0.2644   z=0.2948[0m
+[0;32mI (113022) IMU: timestamp=31[0m
+[0;32mI (113022) IMU: calib accel: x=0.0965   y=0.1112   z=0.9881[0m
+[0;32mI (113032) IMU: calib gyro:     x=-0.0073   y=0.4781   z=0.3711[0m
+[0;32mI (113032) IMU: timestamp=32[0m
+[0;32mI (113032) IMU: calib accel: x=0.0995   y=0.1087   z=0.9898[0m
+[0;32mI (113042) IMU: calib gyro:     x=-0.0073   y=0.3865   z=0.3406[0m
+[0;32mI (113052) IMU: timestamp=33[0m
+[0;32mI (113052) IMU: calib accel: x=0.0992   y=0.1110   z=0.9892[0m
+[0;32mI (113052) IMU: calib gyro:     x=0.1300   y=0.2797   z=0.2490[0m
+[0;32mI (113062) IMU: timestamp=34[0m
+[0;32mI (113062) IMU: calib accel: x=0.0988   y=0.1105   z=0.9893[0m
+[0;32mI (113072) IMU: calib gyro:     x=0.0537   y=0.1881   z=0.2185[0m
+[0;32mI (113072) IMU: timestamp=35[0m
+[0;32mI (113082) IMU: calib accel: x=0.1001   y=0.1102   z=0.9898[0m
+[0;32mI (113082) IMU: calib gyro:     x=-0.0989   y=0.1729   z=0.1422[0m
+[0;32mI (113092) IMU: timestamp=36[0m
+[0;32mI (113092) IMU: calib accel: x=0.0981   y=0.1107   z=0.9894[0m
+[0;32mI (113092) IMU: calib gyro:     x=-0.2667   y=0.2797   z=0.0812[0m
+[0;32mI (113102) IMU: timestamp=37[0m
+[0;32mI (113102) IMU: calib accel: x=0.0981   y=0.1103   z=0.9885[0m
+[0;32mI (113112) IMU: calib gyro:     x=-0.2057   y=0.1271   z=0.0201[0m
+[0;32mI (113112) IMU: timestamp=38[0m
+[0;32mI (113122) IMU: calib accel: x=0.1002   y=0.1086   z=0.9867[0m
+[0;32mI (113122) IMU: calib gyro:     x=-0.1904   y=-0.0560   z=-0.0409[0m
+[0;32mI (113132) IMU: timestamp=39[0m
+[0;32mI (113132) IMU: calib accel: x=0.0992   y=0.1108   z=0.9892[0m
+[0;32mI (113132) IMU: calib gyro:     x=-0.2209   y=0.0508   z=-0.0562[0m
+[0;32mI (113142) IMU: timestamp=40[0m
+[0;32mI (113142) IMU: calib accel: x=0.1016   y=0.1073   z=0.9877[0m
+[0;32mI (113152) IMU: calib gyro:     x=-0.1904   y=0.1576   z=0.0354[0m
+[0;32mI (113152) IMU: timestamp=41[0m
+[0;32mI (113162) IMU: calib accel: x=0.0992   y=0.1092   z=0.9895[0m
+[0;32mI (113162) IMU: calib gyro:     x=-0.0836   y=0.2492   z=0.2032[0m
+[0;32mI (113172) IMU: timestamp=42[0m
+[0;32mI (113172) IMU: calib accel: x=0.0992   y=0.1102   z=0.9914[0m
+[0;32mI (113182) IMU: calib gyro:     x=-0.1141   y=0.2797   z=0.4016[0m
+[0;32mI (113182) IMU: timestamp=43[0m
+[0;32mI (113182) IMU: calib accel: x=0.0996   y=0.1071   z=0.9902[0m
+[0;32mI (113192) IMU: calib gyro:     x=-0.0684   y=0.3102   z=0.4779[0m
+[0;32mI (113192) IMU: timestamp=44[0m
+[0;32mI (113202) IMU: calib accel: x=0.1020   y=0.1071   z=0.9895[0m
+[0;32mI (113202) IMU: calib gyro:     x=0.0079   y=0.3407   z=0.4626[0m
+[0;32mI (113212) IMU: timestamp=45[0m
+[0;32mI (113212) IMU: calib accel: x=0.0984   y=0.1109   z=0.9892[0m
+[0;32mI (113222) IMU: calib gyro:     x=0.0079   y=0.3865   z=0.4932[0m
+[0;32mI (113222) IMU: timestamp=46[0m
+[0;32mI (113222) IMU: calib accel: x=0.0973   y=0.1091   z=0.9898[0m
+[0;32mI (113232) IMU: calib gyro:     x=0.0537   y=0.3712   z=0.5084[0m
+[0;32mI (113242) IMU: timestamp=47[0m
+[0;32mI (113242) IMU: calib accel: x=0.0981   y=0.1105   z=0.9887[0m
+[0;32mI (113242) IMU: calib gyro:     x=0.0232   y=0.1881   z=0.3558[0m
+[0;32mI (113252) IMU: timestamp=48[0m
+[0;32mI (113252) IMU: calib accel: x=0.0951   y=0.1153   z=0.9856[0m
+[0;32mI (113262) IMU: calib gyro:     x=0.1605   y=0.5391   z=0.3253[0m
+[0;32mI (113262) IMU: timestamp=49[0m
+[0;32mI (113262) IMU: calib accel: x=0.0996   y=0.1047   z=0.9947[0m
+[0;32mI (113272) IMU: calib gyro:     x=0.1605   y=1.6682   z=0.4321[0m
+[0;32mI (113282) IMU: timestamp=50[0m
+[0;32mI (113282) IMU: calib accel: x=0.0991   y=0.1055   z=0.9883[0m
+[0;32mI (113282) IMU: calib gyro:     x=-0.0531   y=0.6306   z=0.1880[0m
+[0;32mI (113292) IMU: timestamp=51[0m
+[0;32mI (113292) IMU: calib accel: x=0.0944   y=0.1112   z=0.9914[0m
+[0;32mI (113302) IMU: calib gyro:     x=-0.1904   y=0.0661   z=0.2032[0m
+[0;32mI (113302) IMU: timestamp=52[0m
+[0;32mI (113312) IMU: calib accel: x=0.0982   y=0.1076   z=0.9888[0m
+[0;32mI (113312) IMU: calib gyro:     x=-0.0378   y=-0.1628   z=0.1727[0m
+[0;32mI (113322) IMU: timestamp=53[0m
+[0;32mI (113322) IMU: calib accel: x=0.1002   y=0.1114   z=0.9886[0m
+[0;32mI (113322) IMU: calib gyro:     x=0.0995   y=0.0050   z=0.0812[0m
+[0;32mI (113332) IMU: timestamp=54[0m
+[0;32mI (113332) IMU: calib accel: x=0.0986   y=0.1073   z=0.9900[0m
+[0;32mI (113342) IMU: calib gyro:     x=-0.0531   y=0.2644   z=0.0659[0m
+[0;32mI (113352) IMU: timestamp=55[0m
+[0;32mI (113352) IMU: calib accel: x=0.0974   y=0.1079   z=0.9928[0m
+[0;32mI (113352) IMU: calib gyro:     x=-0.0073   y=0.0966   z=0.0507[0m
+[0;32mI (113362) IMU: timestamp=56[0m
+[0;32mI (113362) IMU: calib accel: x=0.0959   y=0.1102   z=0.9892[0m
+[0;32mI (113362) IMU: calib gyro:     x=0.0690   y=-0.1628   z=0.1117[0m
+[0;32mI (113372) IMU: timestamp=57[0m
+[0;32mI (113372) IMU: calib accel: x=0.0996   y=0.1093   z=0.9871[0m
+[0;32mI (113382) IMU: calib gyro:     x=0.1147   y=-0.5748   z=0.1117[0m
+[0;32mI (113392) IMU: timestamp=58[0m
+[0;32mI (113392) IMU: calib accel: x=0.0990   y=0.1088   z=0.9880[0m
+[0;32mI (113392) IMU: calib gyro:     x=0.2063   y=-0.3459   z=0.1880[0m
+[0;32mI (113402) IMU: timestamp=59[0m
+[0;32mI (113402) IMU: calib accel: x=0.0965   y=0.1107   z=0.9913[0m
+[0;32mI (113412) IMU: calib gyro:     x=0.1453   y=0.0356   z=0.1117[0m
+[0;32mI (113412) IMU: timestamp=60[0m
+[0;32mI (113412) IMU: calib accel: x=0.0982   y=0.1091   z=0.9910[0m
+[0;32mI (113422) IMU: calib gyro:     x=0.0232   y=-0.3307   z=0.0812[0m
+[0;32mI (113422) IMU: timestamp=61[0m
+[0;32mI (113432) IMU: calib accel: x=0.0979   y=0.1090   z=0.9892[0m
+[0;32mI (113432) IMU: calib gyro:     x=0.0842   y=-0.5443   z=0.0354[0m
+[0;32mI (113442) IMU: timestamp=62[0m
+[0;32mI (113442) IMU: calib accel: x=0.0981   y=0.1097   z=0.9872[0m
+[0;32mI (113452) IMU: calib gyro:     x=0.0842   y=-0.4680   z=0.0507[0m
+[0;32mI (113452) IMU: timestamp=63[0m
+[0;32mI (113452) IMU: calib accel: x=0.1014   y=0.1066   z=0.9885[0m
+[0;32mI (113462) IMU: calib gyro:     x=-0.0531   y=-0.3612   z=0.0507[0m
+[0;32mI (113462) IMU: timestamp=64[0m
+[0;32mI (113472) IMU: calib accel: x=0.0971   y=0.1084   z=0.9900[0m
+[0;32mI (113472) IMU: calib gyro:     x=0.0842   y=0.0966   z=0.1575[0m
+[0;32mI (113482) IMU: timestamp=65[0m
+[0;32mI (113482) IMU: calib accel: x=0.0976   y=0.1096   z=0.9895[0m
+[0;32mI (113492) IMU: calib gyro:     x=0.0842   y=-0.0255   z=0.1117[0m
+[0;32mI (113492) IMU: timestamp=66[0m
+[0;32mI (113492) IMU: calib accel: x=0.0982   y=0.1087   z=0.9895[0m
+[0;32mI (113502) IMU: calib gyro:     x=-0.0073   y=-0.1628   z=0.1117[0m
+[0;32mI (113512) IMU: timestamp=67[0m
+[0;32mI (113512) IMU: calib accel: x=0.0998   y=0.1109   z=0.9889[0m
+[0;32mI (113512) IMU: calib gyro:     x=0.0385   y=-0.0560   z=0.2032[0m
+[0;32mI (113522) IMU: timestamp=68[0m
+[0;32mI (113522) IMU: calib accel: x=0.1001   y=0.1087   z=0.9904[0m
+[0;32mI (113532) IMU: calib gyro:     x=-0.1904   y=0.0813   z=0.1727[0m
+[0;32mI (113532) IMU: timestamp=69[0m
+[0;32mI (113542) IMU: calib accel: x=0.0984   y=0.1084   z=0.9914[0m
+[0;32mI (113542) IMU: calib gyro:     x=-0.1904   y=0.3102   z=0.1727[0m
+[0;32mI (113552) IMU: timestamp=70[0m
+[0;32mI (113552) IMU: calib accel: x=0.0951   y=0.1093   z=0.9906[0m
+[0;32mI (113552) IMU: calib gyro:     x=0.0079   y=0.2950   z=0.2795[0m
+[0;32mI (113562) IMU: timestamp=71[0m
+[0;32mI (113562) IMU: calib accel: x=0.0982   y=0.1092   z=0.9880[0m
+[0;32mI (113572) IMU: calib gyro:     x=0.0537   y=0.0203   z=0.2795[0m
+[0;32mI (113572) IMU: timestamp=72[0m
+[0;32mI (113582) IMU: calib accel: x=0.1019   y=0.1092   z=0.9888[0m
+[0;32mI (113582) IMU: calib gyro:     x=0.0079   y=-0.1018   z=0.1575[0m
+[0;32mI (113592) IMU: timestamp=73[0m
+[0;32mI (113592) IMU: calib accel: x=0.0993   y=0.1090   z=0.9891[0m
+[0;32mI (113592) IMU: calib gyro:     x=-0.1141   y=0.2797   z=0.1727[0m
+[0;32mI (113602) IMU: timestamp=74[0m
+[0;32mI (113602) IMU: calib accel: x=0.0954   y=0.1110   z=0.9903[0m
+[0;32mI (113612) IMU: calib gyro:     x=-0.1141   y=0.4170   z=0.2032[0m
+[0;32mI (113622) IMU: timestamp=75[0m
+[0;32mI (113622) IMU: calib accel: x=0.0971   y=0.1101   z=0.9922[0m
+[0;32mI (113622) IMU: calib gyro:     x=-0.0073   y=0.1729   z=0.0812[0m
+[0;32mI (113632) IMU: timestamp=76[0m
+[0;32mI (113632) IMU: calib accel: x=0.0975   y=0.1085   z=0.9914[0m
+[0;32mI (113632) IMU: calib gyro:     x=-0.0531   y=-0.0560   z=0.0812[0m
+[0;32mI (113642) IMU: timestamp=77[0m
+[0;32mI (113642) IMU: calib accel: x=0.0981   y=0.1091   z=0.9898[0m
+[0;32mI (113652) IMU: calib gyro:     x=0.1453   y=-0.2391   z=0.1727[0m
+[0;32mI (113652) IMU: timestamp=78[0m
+[0;32mI (113662) IMU: calib accel: x=0.0985   y=0.1092   z=0.9900[0m
+[0;32mI (113662) IMU: calib gyro:     x=0.0690   y=-0.1018   z=0.1270[0m
+[0;32mI (113672) IMU: timestamp=79[0m
+[0;32mI (113672) IMU: calib accel: x=0.0975   y=0.1093   z=0.9897[0m
+[0;32mI (113682) IMU: calib gyro:     x=-0.0684   y=0.0813   z=0.0507[0m
+[0;32mI (113682) IMU: timestamp=80[0m
+[0;32mI (113682) IMU: calib accel: x=0.0962   y=0.1080   z=0.9899[0m
+[0;32mI (113692) IMU: calib gyro:     x=-0.0073   y=0.0508   z=0.0507[0m
+[0;32mI (113702) IMU: timestamp=81[0m
+[0;32mI (113702) IMU: calib accel: x=0.0973   y=0.1094   z=0.9909[0m
+[0;32mI (113702) IMU: calib gyro:     x=0.0690   y=-0.1781   z=0.1422[0m
+[0;32mI (113712) IMU: timestamp=82[0m
+[0;32mI (113712) IMU: calib accel: x=0.0981   y=0.1081   z=0.9899[0m
+[0;32mI (113722) IMU: calib gyro:     x=0.0690   y=-0.2238   z=0.1117[0m
+[0;32mI (113722) IMU: timestamp=83[0m
+[0;32mI (113722) IMU: calib accel: x=0.0996   y=0.1096   z=0.9883[0m
+[0;32mI (113732) IMU: calib gyro:     x=0.0842   y=-0.1018   z=0.1422[0m
+[0;32mI (113742) IMU: timestamp=84[0m
+[0;32mI (113742) IMU: calib accel: x=0.0991   y=0.1090   z=0.9889[0m
+[0;32mI (113742) IMU: calib gyro:     x=0.0995   y=0.0203   z=0.1575[0m
+[0;32mI (113752) IMU: timestamp=85[0m
+[0;32mI (113752) IMU: calib accel: x=0.1004   y=0.1081   z=0.9899[0m
+[0;32mI (113762) IMU: calib gyro:     x=0.0537   y=0.0356   z=0.1880[0m
+[0;32mI (113762) IMU: timestamp=86[0m
+[0;32mI (113762) IMU: calib accel: x=0.0971   y=0.1082   z=0.9899[0m
+[0;32mI (113772) IMU: calib gyro:     x=-0.0226   y=0.2644   z=0.0964[0m
+[0;32mI (113782) IMU: timestamp=87[0m
+[0;32mI (113782) IMU: calib accel: x=0.0955   y=0.1105   z=0.9891[0m
+[0;32mI (113782) IMU: calib gyro:     x=-0.0073   y=0.0356   z=0.0659[0m
+[0;32mI (113792) IMU: timestamp=88[0m
+[0;32mI (113792) IMU: calib accel: x=0.0986   y=0.1104   z=0.9886[0m
+[0;32mI (113802) IMU: calib gyro:     x=-0.0226   y=-0.2238   z=0.0964[0m
+[0;32mI (113802) IMU: IMU stopped[0m
+[0;32mI (114222) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (114222) SD_CARD: IMU raw data file size: 0[0m
+[0;32mI (114222) SD_CARD: IMU orientation file size: 0[0m
+[0;32mI (114232) SD_CARD: Files written.[0m
+[0;32mI (120102) BUTTON: Datalogging started.[0m
+[0;32mI (120102) IMU: cur_timestamp start = 89[0m
+
+[0;32mI (120102) IMU: IMU started[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (120192) DATA LOGGING: Datalogging started.[0m
+[0;32mI (120552) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (120562) LSM6DS3: num_fifo_samples = 282[0m
+[0;32mI (121012) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (121012) LSM6DS3: num_fifo_samples = 570[0m
+[0;32mI (121192) SD_CARD: max_idx: 1813[0m
+[0;32mI (121192) SD_CARD: filename: imu_raw_001814.bin[0m
+[0;32mI (121192) SD_CARD: filepath: /sdcard/imu_raw_001814.bin[0m
+[0;32mI (121192) SD_CARD: Writing to new raw file[0m
+[0;32mI (121472) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 1, empty = 0[0m
+[0;32mI (121472) LSM6DS3: num_fifo_samples = 858 100[0m
+[0;32mI (121602) LSM6DS3: raw gyro = 2.319336 -7.080078 -1.647949[0m
+[0;32mI (121602) LSM6DS3: raw accel = 0.157959 0.084961 0.982910[0m
+[0;32mI (121602) LSM6DS3: num_fifo_samples = 336[0m
+[0;32mI (121602) IMU: timestamp=1073566896[0m
+[0;32mI (121612) IMU: calib accel: x=0.1005   y=0.1385   z=0.9693[0m
+[0;32mI (121612) IMU: calib gyro:     x=2.7850   y=7.0241   z=-0.8344[0m
+[0;32mI (121622) IMU: timestamp=0[0m
+[0;32mI (121622) IMU: calib accel: x=0.1715   y=0.0927   z=0.9726[0m
+[0;32mI (121632) IMU: calib gyro:     x=-1.8231   y=-2.7721   z=-1.8262[0m
+[0;32mI (121632) DATA LOGGING: complementary filter 0 0.0000 2995.5452 163.5085[0m
+[0;32mI (121642) IMU: timestamp=0[0m
+[0;32mI (121642) IMU: calib accel: x=0.1650   y=0.0987   z=0.9791[0m
+[0;32mI (121652) IMU: calib gyro:     x=-1.3806   y=2.3854   z=-2.2229[0m
+[0;32mI (121652) DATA LOGGING: complementary filter 0 0.0000 2983.3682 184.5476[0m
+[0;32mI (121662) IMU: timestamp=0[0m
+[0;32mI (121662) IMU: calib accel: x=0.1352   y=0.1163   z=0.9961[0m
+[0;32mI (121662) IMU: calib gyro:     x=1.6254   y=10.4268   z=-1.4294[0m
+[0;32mI (121672) DATA LOGGING: complementary filter 0 0.0000 2997.7041 276.5112[0m
+[0;32mI (121682) IMU: timestamp=0[0m
+[0;32mI (121682) IMU: calib accel: x=0.1080   y=0.1267   z=0.9845[0m
+[0;32mI (121692) IMU: calib gyro:     x=0.9387   y=6.5511   z=-0.4224[0m
+[0;32mI (121692) DATA LOGGING: complementary filter 0 0.0000 3005.9839 334.2910[0m
+[0;32mI (121702) IMU: timestamp=0[0m
+[0;32mI (121702) IMU: calib accel: x=0.1413   y=0.1171   z=0.9903[0m
+[0;32mI (121702) IMU: calib gyro:     x=0.8319   y=0.8900   z=0.2643[0m
+[0;32mI (121712) DATA LOGGING: complementary filter 0 0.0000 3013.3210 342.1419[0m
+[0;32mI (121722) IMU: timestamp=0[0m
+[0;32mI (121722) IMU: calib accel: x=0.1295   y=0.1087   z=0.9803[0m
+[0;32mI (121722) IMU: calib gyro:     x=1.0303   y=-0.7274   z=0.5695[0m
+[0;32mI (121732) DATA LOGGING: complementary filter 0 0.0000 3022.4080 335.7261[0m
+[0;32mI (121742) IMU: timestamp=0[0m
+[0;32mI (121742) IMU: calib accel: x=0.1483   y=0.1102   z=0.9874[0m
+[0;32mI (121752) IMU: calib gyro:     x=0.6793   y=0.9663   z=0.5084[0m
+[0;32mI (121752) DATA LOGGING: complementary filter 0 0.0000 3028.3994 344.2496[0m
+[0;32mI (121762) IMU: timestamp=0[0m
+[0;32mI (121762) IMU: calib accel: x=0.1455   y=0.1123   z=0.9777[0m
+[0;32mI (121772) IMU: calib gyro:     x=0.7251   y=2.7974   z=0.8289[0m
+[0;32mI (121772) DATA LOGGING: complementary filter 0 0.0000 3034.7947 368.9226[0m
+[0;32mI (121782) IMU: timestamp=0[0m
+[0;32mI (121782) IMU: calib accel: x=0.1349   y=0.1175   z=0.9874[0m
+[0;32mI (121782) IMU: calib gyro:     x=0.4504   y=3.8960   z=2.0038[0m
+[0;32mI (121792) DATA LOGGING: complementary filter 0 0.0000 3038.7678 403.2853[0m
+[0;32mI (121802) IMU: timestamp=0[0m
+[0;32mI (121802) IMU: calib accel: x=0.1279   y=0.1167   z=0.9877[0m
+[0;32mI (121802) IMU: calib gyro:     x=0.7404   y=4.1402   z=1.8207[0m
+[0;32mI (121812) DATA LOGGING: complementary filter 0 0.0000 3045.2979 439.8015[0m
+[0;32mI (121822) IMU: timestamp=0[0m
+[0;32mI (121822) IMU: calib accel: x=0.1298   y=0.1170   z=0.9848[0m
+[0;32mI (121822) IMU: calib gyro:     x=0.5725   y=3.0568   z=1.4240[0m
+[0;32mI (121832) DATA LOGGING: complementary filter 0 0.0000 3050.3474 466.7624[0m
+[0;32mI (121842) IMU: timestamp=0[0m
+[0;32mI (121842) IMU: calib accel: x=0.1347   y=0.1070   z=0.9866[0m
+[0;32mI (121842) IMU: calib gyro:     x=0.0690   y=2.1870   z=1.1340[0m
+[0;32mI (121852) DATA LOGGING: complementary filter 0 0.0000 3050.9556 486.0522[0m
+[0;32mI (121862) IMU: timestamp=0[0m
+[0;32mI (121862) IMU: calib accel: x=0.1369   y=0.1193   z=0.9828[0m
+[0;32mI (121862) IMU: calib gyro:     x=0.8319   y=2.6143   z=1.0120[0m
+[0;32mI (121872) DATA LOGGING: complementary filter 0 0.0000 3058.2935 509.1102[0m
+[0;32mI (121882) IMU: timestamp=0[0m
+[0;32mI (121882) IMU: calib accel: x=0.1340   y=0.1102   z=0.9877[0m
+[0;32mI (121882) IMU: calib gyro:     x=0.4199   y=2.9652   z=0.7526[0m
+[0;32mI (121892) DATA LOGGING: complementary filter 0 0.0000 3061.9968 535.2635[0m
+[0;32mI (121902) IMU: timestamp=0[0m
+[0;32mI (121902) IMU: calib accel: x=0.1388   y=0.1151   z=0.9795[0m
+[0;32mI (121902) IMU: calib gyro:     x=0.0232   y=3.1789   z=0.3101[0m
+[0;32mI (121912) DATA LOGGING: complementary filter 0 0.0000 3062.2014 563.3013[0m
+[0;32mI (121922) IMU: timestamp=0[0m
+[0;32mI (121922) IMU: calib accel: x=0.1352   y=0.1147   z=0.9843[0m
+[0;32mI (121922) IMU: calib gyro:     x=0.0232   y=4.1707   z=0.3406[0m
+[0;32mI (121932) DATA LOGGING: complementary filter 0 0.0000 3062.4060 600.0865[0m
+[0;32mI (121942) IMU: timestamp=0[0m
+[0;32mI (121942) IMU: calib accel: x=0.1208   y=0.1187   z=0.9919[0m
+[0;32mI (121942) IMU: calib gyro:     x=-0.1447   y=4.2928   z=0.2643[0m
+[0;32mI (121952) DATA LOGGING: complementary filter 0 0.0000 3061.1306 637.9483[0m
+[0;32mI (121952) BUTTON: Datalogging stopped.[0m
+[0;32mI (121962) DATA LOGGING: Datalogging stopped.[0m
+[0;32mI (121962) IMU: timestamp=0[0m
+[0;32mI (121972) IMU: calib accel: x=0.1268   y=0.1191   z=0.9845[0m
+[0;32mI (121972) IMU: calib gyro:     x=-0.4346   y=3.2857   z=-0.6665[0m
+[0;32mI (121982) IMU: timestamp=0[0m
+[0;32mI (121982) IMU: calib accel: x=0.1602   y=0.0919   z=0.9800[0m
+[0;32mI (121982) IMU: calib gyro:     x=-1.8994   y=3.4688   z=-0.6512[0m
+[0;32mI (121992) IMU: timestamp=1[0m
+[0;32mI (121992) IMU: calib accel: x=0.1151   y=0.1060   z=0.9941[0m
+[0;32mI (122002) IMU: calib gyro:     x=-2.0825   y=9.4350   z=0.4626[0m
+[0;32mI (122002) IMU: timestamp=2[0m
+[0;32mI (122012) IMU: calib accel: x=0.1236   y=0.1412   z=0.9864[0m
+[0;32mI (122012) IMU: calib gyro:     x=0.2521   y=11.6322   z=0.2490[0m
+[0;32mI (122022) IMU: timestamp=3[0m
+[0;32mI (122022) IMU: calib accel: x=0.1005   y=0.1042   z=0.9894[0m
+[0;32mI (122022) IMU: calib gyro:     x=-1.1517   y=7.5581   z=-0.2545[0m
+[0;32mI (122032) IMU: timestamp=4[0m
+[0;32mI (122032) IMU: calib accel: x=0.1190   y=0.1040   z=0.9905[0m
+[0;32mI (122042) IMU: calib gyro:     x=-1.7621   y=5.3456   z=-0.3308[0m
+[0;32mI (122042) IMU: timestamp=5[0m
+[0;32mI (122052) IMU: calib accel: x=0.1228   y=0.1207   z=0.9882[0m
+[0;32mI (122052) IMU: calib gyro:     x=-0.4041   y=5.9560   z=-0.5750[0m
+[0;32mI (122062) IMU: timestamp=6[0m
+[0;32mI (122062) IMU: calib accel: x=0.1192   y=0.1239   z=0.9856[0m
+[0;32mI (122072) IMU: calib gyro:     x=-0.4651   y=5.6203   z=-0.5597[0m
+[0;32mI (122072) IMU: timestamp=7[0m
+[0;32mI (122072) IMU: calib accel: x=0.1317   y=0.1108   z=0.9869[0m
+[0;32mI (122082) IMU: calib gyro:     x=-1.3654   y=3.9418   z=-0.8954[0m
+[0;32mI (122082) IMU: timestamp=8[0m
+[0;32mI (122092) IMU: calib accel: x=0.1143   y=0.1143   z=0.9878[0m
+[0;32mI (122092) IMU: calib gyro:     x=-0.6940   y=4.5369   z=-0.7581[0m
+[0;32mI (122102) IMU: timestamp=9[0m
+[0;32mI (122102) IMU: calib accel: x=0.1145   y=0.1109   z=0.9899[0m
+[0;32mI (122112) IMU: calib gyro:     x=-0.7550   y=3.9723   z=-0.3918[0m
+[0;32mI (122112) IMU: timestamp=10[0m
+[0;32mI (122112) IMU: calib accel: x=0.1197   y=0.1130   z=0.9915[0m
+[0;32mI (122122) IMU: calib gyro:     x=-0.5261   y=3.0415   z=-0.2850[0m
+[0;32mI (122132) IMU: timestamp=11[0m
+[0;32mI (122132) IMU: calib accel: x=0.1195   y=0.1217   z=0.9880[0m
+[0;32mI (122132) IMU: calib gyro:     x=-0.0378   y=2.6753   z=-0.1324[0m
+[0;32mI (122142) IMU: timestamp=12[0m
+[0;32mI (122142) IMU: calib accel: x=0.1161   y=0.1107   z=0.9922[0m
+[0;32mI (122152) IMU: calib gyro:     x=-0.1752   y=1.4699   z=-0.1019[0m
+[0;32mI (122152) IMU: timestamp=13[0m
+[0;32mI (122162) IMU: calib accel: x=0.1159   y=0.1153   z=0.9865[0m
+[0;32mI (122162) IMU: calib gyro:     x=0.0995   y=0.9206   z=-0.0409[0m
+[0;32mI (122172) IMU: timestamp=14[0m
+[0;32mI (122172) IMU: calib accel: x=0.1189   y=0.1126   z=0.9888[0m
+[0;32mI (122172) IMU: calib gyro:     x=-0.2515   y=0.7527   z=-0.0867[0m
+[0;32mI (122182) IMU: timestamp=15[0m
+[0;32mI (122182) IMU: calib accel: x=0.1174   y=0.1084   z=0.9891[0m
+[0;32mI (122192) IMU: calib gyro:     x=-0.3735   y=0.7375   z=-0.1477[0m
+[0;32mI (122192) IMU: timestamp=16[0m
+[0;32mI (122202) IMU: calib accel: x=0.1121   y=0.1126   z=0.9900[0m
+[0;32mI (122202) IMU: calib gyro:     x=0.1300   y=0.9053   z=-0.1019[0m
+[0;32mI (122212) IMU: timestamp=17[0m
+[0;32mI (122212) IMU: calib accel: x=0.1153   y=0.1109   z=0.9897[0m
+[0;32mI (122212) IMU: calib gyro:     x=-0.0531   y=0.2644   z=-0.1630[0m
+[0;32mI (122222) IMU: timestamp=18[0m
+[0;32mI (122222) IMU: calib accel: x=0.1169   y=0.1123   z=0.9883[0m
+[0;32mI (122232) IMU: calib gyro:     x=0.2979   y=-0.1933   z=-0.2698[0m
+[0;32mI (122232) IMU: timestamp=19[0m
+[0;32mI (122242) IMU: calib accel: x=0.1141   y=0.1143   z=0.9869[0m
+[0;32mI (122242) IMU: calib gyro:     x=0.4810   y=-0.2238   z=-0.1935[0m
+[0;32mI (122252) IMU: timestamp=20[0m
+[0;32mI (122252) IMU: calib accel: x=0.1162   y=0.1115   z=0.9911[0m
+[0;32mI (122262) IMU: calib gyro:     x=0.2826   y=-0.4527   z=-0.1172[0m
+[0;32mI (122262) IMU: timestamp=21[0m
+[0;32mI (122262) IMU: calib accel: x=0.1119   y=0.1153   z=0.9909[0m
+[0;32mI (122272) IMU: calib gyro:     x=0.5115   y=-0.3764   z=-0.1172[0m
+[0;32mI (122282) IMU: timestamp=22[0m
+[0;32mI (122282) IMU: calib accel: x=0.1110   y=0.1132   z=0.9904[0m
+[0;32mI (122282) IMU: calib gyro:     x=0.8929   y=-1.1852   z=-0.0256[0m
+[0;32mI (122292) IMU: timestamp=23[0m
+[0;32mI (122292) IMU: calib accel: x=0.1162   y=0.1105   z=0.9881[0m
+[0;32mI (122302) IMU: calib gyro:     x=1.3660   y=-2.3296   z=-0.0104[0m
+[0;32mI (122302) IMU: timestamp=24[0m
+[0;32mI (122302) IMU: calib accel: x=0.1176   y=0.1186   z=0.9780[0m
+[0;32mI (122312) IMU: calib gyro:     x=1.2592   y=-2.5127   z=0.0201[0m
+[0;32mI (122322) IMU: timestamp=25[0m
+[0;32mI (122322) IMU: calib accel: x=0.1192   y=0.1136   z=0.9839[0m
+[0;32mI (122322) IMU: calib gyro:     x=0.3436   y=-3.1993   z=-0.4224[0m
+[0;32mI (122332) IMU: timestamp=26[0m
+[0;32mI (122332) IMU: calib accel: x=0.1312   y=0.1116   z=0.9847[0m
+[0;32mI (122342) IMU: calib gyro:     x=-0.1447   y=-3.0620   z=-0.5139[0m
+[0;32mI (122342) IMU: timestamp=27[0m
+[0;32mI (122352) IMU: calib accel: x=0.1240   y=0.1114   z=0.9885[0m
+[0;32mI (122352) IMU: calib gyro:     x=0.3131   y=-1.0783   z=-1.0785[0m
+[0;32mI (122362) IMU: timestamp=28[0m
+[0;32mI (122362) IMU: calib accel: x=0.1113   y=0.1156   z=0.9911[0m
+[0;32mI (122362) IMU: calib gyro:     x=0.3284   y=-0.6664   z=-1.3837[0m
+[0;32mI (122372) IMU: timestamp=29[0m
+[0;32mI (122372) IMU: calib accel: x=0.1190   y=0.1136   z=0.9885[0m
+[0;32mI (122382) IMU: calib gyro:     x=0.6488   y=-1.2614   z=-0.4987[0m
+[0;32mI (122392) IMU: timestamp=30[0m
+[0;32mI (122392) IMU: calib accel: x=0.1182   y=0.1160   z=0.9867[0m
+[0;32mI (122392) IMU: calib gyro:     x=0.1910   y=-1.8718   z=-0.8344[0m
+[0;32mI (122402) IMU: timestamp=31[0m
+[0;32mI (122402) IMU: calib accel: x=0.1226   y=0.1157   z=0.9847[0m
+[0;32mI (122412) IMU: calib gyro:     x=-0.0073   y=-1.0631   z=-0.4529[0m
+[0;32mI (122412) IMU: timestamp=32[0m
+[0;32mI (122412) IMU: calib accel: x=0.1191   y=0.1141   z=0.9849[0m
+[0;32mI (122422) IMU: calib gyro:     x=-0.0073   y=0.0813   z=-0.2240[0m
+[0;32mI (122432) IMU: timestamp=33[0m
+[0;32mI (122432) IMU: calib accel: x=0.1197   y=0.1140   z=0.9893[0m
+[0;32mI (122432) IMU: calib gyro:     x=-0.2820   y=0.1118   z=-0.2545[0m
+[0;32mI (122442) IMU: timestamp=34[0m
+[0;32mI (122442) IMU: calib accel: x=0.1218   y=0.1129   z=0.9891[0m
+[0;32mI (122452) IMU: calib gyro:     x=-0.4193   y=0.0356   z=-0.2393[0m
+[0;32mI (122452) IMU: timestamp=35[0m
+[0;32mI (122452) IMU: calib accel: x=0.1179   y=0.1141   z=0.9878[0m
+[0;32mI (122462) IMU: calib gyro:     x=-0.2972   y=0.2339   z=-0.2698[0m
+[0;32mI (122472) IMU: timestamp=36[0m
+[0;32mI (122472) IMU: calib accel: x=0.1190   y=0.1146   z=0.9849[0m
+[0;32mI (122472) IMU: calib gyro:     x=-0.1904   y=0.0050   z=-0.1782[0m
+[0;32mI (122482) IMU: timestamp=37[0m
+[0;32mI (122482) IMU: calib accel: x=0.1218   y=0.1152   z=0.9833[0m
+[0;32mI (122492) IMU: calib gyro:     x=-0.2667   y=0.3102   z=-0.0867[0m
+[0;32mI (122492) IMU: timestamp=38[0m
+[0;32mI (122502) IMU: calib accel: x=0.1204   y=0.1138   z=0.9854[0m
+[0;32mI (122502) IMU: calib gyro:     x=-0.7855   y=0.7985   z=-0.3003[0m
+[0;32mI (122512) IMU: timestamp=39[0m
+[0;32mI (122512) IMU: calib accel: x=0.1234   y=0.1082   z=0.9881[0m
+[0;32mI (122512) IMU: calib gyro:     x=-1.3043   y=1.5462   z=-0.2850[0m
+[0;32mI (122522) IMU: timestamp=40[0m
+[0;32mI (122522) IMU: calib accel: x=0.1189   y=0.1174   z=0.9925[0m
+[0;32mI (122532) IMU: calib gyro:     x=-1.2280   y=2.1260   z=-0.1782[0m
+[0;32mI (122532) IMU: timestamp=41[0m
+[0;32mI (122542) IMU: calib accel: x=0.1129   y=0.1165   z=0.9906[0m
+[0;32mI (122542) IMU: calib gyro:     x=-0.5566   y=1.8819   z=-0.0104[0m
+[0;32mI (122552) IMU: timestamp=42[0m
+[0;32mI (122552) IMU: calib accel: x=0.1156   y=0.1143   z=0.9887[0m
+[0;32mI (122562) IMU: calib gyro:     x=-0.3583   y=0.9969   z=0.0659[0m
+[0;32mI (122562) IMU: timestamp=43[0m
+[0;32mI (122562) IMU: calib accel: x=0.1170   y=0.1126   z=0.9870[0m
+[0;32mI (122572) IMU: calib gyro:     x=-0.3888   y=0.6764   z=-0.2240[0m
+[0;32mI (122582) IMU: timestamp=44[0m
+[0;32mI (122582) IMU: calib accel: x=0.1170   y=0.1129   z=0.9887[0m
+[0;32mI (122582) IMU: calib gyro:     x=-0.2972   y=0.6612   z=-0.4071[0m
+[0;32mI (122592) IMU: timestamp=45[0m
+[0;32mI (122592) IMU: calib accel: x=0.1175   y=0.1114   z=0.9893[0m
+[0;32mI (122602) IMU: calib gyro:     x=-0.3278   y=0.5849   z=-0.4224[0m
+[0;32mI (122602) IMU: timestamp=46[0m
+[0;32mI (122602) IMU: calib accel: x=0.1198   y=0.0942   z=0.9941[0m
+[0;32mI (122612) IMU: calib gyro:     x=-0.2820   y=0.4170   z=-0.3308[0m
+[0;32mI (122622) IMU: timestamp=47[0m
+[0;32mI (122622) IMU: calib accel: x=0.1154   y=0.1286   z=0.9843[0m
+[0;32mI (122622) IMU: calib gyro:     x=0.0079   y=-0.0407   z=-0.2393[0m
+[0;32mI (122632) IMU: timestamp=48[0m
+[0;32mI (122632) IMU: calib accel: x=0.1151   y=0.1110   z=0.9891[0m
+[0;32mI (122642) IMU: calib gyro:     x=0.0842   y=0.0356   z=-0.3308[0m
+[0;32mI (122642) IMU: timestamp=49[0m
+[0;32mI (122652) IMU: calib accel: x=0.1193   y=0.1091   z=0.9883[0m
+[0;32mI (122652) IMU: calib gyro:     x=-0.1904   y=-0.1018   z=-0.2850[0m
+[0;32mI (122662) IMU: timestamp=50[0m
+[0;32mI (122662) IMU: calib accel: x=0.1185   y=0.1163   z=0.9859[0m
+[0;32mI (122662) IMU: calib gyro:     x=-0.1294   y=-0.0102   z=-0.3308[0m
+[0;32mI (122672) IMU: timestamp=51[0m
+[0;32mI (122672) IMU: calib accel: x=0.1162   y=0.1130   z=0.9893[0m
+[0;32mI (122682) IMU: calib gyro:     x=-0.0684   y=0.1881   z=-0.1782[0m
+[0;32mI (122682) IMU: timestamp=52[0m
+[0;32mI (122692) IMU: calib accel: x=0.1172   y=0.1098   z=0.9870[0m
+[0;32mI (122692) IMU: calib gyro:     x=-0.2362   y=0.1118   z=-0.1324[0m
+[0;32mI (122702) IMU: timestamp=53[0m
+[0;32mI (122702) IMU: calib accel: x=0.1156   y=0.1163   z=0.9864[0m
+[0;32mI (122712) IMU: calib gyro:     x=-0.0836   y=0.2339   z=0.0049[0m
+[0;32mI (122712) IMU: timestamp=54[0m
+[0;32mI (122712) IMU: calib accel: x=0.1174   y=0.1147   z=0.9877[0m
+[0;32mI (122722) IMU: calib gyro:     x=-0.0684   y=0.1424   z=0.0964[0m
+[0;32mI (122722) IMU: timestamp=55[0m
+[0;32mI (122732) IMU: calib accel: x=0.1173   y=0.1126   z=0.9874[0m
+[0;32mI (122732) IMU: calib gyro:     x=-0.0989   y=0.0813   z=0.1270[0m
+[0;32mI (122742) IMU: timestamp=56[0m
+[0;32mI (122742) IMU: calib accel: x=0.1163   y=0.1138   z=0.9877[0m
+[0;32mI (122752) IMU: calib gyro:     x=-0.1294   y=0.2339   z=0.0964[0m
+[0;32mI (122752) IMU: timestamp=57[0m
+[0;32mI (122752) IMU: calib accel: x=0.1181   y=0.1119   z=0.9871[0m
+[0;32mI (122762) IMU: calib gyro:     x=-0.2820   y=0.1271   z=0.0354[0m
+[0;32mI (122772) IMU: timestamp=58[0m
+[0;32mI (122772) IMU: calib accel: x=0.1184   y=0.1132   z=0.9885[0m
+[0;32mI (122772) IMU: calib gyro:     x=-0.2057   y=0.2034   z=0.0201[0m
+[0;32mI (122782) IMU: timestamp=59[0m
+[0;32mI (122782) IMU: calib accel: x=0.1168   y=0.1113   z=0.9880[0m
+[0;32mI (122792) IMU: calib gyro:     x=-0.2515   y=0.2644   z=0.0354[0m
+[0;32mI (122792) IMU: timestamp=60[0m
+[0;32mI (122802) IMU: calib accel: x=0.1180   y=0.1107   z=0.9878[0m
+[0;32mI (122802) IMU: calib gyro:     x=-0.2820   y=0.3560   z=0.1880[0m
+[0;32mI (122812) IMU: timestamp=61[0m
+[0;32mI (122812) IMU: calib accel: x=0.1162   y=0.1127   z=0.9888[0m
+[0;32mI (122812) IMU: calib gyro:     x=-0.1294   y=0.6154   z=0.3253[0m
+[0;32mI (122822) IMU: timestamp=62[0m
+[0;32mI (122822) IMU: calib accel: x=0.1174   y=0.1113   z=0.9883[0m
+[0;32mI (122832) IMU: calib gyro:     x=-0.1294   y=0.5544   z=0.3864[0m
+[0;32mI (122832) IMU: timestamp=63[0m
+[0;32mI (122842) IMU: calib accel: x=0.1178   y=0.1114   z=0.9866[0m
+[0;32mI (122842) IMU: calib gyro:     x=-0.2209   y=0.5238   z=0.2795[0m
+[0;32mI (122852) IMU: timestamp=64[0m
+[0;32mI (122852) IMU: calib accel: x=0.1198   y=0.1103   z=0.9891[0m
+[0;32mI (122852) IMU: calib gyro:     x=-0.1904   y=0.8138   z=0.3864[0m
+[0;32mI (122862) IMU: timestamp=65[0m
+[0;32mI (122862) IMU: calib accel: x=0.1153   y=0.1105   z=0.9911[0m
+[0;32mI (122872) IMU: calib gyro:     x=-0.1294   y=1.1037   z=0.5695[0m
+[0;32mI (122882) IMU: timestamp=66[0m
+[0;32mI (122882) IMU: calib accel: x=0.1101   y=0.1148   z=0.9894[0m
+[0;32mI (122882) IMU: calib gyro:     x=-0.0989   y=0.9053   z=0.6610[0m
+[0;32mI (122892) IMU: timestamp=67[0m
+[0;32mI (122892) IMU: calib accel: x=0.1148   y=0.1141   z=0.9892[0m
+[0;32mI (122902) IMU: calib gyro:     x=0.0842   y=0.4018   z=0.4779[0m
+[0;32mI (122902) IMU: timestamp=68[0m
+[0;32mI (122902) IMU: calib accel: x=0.1169   y=0.1108   z=0.9885[0m
+[0;32mI (122912) IMU: calib gyro:     x=-0.0378   y=0.0203   z=0.2032[0m
+[0;32mI (122922) IMU: timestamp=69[0m
+[0;32mI (122922) IMU: calib accel: x=0.1145   y=0.1113   z=0.9869[0m
+[0;32mI (122922) IMU: calib gyro:     x=-0.0226   y=0.1881   z=0.3101[0m
+[0;32mI (122932) IMU: timestamp=70[0m
+[0;32mI (122932) IMU: calib accel: x=0.1136   y=0.1123   z=0.9894[0m
+[0;32mI (122942) IMU: calib gyro:     x=0.0385   y=0.2950   z=0.4779[0m
+[0;32mI (122942) IMU: timestamp=71[0m
+[0;32mI (122942) IMU: calib accel: x=0.1152   y=0.1105   z=0.9897[0m
+[0;32mI (122952) IMU: calib gyro:     x=0.0690   y=0.2034   z=0.5084[0m
+[0;32mI (122952) IMU: timestamp=72[0m
+[0;32mI (122962) IMU: calib accel: x=0.1173   y=0.1110   z=0.9883[0m
+[0;32mI (122962) IMU: calib gyro:     x=0.0842   y=0.2339   z=0.5542[0m
+[0;32mI (122972) IMU: timestamp=73[0m
+[0;32mI (122972) IMU: calib accel: x=0.1143   y=0.1125   z=0.9888[0m
+[0;32mI (122982) IMU: calib gyro:     x=0.2063   y=0.2339   z=0.6305[0m
+[0;32mI (122982) IMU: timestamp=74[0m
+[0;32mI (122982) IMU: calib accel: x=0.1173   y=0.1099   z=0.9878[0m
+[0;32mI (122992) IMU: calib gyro:     x=0.2368   y=0.1424   z=0.5847[0m
+[0;32mI (123002) IMU: timestamp=75[0m
+[0;32mI (123002) IMU: calib accel: x=0.1170   y=0.1145   z=0.9861[0m
+[0;32mI (123002) IMU: calib gyro:     x=0.1910   y=0.3712   z=0.7678[0m
+[0;32mI (123012) IMU: timestamp=76[0m
+[0;32mI (123012) IMU: calib accel: x=0.1114   y=0.1141   z=0.9844[0m
+[0;32mI (123022) IMU: calib gyro:     x=0.2979   y=0.6764   z=1.1188[0m
+[0;32mI (123022) IMU: timestamp=77[0m
+[0;32mI (123022) IMU: calib accel: x=0.1106   y=0.1141   z=0.9895[0m
+[0;32mI (123032) IMU: calib gyro:     x=0.2368   y=0.6001   z=0.8441[0m
+[0;32mI (123042) IMU: timestamp=78[0m
+[0;32mI (123042) IMU: calib accel: x=0.1154   y=0.1127   z=0.9883[0m
+[0;32mI (123042) IMU: calib gyro:     x=0.0537   y=0.0508   z=0.2795[0m
+[0;32mI (123052) IMU: timestamp=79[0m
+[0;32mI (123052) IMU: calib accel: x=0.1162   y=0.1104   z=0.9886[0m
+[0;32mI (123062) IMU: calib gyro:     x=0.1147   y=-0.0255   z=0.3558[0m
+[0;32mI (123062) IMU: timestamp=80[0m
+[0;32mI (123062) IMU: calib accel: x=0.1137   y=0.1132   z=0.9843[0m
+[0;32mI (123072) IMU: calib gyro:     x=0.1300   y=-0.0560   z=0.3558[0m
+[0;32mI (123082) IMU: IMU stopped[0m
+[0;32mI (123582) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (123582) SD_CARD: filename: imu_orientation_001814.bin[0m
+[0;32mI (123582) SD_CARD: filepath: /sdcard/imu_orientation_001814.bin[0m
+[0;32mI (123582) SD_CARD: Writing to new orientation file[0m
+[0;32mI (125892) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (125892) SD_CARD: IMU raw data file size: 0[0m
+[0;32mI (125892) SD_CARD: IMU orientation file size: 0[0m
+[0;32mI (125912) SD_CARD: Files written.[0m
+[0;32mI (127942) BUTTON: Datalogging started.[0m
+[0;32mI (127942) IMU: cur_timestamp start = 81[0m
+
+[0;32mI (127942) IMU: IMU started[0m
+[0;32mI (127962) DATA LOGGING: Datalogging started.[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (128392) LSM6DS3: FIFO watermark = 1, overrun = 0, full_smart = 1, empty = 0[0m
+[0;32mI (128392) LSM6DS3: num_fifo_samples = 288[0m
+[0;32mI (128852) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 0, empty = 0[0m
+[0;32mI (128852) LSM6DS3: num_fifo_samples = 576[0m
+[0;32mI (129072) SD_CARD: max_idx: 1814[0m
+[0;32mI (129072) SD_CARD: filename: imu_raw_001815.bin[0m
+[0;32mI (129072) SD_CARD: filepath: /sdcard/imu_raw_001815.bin[0m
+[0;32mI (129072) SD_CARD: Writing to new raw file[0m
+[0;32mI (129302) LSM6DS3: FIFO watermark = 1, overrun = 1, full_smart = 1, empty = 0[0m
+[0;32mI (129302) LSM6DS3: num_fifo_samples = 852 100[0m
+[0;32mI (129432) LSM6DS3: raw gyro = 2.014160 -7.064819 -2.014160[0m
+[0;32mI (129432) LSM6DS3: raw accel = 0.154541 0.087402 0.986084[0m
+[0;32mI (129432) LSM6DS3: num_fifo_samples = 342[0m
+[0;32mI (129432) IMU: timestamp=1073566896[0m
+[0;32mI (129432) IMU: calib accel: x=0.0866   y=0.1173   z=1.0245[0m
+[0;32mI (129442) IMU: calib gyro:     x=-0.7245   y=2.9652   z=0.7373[0m
+[0;32mI (129452) IMU: timestamp=0[0m
+[0;32mI (129452) IMU: calib accel: x=0.1190   y=0.1190   z=0.9670[0m
+[0;32mI (129452) IMU: calib gyro:     x=2.7087   y=-0.6816   z=-0.1477[0m
+[0;32mI (129462) DATA LOGGING: complementary filter 0 0.0000 3085.0217 631.9365[0m
+[0;32mI (129472) IMU: timestamp=0[0m
+[0;32mI (129472) IMU: calib accel: x=0.1275   y=0.1141   z=0.9880[0m
+[0;32mI (129472) IMU: calib gyro:     x=1.2897   y=-1.5056   z=-0.0867[0m
+[0;32mI (129482) DATA LOGGING: complementary filter 0 0.0000 3096.3965 618.6573[0m
+[0;32mI (129492) IMU: timestamp=0[0m
+[0;32mI (129492) IMU: calib accel: x=0.1043   y=0.1225   z=0.9759[0m
+[0;32mI (129492) IMU: calib gyro:     x=1.6254   y=0.8138   z=-0.4224[0m
+[0;32mI (129502) DATA LOGGING: complementary filter 0 0.0000 3110.7327 625.8342[0m
+[0;32mI (129512) IMU: timestamp=0[0m
+[0;32mI (129512) IMU: calib accel: x=0.1113   y=0.1188   z=0.9950[0m
+[0;32mI (129512) IMU: calib gyro:     x=-0.0836   y=0.6001   z=-0.7428[0m
+[0;32mI (129522) DATA LOGGING: complementary filter 0 0.0000 3109.9951 631.1274[0m
+[0;32mI (129532) IMU: timestamp=0[0m
+[0;32mI (129532) IMU: calib accel: x=0.1215   y=0.0983   z=0.9885[0m
+[0;32mI (129532) IMU: calib gyro:     x=-0.9229   y=0.4475   z=-1.2616[0m
+[0;32mI (129542) DATA LOGGING: complementary filter 0 0.0000 3101.8552 635.0749[0m
+[0;32mI (129552) IMU: timestamp=0[0m
+[0;32mI (129552) IMU: calib accel: x=0.1073   y=0.1159   z=0.9925[0m
+[0;32mI (129552) IMU: calib gyro:     x=0.3436   y=0.9816   z=-1.4294[0m
+[0;32mI (129562) DATA LOGGING: complementary filter 0 0.0000 3104.8862 643.7322[0m
+[0;32mI (129572) IMU: timestamp=0[0m
+[0;32mI (129572) IMU: calib accel: x=0.1125   y=0.1084   z=0.9770[0m
+[0;32mI (129572) IMU: calib gyro:     x=-0.3583   y=-0.5748   z=-1.7041[0m
+[0;32mI (129582) DATA LOGGING: complementary filter 0 0.0000 3101.7261 638.6626[0m
+[0;32mI (129592) IMU: timestamp=0[0m
+[0;32mI (129592) IMU: calib accel: x=0.1092   y=0.1107   z=0.9977[0m
+[0;32mI (129592) IMU: calib gyro:     x=0.2063   y=0.0203   z=-0.8496[0m
+[0;32mI (129602) DATA LOGGING: complementary filter 0 0.0000 3103.5457 638.8415[0m
+[0;32mI (129612) IMU: timestamp=0[0m
+[0;32mI (129612) IMU: calib accel: x=0.1019   y=0.1192   z=0.9797[0m
+[0;32mI (129612) IMU: calib gyro:     x=0.8472   y=0.0966   z=-0.9717[0m
+[0;32mI (129622) DATA LOGGING: complementary filter 0 0.0000 3111.0181 639.6932[0m
+[0;32mI (129632) IMU: timestamp=0[0m
+[0;32mI (129632) IMU: calib accel: x=0.1147   y=0.1081   z=0.9927[0m
+[0;32mI (129632) IMU: calib gyro:     x=-0.1904   y=-0.4222   z=-0.7428[0m
+[0;32mI (129642) DATA LOGGING: complementary filter 0 0.0000 3109.3381 635.9695[0m
+[0;32mI (129652) IMU: timestamp=0[0m
+[0;32mI (129652) IMU: calib accel: x=0.1073   y=0.1169   z=0.9841[0m
+[0;32mI (129652) IMU: calib gyro:     x=0.3131   y=0.3102   z=-0.4224[0m
+[0;32mI (129662) DATA LOGGING: complementary filter 0 0.0000 3112.1001 638.7054[0m
+[0;32mI (129672) IMU: timestamp=0[0m
+[0;32mI (129672) IMU: calib accel: x=0.1086   y=0.1188   z=0.9904[0m
+[0;32mI (129682) IMU: calib gyro:     x=0.2216   y=-0.0255   z=-0.4529[0m
+[0;32mI (129682) DATA LOGGING: complementary filter 0 0.0000 3114.0544 638.4807[0m
+[0;32mI (129692) IMU: timestamp=0[0m
+[0;32mI (129692) IMU: calib accel: x=0.1137   y=0.1119   z=0.9833[0m
+[0;32mI (129692) IMU: calib gyro:     x=-0.1599   y=0.0050   z=-0.0104[0m
+[0;32mI (129702) DATA LOGGING: complementary filter 0 0.0000 3112.6438 638.5251[0m
+[0;32mI (129712) IMU: timestamp=0[0m
+[0;32mI (129712) IMU: calib accel: x=0.1053   y=0.1201   z=0.9898[0m
+[0;32mI (129712) IMU: calib gyro:     x=0.4657   y=0.2187   z=0.0049[0m
+[0;32mI (129722) DATA LOGGING: complementary filter 0 0.0000 3116.7512 640.4535[0m
+[0;32mI (129732) IMU: timestamp=0[0m
+[0;32mI (129732) IMU: calib accel: x=0.1130   y=0.1124   z=0.9870[0m
+[0;32mI (129732) IMU: calib gyro:     x=0.3131   y=-0.2086   z=0.1880[0m
+[0;32mI (129742) DATA LOGGING: complementary filter 0 0.0000 3119.5127 638.6139[0m
+[0;32mI (129752) IMU: timestamp=0[0m
+[0;32mI (129752) IMU: calib accel: x=0.1119   y=0.1152   z=0.9891[0m
