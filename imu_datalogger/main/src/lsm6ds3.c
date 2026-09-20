@@ -639,28 +639,6 @@ uint16_t lsm6ds3_fifo_read(i2c_master_dev_handle_t dev_handle, lsm6ds3_data_t *l
      *
      * t = 0,
      */
-    // /* read FIFO CTRL again */
-    // ESP_ERROR_CHECK(lsm6ds3_register_read(dev_handle, LSM6DS3_FIFO_CTRL1_REG_ADDR, &data[0], 1));
-    // ESP_ERROR_CHECK(lsm6ds3_register_read(dev_handle, LSM6DS3_FIFO_CTRL2_REG_ADDR, &data[1], 1));
-    // ESP_LOGI(LSM6DS3_TAG, "FIFO_CTRL1_REG_ADDR again = %X", data[0]);
-    // ESP_LOGI(LSM6DS3_TAG, "FIFO_CTRL2_REG_ADDR again = %X", data[1]);
-
-    // do
-    // {
-    // num_fifo_samples = lsm6ds3_fifo_get_num_samples(dev_handle);
-    // } while (num_fifo_samples < 40);
-
-    // // grab 40 samples from the FIFO and print out the FIFO pattern
-    // while (num_fifo_samples > 0)
-    // {
-    //     /* get FIFO pattern */
-    //     lsm6ds3_fifo_get_pattern(dev_handle);
-
-    //     /* read 16 bits from FIFO data out H and L */
-    //     uint16_t fifo_data = lsm6ds3_fifo_read_word_from_fifo(dev_handle);
-
-    //     num_fifo_samples--;
-    // }
 
     /*
     get the number of FIFO samples currently in the LSM6DS3.
@@ -672,11 +650,6 @@ uint16_t lsm6ds3_fifo_read(i2c_master_dev_handle_t dev_handle, lsm6ds3_data_t *l
     uint8_t status2_reg = lsm6ds3_read_fifo_status2_reg(dev_handle);
 
     /* 6 axes
-    ||
-        ((status2_reg & FIFO_STATUS2_WATERM) == 1 &&
-         (status2_reg & FIFO_STATUS2_OVER_RUN) == 0 &&
-         (status2_reg & FIFO_STATUS2_FIFO_FULL_SMART) == 1 &&
-         (status2_reg & FIFO_STATUS2_FIFO_EMPTY) == 0)||
      */
     if (num_fifo_samples > num_samples_to_read)
     {
@@ -686,22 +659,7 @@ uint16_t lsm6ds3_fifo_read(i2c_master_dev_handle_t dev_handle, lsm6ds3_data_t *l
         // ESP_LOGI(LSM6DS3_TAG, "num_fifo_samples = %d %d", num_fifo_samples, num_samples_to_read);
         for (int i = 0; i < num_timesteps_to_read; i++)
         {
-            // ESP_ERROR_CHECK(lsm6ds3_register_read(dev_handle, LSM6DS3_FIFO_DATA_OUT_L_REG_ADDR, data, 2));
-            // lsm6ds3_fifo_buffer[i].gyro[0] = ((int16_t)(data[1] << 8) | data[0]) / 32768.0 * gyro_fs_cf;
-            // ESP_ERROR_CHECK(lsm6ds3_register_read(dev_handle, LSM6DS3_FIFO_DATA_OUT_L_REG_ADDR, data, 2));
-            // lsm6ds3_fifo_buffer[i].gyro[1] = ((int16_t)(data[1] << 8) | data[0]) / 32768.0 * gyro_fs_cf;
-            // ESP_ERROR_CHECK(lsm6ds3_register_read(dev_handle, LSM6DS3_FIFO_DATA_OUT_L_REG_ADDR, data, 2));
-            // lsm6ds3_fifo_buffer[i].gyro[2] = ((int16_t)(data[1] << 8) | data[0]) / 32768.0 * gyro_fs_cf;
-
-            // ESP_ERROR_CHECK(lsm6ds3_register_read(dev_handle, LSM6DS3_FIFO_DATA_OUT_L_REG_ADDR, data, 2));
-            // lsm6ds3_fifo_buffer[i].accel[0] = ((int16_t)(data[1] << 8) | data[0]) / 32768.0 * accel_fs_cf;
-            // ESP_ERROR_CHECK(lsm6ds3_register_read(dev_handle, LSM6DS3_FIFO_DATA_OUT_L_REG_ADDR, data, 2));
-            // lsm6ds3_fifo_buffer[i].accel[1] = ((int16_t)(data[1] << 8) | data[0]) / 32768.0 * accel_fs_cf;
-            // ESP_ERROR_CHECK(lsm6ds3_register_read(dev_handle, LSM6DS3_FIFO_DATA_OUT_L_REG_ADDR, data, 2));
-            // lsm6ds3_fifo_buffer[i].accel[2] = ((int16_t)(data[1] << 8) | data[0]) / 32768.0 * accel_fs_cf;
-
             ESP_ERROR_CHECK(lsm6ds3_register_read(dev_handle, LSM6DS3_FIFO_DATA_OUT_L_REG_ADDR, data, 12));
-            // ESP_LOGI(LSM6DS3_TAG, "r %d", i);
             lsm6ds3_fifo_buffer[i].gyro[0] = ((int16_t)(data[1] << 8) | data[0]) / 32768.0 * gyro_fs_cf;
             lsm6ds3_fifo_buffer[i].gyro[1] = ((int16_t)(data[3] << 8) | data[2]) / 32768.0 * gyro_fs_cf;
             lsm6ds3_fifo_buffer[i].gyro[2] = ((int16_t)(data[5] << 8) | data[4]) / 32768.0 * gyro_fs_cf;
@@ -751,13 +709,6 @@ void read_modify_write(uint8_t bit_start,
                        uint8_t *reg)
 {
     uint8_t bit_len = bit_start - bit_end + 1;
-
-    // /* create a mask of ones for the field of interest */
-    // mask = ((1 << bit_len) - 1) << bit_end;
-    // /* zero the field in the value using the mask*/
-    // reg &= ~mask;
-    // /* set the value of the field in the register */
-    // reg |= (field_value & ((1 << bit_len) - 1)) << bit_end;
 
     /* one-liner */
     *reg = (*reg & ~(((1 << bit_len) - 1) << bit_end)) | ((field_value & ((1 << bit_len) - 1)) << bit_end);

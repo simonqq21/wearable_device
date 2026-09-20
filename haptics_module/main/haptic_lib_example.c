@@ -2,14 +2,14 @@
 
 static void timer_callback(void *arg);
 
-#define CHANNEL_0_PIN_1 (13)
-#define CHANNEL_0_PIN_2 (14)
-#define CHANNEL_1_PIN_1 (16)
-#define CHANNEL_1_PIN_2 (17)
-#define CHANNEL_2_PIN_1 (18)
-#define CHANNEL_2_PIN_2 (19)
-#define CHANNEL_3_PIN_1 (23)
-#define CHANNEL_3_PIN_2 (25)
+#define CHANNEL_0_PIN_1 (2)
+#define CHANNEL_0_PIN_2 (0)
+#define CHANNEL_1_PIN_1 (5)
+#define CHANNEL_1_PIN_2 (0)
+#define CHANNEL_2_PIN_1 (32)
+#define CHANNEL_2_PIN_2 (0)
+#define CHANNEL_3_PIN_1 (33)
+#define CHANNEL_3_PIN_2 (0)
 #define EN_PIN (26)
 
 haptic_actuator_array_t haptics_hw;
@@ -23,7 +23,7 @@ haptic_channel_pins_t haptics_channels[4] = {
  * sample haptic pulse sequences
  */
 
-const int master_delay = 100;
+const int master_delay = 400;
 
 haptic_pulse_t pulse_null[1] = {
     {master_delay, {0, 0, 0, 0}}};
@@ -38,16 +38,16 @@ haptic_pulse_t pulse_seq_1[6] = {
     {master_delay, {0, 0, 0, 0}}};
 
 haptic_pulse_t pulse_seq_2[4] = {
-    {master_delay, {1, 0, 0, 0}},
-    {master_delay, {0, 1, 0, 0}},
-    {master_delay, {0, 0, 1, 0}},
-    {master_delay, {0, 0, 0, 1}}};
+    {master_delay * 2, {1, 0, 0, 0}},
+    {master_delay * 2, {0, 1, 0, 0}},
+    {master_delay * 2, {0, 0, 1, 0}},
+    {master_delay * 2, {0, 0, 0, 1}}};
 
 haptic_pulse_t pulse_seq_3[4] = {
-    {master_delay, {0, 0, 0, 1}},
-    {master_delay, {0, 0, 1, 0}},
-    {master_delay, {0, 1, 0, 0}},
-    {master_delay, {1, 0, 0, 0}}};
+    {master_delay * 2, {0, 0, 0, 1}},
+    {master_delay * 2, {0, 0, 1, 0}},
+    {master_delay * 2, {0, 1, 0, 0}},
+    {master_delay * 2, {1, 0, 0, 0}}};
 
 haptic_pulse_t pulse_seq_4[2] = {
     {master_delay * 2, {1, 0, 0, 1}},
@@ -110,6 +110,9 @@ void app_main(void)
         // {
         //     haptic_set_val(haptics_channels[i], 0);
         // }
+
+        // haptics_load_pulse_seq(&haptics_hw, pulse_seq_1, 1);
+
         haptics_load_pulse_seq(&haptics_hw, pulse_seq_1, 6);
         vTaskDelay(5000 / portTICK_PERIOD_MS);
 
@@ -125,7 +128,7 @@ void app_main(void)
         haptics_load_pulse_seq(&haptics_hw, pulse_seq_5, 2);
         vTaskDelay(5000 / portTICK_PERIOD_MS);
 
-        vTaskDelay(50 / portTICK_PERIOD_MS);
+        vTaskDelay(400 / portTICK_PERIOD_MS);
 
         // haptics_play_pulse(&haptics_hw, &pulse_seq_1[0]);
         // vTaskDelay(500 / portTICK_PERIOD_MS);

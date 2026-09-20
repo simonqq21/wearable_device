@@ -48,7 +48,5 @@ int imu_measure_raw(i2c_master_dev_handle_t dev_handle, imu_data_t *data);
 void __imu_convert_vals(lsm6ds3_data_t *lsm6ds3_data, imu_data_t *imu_data);
 void imu_apply_calibration(imu_data_t *data);
 esp_err_t imu_measure_calibrated(i2c_master_dev_handle_t dev_handle, imu_data_t *data);
-// void mpu6050_preprocess(imu_data_t *data);
-// void task_imu(void *pvParameters);
 
 #endif

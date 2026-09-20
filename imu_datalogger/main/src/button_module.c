@@ -9,7 +9,7 @@ extern TaskHandle_t task_handle_imu_data;
 extern TaskHandle_t task_handle_main_data_logging;
 extern TaskHandle_t task_handle_SD_card_datalogger;
 
-uint8_t datalogging;
+uint8_t btn_datalogging;
 
 cmd_task_status_led_t status_led_state_from_button;
 
@@ -19,9 +19,9 @@ notify IMU task to stop datalogging
 */
 void button_toggle_datalogging_cb(void *arg, void *data)
 {
-    if (datalogging)
+    if (btn_datalogging)
     {
-        datalogging = false;
+        btn_datalogging = false;
         // status_led_state_from_button = STATUS_LED_OFF;
         // xTaskNotifyGiveIndexed(task_handle_status_led, 0);
 
@@ -41,7 +41,7 @@ void button_toggle_datalogging_cb(void *arg, void *data)
     }
     else
     {
-        datalogging = true;
+        btn_datalogging = true;
         // status_led_state_from_button = STATUS_LED_BLINK;
         // xTaskNotifyGiveIndexed(task_handle_status_led, 0);
 

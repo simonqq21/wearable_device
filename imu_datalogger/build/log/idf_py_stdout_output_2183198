@@ -1,0 +1,48 @@
+Command: ninja all
+[1/10] Performing build step for 'bootloader'
+[1/1] cd /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader && /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader/bootloader.bin
+Bootloader binary size 0x6610 bytes. 0x9f0 bytes (9%) free.
+[2/10] No install step for 'bootloader'
+[3/10] Completed 'bootloader'
+[4/10] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/imu_datalogger.c.obj
+[5/10] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/src/ble.c.obj
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c: In function 'task_ble_streaming':
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:1028:14: warning: unused variable 'heart_rate_data' [-Wunused-variable]
+ 1028 |     uint16_t heart_rate_data;
+      |              ^~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c: At top level:
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:317:16: warning: 'char_prop_read_write_indicate' defined but not used [-Wunused-variable]
+  317 | static uint8_t char_prop_read_write_indicate = ESP_GATT_CHAR_PROP_BIT_WRITE | ESP_GATT_CHAR_PROP_BIT_READ | ESP_GATT_CHAR_PROP_BIT_INDICATE;
+      |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:315:16: warning: 'char_prop_read_write' defined but not used [-Wunused-variable]
+  315 | static uint8_t char_prop_read_write = ESP_GATT_CHAR_PROP_BIT_READ | ESP_GATT_CHAR_PROP_BIT_WRITE;
+      |                ^~~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:313:16: warning: 'char_prop_write' defined but not used [-Wunused-variable]
+  313 | static uint8_t char_prop_write = ESP_GATT_CHAR_PROP_BIT_WRITE;
+      |                ^~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:311:16: warning: 'char_prop_read' defined but not used [-Wunused-variable]
+  311 | static uint8_t char_prop_read = ESP_GATT_CHAR_PROP_BIT_READ;
+      |                ^~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:184:16: warning: 'HAPTICS_STATUS_CHARACTERISTIC_UUID' defined but not used [-Wunused-variable]
+  184 | static uint8_t HAPTICS_STATUS_CHARACTERISTIC_UUID[] = {
+      |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:163:16: warning: 'HAPTICS_CONFIG_CHARACTERISTIC_UUID' defined but not used [-Wunused-variable]
+  163 | static uint8_t HAPTICS_CONFIG_CHARACTERISTIC_UUID[] = {
+      |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:142:16: warning: 'HAPTICS_COMMAND_PLAY_CUSTOM_SEQUENCE_CHARACTERISTIC_UUID' defined but not used [-Wunused-variable]
+  142 | static uint8_t HAPTICS_COMMAND_PLAY_CUSTOM_SEQUENCE_CHARACTERISTIC_UUID[] = {
+      |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/ble.c:121:16: warning: 'HAPTICS_COMMAND_PLAY_BUILTIN_SEQUENCE_CHARACTERISTIC_UUID' defined but not used [-Wunused-variable]
+  121 | static uint8_t HAPTICS_COMMAND_PLAY_BUILTIN_SEQUENCE_CHARACTERISTIC_UUID[] = {
+      |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[6/10] Linking C static library esp-idf/main/libmain.a
+[7/10] Generating esp-idf/esp_system/ld/sections.ld
+[8/10] Linking CXX executable imu_module.elf
+[9/10] Generating binary image from built executable
+esptool v5.2.dev3
+Creating ESP32 image...
+Merged 2 ELF sections.
+Successfully created ESP32 image.
+Generated /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/imu_module.bin
+[10/10] cd /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build && /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/partition_table/partition-table.bin /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/imu_module.bin
+imu_module.bin binary size 0xc26e0 bytes. Smallest app partition is 0x100000 bytes. 0x3d920 bytes (24%) free.

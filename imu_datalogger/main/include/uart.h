@@ -20,6 +20,7 @@
 typedef struct
 {
     QueueHandle_t queue_orientation_UART;
+    QueueHandle_t queue_heart_rate_UART;
 } params_task_uart_t;
 
 esp_err_t uart_configure(void);

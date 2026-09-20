@@ -22,4 +22,14 @@
 #define UART_STREAM_TX_PIN 23 // for streaming orientation data via UART
 #define UART_STREAM_RX_PIN 35 // for streaming orientation data via UART
 
+#define CHANNEL_0_PIN_1 (2)
+#define CHANNEL_0_PIN_2 (0)
+#define CHANNEL_1_PIN_1 (5)
+#define CHANNEL_1_PIN_2 (0)
+#define CHANNEL_2_PIN_1 (32)
+#define CHANNEL_2_PIN_2 (0)
+#define CHANNEL_3_PIN_1 (33)
+#define CHANNEL_3_PIN_2 (0)
+#define EN_PIN (26)
+
 #endif

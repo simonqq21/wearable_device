@@ -1,0 +1,751 @@
+Command: /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/imu_module.elf /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader/bootloader.elf -m '/home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python' '/home/simonque/Documents/code/esp-idf/tools/idf.py'
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0040,len:6272
+load:0x40078000,len:15848
+load:0x40080400,len:3920
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v6.1-dev-2310-g44e2fa6d9c5-dirt 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Sep  4 2026 19:05:40[0m
+[0;32mI (28) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v3.1[0m
+[0;32mI (34) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (37) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (65) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (78) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=1c6e4h (116452) map[0m
+[0;32mI (130) esp_image: segment 1: paddr=0002c70c vaddr=3ffbdb60 size=0390ch ( 14604) load[0m
+[0;32mI (136) esp_image: segment 2: paddr=00030020 vaddr=400d0020 size=61ff0h (401392) map[0m
+[0;32mI (279) esp_image: segment 3: paddr=00092018 vaddr=3ffc146c size=015f4h (  5620) load[0m
+[0;32mI (281) esp_image: segment 4: paddr=00093614 vaddr=40080000 size=15854h ( 88148) load[0m
+[0;32mI (319) esp_image: segment 5: paddr=000a8e70 vaddr=50000000 size=00028h (    40) load[0m
+[0;32mI (330) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (330) boot: Disabling RNG early entropy source...[0m
+[0;32mI (341) cpu_start: Multicore app[0m
+[0;32mI (349) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (349) cpu_start: Pro cpu start user code[0m
+[0;32mI (349) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (351) app_init: Application information:[0m
+[0;32mI (355) app_init: Project name:     bluedroid_gatt_server[0m
+[0;32mI (360) app_init: App version:      31fb3b0-dirty[0m
+[0;32mI (364) app_init: Compile time:     Sep  4 2026 19:05:45[0m
+[0;32mI (369) app_init: ELF file SHA256:  4fc8aa510...[0m
+[0;32mI (374) app_init: ESP-IDF:          v6.1-dev-2310-g44e2fa6d9c5-dirt[0m
+[0;32mI (380) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (384) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (388) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (392) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (398) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (403) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (408) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (413) heap_init: At 3FFC6DA0 len 00019260 (100 KiB): DRAM[0m
+[0;32mI (418) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (424) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (429) heap_init: At 40095854 len 0000A7AC (41 KiB): IRAM[0m
+[0;33mW (436) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (448) spi_flash: detected chip: generic[0m
+[0;32mI (451) spi_flash: flash io: dio[0m
+[0;33mW (454) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (467) coexist: coex firmware version: 093e3d2[0m
+[0;32mI (472) main_task: Started on CPU0[0m
+[0;32mI (482) main_task: Calling app_main()[0m
+[0;32mI (512) BTDM_INIT: BT controller compile version [045a658][0m
+[0;32mI (512) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (512) BTDM_INIT: Bluetooth MAC: cc:7b:5c:26:d7:f2[0m
+[0;32mI (512) phy_init: phy_version 4863,a3a4459,Oct 28 2025,14:30:06[0m
+[0;33mW (912) BT_BTM: BTM_BleWriteAdvData, Partial data write into ADV[0m
+[0;33mW (912) BT_BTM: BTM_BleWriteScanRsp, Partial data write into ADV[0m
+[0;32mI (922) ORIENTATION: timestamp 488, x 61.000000, y 85.000000, z -55.000000 [0m
+
+[0;32mI (922) BLE_STREAM_ORIENTATION: create attribute table successfully, the number handle = 4[0m
+[0;32mI (932) BLE_STREAM_ORIENTATION: Advertising data set, status 0[0m
+[0;32mI (932) BLE_STREAM_ORIENTATION: Scan response data set, status 0[0m
+[0;32mI (942) BLE_STREAM_ORIENTATION: SERVICE_START_EVT, status 0, service_handle 40[0m
+[0;32mI (952) main_task: Returned from app_main()[0m
+[0;32mI (962) BLE_STREAM_ORIENTATION: Advertising start successfully[0m
+[0;32mI (982) ORIENTATION: timestamp 546, x -70.000000, y 63.000000, z 49.000000 [0m
+
+[0;32mI (1032) ORIENTATION: timestamp 596, x 28.000000, y -81.000000, z -121.000000 [0m
+
+[0;32mI (1082) ORIENTATION: timestamp 646, x 125.000000, y 159.000000, z 115.000000 [0m
+
+[0;32mI (1132) ORIENTATION: timestamp 696, x 157.000000, y 45.000000, z -18.000000 [0m
+
+[0;32mI (1182) ORIENTATION: timestamp 746, x -116.000000, y 86.000000, z -179.000000 [0m
+
+[0;32mI (1232) ORIENTATION: timestamp 796, x 48.000000, y -114.000000, z 161.000000 [0m
+
+[0;32mI (1282) ORIENTATION: timestamp 846, x 56.000000, y -72.000000, z 178.000000 [0m
+
+[0;32mI (1332) ORIENTATION: timestamp 896, x 36.000000, y 124.000000, z -11.000000 [0m
+
+[0;32mI (1382) ORIENTATION: timestamp 946, x -127.000000, y 177.000000, z 159.000000 [0m
+
+[0;32mI (1432) ORIENTATION: timestamp 996, x -172.000000, y -81.000000, z 112.000000 [0m
+
+[0;32mI (1482) ORIENTATION: timestamp 1046, x -37.000000, y 68.000000, z 180.000000 [0m
+
+[0;32mI (1532) ORIENTATION: timestamp 1096, x -131.000000, y 163.000000, z -97.000000 [0m
+
+[0;32mI (1582) ORIENTATION: timestamp 1146, x -138.000000, y 92.000000, z 55.000000 [0m
+
+[0;32mI (1632) ORIENTATION: timestamp 1196, x 26.000000, y 161.000000, z -78.000000 [0m
+
+[0;32mI (1682) ORIENTATION: timestamp 1246, x 107.000000, y 121.000000, z -34.000000 [0m
+
+[0;32mI (1732) ORIENTATION: timestamp 1296, x 159.000000, y 11.000000, z -1.000000 [0m
+
+[0;32mI (1782) ORIENTATION: timestamp 1346, x -33.000000, y 94.000000, z -61.000000 [0m
+
+[0;32mI (1832) ORIENTATION: timestamp 1396, x 91.000000, y 96.000000, z 110.000000 [0m
+
+[0;32mI (1882) ORIENTATION: timestamp 1446, x 119.000000, y -89.000000, z 134.000000 [0m
+
+[0;32mI (1932) ORIENTATION: timestamp 1496, x 69.000000, y -27.000000, z 121.000000 [0m
+
+[0;32mI (1982) ORIENTATION: timestamp 1546, x 163.000000, y 59.000000, z 40.000000 [0m
+
+[0;32mI (2032) ORIENTATION: timestamp 1596, x 6.000000, y 10.000000, z 174.000000 [0m
+
+[0;32mI (2082) ORIENTATION: timestamp 1646, x -55.000000, y 42.000000, z 59.000000 [0m
+
+[0;32mI (2132) ORIENTATION: timestamp 1696, x 50.000000, y 166.000000, z 65.000000 [0m
+
+[0;32mI (2182) ORIENTATION: timestamp 1746, x -108.000000, y -30.000000, z 90.000000 [0m
+
+[0;32mI (2232) ORIENTATION: timestamp 1796, x -1.000000, y -49.000000, z -50.000000 [0m
+
+[0;32mI (2282) ORIENTATION: timestamp 1846, x -78.000000, y 120.000000, z -52.000000 [0m
+
+[0;32mI (2332) ORIENTATION: timestamp 1897, x -152.000000, y -84.000000, z -67.000000 [0m
+
+[0;32mI (2382) ORIENTATION: timestamp 1946, x -89.000000, y -42.000000, z -132.000000 [0m
+
+[0;32mI (2432) ORIENTATION: timestamp 1996, x -105.000000, y 166.000000, z -180.000000 [0m
+
+[0;32mI (2482) ORIENTATION: timestamp 2046, x -28.000000, y 172.000000, z 83.000000 [0m
+
+[0;32mI (2532) ORIENTATION: timestamp 2096, x 154.000000, y 26.000000, z -89.000000 [0m
+
+[0;32mI (2582) ORIENTATION: timestamp 2146, x -130.000000, y 17.000000, z 169.000000 [0m
+
+[0;32mI (2632) ORIENTATION: timestamp 2196, x 57.000000, y 177.000000, z 113.000000 [0m
+
+[0;32mI (2682) ORIENTATION: timestamp 2246, x -150.000000, y 148.000000, z 147.000000 [0m
+
+[0;32mI (2732) ORIENTATION: timestamp 2297, x -54.000000, y 69.000000, z 34.000000 [0m
+
+[0;32mI (2782) ORIENTATION: timestamp 2346, x 35.000000, y -146.000000, z 76.000000 [0m
+
+[0;32mI (2832) ORIENTATION: timestamp 2396, x -138.000000, y -49.000000, z -121.000000 [0m
+
+[0;32mI (2882) ORIENTATION: timestamp 2446, x 40.000000, y -103.000000, z -24.000000 [0m
+
+[0;32mI (2932) ORIENTATION: timestamp 2496, x -173.000000, y -118.000000, z -39.000000 [0m
+
+[0;32mI (2982) ORIENTATION: timestamp 2546, x 73.000000, y 127.000000, z 31.000000 [0m
+
+[0;32mI (3032) ORIENTATION: timestamp 2596, x 67.000000, y 64.000000, z -172.000000 [0m
+
+[0;32mI (3082) ORIENTATION: timestamp 2646, x -71.000000, y 72.000000, z 56.000000 [0m
+
+[0;32mI (3132) ORIENTATION: timestamp 2696, x -34.000000, y 154.000000, z 9.000000 [0m
+
+[0;32mI (3182) ORIENTATION: timestamp 2747, x 118.000000, y 119.000000, z -123.000000 [0m
+
+[0;32mI (3232) ORIENTATION: timestamp 2797, x 45.000000, y -173.000000, z -37.000000 [0m
+
+[0;32mI (3282) ORIENTATION: timestamp 2847, x -66.000000, y -94.000000, z 180.000000 [0m
+
+[0;32mI (3332) ORIENTATION: timestamp 2896, x 101.000000, y -65.000000, z -78.000000 [0m
+
+[0;32mI (3382) ORIENTATION: timestamp 2946, x 57.000000, y 159.000000, z -128.000000 [0m
+
+[0;32mI (3432) ORIENTATION: timestamp 2996, x -79.000000, y 99.000000, z 69.000000 [0m
+
+[0;32mI (3482) ORIENTATION: timestamp 3046, x -129.000000, y 88.000000, z 139.000000 [0m
+
+[0;32mI (3532) ORIENTATION: timestamp 3096, x -58.000000, y 64.000000, z 91.000000 [0m
+
+[0;32mI (3582) ORIENTATION: timestamp 3146, x 158.000000, y -94.000000, z -127.000000 [0m
+
+[0;32mI (3632) ORIENTATION: timestamp 3196, x 83.000000, y -63.000000, z -29.000000 [0m
+
+[0;32mI (3682) ORIENTATION: timestamp 3246, x -59.000000, y 11.000000, z 16.000000 [0m
+
+[0;32mI (3732) ORIENTATION: timestamp 3296, x 123.000000, y -52.000000, z 27.000000 [0m
+
+[0;32mI (3782) ORIENTATION: timestamp 3346, x -139.000000, y -101.000000, z 67.000000 [0m
+
+[0;32mI (3832) ORIENTATION: timestamp 3396, x -173.000000, y -103.000000, z -104.000000 [0m
+
+[0;32mI (3882) ORIENTATION: timestamp 3446, x 116.000000, y -89.000000, z 74.000000 [0m
+
+[0;32mI (3932) ORIENTATION: timestamp 3496, x 53.000000, y 100.000000, z 63.000000 [0m
+
+[0;32mI (3982) ORIENTATION: timestamp 3546, x -151.000000, y -62.000000, z -154.000000 [0m
+
+[0;32mI (4032) ORIENTATION: timestamp 3596, x 69.000000, y 168.000000, z 87.000000 [0m
+
+[0;32mI (4082) ORIENTATION: timestamp 3646, x -39.000000, y 135.000000, z 123.000000 [0m
+
+[0;32mI (4132) ORIENTATION: timestamp 3696, x 169.000000, y -156.000000, z 52.000000 [0m
+
+[0;32mI (4182) ORIENTATION: timestamp 3746, x -32.000000, y 167.000000, z -8.000000 [0m
+
+[0;32mI (4232) ORIENTATION: timestamp 3796, x -83.000000, y -61.000000, z -31.000000 [0m
+
+[0;32mI (4282) ORIENTATION: timestamp 3846, x -93.000000, y 120.000000, z -136.000000 [0m
+
+[0;32mI (4332) ORIENTATION: timestamp 3896, x 53.000000, y 150.000000, z 3.000000 [0m
+
+[0;32mI (4382) ORIENTATION: timestamp 3946, x -157.000000, y -96.000000, z 170.000000 [0m
+
+[0;32mI (4432) ORIENTATION: timestamp 3996, x 64.000000, y 51.000000, z -45.000000 [0m
+
+[0;32mI (4482) ORIENTATION: timestamp 4046, x 37.000000, y -61.000000, z 50.000000 [0m
+
+[0;32mI (4532) ORIENTATION: timestamp 4096, x 121.000000, y -131.000000, z -66.000000 [0m
+
+[0;32mI (4582) ORIENTATION: timestamp 4146, x 38.000000, y 99.000000, z 73.000000 [0m
+
+[0;32mI (4632) ORIENTATION: timestamp 4196, x 180.000000, y -130.000000, z 138.000000 [0m
+
+[0;32mI (4682) ORIENTATION: timestamp 4246, x -144.000000, y -152.000000, z 144.000000 [0m
+
+[0;32mI (4732) ORIENTATION: timestamp 4296, x -152.000000, y -67.000000, z -164.000000 [0m
+
+[0;32mI (4782) ORIENTATION: timestamp 4346, x -33.000000, y -122.000000, z -3.000000 [0m
+
+[0;32mI (4832) ORIENTATION: timestamp 4396, x -156.000000, y 179.000000, z 57.000000 [0m
+
+[0;32mI (4882) ORIENTATION: timestamp 4446, x 77.000000, y -10.000000, z 95.000000 [0m
+
+[0;32mI (4932) ORIENTATION: timestamp 4496, x 175.000000, y -41.000000, z -98.000000 [0m
+
+[0;32mI (4982) ORIENTATION: timestamp 4546, x 63.000000, y 118.000000, z -99.000000 [0m
+
+[0;32mI (5032) ORIENTATION: timestamp 4596, x -45.000000, y -178.000000, z 82.000000 [0m
+
+[0;32mI (5082) ORIENTATION: timestamp 4646, x 12.000000, y 60.000000, z -5.000000 [0m
+
+[0;32mI (5132) ORIENTATION: timestamp 4696, x -135.000000, y 128.000000, z -140.000000 [0m
+
+[0;32mI (5182) ORIENTATION: timestamp 4746, x 154.000000, y 79.000000, z -137.000000 [0m
+
+[0;32mI (5232) ORIENTATION: timestamp 4796, x 57.000000, y 22.000000, z -70.000000 [0m
+
+[0;32mI (5282) ORIENTATION: timestamp 4846, x -144.000000, y 27.000000, z -43.000000 [0m
+
+[0;32mI (5332) ORIENTATION: timestamp 4896, x 2.000000, y -177.000000, z -169.000000 [0m
+
+[0;32mI (5382) ORIENTATION: timestamp 4946, x 93.000000, y 142.000000, z -131.000000 [0m
+
+[0;32mI (5432) ORIENTATION: timestamp 4996, x -180.000000, y 116.000000, z -90.000000 [0m
+
+[0;32mI (5482) ORIENTATION: timestamp 5046, x 56.000000, y 172.000000, z 43.000000 [0m
+
+[0;32mI (5532) ORIENTATION: timestamp 5096, x -27.000000, y -176.000000, z -144.000000 [0m
+
+[0;32mI (5582) ORIENTATION: timestamp 5146, x 136.000000, y -124.000000, z -110.000000 [0m
+
+[0;32mI (5632) ORIENTATION: timestamp 5196, x -133.000000, y 150.000000, z 153.000000 [0m
+
+[0;32mI (5682) ORIENTATION: timestamp 5246, x -92.000000, y -95.000000, z 119.000000 [0m
+
+[0;32mI (5732) ORIENTATION: timestamp 5296, x 111.000000, y -102.000000, z 57.000000 [0m
+
+[0;32mI (5782) ORIENTATION: timestamp 5346, x -48.000000, y -33.000000, z 150.000000 [0m
+
+[0;32mI (5832) ORIENTATION: timestamp 5396, x 91.000000, y 75.000000, z -33.000000 [0m
+
+[0;32mI (5882) ORIENTATION: timestamp 5446, x -46.000000, y 155.000000, z -133.000000 [0m
+
+[0;32mI (5932) ORIENTATION: timestamp 5496, x -118.000000, y 4.000000, z -169.000000 [0m
+
+[0;32mI (5982) ORIENTATION: timestamp 5546, x 169.000000, y 170.000000, z 130.000000 [0m
+
+[0;32mI (6032) ORIENTATION: timestamp 5596, x 67.000000, y -53.000000, z -56.000000 [0m
+
+[0;32mI (6082) ORIENTATION: timestamp 5646, x 178.000000, y 173.000000, z 16.000000 [0m
+
+[0;32mI (6132) ORIENTATION: timestamp 5696, x -32.000000, y 31.000000, z -116.000000 [0m
+
+[0;32mI (6182) ORIENTATION: timestamp 5746, x 30.000000, y -1.000000, z 45.000000 [0m
+
+[0;32mI (6232) ORIENTATION: timestamp 5796, x -24.000000, y 114.000000, z -125.000000 [0m
+
+[0;32mI (6282) ORIENTATION: timestamp 5846, x 60.000000, y -74.000000, z -11.000000 [0m
+
+[0;32mI (6332) ORIENTATION: timestamp 5896, x -72.000000, y 13.000000, z 70.000000 [0m
+
+[0;32mI (6382) ORIENTATION: timestamp 5946, x -96.000000, y 133.000000, z 169.000000 [0m
+
+[0;32mI (6432) ORIENTATION: timestamp 5996, x 166.000000, y 118.000000, z -37.000000 [0m
+
+[0;32mI (6482) ORIENTATION: timestamp 6046, x -23.000000, y 89.000000, z -145.000000 [0m
+
+[0;32mI (6532) ORIENTATION: timestamp 6096, x -58.000000, y 49.000000, z 127.000000 [0m
+
+[0;32mI (6582) ORIENTATION: timestamp 6146, x 84.000000, y -177.000000, z 88.000000 [0m
+
+[0;32mI (6632) ORIENTATION: timestamp 6196, x 10.000000, y 87.000000, z 149.000000 [0m
+
+[0;32mI (6682) ORIENTATION: timestamp 6246, x 13.000000, y -32.000000, z -65.000000 [0m
+
+[0;32mI (6732) ORIENTATION: timestamp 6296, x -148.000000, y 158.000000, z -47.000000 [0m
+
+[0;32mI (6782) ORIENTATION: timestamp 6346, x 116.000000, y 41.000000, z 171.000000 [0m
+
+[0;32mI (6832) ORIENTATION: timestamp 6396, x -167.000000, y -132.000000, z -69.000000 [0m
+
+[0;32mI (6882) ORIENTATION: timestamp 6446, x 68.000000, y -63.000000, z -32.000000 [0m
+
+[0;32mI (6932) ORIENTATION: timestamp 6496, x 111.000000, y 16.000000, z 112.000000 [0m
+
+[0;32mI (6982) ORIENTATION: timestamp 6546, x 169.000000, y -76.000000, z -140.000000 [0m
+
+[0;32mI (7032) ORIENTATION: timestamp 6596, x 151.000000, y 13.000000, z -40.000000 [0m
+
+[0;32mI (7082) ORIENTATION: timestamp 6646, x -118.000000, y -153.000000, z 86.000000 [0m
+
+[0;32mI (7132) ORIENTATION: timestamp 6696, x 52.000000, y 125.000000, z -119.000000 [0m
+
+[0;32mI (7182) ORIENTATION: timestamp 6746, x 45.000000, y -122.000000, z -94.000000 [0m
+
+[0;32mI (7232) ORIENTATION: timestamp 6796, x 27.000000, y 125.000000, z -55.000000 [0m
+
+[0;32mI (7282) ORIENTATION: timestamp 6846, x 115.000000, y 163.000000, z -13.000000 [0m
+
+[0;32mI (7332) ORIENTATION: timestamp 6896, x 160.000000, y 15.000000, z -137.000000 [0m
+
+[0;32mI (7382) ORIENTATION: timestamp 6946, x 127.000000, y -47.000000, z -10.000000 [0m
+
+[0;32mI (7432) ORIENTATION: timestamp 6996, x 76.000000, y -98.000000, z 171.000000 [0m
+
+[0;32mI (7482) ORIENTATION: timestamp 7046, x -30.000000, y -50.000000, z -137.000000 [0m
+
+[0;32mI (7532) ORIENTATION: timestamp 7096, x -60.000000, y -174.000000, z -78.000000 [0m
+
+[0;32mI (7582) ORIENTATION: timestamp 7146, x -92.000000, y -121.000000, z 119.000000 [0m
+
+[0;32mI (7632) ORIENTATION: timestamp 7196, x -112.000000, y 174.000000, z -100.000000 [0m
+
+[0;32mI (7682) ORIENTATION: timestamp 7246, x -172.000000, y -27.000000, z -119.000000 [0m
+
+[0;32mI (7732) ORIENTATION: timestamp 7296, x 145.000000, y 49.000000, z -89.000000 [0m
+
+[0;32mI (7782) ORIENTATION: timestamp 7346, x 156.000000, y -106.000000, z -179.000000 [0m
+
+[0;32mI (7832) ORIENTATION: timestamp 7396, x -48.000000, y -102.000000, z -112.000000 [0m
+
+[0;32mI (7882) ORIENTATION: timestamp 7446, x -39.000000, y 114.000000, z -108.000000 [0m
+
+[0;32mI (7932) ORIENTATION: timestamp 7496, x 97.000000, y -96.000000, z 162.000000 [0m
+
+[0;32mI (7982) ORIENTATION: timestamp 7546, x -80.000000, y -62.000000, z 30.000000 [0m
+
+[0;32mI (8032) ORIENTATION: timestamp 7596, x -131.000000, y 16.000000, z -121.000000 [0m
+
+[0;32mI (8082) ORIENTATION: timestamp 7646, x 60.000000, y -176.000000, z 10.000000 [0m
+
+[0;32mI (8132) ORIENTATION: timestamp 7696, x 143.000000, y 124.000000, z -141.000000 [0m
+
+[0;32mI (8182) ORIENTATION: timestamp 7746, x 120.000000, y 56.000000, z 123.000000 [0m
+
+[0;32mI (8232) ORIENTATION: timestamp 7796, x -152.000000, y 104.000000, z 32.000000 [0m
+
+[0;32mI (8282) ORIENTATION: timestamp 7846, x 109.000000, y -28.000000, z -85.000000 [0m
+
+[0;32mI (8332) ORIENTATION: timestamp 7896, x -116.000000, y 11.000000, z 0.000000 [0m
+
+[0;32mI (8382) ORIENTATION: timestamp 7946, x -84.000000, y -116.000000, z -140.000000 [0m
+
+[0;32mI (8432) ORIENTATION: timestamp 7996, x -34.000000, y -61.000000, z -162.000000 [0m
+
+[0;32mI (8482) ORIENTATION: timestamp 8046, x -72.000000, y 2.000000, z -83.000000 [0m
+
+[0;32mI (8532) ORIENTATION: timestamp 8096, x -31.000000, y 35.000000, z 128.000000 [0m
+
+[0;32mI (8582) ORIENTATION: timestamp 8146, x -154.000000, y 155.000000, z 77.000000 [0m
+
+[0;32mI (8632) ORIENTATION: timestamp 8196, x -57.000000, y -37.000000, z -22.000000 [0m
+
+[0;32mI (8682) ORIENTATION: timestamp 8246, x -69.000000, y -67.000000, z 72.000000 [0m
+
+[0;32mI (8732) ORIENTATION: timestamp 8296, x 58.000000, y -61.000000, z 27.000000 [0m
+
+[0;32mI (8782) ORIENTATION: timestamp 8346, x -137.000000, y -48.000000, z 93.000000 [0m
+
+[0;32mI (8832) ORIENTATION: timestamp 8396, x -139.000000, y 148.000000, z -85.000000 [0m
+
+[0;32mI (8882) ORIENTATION: timestamp 8446, x 54.000000, y 32.000000, z -49.000000 [0m
+
+[0;32mI (8932) ORIENTATION: timestamp 8496, x 128.000000, y 11.000000, z 178.000000 [0m
+
+[0;32mI (8982) ORIENTATION: timestamp 8546, x 83.000000, y -160.000000, z -164.000000 [0m
+
+[0;32mI (9032) ORIENTATION: timestamp 8596, x -69.000000, y 4.000000, z 7.000000 [0m
+
+[0;32mI (9082) ORIENTATION: timestamp 8646, x 83.000000, y -29.000000, z -49.000000 [0m
+
+[0;32mI (9132) ORIENTATION: timestamp 8696, x 86.000000, y -30.000000, z 64.000000 [0m
+
+[0;32mI (9182) ORIENTATION: timestamp 8746, x 12.000000, y 24.000000, z -177.000000 [0m
+
+[0;32mI (9232) ORIENTATION: timestamp 8796, x -89.000000, y 84.000000, z -33.000000 [0m
+
+[0;32mI (9282) ORIENTATION: timestamp 8846, x -112.000000, y -24.000000, z -122.000000 [0m
+
+[0;32mI (9332) ORIENTATION: timestamp 8896, x 129.000000, y 141.000000, z -41.000000 [0m
+
+[0;32mI (9382) ORIENTATION: timestamp 8946, x -161.000000, y 174.000000, z 92.000000 [0m
+
+[0;32mI (9432) ORIENTATION: timestamp 8996, x -7.000000, y -134.000000, z -42.000000 [0m
+
+[0;32mI (9482) ORIENTATION: timestamp 9046, x -180.000000, y 64.000000, z 97.000000 [0m
+
+[0;32mI (9532) ORIENTATION: timestamp 9096, x 143.000000, y -73.000000, z 117.000000 [0m
+
+[0;32mI (9582) ORIENTATION: timestamp 9146, x -161.000000, y -62.000000, z -54.000000 [0m
+
+[0;32mI (9632) ORIENTATION: timestamp 9196, x 10.000000, y -49.000000, z -86.000000 [0m
+
+[0;32mI (9682) ORIENTATION: timestamp 9246, x -13.000000, y 28.000000, z 6.000000 [0m
+
+[0;32mI (9732) ORIENTATION: timestamp 9296, x 151.000000, y 45.000000, z -54.000000 [0m
+
+[0;32mI (9782) ORIENTATION: timestamp 9346, x 16.000000, y 45.000000, z 80.000000 [0m
+
+[0;32mI (9832) ORIENTATION: timestamp 9396, x 162.000000, y -73.000000, z -31.000000 [0m
+
+[0;32mI (9882) ORIENTATION: timestamp 9446, x 163.000000, y 129.000000, z -47.000000 [0m
+
+[0;32mI (9932) ORIENTATION: timestamp 9496, x 6.000000, y 34.000000, z -137.000000 [0m
+
+[0;32mI (9982) ORIENTATION: timestamp 9546, x 68.000000, y -59.000000, z 78.000000 [0m
+
+[0;32mI (10032) ORIENTATION: timestamp 9596, x 56.000000, y 152.000000, z -160.000000 [0m
+
+[0;32mI (10082) ORIENTATION: timestamp 9646, x -10.000000, y 58.000000, z -97.000000 [0m
+
+[0;32mI (10132) ORIENTATION: timestamp 9696, x -126.000000, y 83.000000, z -5.000000 [0m
+
+[0;32mI (10182) ORIENTATION: timestamp 9746, x 129.000000, y 52.000000, z -169.000000 [0m
+
+[0;32mI (10232) ORIENTATION: timestamp 9796, x -125.000000, y 172.000000, z 4.000000 [0m
+
+[0;32mI (10282) ORIENTATION: timestamp 9846, x 68.000000, y -119.000000, z -23.000000 [0m
+
+[0;32mI (10332) ORIENTATION: timestamp 9896, x -87.000000, y 51.000000, z -113.000000 [0m
+
+[0;32mI (10382) ORIENTATION: timestamp 9946, x -104.000000, y -12.000000, z 178.000000 [0m
+
+[0;32mI (10432) ORIENTATION: timestamp 9996, x 128.000000, y -74.000000, z 28.000000 [0m
+
+[0;32mI (10482) ORIENTATION: timestamp 10046, x 32.000000, y 175.000000, z 152.000000 [0m
+
+[0;32mI (10532) ORIENTATION: timestamp 10096, x 7.000000, y 100.000000, z 23.000000 [0m
+
+[0;32mI (10582) ORIENTATION: timestamp 10146, x -41.000000, y 120.000000, z 93.000000 [0m
+
+[0;32mI (10632) ORIENTATION: timestamp 10196, x -35.000000, y -3.000000, z 146.000000 [0m
+
+[0;32mI (10682) ORIENTATION: timestamp 10246, x 88.000000, y 141.000000, z -30.000000 [0m
+
+[0;32mI (10732) ORIENTATION: timestamp 10296, x 62.000000, y 45.000000, z 12.000000 [0m
+
+[0;32mI (10782) ORIENTATION: timestamp 10346, x -161.000000, y 143.000000, z -61.000000 [0m
+
+[0;32mI (10832) ORIENTATION: timestamp 10396, x -31.000000, y -150.000000, z 179.000000 [0m
+
+[0;32mI (10882) ORIENTATION: timestamp 10446, x -161.000000, y 51.000000, z 162.000000 [0m
+
+[0;32mI (10932) ORIENTATION: timestamp 10496, x -167.000000, y 174.000000, z -22.000000 [0m
+
+[0;32mI (10982) ORIENTATION: timestamp 10546, x -48.000000, y -141.000000, z -1.000000 [0m
+
+[0;32mI (11032) ORIENTATION: timestamp 10596, x 119.000000, y -14.000000, z 41.000000 [0m
+
+[0;32mI (11082) ORIENTATION: timestamp 10646, x 31.000000, y -29.000000, z 51.000000 [0m
+
+[0;32mI (11132) ORIENTATION: timestamp 10696, x -3.000000, y 55.000000, z 157.000000 [0m
+
+[0;32mI (11182) ORIENTATION: timestamp 10746, x -117.000000, y -2.000000, z 0.000000 [0m
+
+[0;32mI (11232) ORIENTATION: timestamp 10796, x -172.000000, y 123.000000, z 11.000000 [0m
+
+[0;32mI (11282) ORIENTATION: timestamp 10846, x 46.000000, y 155.000000, z -55.000000 [0m
+
+[0;32mI (11332) ORIENTATION: timestamp 10896, x -124.000000, y -68.000000, z 80.000000 [0m
+
+[0;32mI (11382) ORIENTATION: timestamp 10946, x -144.000000, y -127.000000, z 48.000000 [0m
+
+[0;32mI (11432) ORIENTATION: timestamp 10996, x -93.000000, y 105.000000, z -173.000000 [0m
+
+[0;32mI (11482) ORIENTATION: timestamp 11046, x -131.000000, y 127.000000, z 141.000000 [0m
+
+[0;32mI (11532) ORIENTATION: timestamp 11096, x -59.000000, y -84.000000, z 123.000000 [0m
+
+[0;32mI (11582) ORIENTATION: timestamp 11146, x -87.000000, y -145.000000, z -179.000000 [0m
+
+[0;32mI (11632) ORIENTATION: timestamp 11196, x -86.000000, y 16.000000, z -85.000000 [0m
+
+[0;32mI (11682) ORIENTATION: timestamp 11246, x 105.000000, y 129.000000, z -42.000000 [0m
+
+[0;32mI (11732) ORIENTATION: timestamp 11296, x -138.000000, y 157.000000, z 6.000000 [0m
+
+[0;32mI (11782) ORIENTATION: timestamp 11346, x 37.000000, y 163.000000, z -146.000000 [0m
+
+[0;32mI (11832) ORIENTATION: timestamp 11396, x -58.000000, y 8.000000, z -83.000000 [0m
+
+[0;32mI (11882) ORIENTATION: timestamp 11446, x 12.000000, y -87.000000, z -129.000000 [0m
+
+[0;32mI (11932) ORIENTATION: timestamp 11496, x -37.000000, y 49.000000, z -10.000000 [0m
+
+[0;32mI (11982) ORIENTATION: timestamp 11546, x 30.000000, y 70.000000, z -106.000000 [0m
+
+[0;32mI (12032) ORIENTATION: timestamp 11596, x -154.000000, y -168.000000, z 30.000000 [0m
+
+[0;32mI (12082) ORIENTATION: timestamp 11646, x 171.000000, y -142.000000, z -100.000000 [0m
+
+[0;32mI (12132) ORIENTATION: timestamp 11696, x -157.000000, y -132.000000, z 167.000000 [0m
+
+[0;32mI (12182) ORIENTATION: timestamp 11746, x -179.000000, y 171.000000, z -55.000000 [0m
+
+[0;32mI (12232) ORIENTATION: timestamp 11796, x -120.000000, y 109.000000, z -37.000000 [0m
+
+[0;32mI (12282) ORIENTATION: timestamp 11846, x 154.000000, y -44.000000, z -6.000000 [0m
+
+[0;32mI (12332) ORIENTATION: timestamp 11896, x 69.000000, y 9.000000, z 77.000000 [0m
+
+[0;32mI (12382) ORIENTATION: timestamp 11946, x -62.000000, y 150.000000, z 67.000000 [0m
+
+[0;32mI (12432) ORIENTATION: timestamp 11996, x 24.000000, y 36.000000, z 48.000000 [0m
+
+[0;32mI (12482) ORIENTATION: timestamp 12046, x -167.000000, y -19.000000, z 87.000000 [0m
+
+[0;32mI (12532) ORIENTATION: timestamp 12096, x 7.000000, y -76.000000, z 139.000000 [0m
+
+[0;32mI (12582) ORIENTATION: timestamp 12146, x 157.000000, y -169.000000, z -159.000000 [0m
+
+[0;32mI (12632) ORIENTATION: timestamp 12196, x 139.000000, y 178.000000, z -154.000000 [0m
+
+[0;32mI (12682) ORIENTATION: timestamp 12246, x -50.000000, y 175.000000, z 53.000000 [0m
+
+[0;32mI (12732) ORIENTATION: timestamp 12296, x -36.000000, y -23.000000, z -179.000000 [0m
+
+[0;32mI (12782) ORIENTATION: timestamp 12346, x -129.000000, y 70.000000, z -37.000000 [0m
+
+[0;32mI (12832) ORIENTATION: timestamp 12396, x 39.000000, y 124.000000, z -8.000000 [0m
+
+[0;32mI (12882) ORIENTATION: timestamp 12446, x 56.000000, y -131.000000, z -161.000000 [0m
+
+[0;32mI (12932) ORIENTATION: timestamp 12496, x -29.000000, y 145.000000, z 104.000000 [0m
+
+[0;32mI (12982) ORIENTATION: timestamp 12546, x 57.000000, y -84.000000, z -24.000000 [0m
+
+[0;32mI (13032) ORIENTATION: timestamp 12596, x 117.000000, y 172.000000, z -150.000000 [0m
+
+[0;32mI (13082) ORIENTATION: timestamp 12646, x -44.000000, y -170.000000, z 11.000000 [0m
+
+[0;32mI (13132) ORIENTATION: timestamp 12696, x -118.000000, y 88.000000, z -100.000000 [0m
+
+[0;32mI (13182) ORIENTATION: timestamp 12746, x -101.000000, y -1.000000, z -72.000000 [0m
+
+[0;32mI (13232) ORIENTATION: timestamp 12796, x -25.000000, y 46.000000, z 25.000000 [0m
+
+[0;32mI (13282) ORIENTATION: timestamp 12846, x -123.000000, y 18.000000, z 125.000000 [0m
+
+[0;32mI (13332) ORIENTATION: timestamp 12896, x 176.000000, y -35.000000, z 18.000000 [0m
+
+[0;32mI (13382) ORIENTATION: timestamp 12946, x -168.000000, y -81.000000, z 10.000000 [0m
+
+[0;32mI (13432) ORIENTATION: timestamp 12996, x 45.000000, y 96.000000, z -150.000000 [0m
+
+[0;32mI (13482) ORIENTATION: timestamp 13046, x 5.000000, y -39.000000, z -87.000000 [0m
+
+[0;32mI (13532) ORIENTATION: timestamp 13096, x 4.000000, y -65.000000, z 110.000000 [0m
+
+[0;32mI (13582) ORIENTATION: timestamp 13146, x 27.000000, y 165.000000, z -170.000000 [0m
+
+[0;32mI (13632) ORIENTATION: timestamp 13196, x -62.000000, y 160.000000, z 37.000000 [0m
+
+[0;32mI (13682) ORIENTATION: timestamp 13246, x 36.000000, y -134.000000, z 167.000000 [0m
+
+[0;32mI (13732) ORIENTATION: timestamp 13296, x 25.000000, y -62.000000, z 149.000000 [0m
+
+[0;32mI (13782) ORIENTATION: timestamp 13346, x -64.000000, y -11.000000, z 145.000000 [0m
+
+[0;32mI (13832) ORIENTATION: timestamp 13396, x 15.000000, y -62.000000, z 120.000000 [0m
+
+[0;32mI (13882) ORIENTATION: timestamp 13446, x 164.000000, y -153.000000, z -94.000000 [0m
+
+[0;32mI (13932) ORIENTATION: timestamp 13496, x 124.000000, y 67.000000, z 107.000000 [0m
+
+[0;32mI (13982) ORIENTATION: timestamp 13546, x -131.000000, y -41.000000, z 179.000000 [0m
+
+[0;32mI (14032) ORIENTATION: timestamp 13596, x 154.000000, y 158.000000, z -13.000000 [0m
+
+[0;32mI (14082) ORIENTATION: timestamp 13646, x -173.000000, y 153.000000, z -93.000000 [0m
+
+[0;32mI (14132) ORIENTATION: timestamp 13696, x 114.000000, y -163.000000, z -101.000000 [0m
+
+[0;32mI (14182) ORIENTATION: timestamp 13746, x -28.000000, y 129.000000, z 37.000000 [0m
+
+[0;32mI (14232) ORIENTATION: timestamp 13796, x -68.000000, y -73.000000, z -148.000000 [0m
+
+[0;32mI (14282) ORIENTATION: timestamp 13846, x 83.000000, y -62.000000, z -135.000000 [0m
+
+[0;32mI (14332) ORIENTATION: timestamp 13896, x 123.000000, y -120.000000, z 82.000000 [0m
+
+[0;32mI (14382) ORIENTATION: timestamp 13946, x 93.000000, y -54.000000, z 31.000000 [0m
+
+[0;32mI (14432) ORIENTATION: timestamp 13996, x -29.000000, y -141.000000, z -172.000000 [0m
+
+[0;32mI (14482) ORIENTATION: timestamp 14046, x 94.000000, y 94.000000, z -153.000000 [0m
+
+[0;32mI (14532) ORIENTATION: timestamp 14096, x -176.000000, y 153.000000, z -166.000000 [0m
+
+[0;32mI (14582) ORIENTATION: timestamp 14146, x 78.000000, y 8.000000, z -108.000000 [0m
+
+[0;32mI (14632) ORIENTATION: timestamp 14196, x 73.000000, y -35.000000, z 138.000000 [0m
+
+[0;32mI (14682) ORIENTATION: timestamp 14246, x 23.000000, y -51.000000, z -45.000000 [0m
+
+[0;32mI (14732) ORIENTATION: timestamp 14296, x -147.000000, y 169.000000, z 88.000000 [0m
+
+[0;32mI (14782) ORIENTATION: timestamp 14346, x -124.000000, y 138.000000, z 65.000000 [0m
+
+[0;32mI (14832) ORIENTATION: timestamp 14396, x 138.000000, y 92.000000, z -167.000000 [0m
+
+[0;32mI (14882) ORIENTATION: timestamp 14446, x 91.000000, y 39.000000, z 4.000000 [0m
+
+[0;32mI (14932) ORIENTATION: timestamp 14496, x 34.000000, y 137.000000, z 133.000000 [0m
+
+[0;32mI (14982) ORIENTATION: timestamp 14546, x -71.000000, y -93.000000, z 124.000000 [0m
+
+[0;32mI (15032) ORIENTATION: timestamp 14596, x 31.000000, y -165.000000, z -90.000000 [0m
+
+[0;32mI (15082) ORIENTATION: timestamp 14646, x -63.000000, y -18.000000, z 54.000000 [0m
+
+[0;32mI (15132) ORIENTATION: timestamp 14696, x -87.000000, y 93.000000, z 149.000000 [0m
+
+[0;32mI (15182) ORIENTATION: timestamp 14746, x -139.000000, y -153.000000, z 168.000000 [0m
+
+[0;32mI (15232) ORIENTATION: timestamp 14796, x -170.000000, y 2.000000, z -51.000000 [0m
+
+[0;32mI (15282) ORIENTATION: timestamp 14846, x -16.000000, y -24.000000, z 123.000000 [0m
+
+[0;32mI (15332) ORIENTATION: timestamp 14896, x 114.000000, y -129.000000, z 28.000000 [0m
+
+[0;32mI (15382) ORIENTATION: timestamp 14946, x 152.000000, y -137.000000, z 156.000000 [0m
+
+[0;32mI (15432) ORIENTATION: timestamp 14996, x -130.000000, y 30.000000, z -176.000000 [0m
+
+[0;32mI (15482) ORIENTATION: timestamp 15046, x 17.000000, y -24.000000, z 69.000000 [0m
+
+[0;32mI (15532) ORIENTATION: timestamp 15096, x -65.000000, y 87.000000, z 68.000000 [0m
+
+[0;32mI (15582) ORIENTATION: timestamp 15146, x -49.000000, y -69.000000, z 143.000000 [0m
+
+[0;32mI (15632) ORIENTATION: timestamp 15196, x 136.000000, y -62.000000, z -24.000000 [0m
+
+[0;32mI (15682) ORIENTATION: timestamp 15246, x 7.000000, y -124.000000, z -160.000000 [0m
+
+[0;32mI (15732) ORIENTATION: timestamp 15296, x -66.000000, y -29.000000, z 83.000000 [0m
+
+[0;32mI (15782) ORIENTATION: timestamp 15346, x -110.000000, y -22.000000, z 32.000000 [0m
+
+[0;32mI (15832) ORIENTATION: timestamp 15396, x -8.000000, y -92.000000, z -93.000000 [0m
+
+[0;32mI (15882) ORIENTATION: timestamp 15446, x 62.000000, y 136.000000, z -4.000000 [0m
+
+[0;32mI (15932) ORIENTATION: timestamp 15496, x 143.000000, y -154.000000, z -146.000000 [0m
+
+[0;32mI (15982) ORIENTATION: timestamp 15546, x -167.000000, y -112.000000, z -161.000000 [0m
+
+[0;32mI (16032) ORIENTATION: timestamp 15596, x 3.000000, y -48.000000, z -135.000000 [0m
+
+[0;32mI (16082) ORIENTATION: timestamp 15646, x -139.000000, y -131.000000, z 156.000000 [0m
+
+[0;32mI (16132) ORIENTATION: timestamp 15696, x 49.000000, y -62.000000, z 102.000000 [0m
+
+[0;32mI (16182) ORIENTATION: timestamp 15746, x 70.000000, y 85.000000, z -52.000000 [0m
+
+[0;32mI (16232) ORIENTATION: timestamp 15796, x -139.000000, y -84.000000, z -172.000000 [0m
+
+[0;32mI (16282) ORIENTATION: timestamp 15846, x -19.000000, y 137.000000, z -78.000000 [0m
+
+[0;32mI (16332) ORIENTATION: timestamp 15896, x -56.000000, y 24.000000, z 143.000000 [0m
+
+[0;32mI (16382) ORIENTATION: timestamp 15946, x -122.000000, y -161.000000, z -52.000000 [0m
+
+[0;32mI (16432) ORIENTATION: timestamp 15996, x -119.000000, y -74.000000, z 25.000000 [0m
+
+[0;32mI (16482) ORIENTATION: timestamp 16046, x -73.000000, y -155.000000, z 120.000000 [0m
+
+[0;32mI (16532) ORIENTATION: timestamp 16096, x 112.000000, y -75.000000, z 24.000000 [0m
+
+[0;32mI (16582) ORIENTATION: timestamp 16146, x -91.000000, y -160.000000, z -130.000000 [0m
+
+[0;32mI (16632) ORIENTATION: timestamp 16196, x 98.000000, y 144.000000, z -10.000000 [0m
+
+[0;32mI (16682) ORIENTATION: timestamp 16246, x 111.000000, y 142.000000, z 136.000000 [0m
+
+[0;32mI (16732) ORIENTATION: timestamp 16296, x 111.000000, y 128.000000, z -27.000000 [0m
+
+[0;32mI (16782) ORIENTATION: timestamp 16346, x 24.000000, y 118.000000, z -28.000000 [0m
+
+[0;32mI (16832) ORIENTATION: timestamp 16396, x -94.000000, y -133.000000, z 162.000000 [0m
+
+[0;32mI (16882) ORIENTATION: timestamp 16446, x 105.000000, y 35.000000, z 131.000000 [0m
+
+[0;32mI (16932) ORIENTATION: timestamp 16496, x 111.000000, y -140.000000, z -176.000000 [0m
+
+[0;32mI (16982) ORIENTATION: timestamp 16546, x -164.000000, y 118.000000, z -114.000000 [0m
+
+[0;32mI (17032) ORIENTATION: timestamp 16596, x -168.000000, y 137.000000, z 34.000000 [0m
+
+[0;32mI (17082) ORIENTATION: timestamp 16646, x 14.000000, y 121.000000, z 129.000000 [0m
+
+[0;32mI (17132) ORIENTATION: timestamp 16696, x -135.000000, y -52.000000, z -84.000000 [0m
+
+[0;32mI (17182) ORIENTATION: timestamp 16746, x 107.000000, y 180.000000, z 50.000000 [0m
+
+[0;32mI (17232) ORIENTATION: timestamp 16796, x -13.000000, y 50.000000, z -71.000000 [0m
+
+[0;32mI (17282) ORIENTATION: timestamp 16846, x -147.000000, y 74.000000, z -40.000000 [0m
+
+[0;32mI (17332) ORIENTATION: timestamp 16896, x -73.000000, y 4.000000, z -44.000000 [0m
+
+[0;32mI (17382) ORIENTATION: timestamp 16946, x 33.000000, y 143.000000, z -178.000000 [0m
+
+[0;32mI (17432) ORIENTATION: timestamp 16996, x -163.000000, y 40.000000, z 122.000000 [0m
+
+[0;32mI (17482) ORIENTATION: timestamp 17046, x -118.000000, y -48.000000, z -86.000000 [0m
+
+[0;32mI (17532) ORIENTATION: timestamp 17096, x -71.000000, y -105.000000, z -123.000000 [0m
+
+[0;32mI (17582) ORIENTATION: timestamp 17146, x 89.000000, y -155.000000, z 116.000000 [0m
+
+[0;32mI (17632) ORIENTATION: timestamp 17196, x 90.000000, y -144.000000, z -83.000000 [0m
+
+[0;32mI (17682) ORIENTATION: timestamp 17246, x -27.000000, y -23.000000, z -38.000000 [0m
+
+[0;32mI (17732) ORIENTATION: timestamp 17296, x -145.000000, y -24.000000, z 176.000000 [0m
+
+[0;32mI (17782) ORIENTATION: timestamp 17346, x -89.000000, y -113.000000, z -171.000000 [0m
+
+[0;32mI (17832) ORIENTATION: timestamp 17396, x -166.000000, y 128.000000, z -146.000000 [0m
+

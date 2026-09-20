@@ -1,10 +1,4 @@
 
-
-// #include "esp_flash.h"
-// #include "esp_chip_info.h"
-// #include "spi_flash_mmap.h"
-// #include "esp_littlefs.h"
-
 #include "include/uart.h"
 #include "include/nvs.h"
 #include "include/led_module.h"
@@ -35,10 +29,18 @@ QueueHandle_t queue_imu;
 QueueHandle_t queue_raw_sdcard;
 /* queue for orientation from datalogging task to the SD card, UART, and BLE */
 QueueHandle_t queue_orientation_sdcard, queue_orientation_UART, queue_orientation_BLE;
-/* streambuffers */
-StreamBufferHandle_t streambuffer_imu, streambuffer_sd;
+/* queue for heart rate values */
+QueueHandle_t queue_heart_rate_UART, queue_heart_rate_BLE;
+/* queue for haptics command play builtin sequence */
+QueueHandle_t queue_haptics_command_play_builtin_BLE;
+/* queue for haptics command play custom sequence */
+QueueHandle_t queue_haptics_command_play_custom_BLE;
 
-// bool datalogging = false;
+/* shared variables */
+haptics_status_t haptics_status;
+float battery_voltage;
+
+bool datalogging = false;
 
 i2c_master_bus_handle_t bus_handle;
 i2c_master_dev_handle_t dev_handle;
@@ -51,6 +53,8 @@ params_task_main_datalogging_t params_task_main_datalogging;
 params_task_SD_card_datalogger_t params_task_SD_card_datalogger;
 params_task_uart_t params_task_uart;
 params_task_ble_t params_task_ble;
+
+// static void timer_callback(void *arg);
 
 // main
 imu_data_t data;
@@ -87,19 +91,40 @@ void app_main(void)
     sd_card_configure_wrapper();
     ESP_LOGI(MAIN_TAG, "Starting all tasks!");
 
+    /* initialize haptics */
+    // haptics_init(&haptics_hw,
+    //              EN_PIN,
+    //              haptics_channels);
+    // haptics_disable_all(&haptics_hw);
+
+    // // Define timer configuration
+    // const esp_timer_create_args_t timer_args = {
+    //     .callback = &timer_callback,
+    //     .name = "asdf timer",
+    // };
+
+    // esp_timer_handle_t timer_handle;
+    // ESP_ERROR_CHECK(esp_timer_create(&timer_args, &timer_handle));
+
+    // // Start periodic timer with a 1 ms period (1000 microseconds)
+    // ESP_ERROR_CHECK(esp_timer_start_periodic(timer_handle, 1000));
+
+    // // ESP_ERROR_CHECK(esp_timer_start_periodic(timer_handle, 500000));
+
+    // haptics_load_pulse_seq(&haptics_hw, pulse_null, 1);
+    // vTaskDelay(1000 / portTICK_PERIOD_MS);
+
     /* create all queues */
     queue_imu = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(imu_data_t));
     queue_raw_sdcard = xQueueCreate(NUM_FIFO_TIMESTAMPS, sizeof(imu_data_t));
-    queue_orientation_sdcard = xQueueCreate(NUM_FIFO_TIMESTAMPS, sizeof(imu_data_t));
-    queue_orientation_UART = xQueueCreate(NUM_FIFO_TIMESTAMPS, sizeof(imu_data_t));
-    queue_orientation_BLE = xQueueCreate(NUM_FIFO_TIMESTAMPS, sizeof(imu_data_t));
+    queue_orientation_sdcard = xQueueCreate(NUM_FIFO_TIMESTAMPS, sizeof(orientation_data_t));
+    queue_orientation_UART = xQueueCreate(NUM_FIFO_TIMESTAMPS, sizeof(orientation_data_t));
+    queue_orientation_BLE = xQueueCreate(NUM_FIFO_TIMESTAMPS, sizeof(orientation_data_t));
+    ESP_LOGI(MAIN_TAG, "orientation queue pointer = %p", queue_orientation_BLE);
+    ESP_LOGI(MAIN_TAG, "orientation queue pointer = %p", &queue_orientation_BLE);
 
     ESP_LOGI(MAIN_TAG, "params_task_uart = %p", &params_task_uart);
     ESP_LOGI(MAIN_TAG, "params_task_ble = %p", &params_task_ble);
-
-    /* create all streambuffers */
-    // streambuffer_imu = xStreamBufferCreate(sizeof(imu_data_t) * NUM_FIFO_TIMESTAMPS, sizeof(imu_data_t) * NUM_FIFO_TIMESTAMPS);
-    // streambuffer_sd = xStreamBufferCreate(sizeof(imu_data_t) * NUM_FIFO_TIMESTAMPS * 2, sizeof(imu_data_t) * NUM_FIFO_TIMESTAMPS);
 
     /* params_task_imu */
     params_task_imu.task_handle_status_led = &task_handle_status_led;
@@ -123,15 +148,24 @@ void app_main(void)
 
     /* params_task_uart */
     params_task_uart.queue_orientation_UART = queue_orientation_UART;
+    params_task_uart.queue_heart_rate_UART = queue_heart_rate_UART;
 
     /* params_task_ble */
     params_task_ble.queue_orientation_BLE = queue_orientation_BLE;
+    // params_task_ble.queue_heart_rate_BLE = queue_heart_rate_BLE;
+    // params_task_ble.queue_haptics_command_play_builtin_BLE =
+    //     queue_haptics_command_play_builtin_BLE;
+    // params_task_ble.queue_haptics_command_play_custom_BLE =
+    //     queue_haptics_command_play_custom_BLE;
+    // // params_task_ble.haptics_command_config = ;
+    // params_task_ble.haptics_status = &haptics_status;
+    // params_task_ble.battery_voltage = &battery_voltage;
 
     /* initialize all tasks */
     // IMU reading task
     xTaskCreatePinnedToCore(task_imu,
                             "imu calibrate and read task",
-                            8192,
+                            2048,
                             &params_task_imu,
                             2,
                             &task_handle_imu_data,
@@ -173,7 +207,6 @@ void app_main(void)
                             0);
 
     /* BLE streaming task */
-
     xTaskCreatePinnedToCore(task_ble_streaming,
                             "BLE data streaming task",
                             10000,

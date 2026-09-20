@@ -193,18 +193,6 @@ void task_SD_card_datalogger(void *params)
 
                     num_raw_data_samples_read = (num_raw_data_samples_read + 1) % SD_BUF_SIZE;
                 }
-
-                // // read from stream buffer
-                // num_bytes_read = xStreamBufferReceive(streambuffer_sd,
-                //                                       imu_data_buf,
-                //                                       sizeof(imu_data_t) * SD_BUF_SIZE,
-                //                                       (100 / portTICK_PERIOD_MS));
-                // if (num_bytes_read > 0)
-                // {
-                //     ESP_LOGI(SD_CARD_TAG, "%d bytes to write", num_bytes_read);
-                //     // for (int i = 0; i < num_bytes_read / sizeof(imu_data_t); i++)
-                //     write_imu_raw_data_to_card(f_raw, &imu_data_buf, num_bytes_read / sizeof(imu_data_t), &file_size);
-                // }
             }
             /* once the raw data file reaches the maximum datalog file size */
             else
@@ -282,10 +270,12 @@ esp_err_t sd_configure(void)
 {
     sd_card_initialized = 0;
     esp_err_t ret;
-    // SD card mount configuration
-    // Options for mounting the filesystem.
-    // If format_if_mount_failed is set to true, SD card will be partitioned and
-    // formatted in case when mounting fails.
+    /*
+    SD card mount configuration
+    Options for mounting the filesystem.
+    If format_if_mount_failed is set to true, SD card will be partitioned and
+    formatted in case when mounting fails.
+    */
     esp_vfs_fat_sdmmc_mount_config_t mount_config = {
         .format_if_mount_failed = true,
         .max_files = 5,
@@ -295,15 +285,19 @@ esp_err_t sd_configure(void)
     sdmmc_card_t *card;
     const char mount_point[] = MOUNT_POINT;
     ESP_LOGI(SD_CARD_TAG, "Initializing SD card");
-    // Use settings defined above to initialize SD card and mount FAT filesystem.
-    // Note: esp_vfs_fat_sdmmc/sdspi_mount is all-in-one convenience functions.
-    // Please check its source code and implement error recovery when developing
-    // production applications.
+    /*
+    Use settings defined above to initialize SD card and mount FAT filesystem.
+    Note: esp_vfs_fat_sdmmc/sdspi_mount is all-in-one convenience functions.
+    Please check its source code and implement error recovery when developing
+    production applications.
+    */
     ESP_LOGI(SD_CARD_TAG, "Using SPI peripheral");
 
-    // By default, SD card frequency is initialized to SDMMC_FREQ_DEFAULT (20MHz)
-    // For setting a specific frequency, use host.max_freq_khz (range 400kHz - 20MHz for SDSPI)
-    // Example: for fixed frequency of 10MHz, use host.max_freq_khz = 10000;
+    /*
+    By default, SD card frequency is initialized to SDMMC_FREQ_DEFAULT (20MHz)
+    For setting a specific frequency, use host.max_freq_khz (range 400kHz - 20MHz for SDSPI)
+    Example: for fixed frequency of 10MHz, use host.max_freq_khz = 10000;
+    */
     sdmmc_host_t host = SDSPI_HOST_DEFAULT();
     host.max_freq_khz = 4000;
 
@@ -323,8 +317,10 @@ esp_err_t sd_configure(void)
         // return ret;
     }
 
-    // This initializes the slot without card detect (CD) and write protect (WP) signals.
-    // Modify slot_config.gpio_cd and slot_config.gpio_wp if your board has these signals.
+    /*
+    This initializes the slot without card detect (CD) and write protect (WP) signals.
+    Modify slot_config.gpio_cd and slot_config.gpio_wp if your board has these signals.
+    */
     sdspi_device_config_t slot_config = SDSPI_DEVICE_CONFIG_DEFAULT();
     slot_config.gpio_cs = SD_CS_PIN;
     slot_config.host_id = host.slot;
@@ -466,43 +462,6 @@ int get_highest_datalog_idx(const char *dir_path)
     ESP_LOGI(SD_CARD_TAG, "max_idx: %d", max_idx);
     return max_idx;
 }
-
-// /*
-// get latest file index on SD card
-// */
-// void list_directory_files(const char *dir_path)
-// {
-//     // Open the directory stream
-//     DIR *dir = opendir(dir_path);
-
-//     // Check if the directory opened successfully
-//     if (dir == NULL)
-//     {
-//         perror("Unable to open directory");
-//         return;
-//     }
-
-//     struct dirent *entry;
-//     printf("Listing files in directory: %s\n", dir_path);
-//     printf("-----------------------------------\n");
-
-//     // Read directory entries sequentially
-//     while ((entry = readdir(dir)) != NULL)
-//     {
-//         // Filter out the navigation shortcuts "." and ".." if desired
-//         if (entry->d_name[0] == '.' && (entry->d_name[1] == '\0' ||
-//                                         (entry->d_name[1] == '.' && entry->d_name[2] == '\0')))
-//         {
-//             continue;
-//         }
-
-//         // Print the file/folder name
-//         printf("%s\n", entry->d_name);
-//     }
-
-//     // Close the directory stream
-//     closedir(dir);
-// }
 
 /**
  * @brief read an IMU datalog file given an index

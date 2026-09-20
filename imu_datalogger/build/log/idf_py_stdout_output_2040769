@@ -1,0 +1,441 @@
+Command: /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/imu_module.elf /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader/bootloader.elf -m '/home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python' '/home/simonque/Documents/code/esp-idf/tools/idf.py'
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0040,len:6272
+load:0x40078000,len:15848
+load:0x40080400,len:3920
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v6.1-dev-2310-g44e2fa6d9c5-dirt 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Sep  1 2026 14:56:57[0m
+[0;32mI (28) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v3.1[0m
+[0;32mI (34) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (37) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (65) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (78) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=2671ch (157468) map[0m
+[0;32mI (144) esp_image: segment 1: paddr=00036744 vaddr=3ffbdb60 size=05134h ( 20788) load[0m
+[0;32mI (153) esp_image: segment 2: paddr=0003b880 vaddr=40080000 size=04798h ( 18328) load[0m
+[0;32mI (160) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=7d9f4h (514548) map[0m
+[0;32mI (344) esp_image: segment 4: paddr=000bda1c vaddr=40084798 size=146c4h ( 83652) load[0m
+[0;32mI (378) esp_image: segment 5: paddr=000d20e8 vaddr=50000000 size=00028h (    40) load[0m
+[0;32mI (391) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (391) boot: Disabling RNG early entropy source...[0m
+[0;32mI (402) cpu_start: Multicore app[0m
+[0;32mI (410) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (410) cpu_start: Pro cpu start user code[0m
+[0;32mI (410) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (412) app_init: Application information:[0m
+[0;32mI (416) app_init: Project name:     imu_module[0m
+[0;32mI (420) app_init: App version:      d0304c1-dirty[0m
+[0;32mI (425) app_init: Compile time:     Sep 10 2026 14:51:48[0m
+[0;32mI (430) app_init: ELF file SHA256:  7dc76eba8...[0m
+[0;32mI (434) app_init: ESP-IDF:          v6.1-dev-2310-g44e2fa6d9c5-dirt[0m
+[0;32mI (440) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (444) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (448) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (452) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (458) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (463) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (468) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (473) heap_init: At 3FFC7238 len 00018DC8 (99 KiB): DRAM[0m
+[0;32mI (478) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (484) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (489) heap_init: At 40098E5C len 000071A4 (28 KiB): IRAM[0m
+[0;33mW (496) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (508) spi_flash: detected chip: generic[0m
+[0;32mI (511) spi_flash: flash io: dio[0m
+[0;33mW (514) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (527) coexist: coex firmware version: 093e3d2[0m
+[0;32mI (532) main_task: Started on CPU0[0m
+[0;32mI (542) main_task: Calling app_main()[0m
+[0;32mI (542) button: IoT Button Version: 4.2.0[0m
+[0;32mI (542) MAIN: I2C initialized successfully[0m
+[0;32mI (562) BTDM_INIT: BT controller compile version [045a658][0m
+[0;32mI (562) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (562) BTDM_INIT: Bluetooth MAC: d8:13:2a:7d:69:0a[0m
+[0;32mI (562) phy_init: phy_version 4863,a3a4459,Oct 28 2025,14:30:06[0m
+[0;33mW (972) BT_BTM: BTM_BleWriteAdvData, Partial data write into ADV[0m
+[0;33mW (972) BT_BTM: BTM_BleWriteScanRsp, Partial data write into ADV[0m
+[0;32mI (982) BLE: create attribute table successfully, the number handle = 4[0m
+[0;32mI (982) BLE: Advertising data set, status 0[0m
+[0;32mI (982) BLE: Scan response data set, status 0[0m
+[0;32mI (982) BLE: SERVICE_START_EVT, status 0, service_handle 40[0m
+[0;32mI (992) LSM6DS3: WHO_AM_I = 69[0m
+[0;32mI (1002) BLE: Advertising start successfully[0m
+[0;32mI (1012) SD_CARD: Initializing SD card[0m
+[0;32mI (1012) SD_CARD: Using SPI peripheral[0m
+[0;32mI (1012) SD_CARD: Mounting filesystem[0m
+[0;32mI (1012) sdspi_transaction: cmd=52, R1 response: command not supported[0m
+[0;32mI (1052) sdspi_transaction: cmd=5, R1 response: command not supported[0m
+[0;32mI (1102) SD_CARD: Filesystem mounted[0m
+Name: ACLCE
+Type: SDHC
+Speed: 4.00 MHz (limit: 4.00 MHz)
+Size: 60906MB
+CSD: ver=2, sector_size=512, capacity=124735488 read_bl_len=9
+SSR: bus_width=1
+[0;32mI (1102) SD_CARD: SD card initialized[0m
+[0;32mI (1112) MAIN: Starting all tasks![0m
+[0;32mI (1112) MAIN: params_task_uart = 0x3ffc3528[0m
+[0;32mI (1112) MAIN: params_task_ble = 0x3ffc3524[0m
+[0;32mI (1122) BLE: ble task started[0m
+[0;32mI (1122) BLE: orientation queue pointer = 0x3ffdd81c[0m
+[0;32mI (23792) BLE: ESP_GATTS_CONNECT_EVT, conn_id = 0[0m
+[0;32mI (23792) BLE: 6b e8 82 a4 96 7a[0m
+[0;32mI (23852) BLE: Packet length update, status 0, rx 27, tx 251[0m
+[0;32mI (24202) BLE: Connection params update, status 0, conn_int 24, latency 0, timeout 400[0m
+[0;32mI (24582) BLE: Connection params update, status 0, conn_int 6, latency 0, timeout 500[0m
+[0;32mI (24752) BLE: Connection params update, status 0, conn_int 24, latency 0, timeout 400[0m
+[0;32mI (25202) BUTTON: Datalogging started.[0m
+[0;32mI (25202) IMU: cur_timestamp start = 24709985[0m
+
+[0;32mI (25202) IMU: IMU started[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (25222) DATA LOGGING: Datalogging started.[0m
+[0;32mI (25252) DATA LOGGING: complementary filter 24759052 -5.78 1.58 -0.01[0m
+
+assert failed: xQueueReceive queue.c:1531 (( pxQueue ))
+
+
+Backtrace: 0x40092d61:0x3ffdd510 0x40092d29:0x3ffdd530 0x40091d21:0x3ffdd550 0x4014a2ce:0x3ffdd670 0x400e1db8:0x3ffdd6b0 0x40149c26:0x3ffdd840
+
+
+
+
+ELF file SHA256: 7dc76eba8
+
+Rebooting...
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0040,len:6272
+load:0x40078000,len:15848
+load:0x40080400,len:3920
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v6.1-dev-2310-g44e2fa6d9c5-dirt 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Sep  1 2026 14:56:57[0m
+[0;32mI (27) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v3.1[0m
+[0;32mI (34) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (37) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (64) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (78) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=2671ch (157468) map[0m
+[0;32mI (144) esp_image: segment 1: paddr=00036744 vaddr=3ffbdb60 size=05134h ( 20788) load[0m
+[0;32mI (153) esp_image: segment 2: paddr=0003b880 vaddr=40080000 size=04798h ( 18328) load[0m
+[0;32mI (160) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=7d9f4h (514548) map[0m
+[0;32mI (344) esp_image: segment 4: paddr=000bda1c vaddr=40084798 size=146c4h ( 83652) load[0m
+[0;32mI (378) esp_image: segment 5: paddr=000d20e8 vaddr=50000000 size=00028h (    40) load[0m
+[0;32mI (391) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (391) boot: Disabling RNG early entropy source...[0m
+[0;32mI (402) cpu_start: Multicore app[0m
+[0;32mI (410) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (410) cpu_start: Pro cpu start user code[0m
+[0;32mI (410) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (412) app_init: Application information:[0m
+[0;32mI (416) app_init: Project name:     imu_module[0m
+[0;32mI (420) app_init: App version:      d0304c1-dirty[0m
+[0;32mI (424) app_init: Compile time:     Sep 10 2026 14:51:48[0m
+[0;32mI (429) app_init: ELF file SHA256:  7dc76eba8...[0m
+[0;32mI (434) app_init: ESP-IDF:          v6.1-dev-2310-g44e2fa6d9c5-dirt[0m
+[0;32mI (440) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (444) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (448) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (452) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (458) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (463) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (468) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (473) heap_init: At 3FFC7238 len 00018DC8 (99 KiB): DRAM[0m
+[0;32mI (478) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (484) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (489) heap_init: At 40098E5C len 000071A4 (28 KiB): IRAM[0m
+[0;33mW (496) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (508) spi_flash: detected chip: generic[0m
+[0;32mI (511) spi_flash: flash io: dio[0m
+[0;33mW (514) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (527) coexist: coex firmware version: 093e3d2[0m
+[0;32mI (532) main_task: Started on CPU0[0m
+[0;32mI (542) main_task: Calling app_main()[0m
+[0;32mI (542) button: IoT Button Version: 4.2.0[0m
+[0;32mI (542) MAIN: I2C initialized successfully[0m
+[0;32mI (562) BTDM_INIT: BT controller compile version [045a658][0m
+[0;32mI (562) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (562) BTDM_INIT: Bluetooth MAC: d8:13:2a:7d:69:0a[0m
+[0;32mI (562) phy_init: phy_version 4863,a3a4459,Oct 28 2025,14:30:06[0m
+[0;33mW (962) BT_BTM: BTM_BleWriteAdvData, Partial data write into ADV[0m
+[0;33mW (972) BT_BTM: BTM_BleWriteScanRsp, Partial data write into ADV[0m
+[0;32mI (982) BLE: create attribute table successfully, the number handle = 4[0m
+[0;32mI (982) BLE: Advertising data set, status 0[0m
+[0;32mI (982) BLE: Scan response data set, status 0[0m
+[0;32mI (982) BLE: SERVICE_START_EVT, status 0, service_handle 40[0m
+[0;32mI (992) LSM6DS3: WHO_AM_I = 69[0m
+[0;32mI (1002) BLE: Advertising start successfully[0m
+[0;32mI (1012) SD_CARD: Initializing SD card[0m
+[0;32mI (1012) SD_CARD: Using SPI peripheral[0m
+[0;32mI (1012) SD_CARD: Mounting filesystem[0m
+[0;32mI (1012) sdspi_transaction: cmd=52, R1 response: command not supported[0m
+[0;32mI (1052) sdspi_transaction: cmd=5, R1 response: command not supported[0m
+[0;32mI (1102) SD_CARD: Filesystem mounted[0m
+Name: ACLCE
+Type: SDHC
+Speed: 4.00 MHz (limit: 4.00 MHz)
+Size: 60906MB
+CSD: ver=2, sector_size=512, capacity=124735488 read_bl_len=9
+SSR: bus_width=1
+[0;32mI (1102) SD_CARD: SD card initialized[0m
+[0;32mI (1112) MAIN: Starting all tasks![0m
+[0;32mI (1112) MAIN: params_task_uart = 0x3ffc3528[0m
+[0;32mI (1112) MAIN: params_task_ble = 0x3ffc3524[0m
+[0;32mI (1122) BLE: ble task started[0m
+[0;32mI (1122) BLE: orientation queue pointer = 0x3ffdd81c[0m
+[0;32mI (3682) BUTTON: Datalogging started.[0m
+[0;32mI (3682) IMU: cur_timestamp start = 3195007[0m
+
+[0;32mI (3682) IMU: IMU started[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (3722) DATA LOGGING: Datalogging started.[0m
+[0;32mI (3742) DATA LOGGING: complementary filter 3250907 0.59 6.39 -0.01[0m
+[0;32mI (3752) DATA LOGGING: complementary filter 3262967 0.65 6.30 -0.03[0m
+[0;32mI (3772) DATA LOGGING: complementary filter 3281250 0.68 6.20 -0.06[0m
+[0;32mI (3782) DATA LOGGING: complementary filter 3293856 0.75 6.13 -0.08[0m
+[0;32mI (3792) DATA LOGGING: complementary filter 3306334 0.80 6.04 -0.10[0m
+[0;32mI (3812) DATA LOGGING: complementary filter 3323816 0.86 5.92 -0.13[0m
+[0;32mI (3822) DATA LOGGING: complementary filter 3336662 0.94 5.85 -0.16[0m
+[0;32mI (3842) DATA LOGGING: complementary filter 3349215 0.99 5.78 -0.18[0m
+[0;32mI (3852) DATA LOGGING: complementary filter 3365300 1.06 5.68 -0.21[0m
+[0;32mI (3872) DATA LOGGING: complementary filter 3377964 1.10 5.63 -0.23[0m
+[0;32mI (3882) DATA LOGGING: complementary filter 3390873 1.11 5.58 -0.25[0m
+[0;32mI (3892) DATA LOGGING: complementary filter 3405523 1.16 5.51 -0.28[0m
+[0;32mI (3912) DATA LOGGING: complementary filter 3419028 1.21 5.45 -0.30[0m
+[0;32mI (3922) DATA LOGGING: complementary filter 3431271 1.25 5.39 -0.32[0m
+[0;32mI (3932) DATA LOGGING: complementary filter 3446200 1.31 5.33 -0.35[0m
+[0;32mI (3952) DATA LOGGING: complementary filter 3461824 1.33 5.29 -0.38[0m
+[0;32mI (3962) DATA LOGGING: complementary filter 3472094 1.36 5.26 -0.40[0m
+[0;32mI (3972) DATA LOGGING: complementary filter 3484311 1.39 5.21 -0.42[0m
+[0;32mI (3992) DATA LOGGING: complementary filter 3504911 1.45 5.10 -0.44[0m
+[0;32mI (4012) DATA LOGGING: complementary filter 3517337 1.49 5.05 -0.46[0m
+[0;32mI (4022) DATA LOGGING: complementary filter 3529810 1.53 5.00 -0.48[0m
+[0;32mI (4032) DATA LOGGING: complementary filter 3544882 1.58 4.92 -0.51[0m
+[0;32mI (4052) DATA LOGGING: complementary filter 3558657 1.62 4.87 -0.54[0m
+[0;32mI (4062) DATA LOGGING: complementary filter 3571004 1.66 4.82 -0.56[0m
+[0;32mI (4072) DATA LOGGING: complementary filter 3583470 1.70 4.77 -0.58[0m
+[0;32mI (4092) DATA LOGGING: complementary filter 3600426 1.74 4.70 -0.61[0m
+[0;32mI (4102) DATA LOGGING: complementary filter 3615632 1.78 4.64 -0.63[0m
+[0;32mI (4122) DATA LOGGING: complementary filter 3630158 1.81 4.59 -0.66[0m
+[0;32mI (4132) DATA LOGGING: complementary filter 3644290 1.86 4.53 -0.69[0m
+[0;32mI (4152) DATA LOGGING: complementary filter 3656792 1.88 4.49 -0.71[0m
+[0;32mI (4162) DATA LOGGING: complementary filter 3672729 1.92 4.43 -0.73[0m
+[0;32mI (4182) DATA LOGGING: complementary filter 3687387 1.96 4.38 -0.76[0m
+[0;32mI (4192) DATA LOGGING: complementary filter 3699469 1.99 4.33 -0.78[0m
+[0;32mI (4202) DATA LOGGING: complementary filter 3711877 2.03 4.30 -0.80[0m
+[0;32mI (4222) DATA LOGGING: complementary filter 3731248 2.07 4.21 -0.84[0m
+[0;32mI (4232) DATA LOGGING: complementary filter 3743871 2.10 4.17 -0.86[0m
+[0;32mI (4252) DATA LOGGING: complementary filter 3756727 2.12 4.14 -0.88[0m
+[0;32mI (4262) DATA LOGGING: complementary filter 3775334 2.16 4.07 -0.91[0m
+[0;32mI (4282) DATA LOGGING: complementary filter 3788065 2.18 4.04 -0.93[0m
+[0;32mI (4292) DATA LOGGING: complementary filter 3800278 2.20 4.01 -0.95[0m
+[0;32mI (4302) DATA LOGGING: complementary filter 3814770 2.24 3.96 -0.96[0m
+[0;32mI (4322) DATA LOGGING: complementary filter 3831563 2.27 3.90 -0.99[0m
+[0;32mI (4332) DATA LOGGING: complementary filter 3844038 2.29 3.87 -1.01[0m
+[0;32mI (4352) DATA LOGGING: complementary filter 3858004 2.32 3.82 -1.04[0m
+[0;32mI (4362) DATA LOGGING: complementary filter 3872750 2.36 3.77 -1.06[0m
+[0;32mI (4382) DATA LOGGING: complementary filter 3884642 2.39 3.74 -1.08[0m
+[0;32mI (4392) DATA LOGGING: complementary filter 3896811 2.42 3.72 -1.11[0m
+[0;32mI (4402) DATA LOGGING: complementary filter 3912764 2.45 3.68 -1.14[0m
+[0;32mI (4412) DATA LOGGING: complementary filter 3925653 2.47 3.65 -1.16[0m
+[0;32mI (4432) DATA LOGGING: complementary filter 3937724 2.49 3.63 -1.18[0m
+[0;32mI (4442) DATA LOGGING: complementary filter 3947494 2.51 3.63 -1.20[0m
+[0;32mI (4452) DATA LOGGING: complementary filter 3965352 2.54 3.57 -1.23[0m
+[0;32mI (4472) DATA LOGGING: complementary filter 3977904 2.56 3.55 -1.25[0m
+[0;32mI (4482) DATA LOGGING: complementary filter 3988055 2.58 3.54 -1.27[0m
+[0;32mI (4492) DATA LOGGING: complementary filter 4002388 2.60 3.51 -1.30[0m
+[0;32mI (4512) DATA LOGGING: complementary filter 4018427 2.63 3.47 -1.32[0m
+[0;32mI (4522) DATA LOGGING: complementary filter 4030830 2.64 3.46 -1.35[0m
+[0;32mI (4532) DATA LOGGING: complementary filter 4042614 2.65 3.44 -1.36[0m
+[0;32mI (4552) DATA LOGGING: complementary filter 4062769 2.67 3.38 -1.40[0m
+[0;32mI (4562) DATA LOGGING: complementary filter 4074828 2.69 3.36 -1.42[0m
+[0;32mI (4572) DATA LOGGING: complementary filter 4084546 2.70 3.36 -1.43[0m
+[0;32mI (4592) DATA LOGGING: complementary filter 4101928 2.73 3.31 -1.46[0m
+[0;32mI (4602) DATA LOGGING: complementary filter 4114433 2.74 3.30 -1.49[0m
+[0;32mI (4622) DATA LOGGING: complementary filter 4127042 2.76 3.28 -1.51[0m
+[0;32mI (4632) DATA LOGGING: complementary filter 4141509 2.78 3.26 -1.53[0m
+[0;32mI (4652) DATA LOGGING: complementary filter 4155548 2.80 3.23 -1.56[0m
+[0;32mI (4662) DATA LOGGING: complementary filter 4167336 2.80 3.23 -1.58[0m
+[0;32mI (4672) DATA LOGGING: complementary filter 4179008 2.81 3.21 -1.60[0m
+[0;32mI (4692) DATA LOGGING: complementary filter 4196635 2.84 3.17 -1.63[0m
+[0;32mI (4702) DATA LOGGING: complementary filter 4211495 2.85 3.14 -1.65[0m
+[0;32mI (4712) DATA LOGGING: complementary filter 4223480 2.85 3.14 -1.67[0m
+[0;32mI (4732) DATA LOGGING: complementary filter 4242367 2.88 3.09 -1.70[0m
+[0;32mI (4742) DATA LOGGING: complementary filter 4254845 2.88 3.09 -1.73[0m
+[0;32mI (4762) DATA LOGGING: complementary filter 4266696 2.88 3.09 -1.74[0m
+[0;32mI (4772) DATA LOGGING: complementary filter 4276481 2.88 3.10 -1.76[0m
+[0;32mI (4782) DATA LOGGING: complementary filter 4295744 2.90 3.05 -1.79[0m
+[0;32mI (4802) DATA LOGGING: complementary filter 4307077 2.89 3.07 -1.80[0m
+[0;32mI (4812) DATA LOGGING: complementary filter 4318952 2.89 3.07 -1.82[0m
+[0;32mI (4822) DATA LOGGING: complementary filter 4333357 2.90 3.05 -1.85[0m
+[0;32mI (4842) DATA LOGGING: complementary filter 4348407 2.92 3.02 -1.87[0m
+[0;32mI (4852) DATA LOGGING: complementary filter 4360566 2.92 3.01 -1.89[0m
+[0;32mI (4862) DATA LOGGING: complementary filter 4375866 2.95 2.97 -1.92[0m
+[0;32mI (4882) DATA LOGGING: complementary filter 4387727 2.96 2.97 -1.94[0m
+[0;32mI (4892) DATA LOGGING: complementary filter 4399774 2.96 2.96 -1.96[0m
+[0;32mI (4902) DATA LOGGING: complementary filter 4409259 2.97 2.98 -1.98[0m
+[0;32mI (4922) DATA LOGGING: complementary filter 4427185 2.98 2.95 -2.02[0m
+[0;32mI (4932) DATA LOGGING: complementary filter 4441559 2.99 2.94 -2.05[0m
+[0;32mI (4942) DATA LOGGING: complementary filter 4451421 2.99 2.95 -2.06[0m
+[0;32mI (4962) DATA LOGGING: complementary filter 4469174 3.01 2.92 -2.10[0m
+[0;32mI (4972) DATA LOGGING: complementary filter 4481122 3.02 2.92 -2.12[0m
+[0;32mI (4982) DATA LOGGING: complementary filter 4492724 3.02 2.92 -2.14[0m
+[0;32mI (5002) DATA LOGGING: complementary filter 4508205 3.04 2.89 -2.17[0m
+[0;32mI (5012) DATA LOGGING: complementary filter 4519697 3.04 2.90 -2.19[0m
+[0;32mI (5022) DATA LOGGING: complementary filter 4531434 3.04 2.90 -2.21[0m
+[0;32mI (5042) DATA LOGGING: complementary filter 4541142 3.03 2.90 -2.22[0m
+[0;32mI (5052) DATA LOGGING: complementary filter 4563161 3.03 2.84 -2.25[0m
+[0;32mI (5062) DATA LOGGING: complementary filter 4575159 3.02 2.84 -2.27[0m
+[0;32mI (5082) DATA LOGGING: complementary filter 4587043 3.02 2.84 -2.29[0m
+[0;32mI (5092) DATA LOGGING: complementary filter 4604131 3.04 2.76 -2.31[0m
+[1;31mE (5112) DATA LOGGING: SDCARD raw fail[0m
+[0;32mI (5112) DATA LOGGING: complementary filter 4616060 3.02 2.75 -2.33[0m
+[0;32mI (5122) DATA LOGGING: complementary filter 4627790 3.00 2.75 -2.34[0m
+[1;31mE (5132) DATA LOGGING: SDCARD orientation fail[0m
+[0;32mI (5132) DATA LOGGING: complementary filter 4642274 3.01 2.73 -2.35[0m
+[0;32mI (5152) DATA LOGGING: complementary filter 4658395 3.05 2.70 -2.37[0m
+[0;32mI (5152) SD_CARD: max_idx: 2019[0m
+[0;32mI (5152) SD_CARD: filename: imu_raw_002020.bin[0m
+[0;32mI (5152) SD_CARD: filepath: /sdcard/imu_raw_002020.bin[0m
+[0;32mI (5162) SD_CARD: Writing to new raw file[0m
+[0;32mI (5172) DATA LOGGING: complementary filter 4680436 3.07 2.60 -2.39[0m
+[0;32mI (5182) DATA LOGGING: complementary filter 4691733 3.07 2.60 -2.41[0m
+[0;32mI (5192) DATA LOGGING: complementary filter 4702307 3.07 2.61 -2.42[0m
+[0;32mI (5202) DATA LOGGING: complementary filter 4709162 3.06 2.64 -2.44[0m
+[0;32mI (5202) DATA LOGGING: complementary filter 4716371 3.05 2.67 -2.45[0m
+[0;32mI (5212) DATA LOGGING: complementary filter 4724716 3.05 2.69 -2.46[0m
+[0;32mI (5222) DATA LOGGING: complementary filter 4735234 3.05 2.69 -2.48[0m
+[0;32mI (5232) DATA LOGGING: complementary filter 4744986 3.05 2.71 -2.50[0m
+[0;32mI (5242) DATA LOGGING: complementary filter 4752128 3.04 2.73 -2.51[0m
+[0;32mI (5252) DATA LOGGING: complementary filter 4760606 3.04 2.74 -2.52[0m
+
+assert failed: xQueueReceive queue.c:1531 (( pxQueue ))
+
+
+Backtrace: 0x40092d61:0x3ffdd510 0x40092d29:0x3ffdd530 0x40091d21:0x3ffdd550 0x4014a2ce:0x3ffdd670 0x400e1db8:0x3ffdd6b0 0x40149c26:0x3ffdd840
+
+
+
+
+ELF file SHA256: 7dc76eba8
+
+Rebooting...
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0040,len:6272
+load:0x40078000,len:15848
+load:0x40080400,len:3920
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v6.1-dev-2310-g44e2fa6d9c5-dirt 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Sep  1 2026 14:56:57[0m
+[0;32mI (27) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v3.1[0m
+[0;32mI (34) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (37) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (64) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (78) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=2671ch (157468) map[0m
+[0;32mI (144) esp_image: segment 1: paddr=00036744 vaddr=3ffbdb60 size=05134h ( 20788) load[0m
+[0;32mI (153) esp_image: segment 2: paddr=0003b880 vaddr=40080000 size=04798h ( 18328) load[0m
+[0;32mI (160) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=7d9f4h (514548) map[0m
+[0;32mI (344) esp_image: segment 4: paddr=000bda1c vaddr=40084798 size=146c4h ( 83652) load[0m
+[0;32mI (378) esp_image: segment 5: paddr=000d20e8 vaddr=50000000 size=00028h (    40) load[0m
+[0;32mI (391) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (391) boot: Disabling RNG early entropy source...[0m
+[0;32mI (402) cpu_start: Multicore app[0m
+[0;32mI (410) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (410) cpu_start: Pro cpu start user code[0m
+[0;32mI (410) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (412) app_init: Application information:[0m
+[0;32mI (416) app_init: Project name:     imu_module[0m
+[0;32mI (420) app_init: App version:      d0304c1-dirty[0m
+[0;32mI (424) app_init: Compile time:     Sep 10 2026 14:51:48[0m
+[0;32mI (429) app_init: ELF file SHA256:  7dc76eba8...[0m
+[0;32mI (434) app_init: ESP-IDF:          v6.1-dev-2310-g44e2fa6d9c5-dirt[0m
+[0;32mI (440) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (444) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (448) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (452) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (458) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (463) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (468) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (473) heap_init: At 3FFC7238 len 00018DC8 (99 KiB): DRAM[0m
+[0;32mI (478) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (484) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (489) heap_init: At 40098E5C len 000071A4 (28 KiB): IRAM[0m
+[0;33mW (496) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (508) spi_flash: detected chip: generic[0m
+[0;32mI (511) spi_flash: flash io: dio[0m
+[0;33mW (514) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (527) coexist: coex firmware version: 093e3d2[0m
+[0;32mI (532) main_task: Started on CPU0[0m
+[0;32mI (542) main_task: Calling app_main()[0m
+[0;32mI (542) button: IoT Button Version: 4.2.0[0m
+[0;32mI (542) MAIN: I2C initialized successfully[0m
+[0;32mI (562) BTDM_INIT: BT controller compile version [045a658][0m
+[0;32mI (562) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (562) BTDM_INIT: Bluetooth MAC: d8:13:2a:7d:69:0a[0m
+[0;32mI (562) phy_init: phy_version 4863,a3a4459,Oct 28 2025,14:30:06[0m
+[0;33mW (962) BT_BTM: BTM_BleWriteAdvData, Partial data write into ADV[0m
+[0;33mW (972) BT_BTM: BTM_BleWriteScanRsp, Partial data write into ADV[0m
+[0;32mI (982) BLE: create attribute table successfully, the number handle = 4[0m
+[0;32mI (982) BLE: Advertising data set, status 0[0m
+[0;32mI (982) BLE: Scan response data set, status 0[0m
+[0;32mI (982) BLE: SERVICE_START_EVT, status 0, service_handle 40[0m
+[0;32mI (992) LSM6DS3: WHO_AM_I = 69[0m
+[0;32mI (1002) BLE: Advertising start successfully[0m
+[0;32mI (1002) SD_CARD: Initializing SD card[0m
+[0;32mI (1012) SD_CARD: Using SPI peripheral[0m
+[0;32mI (1012) SD_CARD: Mounting filesystem[0m
+[0;32mI (1012) sdspi_transaction: cmd=52, R1 response: command not supported[0m
+[0;32mI (1052) sdspi_transaction: cmd=5, R1 response: command not supported[0m
+[0;32mI (1112) SD_CARD: Filesystem mounted[0m
+Name: ACLCE
+Type: SDHC
+Speed: 4.00 MHz (limit: 4.00 MHz)
+Size: 60906MB
+CSD: ver=2, sector_size=512, capacity=124735488 read_bl_len=9
+SSR: bus_width=1
+[0;32mI (1112) SD_CARD: SD card initialized[0m
+[0;32mI (1122) MAIN: Starting all tasks![0m
+[0;32mI (1122) MAIN: params_task_uart = 0x3ffc3528[0m
+[0;32mI (1122) MAIN: params_task_ble = 0x3ffc3524[0m
+[0;32mI (1132) BLE: ble task started[0m
+[0;32mI (1132) BLE: orientation queue pointer = 0x3ffdd81c[0m

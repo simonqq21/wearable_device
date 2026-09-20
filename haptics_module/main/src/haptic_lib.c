@@ -32,7 +32,8 @@ void haptics_init(haptic_actuator_array_t *haptics,
     for (uint8_t i = 0; i < NUM_CHANNELS; i++)
     {
         haptics->channels[i] = channels[i];
-        haptic_actuators_pin_bitmask |= (1ULL << channels[i].pin_1) | (1ULL << channels[i].pin_2);
+        haptic_actuators_pin_bitmask |= (1ULL << channels[i].pin_1);
+        // | (1ULL << channels[i].pin_2)
     }
     haptics->en_pin = en_pin;
     haptic_actuators_pin_bitmask |= (1ULL << en_pin);
@@ -69,13 +70,13 @@ void haptic_set_val(haptic_channel_pins_t channel, uint8_t val)
 
     if (val)
     {
-        gpio_set_level(channel.pin_1, val);
-        gpio_set_level(channel.pin_2, 0);
+        gpio_set_level(channel.pin_1, 0);
+        // gpio_set_level(channel.pin_2, 0);
     }
     else
     {
         gpio_set_level(channel.pin_1, 1);
-        gpio_set_level(channel.pin_2, 1);
+        // gpio_set_level(channel.pin_2, 1);
     }
 }
 

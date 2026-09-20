@@ -1,0 +1,328 @@
+Command: /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/imu_module.elf /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader/bootloader.elf -m '/home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python' '/home/simonque/Documents/code/esp-idf/tools/idf.py'
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0040,len:6272
+load:0x40078000,len:15848
+load:0x40080400,len:3920
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v6.1-dev-2310-g44e2fa6d9c5-dirt 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Sep  1 2026 14:56:57[0m
+[0;32mI (28) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v3.1[0m
+[0;32mI (34) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (37) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (65) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (78) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=2673ch (157500) map[0m
+[0;32mI (144) esp_image: segment 1: paddr=00036764 vaddr=3ffbdb60 size=05134h ( 20788) load[0m
+[0;32mI (153) esp_image: segment 2: paddr=0003b8a0 vaddr=40080000 size=04778h ( 18296) load[0m
+[0;32mI (160) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=7da30h (514608) map[0m
+[0;32mI (344) esp_image: segment 4: paddr=000bda58 vaddr=40084778 size=146e4h ( 83684) load[0m
+[0;32mI (378) esp_image: segment 5: paddr=000d2144 vaddr=50000000 size=00028h (    40) load[0m
+[0;32mI (391) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (391) boot: Disabling RNG early entropy source...[0m
+[0;32mI (402) cpu_start: Multicore app[0m
+[0;32mI (410) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (410) cpu_start: Pro cpu start user code[0m
+[0;32mI (410) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (412) app_init: Application information:[0m
+[0;32mI (416) app_init: Project name:     imu_module[0m
+[0;32mI (420) app_init: App version:      d0304c1-dirty[0m
+[0;32mI (425) app_init: Compile time:     Sep 10 2026 14:51:48[0m
+[0;32mI (430) app_init: ELF file SHA256:  1ec44092d...[0m
+[0;32mI (434) app_init: ESP-IDF:          v6.1-dev-2310-g44e2fa6d9c5-dirt[0m
+[0;32mI (440) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (444) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (448) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (452) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (458) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (463) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (468) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (473) heap_init: At 3FFC7238 len 00018DC8 (99 KiB): DRAM[0m
+[0;32mI (478) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (484) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (489) heap_init: At 40098E5C len 000071A4 (28 KiB): IRAM[0m
+[0;33mW (496) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (508) spi_flash: detected chip: generic[0m
+[0;32mI (511) spi_flash: flash io: dio[0m
+[0;33mW (514) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (527) coexist: coex firmware version: 093e3d2[0m
+[0;32mI (532) main_task: Started on CPU0[0m
+[0;32mI (542) main_task: Calling app_main()[0m
+[0;32mI (542) button: IoT Button Version: 4.2.0[0m
+[0;32mI (542) MAIN: I2C initialized successfully[0m
+[0;32mI (552) BTDM_INIT: BT controller compile version [045a658][0m
+[0;32mI (562) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (562) BTDM_INIT: Bluetooth MAC: d8:13:2a:7d:69:0a[0m
+[0;32mI (562) phy_init: phy_version 4863,a3a4459,Oct 28 2025,14:30:06[0m
+[0;33mW (972) BT_BTM: BTM_BleWriteAdvData, Partial data write into ADV[0m
+[0;33mW (972) BT_BTM: BTM_BleWriteScanRsp, Partial data write into ADV[0m
+[0;32mI (982) BLE: create attribute table successfully, the number handle = 4[0m
+[0;32mI (982) BLE: Advertising data set, status 0[0m
+[0;32mI (982) BLE: Scan response data set, status 0[0m
+[0;32mI (992) BLE: SERVICE_START_EVT, status 0, service_handle 40[0m
+[0;32mI (992) LSM6DS3: WHO_AM_I = 69[0m
+[0;32mI (1002) BLE: Advertising start successfully[0m
+[0;32mI (1012) SD_CARD: Initializing SD card[0m
+[0;32mI (1012) SD_CARD: Using SPI peripheral[0m
+[0;32mI (1012) SD_CARD: Mounting filesystem[0m
+[0;32mI (1052) sdspi_transaction: cmd=52, R1 response: command not supported[0m
+[0;32mI (1092) sdspi_transaction: cmd=5, R1 response: command not supported[0m
+[0;32mI (1142) SD_CARD: Filesystem mounted[0m
+Name: ACLCE
+Type: SDHC
+Speed: 4.00 MHz (limit: 4.00 MHz)
+Size: 60906MB
+CSD: ver=2, sector_size=512, capacity=124735488 read_bl_len=9
+SSR: bus_width=1
+[0;32mI (1142) SD_CARD: SD card initialized[0m
+[0;32mI (1152) MAIN: Starting all tasks![0m
+[0;32mI (1152) MAIN: orientation queue pointer = 0x3ffd3824[0m
+[0;32mI (1162) MAIN: orientation queue pointer = 0x3ffc3574[0m
+[0;32mI (1162) MAIN: params_task_uart = 0x3ffc3528[0m
+[0;32mI (1162) MAIN: params_task_ble = 0x3ffc3524[0m
+[0;32mI (1172) BLE: ble task started[0m
+[0;32mI (1172) BLE: orientation queue pointer = 0x3ffd3824[0m
+[0;32mI (26722) BUTTON: Datalogging started.[0m
+[0;32mI (26722) IMU: cur_timestamp start = 26234946[0m
+
+[0;32mI (26722) IMU: IMU started[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (26812) DATA LOGGING: Datalogging started.[0m
+[0;32mI (26842) DATA LOGGING: complementary filter 26345310 -0.33 5.28 -0.04[0m
+[0;32mI (26852) DATA LOGGING: complementary filter 26362904 -0.08 5.01 -0.06[0m
+[0;32mI (26862) DATA LOGGING: complementary filter 26375419 0.06 4.87 -0.07[0m
+[0;32mI (26882) DATA LOGGING: complementary filter 26388298 0.26 4.88 -0.09[0m
+[0;32mI (26902) DATA LOGGING: complementary filter 26405048 0.31 4.79 -0.10[0m
+[0;32mI (26912) DATA LOGGING: complementary filter 26420573 0.32 4.75 -0.11[0m
+[0;32mI (26922) DATA LOGGING: complementary filter 26433100 0.28 4.75 -0.13[0m
+[0;32mI (26942) DATA LOGGING: complementary filter 26452393 0.34 4.65 -0.16[0m
+[0;32mI (26952) DATA LOGGING: complementary filter 26465264 0.44 4.55 -0.17[0m
+[0;32mI (26972) DATA LOGGING: complementary filter 26478143 0.53 4.50 -0.19[0m
+[0;32mI (26982) DATA LOGGING: complementary filter 26494738 0.61 4.46 -0.22[0m
+[0;32mI (27002) DATA LOGGING: complementary filter 26508019 0.62 4.41 -0.24[0m
+[0;32mI (27012) DATA LOGGING: complementary filter 26523260 0.64 4.37 -0.26[0m
+[0;32mI (27032) DATA LOGGING: complementary filter 26539675 0.70 4.29 -0.28[0m
+[0;32mI (27042) DATA LOGGING: complementary filter 26551422 0.75 4.24 -0.30[0m
+[0;32mI (27052) DATA LOGGING: complementary filter 26564172 0.82 4.20 -0.31[0m
+[0;32mI (27072) DATA LOGGING: complementary filter 26581296 0.85 4.15 -0.34[0m
+[0;32mI (27092) DATA LOGGING: complementary filter 26597080 0.88 4.10 -0.36[0m
+[0;32mI (27102) DATA LOGGING: complementary filter 26610007 0.93 4.06 -0.38[0m
+[0;32mI (27122) DATA LOGGING: complementary filter 26626679 0.99 4.00 -0.41[0m
+[0;32mI (27132) DATA LOGGING: complementary filter 26639510 1.03 3.97 -0.43[0m
+[0;32mI (27142) DATA LOGGING: complementary filter 26652274 1.07 3.95 -0.45[0m
+[0;32mI (27162) DATA LOGGING: complementary filter 26667131 1.10 3.91 -0.47[0m
+[0;32mI (27172) DATA LOGGING: complementary filter 26682160 1.14 3.86 -0.49[0m
+[0;32mI (27192) DATA LOGGING: complementary filter 26695411 1.18 3.83 -0.51[0m
+[0;32mI (27202) DATA LOGGING: complementary filter 26713300 1.22 3.77 -0.54[0m
+[0;32mI (27222) DATA LOGGING: complementary filter 26727831 1.25 3.74 -0.56[0m
+[0;32mI (27232) DATA LOGGING: complementary filter 26740273 1.28 3.72 -0.58[0m
+[0;32mI (27242) DATA LOGGING: complementary filter 26755423 1.32 3.67 -0.61[0m
+[0;32mI (27262) DATA LOGGING: complementary filter 26771262 1.35 3.63 -0.63[0m
+[0;32mI (27272) DATA LOGGING: complementary filter 26784029 1.38 3.61 -0.65[0m
+[0;32mI (27292) DATA LOGGING: complementary filter 26799197 1.42 3.57 -0.67[0m
+[0;32mI (27302) DATA LOGGING: complementary filter 26813585 1.45 3.54 -0.70[0m
+[0;32mI (27322) DATA LOGGING: complementary filter 26828825 1.48 3.51 -0.72[0m
+[0;32mI (27342) DATA LOGGING: complementary filter 26845847 1.51 3.47 -0.74[0m
+[0;32mI (27352) DATA LOGGING: complementary filter 26858402 1.54 3.45 -0.76[0m
+[0;32mI (27362) DATA LOGGING: complementary filter 26871341 1.56 3.43 -0.78[0m
+[0;32mI (27382) DATA LOGGING: complementary filter 26890450 1.60 3.37 -0.81[0m
+[0;32mI (27392) DATA LOGGING: complementary filter 26903109 1.62 3.35 -0.83[0m
+[0;32mI (27402) DATA LOGGING: complementary filter 26913561 1.64 3.35 -0.85[0m
+[0;32mI (27422) DATA LOGGING: complementary filter 26932364 1.68 3.29 -0.88[0m
+[0;32mI (27442) DATA LOGGING: complementary filter 26947786 1.71 3.26 -0.90[0m
+[0;32mI (27452) DATA LOGGING: complementary filter 26966257 1.74 3.20 -0.93[0m
+[0;32mI (27472) DATA LOGGING: complementary filter 26979546 1.76 3.19 -0.95[0m
+[0;32mI (27482) DATA LOGGING: complementary filter 26992111 1.79 3.17 -0.97[0m
+[0;32mI (27502) DATA LOGGING: complementary filter 27008021 1.82 3.14 -0.99[0m
+[0;32mI (27512) DATA LOGGING: complementary filter 27021262 1.84 3.12 -1.01[0m
+[0;32mI (27522) DATA LOGGING: complementary filter 27034070 1.87 3.11 -1.03[0m
+[0;32mI (27542) DATA LOGGING: complementary filter 27050664 1.89 3.07 -1.06[0m
+[0;32mI (27562) DATA LOGGING: complementary filter 27067195 1.92 3.04 -1.08[0m
+[0;32mI (27572) DATA LOGGING: complementary filter 27079406 1.94 3.03 -1.10[0m
+[0;32mI (27582) DATA LOGGING: complementary filter 27092449 1.96 3.02 -1.12[0m
+[0;32mI (27602) DATA LOGGING: complementary filter 27110381 1.98 2.98 -1.15[0m
+[0;32mI (27612) DATA LOGGING: complementary filter 27122655 1.99 2.97 -1.16[0m
+[0;32mI (27622) DATA LOGGING: complementary filter 27135098 2.01 2.96 -1.18[0m
+[0;32mI (27642) DATA LOGGING: complementary filter 27150143 2.03 2.94 -1.21[0m
+[0;32mI (27652) DATA LOGGING: complementary filter 27166026 2.05 2.91 -1.23[0m
+[0;32mI (27672) DATA LOGGING: complementary filter 27178087 2.07 2.90 -1.25[0m
+[0;32mI (27682) DATA LOGGING: complementary filter 27190887 2.09 2.90 -1.27[0m
+[0;32mI (27702) DATA LOGGING: complementary filter 27208514 2.11 2.87 -1.29[0m
+[0;32mI (27712) DATA LOGGING: complementary filter 27220336 2.13 2.86 -1.31[0m
+[0;32mI (27722) DATA LOGGING: complementary filter 27233490 2.14 2.85 -1.33[0m
+[0;32mI (27742) DATA LOGGING: complementary filter 27252241 2.16 2.81 -1.36[0m
+[0;32mI (27752) DATA LOGGING: complementary filter 27265301 2.18 2.81 -1.38[0m
+[0;32mI (27772) DATA LOGGING: complementary filter 27277214 2.19 2.81 -1.40[0m
+[0;32mI (27792) DATA LOGGING: complementary filter 27297172 2.22 2.76 -1.42[0m
+[0;32mI (27802) DATA LOGGING: complementary filter 27309719 2.23 2.75 -1.44[0m
+[0;32mI (27812) DATA LOGGING: complementary filter 27321981 2.24 2.75 -1.46[0m
+[0;32mI (27832) DATA LOGGING: complementary filter 27336612 2.25 2.73 -1.48[0m
+[0;32mI (27842) DATA LOGGING: complementary filter 27354661 2.27 2.69 -1.51[0m
+[0;32mI (27862) DATA LOGGING: complementary filter 27367139 2.29 2.69 -1.53[0m
+[0;32mI (27872) DATA LOGGING: complementary filter 27381516 2.30 2.68 -1.55[0m
+[0;32mI (27892) DATA LOGGING: complementary filter 27398292 2.32 2.65 -1.58[0m
+[0;32mI (27902) DATA LOGGING: complementary filter 27408678 2.33 2.66 -1.59[0m
+[0;32mI (27912) DATA LOGGING: complementary filter 27422662 2.34 2.65 -1.61[0m
+[0;32mI (27932) DATA LOGGING: complementary filter 27438649 2.35 2.62 -1.64[0m
+[0;32mI (27942) DATA LOGGING: complementary filter 27450918 2.36 2.62 -1.66[0m
+[0;32mI (27952) DATA LOGGING: complementary filter 27463049 2.37 2.62 -1.68[0m
+[0;32mI (27972) DATA LOGGING: complementary filter 27478250 2.38 2.60 -1.70[0m
+[0;32mI (27982) DATA LOGGING: complementary filter 27491905 2.40 2.60 -1.72[0m
+[0;32mI (27992) DATA LOGGING: complementary filter 27503890 2.41 2.60 -1.74[0m
+[0;32mI (28002) DATA LOGGING: complementary filter 27516242 2.42 2.60 -1.76[0m
+[0;32mI (28022) DATA LOGGING: complementary filter 27532680 2.43 2.57 -1.78[0m
+[0;32mI (28032) DATA LOGGING: complementary filter 27544878 2.44 2.58 -1.80[0m
+[0;32mI (28052) DATA LOGGING: complementary filter 27557148 2.45 2.58 -1.82[0m
+[0;32mI (28072) DATA LOGGING: complementary filter 27577155 2.47 2.53 -1.84[0m
+[0;32mI (28082) DATA LOGGING: complementary filter 27589673 2.48 2.54 -1.86[0m
+[0;32mI (28092) DATA LOGGING: complementary filter 27601734 2.49 2.54 -1.88[0m
+[0;32mI (28112) DATA LOGGING: complementary filter 27617048 2.49 2.53 -1.90[0m
+[0;32mI (28122) DATA LOGGING: complementary filter 27633393 2.50 2.50 -1.93[0m
+[0;32mI (28132) DATA LOGGING: complementary filter 27645177 2.51 2.51 -1.94[0m
+[0;32mI (28152) DATA LOGGING: complementary filter 27659619 2.52 2.49 -1.97[0m
+[0;32mI (28162) DATA LOGGING: complementary filter 27673975 2.53 2.48 -1.99[0m
+[0;32mI (28172) DATA LOGGING: complementary filter 27686361 2.54 2.49 -2.01[0m
+[0;32mI (28192) DATA LOGGING: complementary filter 27698417 2.55 2.49 -2.03[0m
+[0;32mI (28212) DATA LOGGING: complementary filter 27717277 2.56 2.45 -2.06[0m
+[0;32mI (28222) DATA LOGGING: complementary filter 27732126 2.57 2.44 -2.08[0m
+[0;32mI (28232) DATA LOGGING: complementary filter 27744822 2.58 2.44 -2.10[0m
+[0;32mI (28262) DATA LOGGING: complementary filter 27765244 2.59 2.40 -2.13[0m
+[1;31mE (28282) DATA LOGGING: SDCARD raw fail[0m
+[0;32mI (28282) DATA LOGGING: complementary filter 27780058 2.60 2.38 -2.15[0m
+[0;32mI (28282) DATA LOGGING: complementary filter 27784034 2.60 2.44 -2.16[0m
+[0;32mI (28282) SD_CARD: max_idx: 2019[0m
+[0;32mI (28292) SD_CARD: filename: imu_raw_002020.bin[0m
+[0;32mI (28292) SD_CARD: filepath: /sdcard/imu_raw_002020.bin[0m
+[0;32mI (28292) SD_CARD: Writing to new raw file[0m
+[1;31mE (28312) DATA LOGGING: SDCARD orientation fail[0m
+[0;32mI (28312) DATA LOGGING: complementary filter 27816602 2.63 2.32 -2.20[0m
+[0;32mI (28322) DATA LOGGING: complementary filter 27826881 2.63 2.34 -2.22[0m
+[0;32mI (28322) DATA LOGGING: complementary filter 27834153 2.63 2.38 -2.23[0m
+[0;32mI (28342) DATA LOGGING: complementary filter 27847866 2.64 2.37 -2.25[0m
+[0;32mI (28352) DATA LOGGING: complementary filter 27856961 2.64 2.40 -2.27[0m
+[0;32mI (28352) DATA LOGGING: complementary filter 27864075 2.64 2.44 -2.28[0m
+[0;32mI (28362) DATA LOGGING: complementary filter 27872556 2.64 2.46 -2.29[0m
+[0;32mI (28372) DATA LOGGING: complementary filter 27879693 2.64 2.50 -2.30[0m
+[0;32mI (28382) DATA LOGGING: complementary filter 27889837 2.64 2.52 -2.32[0m
+[0;32mI (28392) DATA LOGGING: complementary filter 27900455 2.64 2.53 -2.33[0m
+[0;32mI (28402) DATA LOGGING: complementary filter 27908988 2.65 2.56 -2.34[0m
+[0;32mI (28402) DATA LOGGING: complementary filter 27915871 2.64 2.59 -2.35[0m
+[1;31mE (28412) BLE: queue_orientation_BLE NULL[0m
+
+assert failed: xQueueReceive queue.c:1531 (( pxQueue ))
+
+
+Backtrace: 0x40092d61:0x3ffdc790 0x40092d29:0x3ffdc7b0 0x40091d21:0x3ffdc7d0 0x4014a2e6:0x3ffdc8f0 0x400e1e35:0x3ffdc930 0x40149c3e:0x3ffdcac0
+
+
+
+
+ELF file SHA256: 1ec44092d
+
+Rebooting...
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0040,len:6272
+load:0x40078000,len:15848
+load:0x40080400,len:3920
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v6.1-dev-2310-g44e2fa6d9c5-dirt 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Sep  1 2026 14:56:57[0m
+[0;32mI (27) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v3.1[0m
+[0;32mI (34) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (37) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (64) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (78) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=2673ch (157500) map[0m
+[0;32mI (144) esp_image: segment 1: paddr=00036764 vaddr=3ffbdb60 size=05134h ( 20788) load[0m
+[0;32mI (153) esp_image: segment 2: paddr=0003b8a0 vaddr=40080000 size=04778h ( 18296) load[0m
+[0;32mI (160) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=7da30h (514608) map[0m
+[0;32mI (344) esp_image: segment 4: paddr=000bda58 vaddr=40084778 size=146e4h ( 83684) load[0m
+[0;32mI (378) esp_image: segment 5: paddr=000d2144 vaddr=50000000 size=00028h (    40) load[0m
+[0;32mI (391) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (391) boot: Disabling RNG early entropy source...[0m
+[0;32mI (402) cpu_start: Multicore app[0m
+[0;32mI (410) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (410) cpu_start: Pro cpu start user code[0m
+[0;32mI (410) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (412) app_init: Application information:[0m
+[0;32mI (416) app_init: Project name:     imu_module[0m
+[0;32mI (420) app_init: App version:      d0304c1-dirty[0m
+[0;32mI (424) app_init: Compile time:     Sep 10 2026 14:51:48[0m
+[0;32mI (429) app_init: ELF file SHA256:  1ec44092d...[0m
+[0;32mI (434) app_init: ESP-IDF:          v6.1-dev-2310-g44e2fa6d9c5-dirt[0m
+[0;32mI (440) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (444) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (448) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (452) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (458) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (463) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (468) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (473) heap_init: At 3FFC7238 len 00018DC8 (99 KiB): DRAM[0m
+[0;32mI (478) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (484) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (489) heap_init: At 40098E5C len 000071A4 (28 KiB): IRAM[0m
+[0;33mW (496) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (508) spi_flash: detected chip: generic[0m
+[0;32mI (511) spi_flash: flash io: dio[0m
+[0;33mW (514) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (527) coexist: coex firmware version: 093e3d2[0m
+[0;32mI (532) main_task: Started on CPU0[0m
+[0;32mI (542) main_task: Calling app_main()[0m
+[0;32mI (542) button: IoT Button Version: 4.2.0[0m
+[0;32mI (542) MAIN: I2C initialized successfully[0m
+[0;32mI (552) BTDM_INIT: BT controller compile version [045a658][0m
+[0;32mI (562) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (562) BTDM_INIT: Bluetooth MAC: d8:13:2a:7d:69:0a[0m
+[0;32mI (562) phy_init: phy_version 4863,a3a4459,Oct 28 2025,14:30:06[0m
+[0;33mW (992) BT_BTM: BTM_BleWriteAdvData, Partial data write into ADV[0m
+[0;33mW (992) BT_BTM: BTM_BleWriteScanRsp, Partial data write into ADV[0m
+[0;32mI (1002) BLE: create attribute table successfully, the number handle = 4[0m
+[0;32mI (1002) BLE: Advertising data set, status 0[0m
+[0;32mI (1002) BLE: Scan response data set, status 0[0m
+[0;32mI (1012) BLE: SERVICE_START_EVT, status 0, service_handle 40[0m
+[0;32mI (1022) LSM6DS3: WHO_AM_I = 69[0m
+[0;32mI (1022) BLE: Advertising start successfully[0m
+[0;32mI (1032) SD_CARD: Initializing SD card[0m
+[0;32mI (1032) SD_CARD: Using SPI peripheral[0m
+[0;32mI (1032) SD_CARD: Mounting filesystem[0m
+[0;32mI (1042) sdspi_transaction: cmd=52, R1 response: command not supported[0m
+[0;32mI (1082) sdspi_transaction: cmd=5, R1 response: command not supported[0m
+[0;32mI (1132) SD_CARD: Filesystem mounted[0m
+Name: ACLCE
+Type: SDHC
+Speed: 4.00 MHz (limit: 4.00 MHz)
+Size: 60906MB
+CSD: ver=2, sector_size=512, capacity=124735488 read_bl_len=9
+SSR: bus_width=1
+[0;32mI (1132) SD_CARD: SD card initialized[0m
+[0;32mI (1142) MAIN: Starting all tasks![0m
+[0;32mI (1142) MAIN: orientation queue pointer = 0x3ffd3828[0m
+[0;32mI (1152) MAIN: orientation queue pointer = 0x3ffc3574[0m
+[0;32mI (1152) MAIN: params_task_uart = 0x3ffc3528[0m
+[0;32mI (1152) MAIN: params_task_ble = 0x3ffc3524[0m
+[0;32mI (1162) BLE: ble task started[0m
+[0;32mI (1162) BLE: orientation queue pointer = 0x3ffd3828[0m

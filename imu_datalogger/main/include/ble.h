@@ -21,6 +21,8 @@
 #include "esp_bt_device.h"
 #include "esp_gatt_common_api.h"
 
+#include "haptics_lib.h"
+
 #define BLE_TAG "BLE"
 
 /* BLE app profile */
@@ -31,30 +33,65 @@
 #define PREPARE_BUF_MAX_SIZE 1024
 #define CHAR_DECLARATION_SIZE (sizeof(uint8_t))
 
+// #define HEART_RATE_SERVICE_UUID 0x180D
+// #define HEART_RATE_CHARACTERISTIC_UUID 0x2A37
+// #define BODY_SENSOR_LOCATION_CHARACTERISTIC_UUID 0x2A38
+
 /* Attributes State Machine */
+enum
+{
+    HEART_RATE_IDX_SVC, // heart rate service
+
+    HEART_RATE_IDX_CHAR, // Heart Rate Measurement characteristic index
+    HEART_RATE_IDX_VAL,
+    HEART_RATE_IDX_NTF_CFG,
+
+    BODY_SENSOR_LOCATION_IDX_CHAR, // Body Sensor Location characteristic index
+    BODY_SENSOR_LOCATION_IDX_VAL,
+
+    GATT_HEART_RATE_IDX_NB, // number of elements
+};
+
 enum
 {
     ORIENTATION_IDX_SVC, // orientation service index
 
     ORIENTATION_IDX_CHAR,    // orientation characteristic index
     ORIENTATION_IDX_VAL,     // orientation value index
-    ORIENTATION_IDX_NTF_CFG, // POT1 notification configuration index
+    ORIENTATION_IDX_NTF_CFG, // orientation notification configuration index
+    /* notification configuration is only used for notify and
+    indicate transactions */
 
-    // LED1_IDX_CHAR, // LED 1
-    // LED1_IDX_VAL,  // LED 1 v
+    GATT_ORIENTATION_IDX_NB, // number of elements
+};
 
-    // LED2_IDX_CHAR, // LED 2 characteristic index
-    // LED2_IDX_VAL,  // LED 2 value index
+enum
+{
+    HAPTICS_IDX_SVC, // haptic service index
 
-    // BTN1_IDX_CHAR,	  // BTN1 characteristic index
-    // BTN1_IDX_VAL,	  // BTN1 value index
-    // BTN1_IDX_NTF_CFG, // BTN1 notification configuration index
+    /* haptics command to play built-in sequence characteristic index */
+    HAPTICS_COMMAND_PLAY_BUILTIN_SEQUENCE_IDX_CHAR,
+    /* haptics command to play built-in sequence value index */
+    HAPTICS_COMMAND_PLAY_BUILTIN_SEQUENCE_IDX_VAL, //
 
-    // POT1_IDX_CHAR,	  // POT1 characteristic index
-    // POT1_IDX_VAL,	  // POT1 value index
-    // POT1_IDX_NTF_CFG, // POT1 notification configuration index
+    /* haptics command to play custom sequence characteristic index */
+    HAPTICS_COMMAND_PLAY_CUSTOM_SEQUENCE_IDX_CHAR,
+    /* haptics command to play custom sequence value index */
+    HAPTICS_COMMAND_PLAY_CUSTOM_SEQUENCE_IDX_VAL,
 
-    GATT_IDX_NB, // number of elements
+    // /* haptics configuration characteristic index */
+    // HAPTICS_CONFIG_IDX_CHAR,
+    // /* haptics configuration value index */
+    // HAPTICS_CONFIG_IDX_VAL,
+
+    /* haptics status characteristic index */
+    HAPTICS_STATUS_IDX_CHAR,
+    /* haptics status value index */
+    HAPTICS_STATUS_IDX_VAL,
+    /* haptics status notification configuration index */
+    HAPTICS_STATUS_IDX_NTF_CFG,
+
+    GATT_HAPTICS_IDX_NB, // number of elements
 };
 
 typedef struct
@@ -92,11 +129,30 @@ struct gatts_profile_inst
 /**
  * @brief parameters for BLE FreeRTOS task
  *
- * @param queue_orientation_BLE IMU orientation queue sent to BLE
+ * @param queue_orientation_BLE IMU orientation queue sent via BLE
+ * @param queue_heart_rate_BLE heart rate queue sent via BLE
+ * @param queue_haptics_command_play_builtin_BLE queue to send haptics play
+ *      built-in sequences commands to the haptics module
+ * @param queue_haptics_command_play_custom_BLE queue to send haptics play
+ *      custom sequences commands to the haptics module
+ *
  */
 typedef struct
 {
     QueueHandle_t queue_orientation_BLE;
+    QueueHandle_t queue_heart_rate_BLE;
+    QueueHandle_t queue_haptics_command_play_builtin_BLE;
+    QueueHandle_t queue_haptics_command_play_custom_BLE;
+
+    /* pointer to haptics configuration struct */
+    haptics_command_config_t *haptics_command_config;
+
+    /* pointer to haptics status struct */
+    haptics_status_t *haptics_status;
+
+    /* pointer to battery voltage */
+    float *battery_voltage;
+
 } params_task_ble_t;
 
 void ble_configure(void);

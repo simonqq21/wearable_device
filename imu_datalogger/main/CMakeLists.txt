@@ -12,5 +12,6 @@ idf_component_register(SRCS "imu_datalogger.c"
 "src/FusionBias.c"
 "src/FusionCompass.c"
 "src/ble.c"
+"src/haptics_lib.c"
                     INCLUDE_DIRS "." 
                     "./include")
