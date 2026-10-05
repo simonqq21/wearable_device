@@ -9,6 +9,7 @@
 #define MOUNT_POINT "/sdcard"
 /* number of timestamps that can fit in the FIFO at once */
 #define NUM_FIFO_TIMESTAMPS 100
+#define LEN_QUEUE_HAPTICS 50
 
 /* logging frequency of the IMU */
 #define IMU_ODR_HZ 416

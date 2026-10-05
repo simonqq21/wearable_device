@@ -50,155 +50,156 @@
 #include "../include/haptics_lib.h"
 
 static const char device_name[] = "ITLAB BLE WEARABLE";
+uint16_t ble_task_delay_period = 100;
 
 static uint16_t HEART_RATE_SERVICE_UUID = 0x180D;
 static uint16_t HEART_RATE_CHARACTERISTIC_UUID = 0x2A37;
 static uint16_t BODY_SENSOR_LOCATION_CHARACTERISTIC_UUID = 0x2A38;
 
-// 32816f9c-482f-43fb-9e58-5f35d8d5a8e0
+// 00010000-482f-43fb-9e58-5f35d8d5a8e0
 static uint8_t ORIENTATION_SERVICE_UUID[] = {
-    0x32,
-    0x81,
-    0x6f,
-    0x9c,
-    0x48,
-    0x2f,
-    0x43,
-    0xfb,
-    0x9e,
-    0x58,
-    0x5f,
-    0x35,
-    0xd8,
-    0xd5,
-    0xa8,
     0xe0,
+    0xa8,
+    0xd5,
+    0xd8,
+    0x35,
+    0x5f,
+    0x58,
+    0x9e,
+    0xfb,
+    0x43,
+    0x2f,
+    0x48,
+    0x00,
+    0x00,
+    0x01,
+    0x00,
 };
 
-// 653f0660-4e9d-46e5-9881-14fe894e2edd
+// 00010001-482f-43fb-9e58-5f35d8d5a8e0
 static uint8_t ORIENTATION_CHARACTERISTIC_UUID[] = {
-    0x65,
-    0x3f,
-    0x06,
-    0x60,
-    0x4e,
-    0x9d,
-    0x46,
-    0xe5,
-    0x98,
-    0x81,
-    0x14,
-    0xfe,
-    0x89,
-    0x4e,
-    0x2e,
-    0xdd,
+    0xe0,
+    0xa8,
+    0xd5,
+    0xd8,
+    0x35,
+    0x5f,
+    0x58,
+    0x9e,
+    0xfb,
+    0x43,
+    0x2f,
+    0x48,
+    0x01,
+    0x00,
+    0x01,
+    0x00,
 };
 
 /* haptic actuators control service
-UUID = 3b2e4236-a101-47a2-99cd-cbc128b57126 */
+UUID = 00020000-482f-43fb-9e58-5f35d8d5a8e0 */
 static uint8_t HAPTICS_SERVICE_UUID[] = {
-    0x26,
-    0x71,
-    0xb5,
-    0x28,
-    0xc1,
-    0xcb,
-    0xcd,
-    0x99,
-    0xa2,
-    0x47,
-    0x01,
-    0xa1,
-    0x36,
-    0x42,
-    0x2e,
-    0x3b,
+    0xe0,
+    0xa8,
+    0xd5,
+    0xd8,
+    0x35,
+    0x5f,
+    0x58,
+    0x9e,
+    0xfb,
+    0x43,
+    0x2f,
+    0x48,
+    0x00,
+    0x00,
+    0x02,
+    0x00,
 };
 
 /* haptics play built in sequence characteristic
-UUID = 651539c8-b216-4ede-a768-bee272c47d42 */
-static uint8_t HAPTICS_COMMAND_PLAY_BUILTIN_SEQUENCE_CHARACTERISTIC_UUID[] = {
-    0x42,
-    0x7d,
-    0xc4,
-    0x72,
-    0xe2,
-    0xbe,
-    0x68,
-    0xa7,
-    0xde,
-    0x4e,
-    0x16,
-    0xb2,
-    0xc8,
-    0x39,
-    0x15,
-    0x65,
-};
-
-/* haptics play custom sequence characteristic
-UUID = 7af554d5-7c73-4fc8-b32c-d1ae5bc18837 */
-static uint8_t HAPTICS_COMMAND_PLAY_CUSTOM_SEQUENCE_CHARACTERISTIC_UUID[] = {
-    0x37,
-    0x88,
-    0xc1,
-    0x5b,
-    0xae,
-    0xd1,
-    0x2c,
-    0xb3,
-    0xc8,
-    0x4f,
-    0x73,
-    0x7c,
-    0xd5,
-    0x54,
-    0xf5,
-    0x7a,
-};
-
-/* haptics channel configuration characteristic
-UUID = 74ea415e-44fc-47c6-a8f9-ab63f0d34913 */
-static uint8_t HAPTICS_CONFIG_CHARACTERISTIC_UUID[] = {
-    0x13,
-    0x49,
-    0xd3,
-    0xf0,
-    0x63,
-    0xab,
-    0xf9,
+UUID = 00020001-482f-43fb-9e58-5f35d8d5a8e0 */
+static uint8_t HAPTICS_SEQUENCE_CHARACTERISTIC_UUID[] = {
+    0xe0,
     0xa8,
-    0xc6,
-    0x47,
-    0xfc,
-    0x44,
-    0x5e,
-    0x41,
-    0xea,
-    0x74,
+    0xd5,
+    0xd8,
+    0x35,
+    0x5f,
+    0x58,
+    0x9e,
+    0xfb,
+    0x43,
+    0x2f,
+    0x48,
+    0x01,
+    0x00,
+    0x02,
+    0x00,
 };
 
-/* haptics status characteristic
-UUID = c5fd745b-bd37-417f-a28f-22c384a412e7 */
-static uint8_t HAPTICS_STATUS_CHARACTERISTIC_UUID[] = {
-    0xe7,
-    0x12,
-    0xa4,
-    0x84,
-    0xc3,
-    0x22,
-    0x8f,
-    0xa2,
-    0x7f,
-    0x41,
-    0x37,
-    0xbd,
-    0x5b,
-    0x74,
-    0xfd,
-    0xc5,
-};
+// /* haptics play custom sequence characteristic
+// UUID = 7af554d5-7c73-4fc8-b32c-d1ae5bc18837 */
+// static uint8_t HAPTICS_COMMAND_PLAY_CUSTOM_SEQUENCE_CHARACTERISTIC_UUID[] = {
+//     0x37,
+//     0x88,
+//     0xc1,
+//     0x5b,
+//     0xae,
+//     0xd1,
+//     0x2c,
+//     0xb3,
+//     0xc8,
+//     0x4f,
+//     0x73,
+//     0x7c,
+//     0xd5,
+//     0x54,
+//     0xf5,
+//     0x7a,
+// };
+
+// /* haptics channel configuration characteristic
+// UUID = 74ea415e-44fc-47c6-a8f9-ab63f0d34913 */
+// static uint8_t HAPTICS_CONFIG_CHARACTERISTIC_UUID[] = {
+//     0x13,
+//     0x49,
+//     0xd3,
+//     0xf0,
+//     0x63,
+//     0xab,
+//     0xf9,
+//     0xa8,
+//     0xc6,
+//     0x47,
+//     0xfc,
+//     0x44,
+//     0x5e,
+//     0x41,
+//     0xea,
+//     0x74,
+// };
+
+// /* haptics status characteristic
+// UUID = c5fd745b-bd37-417f-a28f-22c384a412e7 */
+// static uint8_t HAPTICS_STATUS_CHARACTERISTIC_UUID[] = {
+//     0xe7,
+//     0x12,
+//     0xa4,
+//     0x84,
+//     0xc3,
+//     0x22,
+//     0x8f,
+//     0xa2,
+//     0x7f,
+//     0x41,
+//     0x37,
+//     0xbd,
+//     0x5b,
+//     0x74,
+//     0xfd,
+//     0xc5,
+// };
 
 /* orientation value */
 static orientation_data_t orientation_data;
@@ -212,7 +213,7 @@ static haptics_command_play_builtin_sequence_t haptics_command_builtin;
 static haptics_command_play_custom_sequence_t haptics_command_custom;
 
 /* BLE queues struct */
-params_task_ble_t ble_values;
+static params_task_ble_t *params_task_ble;
 
 /* indicate enabled */
 uint8_t notify_enabled[GATT_ORIENTATION_IDX_NB];
@@ -224,7 +225,9 @@ uint16_t heart_rate_service_handle_table[GATT_HEART_RATE_IDX_NB];
 uint16_t haptics_service_handle_table[GATT_HAPTICS_IDX_NB];
 static prepare_type_env_t prepare_write_env;
 
-/* The length of adv data must be less than 31 bytes */
+/**
+The length of adv data must be less than 31 bytes
+*/
 static esp_ble_adv_data_t adv_data = {
     .set_scan_rsp = false,
     .include_name = true,
@@ -325,7 +328,9 @@ const uint8_t orientation_ccc[2] = {0x00, 0x00};
 const uint8_t heart_rate_ccc[2] = {0x00, 0x00};
 const uint8_t haptics_status_ccc[2] = {0x00, 0x00};
 
-/* Full Database Description - Used to add attributes into the database */
+/*
+Full Database Description - Used to add attributes into the database
+*/
 static uint8_t s_table_index = 0;
 esp_gatts_attr_db_t gatt_db_heart_rate[GATT_HEART_RATE_IDX_NB] = {
     // static const
@@ -371,25 +376,25 @@ esp_gatts_attr_db_t gatt_db_heart_rate[GATT_HEART_RATE_IDX_NB] = {
           sizeof(uint16_t),                         // cur size of value
           (uint8_t *)&heart_rate_ccc}},             // pointer to characteristic value
 
-    /* body sensor location characteristic declaration */
-    [BODY_SENSOR_LOCATION_IDX_CHAR] =
-        {{ESP_GATT_AUTO_RSP},                     // Auto respond configuration, set to respond automatically by the stack.
-         {ESP_UUID_LEN_16,                        // define a GATT characteristic
-          (uint8_t *)&character_declaration_uuid, // define a GATT characteristic
-          ESP_GATT_PERM_READ,                     // read permission
-          CHAR_DECLARATION_SIZE,                  // characteristic declaration size (uint8_t)
-          CHAR_DECLARATION_SIZE,                  // characteristic declaration size (uint8_t)
-          (uint8_t *)&char_prop_read_notify}},    // Characteristic is read-notify
+    // /* body sensor location characteristic declaration */
+    // [BODY_SENSOR_LOCATION_IDX_CHAR] =
+    //     {{ESP_GATT_AUTO_RSP},                     // Auto respond configuration, set to respond automatically by the stack.
+    //      {ESP_UUID_LEN_16,                        // define a GATT characteristic
+    //       (uint8_t *)&character_declaration_uuid, // define a GATT characteristic
+    //       ESP_GATT_PERM_READ,                     // read permission
+    //       CHAR_DECLARATION_SIZE,                  // characteristic declaration size (uint8_t)
+    //       CHAR_DECLARATION_SIZE,                  // characteristic declaration size (uint8_t)
+    //       (uint8_t *)&char_prop_read_notify}},    // Characteristic is read-notify
 
-    /* body sensor location value declaration */
-    [BODY_SENSOR_LOCATION_IDX_VAL] =
-        {{ESP_GATT_AUTO_RSP},
-         {ESP_UUID_LEN_16,                                      // UUID128
-          (uint8_t *)&BODY_SENSOR_LOCATION_CHARACTERISTIC_UUID, // GATT characteristic UUID
-          ESP_GATT_PERM_READ,                                   // read-write permission
-          sizeof(body_sensor_location),                         // max size of value
-          sizeof(body_sensor_location),                         // cur size of value
-          (uint8_t *)&body_sensor_location}},                   // pointer to characteristic value // replace with heart rate
+    // /* body sensor location value declaration */
+    // [BODY_SENSOR_LOCATION_IDX_VAL] =
+    //     {{ESP_GATT_AUTO_RSP},
+    //      {ESP_UUID_LEN_16,                                      // UUID128
+    //       (uint8_t *)&BODY_SENSOR_LOCATION_CHARACTERISTIC_UUID, // GATT characteristic UUID
+    //       ESP_GATT_PERM_READ,                                   // read-write permission
+    //       sizeof(body_sensor_location),                         // max size of value
+    //       sizeof(body_sensor_location),                         // cur size of value
+    //       (uint8_t *)&body_sensor_location}},                   // pointer to characteristic value // replace with heart rate
 };
 
 static const esp_gatts_attr_db_t gatt_db_orientation[GATT_ORIENTATION_IDX_NB] =
@@ -436,6 +441,7 @@ static const esp_gatts_attr_db_t gatt_db_orientation[GATT_ORIENTATION_IDX_NB] =
               (uint8_t *)&orientation_ccc}},            // pointer to characteristic value
 
 };
+
 static const esp_gatts_attr_db_t gatt_db_haptics[GATT_HAPTICS_IDX_NB] = {
     /* Haptics service declaration */
     [HAPTICS_IDX_SVC] =
@@ -448,7 +454,7 @@ static const esp_gatts_attr_db_t gatt_db_haptics[GATT_HAPTICS_IDX_NB] = {
           (uint8_t *)&HAPTICS_SERVICE_UUID}}, // GATT service UUID
 
     /* Haptics command play builtin sequence characteristic declaration */
-    [HAPTICS_COMMAND_PLAY_BUILTIN_SEQUENCE_IDX_CHAR] =
+    [HAPTICS_SEQUENCE_IDX_CHAR] =
         {{ESP_GATT_AUTO_RSP},                     // Auto respond configuration, set to respond automatically by the stack.
          {ESP_UUID_LEN_16,                        // define a GATT characteristic
           (uint8_t *)&character_declaration_uuid, // define a GATT characteristic
@@ -458,7 +464,7 @@ static const esp_gatts_attr_db_t gatt_db_haptics[GATT_HAPTICS_IDX_NB] = {
           (uint8_t *)&char_prop_write}},          // Characteristic is read-notify
 
     /* Haptics command play builtin sequence value declaration */
-    [HAPTICS_COMMAND_PLAY_BUILTIN_SEQUENCE_IDX_VAL] =
+    [HAPTICS_SEQUENCE_IDX_VAL] =
         {{ESP_GATT_AUTO_RSP},
          {ESP_UUID_LEN_128,                           // UUID128
           (uint8_t *)ORIENTATION_CHARACTERISTIC_UUID, // GATT characteristic UUID
@@ -467,25 +473,25 @@ static const esp_gatts_attr_db_t gatt_db_haptics[GATT_HAPTICS_IDX_NB] = {
           sizeof(haptics_command_builtin),            // cur size of value
           (uint8_t *)&haptics_command_builtin}},      // pointer to characteristic value
 
-    /* Haptics command play custom sequence characteristic declaration */
-    [HAPTICS_COMMAND_PLAY_CUSTOM_SEQUENCE_IDX_CHAR] =
-        {{ESP_GATT_AUTO_RSP},                     // Auto respond configuration, set to respond automatically by the stack.
-         {ESP_UUID_LEN_16,                        // define a GATT characteristic
-          (uint8_t *)&character_declaration_uuid, // define a GATT characteristic
-          ESP_GATT_PERM_READ,                     // read permission
-          CHAR_DECLARATION_SIZE,                  // characteristic declaration size (uint8_t)
-          CHAR_DECLARATION_SIZE,                  // characteristic declaration size (uint8_t)
-          (uint8_t *)&char_prop_write}},          // Characteristic is read
+    // /* Haptics command play custom sequence characteristic declaration */
+    // [HAPTICS_COMMAND_PLAY_CUSTOM_SEQUENCE_IDX_CHAR] =
+    //     {{ESP_GATT_AUTO_RSP},                     // Auto respond configuration, set to respond automatically by the stack.
+    //      {ESP_UUID_LEN_16,                        // define a GATT characteristic
+    //       (uint8_t *)&character_declaration_uuid, // define a GATT characteristic
+    //       ESP_GATT_PERM_READ,                     // read permission
+    //       CHAR_DECLARATION_SIZE,                  // characteristic declaration size (uint8_t)
+    //       CHAR_DECLARATION_SIZE,                  // characteristic declaration size (uint8_t)
+    //       (uint8_t *)&char_prop_write}},          // Characteristic is read
 
-    /* Haptics command play custom sequence value declaration */
-    [HAPTICS_COMMAND_PLAY_CUSTOM_SEQUENCE_IDX_VAL] =
-        {{ESP_GATT_AUTO_RSP},
-         {ESP_UUID_LEN_128,                           // UUID128
-          (uint8_t *)ORIENTATION_CHARACTERISTIC_UUID, // GATT characteristic UUID
-          ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,   // read-write permission
-          sizeof(haptics_command_custom),             // max size of value
-          sizeof(haptics_command_custom),             // cur size of value
-          (uint8_t *)&haptics_command_custom}},       // pointer to characteristic value
+    // /* Haptics command play custom sequence value declaration */
+    // [HAPTICS_COMMAND_PLAY_CUSTOM_SEQUENCE_IDX_VAL] =
+    //     {{ESP_GATT_AUTO_RSP},
+    //      {ESP_UUID_LEN_128,                           // UUID128
+    //       (uint8_t *)ORIENTATION_CHARACTERISTIC_UUID, // GATT characteristic UUID
+    //       ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,   // read-write permission
+    //       sizeof(haptics_command_custom),             // max size of value
+    //       sizeof(haptics_command_custom),             // cur size of value
+    //       (uint8_t *)&haptics_command_custom}},       // pointer to characteristic value
 
     // /* Haptics configuration characteristic declaration */
     // [HAPTICS_CONFIG_IDX_CHAR] =
@@ -505,37 +511,37 @@ static const esp_gatts_attr_db_t gatt_db_haptics[GATT_HAPTICS_IDX_NB] = {
     //       ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,        // read-write permission
     //       sizeof(haptics_command_config_t),                // max size of value
     //       sizeof(haptics_command_config_t),                // cur size of value
-    //       (uint8_t *)&ble_values.haptics_command_config}}, // pointer to characteristic value
+    //       (uint8_t *)&params_task_ble.haptics_command_config}}, // pointer to characteristic value
 
-    /* Haptics status characteristic declaration */
-    [HAPTICS_STATUS_IDX_CHAR] =
-        {{ESP_GATT_AUTO_RSP},                     // Auto respond configuration, set to respond automatically by the stack.
-         {ESP_UUID_LEN_16,                        // define a GATT characteristic
-          (uint8_t *)&character_declaration_uuid, // define a GATT characteristic
-          ESP_GATT_PERM_READ,                     // read permission
-          CHAR_DECLARATION_SIZE,                  // characteristic declaration size (uint8_t)
-          CHAR_DECLARATION_SIZE,                  // characteristic declaration size (uint8_t)
-          (uint8_t *)&char_prop_read_notify}},    // Characteristic is read-notify
+    // /* Haptics status characteristic declaration */
+    // [HAPTICS_STATUS_IDX_CHAR] =
+    //     {{ESP_GATT_AUTO_RSP},                     // Auto respond configuration, set to respond automatically by the stack.
+    //      {ESP_UUID_LEN_16,                        // define a GATT characteristic
+    //       (uint8_t *)&character_declaration_uuid, // define a GATT characteristic
+    //       ESP_GATT_PERM_READ,                     // read permission
+    //       CHAR_DECLARATION_SIZE,                  // characteristic declaration size (uint8_t)
+    //       CHAR_DECLARATION_SIZE,                  // characteristic declaration size (uint8_t)
+    //       (uint8_t *)&char_prop_read_notify}},    // Characteristic is read-notify
 
-    /* Haptics status value declaration */
-    [HAPTICS_STATUS_IDX_VAL] =
-        {{ESP_GATT_AUTO_RSP},
-         {ESP_UUID_LEN_128,                           // UUID128
-          (uint8_t *)ORIENTATION_CHARACTERISTIC_UUID, // GATT characteristic UUID
-          ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,   // read-write permission
-          sizeof(haptics_status_t),                   // max size of value
-          sizeof(haptics_status_t),                   // cur size of value
-          (uint8_t *)&ble_values.haptics_status}},    // pointer to characteristic value
+    // /* Haptics status value declaration */
+    // [HAPTICS_STATUS_IDX_VAL] =
+    //     {{ESP_GATT_AUTO_RSP},
+    //      {ESP_UUID_LEN_128,                           // UUID128
+    //       (uint8_t *)ORIENTATION_CHARACTERISTIC_UUID, // GATT characteristic UUID
+    //       ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,   // read-write permission
+    //       sizeof(haptics_status_t),                   // max size of value
+    //       sizeof(haptics_status_t),                   // cur size of value
+    //       (uint8_t *)&params_task_ble.haptics_status}},    // pointer to characteristic value
 
-    /* Haptics status notification configuration declaration */
-    [HAPTICS_STATUS_IDX_NTF_CFG] =
-        {{ESP_GATT_AUTO_RSP},
-         {ESP_UUID_LEN_128,                           // UUID128
-          (uint8_t *)ORIENTATION_CHARACTERISTIC_UUID, // GATT characteristic UUID
-          ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,   // read-write permission
-          sizeof(haptics_status_ccc),                 // max size of value
-          sizeof(haptics_status_ccc),                 // cur size of value
-          (uint8_t *)&haptics_status_ccc}},           // pointer to characteristic value
+    // /* Haptics status notification configuration declaration */
+    // [HAPTICS_STATUS_IDX_NTF_CFG] =
+    //     {{ESP_GATT_AUTO_RSP},
+    //      {ESP_UUID_LEN_128,                           // UUID128
+    //       (uint8_t *)ORIENTATION_CHARACTERISTIC_UUID, // GATT characteristic UUID
+    //       ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,   // read-write permission
+    //       sizeof(haptics_status_ccc),                 // max size of value
+    //       sizeof(haptics_status_ccc),                 // cur size of value
+    //       (uint8_t *)&haptics_status_ccc}},           // pointer to characteristic value
 };
 
 /**
@@ -703,6 +709,9 @@ void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts
         }
         adv_config_done |= SCAN_RSP_CONFIG_FLAG;
 
+        /*
+        create GATT tables for each BLE GATT table
+        */
         esp_err_t create_attr_ret;
         create_attr_ret = esp_ble_gatts_create_attr_tab(gatt_db_orientation, gatts_if, GATT_ORIENTATION_IDX_NB, SVC_INST_ID);
         if (create_attr_ret)
@@ -738,14 +747,15 @@ void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts
             ESP_LOG_BUFFER_HEX(BLE_TAG, param->write.value, param->write.len);
 
             /*
-            receive haptics play builtin sequences commands from phone
+            receive haptics sequences commands from phone
             */
-            // if (param->write.handle == orientation_service_handle_table[HAPTICS_COMMAND_PLAY_BUILTIN_SEQUENCE_IDX_VAL])
-            // {
-            //     ESP_LOGI(BLE_TAG, "haptics command builtin write");
-            //     memcpy(&haptics_command_builtin, param->write.value, sizeof(haptics_command_play_builtin_sequence_t));
-            //     /* push to haptics command play builtin queue */
-            // }
+            if (param->write.handle == haptics_service_handle_table[HAPTICS_SEQUENCE_IDX_VAL])
+            {
+                ESP_LOGI(BLE_TAG, "haptics sequence write");
+                // memcpy(&haptics_command_builtin, param->write.value, sizeof(haptics_command_play_builtin_sequence_t));
+                /* push to haptics command play builtin queue */
+                xQueueSend(params_task_ble->queue_haptics_sequence_BLE, param->write.value, ble_task_delay_period / portTICK_PERIOD_MS);
+            }
 
             // /*
             // receive haptics custom sequences from phone
@@ -789,8 +799,6 @@ void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts
                     ESP_LOG_BUFFER_HEX(BLE_TAG, param->write.value, param->write.len);
                 }
             }
-
-            /* */
 
             /* send response when param->write.need_rsp is true*/
             if (param->write.need_rsp)
@@ -849,7 +857,7 @@ void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts
         esp_ble_gap_start_advertising(&adv_params);
         break;
 
-    /* This event is triggered when a service attribute table is created using esp_ble_gatts_create_attr_tab */
+    /* This event is triggered when a service attribute table is created using esp_ble_gatts_create_attr_tab() */
     case ESP_GATTS_CREAT_ATTR_TAB_EVT:
     {
         switch (s_table_index)
@@ -926,7 +934,7 @@ void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts
         break;
     }
 
-    /*  This event is triggered when an attribute value is set using esp_ble_gatts_set_attr_value */
+    /*  This event is triggered when an attribute value is set using esp_ble_gatts_set_attr_value() */
     case ESP_GATTS_SET_ATTR_VAL_EVT:
         // ESP_LOGI(GATTS_TAG, "Attribute value set, status %d, attr_handle %d, srvc_handle %d",
         // 		 param->set_attr_val.status,
@@ -1012,73 +1020,6 @@ static void gatts_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_
             }
         }
     } while (0);
-}
-
-/**
- * BLE FreeRTOS task
- *
- */
-void task_ble_streaming(void *params)
-{
-    /* orientation data */
-    orientation_data_t rcv_orientation_data[15];
-    /* orientation data array index */
-    uint8_t orientation_arr_idx = 0;
-    /* heart rate data */
-    uint16_t heart_rate_data;
-
-    ESP_LOGI(BLE_TAG, "ble task started");
-    /* UART task parameters */
-    params_task_ble_t *params_task_ble = (params_task_ble_t *)params;
-
-    /* orientation data queue */
-    QueueHandle_t queue_orientation_BLE = params_task_ble->queue_orientation_BLE;
-    ESP_LOGI(BLE_TAG, "orientation queue pointer = %p", queue_orientation_BLE);
-    // /* heart rate data queue */
-    // QueueHandle_t queue_heart_rate_BLE = params_task_ble->queue_heart_rate_BLE;
-
-    while (1)
-    {
-
-        /* receive orientation values from the BLE orientation queue */
-        if (queue_orientation_BLE != NULL)
-        {
-            if (xQueueReceive(queue_orientation_BLE, &rcv_orientation_data[orientation_arr_idx], 100 / portTICK_PERIOD_MS) == pdTRUE)
-            {
-                /* stream the data out via BLE */
-                if (orientation_arr_idx == 14)
-                {
-
-                    esp_ble_gatts_set_attr_value(orientation_service_handle_table[ORIENTATION_IDX_VAL],
-                                                 sizeof(rcv_orientation_data),
-                                                 (uint8_t *)rcv_orientation_data);
-                }
-                orientation_arr_idx = (orientation_arr_idx + 1) % 15;
-            }
-        }
-        else
-        {
-            ESP_LOGE(BLE_TAG, "queue_orientation_BLE NULL");
-        }
-
-        // /* send heart rate values to phone */
-        // if (xQueueReceive(queue_orientation_BLE, &heart_rate_data, 100 / portTICK_PERIOD_MS) == pdTRUE)
-        // {
-        //     // esp_ble_gatts_set_attr_value(orientation_service_handle_table[HEART_RATE_IDX_VAL],
-        //     //                              sizeof(heart_rate_data),
-        //     //                              (uint8_t *)&heart_rate_data);
-        // }
-
-        // vTaskDelay(1000 / portTICK_PERIOD_MS);
-
-        /*
-        send haptics status to phone
-        */
-
-        /*
-        configure haptics channel configuration from phone
-        */
-    }
 }
 
 /**
@@ -1190,5 +1131,72 @@ void ble_configure(void)
     if (ret)
     {
         ESP_LOGE(BLE_TAG, "set local  MTU failed, error code = %x", ret);
+    }
+}
+
+/**
+ * BLE FreeRTOS task
+ *
+ */
+void task_ble_streaming(void *params)
+{
+    /* orientation data */
+    orientation_data_t rcv_orientation_data[15];
+    /* orientation data array index */
+    uint8_t orientation_arr_idx = 0;
+    /* heart rate data */
+    uint16_t heart_rate_data;
+
+    ESP_LOGI(BLE_TAG, "ble task started");
+    /* UART task parameters */
+    params_task_ble = (params_task_ble_t *)params;
+
+    /* orientation data queue */
+    QueueHandle_t queue_orientation_BLE = params_task_ble->queue_orientation_BLE;
+    ESP_LOGI(BLE_TAG, "orientation queue pointer = %p", queue_orientation_BLE);
+    // /* heart rate data queue */
+    // QueueHandle_t queue_heart_rate_BLE = params_task_ble->queue_heart_rate_BLE;
+
+    while (1)
+    {
+
+        /* receive orientation values from the BLE orientation queue */
+        if (queue_orientation_BLE != NULL)
+        {
+            if (xQueueReceive(queue_orientation_BLE, &rcv_orientation_data[orientation_arr_idx], 100 / portTICK_PERIOD_MS) == pdTRUE)
+            {
+                /* stream the data out via BLE */
+                if (orientation_arr_idx == 14)
+                {
+
+                    esp_ble_gatts_set_attr_value(orientation_service_handle_table[ORIENTATION_IDX_VAL],
+                                                 sizeof(rcv_orientation_data),
+                                                 (uint8_t *)rcv_orientation_data);
+                }
+                orientation_arr_idx = (orientation_arr_idx + 1) % 15;
+            }
+        }
+        else
+        {
+            ESP_LOGE(BLE_TAG, "queue_orientation_BLE NULL");
+        }
+
+        // /* send heart rate values to phone */
+        // if (xQueueReceive(queue_orientation_BLE, &heart_rate_data, 100 / portTICK_PERIOD_MS) == pdTRUE)
+        // {
+        //     // esp_ble_gatts_set_attr_value(orientation_service_handle_table[HEART_RATE_IDX_VAL],
+        //     //                              sizeof(heart_rate_data),
+        //     //                              (uint8_t *)&heart_rate_data);
+        // }
+
+        // vTaskDelay(1000 / portTICK_PERIOD_MS);
+
+        /*
+        send haptics status to phone
+        */
+
+        /*
+        configure haptics channel configuration from phone
+        */
     }
 }

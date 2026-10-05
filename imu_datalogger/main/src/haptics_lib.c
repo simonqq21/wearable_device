@@ -12,7 +12,7 @@
  * sample haptic pulse sequences
  */
 
-const int master_delay = 100;
+const int master_delay = 500;
 
 haptic_pulse_t pulse_null[1] = {
     {master_delay, {0, 0, 0, 0}}};
@@ -51,8 +51,24 @@ haptic_pulse_t pulse_seq_5[2] = {
 void task_haptics(void *params)
 {
 
+    uint8_t testing;
+
+    /* get the haptics params */
+    params_task_haptics_t *params_task_haptics = (params_task_haptics_t *)params;
+
+    QueueHandle_t queue_haptics_sequence_BLE = params_task_haptics->queue_haptics_sequence_BLE;
+    haptic_actuator_array_t *haptics_hw = params_task_haptics->haptics_hw;
+
     while (1)
     {
+        if (queue_haptics_sequence_BLE != NULL)
+        {
+            if (xQueueReceive(queue_haptics_sequence_BLE, &testing, 100 / portTICK_PERIOD_MS) == pdTRUE)
+            {
+                ESP_LOGI(HAPTICS_TAG, "haptics playy");
+                haptics_load_pulse_seq(haptics_hw, pulse_seq_1, 6);
+            }
+        }
     }
 }
 
@@ -81,10 +97,7 @@ void haptics_init(haptic_actuator_array_t *haptics,
     {
         haptics->channels[i] = channels[i];
         haptic_actuators_pin_bitmask |= (1ULL << channels[i].pin_1);
-        if (channels[i].pin_2 > 0)
-        {
-            haptic_actuators_pin_bitmask |= (1ULL << channels[i].pin_2);
-        }
+        // | (1ULL << channels[i].pin_2)
     }
     haptics->en_pin = en_pin;
     haptic_actuators_pin_bitmask |= (1ULL << en_pin);
@@ -121,13 +134,13 @@ void haptic_set_val(haptic_channel_pins_t channel, uint8_t val)
 
     if (val)
     {
-        gpio_set_level(channel.pin_1, val);
-        gpio_set_level(channel.pin_2, 0);
+        gpio_set_level(channel.pin_1, 0);
+        // gpio_set_level(channel.pin_2, 0);
     }
     else
     {
         gpio_set_level(channel.pin_1, 1);
-        gpio_set_level(channel.pin_2, 1);
+        // gpio_set_level(channel.pin_2, 1);
     }
 }
 
@@ -168,6 +181,7 @@ void haptics_play_pulse(haptic_actuator_array_t *haptics, haptic_pulse_t *pulse)
  *
  * @param haptics pointer to haptic actuator array
  * @param pulse_seq pointer to the start of the haptic pulse sequence
+ * @param len the length of the haptic sequence
  */
 void haptics_load_pulse_seq(haptic_actuator_array_t *haptics, haptic_pulse_t *pulse_seq, uint8_t len)
 {
@@ -275,6 +289,7 @@ void haptics_ISR_callback(haptic_actuator_array_t *haptics)
             if (haptics->time - haptics->last_time >= haptics->pulses_buffer[haptics->tail_idx].duration_ms)
             {
                 haptics->last_time = haptics->time;
+                ESP_LOGI(HAPTICS_TAG, "next");
                 haptics->tail_idx = (haptics->tail_idx + 1) % HAPTIC_SEQ_BUF_LEN;
             }
         }

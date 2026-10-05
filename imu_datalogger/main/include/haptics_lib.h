@@ -12,6 +12,8 @@
 #include "esp_timer.h"
 #include "esp_log.h"
 
+#define HAPTICS_TAG "HAPTICS_TAG"
+
 #define NUM_CHANNELS (4)
 #define HAPTIC_SEQ_BUF_LEN (20)
 
@@ -111,15 +113,27 @@ typedef struct
     haptics_states_enum status;
 } haptics_status_t;
 
+// /**
+//  * @brief haptics channels config sent over BLE
+//  *
+//  * @param mask channel mask, 1 is enabled and 0 is disabled
+//  */
+// typedef struct
+// {
+//     uint8_t channel_mask;
+// } haptics_command_config_t;
+
 /**
- * @brief haptics channels config sent over BLE
+ * @brief task parameters for haptics
  *
- * @param mask channel mask, 1 is enabled and 0 is disabled
+ * @param queue for haptics command play builtin sequence
+ * @param queue for haptics command play custom sequence
  */
 typedef struct
 {
-    uint8_t channel_mask;
-} haptics_command_config_t;
+    haptic_actuator_array_t *haptics_hw;
+    QueueHandle_t queue_haptics_sequence_BLE;
+} params_task_haptics_t;
 
 void task_haptics(void *params);
 void haptics_init(haptic_actuator_array_t *haptics,
