@@ -37,7 +37,6 @@ typedef struct
     StreamBufferHandle_t streambuffer_sd;
 } params_task_SD_card_datalogger_t;
 
-void task_SD_card_datalogger(void *params);
 esp_err_t sd_configure(void);
 esp_err_t sd_card_configure_wrapper(void);
 uint8_t sd_card_is_initialized(void);

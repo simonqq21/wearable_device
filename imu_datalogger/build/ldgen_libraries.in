@@ -206,6 +206,7 @@ $<TARGET_FILE:idf::esp-idf-lib__mpu6050>
 $<TARGET_FILE:__idf_esp-idf-lib__i2cdev>
 $<TARGET_FILE:idf::espressif__button>
 $<TARGET_FILE:idf::espressif__esp-dsp>
+$<TARGET_FILE:esp_health_prebuilt>
 $<TARGET_FILE:idf::joltwallet__littlefs>
 $<TARGET_FILE:idf::main>
 $<TARGET_FILE:__idf_esp-idf-lib__mpu6050>

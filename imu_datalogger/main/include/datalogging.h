@@ -25,6 +25,9 @@ typedef struct
 
 } params_task_main_datalogging_t;
 
+/**
+ * @brief
+ */
 void task_main_datalogging(void *params);
 
 #endif

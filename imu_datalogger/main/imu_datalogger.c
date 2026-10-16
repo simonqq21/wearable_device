@@ -1,13 +1,20 @@
 
-#include "include/uart.h"
-#include "include/nvs.h"
-#include "include/led_module.h"
-#include "include/button_module.h"
-#include "include/imu.h"
-#include "include/sd_card.h"
-#include "include/uart.h"
-#include "include/ble.h"
-#include "include/haptics_lib.h"
+#include "uart.h"
+#include "nvs.h"
+#include "gpio_module.h"
+#include "imu.h"
+#include "heart_rate.h"
+#include "sd_card.h"
+#include "uart.h"
+#include "ble.h"
+#include "haptics_lib.h"
+
+#include "TaskBLE.h"
+#include "TaskHaptics.h"
+#include "TaskSDCard.h"
+#include "TaskSensors.h"
+#include "TaskUART.h"
+#include "TaskGPIO.h"
 
 #include "common.h"
 #include "config.h"
@@ -16,17 +23,18 @@
 #define MAIN_TAG "MAIN"
 
 // task handles
-// ****************************************************************
-TaskHandle_t task_handle_status_led;
-TaskHandle_t task_handle_imu_data;
-TaskHandle_t task_handle_main_data_logging;
+TaskHandle_t task_handle_GPIO;
+TaskHandle_t task_handle_sensors;
+TaskHandle_t task_handle_main_datalogging;
 TaskHandle_t task_handle_SD_card_datalogger;
 TaskHandle_t task_handle_uart;
 TaskHandle_t task_handle_ble;
 TaskHandle_t task_handle_haptics;
 
-/* queue for IMU data coming from IMU task to datalogging task */
+/* queue for IMU data */
 QueueHandle_t queue_imu;
+/* queue for heart rate data */
+QueueHandle_t queue_heart_rate;
 /* queues for raw IMU data from datalogging task to the SD card, UART, and BLE */
 QueueHandle_t queue_raw_sdcard;
 /* queue for orientation from datalogging task to the SD card, UART, and BLE */
@@ -44,9 +52,14 @@ float battery_voltage;
 
 bool datalogging = false;
 
+/**
+ * hardware handles
+ */
+/* button handles */
+button_handle_t btn1;
+/* i2c bus and device handles */
 i2c_master_bus_handle_t bus_handle;
-i2c_master_dev_handle_t dev_handle;
-
+i2c_master_dev_handle_t imu_dev_handle;
 /* haptics hw struct */
 haptic_actuator_array_t haptics_hw;
 haptic_channel_pins_t haptics_channels[4] = {
@@ -58,7 +71,7 @@ haptic_channel_pins_t haptics_channels[4] = {
 // ****************************************************************
 
 /* create all task parameter structs */
-params_task_imu_t params_task_imu;
+params_task_sensors_t params_task_sensors;
 params_task_main_datalogging_t params_task_main_datalogging;
 params_task_SD_card_datalogger_t params_task_SD_card_datalogger;
 params_task_uart_t params_task_uart;
@@ -77,28 +90,29 @@ static void haptics_timer_callback(void *arg)
 imu_data_t data;
 void app_main(void)
 {
-    // initialize GPIO
+    // initialize GPIO (simple inputs and outputs)
     gpio_init();
-    // initialize buttons
-    buttons_init();
-    // initialize i2c
 
     /* initialize the i2c bus */
-    i2c_master_init(&bus_handle, &dev_handle, LSM6DS3_SENSOR_ADDR);
+    i2c_master_init(&bus_handle, &imu_dev_handle, LSM6DS3_SENSOR_ADDR);
+    // i2c_master_init(&bus_handle, &heart)
     ESP_LOGI(MAIN_TAG, "I2C initialized successfully");
 
     // initialize NVS
     nvs_init();
+
     // initialize UART
     uart_configure();
 
     /* initialize BT */
     ble_configure();
 
+    /* initialize IMU */
     imu_set_offset_read_cb(NVS_read_imu_calibration_offsets);
     imu_set_offset_write_cb(NVS_write_imu_calibration_offsets);
-    imu_init(dev_handle, IMU_ODR_HZ, IMU_XL_FS, IMU_G_FS, false);
-    // initialize littleFS
+    imu_init(imu_dev_handle, IMU_ODR_HZ, IMU_XL_FS, IMU_G_FS, false);
+
+    /* initialize heart rate sensor */
 
     /*
     initialize SD card
@@ -114,29 +128,19 @@ void app_main(void)
                  haptics_channels);
     haptics_disable_all(&haptics_hw);
 
-    // Define timer configuration
-    const esp_timer_create_args_t timer_args = {
+    // Define periodic timer configuration
+    const esp_timer_create_args_t haptics_timer_args = {
         .callback = &haptics_timer_callback,
         .name = "haptics player timer",
     };
     esp_timer_handle_t timer_handle;
-    ESP_ERROR_CHECK(esp_timer_create(&timer_args, &timer_handle));
+    ESP_ERROR_CHECK(esp_timer_create(&haptics_timer_args, &timer_handle));
     // Start periodic timer with a 1 ms period (1000 microseconds)
     ESP_ERROR_CHECK(esp_timer_start_periodic(timer_handle, 1000));
 
-    // esp_timer_handle_t timer_handle;
-    // ESP_ERROR_CHECK(esp_timer_create(&timer_args, &timer_handle));
-
-    // // Start periodic timer with a 1 ms period (1000 microseconds)
-    // ESP_ERROR_CHECK(esp_timer_start_periodic(timer_handle, 1000));
-
-    // // ESP_ERROR_CHECK(esp_timer_start_periodic(timer_handle, 500000));
-
-    // haptics_load_pulse_seq(&haptics_hw, pulse_null, 1);
-    // vTaskDelay(1000 / portTICK_PERIOD_MS);
-
     /* create all queues */
     queue_imu = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(imu_data_t));
+    queue_heart_rate = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(hr_ppg_msg_t));
     queue_raw_sdcard = xQueueCreate(NUM_FIFO_TIMESTAMPS, sizeof(imu_data_t));
     queue_orientation_sdcard = xQueueCreate(NUM_FIFO_TIMESTAMPS, sizeof(orientation_data_t));
     queue_orientation_UART = xQueueCreate(NUM_FIFO_TIMESTAMPS, sizeof(orientation_data_t));
@@ -149,11 +153,13 @@ void app_main(void)
     ESP_LOGI(MAIN_TAG, "params_task_uart = %p", &params_task_uart);
     ESP_LOGI(MAIN_TAG, "params_task_ble = %p", &params_task_ble);
 
-    /* params_task_imu */
-    params_task_imu.task_handle_status_led = &task_handle_status_led;
-    params_task_imu.queue_imu = queue_imu;
-    // params_task_imu.streambuffer_imu = streambuffer_imu;
-    params_task_imu.dev_handle = dev_handle;
+    /* params GPIO */
+
+    /* params_task_sensors */
+    params_task_sensors.queue_imu = queue_imu;
+    // params_task_sensors.streambuffer_imu = streambuffer_imu;
+    params_task_sensors.imu_dev_handle = imu_dev_handle;
+    params_task_sensors.queue_heart_rate = queue_heart_rate;
 
     /* params_task_main_datalogging */
     params_task_main_datalogging.queue_imu = queue_imu;
@@ -188,13 +194,22 @@ void app_main(void)
     params_task_haptics.haptics_hw = &haptics_hw;
 
     /* initialize all tasks */
-    // IMU reading task
-    xTaskCreatePinnedToCore(task_imu,
-                            "imu calibrate and read task",
+    // GPIO task
+    xTaskCreatePinnedToCore(task_GPIO,
+                            "GPIO task",
+                            1024,
+                            NULL,
+                            10,
+                            &task_handle_GPIO,
+                            0);
+
+    // i2c sensors (IMU and HR) reading task
+    xTaskCreatePinnedToCore(task_sensors,
+                            "i2c sensors task",
                             2048,
-                            &params_task_imu,
+                            &params_task_sensors,
                             2,
-                            &task_handle_imu_data,
+                            &task_handle_sensors,
                             0);
 
     // sensor data logging task
@@ -203,27 +218,19 @@ void app_main(void)
                             8192,
                             &params_task_main_datalogging,
                             3,
-                            &task_handle_main_data_logging,
-                            0);
-
-    // notification LED task
-    xTaskCreatePinnedToCore(task_notification_LED,
-                            "notification LED task",
-                            1024,
-                            NULL,
-                            10,
-                            &task_handle_status_led,
+                            &task_handle_main_datalogging,
                             0);
 
     // micro SD card datalogging task
     xTaskCreatePinnedToCore(task_SD_card_datalogger,
-                            "SD card data logging task",
+                            "SD card datalogging task",
                             10000, //
                             &params_task_SD_card_datalogger,
                             5,
                             &task_handle_SD_card_datalogger,
                             0);
-    /* UART streaming task */
+
+    /* UART task */
     xTaskCreatePinnedToCore(task_uart_streaming,
                             "UART data streaming task",
                             3072,
@@ -232,7 +239,7 @@ void app_main(void)
                             &task_handle_uart,
                             0);
 
-    /* BLE streaming task */
+    /* BLE task */
     xTaskCreatePinnedToCore(task_ble_streaming,
                             "BLE data streaming task",
                             10000,

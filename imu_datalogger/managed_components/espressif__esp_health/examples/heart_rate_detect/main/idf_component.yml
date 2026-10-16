@@ -1,0 +1,4 @@
+dependencies:
+  esp_health:
+    version: '*'
+  espressif/esp_board_manager: ~0.7

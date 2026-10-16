@@ -328,46 +328,46 @@ typedef struct
 
 } lsm6ds3_data_t;
 
-esp_err_t lsm6ds3_register_read(i2c_master_dev_handle_t dev_handle,
+esp_err_t lsm6ds3_register_read(i2c_master_dev_handle_t imu_dev_handle,
                                 uint8_t reg_addr,
                                 uint8_t *data,
                                 size_t len);
-esp_err_t lsm6ds3_register_write_byte(i2c_master_dev_handle_t dev_handle,
+esp_err_t lsm6ds3_register_write_byte(i2c_master_dev_handle_t imu_dev_handle,
                                       uint8_t reg_addr,
                                       uint8_t data);
 
-void lsm6ds3_init_accel(i2c_master_dev_handle_t dev_handle, uint16_t odr, uint16_t xl_fs);
-void lsm6ds3_init_gyro(i2c_master_dev_handle_t dev_handle, uint16_t odr, uint16_t g_fs);
-void lsm6ds3_init_all(i2c_master_dev_handle_t dev_handle, uint16_t odr, uint16_t xl_fs, uint16_t g_fs);
+void lsm6ds3_init_accel(i2c_master_dev_handle_t imu_dev_handle, uint16_t odr, uint16_t xl_fs);
+void lsm6ds3_init_gyro(i2c_master_dev_handle_t imu_dev_handle, uint16_t odr, uint16_t g_fs);
+void lsm6ds3_init_all(i2c_master_dev_handle_t imu_dev_handle, uint16_t odr, uint16_t xl_fs, uint16_t g_fs);
 
-void lsm6ds3_reset(i2c_master_dev_handle_t dev_handle);
+void lsm6ds3_reset(i2c_master_dev_handle_t imu_dev_handle);
 
-void lsm6ds3_set_accel_power(i2c_master_dev_handle_t dev_handle, lsm6ds3_xl_hm xl_hm);
-void lsm6ds3_set_accel_fs(i2c_master_dev_handle_t dev_handle, lsm6ds3_xl_fs xl_fs);
-void lsm6ds3_set_accel_odr(i2c_master_dev_handle_t dev_handle, lsm6ds3_odr xl_odr);
+void lsm6ds3_set_accel_power(i2c_master_dev_handle_t imu_dev_handle, lsm6ds3_xl_hm xl_hm);
+void lsm6ds3_set_accel_fs(i2c_master_dev_handle_t imu_dev_handle, lsm6ds3_xl_fs xl_fs);
+void lsm6ds3_set_accel_odr(i2c_master_dev_handle_t imu_dev_handle, lsm6ds3_odr xl_odr);
 
-void lsm6ds3_set_gyro_power(i2c_master_dev_handle_t dev_handle, lsm6ds3_g_hm g_hm);
-void lsm6ds3_set_gyro_fs(i2c_master_dev_handle_t dev_handle, lsm6ds3_g_fs g_fs);
-void lsm6ds3_set_gyro_odr(i2c_master_dev_handle_t dev_handle, lsm6ds3_odr g_odr);
+void lsm6ds3_set_gyro_power(i2c_master_dev_handle_t imu_dev_handle, lsm6ds3_g_hm g_hm);
+void lsm6ds3_set_gyro_fs(i2c_master_dev_handle_t imu_dev_handle, lsm6ds3_g_fs g_fs);
+void lsm6ds3_set_gyro_odr(i2c_master_dev_handle_t imu_dev_handle, lsm6ds3_odr g_odr);
 
-void lsm6ds3_enable_bdu(i2c_master_dev_handle_t dev_handle);
+void lsm6ds3_enable_bdu(i2c_master_dev_handle_t imu_dev_handle);
 
-void lsm6ds3_set_fifo_thresh(i2c_master_dev_handle_t dev_handle, uint16_t fifo_thresh);
-void lsm6ds3_set_fifo_odr(i2c_master_dev_handle_t dev_handle, lsm6ds3_odr fifo_odr);
-void lsm6ds3_set_fifo_operation_mode(i2c_master_dev_handle_t dev_handle, lsm6ds3_fifo_mode fifo_mode);
+void lsm6ds3_set_fifo_thresh(i2c_master_dev_handle_t imu_dev_handle, uint16_t fifo_thresh);
+void lsm6ds3_set_fifo_odr(i2c_master_dev_handle_t imu_dev_handle, lsm6ds3_odr fifo_odr);
+void lsm6ds3_set_fifo_operation_mode(i2c_master_dev_handle_t imu_dev_handle, lsm6ds3_fifo_mode fifo_mode);
 
-uint16_t lsm6ds3_fifo_get_num_samples(i2c_master_dev_handle_t dev_handle);
-uint16_t lsm6ds3_fifo_get_pattern(i2c_master_dev_handle_t dev_handle);
-uint16_t lsm6ds3_fifo_read_word_from_fifo(i2c_master_dev_handle_t dev_handle);
-uint8_t lsm6ds3_read_fifo_status2_reg(i2c_master_dev_handle_t dev_handle);
+uint16_t lsm6ds3_fifo_get_num_samples(i2c_master_dev_handle_t imu_dev_handle);
+uint16_t lsm6ds3_fifo_get_pattern(i2c_master_dev_handle_t imu_dev_handle);
+uint16_t lsm6ds3_fifo_read_word_from_fifo(i2c_master_dev_handle_t imu_dev_handle);
+uint8_t lsm6ds3_read_fifo_status2_reg(i2c_master_dev_handle_t imu_dev_handle);
 
-uint8_t lsm6ds3_check_temp_data_available(i2c_master_dev_handle_t dev_handle);
-uint8_t lsm6ds3_check_gyro_data_available(i2c_master_dev_handle_t dev_handle);
-uint8_t lsm6ds3_check_accel_data_available(i2c_master_dev_handle_t dev_handle);
+uint8_t lsm6ds3_check_temp_data_available(i2c_master_dev_handle_t imu_dev_handle);
+uint8_t lsm6ds3_check_gyro_data_available(i2c_master_dev_handle_t imu_dev_handle);
+uint8_t lsm6ds3_check_accel_data_available(i2c_master_dev_handle_t imu_dev_handle);
 
-void lsm6ds3_read_temperature(i2c_master_dev_handle_t dev_handle, float *temp);
-void lsm6ds3_read_motion(i2c_master_dev_handle_t dev_handle, float g[3], float a[3]);
-int lsm6ds3_read_raw_data(i2c_master_dev_handle_t dev_handle, lsm6ds3_data_t *data);
+void lsm6ds3_read_temperature(i2c_master_dev_handle_t imu_dev_handle, float *temp);
+void lsm6ds3_read_motion(i2c_master_dev_handle_t imu_dev_handle, float g[3], float a[3]);
+int lsm6ds3_read_raw_data(i2c_master_dev_handle_t imu_dev_handle, lsm6ds3_data_t *data);
 
 void read_modify_write(uint8_t bit_start,
                        uint8_t bit_end,
@@ -376,10 +376,10 @@ void read_modify_write(uint8_t bit_start,
 uint8_t read_bit(uint8_t reg, uint8_t bit_pos);
 void write_bit(uint8_t *reg, uint8_t bit_pos, uint8_t value);
 
-void lsm6ds3_fifo_init(i2c_master_dev_handle_t dev_handle, uint16_t odr);
-void lsm6ds3_fifo_stop(i2c_master_dev_handle_t dev_handle);
-void lsm6ds3_fifo_reset(i2c_master_dev_handle_t dev_handle);
-void lsm6ds3_fifo_reset_start(i2c_master_dev_handle_t dev_handle);
-uint16_t lsm6ds3_fifo_read(i2c_master_dev_handle_t dev_handle, lsm6ds3_data_t *lsm6ds3_fifo_buffer, uint16_t num_samples);
+void lsm6ds3_fifo_init(i2c_master_dev_handle_t imu_dev_handle, uint16_t odr);
+void lsm6ds3_fifo_stop(i2c_master_dev_handle_t imu_dev_handle);
+void lsm6ds3_fifo_reset(i2c_master_dev_handle_t imu_dev_handle);
+void lsm6ds3_fifo_reset_start(i2c_master_dev_handle_t imu_dev_handle);
+uint16_t lsm6ds3_fifo_read(i2c_master_dev_handle_t imu_dev_handle, lsm6ds3_data_t *lsm6ds3_fifo_buffer, uint16_t num_samples);
 
 #endif

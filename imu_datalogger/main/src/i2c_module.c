@@ -5,10 +5,10 @@
  * @brief i2c master initialization
  *
  * @param bus_handle
- * @param dev_handle
+ * @param imu_dev_handle
  */
 void i2c_master_init(i2c_master_bus_handle_t *bus_handle,
-                     i2c_master_dev_handle_t *dev_handle,
+                     i2c_master_dev_handle_t *imu_dev_handle,
                      uint8_t i2c_addr)
 {
     i2c_master_bus_config_t bus_config = {
@@ -26,5 +26,5 @@ void i2c_master_init(i2c_master_bus_handle_t *bus_handle,
         .device_address = i2c_addr,
         .scl_speed_hz = I2C_MASTER_FREQ_HZ,
     };
-    ESP_ERROR_CHECK(i2c_master_bus_add_device(*bus_handle, &dev_config, dev_handle));
+    ESP_ERROR_CHECK(i2c_master_bus_add_device(*bus_handle, &dev_config, imu_dev_handle));
 }

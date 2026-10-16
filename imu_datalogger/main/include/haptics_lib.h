@@ -135,7 +135,6 @@ typedef struct
     QueueHandle_t queue_haptics_sequence_BLE;
 } params_task_haptics_t;
 
-void task_haptics(void *params);
 void haptics_init(haptic_actuator_array_t *haptics,
                   uint8_t en_pin,
                   haptic_channel_pins_t *channels);

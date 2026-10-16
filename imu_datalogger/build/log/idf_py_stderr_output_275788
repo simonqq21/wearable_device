@@ -1,0 +1,181 @@
+Command: /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/imu_module.elf /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader/bootloader.elf -m '/home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python' '/home/simonque/Documents/code/esp-idf/tools/idf.py'
+[0;33m--- esp-idf-monitor 1.9.0 on /dev/ttyUSB0 115200[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H[0m
+[0m--- 0x40080400: [0;33m_invalid_pc_placeholder[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m2235[0m
+[0m--- 0x40080644: [0;33mcall_start_cpu0[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x40084b8d: [0;33mi2c_ll_read_rxfifo[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_hal_i2c/esp32/include/hal/i2c_ll.h[0m[0m:[1;31m584[0m
+[0m--- (inlined by) [0;33mi2c_isr_receive_handler[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m749[0m
+[0m--- 0x4000c46c: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x4000c477: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x40084b8a: [0;33mi2c_ll_read_rxfifo[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_hal_i2c/esp32/include/hal/i2c_ll.h[0m[0m:[1;31m584[0m
+[0m--- (inlined by) [0;33mi2c_isr_receive_handler[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m749[0m
+[0m--- 0x4008efc5: [0;33mi2c_master_isr_handler_default[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m812[0m
+[0m--- 0x40082741: [0;33mshared_intr_isr[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_hw_support/intr_alloc.c[0m[0m:[1;31m472[0m
+[0m--- 0x40085005: [0;33m_xt_lowint1[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x4000bfed: [0;33m_xtos_set_intlevel[0m[0m in [0;32mROM[0m
+[0m--- 0x4009306e: [0;33mvPortClearInterruptMaskFromISR[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos/portmacro.h[0m[0m:[1;31m547[0m
+[0m--- (inlined by) [0;33mvPortExitCritical[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c[0m[0m:[1;31m518[0m
+[0m--- 0x4014a9f3: [0;33mxQueueSemaphoreTake[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c[0m[0m:[1;31m1853[0m
+[0m--- 0x40147ad5: [0;33ms_i2c_send_commands[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m538[0m
+[0m--- 0x40147e24: [0;33ms_i2c_transaction_start[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m722[0m
+[0m--- 0x40147ed3: [0;33ms_i2c_synchronous_transaction[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m1022[0m
+[0m--- 0x40148c12: [0;33mi2c_master_transmit_receive[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m1328[0m
+[0m--- 0x400dfe8e: [0;33mlsm6ds3_register_read[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/lsm6ds3.c[0m[0m:[1;31m21[0m
+[0m--- 0x400e06cf: [0;33mlsm6ds3_init_all[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/lsm6ds3.c[0m[0m:[1;31m172[0m
+[0m--- 0x400df46d: [0;33mimu_init[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/imu.c[0m[0m:[1;31m125[0m
+[0m--- 0x400def7d: [0;33mapp_main[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/imu_datalogger.c[0m[0m:[1;31m105[0m
+[0m--- 0x400d663a: [0;33mmain_task[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/app_startup.c[0m[0m:[1;31m199[0m
+[0m--- 0x4014a15e: [0;33mvPortTaskWrapper[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c[0m[0m:[1;31m143[0m
+[0m--- 0x40080400: [0;33m_invalid_pc_placeholder[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m2235[0m
+[0m--- 0x40080644: [0;33mcall_start_cpu0[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x40084b8d: [0;33mi2c_ll_read_rxfifo[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_hal_i2c/esp32/include/hal/i2c_ll.h[0m[0m:[1;31m584[0m
+[0m--- (inlined by) [0;33mi2c_isr_receive_handler[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m749[0m
+[0m--- 0x4000c46c: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x4000c477: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x40084b8a: [0;33mi2c_ll_read_rxfifo[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_hal_i2c/esp32/include/hal/i2c_ll.h[0m[0m:[1;31m584[0m
+[0m--- (inlined by) [0;33mi2c_isr_receive_handler[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m749[0m
+[0m--- 0x4008efc5: [0;33mi2c_master_isr_handler_default[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m812[0m
+[0m--- 0x40082741: [0;33mshared_intr_isr[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_hw_support/intr_alloc.c[0m[0m:[1;31m472[0m
+[0m--- 0x40085005: [0;33m_xt_lowint1[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x4000bfed: [0;33m_xtos_set_intlevel[0m[0m in [0;32mROM[0m
+[0m--- 0x4009306e: [0;33mvPortClearInterruptMaskFromISR[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos/portmacro.h[0m[0m:[1;31m547[0m
+[0m--- (inlined by) [0;33mvPortExitCritical[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c[0m[0m:[1;31m518[0m
+[0m--- 0x4014a9f3: [0;33mxQueueSemaphoreTake[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c[0m[0m:[1;31m1853[0m
+[0m--- 0x40147ad5: [0;33ms_i2c_send_commands[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m538[0m
+[0m--- 0x40147e24: [0;33ms_i2c_transaction_start[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m722[0m
+[0m--- 0x40147ed3: [0;33ms_i2c_synchronous_transaction[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m1022[0m
+[0m--- 0x40148c12: [0;33mi2c_master_transmit_receive[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m1328[0m
+[0m--- 0x400dfe8e: [0;33mlsm6ds3_register_read[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/lsm6ds3.c[0m[0m:[1;31m21[0m
+[0m--- 0x400e06cf: [0;33mlsm6ds3_init_all[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/lsm6ds3.c[0m[0m:[1;31m172[0m
+[0m--- 0x400df46d: [0;33mimu_init[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/imu.c[0m[0m:[1;31m125[0m
+[0m--- 0x400def7d: [0;33mapp_main[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/imu_datalogger.c[0m[0m:[1;31m105[0m
+[0m--- 0x400d663a: [0;33mmain_task[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/app_startup.c[0m[0m:[1;31m199[0m
+[0m--- 0x4014a15e: [0;33mvPortTaskWrapper[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c[0m[0m:[1;31m143[0m
+[0m--- 0x40080400: [0;33m_invalid_pc_placeholder[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m2235[0m
+[0m--- 0x40080644: [0;33mcall_start_cpu0[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x40084b8d: [0;33mi2c_ll_read_rxfifo[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_hal_i2c/esp32/include/hal/i2c_ll.h[0m[0m:[1;31m584[0m
+[0m--- (inlined by) [0;33mi2c_isr_receive_handler[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m749[0m
+[0m--- 0x4000c46c: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x4000c477: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x40084b8a: [0;33mi2c_ll_read_rxfifo[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_hal_i2c/esp32/include/hal/i2c_ll.h[0m[0m:[1;31m584[0m
+[0m--- (inlined by) [0;33mi2c_isr_receive_handler[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m749[0m
+[0m--- 0x4008efc5: [0;33mi2c_master_isr_handler_default[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m812[0m
+[0m--- 0x40082741: [0;33mshared_intr_isr[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_hw_support/intr_alloc.c[0m[0m:[1;31m472[0m
+[0m--- 0x40085005: [0;33m_xt_lowint1[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x4000bfed: [0;33m_xtos_set_intlevel[0m[0m in [0;32mROM[0m
+[0m--- 0x4009306e: [0;33mvPortClearInterruptMaskFromISR[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos/portmacro.h[0m[0m:[1;31m547[0m
+[0m--- (inlined by) [0;33mvPortExitCritical[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c[0m[0m:[1;31m518[0m
+[0m--- 0x4014a9f3: [0;33mxQueueSemaphoreTake[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c[0m[0m:[1;31m1853[0m
+[0m--- 0x40147ad5: [0;33ms_i2c_send_commands[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m538[0m
+[0m--- 0x40147e24: [0;33ms_i2c_transaction_start[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m722[0m
+[0m--- 0x40147ed3: [0;33ms_i2c_synchronous_transaction[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m1022[0m
+[0m--- 0x40148c12: [0;33mi2c_master_transmit_receive[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m1328[0m
+[0m--- 0x400dfe8e: [0;33mlsm6ds3_register_read[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/lsm6ds3.c[0m[0m:[1;31m21[0m
+[0m--- 0x400e06cf: [0;33mlsm6ds3_init_all[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/lsm6ds3.c[0m[0m:[1;31m172[0m
+[0m--- 0x400df46d: [0;33mimu_init[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/imu.c[0m[0m:[1;31m125[0m
+[0m--- 0x400def7d: [0;33mapp_main[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/imu_datalogger.c[0m[0m:[1;31m105[0m
+[0m--- 0x400d663a: [0;33mmain_task[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/app_startup.c[0m[0m:[1;31m199[0m
+[0m--- 0x4014a15e: [0;33mvPortTaskWrapper[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c[0m[0m:[1;31m143[0m
+[0m--- 0x40080400: [0;33m_invalid_pc_placeholder[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m2235[0m
+[0m--- 0x40080644: [0;33mcall_start_cpu0[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x40084b8d: [0;33mi2c_ll_read_rxfifo[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_hal_i2c/esp32/include/hal/i2c_ll.h[0m[0m:[1;31m584[0m
+[0m--- (inlined by) [0;33mi2c_isr_receive_handler[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m749[0m
+[0m--- 0x4000c46c: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x4000c477: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x40084b8a: [0;33mi2c_ll_read_rxfifo[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_hal_i2c/esp32/include/hal/i2c_ll.h[0m[0m:[1;31m584[0m
+[0m--- (inlined by) [0;33mi2c_isr_receive_handler[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m749[0m
+[0m--- 0x4008efc5: [0;33mi2c_master_isr_handler_default[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m812[0m
+[0m--- 0x40082741: [0;33mshared_intr_isr[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_hw_support/intr_alloc.c[0m[0m:[1;31m472[0m
+[0m--- 0x40085005: [0;33m_xt_lowint1[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x4000bfed: [0;33m_xtos_set_intlevel[0m[0m in [0;32mROM[0m
+[0m--- 0x4009306e: [0;33mvPortClearInterruptMaskFromISR[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos/portmacro.h[0m[0m:[1;31m547[0m
+[0m--- (inlined by) [0;33mvPortExitCritical[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c[0m[0m:[1;31m518[0m
+[0m--- 0x4014a9f3: [0;33mxQueueSemaphoreTake[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c[0m[0m:[1;31m1853[0m
+[0m--- 0x40147ad5: [0;33ms_i2c_send_commands[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m538[0m
+[0m--- 0x40147e24: [0;33ms_i2c_transaction_start[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m722[0m
+[0m--- 0x40147ed3: [0;33ms_i2c_synchronous_transaction[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m1022[0m
+[0m--- 0x40148c12: [0;33mi2c_master_transmit_receive[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m1328[0m
+[0m--- 0x400dfe8e: [0;33mlsm6ds3_register_read[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/lsm6ds3.c[0m[0m:[1;31m21[0m
+[0m--- 0x400e06cf: [0;33mlsm6ds3_init_all[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/lsm6ds3.c[0m[0m:[1;31m172[0m
+[0m--- 0x400df46d: [0;33mimu_init[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/imu.c[0m[0m:[1;31m125[0m
+[0m--- 0x400def7d: [0;33mapp_main[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/imu_datalogger.c[0m[0m:[1;31m105[0m
+[0m--- 0x400d663a: [0;33mmain_task[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/app_startup.c[0m[0m:[1;31m199[0m
+[0m--- 0x4014a15e: [0;33mvPortTaskWrapper[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c[0m[0m:[1;31m143[0m
+[0m--- 0x40080400: [0;33m_invalid_pc_placeholder[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m2235[0m
+[0m--- 0x40080644: [0;33mcall_start_cpu0[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x40084b8d: [0;33mi2c_ll_read_rxfifo[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_hal_i2c/esp32/include/hal/i2c_ll.h[0m[0m:[1;31m584[0m
+[0m--- (inlined by) [0;33mi2c_isr_receive_handler[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m749[0m
+[0m--- 0x4000c46c: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x4000c477: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x40084b8a: [0;33mi2c_ll_read_rxfifo[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_hal_i2c/esp32/include/hal/i2c_ll.h[0m[0m:[1;31m584[0m
+[0m--- (inlined by) [0;33mi2c_isr_receive_handler[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m749[0m
+[0m--- 0x4008efc5: [0;33mi2c_master_isr_handler_default[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m812[0m
+[0m--- 0x40082741: [0;33mshared_intr_isr[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_hw_support/intr_alloc.c[0m[0m:[1;31m472[0m
+[0m--- 0x40085005: [0;33m_xt_lowint1[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x4000bfed: [0;33m_xtos_set_intlevel[0m[0m in [0;32mROM[0m
+[0m--- 0x4009306e: [0;33mvPortClearInterruptMaskFromISR[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos/portmacro.h[0m[0m:[1;31m547[0m
+[0m--- (inlined by) [0;33mvPortExitCritical[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c[0m[0m:[1;31m518[0m
+[0m--- 0x4014a9f3: [0;33mxQueueSemaphoreTake[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c[0m[0m:[1;31m1853[0m
+[0m--- 0x40147ad5: [0;33ms_i2c_send_commands[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m538[0m
+[0m--- 0x40147e24: [0;33ms_i2c_transaction_start[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m722[0m
+[0m--- 0x40147ed3: [0;33ms_i2c_synchronous_transaction[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m1022[0m
+[0m--- 0x40148c12: [0;33mi2c_master_transmit_receive[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m1328[0m
+[0m--- 0x400dfe8e: [0;33mlsm6ds3_register_read[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/lsm6ds3.c[0m[0m:[1;31m21[0m
+[0m--- 0x400e06cf: [0;33mlsm6ds3_init_all[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/lsm6ds3.c[0m[0m:[1;31m172[0m
+[0m--- 0x400df46d: [0;33mimu_init[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/imu.c[0m[0m:[1;31m125[0m
+[0m--- 0x400def7d: [0;33mapp_main[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/imu_datalogger.c[0m[0m:[1;31m105[0m
+[0m--- 0x400d663a: [0;33mmain_task[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/app_startup.c[0m[0m:[1;31m199[0m
+[0m--- 0x4014a15e: [0;33mvPortTaskWrapper[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c[0m[0m:[1;31m143[0m
+[0m--- 0x40080400: [0;33m_invalid_pc_placeholder[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m2235[0m
+[0m--- 0x40080644: [0;33mcall_start_cpu0[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x40084b8d: [0;33mi2c_ll_read_rxfifo[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_hal_i2c/esp32/include/hal/i2c_ll.h[0m[0m:[1;31m584[0m
+[0m--- (inlined by) [0;33mi2c_isr_receive_handler[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m749[0m
+[0m--- 0x4000c46c: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x4000c477: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x40084b8a: [0;33mi2c_ll_read_rxfifo[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_hal_i2c/esp32/include/hal/i2c_ll.h[0m[0m:[1;31m584[0m
+[0m--- (inlined by) [0;33mi2c_isr_receive_handler[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m749[0m
+[0m--- 0x4008efc5: [0;33mi2c_master_isr_handler_default[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m812[0m
+[0m--- 0x40082741: [0;33mshared_intr_isr[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_hw_support/intr_alloc.c[0m[0m:[1;31m472[0m
+[0m--- 0x40085005: [0;33m_xt_lowint1[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x4000bfed: [0;33m_xtos_set_intlevel[0m[0m in [0;32mROM[0m
+[0m--- 0x4009306e: [0;33mvPortClearInterruptMaskFromISR[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos/portmacro.h[0m[0m:[1;31m547[0m
+[0m--- (inlined by) [0;33mvPortExitCritical[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c[0m[0m:[1;31m518[0m
+[0m--- 0x4014a9f3: [0;33mxQueueSemaphoreTake[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c[0m[0m:[1;31m1853[0m
+[0m--- 0x40147ad5: [0;33ms_i2c_send_commands[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m538[0m
+[0m--- 0x40147e24: [0;33ms_i2c_transaction_start[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m722[0m
+[0m--- 0x40147ed3: [0;33ms_i2c_synchronous_transaction[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m1022[0m
+[0m--- 0x40148c12: [0;33mi2c_master_transmit_receive[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m1328[0m
+[0m--- 0x400dfe8e: [0;33mlsm6ds3_register_read[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/lsm6ds3.c[0m[0m:[1;31m21[0m
+[0m--- 0x400e06cf: [0;33mlsm6ds3_init_all[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/lsm6ds3.c[0m[0m:[1;31m172[0m
+[0m--- 0x400df46d: [0;33mimu_init[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/imu.c[0m[0m:[1;31m125[0m
+[0m--- 0x400def7d: [0;33mapp_main[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/imu_datalogger.c[0m[0m:[1;31m105[0m
+[0m--- 0x400d663a: [0;33mmain_task[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/app_startup.c[0m[0m:[1;31m199[0m
+[0m--- 0x4014a15e: [0;33mvPortTaskWrapper[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c[0m[0m:[1;31m143[0m
+[0m--- 0x40080400: [0;33m_invalid_pc_placeholder[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m2235[0m
+[0m--- 0x40080644: [0;33mcall_start_cpu0[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x40084b8d: [0;33mi2c_ll_read_rxfifo[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_hal_i2c/esp32/include/hal/i2c_ll.h[0m[0m:[1;31m584[0m
+[0m--- (inlined by) [0;33mi2c_isr_receive_handler[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m749[0m
+[0m--- 0x4000c46c: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x4000c477: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x40084b8a: [0;33mi2c_ll_read_rxfifo[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_hal_i2c/esp32/include/hal/i2c_ll.h[0m[0m:[1;31m584[0m
+[0m--- (inlined by) [0;33mi2c_isr_receive_handler[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m749[0m
+[0m--- 0x4008efc5: [0;33mi2c_master_isr_handler_default[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m812[0m
+[0m--- 0x40082741: [0;33mshared_intr_isr[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_hw_support/intr_alloc.c[0m[0m:[1;31m472[0m
+[0m--- 0x40085005: [0;33m_xt_lowint1[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x4000bfed: [0;33m_xtos_set_intlevel[0m[0m in [0;32mROM[0m
+[0m--- 0x4009306e: [0;33mvPortClearInterruptMaskFromISR[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos/portmacro.h[0m[0m:[1;31m547[0m
+[0m--- (inlined by) [0;33mvPortExitCritical[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c[0m[0m:[1;31m518[0m
+[0m--- 0x4014a9f3: [0;33mxQueueSemaphoreTake[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c[0m[0m:[1;31m1853[0m
+[0m--- 0x40147ad5: [0;33ms_i2c_send_commands[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m538[0m
+[0m--- 0x40147e24: [0;33ms_i2c_transaction_start[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m722[0m
+[0m--- 0x40147ed3: [0;33ms_i2c_synchronous_transaction[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m1022[0m
+[0m--- 0x40148c12: [0;33mi2c_master_transmit_receive[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_driver_i2c/i2c_master.c[0m[0m:[1;31m1328[0m
+[0m--- 0x400dfe8e: [0;33mlsm6ds3_register_read[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/lsm6ds3.c[0m[0m:[1;31m21[0m
+[0m--- 0x400e06cf: [0;33mlsm6ds3_init_all[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/lsm6ds3.c[0m[0m:[1;31m172[0m
+[0m--- 0x400df46d: [0;33mimu_init[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/imu.c[0m[0m:[1;31m125[0m
+[0m--- 0x400def7d: [0;33mapp_main[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/imu_datalogger.c[0m[0m:[1;31m105[0m
+[0m--- 0x400d663a: [0;33mmain_task[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/app_startup.c[0m[0m:[1;31m199[0m
+[0m--- 0x4014a15e: [0;33mvPortTaskWrapper[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c[0m[0m:[1;31m143[0m
+[0m--- 0x40080400: [0;33m_invalid_pc_placeholder[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m2235[0m
+[0m--- 0x40080644: [0;33mcall_start_cpu0[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m

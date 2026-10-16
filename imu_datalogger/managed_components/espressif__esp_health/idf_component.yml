@@ -1,0 +1,18 @@
+description: Health sensing algorithms for Espressif SoCs
+documentation: https://github.com/espressif/esp-health/blob/main/esp_health/README.md
+files:
+  exclude:
+  - test_apps/**/*
+issues: https://github.com/espressif/esp-health/issues
+repository: git://github.com/espressif/esp-health.git
+repository_info:
+  commit_sha: e757c4182a39adf570eff5349b85af431ff82aef
+  path: ./esp_health
+tags:
+- adf
+- health
+- ppg
+- heart_rate
+- spo2
+url: https://github.com/espressif/esp-health/tree/main/esp_health
+version: 0.1.0

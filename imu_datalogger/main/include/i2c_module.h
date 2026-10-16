@@ -10,7 +10,7 @@
 #define I2C_MASTER_RX_BUF_DISABLE 0 /*!< I2C master doesn't need buffer */
 
 void i2c_master_init(i2c_master_bus_handle_t *bus_handle,
-                     i2c_master_dev_handle_t *dev_handle,
+                     i2c_master_dev_handle_t *imu_dev_handle,
                      uint8_t i2c_addr);
 
 #endif
