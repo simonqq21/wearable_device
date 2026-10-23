@@ -46,8 +46,7 @@
  *
  */
 
-#include "../include/ble.h"
-#include "../include/haptics_lib.h"
+#include "TaskBLE.h"
 
 static const char device_name[] = "ITLAB BLE WEARABLE";
 uint16_t ble_task_delay_period = 100;
@@ -202,7 +201,7 @@ static uint8_t HAPTICS_SEQUENCE_CHARACTERISTIC_UUID[] = {
 // };
 
 /* orientation value */
-static orientation_data_t orientation_data;
+static imu_orientation_data_t orientation_data;
 /* heart rate value */
 static uint8_t heart_rate = 0;
 /* heart rate body sensor location value */
@@ -281,7 +280,7 @@ static struct gatts_profile_inst gl_profile_tab[PROFILE_NUM] = {
 };
 
 // /* update orientation data with timestamp and dummy orientation values */
-// void update_orientation(orientation_data_t *orientation_data)
+// void update_orientation(imu_orientation_data_t *orientation_data)
 // {
 //     // orientation_data->euler_angle.timestamp = 100;
 //     // orientation_data->euler_angle.x = 30;
@@ -754,7 +753,7 @@ void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts
                 ESP_LOGI(BLE_TAG, "haptics sequence write");
                 // memcpy(&haptics_command_builtin, param->write.value, sizeof(haptics_command_play_builtin_sequence_t));
                 /* push to haptics command play builtin queue */
-                xQueueSend(params_task_ble->queue_haptics_sequence_BLE, param->write.value, ble_task_delay_period / portTICK_PERIOD_MS);
+                xQueueSend(params_task_ble->queue_haptics_BLE, param->write.value, ble_task_delay_period / portTICK_PERIOD_MS);
             }
 
             // /*
@@ -1141,7 +1140,7 @@ void ble_configure(void)
 void task_ble_streaming(void *params)
 {
     /* orientation data */
-    orientation_data_t rcv_orientation_data[15];
+    imu_orientation_data_t rcv_orientation_data[15];
     /* orientation data array index */
     uint8_t orientation_arr_idx = 0;
     /* heart rate data */
@@ -1151,11 +1150,11 @@ void task_ble_streaming(void *params)
     /* UART task parameters */
     params_task_ble = (params_task_ble_t *)params;
 
-    /* orientation data queue */
-    QueueHandle_t queue_orientation_BLE = params_task_ble->queue_orientation_BLE;
+    QueueHandle_t queue_imu_BLE = params_task_ble->queue_imu_BLE;
+    QueueHandle_t queue_heart_rate_BLE = params_task_BLE->queue_heart_rate_BLE;
+    QueueHandle_t queue_haptics_BLE = params_task_BLE->queue_haptics_BLE;
+
     ESP_LOGI(BLE_TAG, "orientation queue pointer = %p", queue_orientation_BLE);
-    // /* heart rate data queue */
-    // QueueHandle_t queue_heart_rate_BLE = params_task_ble->queue_heart_rate_BLE;
 
     while (1)
     {

@@ -18,11 +18,8 @@ void task_SD_card_datalogger(void *params)
 
     /* parse freeRTOS primitives from params */
     params_task_SD_card_datalogger_t *sd_datalogger_params = (params_task_SD_card_datalogger_t *)params;
-    /* queue to receive raw IMU data from the main datalogger task */
-    QueueHandle_t queue_raw_sdcard = sd_datalogger_params->queue_raw_sdcard;
-    /* queue to receive orientation data from the main datalogger task */
-    QueueHandle_t queue_orientation_sdcard = sd_datalogger_params->queue_orientation_sdcard;
-    // StreamBufferHandle_t streambuffer_sd = sd_datalogger_params->streambuffer_sd;
+    QueueHandle_t queue_imu_sdcard = sd_datalogger_params->queue_imu_sdcard;
+    QueueHandle_t queue_heart_rate_sdcard = sd_datalogger_params->queue_heart_rate_sdcard;
 
     /* raw IMU data file handle */
     FILE *f_raw = NULL;
@@ -37,17 +34,14 @@ void task_SD_card_datalogger(void *params)
     int max_idx = 0;
 
     /* buffers for raw IMU data */
-    imu_data_t rcv_imu_data;
-    imu_data_t imu_raw_data_buf[SD_BUF_SIZE];
-    /* buffers for orientation data */
-    orientation_data_t rcv_orientation_data;
-    orientation_data_t orientation_data_buf[SD_BUF_SIZE];
+    imu_unified_data_t imu_unified_data;
+    imu_raw_data_t imu_raw_data_buf[SD_BUF_SIZE];
+    imu_orientation_data_t imu_orientation_data_buf[SD_BUF_SIZE];
 
-    // int num_bytes_read = 0;
+    /* current number of samples in current file */
+    uint16_t num_imu_file_samples = 0;
     /* number of raw samples read */
-    uint16_t num_raw_data_samples_read = 0;
-    /* number of orientation samples read */
-    uint16_t num_orientation_data_samples_read = 0;
+    uint16_t imu_buffer_idx = 0;
 
     while (1)
     {
@@ -81,10 +75,10 @@ void task_SD_card_datalogger(void *params)
         {
             /* reset  */
             // num_bytes_read = 0;
-            num_raw_data_samples_read = 0;
-            num_orientation_data_samples_read = 0;
+            imu_buffer_idx = 0;
+            num_imu_file_samples = 0;
 
-            // if SD card not initialized, attempt to mount it.
+            /* if SD card not initialized, attempt to mount it. */
             if (!sd_card_is_initialized())
             {
                 sd_card_configure_wrapper();
@@ -96,8 +90,6 @@ void task_SD_card_datalogger(void *params)
                 max_idx = get_highest_datalog_idx(MOUNT_POINT);
                 max_idx++;
             }
-
-            // ESP_LOGI(SD_CARD_TAG, "t3");
 
             // if no file is open, create a new file.
             if (f_raw == NULL)
@@ -113,8 +105,6 @@ void task_SD_card_datalogger(void *params)
                 ESP_LOGI(SD_CARD_TAG, "Writing to new raw file");
                 f_raw = open_file(f_raw, filepath, &raw_file_size);
             }
-
-            // ESP_LOGI(SD_CARD_TAG, "t4");
 
             if (f_orientation == NULL)
             {
@@ -148,8 +138,8 @@ void task_SD_card_datalogger(void *params)
                 max_idx++;
             }
 
-            /* while the file is less than the maximum raw data file size */
-            if (raw_file_size < MAX_IMU_RAW_DATA_FILE_SIZE)
+            /* while the number of recorded IMU samples is less than the maximum file length */
+            if (num_imu_file_samples < IMU_MAX_SAMPLES_PER_FILE)
             {
                 /* if there is no IMU raw data file open, create a new raw data file. */
                 if (f_raw == NULL)
@@ -166,42 +156,6 @@ void task_SD_card_datalogger(void *params)
                     f_raw = open_file(f_raw, filepath, &raw_file_size);
                 }
 
-                /* read raw IMU data from the queue */
-                if (xQueueReceive(queue_raw_sdcard, &rcv_imu_data, 10 / portTICK_PERIOD_MS) == pdTRUE)
-                {
-                    //     ESP_LOGI(SD_CARD_TAG, "received data: ");
-                    //     ESP_LOGI(SD_CARD_TAG, "Accel %.4f, %.4f, %.4f", rcv_imu_data.ax, rcv_imu_data.ay, rcv_imu_data.az);
-                    //     ESP_LOGI(SD_CARD_TAG, "Gyro %.4f, %.4f, %.4f", rcv_imu_data.gx, rcv_imu_data.gy, rcv_imu_data.gz);
-                    //     ESP_LOGI(SD_CARD_TAG, "Temp %.2f", rcv_imu_data.temp);
-
-                    /* copy data to buffer */
-                    memcpy(&imu_raw_data_buf[num_raw_data_samples_read],
-                           &rcv_imu_data,
-                           sizeof(imu_data_t));
-
-                    /* write buffer data to card */
-                    if (num_raw_data_samples_read == SD_BUF_SIZE - 1)
-                    {
-                        write_imu_raw_data_to_card(f_raw,
-                                                   imu_raw_data_buf,
-                                                   num_raw_data_samples_read,
-                                                   &raw_file_size);
-                    }
-
-                    num_raw_data_samples_read = (num_raw_data_samples_read + 1) % SD_BUF_SIZE;
-                }
-            }
-            /* once the raw data file reaches the maximum datalog file size */
-            else
-            {
-                ESP_LOGI(SD_CARD_TAG, "IMU raw data file size: %d", raw_file_size);
-                f_raw = close_file(f_raw, &raw_file_size);
-                ESP_LOGI(SD_CARD_TAG, "File written.");
-            }
-
-            /* while the file is less than the maximum orientation data file size */
-            if (orientation_file_size < MAX_IMU_ORIENTATION_DATA_FILE_SIZE)
-            {
                 /* if there is no IMU orientation data file open, create a new orientation data file. */
                 if (f_orientation == NULL)
                 {
@@ -217,38 +171,55 @@ void task_SD_card_datalogger(void *params)
                     f_orientation = open_file(f_orientation, filepath, &orientation_file_size);
                 }
 
-                /* read orientation data from the queue */
-                if (xQueueReceive(queue_orientation_sdcard, &rcv_orientation_data, 10 / portTICK_PERIOD_MS) == pdTRUE)
+                /* receive one IMU unified data from the IMU queue */
+                if (xQueueReceive(queue_imu_sdcard, &imu_unified_data, 10 / portTICK_PERIOD_MS) == pdTRUE)
                 {
+                    //     ESP_LOGI(SD_CARD_TAG, "received data: ");
+                    //     ESP_LOGI(SD_CARD_TAG, "Accel %.4f, %.4f, %.4f", imu_unified_data.ax, imu_unified_data.ay, imu_unified_data.az);
+                    //     ESP_LOGI(SD_CARD_TAG, "Gyro %.4f, %.4f, %.4f", imu_unified_data.gx, imu_unified_data.gy, imu_unified_data.gz);
+                    //     ESP_LOGI(SD_CARD_TAG, "Temp %.2f", imu_unified_data.temp);
+
                     /* copy data to buffer */
-                    memcpy(&orientation_data_buf[num_orientation_data_samples_read],
-                           &rcv_orientation_data,
-                           sizeof(orientation_data_t));
+                    memcpy(&imu_raw_data_buf[imu_buffer_idx],
+                           &imu_unified_data.imu_raw_data,
+                           sizeof(imu_raw_data_t));
+                    memcpy(&imu_orientation_data_buf[imu_buffer_idx],
+                           &imu_unified_data.imu_orientation_data,
+                           sizeof(imu_orientation_data_t));
 
                     /* write buffer data to card */
-                    if (num_orientation_data_samples_read == SD_BUF_SIZE - 1)
+                    if (imu_buffer_idx == SD_BUF_SIZE - 1)
                     {
-                        write_orientation_data_to_card(f_orientation,
-                                                       orientation_data_buf,
-                                                       num_orientation_data_samples_read,
-                                                       &orientation_file_size);
+                        write_imu_raw_data_to_card(f_raw,
+                                                   imu_raw_data_buf,
+                                                   imu_buffer_idx,
+                                                   &raw_file_size);
+                        write_imu_orientation_data_to_card(f_orientation,
+                                                           imu_orientation_data_buf,
+                                                           imu_buffer_idx,
+                                                           &orientation_file_size);
                     }
 
-                    num_orientation_data_samples_read = (num_orientation_data_samples_read + 1) % SD_BUF_SIZE;
+                    /* increment indices */
+                    imu_buffer_idx = (imu_buffer_idx + 1) % SD_BUF_SIZE;
+                    num_imu_file_samples++;
                 }
             }
-            /* once the orientation file reaches the maximum datalog file size */
+            /* once the number of IMU file samples exceeds the maximum IMU file sample count */
             else
             {
+                ESP_LOGI(SD_CARD_TAG, "IMU raw data file size: %d", raw_file_size);
+                f_raw = close_file(f_raw, &raw_file_size);
                 ESP_LOGI(SD_CARD_TAG, "IMU orientation file size: %d", orientation_file_size);
                 f_orientation = close_file(f_orientation, &orientation_file_size);
-                ESP_LOGI(SD_CARD_TAG, "File written.");
+
+                /* reset the number of samples for the current file to 0 */
+                num_imu_file_samples = 0;
+                ESP_LOGI(SD_CARD_TAG, "Files written.");
             }
         }
 
-        /*
-        run continuously while datalogging is stopped
-        */
+        /* run continuously while datalogging is stopped */
         else if (cmd_task_sd_card_datalogging == CMD_SD_CARD_STOP && prev_cmd_task_sd_card_datalogging == CMD_SD_CARD_STOP)
         {
             /* do nothing */

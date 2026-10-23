@@ -126,35 +126,6 @@ struct gatts_profile_inst
     esp_bt_uuid_t descr_uuid;      // Characteristic descriptor UUID
 };
 
-/**
- * @brief parameters for BLE FreeRTOS task
- *
- * @param queue_orientation_BLE IMU orientation queue sent via BLE
- * @param queue_heart_rate_BLE heart rate queue sent via BLE
- * @param queue_haptics_sequence_BLE queue to send haptics play
- *      built-in sequences commands to the haptics module
- * @param queue_haptics_command_play_custom_BLE queue to send haptics play
- *      custom sequences commands to the haptics module
- *
- */
-typedef struct
-{
-    QueueHandle_t queue_orientation_BLE;
-    QueueHandle_t queue_heart_rate_BLE;
-    QueueHandle_t queue_haptics_sequence_BLE;
-    // QueueHandle_t queue_haptics_command_play_custom_BLE;
-
-    /* pointer to haptics configuration struct */
-    haptics_command_play_builtin_sequence_t *haptics_command_config;
-
-    /* pointer to haptics status struct */
-    haptics_status_t *haptics_status;
-
-    /* pointer to battery voltage */
-    float *battery_voltage;
-
-} params_task_ble_t;
-
 void ble_configure(void);
 void task_ble_streaming(void *params);
 void gatts_profile_event_handler(esp_gatts_cb_event_t event,

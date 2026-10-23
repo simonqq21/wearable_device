@@ -123,18 +123,6 @@ typedef struct
 //     uint8_t channel_mask;
 // } haptics_command_config_t;
 
-/**
- * @brief task parameters for haptics
- *
- * @param queue for haptics command play builtin sequence
- * @param queue for haptics command play custom sequence
- */
-typedef struct
-{
-    haptic_actuator_array_t *haptics_hw;
-    QueueHandle_t queue_haptics_sequence_BLE;
-} params_task_haptics_t;
-
 void haptics_init(haptic_actuator_array_t *haptics,
                   uint8_t en_pin,
                   haptic_channel_pins_t *channels);

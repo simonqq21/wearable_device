@@ -3,31 +3,17 @@
 
 #include "common.h"
 #include "Fusion.h"
+#include "imu.h"
+
+#define DATALOGGING_TAG "DATALOGGING"
 
 /**
- * @brief datalogging task params
+ * @brief IMU complementary filter
  *
- * @param queue_imu
- * @param streambuffer_imu
- *
+ * @param imu_data calibrated IMU data
+ * @param dt time delta between IMU data samples
+ * @param alpha complementary filter parameter
  */
-typedef struct
-{
-    QueueHandle_t queue_imu;
-
-    StreamBufferHandle_t streambuffer_imu;
-
-    QueueHandle_t queue_raw_sdcard;
-    QueueHandle_t queue_orientation_sdcard;
-    QueueHandle_t queue_orientation_UART;
-    QueueHandle_t queue_orientation_BLE;
-    StreamBufferHandle_t streambuffer_sd;
-
-} params_task_main_datalogging_t;
-
-/**
- * @brief
- */
-void task_main_datalogging(void *params);
+imu_orientation_data_t complementary_filter(imu_raw_data_t *imu_data, int dt, float alpha);
 
 #endif

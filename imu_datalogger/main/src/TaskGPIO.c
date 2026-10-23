@@ -11,13 +11,13 @@ void task_GPIO(void *params)
     // /* get task handles from task params */
     // TaskHandle_t task_handle_GPIO = params_task_gpio->task_handle_GPIO;
     // TaskHandle_t task_handle_sensors = params_task_gpio->task_handle_sensors;
-    // TaskHandle_t task_handle_main_datalogging = params_task_gpio->task_handle_main_datalogging;
+    // TaskHandle_t task_handle_sensor_fusion = params_task_gpio->task_handle_sensor_fusion;
     // TaskHandle_t task_handle_SD_card_datalogger = params_task_gpio->task_handle_SD_card_datalogger;
 
     // /* set gpio task handles for the button callbacks */
     // set_gpio_task_handles(task_handle_GPIO,
     //                       task_handle_sensors,
-    //                       task_handle_main_datalogging,
+    //                       task_handle_sensor_fusion,
     //                       task_handle_SD_card_datalogger);
 
     /* set button callbacks */

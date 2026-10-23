@@ -6,6 +6,7 @@
 
 #include "TaskSensors.h"
 
+// GPIO task handle
 extern TaskHandle_t task_handle_GPIO;
 
 void task_sensors(void *params)
@@ -13,7 +14,7 @@ void task_sensors(void *params)
     /* FIFO buffer storage for lsm6ds3 */
     lsm6ds3_data_t lsm6ds3_fifo_buffer[1];
     /* IMU data buffer */
-    imu_data_t imu_data_buffer[1];
+    imu_raw_data_t imu_data_buffer[1];
 
     /* state machine vars */
     cmd_imu_task_t imu_task_cmd = CMD_IMU_STOP;
@@ -21,17 +22,18 @@ void task_sensors(void *params)
 
     /* IMU task delay period */
     TickType_t imu_task_delay_period;
-    // imu_data_t imu_data;
+    // imu_raw_data_t imu_data;
 
     /* parse freeRTOS primitives from params */
     params_task_sensors_t *params_imu_task = (params_task_sensors_t *)params;
 
     /* IMU data queue */
-    QueueHandle_t queue_imu = params_imu_task->queue_imu;
-    /* IMU data stream buffer */
-    // StreamBufferHandle_t streambuffer_imu = params_imu_task->streambuffer_imu;
-    /* IMU i2c device handle */
+    QueueHandle_t queue_imu_sensor = params_imu_task->queue_imu_sensor;
+    /* heart rate data queue */
+    QueueHandle_t queue_heart_rate_sensor = params_imu_task->queue_heart_rate_sensor;
+    /* i2c devices handles */
     i2c_master_dev_handle_t imu_dev_handle = params_imu_task->imu_dev_handle;
+    i2c_master_dev_handle_t heart_rate_dev_handle = params_imu_task->heart_rate_dev_handle;
 
     /* current timestamp */
     uint64_t cur_timestamp;
@@ -77,9 +79,6 @@ void task_sensors(void *params)
             /* set initial timestamp */
             cur_timestamp = esp_timer_get_time();
             ESP_LOGI(IMU_TAG, "cur_timestamp start = %lld\n", cur_timestamp);
-            /* reset FIFO */
-            // lsm6ds3_fifo_reset_start(imu_dev_handle);
-
             ESP_LOGI(IMU_TAG, "IMU started");
         }
         /* runs continously when logging data */
@@ -99,9 +98,9 @@ void task_sensors(void *params)
                 //          imu_data_buffer[0].gz);
 
                 /* send IMU data to queue */
-                if (queue_imu != NULL)
+                if (queue_imu_sensor != NULL)
                 {
-                    if (xQueueSend(queue_imu,
+                    if (xQueueSend(queue_imu_sensor,
                                    &imu_data_buffer[0],
                                    (imu_task_delay_period / portTICK_PERIOD_MS)) != pdTRUE)
                     {

@@ -15,7 +15,8 @@
 #include "freertos/task.h"
 #include "freertos/queue.h"
 
-#define HEART_RATE_TAG HEART_RATE
+#define HEART_RATE_TAG "HEART_RATE"
+#define SAMPLE_RATE 100
 
 typedef struct
 {

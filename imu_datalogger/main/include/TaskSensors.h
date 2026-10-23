@@ -7,17 +7,16 @@
 /**
  * @brief parameters for IMU task
  *
- * @param streambuffer_imu stream buffer going from IMU task to main datalogging task
- * @param task_handle_GPIO task handle of status LED controlling task
+ * @param queue_imu_sensor outgoing queue for IMU sensor data
+ * @param queue_heart_rate_sensor outgoing queue for heart rate sensor data
  * @param imu_dev_handle IMU i2c device handle
+ * @param heart_rate_dev_handle heart rate i2c device handle
  */
 typedef struct
 {
-    QueueHandle_t queue_imu;
-    // StreamBufferHandle_t streambuffer_imu;
+    QueueHandle_t queue_imu_sensor;
+    QueueHandle_t queue_heart_rate_sensor;
     i2c_master_dev_handle_t imu_dev_handle;
-    QueueHandle_t queue_heart_rate;
-    // StreamBufferHandle_t streambuffer_imu;
     i2c_master_dev_handle_t heart_rate_dev_handle;
 } params_task_sensors_t;
 

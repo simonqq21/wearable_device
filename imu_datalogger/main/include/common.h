@@ -31,43 +31,6 @@
 #include "config.h"
 #include "pins.h"
 
-/* IMU calibration offsets struct */
-typedef struct
-{
-    float oAx, oAy, oAz;
-    float oGx, oGy, oGz;
-} imu_calibration_offsets_t;
-
-/* IMU data struct */
-typedef struct __attribute__((packed))
-{
-    int64_t timestamp;
-    float ax, ay, az; // IMU model-agnostic
-    float gx, gy, gz;
-    float temp;
-} imu_data_t;
-
-/* Euler angle */
-typedef struct __attribute__((packed))
-{
-    int64_t timestamp;
-    float x, y, z;
-} euler_angle_t;
-
-/* Quaternion */
-typedef struct __attribute__((packed))
-{
-    int64_t timestamp;
-    float w, x, y, z;
-} quaternion_t;
-
-/* orientation data union */
-typedef union __attribute__((packed))
-{
-    euler_angle_t euler_angle;
-    quaternion_t quaternion;
-} orientation_data_t;
-
 /* IMU task notification queue values */
 typedef enum
 {

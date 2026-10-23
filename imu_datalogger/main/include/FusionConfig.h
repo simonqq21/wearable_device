@@ -14,13 +14,13 @@
  * @brief Uncomment this definition or add as a preprocessor definition to use
  * normal square root operations.
  */
-//#define FUSION_USE_NORMAL_SQRT
+// #define FUSION_USE_NORMAL_SQRT
 
 /**
  * @brief Uncomment this definition or add as a preprocessor definition to
  * disable inline functions.
  */
-//#define FUSION_NO_INLINE
+// #define FUSION_NO_INLINE
 
 #endif
 

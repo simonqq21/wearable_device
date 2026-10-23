@@ -53,14 +53,14 @@ void task_haptics(void *params)
     /* get the haptics params */
     params_task_haptics_t *params_task_haptics = (params_task_haptics_t *)params;
 
-    QueueHandle_t queue_haptics_sequence_BLE = params_task_haptics->queue_haptics_sequence_BLE;
+    QueueHandle_t queue_haptics_BLE = params_task_haptics->queue_haptics_BLE;
     haptic_actuator_array_t *haptics_hw = params_task_haptics->haptics_hw;
 
     while (1)
     {
-        if (queue_haptics_sequence_BLE != NULL)
+        if (queue_haptics_BLE != NULL)
         {
-            if (xQueueReceive(queue_haptics_sequence_BLE, &testing, 100 / portTICK_PERIOD_MS) == pdTRUE)
+            if (xQueueReceive(queue_haptics_BLE, &testing, 100 / portTICK_PERIOD_MS) == pdTRUE)
             {
                 ESP_LOGI(HAPTICS_TAG, "haptics playy");
                 haptics_load_pulse_seq(haptics_hw, pulse_seq_1, 6);

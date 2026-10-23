@@ -1,9 +1,9 @@
 #include "../include/gpio_module.h"
 
-// queue for status LED states
+// task handles for GPIO, sensors, sensor fusion, and SD card datalogging
 extern TaskHandle_t task_handle_GPIO;
 extern TaskHandle_t task_handle_sensors;
-extern TaskHandle_t task_handle_main_datalogging;
+extern TaskHandle_t task_handle_sensor_fusion;
 extern TaskHandle_t task_handle_SD_card_datalogger;
 
 uint8_t btn_datalogging;
@@ -76,8 +76,8 @@ void button_trigger_calibration_cb(void *arg, void *data)
 {
     ESP_LOGI(BUTTON_TAG, "Calibrating IMU...");
     // pause datalogging
-    if (task_handle_main_datalogging != NULL)
-        xTaskNotify(task_handle_main_datalogging, CMD_DATALOGGING_STOP, eSetValueWithOverwrite);
+    if (task_handle_sensor_fusion != NULL)
+        xTaskNotify(task_handle_sensor_fusion, CMD_DATALOGGING_STOP, eSetValueWithOverwrite);
     // pause IMU reading task to perform calibration
     if (task_handle_sensors != NULL)
         xTaskNotify(task_handle_sensors, CMD_IMU_CALIBRATE, eSetValueWithOverwrite);
@@ -94,8 +94,8 @@ void button_toggle_datalogging_cb(void *arg, void *data)
         // xTaskNotifyGiveIndexed(task_handle_GPIO, 0);
 
         // stop datalogging task
-        if (task_handle_main_datalogging != NULL)
-            xTaskNotify(task_handle_main_datalogging, CMD_DATALOGGING_STOP, eSetValueWithOverwrite);
+        if (task_handle_sensor_fusion != NULL)
+            xTaskNotify(task_handle_sensor_fusion, CMD_DATALOGGING_STOP, eSetValueWithOverwrite);
         //  start IMU task
         if (task_handle_sensors != NULL)
             xTaskNotify(task_handle_sensors, CMD_IMU_STOP, eSetValueWithOverwrite);
@@ -114,8 +114,8 @@ void button_toggle_datalogging_cb(void *arg, void *data)
         // xTaskNotifyGiveIndexed(task_handle_GPIO, 0);
 
         // start datalogging task
-        if (task_handle_main_datalogging != NULL)
-            xTaskNotify(task_handle_main_datalogging, CMD_DATALOGGING_GO, eSetValueWithOverwrite);
+        if (task_handle_sensor_fusion != NULL)
+            xTaskNotify(task_handle_sensor_fusion, CMD_DATALOGGING_GO, eSetValueWithOverwrite);
         //  start IMU task
         if (task_handle_sensors != NULL)
             xTaskNotify(task_handle_sensors, CMD_IMU_READ_LOOP, eSetValueWithOverwrite);
@@ -136,6 +136,6 @@ void button_toggle_datalogging_cb(void *arg, void *data)
 // {
 //     task_handle_GPIO = ptask_handle_GPIO;
 //     task_handle_sensors = ptask_handle_sensors;
-//     task_handle_main_datalogging = ptask_handle_main_datalogging;
+//     task_handle_sensor_fusion = ptask_handle_main_datalogging;
 //     task_handle_SD_card_datalogger = ptask_handle_SD_card_datalogger;
 // }

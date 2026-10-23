@@ -1,7 +1,7 @@
 #include "sd_card.h"
 
 uint8_t sd_card_initialized = 0;
-extern QueueHandle_t queue_imu;
+extern QueueHandle_t queue_imu_sensor;
 
 /**
  * @brief initialize and configure SD card
@@ -225,7 +225,7 @@ esp_err_t read_datalog_file(int idx)
     sprintf(filepath, "%s/%s", MOUNT_POINT, filename);
     /* read and stat the newly created binary file */
     num_records = 0;
-    imu_data_t imu_data_2[batch_size];
+    imu_raw_data_t imu_data_2[batch_size];
     /* open the binary file */
     f_raw = fopen(filepath, "rb");
     if (f_raw == NULL)
@@ -236,7 +236,7 @@ esp_err_t read_datalog_file(int idx)
     unsigned int elements_read = 0;
     /* keep reading IMU data structs from the file as long as there is still data to read */
     while ((elements_read = fread(imu_data_2,
-                                  sizeof(imu_data_t),
+                                  sizeof(imu_raw_data_t),
                                   batch_size,
                                   f_raw)) == batch_size)
     {
@@ -300,16 +300,36 @@ FILE *open_file(FILE *f_raw, char *filepath, unsigned long *file_size)
     return f_raw;
 }
 
+// /**
+//  *
+//  */
+// void write_imu_unified_data_to_card(
+//     FILE *f_raw,
+//     imu_unified_data_t *imu_unified_data,
+//     int num_elements,
+//     unsigned long *imu_raw_file_size,
+//     unsigned long *imu_orientation_file_size)
+// {
+//     write_imu_raw_data_to_card(f_raw,
+//                                imu_unified_data->imu_raw_data,
+//                                num_elements,
+//                                imu_raw_file_size);
+//     write_imu_orientation_data_to_card(f_raw,
+//                                        imu_unified_data->imu_orientation_data,
+//                                        num_elements,
+//                                        imu_orientation_file_size);
+// }
+
 /**
  * @brief wrapper for writing an IMU data struct to the SD card
  *
  * @param f_raw file pointer
- * @param rcv_imu_data pointer to array of IMU data structs
+ * @param imu_raw_data pointer to array of IMU data structs
  * @param num_elements number of elements to write to card
  * @param file_size file size to increment
  */
 void write_imu_raw_data_to_card(FILE *f_raw,
-                                imu_data_t *rcv_imu_data,
+                                imu_raw_data_t *imu_raw_data,
                                 int num_elements,
                                 unsigned long *file_size)
 {
@@ -317,7 +337,7 @@ void write_imu_raw_data_to_card(FILE *f_raw,
     {
         if (f_raw != NULL)
         {
-            fwrite(rcv_imu_data, sizeof(imu_data_t), num_elements, f_raw);
+            fwrite(imu_raw_data, sizeof(imu_raw_data_t), num_elements, f_raw);
             *file_size = ftell(f_raw);
         }
         else
@@ -329,21 +349,21 @@ void write_imu_raw_data_to_card(FILE *f_raw,
  * @brief wrapper for writing an orientation data struct to the SD card
  *
  * @param f_raw file pointer
- * @param orientation_data pointer to array of orientation data structs
+ * @param imu_orientation_data pointer to array of orientation data structs
  * @param num_elements number of elements to write to card
  * @param file_size file size to increment
  */
-void write_orientation_data_to_card(FILE *f_raw,
-                                    orientation_data_t *orientation_data,
-                                    int num_elements,
-                                    unsigned long *file_size)
+void write_imu_orientation_data_to_card(FILE *f_raw,
+                                        imu_orientation_data_t *imu_orientation_data,
+                                        int num_elements,
+                                        unsigned long *file_size)
 {
     if (REQUIRE_SD_CARD)
     {
         if (f_raw != NULL)
         {
 
-            fwrite(orientation_data, sizeof(orientation_data_t), num_elements, f_raw);
+            fwrite(imu_orientation_data, sizeof(imu_orientation_data_t), num_elements, f_raw);
             *file_size = ftell(f_raw);
         }
         else

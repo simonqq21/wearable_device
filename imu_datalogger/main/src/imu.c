@@ -103,7 +103,7 @@ void imu_init(i2c_master_dev_handle_t imu_dev_handle, uint16_t sample_rate, uint
     lsm6ds3_init_all(imu_dev_handle, IMU_ODR_HZ, IMU_XL_FS, IMU_G_FS);
 }
 
-uint16_t imu_read_FIFO_calibrated(i2c_master_dev_handle_t imu_dev_handle, lsm6ds3_data_t *lsm6ds3_fifo_buffer, imu_data_t *imu_data_buffer, uint16_t num_samples)
+uint16_t imu_read_FIFO_calibrated(i2c_master_dev_handle_t imu_dev_handle, lsm6ds3_data_t *lsm6ds3_fifo_buffer, imu_raw_data_t *imu_data_buffer, uint16_t num_samples)
 {
     /* read from LSM6DS3 FIFO */
     uint16_t num_timesteps_read = lsm6ds3_fifo_read(imu_dev_handle, lsm6ds3_fifo_buffer, num_samples);
@@ -113,7 +113,7 @@ uint16_t imu_read_FIFO_calibrated(i2c_master_dev_handle_t imu_dev_handle, lsm6ds
         /* apply calibration offsets to every sample read from the FIFO */
         for (int i = 0; i < num_samples; i++)
         {
-            /* convert lsm6ds3_data_t to imu_data_t */
+            /* convert lsm6ds3_data_t to imu_raw_data_t */
             __imu_convert_vals(&lsm6ds3_fifo_buffer[i], &imu_data_buffer[i]);
             /* apply offset calibration */
             imu_apply_calibration(&imu_data_buffer[i]);
@@ -122,7 +122,7 @@ uint16_t imu_read_FIFO_calibrated(i2c_master_dev_handle_t imu_dev_handle, lsm6ds
     return num_timesteps_read;
 }
 
-int imu_measure_raw(i2c_master_dev_handle_t imu_dev_handle, imu_data_t *data)
+int imu_measure_raw(i2c_master_dev_handle_t imu_dev_handle, imu_raw_data_t *data)
 {
 
     // measure LSM6DS3
@@ -132,7 +132,7 @@ int imu_measure_raw(i2c_master_dev_handle_t imu_dev_handle, imu_data_t *data)
     return val;
 }
 
-void __imu_convert_vals(lsm6ds3_data_t *lsm6ds3_data, imu_data_t *imu_data)
+void __imu_convert_vals(lsm6ds3_data_t *lsm6ds3_data, imu_raw_data_t *imu_data)
 {
     imu_data->temp = lsm6ds3_data->temp;
     imu_data->ax = lsm6ds3_data->accel[0];
@@ -143,7 +143,7 @@ void __imu_convert_vals(lsm6ds3_data_t *lsm6ds3_data, imu_data_t *imu_data)
     imu_data->gz = lsm6ds3_data->gyro[2];
 }
 
-void imu_apply_calibration(imu_data_t *data)
+void imu_apply_calibration(imu_raw_data_t *data)
 {
     data->ax -= offsets.oAx;
     data->ay -= offsets.oAy;
@@ -153,7 +153,7 @@ void imu_apply_calibration(imu_data_t *data)
     data->gz -= offsets.oGz;
 }
 
-int imu_measure_calibrated(i2c_master_dev_handle_t imu_dev_handle, imu_data_t *data)
+int imu_measure_calibrated(i2c_master_dev_handle_t imu_dev_handle, imu_raw_data_t *data)
 {
     // measure IMU
     int val = imu_measure_raw(imu_dev_handle, data);

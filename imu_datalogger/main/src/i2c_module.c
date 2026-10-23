@@ -1,15 +1,7 @@
 #include "common.h"
 #include "i2c_module.h"
 
-/**
- * @brief i2c master initialization
- *
- * @param bus_handle
- * @param imu_dev_handle
- */
-void i2c_master_init(i2c_master_bus_handle_t *bus_handle,
-                     i2c_master_dev_handle_t *imu_dev_handle,
-                     uint8_t i2c_addr)
+void i2c_master_init(i2c_master_bus_handle_t *bus_handle)
 {
     i2c_master_bus_config_t bus_config = {
         .i2c_port = I2C_MASTER_NUM,
@@ -20,11 +12,16 @@ void i2c_master_init(i2c_master_bus_handle_t *bus_handle,
         .flags.enable_internal_pullup = true,
     };
     ESP_ERROR_CHECK(i2c_new_master_bus(&bus_config, bus_handle));
+}
 
+void i2c_master_add_device(i2c_master_bus_handle_t *bus_handle,
+                           i2c_master_dev_handle_t *dev_handle,
+                           uint8_t dev_i2c_addr)
+{
     i2c_device_config_t dev_config = {
         .dev_addr_length = I2C_ADDR_BIT_LEN_7,
-        .device_address = i2c_addr,
+        .device_address = dev_i2c_addr,
         .scl_speed_hz = I2C_MASTER_FREQ_HZ,
     };
-    ESP_ERROR_CHECK(i2c_master_bus_add_device(*bus_handle, &dev_config, imu_dev_handle));
+    ESP_ERROR_CHECK(i2c_master_bus_add_device(*bus_handle, &dev_config, dev_handle));
 }

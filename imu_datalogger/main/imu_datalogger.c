@@ -13,6 +13,7 @@
 #include "TaskHaptics.h"
 #include "TaskSDCard.h"
 #include "TaskSensors.h"
+#include "TaskSensorFusion.h"
 #include "TaskUART.h"
 #include "TaskGPIO.h"
 
@@ -25,16 +26,29 @@
 // task handles
 TaskHandle_t task_handle_GPIO;
 TaskHandle_t task_handle_sensors;
-TaskHandle_t task_handle_main_datalogging;
+TaskHandle_t task_handle_sensor_fusion;
 TaskHandle_t task_handle_SD_card_datalogger;
 TaskHandle_t task_handle_uart;
 TaskHandle_t task_handle_ble;
 TaskHandle_t task_handle_haptics;
 
-/* queue for IMU data */
-QueueHandle_t queue_imu;
-/* queue for heart rate data */
-QueueHandle_t queue_heart_rate;
+/* queue for IMU data from IMU */
+QueueHandle_t queue_imu_sensor;
+/* queue for heart rate data from heart rate sensor */
+QueueHandle_t queue_heart_rate_sensor;
+/* Queue for IMU data to SD card task */
+QueueHandle_t queue_imu_sdcard;
+/* Queue for heart rate data to SD card task */
+QueueHandle_t queue_heart_rate_sdcard;
+/* Queue for IMU data to UART task */
+QueueHandle_t queue_imu_UART;
+/* Queue for heart rate data to UART task */
+QueueHandle_t queue_heart_rate_UART;
+/* Queue for IMU data to BLE task */
+QueueHandle_t queue_imu_BLE;
+/* Queue for heart rate data to BLE task */
+QueueHandle_t queue_heart_rate_BLE;
+
 /* queues for raw IMU data from datalogging task to the SD card, UART, and BLE */
 QueueHandle_t queue_raw_sdcard;
 /* queue for orientation from datalogging task to the SD card, UART, and BLE */
@@ -42,7 +56,7 @@ QueueHandle_t queue_orientation_sdcard, queue_orientation_UART, queue_orientatio
 /* queue for heart rate values */
 QueueHandle_t queue_heart_rate_UART, queue_heart_rate_BLE;
 /* queue for haptics command play builtin sequence */
-QueueHandle_t queue_haptics_sequence_BLE;
+QueueHandle_t queue_haptics_BLE;
 // /* queue for haptics command play custom sequence */
 // QueueHandle_t queue_haptics_command_play_custom_BLE;
 
@@ -60,6 +74,8 @@ button_handle_t btn1;
 /* i2c bus and device handles */
 i2c_master_bus_handle_t bus_handle;
 i2c_master_dev_handle_t imu_dev_handle;
+i2c_master_dev_handle_t heart_rate_dev_handle;
+
 /* haptics hw struct */
 haptic_actuator_array_t haptics_hw;
 haptic_channel_pins_t haptics_channels[4] = {
@@ -72,7 +88,7 @@ haptic_channel_pins_t haptics_channels[4] = {
 
 /* create all task parameter structs */
 params_task_sensors_t params_task_sensors;
-params_task_main_datalogging_t params_task_main_datalogging;
+params_task_sensor_fusion_t params_task_sensor_fusion;
 params_task_SD_card_datalogger_t params_task_SD_card_datalogger;
 params_task_uart_t params_task_uart;
 params_task_ble_t params_task_ble;
@@ -87,19 +103,31 @@ static void haptics_timer_callback(void *arg)
 }
 
 // main
-imu_data_t data;
+imu_raw_data_t data;
 void app_main(void)
 {
     // initialize GPIO (simple inputs and outputs)
     gpio_init();
 
+    // initialize NVS
+    nvs_init();
+
     /* initialize the i2c bus */
-    i2c_master_init(&bus_handle, &imu_dev_handle, LSM6DS3_SENSOR_ADDR);
+    i2c_master_init(&bus_handle);
     // i2c_master_init(&bus_handle, &heart)
     ESP_LOGI(MAIN_TAG, "I2C initialized successfully");
 
-    // initialize NVS
-    nvs_init();
+    /* initialize IMU */
+    i2c_master_dev_handle_t imu_dev_handle;
+    i2c_master_add_device(&bus_handle,
+                          &imu_dev_handle,
+                          LSM6DS3_SENSOR_ADDR);
+    imu_set_offset_read_cb(NVS_read_imu_calibration_offsets);
+    imu_set_offset_write_cb(NVS_write_imu_calibration_offsets);
+    imu_init(imu_dev_handle, IMU_ODR_HZ, IMU_XL_FS, IMU_G_FS, false);
+
+    /* initialize heart rate sensor */
+    // i2c_MAX30102_init
 
     // initialize UART
     uart_configure();
@@ -107,18 +135,11 @@ void app_main(void)
     /* initialize BT */
     ble_configure();
 
-    /* initialize IMU */
-    imu_set_offset_read_cb(NVS_read_imu_calibration_offsets);
-    imu_set_offset_write_cb(NVS_write_imu_calibration_offsets);
-    imu_init(imu_dev_handle, IMU_ODR_HZ, IMU_XL_FS, IMU_G_FS, false);
-
-    /* initialize heart rate sensor */
-
     /*
-    initialize SD card
-    The SD card is an integral part to datalogging.
-    If the card doesn't initialize, attempt to initialize n times in a loop.
-    */
+initialize SD card
+The SD card is an integral part to datalogging.
+If the card doesn't initialize, attempt to initialize n times in a loop.
+*/
     sd_card_configure_wrapper();
     ESP_LOGI(MAIN_TAG, "Starting all tasks!");
 
@@ -139,58 +160,62 @@ void app_main(void)
     ESP_ERROR_CHECK(esp_timer_start_periodic(timer_handle, 1000));
 
     /* create all queues */
-    queue_imu = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(imu_data_t));
-    queue_heart_rate = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(hr_ppg_msg_t));
-    queue_raw_sdcard = xQueueCreate(NUM_FIFO_TIMESTAMPS, sizeof(imu_data_t));
-    queue_orientation_sdcard = xQueueCreate(NUM_FIFO_TIMESTAMPS, sizeof(orientation_data_t));
-    queue_orientation_UART = xQueueCreate(NUM_FIFO_TIMESTAMPS, sizeof(orientation_data_t));
-    queue_orientation_BLE = xQueueCreate(NUM_FIFO_TIMESTAMPS, sizeof(orientation_data_t));
-    queue_haptics_sequence_BLE = xQueueCreate(LEN_QUEUE_HAPTICS, sizeof(uint8_t));
+    queue_imu_sensor = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(imu_raw_data_t));
+    queue_imu_sdcard = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(imu_unified_data_t));
+    queue_imu_UART = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(imu_unified_data_t));
+    queue_imu_BLE = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(imu_unified_data_t));
 
-    ESP_LOGI(MAIN_TAG, "orientation queue pointer = %p", queue_orientation_BLE);
-    ESP_LOGI(MAIN_TAG, "orientation queue pointer = %p", &queue_orientation_BLE);
+    queue_heart_rate_sensor = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(hr_ppg_msg_t));
+    // queue_heart_rate_sdcard = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(imu_raw_data_t));
+    // queue_heart_rate_UART = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(imu_raw_data_t));
+    // queue_heart_rate_BLE = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(imu_raw_data_t));
+    queue_haptics_BLE = xQueueCreate(LEN_QUEUE_HAPTICS, sizeof(uint8_t));
 
-    ESP_LOGI(MAIN_TAG, "params_task_uart = %p", &params_task_uart);
-    ESP_LOGI(MAIN_TAG, "params_task_ble = %p", &params_task_ble);
+    // ESP_LOGI(MAIN_TAG, "orientation queue pointer = %p", queue_orientation_BLE);
+    // ESP_LOGI(MAIN_TAG, "orientation queue pointer = %p", &queue_orientation_BLE);
+
+    // ESP_LOGI(MAIN_TAG, "params_task_uart = %p", &params_task_uart);
+    // ESP_LOGI(MAIN_TAG, "params_task_ble = %p", &params_task_ble);
 
     /* params GPIO */
 
-    /* params_task_sensors */
-    params_task_sensors.queue_imu = queue_imu;
+    /* set sensors task parameters */
+    params_task_sensors.queue_imu_sensor = queue_imu_sensor;
+    params_task_sensors.queue_heart_rate_sensor = queue_heart_rate_sensor;
     // params_task_sensors.streambuffer_imu = streambuffer_imu;
     params_task_sensors.imu_dev_handle = imu_dev_handle;
-    params_task_sensors.queue_heart_rate = queue_heart_rate;
+    params_task_sensors.heart_rate_dev_handle = heart_rate_dev_handle;
 
-    /* params_task_main_datalogging */
-    params_task_main_datalogging.queue_imu = queue_imu;
-    // params_task_main_datalogging.streambuffer_imu = streambuffer_imu;
-    params_task_main_datalogging.queue_raw_sdcard = queue_raw_sdcard;
-    params_task_main_datalogging.queue_orientation_sdcard = queue_orientation_sdcard;
-    params_task_main_datalogging.queue_orientation_UART = queue_orientation_UART;
-    params_task_main_datalogging.queue_orientation_BLE = queue_orientation_BLE;
-    // params_task_main_datalogging.streambuffer_sd = streambuffer_sd;
+    /* set sensor fusion task parameters */
+    params_task_sensor_fusion.queue_imu_sensor = queue_imu_sensor;
+    params_task_sensor_fusion.queue_heart_rate_sensor = queue_heart_rate_sensor;
+    params_task_sensor_fusion.queue_imu_sdcard = queue_imu_sdcard;
+    params_task_sensor_fusion.queue_imu_UART = queue_imu_UART;
+    params_task_sensor_fusion.queue_imu_BLE = queue_imu_BLE;
+    params_task_sensor_fusion.queue_heart_rate_sdcard = queue_heart_rate_sdcard;
+    params_task_sensor_fusion.queue_heart_rate_UART = queue_heart_rate_UART;
+    params_task_sensor_fusion.queue_heart_rate_BLE = queue_heart_rate_BLE;
 
-    /* params_task_SD_card_datalogger */
-    params_task_SD_card_datalogger.queue_raw_sdcard = queue_raw_sdcard;
-    params_task_SD_card_datalogger.queue_orientation_sdcard = queue_orientation_sdcard;
-    // params_task_SD_card_datalogger.streambuffer_sd = streambuffer_sd;
+    /* set SD card task parameters */
+    params_task_SD_card_datalogger.queue_imu_sdcard = queue_imu_sdcard;
+    params_task_SD_card_datalogger.queue_heart_rate_sdcard = queue_heart_rate_sdcard;
 
-    /* params_task_uart */
-    params_task_uart.queue_orientation_UART = queue_orientation_UART;
+    /* Set UART task parameters */
+    params_task_uart.queue_imu_UART = queue_imu_UART;
     params_task_uart.queue_heart_rate_UART = queue_heart_rate_UART;
 
-    /* params_task_ble */
-    params_task_ble.queue_orientation_BLE = queue_orientation_BLE;
+    /* Set BLE task parameters */
+    params_task_ble.queue_imu_BLE = queue_imu_BLE;
     params_task_ble.queue_heart_rate_BLE = queue_heart_rate_BLE;
-    params_task_ble.queue_haptics_sequence_BLE = queue_haptics_sequence_BLE;
+    params_task_ble.queue_haptics_BLE = queue_haptics_BLE;
     // params_task_ble.queue_haptics_command_play_custom_BLE =
-    //     queue_haptics_command_play_custom_BLE;
+    // queue_haptics_command_play_custom_BLE;
     // // params_task_ble.haptics_command_config = ;
     // params_task_ble.haptics_status = &haptics_status;
     // params_task_ble.battery_voltage = &battery_voltage;
 
     /* params_task_haptics */
-    params_task_haptics.queue_haptics_sequence_BLE = queue_haptics_sequence_BLE;
+    params_task_haptics.queue_haptics_BLE = queue_haptics_BLE;
     params_task_haptics.haptics_hw = &haptics_hw;
 
     /* initialize all tasks */
@@ -213,12 +238,12 @@ void app_main(void)
                             0);
 
     // sensor data logging task
-    xTaskCreatePinnedToCore(task_main_datalogging,
-                            "main data logging task",
+    xTaskCreatePinnedToCore(task_sensor_fusion,
+                            "sensor fusion task",
                             8192,
-                            &params_task_main_datalogging,
+                            &params_task_sensor_fusion,
                             3,
-                            &task_handle_main_datalogging,
+                            &task_handle_sensor_fusion,
                             0);
 
     // micro SD card datalogging task

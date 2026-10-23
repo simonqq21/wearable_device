@@ -18,7 +18,10 @@
 /* IMU gyroscope full scale*/
 #define IMU_G_FS 1000
 /* maximum duration per datalog file in seconds */
-#define DATALOG_FILE_DURATION_S (60)
+#define IMU_FILE_DURATION (60)
+/* maximum number of IMU samples per file */
+#define IMU_MAX_SAMPLES_PER_FILE (IMU_ODR_HZ * IMU_FILE_DURATION)
+
 /* Set ORIENTATION_FORMAT to 1 to stream quaternions, or 0 to stream euler angles */
 #define ORIENTATION_EULER 0
 #define ORIENTATION_QUATERNION 1
