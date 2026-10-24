@@ -166,9 +166,10 @@ If the card doesn't initialize, attempt to initialize n times in a loop.
     queue_imu_BLE = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(imu_unified_data_t));
 
     queue_heart_rate_sensor = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(hr_ppg_msg_t));
-    // queue_heart_rate_sdcard = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(imu_raw_data_t));
-    // queue_heart_rate_UART = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(imu_raw_data_t));
-    // queue_heart_rate_BLE = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(imu_raw_data_t));
+    queue_heart_rate_sdcard = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(int));
+    queue_heart_rate_UART = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(int));
+    queue_heart_rate_BLE = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(int));
+
     queue_haptics_BLE = xQueueCreate(LEN_QUEUE_HAPTICS, sizeof(uint8_t));
 
     // ESP_LOGI(MAIN_TAG, "orientation queue pointer = %p", queue_orientation_BLE);

@@ -1,0 +1,430 @@
+Command: /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/imu_module.elf /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader/bootloader.elf -m '/home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python' '/home/simonque/Documents/code/esp-idf/tools/idf.py'
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0040,len:6272
+load:0x40078000,len:15848
+load:0x40080400,len:3920
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v6.1-dev-2310-g44e2fa6d9c5-dirt 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Sep  1 2026 14:56:57[0m
+[0;32mI (28) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v3.1[0m
+[0;32mI (34) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (37) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (65) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (78) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=26a1ch (158236) map[0m
+[0;32mI (145) esp_image: segment 1: paddr=00036a44 vaddr=3ffbdb60 size=051f4h ( 20980) load[0m
+[0;32mI (153) esp_image: segment 2: paddr=0003bc40 vaddr=40080000 size=043d8h ( 17368) load[0m
+[0;32mI (160) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=7de6ch (515692) map[0m
+[0;32mI (344) esp_image: segment 4: paddr=000bde94 vaddr=400843d8 size=14a84h ( 84612) load[0m
+[0;32mI (379) esp_image: segment 5: paddr=000d2920 vaddr=50000000 size=00028h (    40) load[0m
+[0;32mI (392) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (392) boot: Disabling RNG early entropy source...[0m
+[0;32mI (403) cpu_start: Multicore app[0m
+[0;32mI (411) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (411) cpu_start: Pro cpu start user code[0m
+[0;32mI (411) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (413) app_init: Application information:[0m
+[0;32mI (417) app_init: Project name:     imu_module[0m
+[0;32mI (421) app_init: App version:      2a185d6-dirty[0m
+[0;32mI (425) app_init: Compile time:     Oct 24 2026 16:34:41[0m
+[0;32mI (430) app_init: ELF file SHA256:  1d71fb2f5...[0m
+[0;32mI (435) app_init: ESP-IDF:          v6.1-dev-2310-g44e2fa6d9c5-dirt[0m
+[0;32mI (441) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (445) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (449) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (453) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (459) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (464) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (469) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (474) heap_init: At 3FFC73D0 len 00018C30 (99 KiB): DRAM[0m
+[0;32mI (479) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (485) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (490) heap_init: At 40098E5C len 000071A4 (28 KiB): IRAM[0m
+[0;33mW (497) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (509) spi_flash: detected chip: generic[0m
+[0;32mI (512) spi_flash: flash io: dio[0m
+[0;33mW (515) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (528) coexist: coex firmware version: 093e3d2[0m
+[0;32mI (532) main_task: Started on CPU0[0m
+[0;32mI (542) main_task: Calling app_main()[0m
+[0;32mI (542) button: IoT Button Version: 4.2.0[0m
+[0;32mI (552) MAIN: I2C initialized successfully[0m
+[0;32mI (552) LSM6DS3: WHO_AM_I = 69[0m
+[0;32mI (562) BTDM_INIT: BT controller compile version [045a658][0m
+[0;32mI (562) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (562) BTDM_INIT: Bluetooth MAC: d8:13:2a:7d:69:0a[0m
+[0;32mI (572) phy_init: phy_version 4863,a3a4459,Oct 28 2025,14:30:06[0m
+[0;33mW (982) BT_BTM: BTM_BleWriteAdvData, Partial data write into ADV[0m
+[0;33mW (982) BT_BTM: BTM_BleWriteScanRsp, Partial data write into ADV[0m
+[0;32mI (982) SD_CARD: Initializing SD card[0m
+[0;32mI (992) BLE: create attribute table successfully, the number handle = 4[0m
+[0;32mI (992) BLE: create attribute table successfully, the number handle = 4[0m
+[0;32mI (992) BLE: create attribute table successfully, the number handle = 3[0m
+[0;32mI (1002) BLE: Advertising data set, status 0[0m
+[0;32mI (1002) BLE: Scan response data set, status 0[0m
+[0;32mI (1012) BLE: SERVICE_START_EVT, status 0, service_handle 40[0m
+[0;32mI (1012) BLE: SERVICE_START_EVT, status 0, service_handle 44[0m
+[0;32mI (1022) BLE: SERVICE_START_EVT, status 0, service_handle 48[0m
+[0;32mI (982) SD_CARD: Using SPI peripheral[0m
+[0;32mI (1032) BLE: Advertising start successfully[0m
+[0;32mI (1032) SD_CARD: Mounting filesystem[0m
+[0;32mI (1042) sdspi_transaction: cmd=52, R1 response: command not supported[0m
+[0;32mI (1082) sdspi_transaction: cmd=5, R1 response: command not supported[0m
+[0;32mI (1132) SD_CARD: Filesystem mounted[0m
+Name: ACLCE
+Type: SDHC
+Speed: 4.00 MHz (limit: 4.00 MHz)
+Size: 60906MB
+CSD: ver=2, sector_size=512, capacity=124735488 read_bl_len=9
+SSR: bus_width=1
+[0;32mI (1132) SD_CARD: SD card initialized[0m
+[0;32mI (1142) MAIN: Starting all tasks![0m
+[0;32mI (1142) BLE: ble task started[0m
+[0;32mI (3962) BUTTON: Datalogging started.[0m
+[0;32mI (3962) IMU: cur_timestamp start = 3474572[0m
+
+[0;32mI (3962) IMU: IMU started[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (4042) DATALOGGING: Datalogging started.[0m
+
+assert failed: xQueueGenericReset queue.c:333 (pxQueue)
+
+
+Backtrace: 0x40092d61:0x3ffdd4a0 0x40092d29:0x3ffdd4c0 0x40091d21:0x3ffdd4e0 0x4014a1c9:0x3ffdd600 0x400e17b3:0x3ffdd620 0x4014a01a:0x3ffdd7c0
+
+
+
+
+ELF file SHA256: 1d71fb2f5
+
+Rebooting...
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0040,len:6272
+load:0x40078000,len:15848
+load:0x40080400,len:3920
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v6.1-dev-2310-g44e2fa6d9c5-dirt 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Sep  1 2026 14:56:57[0m
+[0;32mI (27) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v3.1[0m
+[0;32mI (34) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (37) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (64) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (78) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=26a1ch (158236) map[0m
+[0;32mI (145) esp_image: segment 1: paddr=00036a44 vaddr=3ffbdb60 size=051f4h ( 20980) load[0m
+[0;32mI (153) esp_image: segment 2: paddr=0003bc40 vaddr=40080000 size=043d8h ( 17368) load[0m
+[0;32mI (160) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=7de6ch (515692) map[0m
+[0;32mI (344) esp_image: segment 4: paddr=000bde94 vaddr=400843d8 size=14a84h ( 84612) load[0m
+[0;32mI (379) esp_image: segment 5: paddr=000d2920 vaddr=50000000 size=00028h (    40) load[0m
+[0;32mI (392) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (392) boot: Disabling RNG early entropy source...[0m
+[0;32mI (402) cpu_start: Multicore app[0m
+[0;32mI (411) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (411) cpu_start: Pro cpu start user code[0m
+[0;32mI (411) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (413) app_init: Application information:[0m
+[0;32mI (417) app_init: Project name:     imu_module[0m
+[0;32mI (421) app_init: App version:      2a185d6-dirty[0m
+[0;32mI (425) app_init: Compile time:     Oct 24 2026 16:34:41[0m
+[0;32mI (430) app_init: ELF file SHA256:  1d71fb2f5...[0m
+[0;32mI (435) app_init: ESP-IDF:          v6.1-dev-2310-g44e2fa6d9c5-dirt[0m
+[0;32mI (441) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (444) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (448) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (453) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (459) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (464) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (469) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (474) heap_init: At 3FFC73D0 len 00018C30 (99 KiB): DRAM[0m
+[0;32mI (479) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (484) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (490) heap_init: At 40098E5C len 000071A4 (28 KiB): IRAM[0m
+[0;33mW (497) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (508) spi_flash: detected chip: generic[0m
+[0;32mI (512) spi_flash: flash io: dio[0m
+[0;33mW (515) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (528) coexist: coex firmware version: 093e3d2[0m
+[0;32mI (532) main_task: Started on CPU0[0m
+[0;32mI (542) main_task: Calling app_main()[0m
+[0;32mI (542) button: IoT Button Version: 4.2.0[0m
+[0;32mI (552) MAIN: I2C initialized successfully[0m
+[0;33mW (552) i2c.common: GPIO 21 is not usable, maybe conflict with others[0m
+[0;33mW (552) i2c.common: GPIO 22 is not usablI (572) BTDM_INIT: BT controller compile version [045a658][0m
+[0;32mI (572) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (572) BTDM_INIT: Bluetooth MAC: d8:13:2a:7d:69:0a[0m
+[0;32mI (572) phy_init: phy_version 4863,a3a4459,Oct 28 2025,14:30:06[0m
+[0;33mW (972) BT_BTM: BTM_BleWriteAdvData, Partial data write into ADV[0m
+[0;33mW (982) BT_BTM: BTM_BleWriteScanRsp, Partial data write into ADV[0m
+[0;32mI (982) SD_CARD: Initializing SD card[0m
+[0;32mI (982) SD_CARD: Using SPI peripheral[0m
+[0;32mI (992) BLE: create attribute table successfully, the number handle = 4[0m
+[0;32mI (992) BLE: create attribute table successfully, the number handle = 4[0m
+[0;32mI (1002) BLE: create attribute table successfully, the number handle = 3[0m
+[0;32mI (1002) BLE: Advertising data set, status 0[0m
+[0;32mI (1012) BLE: Scan response data set, status 0[0m
+[0;32mI (1012) BLE: SERVICE_START_EVT, status 0, service_handle 40[0m
+[0;32mI (1022) BLE: SERVICE_START_EVT, status 0, service_handle 44[0m
+[0;32mI (1022) BLE: SERVICE_START_EVT, status 0, service_handle 48[0m
+[0;32mI (1032) BLE: Advertising start successfully[0m
+[0;32mI (1032) SD_CARD: Mounting filesystem[0m
+[0;32mI (1042) sdspi_transaction: cmd=52, R1 response: command not supported[0m
+[0;32mI (1082) sdspi_transaction: cmd=5, R1 response: command not supported[0m
+[0;32mI (1132) SD_CARD: Filesystem mounted[0m
+Name: ACLCE
+Type: SDHC
+Speed: 4.00 MHz (limit: 4.00 MHz)
+Size: 60906MB
+CSD: ver=2, sector_size=512, capacity=124735488 read_bl_len=9
+SSR: bus_width=1
+[0;32mI (1132) SD_CARD: SD card initialized[0m
+[0;32mI (1142) MAIN: Starting all tasks![0m
+[0;32mI (1142) BLE: ble task started[0m
+[0;32mI (3842) BUTTON: Datalogging started.[0m
+[0;32mI (3842) IMU: cur_timestamp start = 3349561[0m
+
+[0;32mI (3842) IMU: IMU started[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (3942) DATALOGGING: Datalogging started.[0m
+
+assert failed: xQueueGenericReset queue.c:333 (pxQueue)
+
+
+Backtrace: 0x40092d61:0x3ffdd470 0x40092d29:0x3ffdd490 0x40091d21:0x3ffdd4b0 0x4014a1c9:0x3ffdd5d0 0x400e17b3:0x3ffdd5f0 0x4014a01a:0x3ffdd790
+
+
+
+
+ELF file SHA256: 1d71fb2f5
+
+Rebooting...
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0040,len:6272
+load:0x40078000,len:15848
+load:0x40080400,len:3920
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v6.1-dev-2310-g44e2fa6d9c5-dirt 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Sep  1 2026 14:56:57[0m
+[0;32mI (27) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v3.1[0m
+[0;32mI (34) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (37) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (64) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (78) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=26a1ch (158236) map[0m
+[0;32mI (145) esp_image: segment 1: paddr=00036a44 vaddr=3ffbdb60 size=051f4h ( 20980) load[0m
+[0;32mI (153) esp_image: segment 2: paddr=0003bc40 vaddr=40080000 size=043d8h ( 17368) load[0m
+[0;32mI (160) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=7de6ch (515692) map[0m
+[0;32mI (344) esp_image: segment 4: paddr=000bde94 vaddr=400843d8 size=14a84h ( 84612) load[0m
+[0;32mI (379) esp_image: segment 5: paddr=000d2920 vaddr=50000000 size=00028h (    40) load[0m
+[0;32mI (392) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (392) boot: Disabling RNG early entropy source...[0m
+[0;32mI (402) cpu_start: Multicore app[0m
+[0;32mI (411) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (411) cpu_start: Pro cpu start user code[0m
+[0;32mI (411) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (413) app_init: Application information:[0m
+[0;32mI (417) app_init: Project name:     imu_module[0m
+[0;32mI (421) app_init: App version:      2a185d6-dirty[0m
+[0;32mI (425) app_init: Compile time:     Oct 24 2026 16:34:41[0m
+[0;32mI (430) app_init: ELF file SHA256:  1d71fb2f5...[0m
+[0;32mI (435) app_init: ESP-IDF:          v6.1-dev-2310-g44e2fa6d9c5-dirt[0m
+[0;32mI (441) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (444) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (448) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (453) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (459) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (464) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (469) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (474) heap_init: At 3FFC73D0 len 00018C30 (99 KiB): DRAM[0m
+[0;32mI (479) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (484) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (490) heap_init: At 40098E5C len 000071A4 (28 KiB): IRAM[0m
+[0;33mW (497) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (508) spi_flash: detected chip: generic[0m
+[0;32mI (512) spi_flash: flash io: dio[0m
+[0;33mW (515) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (528) coexist: coex firmware version: 093e3d2[0m
+[0;32mI (532) main_task: Started on CPU0[0m
+[0;32mI (542) main_task: Calling app_main()[0m
+[0;32mI (542) button: IoT Button Version: 4.2.0[0m
+[0;32mI (552) MAIN: I2C initialized successfully[0m
+[0;32mI (552) LSM6DS3: WHO_AM_I = 69[0m
+[0;32mI (562) BTDM_INIT: BT controller compile version [045a658][0m
+[0;32mI (562) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (562) BTDM_INIT: Bluetooth MAC: d8:13:2a:7d:69:0a[0m
+[0;32mI (572) phy_init: phy_version 4863,a3a4459,Oct 28 2025,14:30:06[0m
+[0;33mW (972) BT_BTM: BTM_BleWriteAdvData, Partial data write into ADV[0m
+[0;33mW (982) BT_BTM: BTM_BleWriteScanRsp, Partial data write into ADV[0m
+[0;32mI (982) SD_CARD: Initializing SD card[0m
+[0;32mI (982) BLE: create attribute table successfully, the number handle = 4[0m
+[0;32mI (992) BLE: create attribute table successfully, the number handle = 4[0m
+[0;32mI (992) BLE: create attribute table successfully, the number handle = 3[0m
+[0;32mI (992) BLE: Advertising data set, status 0[0m
+[0;32mI (1002) BLE: Scan response data set, status 0[0m
+[0;32mI (1002) BLE: SERVICE_START_EVT, status 0, service_handle 40[0m
+[0;32mI (1012) BLE: SERVICE_START_EVT, status 0, service_handle 44[0m
+[0;32mI (1012) BLE: SERVICE_START_EVT, status 0, service_handle 48[0m
+[0;32mI (1022) SD_CARD: Using SPI peripheral[0m
+[0;32mI (1022) BLE: Advertising start successfully[0m
+[0;32mI (1032) SD_CARD: Mounting filesystem[0m
+[0;32mI (1032) sdspi_transaction: cmd=52, R1 response: command not supported[0m
+[0;32mI (1082) sdspi_transaction: cmd=5, R1 response: command not supported[0m
+[0;32mI (1132) SD_CARD: Filesystem mounted[0m
+Name: ACLCE
+Type: SDHC
+Speed: 4.00 MHz (limit: 4.00 MHz)
+Size: 60906MB
+CSD: ver=2, sector_size=512, capacity=124735488 read_bl_len=9
+SSR: bus_width=1
+[0;32mI (1132) SD_CARD: SD card initialized[0m
+[0;32mI (1142) MAIN: Starting all tasks![0m
+[0;32mI (1142) BLE: ble task started[0m
+[0;32mI (26902) BUTTON: Datalogging started.[0m
+[0;32mI (26902) IMU: cur_timestamp start = 26409564[0m
+
+[0;32mI (26902) IMU: IMU started[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (26942) DATALOGGING: Datalogging started.[0m
+
+assert failed: xQueueGenericReset queue.c:333 (pxQueue)
+
+
+Backtrace: 0x40092d61:0x3ffdd4a0 0x40092d29:0x3ffdd4c0 0x40091d21:0x3ffdd4e0 0x4014a1c9:0x3ffdd600 0x400e17b3:0x3ffdd620 0x4014a01a:0x3ffdd7c0
+
+
+
+
+ELF file SHA256: 1d71fb2f5
+
+Rebooting...
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0040,len:6272
+load:0x40078000,len:15848
+load:0x40080400,len:3920
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v6.1-dev-2310-g44e2fa6d9c5-dirt 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Sep  1 2026 14:56:57[0m
+[0;32mI (27) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v3.1[0m
+[0;32mI (34) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (37) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (64) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (78) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=26a1ch (158236) map[0m
+[0;32mI (145) esp_image: segment 1: paddr=00036a44 vaddr=3ffbdb60 size=051f4h ( 20980) load[0m
+[0;32mI (153) esp_image: segment 2: paddr=0003bc40 vaddr=40080000 size=043d8h ( 17368) load[0m
+[0;32mI (160) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=7de6ch (515692) map[0m
+[0;32mI (344) esp_image: segment 4: paddr=000bde94 vaddr=400843d8 size=14a84h ( 84612) load[0m
+[0;32mI (379) esp_image: segment 5: paddr=000d2920 vaddr=50000000 size=00028h (    40) load[0m
+[0;32mI (392) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (392) boot: Disabling RNG early entropy source...[0m
+[0;32mI (402) cpu_start: Multicore app[0m
+[0;32mI (411) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (411) cpu_start: Pro cpu start user code[0m
+[0;32mI (411) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (413) app_init: Application information:[0m
+[0;32mI (417) app_init: Project name:     imu_module[0m
+[0;32mI (421) app_init: App version:      2a185d6-dirty[0m
+[0;32mI (425) app_init: Compile time:     Oct 24 2026 16:34:41[0m
+[0;32mI (430) app_init: ELF file SHA256:  1d71fb2f5...[0m
+[0;32mI (435) app_init: ESP-IDF:          v6.1-dev-2310-g44e2fa6d9c5-dirt[0m
+[0;32mI (441) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (444) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (448) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (453) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (459) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (464) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (469) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (474) heap_init: At 3FFC73D0 len 00018C30 (99 KiB): DRAM[0m
+[0;32mI (479) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (484) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (490) heap_init: At 40098E5C len 000071A4 (28 KiB): IRAM[0m
+[0;33mW (497) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (508) spi_flash: detected chip: generic[0m
+[0;32mI (512) spi_flash: flash io: dio[0m
+[0;33mW (515) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (528) coexist: coex firmware version: 093e3d2[0m
+[0;32mI (532) main_task: Started on CPU0[0m
+[0;32mI (542) main_task: Calling app_main()[0m
+[0;32mI (542) button: IoT Button Version: 4.2.0[0m
+[0;32mI (552) MAIN: I2C initialized successfully[0m
+[0;33mW (552) i2c.common: GPIO 21 is not usable, maybe conflict with others[0m
+[0;33mW (552) i2c.common: GPIO 22 is not usablI (572) BTDM_INIT: BT controller compile version [045a658][0m
+[0;32mI (572) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (572) BTDM_INIT: Bluetooth MAC: d8:13:2a:7d:69:0a[0m
+[0;32mI (572) phy_init: phy_version 4863,a3a4459,Oct 28 2025,14:30:06[0m
+[0;33mW (992) BT_BTM: BTM_BleWriteAdvData, Partial data write into ADV[0m
+[0;33mW (992) BT_BTM: BTM_BleWriteScanRsp, Partial data write into ADV[0m
+[0;32mI (992) SD_CARD: Initializing SD card[0m
+[0;32mI (992) SD_CARD: Using SPI peripheral[0m
+[0;32mI (1002) BLE: create attribute table successfully, the number handle = 4[0m
+[0;32mI (1002) BLE: create attribute table successfully, the number handle = 4[0m
+[0;32mI (1012) BLE: create attribute table successfully, the number handle = 3[0m
+[0;32mI (1012) BLE: Advertising data set, status 0[0m
+[0;32mI (1022) BLE: Scan response data set, status 0[0m
+[0;32mI (1032) BLE: SERVICE_START_EVT, status 0, service_handle 40[0m
+[0;32mI (1032) BLE: SERVICE_START_EVT, status 0, service_handle 44[0m
+[0;32mI (1032) BLE: SERVICE_START_EVT, status 0, service_handle 48[0m
+[0;32mI (1042) BLE: Advertising start successfully[0m
+[0;32mI (1042) SD_CARD: Mounting filesystem[0m
+[0;32mI (1052) sdspi_transaction: cmd=52, R1 response: command not supported[0m
+[0;32mI (1092) sdspi_transaction: cmd=5, R1 response: command not supported[0m
+[0;32mI (1142) SD_CARD: Filesystem mounted[0m
+Name: ACLCE
+Type: SDHC
+Speed: 4.00 MHz (limit: 4.00 MHz)
+Size: 60906MB
+CSD: ver=2, sector_size=512, capacity=124735488 read_bl_len=9
+SSR: bus_width=1
+[0;32mI (1142) SD_CARD: SD card initialized[0m
+[0;32mI (1152) MAIN: Starting all tasks![0m
+[0;32mI (1152) BLE: ble task started[0m

@@ -1139,6 +1139,8 @@ void ble_configure(void)
  */
 void task_ble_streaming(void *params)
 {
+    /* unified IMU data */
+    imu_unified_data_t imu_unified_data;
     /* orientation data */
     imu_orientation_data_t rcv_orientation_data[15];
     /* orientation data array index */
@@ -1151,19 +1153,24 @@ void task_ble_streaming(void *params)
     params_task_ble = (params_task_ble_t *)params;
 
     QueueHandle_t queue_imu_BLE = params_task_ble->queue_imu_BLE;
-    QueueHandle_t queue_heart_rate_BLE = params_task_BLE->queue_heart_rate_BLE;
-    QueueHandle_t queue_haptics_BLE = params_task_BLE->queue_haptics_BLE;
+    QueueHandle_t queue_heart_rate_BLE = params_task_ble->queue_heart_rate_BLE;
+    QueueHandle_t queue_haptics_BLE = params_task_ble->queue_haptics_BLE;
 
-    ESP_LOGI(BLE_TAG, "orientation queue pointer = %p", queue_orientation_BLE);
+    // ESP_LOGI(BLE_TAG, "IMU queue pointer = %p", queue_imu_BLE);
 
     while (1)
     {
 
         /* receive orientation values from the BLE orientation queue */
-        if (queue_orientation_BLE != NULL)
+        if (queue_imu_BLE != NULL)
         {
-            if (xQueueReceive(queue_orientation_BLE, &rcv_orientation_data[orientation_arr_idx], 100 / portTICK_PERIOD_MS) == pdTRUE)
+            if (xQueueReceive(queue_imu_BLE, &imu_unified_data, 100 / portTICK_PERIOD_MS) == pdTRUE)
             {
+                /* copy the orientation data from the IMU unified data */
+                memcpy(&rcv_orientation_data[orientation_arr_idx],
+                       &imu_unified_data.imu_orientation_data,
+                       sizeof(imu_orientation_data_t));
+
                 /* stream the data out via BLE */
                 if (orientation_arr_idx == 14)
                 {
@@ -1177,7 +1184,7 @@ void task_ble_streaming(void *params)
         }
         else
         {
-            ESP_LOGE(BLE_TAG, "queue_orientation_BLE NULL");
+            ESP_LOGE(BLE_TAG, "queue_imu_BLE NULL");
         }
 
         // /* send heart rate values to phone */

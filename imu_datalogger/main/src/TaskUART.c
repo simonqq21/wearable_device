@@ -7,17 +7,14 @@
  *
  * Each orientation data is a union with either an Euler angle or a quaternion.
  *
- * @param queue_orientation_UART queue of incoming orientation data from the
- *  main datalogging task
- *
  */
 void task_uart_streaming(void *params)
 {
     /* orientation data */
-    imu_orientation_data_t rcv_orientation_data;
+    imu_unified_data_t imu_unified_data;
     uint16_t encoded_bytes_len;
     /* COBS-encoded bytes buffer */
-    char encoded_bytes_buf[sizeof(imu_orientation_data_t) + 3];
+    char encoded_bytes_buf[sizeof(imu_unified_data_t) + 5];
     /* UART task parameters */
     params_task_uart_t *params_task_uart = (params_task_uart_t *)params;
 
@@ -27,10 +24,10 @@ void task_uart_streaming(void *params)
     while (1)
     {
         /* receive orientation values from the UART orientation queue */
-        if (xQueueReceive(queue_orientation_UART, &rcv_orientation_data, 100 / portTICK_PERIOD_MS) == pdTRUE)
+        if (xQueueReceive(queue_imu_UART, &imu_unified_data, 100 / portTICK_PERIOD_MS) == pdTRUE)
         {
             /* COBS-encode the orientation data */
-            encoded_bytes_len = cobs_encode((char *)&rcv_orientation_data, encoded_bytes_buf, sizeof(imu_orientation_data_t));
+            encoded_bytes_len = cobs_encode((char *)&imu_unified_data, encoded_bytes_buf, sizeof(imu_unified_data_t));
             // ESP_LOGI(UART_TAG, "enc_bytes_len = %d\n", encoded_bytes_len);
             /* stream the COBS-encoded orientation data out the UART port */
             uart_write_bytes(UART_STREAMING_PORT_NUM, encoded_bytes_buf, encoded_bytes_len);
