@@ -1,0 +1,40 @@
+Command: /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/imu_module.elf /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader/bootloader.elf -m '/home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python' '/home/simonque/Documents/code/esp-idf/tools/idf.py'
+[0;33m--- esp-idf-monitor 1.9.0 on /dev/ttyUSB0 115200[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H[0m
+[0m--- 0x40080400: [0;33m_invalid_pc_placeholder[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m2235[0m
+[0m--- 0x40080644: [0;33mcall_start_cpu0[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x40105cdc: [0;33mbtc_transfer_context[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bt/common/btc/core/btc_task.c[0m[0m:[1;31m341[0m
+[0m--- 0x40105cdc: [0;33mbtc_transfer_context[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bt/common/btc/core/btc_task.c[0m[0m:[1;31m341[0m
+[0m--- 0x400feca0: [0;33ml2cu_build_header[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bt/host/bluedroid/stack/l2cap/l2c_utils.c[0m[0m:[1;31m438[0m
+[0m--- 0x40107bfa: [0;33mlist_append[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bt/common/osi/list.c[0m[0m:[1;31m157[0m
+[0m--- 0x40105cdc: [0;33mbtc_transfer_context[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bt/common/btc/core/btc_task.c[0m[0m:[1;31m341[0m
+[0m--- 0x40105cdc: [0;33mbtc_transfer_context[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bt/common/btc/core/btc_task.c[0m[0m:[1;31m341[0m
+[0m--- 0x40105cdc: [0;33mbtc_transfer_context[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bt/common/btc/core/btc_task.c[0m[0m:[1;31m341[0m
+[0m--- 0x4010db95: [0;33mhost_recv_pkt_cb[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bt/host/bluedroid/hci/hci_hal_h4.c[0m[0m:[1;31m648[0m
+[0m--- 0x40092d61: [0;33mpanic_abort[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_system/panic.c[0m[0m:[1;31m464[0m
+[0m--- 0x40092d29: [0;33mesp_system_abort[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_system/port/esp_system_chip.c[0m[0m:[1;31m87[0m
+[0m--- 0x40091d21: [0;33m__assert_func[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/esp_libc/src/assert.c[0m[0m:[1;31m81[0m
+[0m--- 0x4010dbc2: [0;33mhost_recv_pkt_cb[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bt/host/bluedroid/hci/hci_hal_h4.c[0m[0m:[1;31m650[0m
+[0m--- 0x4013ee53: [0;33mvhci_send[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x40134691: [0;33mr_eif_send[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x4001791d: [0;33mr_h4tl_write[0m[0m in [0;32mROM[0m
+[0m--- 0x40135445: [0;33mhci_tx_start[0m[0m at [0;32mhci_tl.o[0m[0m:[1;31m?[0m
+[0m--- 0x40135545: [0;33mr_hci_tl_send[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x400188f5: [0;33mr_hci_send_2_host[0m[0m in [0;32mROM[0m
+[0m--- 0x40134c99: [0;33mr_hci_send_2_host_hack[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x40045a65: [0;33mllc_data_ind_handler[0m[0m in [0;32mROM[0m
+[0m--- 0x4008a65f: [0;33mke_task_schedule[0m[0m at [0;32mke_task.o[0m[0m:[1;31m?[0m
+[0m--- 0x40019d11: [0;33mr_ke_event_schedule[0m[0m in [0;32mROM[0m
+[0m--- 0x40055b4d: [0;33mr_rwip_schedule[0m[0m in [0;32mROM[0m
+[0m--- 0x40132f9f: [0;33mr_rw_schedule[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x40133580: [0;33mbtdm_controller_task[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x4014a8ba: [0;33mvPortTaskWrapper[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c[0m[0m:[1;31m143[0m
+[0m--- 0x40080400: [0;33m_invalid_pc_placeholder[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m2235[0m
+[0m--- 0x40080644: [0;33mcall_start_cpu0[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x400e7ead: [0;33mbtm_acl_created[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bt/host/bluedroid/stack/btm/btm_acl.c[0m[0m:[1;31m273[0m
+[0m--- 0x400fa619: [0;33mhci_get_cmd_buf[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bt/host/bluedroid/stack/include/stack/hcimsgs.h[0m[0m:[1;31m59[0m
+[0m--- 0x400e7ead: [0;33mbtm_acl_created[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bt/host/bluedroid/stack/btm/btm_acl.c[0m[0m:[1;31m273[0m
+[0m--- 0x400fa619: [0;33mhci_get_cmd_buf[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bt/host/bluedroid/stack/include/stack/hcimsgs.h[0m[0m:[1;31m59[0m
+[0m--- 0x400e7ead: [0;33mbtm_acl_created[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bt/host/bluedroid/stack/btm/btm_acl.c[0m[0m:[1;31m273[0m
+[0m--- 0x400fa619: [0;33mhci_get_cmd_buf[0m[0m at [0;32m/home/simonque/Documents/code/esp-idf/components/bt/host/bluedroid/stack/include/stack/hcimsgs.h[0m[0m:[1;31m59[0m
+[0m

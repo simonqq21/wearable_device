@@ -32,6 +32,9 @@ TaskHandle_t task_handle_uart;
 TaskHandle_t task_handle_ble;
 TaskHandle_t task_handle_haptics;
 
+/* sensor commands struct */
+sensors_cmd_struct_t sensors_cmd_struct;
+
 /* queue for IMU data from IMU */
 QueueHandle_t queue_imu_sensor;
 /* queue for heart rate data from heart rate sensor */
@@ -145,15 +148,31 @@ void app_main(void)
     // initialize UART
     uart_configure();
 
+    ESP_LOGI("HEAP", "start heap free block: %lu bytes, Largest block: %lu bytes",
+             (unsigned long)esp_get_free_internal_heap_size(),
+             (unsigned long)heap_caps_get_largest_free_block(MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT));
+
     /* initialize BT */
+    ESP_LOGI(BLE_TAG, "free heap: %d\n", esp_get_free_heap_size());
     ble_configure();
 
+    ESP_LOGI("HEAP", "ble init heap free block: %lu bytes, Largest block: %lu bytes",
+             (unsigned long)esp_get_free_internal_heap_size(),
+             (unsigned long)heap_caps_get_largest_free_block(MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT));
+
+    ESP_LOGI(BLE_TAG, "free heap: %d\n", esp_get_free_heap_size());
+
     /*
-initialize SD card
-The SD card is an integral part to datalogging.
-If the card doesn't initialize, attempt to initialize n times in a loop.
-*/
+    initialize SD card
+    The SD card is an integral part to datalogging.
+    If the card doesn't initialize, attempt to initialize n times in a loop.
+    */
     sd_card_configure_wrapper();
+
+    ESP_LOGI("HEAP", "sdcard init heap free block: %lu bytes, Largest block: %lu bytes",
+             (unsigned long)esp_get_free_internal_heap_size(),
+             (unsigned long)heap_caps_get_largest_free_block(MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT));
+
     ESP_LOGI(MAIN_TAG, "MAX30102 part ID = %d %x %X\n", heart_rate_status, part_id, part_id);
     ESP_LOGI(MAIN_TAG, "Starting all tasks!");
 
@@ -172,6 +191,10 @@ If the card doesn't initialize, attempt to initialize n times in a loop.
     ESP_ERROR_CHECK(esp_timer_create(&haptics_timer_args, &timer_handle));
     // Start periodic timer with a 1 ms period (1000 microseconds)
     ESP_ERROR_CHECK(esp_timer_start_periodic(timer_handle, 1000));
+
+    /* initialize sensors cmd struct */
+    sensors_cmd_struct.imu_cmd = ATOMIC_VAR_INIT(CMD_IMU_STOP);
+    sensors_cmd_struct.heart_rate_cmd = ATOMIC_VAR_INIT(CMD_HEART_RATE_STOP);
 
     /* create all queues */
     queue_imu_sensor = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(imu_raw_data_t));
@@ -199,30 +222,39 @@ If the card doesn't initialize, attempt to initialize n times in a loop.
         .queue_imu_sensor = queue_imu_sensor,
         .queue_heart_rate_sensor = queue_heart_rate_sensor,
         .imu_dev_handle = imu_dev_handle,
-        .heart_rate_dev_handle = heart_rate_dev_handle->i2c_dev};
+        .heart_rate_dev_handle = heart_rate_dev_handle->i2c_dev,
+        .sensors_cmds = &sensors_cmd_struct};
 
     /* set sensor fusion task parameters */
-    params_task_sensor_fusion.queue_imu_sensor = queue_imu_sensor;
-    params_task_sensor_fusion.queue_heart_rate_sensor = queue_heart_rate_sensor;
-    params_task_sensor_fusion.queue_imu_sdcard = queue_imu_sdcard;
-    params_task_sensor_fusion.queue_imu_UART = queue_imu_UART;
-    params_task_sensor_fusion.queue_imu_BLE = queue_imu_BLE;
-    params_task_sensor_fusion.queue_heart_rate_sdcard = queue_heart_rate_sdcard;
-    params_task_sensor_fusion.queue_heart_rate_UART = queue_heart_rate_UART;
-    params_task_sensor_fusion.queue_heart_rate_BLE = queue_heart_rate_BLE;
+    params_task_sensor_fusion = (params_task_sensor_fusion_t){
+        .queue_imu_sensor = queue_imu_sensor,
+        .queue_heart_rate_sensor = queue_heart_rate_sensor,
+        .queue_imu_sdcard = queue_imu_sdcard,
+        .queue_imu_UART = queue_imu_UART,
+        .queue_imu_BLE = queue_imu_BLE,
+        .queue_heart_rate_sdcard = queue_heart_rate_sdcard,
+        .queue_heart_rate_UART = queue_heart_rate_UART,
+        .queue_heart_rate_BLE = queue_heart_rate_BLE,
+    };
 
     /* set SD card task parameters */
-    params_task_SD_card_datalogger.queue_imu_sdcard = queue_imu_sdcard;
-    params_task_SD_card_datalogger.queue_heart_rate_sdcard = queue_heart_rate_sdcard;
+    params_task_SD_card_datalogger = (params_task_SD_card_datalogger_t){
+        .queue_imu_sdcard = queue_imu_sdcard,
+        .queue_heart_rate_sdcard = queue_heart_rate_sdcard,
+    };
 
     /* Set UART task parameters */
-    params_task_uart.queue_imu_UART = queue_imu_UART;
-    params_task_uart.queue_heart_rate_UART = queue_heart_rate_UART;
+    params_task_uart = (params_task_uart_t){
+        .queue_imu_UART = queue_imu_UART,
+        .queue_heart_rate_UART = queue_heart_rate_UART,
+    };
 
     /* Set BLE task parameters */
-    params_task_ble.queue_imu_BLE = queue_imu_BLE;
-    params_task_ble.queue_heart_rate_BLE = queue_heart_rate_BLE;
-    params_task_ble.queue_haptics_BLE = queue_haptics_BLE;
+    params_task_ble = (params_task_ble_t){
+        .queue_imu_BLE = queue_imu_BLE,
+        .queue_heart_rate_BLE = queue_heart_rate_BLE,
+        .queue_haptics_BLE = queue_haptics_BLE,
+    };
     // params_task_ble.queue_haptics_command_play_custom_BLE =
     // queue_haptics_command_play_custom_BLE;
     // // params_task_ble.haptics_command_config = ;
@@ -230,8 +262,10 @@ If the card doesn't initialize, attempt to initialize n times in a loop.
     // params_task_ble.battery_voltage = &battery_voltage;
 
     /* params_task_haptics */
-    params_task_haptics.queue_haptics_BLE = queue_haptics_BLE;
-    params_task_haptics.haptics_hw = &haptics_hw;
+    params_task_haptics = (params_task_haptics_t){
+        .queue_haptics_BLE = queue_haptics_BLE,
+        .haptics_hw = &haptics_hw,
+    };
 
     /* initialize all tasks */
     // GPIO task
@@ -264,7 +298,7 @@ If the card doesn't initialize, attempt to initialize n times in a loop.
     // micro SD card datalogging task
     xTaskCreatePinnedToCore(task_SD_card_datalogger,
                             "SD card datalogging task",
-                            10000, //
+                            8192, //
                             &params_task_SD_card_datalogger,
                             5,
                             &task_handle_SD_card_datalogger,
@@ -273,7 +307,7 @@ If the card doesn't initialize, attempt to initialize n times in a loop.
     /* UART task */
     xTaskCreatePinnedToCore(task_uart_streaming,
                             "UART data streaming task",
-                            3072,
+                            2048,
                             &params_task_uart,
                             3,
                             &task_handle_uart,
@@ -282,7 +316,7 @@ If the card doesn't initialize, attempt to initialize n times in a loop.
     /* BLE task */
     xTaskCreatePinnedToCore(task_ble_streaming,
                             "BLE data streaming task",
-                            10000,
+                            4096,
                             &params_task_ble,
                             3,
                             &task_handle_ble,

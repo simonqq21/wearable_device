@@ -15,10 +15,14 @@ void task_sensors(void *params)
     lsm6ds3_data_t lsm6ds3_fifo_buffer[1];
     /* IMU data buffer */
     imu_raw_data_t imu_data_buffer[1];
+    /* heart rate sensor data buffer */
+    hr_ppg_msg_t msg;
 
     /* state machine vars */
-    cmd_imu_task_t imu_task_cmd = CMD_IMU_STOP;
-    cmd_imu_task_t prev_imu_task_cmd = CMD_IMU_STOP;
+    cmd_imu_t imu_cmd = CMD_IMU_STOP;
+    cmd_imu_t prev_imu_cmd = CMD_IMU_STOP;
+    cmd_heart_rate_t heart_rate_cmd = CMD_HEART_RATE_STOP;
+    cmd_heart_rate_t prev_heart_rate_cmd = CMD_HEART_RATE_STOP;
 
     /* IMU task delay period */
     TickType_t imu_task_delay_period;
@@ -34,6 +38,8 @@ void task_sensors(void *params)
     /* i2c devices handles */
     i2c_master_dev_handle_t imu_dev_handle = params_imu_task->imu_dev_handle;
     i2c_master_dev_handle_t heart_rate_dev_handle = params_imu_task->heart_rate_dev_handle;
+    /* sensors cmd struct */
+    sensors_cmd_struct_t *sensors_cmd_struct = params_imu_task->sensors_cmds;
 
     /* current timestamp */
     uint64_t cur_timestamp;
@@ -42,25 +48,29 @@ void task_sensors(void *params)
 
     while (1)
     {
+
+        imu_cmd = (cmd_imu_t)atomic_load(&sensors_cmd_struct->imu_cmd);
+        heart_rate_cmd = (cmd_heart_rate_t)atomic_load(&sensors_cmd_struct->heart_rate_cmd);
+
         /* variable delay */
-        if (imu_task_cmd == CMD_IMU_READ_LOOP)
+        if (imu_cmd == CMD_IMU_START)
         {
             /* delay per IMU measurement */
             imu_task_delay_period = IMU_LOGGING_TIMEDELTA_MS;
         }
         else
         {
-            imu_task_delay_period = portMAX_DELAY;
+            imu_task_delay_period = 2000;
         }
 
-        /* wait for task notification from button */
-        xTaskNotifyWait(0,
-                        0,
-                        (uint32_t *)&imu_task_cmd,
-                        (imu_task_delay_period / portTICK_PERIOD_MS));
+        // /* wait for task notification from button */
+        // xTaskNotifyWait(0,
+        //                 0,
+        //                 (uint32_t *)&imu_cmd,
+        //                 (imu_task_delay_period / portTICK_PERIOD_MS));
 
         /* runs when IMU calibration is initiated */
-        if (imu_task_cmd == CMD_IMU_CALIBRATE)
+        if (imu_cmd == CMD_IMU_CALIBRATE)
         {
             /* notification LED fast blink */
             if (task_handle_GPIO != NULL)
@@ -71,18 +81,20 @@ void task_sensors(void *params)
             if (task_handle_GPIO != NULL)
                 xTaskNotify(task_handle_GPIO, STATUS_LED_OFF, eSetValueWithOverwrite);
             /* stop IMU after calibration */
-            imu_task_cmd = CMD_IMU_STOP;
+            atomic_store(&sensors_cmd_struct->imu_cmd, CMD_IMU_STOP);
         }
+
         /* runs when datalogging is started */
-        else if (imu_task_cmd == CMD_IMU_READ_LOOP && prev_imu_task_cmd == CMD_IMU_STOP)
+        else if (imu_cmd == CMD_IMU_START && prev_imu_cmd == CMD_IMU_STOP)
         {
             /* set initial timestamp */
             cur_timestamp = esp_timer_get_time();
             ESP_LOGI(IMU_TAG, "cur_timestamp start = %lld\n", cur_timestamp);
             ESP_LOGI(IMU_TAG, "IMU started");
         }
+
         /* runs continously when logging data */
-        else if (imu_task_cmd == CMD_IMU_READ_LOOP && prev_imu_task_cmd == CMD_IMU_READ_LOOP)
+        else if (imu_cmd == CMD_IMU_START && prev_imu_cmd == CMD_IMU_START)
         {
             /* read one sample from IMU */
             if (imu_measure_calibrated(imu_dev_handle, &imu_data_buffer[0]) == 0)
@@ -110,17 +122,17 @@ void task_sensors(void *params)
             }
         }
         /* runs when datalogging is stopped */
-        else if (imu_task_cmd == CMD_IMU_STOP && prev_imu_task_cmd == CMD_IMU_READ_LOOP)
+        else if (imu_cmd == CMD_IMU_STOP && prev_imu_cmd == CMD_IMU_START)
         {
             ESP_LOGI(IMU_TAG, "IMU stopped");
         }
         /* runs continuously when not logging data */
-        else
+        else if (imu_cmd == CMD_IMU_STOP && prev_imu_cmd == CMD_IMU_STOP)
         {
         }
 
-        prev_imu_task_cmd = imu_task_cmd;
+        prev_imu_cmd = imu_cmd;
 
-        // vTaskDelay(IMU_SAMPLE_PERIOD_MS / portTICK_PERIOD_MS);
+        vTaskDelay(imu_task_delay_period / portTICK_PERIOD_MS);
     }
 }

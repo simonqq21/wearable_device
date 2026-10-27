@@ -6,6 +6,8 @@ extern TaskHandle_t task_handle_sensors;
 extern TaskHandle_t task_handle_sensor_fusion;
 extern TaskHandle_t task_handle_SD_card_datalogger;
 
+extern sensors_cmd_struct_t sensors_cmd_struct;
+
 uint8_t btn_datalogging;
 
 extern button_handle_t btn1;
@@ -78,9 +80,12 @@ void button_trigger_calibration_cb(void *arg, void *data)
     // pause datalogging
     if (task_handle_sensor_fusion != NULL)
         xTaskNotify(task_handle_sensor_fusion, CMD_DATALOGGING_STOP, eSetValueWithOverwrite);
-    // pause IMU reading task to perform calibration
-    if (task_handle_sensors != NULL)
-        xTaskNotify(task_handle_sensors, CMD_IMU_CALIBRATE, eSetValueWithOverwrite);
+
+    // // pause IMU reading task to perform calibration
+    // if (task_handle_sensors != NULL)
+    //     xTaskNotify(task_handle_sensors, CMD_IMU_CALIBRATE, eSetValueWithOverwrite);
+    atomic_store(&sensors_cmd_struct.imu_cmd, CMD_IMU_CALIBRATE);
+
     // vTaskDelay(1000 / portTICK_PERIOD_MS);
     // xTaskNotify(task_handle_imu, CMD_IMU_STOP, eSetValueWithOverwrite);
 }
@@ -96,9 +101,15 @@ void button_toggle_datalogging_cb(void *arg, void *data)
         // stop datalogging task
         if (task_handle_sensor_fusion != NULL)
             xTaskNotify(task_handle_sensor_fusion, CMD_DATALOGGING_STOP, eSetValueWithOverwrite);
-        //  start IMU task
-        if (task_handle_sensors != NULL)
-            xTaskNotify(task_handle_sensors, CMD_IMU_STOP, eSetValueWithOverwrite);
+
+        // stop all sensors
+        atomic_store(&sensors_cmd_struct.imu_cmd, CMD_IMU_STOP);
+        atomic_store(&sensors_cmd_struct.heart_rate_cmd, CMD_HEART_RATE_STOP);
+
+        // //  start IMU task
+        // if (task_handle_sensors != NULL)
+        //     xTaskNotify(task_handle_sensors, CMD_IMU_STOP, eSetValueWithOverwrite);
+
         // turn off the status LED
         if (task_handle_GPIO != NULL)
             xTaskNotify(task_handle_GPIO, STATUS_LED_OFF, eSetValueWithOverwrite);
@@ -116,9 +127,15 @@ void button_toggle_datalogging_cb(void *arg, void *data)
         // start datalogging task
         if (task_handle_sensor_fusion != NULL)
             xTaskNotify(task_handle_sensor_fusion, CMD_DATALOGGING_GO, eSetValueWithOverwrite);
-        //  start IMU task
-        if (task_handle_sensors != NULL)
-            xTaskNotify(task_handle_sensors, CMD_IMU_READ_LOOP, eSetValueWithOverwrite);
+
+        // start all sensors
+        atomic_store(&sensors_cmd_struct.imu_cmd, CMD_IMU_START);
+        atomic_store(&sensors_cmd_struct.heart_rate_cmd, CMD_HEART_RATE_START);
+
+        // //  start IMU task
+        // if (task_handle_sensors != NULL)
+        //     xTaskNotify(task_handle_sensors, CMD_IMU_START, eSetValueWithOverwrite);
+
         // turn on the status LED
         if (task_handle_GPIO != NULL)
             xTaskNotify(task_handle_GPIO, STATUS_LED_BLINK, eSetValueWithOverwrite);

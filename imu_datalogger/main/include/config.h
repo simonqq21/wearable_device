@@ -8,11 +8,11 @@
 // ESP32 SD card config
 #define MOUNT_POINT "/sdcard"
 /* number of timestamps that can fit in the FIFO at once */
-#define NUM_FIFO_TIMESTAMPS 100
-#define LEN_QUEUE_HAPTICS 50
+#define NUM_FIFO_TIMESTAMPS 50
+#define LEN_QUEUE_HAPTICS 25
 
 /* logging frequency of the IMU */
-#define IMU_ODR_HZ 416
+#define IMU_ODR_HZ 208
 /* IMU accelerometer full scale */
 #define IMU_XL_FS 4
 /* IMU gyroscope full scale*/

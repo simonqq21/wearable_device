@@ -8,6 +8,8 @@
 #include <string.h>
 #include <sys/unistd.h>
 #include <sys/stat.h>
+#include <stdatomic.h>
+#include <stdbool.h>
 
 #include <freertos/FreeRTOS.h>
 #include <freertos/task.h>
@@ -36,8 +38,15 @@ typedef enum
 {
     CMD_IMU_STOP,
     CMD_IMU_CALIBRATE,
-    CMD_IMU_READ_LOOP,
-} cmd_imu_task_t;
+    CMD_IMU_START,
+} cmd_imu_t;
+
+/* heart rate command values */
+typedef enum
+{
+    CMD_HEART_RATE_STOP = 0,
+    CMD_HEART_RATE_START,
+} cmd_heart_rate_t;
 
 /* Datalogging task notification queue values */
 typedef enum
@@ -61,5 +70,18 @@ typedef enum
     STATUS_LED_BLINK,
     STATUS_LED_FAST_BLINK,
 } cmd_task_status_led_t;
+
+/**
+ * @brief struct for individual sensor toggles
+ *
+ * @param imu_cmd imu is enabled and collecting data
+ * @param heart_rate_cmd heart rate sensor is enabled and collecting data
+ *
+ */
+typedef struct
+{
+    atomic_int imu_cmd;
+    atomic_int heart_rate_cmd;
+} sensors_cmd_struct_t;
 
 #endif
