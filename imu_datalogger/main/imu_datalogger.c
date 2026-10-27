@@ -74,7 +74,7 @@ button_handle_t btn1;
 /* i2c bus and device handles */
 i2c_master_bus_handle_t bus_handle;
 i2c_master_dev_handle_t imu_dev_handle;
-i2c_master_dev_handle_t heart_rate_dev_handle;
+i2c_MAX30102_handle_t heart_rate_dev_handle;
 
 /* haptics hw struct */
 haptic_actuator_array_t haptics_hw;
@@ -127,7 +127,20 @@ void app_main(void)
     imu_init(imu_dev_handle, IMU_ODR_HZ, IMU_XL_FS, IMU_G_FS, false);
 
     /* initialize heart rate sensor */
-    // i2c_MAX30102_init
+    i2c_MAX30102_config_t MAX30102_config = {
+        .MAX30102_device = {
+            .device_address = MAX30102_DEVICE_ADDR,
+            .scl_speed_hz = I2C_MASTER_FREQ_HZ,
+        }};
+    i2c_MAX30102_init(bus_handle,
+                      &MAX30102_config,
+                      &heart_rate_dev_handle);
+    uint8_t part_id;
+
+    esp_err_t heart_rate_status = i2c_MAX30102_read_reg(heart_rate_dev_handle,
+                                                        REG_PART_ID,
+                                                        &part_id,
+                                                        1);
 
     // initialize UART
     uart_configure();
@@ -141,6 +154,7 @@ The SD card is an integral part to datalogging.
 If the card doesn't initialize, attempt to initialize n times in a loop.
 */
     sd_card_configure_wrapper();
+    ESP_LOGI(MAIN_TAG, "MAX30102 part ID = %d %x %X\n", heart_rate_status, part_id, part_id);
     ESP_LOGI(MAIN_TAG, "Starting all tasks!");
 
     /* initialize haptics */
@@ -181,11 +195,11 @@ If the card doesn't initialize, attempt to initialize n times in a loop.
     /* params GPIO */
 
     /* set sensors task parameters */
-    params_task_sensors.queue_imu_sensor = queue_imu_sensor;
-    params_task_sensors.queue_heart_rate_sensor = queue_heart_rate_sensor;
-    // params_task_sensors.streambuffer_imu = streambuffer_imu;
-    params_task_sensors.imu_dev_handle = imu_dev_handle;
-    params_task_sensors.heart_rate_dev_handle = heart_rate_dev_handle;
+    params_task_sensors = (params_task_sensors_t){
+        .queue_imu_sensor = queue_imu_sensor,
+        .queue_heart_rate_sensor = queue_heart_rate_sensor,
+        .imu_dev_handle = imu_dev_handle,
+        .heart_rate_dev_handle = heart_rate_dev_handle->i2c_dev};
 
     /* set sensor fusion task parameters */
     params_task_sensor_fusion.queue_imu_sensor = queue_imu_sensor;

@@ -2,6 +2,8 @@
 #define TASK_SENSOR_FUSION_H
 
 #include "datalogging.h"
+#include "imu.h"
+#include "heart_rate.h"
 
 /**
  * @brief datalogging task params

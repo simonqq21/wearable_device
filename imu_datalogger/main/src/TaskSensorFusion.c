@@ -84,6 +84,17 @@ void task_sensor_fusion(void *params)
     int decimation_counter = 0;
 #define DECIMATION_FACTOR 8
 
+    /* initialize esp_health */
+    esp_health_hr_cfg_t hr_cfg = {
+        .sample_rate = SAMPLE_RATE,
+    };
+    esp_health_hr_handle_t hr_handle = NULL;
+    if (esp_health_hr_open(&hr_cfg, &hr_handle) != ESP_HEALTH_ERR_OK || !hr_handle)
+    {
+        ESP_LOGE(HEART_RATE_TAG, "esp_health_hr_open failed");
+        // return;
+    }
+
     while (1)
     {
         /* wait for task notification from button */
