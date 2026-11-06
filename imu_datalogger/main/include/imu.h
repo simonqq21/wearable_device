@@ -9,7 +9,7 @@
 #include "lsm6ds3.h"
 #include "nvs.h"
 
-#define IMU_TAG "IMU"
+#define SENSORS_TAG "SENSORS"
 
 /* IMU data struct */
 typedef struct __attribute__((packed))
@@ -54,7 +54,7 @@ typedef struct __attribute__((packed))
 } imu_unified_data_t;
 
 /* IMU logging timedelta in ms */
-#define IMU_LOGGING_TIMEDELTA_MS ceil(1000 / IMU_ODR_HZ + 5)
+#define IMU_LOGGING_TIMEDELTA_MS 20 // ceil(1000 / IMU_ODR_HZ + 5)
 
 // NVS offset read write function callback typedef
 typedef esp_err_t (*nvs_func_t)(imu_calibration_offsets_t *);

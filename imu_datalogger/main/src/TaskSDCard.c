@@ -13,11 +13,12 @@ void task_SD_card_datalogger(void *params)
     char filepath[40];
 
     /* SD car task FSM vars */
-    cmd_task_sd_card_datalogging_t cmd_task_sd_card_datalogging = CMD_SD_CARD_STOP;
-    cmd_task_sd_card_datalogging_t prev_cmd_task_sd_card_datalogging = CMD_SD_CARD_STOP;
+    cmd_task_sd_card_datalogging_t cmd_sd_card_datalogging = CMD_SD_CARD_STOP;
+    cmd_task_sd_card_datalogging_t prev_cmd_sd_card_datalogging = CMD_SD_CARD_STOP;
 
     /* parse freeRTOS primitives from params */
     params_task_SD_card_datalogger_t *sd_datalogger_params = (params_task_SD_card_datalogger_t *)params;
+    sd_card_cmd_struct_t *sd_card_cmds = (sd_card_cmd_struct_t *)sd_datalogger_params->sd_card_cmds;
     QueueHandle_t queue_imu_sdcard = sd_datalogger_params->queue_imu_sdcard;
     QueueHandle_t queue_heart_rate_sdcard = sd_datalogger_params->queue_heart_rate_sdcard;
 
@@ -45,33 +46,15 @@ void task_SD_card_datalogger(void *params)
 
     while (1)
     {
-        // check for the signal to stop datalogging, which will save the file.
-        xTaskNotifyWait(0,
-                        0,
-                        (uint32_t *)&cmd_task_sd_card_datalogging, (2 / portTICK_PERIOD_MS));
+        /* check for the signal to stop datalogging, which will save the file. */
+        cmd_sd_card_datalogging = (cmd_task_sd_card_datalogging_t)atomic_load(&sd_card_cmds->sd_card_cmd);
 
-        /*
-         run once when stop signal received
-
-         if stop signal received, save and close the files.
-        */
-        if (cmd_task_sd_card_datalogging == CMD_SD_CARD_STOP && prev_cmd_task_sd_card_datalogging == CMD_SD_CARD_START)
-        {
-            ESP_LOGI(SD_CARD_TAG, "IMU raw data file size: %d", raw_file_size);
-            ESP_LOGI(SD_CARD_TAG, "IMU orientation file size: %d", orientation_file_size);
-            // close IMU raw data file
-            f_raw = close_file(f_raw, &raw_file_size);
-            // close orientation data file
-            f_orientation = close_file(f_orientation, &raw_file_size);
-            ESP_LOGI(SD_CARD_TAG, "Files written.");
-        }
-
-        /*
+        /**
         run once when start signal received
-
-        if start signal received, open new files.
+        if start signal received,
+        open new files.
         */
-        else if (cmd_task_sd_card_datalogging == CMD_SD_CARD_START && prev_cmd_task_sd_card_datalogging == CMD_SD_CARD_STOP)
+        if (cmd_sd_card_datalogging == CMD_SD_CARD_START && prev_cmd_sd_card_datalogging == CMD_SD_CARD_STOP)
         {
             /* reset  */
             // num_bytes_read = 0;
@@ -122,7 +105,7 @@ void task_SD_card_datalogger(void *params)
         }
 
         /* run continuously while datalogging is ongoing */
-        else if (cmd_task_sd_card_datalogging == CMD_SD_CARD_START && prev_cmd_task_sd_card_datalogging == CMD_SD_CARD_START)
+        else if (cmd_sd_card_datalogging == CMD_SD_CARD_START && prev_cmd_sd_card_datalogging == CMD_SD_CARD_START)
         {
 
             /* if SD card not initialized, attempt to mount it. */
@@ -172,7 +155,7 @@ void task_SD_card_datalogger(void *params)
                 }
 
                 /* receive one IMU unified data from the IMU queue */
-                if (xQueueReceive(queue_imu_sdcard, &imu_unified_data, 10 / portTICK_PERIOD_MS) == pdTRUE)
+                if (xQueueReceive(queue_imu_sdcard, &imu_unified_data, 20 / portTICK_PERIOD_MS) == pdTRUE)
                 {
                     //     ESP_LOGI(SD_CARD_TAG, "received data: ");
                     //     ESP_LOGI(SD_CARD_TAG, "Accel %.4f, %.4f, %.4f", imu_unified_data.ax, imu_unified_data.ay, imu_unified_data.az);
@@ -219,13 +202,30 @@ void task_SD_card_datalogger(void *params)
             }
         }
 
-        /* run continuously while datalogging is stopped */
-        else if (cmd_task_sd_card_datalogging == CMD_SD_CARD_STOP && prev_cmd_task_sd_card_datalogging == CMD_SD_CARD_STOP)
+        /*
+         run once when stop signal received
+         if stop signal received, save and close the files.
+        */
+        else if (cmd_sd_card_datalogging == CMD_SD_CARD_STOP && prev_cmd_sd_card_datalogging == CMD_SD_CARD_START)
         {
-            /* do nothing */
-            vTaskDelay((100 / portTICK_PERIOD_MS));
+            ESP_LOGI(SD_CARD_TAG, "IMU raw data file size: %d", raw_file_size);
+            ESP_LOGI(SD_CARD_TAG, "IMU orientation file size: %d", orientation_file_size);
+            // close IMU raw data file
+            f_raw = close_file(f_raw, &raw_file_size);
+            // close orientation data file
+            f_orientation = close_file(f_orientation, &raw_file_size);
+            ESP_LOGI(SD_CARD_TAG, "Files written.");
         }
 
-        prev_cmd_task_sd_card_datalogging = cmd_task_sd_card_datalogging;
+        /* run continuously while datalogging is stopped */
+        else if (cmd_sd_card_datalogging == CMD_SD_CARD_STOP && prev_cmd_sd_card_datalogging == CMD_SD_CARD_STOP)
+        {
+            /* do nothing */
+            vTaskDelay((1000 / portTICK_PERIOD_MS));
+        }
+
+        prev_cmd_sd_card_datalogging = cmd_sd_card_datalogging;
+
+        // vTaskDelay((2000 / portTICK_PERIOD_MS));
     }
 }

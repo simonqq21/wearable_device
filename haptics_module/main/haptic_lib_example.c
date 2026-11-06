@@ -28,6 +28,9 @@ const int master_delay = 400;
 haptic_pulse_t pulse_null[1] = {
     {master_delay, {0, 0, 0, 0}}};
 
+haptic_pulse_t pulse_all_high_testing[1] = {
+    {999999999, {1, 1, 1, 1}}};
+
 /* simple pulsing on-off */
 haptic_pulse_t pulse_seq_1[6] = {
     {master_delay, {1, 1, 1, 1}},
@@ -75,6 +78,8 @@ static void timer_callback(void *arg)
     haptics_ISR_callback(&haptics_hw);
 }
 
+#define MAIN_TAG "MAIN"
+
 void app_main(void)
 {
     haptics_init(&haptics_hw,
@@ -95,9 +100,24 @@ void app_main(void)
     ESP_ERROR_CHECK(esp_timer_start_periodic(timer_handle, 1000));
 
     // ESP_ERROR_CHECK(esp_timer_start_periodic(timer_handle, 500000));
-
+    ESP_LOGI(MAIN_TAG, "0");
+    haptics_load_pulse_seq(&haptics_hw, pulse_null, 1);
+    haptics_load_pulse_seq(&haptics_hw, pulse_all_high_testing, 1);
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
+    ESP_LOGI(MAIN_TAG, "1");
     haptics_load_pulse_seq(&haptics_hw, pulse_null, 1);
     vTaskDelay(1000 / portTICK_PERIOD_MS);
+    ESP_LOGI(MAIN_TAG, "2");
+    haptics_load_pulse_seq(&haptics_hw, pulse_all_high_testing, 1);
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
+    ESP_LOGI(MAIN_TAG, "3");
+    haptics_load_pulse_seq(&haptics_hw, pulse_null, 1);
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
+
+    ESP_LOGI(MAIN_TAG, "4");
+    haptics_load_pulse_seq(&haptics_hw, pulse_all_high_testing, 1);
+    vTaskDelay(999999999 / portTICK_PERIOD_MS);
+    ESP_LOGI(MAIN_TAG, "5");
 
     while (1)
     {

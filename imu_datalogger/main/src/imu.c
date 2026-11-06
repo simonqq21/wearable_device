@@ -30,7 +30,7 @@ void imu_calibrate(i2c_master_dev_handle_t imu_dev_handle, lsm6ds3_data_t *lsm6d
     uint16_t num_samples_taken = 0;
     uint16_t num_samples_taken_from_fifo = 0;
 
-    ESP_LOGI(IMU_TAG, "Calibration starting, place the device on a flat surface.");
+    ESP_LOGI(SENSORS_TAG, "Calibration starting, place the device on a flat surface.");
     vTaskDelay(pdMS_TO_TICKS(3000));
 
     /* start reading data from FIFO */
@@ -49,13 +49,13 @@ void imu_calibrate(i2c_master_dev_handle_t imu_dev_handle, lsm6ds3_data_t *lsm6d
         num_samples_taken++;
     }
 
-    ESP_LOGI(IMU_TAG, "num_samples_taken_from_fifo = %d\n", num_samples_taken);
-    ESP_LOGI(IMU_TAG, "accel_offsets_x = %.4f", offsets.oAx);
-    ESP_LOGI(IMU_TAG, "accel_offsets_y = %.4f", offsets.oAy);
-    ESP_LOGI(IMU_TAG, "accel_offsets_z = %.4f", offsets.oAz);
-    ESP_LOGI(IMU_TAG, "gyro_offsets_x = %.4f", offsets.oGx);
-    ESP_LOGI(IMU_TAG, "gyro_offsets_y = %.4f", offsets.oGy);
-    ESP_LOGI(IMU_TAG, "gyro_offsets_z = %.4f", offsets.oGz);
+    ESP_LOGI(SENSORS_TAG, "num_samples_taken_from_fifo = %d\n", num_samples_taken);
+    ESP_LOGI(SENSORS_TAG, "accel_offsets_x = %.4f", offsets.oAx);
+    ESP_LOGI(SENSORS_TAG, "accel_offsets_y = %.4f", offsets.oAy);
+    ESP_LOGI(SENSORS_TAG, "accel_offsets_z = %.4f", offsets.oAz);
+    ESP_LOGI(SENSORS_TAG, "gyro_offsets_x = %.4f", offsets.oGx);
+    ESP_LOGI(SENSORS_TAG, "gyro_offsets_y = %.4f", offsets.oGy);
+    ESP_LOGI(SENSORS_TAG, "gyro_offsets_z = %.4f", offsets.oGz);
 
     /* stop and reset FIFO */
     lsm6ds3_fifo_reset(imu_dev_handle);
@@ -69,15 +69,15 @@ void imu_calibrate(i2c_master_dev_handle_t imu_dev_handle, lsm6ds3_data_t *lsm6d
     offsets.oGz /= num_samples_taken;
 
     // save six offset floats to NVS
-    ESP_LOGI(IMU_TAG, "accel_offsets_x = %.4f", offsets.oAx);
-    ESP_LOGI(IMU_TAG, "accel_offsets_y = %.4f", offsets.oAy);
-    ESP_LOGI(IMU_TAG, "accel_offsets_z = %.4f", offsets.oAz);
-    ESP_LOGI(IMU_TAG, "gyro_offsets_x = %.4f", offsets.oGx);
-    ESP_LOGI(IMU_TAG, "gyro_offsets_y = %.4f", offsets.oGy);
-    ESP_LOGI(IMU_TAG, "gyro_offsets_z = %.4f", offsets.oGz);
+    ESP_LOGI(SENSORS_TAG, "accel_offsets_x = %.4f", offsets.oAx);
+    ESP_LOGI(SENSORS_TAG, "accel_offsets_y = %.4f", offsets.oAy);
+    ESP_LOGI(SENSORS_TAG, "accel_offsets_z = %.4f", offsets.oAz);
+    ESP_LOGI(SENSORS_TAG, "gyro_offsets_x = %.4f", offsets.oGx);
+    ESP_LOGI(SENSORS_TAG, "gyro_offsets_y = %.4f", offsets.oGy);
+    ESP_LOGI(SENSORS_TAG, "gyro_offsets_z = %.4f", offsets.oGz);
 
     offset_write_cb(&offsets);
-    ESP_LOGI(IMU_TAG, "IMU calibrated.");
+    ESP_LOGI(SENSORS_TAG, "IMU calibrated.");
     offset_read_cb(&offsets);
 
     vTaskDelay(pdMS_TO_TICKS(1000));
@@ -88,13 +88,13 @@ void imu_load_calibration_offsets(void)
     // read accel and gyro calibration offsets from NVS
     // NVS_read_imu_calibration_offsets(&offsets);
     offset_read_cb(&offsets);
-    ESP_LOGI(IMU_TAG, "IMU read calibration from NVS.");
-    ESP_LOGI(IMU_TAG, "accel_offsets_x = %.2f", offsets.oAx);
-    ESP_LOGI(IMU_TAG, "accel_offsets_y = %.2f", offsets.oAy);
-    ESP_LOGI(IMU_TAG, "accel_offsets_z = %.2f", offsets.oAz);
-    ESP_LOGI(IMU_TAG, "gyro_offsets_x = %.2f", offsets.oGx);
-    ESP_LOGI(IMU_TAG, "gyro_offsets_y = %.2f", offsets.oGy);
-    ESP_LOGI(IMU_TAG, "gyro_offsets_z = %.2f", offsets.oGz);
+    ESP_LOGI(SENSORS_TAG, "IMU read calibration from NVS.");
+    ESP_LOGI(SENSORS_TAG, "accel_offsets_x = %.2f", offsets.oAx);
+    ESP_LOGI(SENSORS_TAG, "accel_offsets_y = %.2f", offsets.oAy);
+    ESP_LOGI(SENSORS_TAG, "accel_offsets_z = %.2f", offsets.oAz);
+    ESP_LOGI(SENSORS_TAG, "gyro_offsets_x = %.2f", offsets.oGx);
+    ESP_LOGI(SENSORS_TAG, "gyro_offsets_y = %.2f", offsets.oGy);
+    ESP_LOGI(SENSORS_TAG, "gyro_offsets_z = %.2f", offsets.oGz);
 }
 
 void imu_init(i2c_master_dev_handle_t imu_dev_handle, uint16_t sample_rate, uint16_t xl_fs, uint16_t g_fs, uint8_t calibrate_imu)

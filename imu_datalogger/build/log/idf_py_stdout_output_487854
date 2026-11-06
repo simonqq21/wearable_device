@@ -1,0 +1,62 @@
+Command: ninja all
+[1/11] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/src/TaskSensorFusion.c.obj
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/TaskSensorFusion.c: In function 'task_sensor_fusion':
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/TaskSensorFusion.c:55:24: warning: unused variable 'accelerometerOffset' [-Wunused-variable]
+   55 |     const FusionVector accelerometerOffset = {{0.0f, 0.0f, 0.0f}};
+      |                        ^~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/TaskSensorFusion.c:54:24: warning: unused variable 'accelerometerSensitivity' [-Wunused-variable]
+   54 |     const FusionVector accelerometerSensitivity = {{1.0f, 1.0f, 1.0f}};
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/TaskSensorFusion.c:53:24: warning: unused variable 'accelerometerMisalignment' [-Wunused-variable]
+   53 |     const FusionMatrix accelerometerMisalignment = {{1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f}};
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/TaskSensorFusion.c:51:24: warning: unused variable 'gyroscopeOffset' [-Wunused-variable]
+   51 |     const FusionVector gyroscopeOffset = {{0.0f, 0.0f, 0.0f}};
+      |                        ^~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/TaskSensorFusion.c:50:24: warning: unused variable 'gyroscopeSensitivity' [-Wunused-variable]
+   50 |     const FusionVector gyroscopeSensitivity = {{1.0f, 1.0f, 1.0f}};
+      |                        ^~~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/TaskSensorFusion.c:49:24: warning: unused variable 'gyroscopeMisalignment' [-Wunused-variable]
+   49 |     const FusionMatrix gyroscopeMisalignment = {{1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f}};
+      |                        ^~~~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/TaskSensorFusion.c:34:9: warning: unused variable 'num_bytes_read' [-Wunused-variable]
+   34 |     int num_bytes_read = 0;
+      |         ^~~~~~~~~~~~~~
+[2/11] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/src/TaskSensors.c.obj
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/TaskSensors.c: In function 'task_sensors':
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/TaskSensors.c:155:17: warning: unused variable 'got' [-Wunused-variable]
+  155 |             int got = 0;
+      |                 ^~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/TaskSensors.c:57:9: warning: unused variable 'posted_gap' [-Wunused-variable]
+   57 |     int posted_gap = 0;
+      |         ^~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/TaskSensors.c:56:9: warning: unused variable 'detect_flag' [-Wunused-variable]
+   56 |     int detect_flag = 1;
+      |         ^~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/TaskSensors.c:53:14: warning: unused variable 'num_samples_read' [-Wunused-variable]
+   53 |     uint16_t num_samples_read;
+      |              ^~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/TaskSensors.c:25:27: warning: unused variable 'msg' [-Wunused-variable]
+   25 |     heart_rate_raw_data_t msg;
+      |                           ^~~
+[3/11] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/src/TaskSDCard.c.obj
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/TaskSDCard.c: In function 'task_SD_card_datalogger':
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/TaskSDCard.c:23:19: warning: unused variable 'queue_heart_rate_sdcard' [-Wunused-variable]
+   23 |     QueueHandle_t queue_heart_rate_sdcard = sd_datalogger_params->queue_heart_rate_sdcard;
+      |                   ^~~~~~~~~~~~~~~~~~~~~~~
+[4/11] Linking C static library esp-idf/main/libmain.a
+[5/11] Performing build step for 'bootloader'
+[1/1] cd /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader && /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader/bootloader.bin
+Bootloader binary size 0x6610 bytes. 0x9f0 bytes (9%) free.
+[6/11] No install step for 'bootloader'
+[7/11] Completed 'bootloader'
+[8/11] Generating esp-idf/esp_system/ld/sections.ld
+[9/11] Linking CXX executable imu_module.elf
+[10/11] Generating binary image from built executable
+esptool v5.2.dev3
+Creating ESP32 image...
+Merged 2 ELF sections.
+Successfully created ESP32 image.
+Generated /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/imu_module.bin
+[11/11] cd /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build && /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/partition_table/partition-table.bin /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/imu_module.bin
+imu_module.bin binary size 0xc3f30 bytes. Smallest app partition is 0x100000 bytes. 0x3c0d0 bytes (23%) free.

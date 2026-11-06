@@ -20,9 +20,9 @@
 // Recording audio data path:
 // I2S peripheral -> I2S buffer (DMA) -> App buffer (RAM) -> SPIFFS buffer -> External SPI Flash.
 // Vice versa for playback.
-#define BUFFER_SIZE     (64)
-#define SAMPLE_RATE     (16000) // For recording
-#define DEFAULT_VOLUME  (100)
+#define BUFFER_SIZE (64)
+#define PPG_SAMPLE_RATE (16000) // For recording
+#define DEFAULT_VOLUME (100)
 
 // Globals
 static const char *TAG = "example";
@@ -47,7 +47,8 @@ typedef struct __attribute__((packed))
     uint8_t data[];
 } dumb_wav_header_t;
 
-typedef enum audio_set {
+typedef enum audio_set
+{
     AUDIO_VOLUME,
     AUDIO_BASS,
     AUDIO_TREBLE,
@@ -56,13 +57,12 @@ typedef enum audio_set {
 static esp_codec_dev_handle_t spk_codec_dev = NULL;
 static FILE *play_file = NULL;
 // Pointer to a file that is going to be played
-static const char play_filename[] = BSP_SPIFFS_MOUNT_POINT"/16bit_mono_44_1_khz.wav";
+static const char play_filename[] = BSP_SPIFFS_MOUNT_POINT "/16bit_mono_44_1_khz.wav";
 
 // Definition for all tasks
 static void buttons_process_task(void *arg);
 static void audio_read_task(void *arg);
 static void audio_process_task(void *arg);
-
 
 // Wave file header
 static dumb_wav_header_t wav_header;
@@ -89,7 +89,7 @@ float hpf_freq = 0.15;
 // Volume control definitions
 float full_volume = 1;
 // Volume in dB
-int   full_volume_db = -12;
+int full_volume_db = -12;
 // Digital limiter envelope value
 float full_envelope = 0;
 
@@ -99,9 +99,9 @@ float processing_audio_buffer[BUFFER_SIZE] = {0};
 // The triple_audio_buffer contains tree data arrays sizeof BUFFER_SIZE, for writing audio data to the codec
 int16_t triple_audio_buffer[3 * BUFFER_SIZE] = {0};
 // The write index shows the audio buffer that will be used to write data to the codec
-int   audio_buffer_write_index = 0;
+int audio_buffer_write_index = 0;
 // The read index shows the audio buffer that will be used to fill data from the data source to the processing buffer
-int   audio_buffer_read_index = 0;
+int audio_buffer_read_index = 0;
 
 // Semaphore to synchronize the read and write
 static SemaphoreHandle_t sync_read_task;
@@ -110,7 +110,8 @@ static SemaphoreHandle_t sync_read_task;
 static void convert_short2float(int16_t *int16_data, float *float_data, int len)
 {
     float multiplier = 1.0 / (float)(INT16_MAX + 1);
-    for (int i = 0 ; i < len ; i++) {
+    for (int i = 0; i < len; i++)
+    {
         float_data[i] = (float)int16_data[i] * multiplier;
     }
 }
@@ -119,7 +120,8 @@ static void convert_short2float(int16_t *int16_data, float *float_data, int len)
 static void convert_float2short(float *float_data, int16_t *int16_data, int len)
 {
     float multiplier = (float)(INT16_MAX + 1);
-    for (int i = 0 ; i < len ; i++) {
+    for (int i = 0; i < len; i++)
+    {
         int16_data[i] = (int16_t)((float)multiplier * (float)float_data[i]);
     }
 }
@@ -133,19 +135,26 @@ static void convert_float2short(float *float_data, int16_t *int16_data, int len)
 void digitalLimiter(float *input_signal, float *output_signal, int signal_length, float threshold, float attack_value, float release_value, float *in_envelope)
 {
     float envelope = *in_envelope;
-    for (int i = 0; i < signal_length; i++) {
+    for (int i = 0; i < signal_length; i++)
+    {
         // Calculate envelope
         float abs_input = fabsf(input_signal[i]);
-        if (abs_input > envelope) {
+        if (abs_input > envelope)
+        {
             envelope = envelope * (1 - attack_value) + attack_value * abs_input;
-        } else {
+        }
+        else
+        {
             envelope = envelope * (1 - release_value) + release_value * abs_input;
         }
 
         // Apply compression
-        if (envelope > threshold) {
+        if (envelope > threshold)
+        {
             output_signal[i] = input_signal[i] * (threshold / envelope);
-        } else {
+        }
+        else
+        {
             output_signal[i] = input_signal[i];
         }
     }
@@ -161,11 +170,13 @@ static void audio_process_task(void *arg)
 
     // Open file and het the WAV header to set up the sample frequency, amount of channels and resolution
     play_file = fopen(play_filename, "rb");
-    if (play_file == NULL) {
+    if (play_file == NULL)
+    {
         ESP_LOGW(TAG, "%s file does not exist!", play_filename);
     }
     // Read WAV header
-    if (fread((void *)&wav_header, 1, sizeof(wav_header), play_file) != sizeof(wav_header)) {
+    if (fread((void *)&wav_header, 1, sizeof(wav_header), play_file) != sizeof(wav_header))
+    {
         ESP_LOGW(TAG, "Error in reading file");
         return;
     }
@@ -179,7 +190,8 @@ static void audio_process_task(void *arg)
         .channel = wav_header.num_channels,
         .bits_per_sample = wav_header.bits_per_sample,
     };
-    if (spk_codec_dev != NULL) {
+    if (spk_codec_dev != NULL)
+    {
         int result = esp_codec_dev_open(spk_codec_dev, &fs);
     }
     // Calculate initial volume value
@@ -200,21 +212,25 @@ static void audio_process_task(void *arg)
 
     ESP_LOGW(TAG, "To select volume/bass/treble please use the 'Set' button. And adjust the value with +/- buttons.");
 
-    for (;;) {
+    for (;;)
+    {
         /* Get data from SPIFFS and send it to codec */
         int16_t *wav_bytes = &triple_audio_buffer[audio_buffer_write_index * BUFFER_SIZE];
         // Write samples to audio codec
         esp_codec_dev_write(spk_codec_dev, wav_bytes, BUFFER_SIZE * sizeof(int16_t));
         audio_buffer_write_index++;
-        if (audio_buffer_write_index >= 3) {
+        if (audio_buffer_write_index >= 3)
+        {
             audio_buffer_write_index = 0;
         }
         // Check the triple buffer overflow
-        if (audio_buffer_write_index == audio_buffer_read_index) {
+        if (audio_buffer_write_index == audio_buffer_read_index)
+        {
             // Call delay to switch the task to fill the buffer
             vTaskDelay(1);
             // Check and indicate overflow status
-            if (audio_buffer_write_index == audio_buffer_read_index) {
+            if (audio_buffer_write_index == audio_buffer_read_index)
+            {
                 ESP_LOGW(TAG, "Audio buffer overflow!");
             }
         }
@@ -228,9 +244,11 @@ static void audio_process_task(void *arg)
 // the processing task busy for a while.
 static void audio_read_task(void *arg)
 {
-    while (1) {
+    while (1)
+    {
         // Wait the sync semaphore
-        if (xSemaphoreTake(sync_read_task, 100)) {
+        if (xSemaphoreTake(sync_read_task, 100))
+        {
             // Get the pointer to the current audio buffer
             int16_t *wav_buffer = &triple_audio_buffer[audio_buffer_read_index * BUFFER_SIZE];
             // Read the data from the file
@@ -248,7 +266,8 @@ static void audio_read_task(void *arg)
             // Convert from float to int16 for audio codec
             convert_float2short(processing_audio_buffer, (int16_t *)wav_buffer, BUFFER_SIZE);
 
-            if (bytes_read_from_spiffs != BUFFER_SIZE) {
+            if (bytes_read_from_spiffs != BUFFER_SIZE)
+            {
                 // Rewind the file and read the WAV header
                 rewind(play_file);
                 fread((void *)&wav_header, 1, sizeof(wav_header), play_file);
@@ -256,10 +275,13 @@ static void audio_read_task(void *arg)
                 bytes_read_from_spiffs = fread(wav_buffer, sizeof(int16_t), BUFFER_SIZE, play_file);
             }
             audio_buffer_read_index++;
-            if (audio_buffer_read_index >= 3) {
+            if (audio_buffer_read_index >= 3)
+            {
                 audio_buffer_read_index = 0;
             }
-        } else {
+        }
+        else
+        {
             // Error in case of timeout
             ESP_LOGE(TAG, "Audio timeout!");
         }
@@ -268,16 +290,22 @@ static void audio_read_task(void *arg)
 
 static void buttons_process_task(void *arg)
 {
-    while (1) {
+    while (1)
+    {
         int btn_index = 0;
-        if (xQueueReceive(audio_button_q, &btn_index, portMAX_DELAY) == pdTRUE) {
-            switch (btn_index) {
-            case BSP_BUTTON_SET: {
+        if (xQueueReceive(audio_button_q, &btn_index, portMAX_DELAY) == pdTRUE)
+        {
+            switch (btn_index)
+            {
+            case BSP_BUTTON_SET:
+            {
                 current_set += 1;
-                if (current_set > 2) {
+                if (current_set > 2)
+                {
                     current_set = AUDIO_VOLUME;
                 }
-                switch (current_set) {
+                switch (current_set)
+                {
                 case AUDIO_VOLUME:
                     ESP_LOGW(TAG, "Select volume");
                     break;
@@ -292,11 +320,14 @@ static void buttons_process_task(void *arg)
                 }
                 break;
             }
-            case BSP_BUTTON_VOLDOWN: {
-                switch (current_set) {
+            case BSP_BUTTON_VOLDOWN:
+            {
+                switch (current_set)
+                {
                 case AUDIO_VOLUME:
                     full_volume_db -= 3;
-                    if (full_volume_db < -36) {
+                    if (full_volume_db < -36)
+                    {
                         full_volume_db = -36;
                     }
                     full_volume = exp10f((float)full_volume_db / 20);
@@ -304,7 +335,8 @@ static void buttons_process_task(void *arg)
                     break;
                 case AUDIO_BASS:
                     lpf_gain -= 1;
-                    if (lpf_gain < -12) {
+                    if (lpf_gain < -12)
+                    {
                         lpf_gain = -12;
                     }
                     ESP_LOGI(TAG, "Bass Down: %i", (int)lpf_gain);
@@ -312,7 +344,8 @@ static void buttons_process_task(void *arg)
                     break;
                 case AUDIO_TREBLE:
                     hpf_gain -= 1;
-                    if (hpf_gain < -12) {
+                    if (hpf_gain < -12)
+                    {
                         hpf_gain = -12;
                     }
                     ESP_LOGI(TAG, "Treble Down: %i", (int)hpf_gain);
@@ -323,11 +356,14 @@ static void buttons_process_task(void *arg)
                 }
                 break;
             }
-            case BSP_BUTTON_VOLUP: {
-                switch (current_set) {
+            case BSP_BUTTON_VOLUP:
+            {
+                switch (current_set)
+                {
                 case AUDIO_VOLUME:
                     full_volume_db += 3;
-                    if (full_volume_db > 0) {
+                    if (full_volume_db > 0)
+                    {
                         full_volume_db = 0;
                     }
                     full_volume = exp10f((float)full_volume_db / 20);
@@ -335,7 +371,8 @@ static void buttons_process_task(void *arg)
                     break;
                 case AUDIO_BASS:
                     lpf_gain += 1;
-                    if (lpf_gain > 12) {
+                    if (lpf_gain > 12)
+                    {
                         lpf_gain = 12;
                     }
                     ESP_LOGI(TAG, "Bass Up: %i", (int)lpf_gain);
@@ -343,7 +380,8 @@ static void buttons_process_task(void *arg)
                     break;
                 case AUDIO_TREBLE:
                     hpf_gain += 1;
-                    if (hpf_gain > 12) {
+                    if (hpf_gain > 12)
+                    {
                         hpf_gain = 12;
                     }
                     ESP_LOGI(TAG, "Treble Up: %i", (int)hpf_gain);
@@ -368,7 +406,7 @@ void app_main(void)
 
     // Create FreeRTOS tasks and queues
     audio_button_q = xQueueCreate(10, sizeof(int));
-    assert (audio_button_q != NULL);
+    assert(audio_button_q != NULL);
 
     BaseType_t ret = xTaskCreate(audio_process_task, "audio_process_task", 4096, NULL, 6, NULL);
     assert(ret == pdPASS);
@@ -376,7 +414,8 @@ void app_main(void)
     // Init audio buttons
     button_handle_t btns[BSP_BUTTON_NUM];
     ESP_ERROR_CHECK(bsp_iot_button_create(btns, NULL, BSP_BUTTON_NUM));
-    for (int i = 0; i < BSP_BUTTON_NUM; i++) {
-        ESP_ERROR_CHECK(iot_button_register_cb(btns[i], BUTTON_PRESS_DOWN, btn_handler, (void *) i));
+    for (int i = 0; i < BSP_BUTTON_NUM; i++)
+    {
+        ESP_ERROR_CHECK(iot_button_register_cb(btns[i], BUTTON_PRESS_DOWN, btn_handler, (void *)i));
     }
 }

@@ -8,22 +8,22 @@
  */
 void task_sensor_fusion(void *params)
 {
-    // state machine commands
-    cmd_task_datalogging_t datalogging_task_cmd, prev_datalogging_task_cmd;
+    /* state machine commands */
     // unified IMU data to send to downstream tasks
     imu_unified_data_t imu_unified_data;
+    heart_rate_unified_data_t heart_rate_unified_data;
     int64_t prev_timestamp = 0;
 
     /* datalogging task params */
     params_task_sensor_fusion_t *task_sensor_fusion_params = (params_task_sensor_fusion_t *)params;
 
-    /* streambuffers */
-    // StreamBufferHandle_t streambuffer_imu = task_sensor_fusion_params->streambuffer_imu;
-    // StreamBufferHandle_t streambuffer_sd = task_sensor_fusion_params->streambuffer_sd;
+    /* variables */
+    sensor_fusion_cmd_struct_t *sensor_fusion_cmds = task_sensor_fusion_params->sensor_fusion_cmds;
 
     /* queues */
     QueueHandle_t queue_imu_sensor = task_sensor_fusion_params->queue_imu_sensor;
     QueueHandle_t queue_heart_rate_sensor = task_sensor_fusion_params->queue_heart_rate_sensor;
+
     QueueHandle_t queue_imu_sdcard = task_sensor_fusion_params->queue_imu_sdcard;
     QueueHandle_t queue_imu_UART = task_sensor_fusion_params->queue_imu_UART;
     QueueHandle_t queue_imu_BLE = task_sensor_fusion_params->queue_imu_BLE;
@@ -37,8 +37,10 @@ void task_sensor_fusion(void *params)
     // imu_raw_data_t imu_data_buf[NUM_FIFO_TIMESTAMPS];
 
     /* FSM vars */
-    prev_datalogging_task_cmd = CMD_DATALOGGING_STOP;
-    datalogging_task_cmd = CMD_DATALOGGING_STOP;
+    cmd_imu_sensor_fusion_t cmd_imu_sensor_fusion = CMD_IMU_SENSOR_FUSION_STOP;
+    cmd_imu_sensor_fusion_t prev_cmd_imu_sensor_fusion = CMD_IMU_SENSOR_FUSION_STOP;
+    cmd_heart_rate_sensor_fusion_t cmd_heart_rate_sensor_fusion = CMD_HEART_RATE_SENSOR_FUSION_STOP;
+    cmd_heart_rate_sensor_fusion_t prev_cmd_heart_rate_sensor_fusion = CMD_HEART_RATE_SENSOR_FUSION_STOP;
 
     /* Fusion AHRS variables */
     const float sampleRate = IMU_ODR_HZ; // Hz
@@ -86,7 +88,7 @@ void task_sensor_fusion(void *params)
 
     /* initialize esp_health */
     esp_health_hr_cfg_t hr_cfg = {
-        .sample_rate = SAMPLE_RATE,
+        .sample_rate = PPG_SAMPLE_RATE,
     };
     esp_health_hr_handle_t hr_handle = NULL;
     if (esp_health_hr_open(&hr_cfg, &hr_handle) != ESP_HEALTH_ERR_OK || !hr_handle)
@@ -95,50 +97,63 @@ void task_sensor_fusion(void *params)
         // return;
     }
 
+    /* number of sensors with data preprocessing enabled */
+    int num_sensors_enabled = 0;
+
+    uint32_t hr_queue_count, imu_queue_count;
+
     while (1)
     {
-        /* wait for task notification from button */
-        xTaskNotifyWait(0,
-                        0,
-                        (uint32_t *)&datalogging_task_cmd,
-                        5 / portTICK_PERIOD_MS);
+        /* read atomic cmd values */
+        cmd_imu_sensor_fusion = (cmd_imu_sensor_fusion_t)atomic_load(&sensor_fusion_cmds->imu_sensor_fusion_cmd);
+        cmd_heart_rate_sensor_fusion = (cmd_heart_rate_sensor_fusion_t)atomic_load(&sensor_fusion_cmds->heart_rate_sensor_fusion_cmd);
 
-        /* if datalogging was just started */
-        if (datalogging_task_cmd == CMD_DATALOGGING_GO && prev_datalogging_task_cmd == CMD_DATALOGGING_STOP)
+        /* ----------------  IMU sensor fusion FSM ---------------- */
+        if (cmd_imu_sensor_fusion == CMD_IMU_SENSOR_FUSION_GO &&
+            prev_cmd_imu_sensor_fusion == CMD_IMU_SENSOR_FUSION_STOP)
         {
-            ESP_LOGI(DATALOGGING_TAG, "Datalogging started.");
+            ESP_LOGI(SENSOR_FUSION_TAG, "IMU sensor fusion started.");
+            num_sensors_enabled++;
             /* reset all queues */
             xQueueReset(queue_imu_sensor);
             xQueueReset(queue_imu_sdcard);
             xQueueReset(queue_imu_UART);
             xQueueReset(queue_imu_BLE);
-            xQueueReset(queue_heart_rate_sensor);
-            xQueueReset(queue_heart_rate_sdcard);
-            xQueueReset(queue_heart_rate_UART);
-            xQueueReset(queue_heart_rate_BLE);
 
-            xQueueReceive(queue_imu_sensor, (void *)&imu_unified_data.imu_raw_data, portMAX_DELAY);
-            /* initialize complementary filter */
-            imu_unified_data.imu_orientation_data = complementary_filter(&imu_unified_data.imu_raw_data,
-                                                                         imu_unified_data.imu_raw_data.timestamp - prev_timestamp,
-                                                                         0.0);
-
-            prev_timestamp = 0;
+            // xQueueReceive(queue_imu_sensor, (void *)&imu_unified_data.imu_raw_data, portMAX_DELAY);
+            // /* initialize complementary filter */
+            // imu_unified_data.imu_orientation_data = complementary_filter(&imu_unified_data.imu_raw_data,
+            //                                                              imu_unified_data.imu_raw_data.timestamp - prev_timestamp,
+            //                                                              0.0);
+            // prev_timestamp = 0;
         }
-        /* if datalogging is ongoing */
-        if (datalogging_task_cmd == CMD_DATALOGGING_GO && prev_datalogging_task_cmd == CMD_DATALOGGING_GO)
+        else if (cmd_imu_sensor_fusion == CMD_IMU_SENSOR_FUSION_GO &&
+                 prev_cmd_imu_sensor_fusion == CMD_IMU_SENSOR_FUSION_GO)
         {
-            // ESP_LOGI(DATALOGGING_TAG, "asdf %d", num_samples_read);
+            // ESP_LOGI(SENSOR_FUSION_TAG, "asdf %d", num_samples_read);
             /* receive raw IMU data from queue */
-            if (xQueueReceive(queue_imu_sensor, (void *)&imu_unified_data.imu_raw_data, 100 / portTICK_PERIOD_MS) == pdTRUE)
+            if (xQueueReceive(queue_imu_sensor,
+                              (void *)&imu_unified_data.imu_raw_data,
+                              20 / portTICK_PERIOD_MS) == pdTRUE)
             {
+                imu_queue_count = uxQueueMessagesWaiting(queue_imu_sensor);
+                // ESP_LOGI(SENSOR_FUSION_TAG, "imu %.2f %.2f %.2f %.2f %.2f %.2f",
+                //          imu_unified_data.imu_raw_data.ax,
+                //          imu_unified_data.imu_raw_data.ay,
+                //          imu_unified_data.imu_raw_data.az,
+                //          imu_unified_data.imu_raw_data.gx,
+                //          imu_unified_data.imu_raw_data.gy,
+                //          imu_unified_data.imu_raw_data.gz);
+                // ESP_LOGI(SENSOR_FUSION_TAG, "IMU %d\n", imu_queue_count);
                 /* if this is not the first sample */
                 if (prev_timestamp > 0)
                 {
                     /* IMU complementary filter */
-                    imu_unified_data.imu_orientation_data = complementary_filter(&imu_unified_data.imu_raw_data, imu_unified_data.imu_raw_data.timestamp - prev_timestamp, ALPHA);
+                    imu_unified_data.imu_orientation_data = complementary_filter(&imu_unified_data.imu_raw_data,
+                                                                                 imu_unified_data.imu_raw_data.timestamp - prev_timestamp,
+                                                                                 ALPHA);
 
-                    ESP_LOGI(DATALOGGING_TAG, "complementary filter %lld %.2f %.2f %.2f",
+                    ESP_LOGI(SENSOR_FUSION_TAG, "cf %lld %.2f %.2f %.2f",
                              imu_unified_data.imu_orientation_data.euler_angle.timestamp,
                              imu_unified_data.imu_orientation_data.euler_angle.x,
                              imu_unified_data.imu_orientation_data.euler_angle.y,
@@ -207,11 +222,11 @@ void task_sensor_fusion(void *params)
                     {
                         if (xQueueSend(queue_imu_sdcard, &imu_unified_data, 10 / portTICK_PERIOD_MS) == pdTRUE)
                         {
-                            // ESP_LOGI(DATALOGGING_TAG, "send unified IMU data to SD card");
+                            // ESP_LOGI(SENSOR_FUSION_TAG, "send unified IMU data to SD card");
                         }
                         else
                         {
-                            ESP_LOGE(DATALOGGING_TAG, "send unified IMU data to SD card fail");
+                            ESP_LOGE(SENSOR_FUSION_TAG, "send unified IMU data to SD card fail");
                             xQueueReset(queue_imu_sdcard);
                         }
                     }
@@ -221,11 +236,11 @@ void task_sensor_fusion(void *params)
                     {
                         if (xQueueSend(queue_imu_UART, &imu_unified_data, 10 / portTICK_PERIOD_MS) == pdTRUE)
                         {
-                            // ESP_LOGI(DATALOGGING_TAG, "sent unified IMU data to UART");
+                            // ESP_LOGI(SENSOR_FUSION_TAG, "sent unified IMU data to UART");
                         }
                         else
                         {
-                            ESP_LOGE(DATALOGGING_TAG, "send unified IMU data to UART fail");
+                            ESP_LOGE(SENSOR_FUSION_TAG, "send unified IMU data to UART fail");
                             xQueueReset(queue_imu_UART);
                         }
                     }
@@ -237,11 +252,11 @@ void task_sensor_fusion(void *params)
                         {
                             if (xQueueSend(queue_imu_BLE, &imu_unified_data, 10 / portTICK_PERIOD_MS) == pdTRUE)
                             {
-                                // ESP_LOGI(DATALOGGING_TAG, "sent unified IMU data to BLE");
+                                // ESP_LOGI(SENSOR_FUSION_TAG, "sent unified IMU data to BLE");
                             }
                             else
                             {
-                                ESP_LOGE(DATALOGGING_TAG, "send unified IMU data to BLE fail");
+                                ESP_LOGE(SENSOR_FUSION_TAG, "send unified IMU data to BLE fail");
                                 xQueueReset(queue_imu_BLE);
                             }
                         }
@@ -270,7 +285,7 @@ void task_sensor_fusion(void *params)
             //                               num_bytes_read,
             //                               10 / portTICK_PERIOD_MS) == 0)
             //         {
-            //             ESP_LOGE(DATALOGGING_TAG, "ERROR: Could not put item on SD stream buffer.");
+            //             ESP_LOGE(SENSOR_FUSION_TAG, "ERROR: Could not put item on SD stream buffer.");
             //         }
             //     // // send data to UART data streaming queue
             //     // if (queue_UART != NULL)
@@ -280,24 +295,111 @@ void task_sensor_fusion(void *params)
             //     //     xQueueSend(queue_BLE, &imu_raw_data, 10 / );
 
             //     // display IMU data
-            //     // ESP_LOGI(DATALOGGING_TAG, "timestamp=%d", imu_raw_data.timestamp);
-            //     // ESP_LOGI(DATALOGGING_TAG, "Acceleration: x=%.4f   y=%.4f   z=%.4f", imu_raw_data.ax, imu_raw_data.ay, imu_raw_data.az);
-            //     // ESP_LOGI(DATALOGGING_TAG, "Rotation:     x=%.4f   y=%.4f   z=%.4f", imu_raw_data.gx, imu_raw_data.gy, imu_raw_data.gz);
-            //     // ESP_LOGI(DATALOGGING_TAG, "Temperature:  %.1f\n", imu_raw_data.temp);
+            //     // ESP_LOGI(SENSOR_FUSION_TAG, "timestamp=%d", imu_raw_data.timestamp);
+            //     // ESP_LOGI(SENSOR_FUSION_TAG, "Acceleration: x=%.4f   y=%.4f   z=%.4f", imu_raw_data.ax, imu_raw_data.ay, imu_raw_data.az);
+            //     // ESP_LOGI(SENSOR_FUSION_TAG, "Rotation:     x=%.4f   y=%.4f   z=%.4f", imu_raw_data.gx, imu_raw_data.gy, imu_raw_data.gz);
+            //     // ESP_LOGI(SENSOR_FUSION_TAG, "Temperature:  %.1f\n", imu_raw_data.temp);
             // }
         }
-
-        /* if datalogging was just stopped */
-        if (datalogging_task_cmd == CMD_DATALOGGING_STOP && prev_datalogging_task_cmd == CMD_DATALOGGING_GO)
+        else if (cmd_imu_sensor_fusion == CMD_IMU_SENSOR_FUSION_STOP &&
+                 prev_cmd_imu_sensor_fusion == CMD_IMU_SENSOR_FUSION_GO)
         {
-            ESP_LOGI(DATALOGGING_TAG, "Datalogging stopped.");
+            ESP_LOGI(SENSOR_FUSION_TAG, "IMU sensor fusion stopped.");
+            num_sensors_enabled--;
         }
-        /* if datalogging is not ongoing*/
-        if (datalogging_task_cmd == CMD_DATALOGGING_STOP && prev_datalogging_task_cmd == CMD_DATALOGGING_STOP)
+        else if (cmd_imu_sensor_fusion == CMD_IMU_SENSOR_FUSION_STOP &&
+                 prev_cmd_imu_sensor_fusion == CMD_IMU_SENSOR_FUSION_STOP)
         {
-            vTaskDelay(100 / portTICK_PERIOD_MS);
+            // vTaskDelay(250 / portTICK_PERIOD_MS);
         }
 
-        prev_datalogging_task_cmd = datalogging_task_cmd;
+        /* ---------------- heart rate sensor fusion FSM ---------------- */
+        if (cmd_heart_rate_sensor_fusion == CMD_HEART_RATE_SENSOR_FUSION_GO &&
+            prev_cmd_heart_rate_sensor_fusion == CMD_HEART_RATE_SENSOR_FUSION_STOP)
+        {
+            ESP_LOGI(SENSOR_FUSION_TAG, "heart rate sensor fusion started.");
+            num_sensors_enabled++;
+            /* reset all queues */
+            xQueueReset(queue_heart_rate_sensor);
+            xQueueReset(queue_heart_rate_sdcard);
+            xQueueReset(queue_heart_rate_UART);
+            xQueueReset(queue_heart_rate_BLE);
+        }
+        else if (cmd_heart_rate_sensor_fusion == CMD_HEART_RATE_SENSOR_FUSION_GO &&
+                 prev_cmd_heart_rate_sensor_fusion == CMD_HEART_RATE_SENSOR_FUSION_GO)
+        {
+            /* receive raw heart rate data from queue */
+            if (xQueueReceive(queue_heart_rate_sensor,
+                              &heart_rate_unified_data.heart_rate_raw_data,
+                              20 / portTICK_PERIOD_MS) == pdTRUE)
+            {
+                hr_queue_count = uxQueueMessagesWaiting(queue_heart_rate_sensor);
+                ESP_LOGI(SENSOR_FUSION_TAG, "HR %d\n", hr_queue_count);
+                ESP_LOGI(SENSOR_FUSION_TAG, "PPG red %d IR %d",
+                         heart_rate_unified_data.heart_rate_raw_data.red_val,
+                         heart_rate_unified_data.heart_rate_raw_data.ir_val);
+
+                /* perform heart rate sensor fusion */
+
+                // /* send unified heart rate data to SD card task */
+                // if (queue_heart_rate_sdcard != NULL)
+                // {
+                //     if (xQueueSend(queue_heart_rate_sdcard,
+                //                    &heart_rate_unified_data,
+                //                    10 / portTICK_PERIOD_MS) == pdTRUE)
+                //     {
+                //         // ESP_LOGI(SENSOR_FUSION_TAG, "send unified heart rate data to SD card");
+                //     }
+                //     else
+                //     {
+                //         ESP_LOGE(SENSOR_FUSION_TAG, "send unified heart rate data to SD card fail");
+                //         xQueueReset(queue_heart_rate_sdcard);
+                //     }
+                // }
+
+                // /* send unified heart rate data to BLE task */
+                // if (queue_heart_rate_BLE != NULL)
+                // {
+                //     if (decimation_counter == 0)
+                //     {
+                //         if (xQueueSend(queue_heart_rate_BLE,
+                //                        &heart_rate_unified_data,
+                //                        10 / portTICK_PERIOD_MS) == pdTRUE)
+                //         {
+                //             // ESP_LOGI(SENSOR_FUSION_TAG, "sent unified heart rate data to BLE");
+                //         }
+                //         else
+                //         {
+                //             ESP_LOGE(SENSOR_FUSION_TAG, "send unified heart rate data to BLE fail");
+                //             xQueueReset(queue_heart_rate_BLE);
+                //         }
+                //     }
+                //     decimation_counter = (decimation_counter + 1) % DECIMATION_FACTOR;
+                // }
+            }
+            else
+            {
+                // ESP_LOGI(SENSOR_FUSION_TAG, "no heart rate data received");
+            }
+        }
+        else if (cmd_heart_rate_sensor_fusion == CMD_HEART_RATE_SENSOR_FUSION_STOP &&
+                 prev_cmd_heart_rate_sensor_fusion == CMD_HEART_RATE_SENSOR_FUSION_GO)
+        {
+            ESP_LOGI(SENSOR_FUSION_TAG, "heart rate sensor fusion stopped.");
+            num_sensors_enabled--;
+        }
+        else if (cmd_heart_rate_sensor_fusion == CMD_HEART_RATE_SENSOR_FUSION_STOP &&
+                 prev_cmd_heart_rate_sensor_fusion == CMD_HEART_RATE_SENSOR_FUSION_STOP)
+        {
+            // vTaskDelay(250 / portTICK_PERIOD_MS);
+        }
+
+        prev_cmd_imu_sensor_fusion = cmd_imu_sensor_fusion;
+        prev_cmd_heart_rate_sensor_fusion = cmd_heart_rate_sensor_fusion;
+
+        if (num_sensors_enabled == 0)
+        {
+            vTaskDelay(200 / portTICK_PERIOD_MS);
+        }
     }
 }

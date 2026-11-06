@@ -16,14 +16,51 @@
 #include "freertos/queue.h"
 
 #define HEART_RATE_TAG "HEART_RATE"
-#define SAMPLE_RATE 100
+#define PPG_SAMPLE_RATE 100
 
+/**
+ * @brief PPG heart rate raw data struct
+ *
+ * @param timestamp timestamp
+ * @param red_val measured PPG red value
+ * @param ir_val measured PPG IR value
+ *
+ */
 typedef struct
 {
-    uint32_t samples[SAMPLE_RATE];
-    int kind; /* HR_STREAM_* */
-    int n;    /* real samples in this item; 0 if kind is not SAMPLES */
-} hr_ppg_msg_t;
+    int64_t timestamp;
+    uint32_t red_val;
+    uint32_t ir_val;
+    // uint32_t samples[PPG_SAMPLE_RATE];
+    // int kind; /* HR_STREAM_* */
+    // int n;    /* real samples in this item; 0 if kind is not SAMPLES */
+} heart_rate_raw_data_t;
+
+/**
+ * @brief heart rate and spo2 data struct
+ *
+ * @param timestamp
+ * @param heart_rate
+ * @param spo2
+ */
+typedef struct
+{
+    int64_t timestamp;
+    uint8_t heart_rate;
+    float spo2;
+} heart_rate_hr_spo2_data_t;
+
+/**
+ * @brief unified PPG heart rate data
+ *
+ * @param heart_rate_raw_data
+ * @param heart_rate_hr_spo2_data
+ */
+typedef struct
+{
+    heart_rate_raw_data_t heart_rate_raw_data;
+    heart_rate_hr_spo2_data_t heart_rate_hr_spo2_data;
+} heart_rate_unified_data_t;
 
 /**
  * @brief

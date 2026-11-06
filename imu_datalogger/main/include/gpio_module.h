@@ -2,6 +2,7 @@
 #define GPIO_MODULE_H
 
 #include "common.h"
+#include "TaskSensors.h"
 
 // ESP32 pins config
 #define BUTTON_TAG "BUTTON"
@@ -10,7 +11,7 @@
 /**
  * @brief notification LED task
  *
- * The notification LED has the following states: STATUS_LED_OFF, STATUS_LED_ON, STATUS_LED_BLINK, and STATUS_LED_FAST_BLINK.
+ * The notification LED has the following states: CMD_STATUS_LED_OFF, CMD_STATUS_LED_ON, CMD_STATUS_LED_BLINK, and CMD_STATUS_LED_FAST_BLINK.
  * The notification LED state is set via a task notification.
  *
  * @param params

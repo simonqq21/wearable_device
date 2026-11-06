@@ -34,6 +34,12 @@ TaskHandle_t task_handle_haptics;
 
 /* sensor commands struct */
 sensors_cmd_struct_t sensors_cmd_struct;
+/* sensor fusion commands struct */
+sensor_fusion_cmd_struct_t sensor_fusion_cmd_struct;
+/* GPIO commands struct */
+gpio_cmd_struct_t gpio_cmd_struct;
+/* SD card commands struct */
+sd_card_cmd_struct_t sd_card_cmd_struct;
 
 /* queue for IMU data from IMU */
 QueueHandle_t queue_imu_sensor;
@@ -90,6 +96,7 @@ haptic_channel_pins_t haptics_channels[4] = {
 // ****************************************************************
 
 /* create all task parameter structs */
+params_task_gpio_t params_task_gpio;
 params_task_sensors_t params_task_sensors;
 params_task_sensor_fusion_t params_task_sensor_fusion;
 params_task_SD_card_datalogger_t params_task_SD_card_datalogger;
@@ -139,11 +146,11 @@ void app_main(void)
                       &MAX30102_config,
                       &heart_rate_dev_handle);
     uint8_t part_id;
-
     esp_err_t heart_rate_status = i2c_MAX30102_read_reg(heart_rate_dev_handle,
                                                         REG_PART_ID,
                                                         &part_id,
                                                         1);
+    esp_MAX30102_set(heart_rate_dev_handle);
 
     // initialize UART
     uart_configure();
@@ -196,16 +203,26 @@ void app_main(void)
     sensors_cmd_struct.imu_cmd = ATOMIC_VAR_INIT(CMD_IMU_STOP);
     sensors_cmd_struct.heart_rate_cmd = ATOMIC_VAR_INIT(CMD_HEART_RATE_STOP);
 
+    /* initialize sensor fusion cmd struct */
+    sensor_fusion_cmd_struct.imu_sensor_fusion_cmd = CMD_IMU_SENSOR_FUSION_STOP;
+    sensor_fusion_cmd_struct.heart_rate_sensor_fusion_cmd = CMD_HEART_RATE_SENSOR_FUSION_STOP;
+
+    /* initialize gpio cmd struct */
+    gpio_cmd_struct.status_led_cmd = CMD_STATUS_LED_OFF;
+
+    /* initialize sd card cmd struct */
+    sd_card_cmd_struct.sd_card_cmd = CMD_SD_CARD_STOP;
+
     /* create all queues */
     queue_imu_sensor = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(imu_raw_data_t));
     queue_imu_sdcard = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(imu_unified_data_t));
     queue_imu_UART = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(imu_unified_data_t));
     queue_imu_BLE = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(imu_unified_data_t));
 
-    queue_heart_rate_sensor = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(hr_ppg_msg_t));
-    queue_heart_rate_sdcard = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(int));
-    queue_heart_rate_UART = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(int));
-    queue_heart_rate_BLE = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(int));
+    queue_heart_rate_sensor = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(heart_rate_raw_data_t));
+    queue_heart_rate_sdcard = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(heart_rate_unified_data_t));
+    queue_heart_rate_UART = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(heart_rate_unified_data_t));
+    queue_heart_rate_BLE = xQueueCreate(NUM_FIFO_TIMESTAMPS * 2, sizeof(heart_rate_unified_data_t));
 
     queue_haptics_BLE = xQueueCreate(LEN_QUEUE_HAPTICS, sizeof(uint8_t));
 
@@ -216,14 +233,19 @@ void app_main(void)
     // ESP_LOGI(MAIN_TAG, "params_task_ble = %p", &params_task_ble);
 
     /* params GPIO */
-
+    params_task_gpio = (params_task_gpio_t){
+        .gpio_cmds = &gpio_cmd_struct,
+        .sensors_cmds = &sensors_cmd_struct,
+        .sensor_fusion_cmds = &sensor_fusion_cmd_struct,
+        .sd_card_cmds = &sd_card_cmd_struct};
     /* set sensors task parameters */
     params_task_sensors = (params_task_sensors_t){
         .queue_imu_sensor = queue_imu_sensor,
         .queue_heart_rate_sensor = queue_heart_rate_sensor,
         .imu_dev_handle = imu_dev_handle,
-        .heart_rate_dev_handle = heart_rate_dev_handle->i2c_dev,
-        .sensors_cmds = &sensors_cmd_struct};
+        .heart_rate_dev_handle = heart_rate_dev_handle,
+        .sensors_cmds = &sensors_cmd_struct,
+        .gpio_cmds = &gpio_cmd_struct};
 
     /* set sensor fusion task parameters */
     params_task_sensor_fusion = (params_task_sensor_fusion_t){
@@ -235,12 +257,13 @@ void app_main(void)
         .queue_heart_rate_sdcard = queue_heart_rate_sdcard,
         .queue_heart_rate_UART = queue_heart_rate_UART,
         .queue_heart_rate_BLE = queue_heart_rate_BLE,
-    };
+        .sensor_fusion_cmds = &sensor_fusion_cmd_struct};
 
     /* set SD card task parameters */
     params_task_SD_card_datalogger = (params_task_SD_card_datalogger_t){
         .queue_imu_sdcard = queue_imu_sdcard,
         .queue_heart_rate_sdcard = queue_heart_rate_sdcard,
+        .sd_card_cmds = &sd_card_cmd_struct,
     };
 
     /* Set UART task parameters */
@@ -271,8 +294,8 @@ void app_main(void)
     // GPIO task
     xTaskCreatePinnedToCore(task_GPIO,
                             "GPIO task",
-                            1024,
-                            NULL,
+                            900,
+                            &params_task_gpio,
                             10,
                             &task_handle_GPIO,
                             0);
@@ -282,7 +305,7 @@ void app_main(void)
                             "i2c sensors task",
                             2048,
                             &params_task_sensors,
-                            2,
+                            3,
                             &task_handle_sensors,
                             0);
 
@@ -291,7 +314,7 @@ void app_main(void)
                             "sensor fusion task",
                             8192,
                             &params_task_sensor_fusion,
-                            3,
+                            2,
                             &task_handle_sensor_fusion,
                             0);
 
@@ -300,7 +323,7 @@ void app_main(void)
                             "SD card datalogging task",
                             8192, //
                             &params_task_SD_card_datalogger,
-                            5,
+                            6,
                             &task_handle_SD_card_datalogger,
                             0);
 
@@ -309,7 +332,7 @@ void app_main(void)
                             "UART data streaming task",
                             2048,
                             &params_task_uart,
-                            3,
+                            4,
                             &task_handle_uart,
                             0);
 

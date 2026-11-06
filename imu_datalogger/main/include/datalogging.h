@@ -5,7 +5,7 @@
 #include "Fusion.h"
 #include "imu.h"
 
-#define DATALOGGING_TAG "DATALOGGING"
+#define SENSOR_FUSION_TAG "SENSOR_FUSION"
 
 /**
  * @brief IMU complementary filter

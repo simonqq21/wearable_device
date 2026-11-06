@@ -1,0 +1,865 @@
+Command: /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/imu_module.elf /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader/bootloader.elf -m '/home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python' '/home/simonque/Documents/code/esp-idf/tools/idf.py'
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0040,len:6272
+load:0x40078000,len:15848
+load:0x40080400,len:3920
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v6.1-dev-2310-g44e2fa6d9c5-dirt 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Sep  1 2026 14:56:57[0m
+[0;32mI (28) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v3.1[0m
+[0;32mI (34) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (37) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (65) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (78) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=27094h (159892) map[0m
+[0;32mI (145) esp_image: segment 1: paddr=000370bc vaddr=3ffbdb60 size=051f4h ( 20980) load[0m
+[0;32mI (154) esp_image: segment 2: paddr=0003c2b8 vaddr=40080000 size=03d60h ( 15712) load[0m
+[0;32mI (160) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=7edcch (519628) map[0m
+[0;32mI (346) esp_image: segment 4: paddr=000bedf4 vaddr=40083d60 size=150fch ( 86268) load[0m
+[0;32mI (381) esp_image: segment 5: paddr=000d3ef8 vaddr=50000000 size=00028h (    40) load[0m
+[0;32mI (394) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (394) boot: Disabling RNG early entropy source...[0m
+[0;32mI (405) cpu_start: Multicore app[0m
+[0;32mI (413) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (413) cpu_start: Pro cpu start user code[0m
+[0;32mI (413) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (415) app_init: Application information:[0m
+[0;32mI (419) app_init: Project name:     imu_module[0m
+[0;32mI (423) app_init: App version:      40d64d1-dirty[0m
+[0;32mI (427) app_init: Compile time:     Oct 28 2026 13:48:25[0m
+[0;32mI (432) app_init: ELF file SHA256:  78b700171...[0m
+[0;32mI (437) app_init: ESP-IDF:          v6.1-dev-2310-g44e2fa6d9c5-dirt[0m
+[0;32mI (443) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (447) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (451) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (455) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (461) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (466) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (471) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (476) heap_init: At 3FFC7400 len 00018C00 (99 KiB): DRAM[0m
+[0;32mI (481) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (487) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (492) heap_init: At 40098E5C len 000071A4 (28 KiB): IRAM[0m
+[0;33mW (499) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (511) spi_flash: detected chip: generic[0m
+[0;32mI (514) spi_flash: flash io: dio[0m
+[0;33mW (517) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (530) coexist: coex firmware version: 093e3d2[0m
+[0;32mI (534) main_task: Started on CPU0[0m
+[0;32mI (544) main_task: Calling app_main()[0m
+[0;32mI (544) button: IoT Button Version: 4.2.0[0m
+[0;32mI (554) MAIN: I2C initialized successfully[0m
+[0;32mI (554) LSM6DS3: WHO_AM_I = 69[0m
+[0;32mI (564) MAXI (564) HEAP: start heap free block: 227448 bytes, Largest block: 110592 bytes[0m
+[0;32mI (564) BLE: free heap: 227448[0m
+
+[0;32mI (574) BTDM_INIT: BT controller compile version [045a658][0m
+[0;32mI (574) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (574) BTDM_INIT: Bluetooth MAC: d8:13:2a:7d:69:0a[0m
+[0;32mI (584) phy_init: phy_version 4863,a3a4459,Oct 28 2025,14:30:06[0m
+[0;33mW (984) BT_BTM: BTM_BleWriteAdvData, Partial data write into ADV[0m
+[0;33mW (994) BT_BTM: BTM_BleWriteScanRsp, Partial data write into ADV[0m
+[0;32mI (994) HEAP: ble init heap free block: 202232 bytes, Largest block: 110592 bytes[0m
+[0;32mI (994) BLE: create attribute table successfully, the number handle = 4[0m
+[0;32mI (1004) BLE: create attribute table successfully, the number handle = 4[0m
+[0;32mI (1004) BLE: create attribute table successfully, the number handle = 3[0m
+[0;32mI (1014) BLE: Advertising data set, status 0[0m
+[0;32mI (1014) BLE: Scan response data set, status 0[0m
+[0;32mI (1024) BLE: SERVICE_START_EVT, status 0, service_handle 40[0m
+[0;32mI (1024) BLE: SERVICE_START_EVT, status 0, service_handle 44[0m
+[0;32mI (1034) BLE: SERVICE_START_EVT, status 0, service_handle 48[0m
+[0;32mI (1034) BLE: free heap: 200696[0m
+
+[0;32mI (1044) BLE: Advertising start successfully[0m
+[0;32mI (1044) SD_CARD: Initializing SD card[0m
+[0;32mI (1044) SD_CARD: Using SPI peripheral[0m
+[0;32mI (1054) SD_CARD: Mounting filesystem[0m
+[0;32mI (1054) sdspi_transaction: cmd=52, R1 response: command not supported[0m
+[0;32mI (1104) sdspi_transaction: cmd=5, R1 response: command not supported[0m
+[0;32mI (1154) SD_CARD: Filesystem mounted[0m
+Name: ACLCE
+Type: SDHC
+Speed: 4.00 MHz (limit: 4.00 MHz)
+Size: 60906MB
+CSD: ver=2, sector_size=512, capacity=124735488 read_bl_len=9
+SSR: bus_width=1
+[0;32mI (1154) SD_CARD: SD card initialized[0m
+[0;32mI (1164) HEAP: sdcard init heap free block: 193120 bytes, Largest block: 110592 bytes[0m
+[0;32mI (1164) MAIN: MAX30102 part ID = 0 15 15[0m
+
+[0;32mI (1174) MAIN: Starting all tasks![0m
+[0;32mI (1184) BLE: ble task started[0m
+[0;32mI (1434) SENSOR_FUSION: heart rate sensor fusion started.[0m
+[0;32mI (2184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (2934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (3684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (4434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (5184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (5934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+����������������������������������������������������������������-1515870811 IR -1515870811
+[0;32mI (7434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (8184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (8934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (9684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (10434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (11184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (11934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (12684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (13434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (14184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (14934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (15684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (16434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (17184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (17934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (18684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (19434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (20184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (20314) BUTTON: Datalogging started.[0m
+[0;32mI (20934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (20934) SENSOR_FUSION: IMU sensor fusion started.[0m
+[0;32mI (21174) IMU: IMU started at 20676884[0m
+
+[0;32mI (21174) IMU: heart rate started at 20677238[0m
+
+[1;31mE (21454) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21464) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21464) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21474) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21474) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21484) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21484) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21494) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21494) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21494) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21504) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21514) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21514) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21524) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21524) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21534) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21534) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21544) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21544) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21554) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21564) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21574) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21574) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21574) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21584) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21584) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21594) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21604) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21614) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21614) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21614) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21624) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21624) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21624) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21634) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21644) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21654) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21654) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21664) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21664) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21664) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21674) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[1;31mE (21684) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21684) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21694) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21704) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21704) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21704) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21714) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21714) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21724) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21724) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21734) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21744) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21744) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21754) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21754) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21764) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21764) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21774) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21784) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21794) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21794) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21794) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21804) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21804) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21814) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21824) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21834) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21834) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21844) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21844) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21844) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21844) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21854) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21864) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21874) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21874) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21884) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21884) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21894) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21894) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21904) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21904) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21924) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21924) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21924) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21934) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21934) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21944) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21944) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21954) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21954) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21964) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21964) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21974) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21984) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21984) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (21994) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22004) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22004) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22014) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22014) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22014) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22024) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22024) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22034) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22044) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22044) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22054) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22054) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22054) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22064) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22074) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22084) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22084) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22094) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22094) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22094) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22104) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22114) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22114) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22124) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22134) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22134) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22144) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22144) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22144) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22154) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22164) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22164) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22174) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22174) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22184) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22184) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22194) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22194) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22204) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[1;31mE (22214) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22214) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22224) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22224) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22234) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22234) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22244) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22244) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22254) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22254) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22274) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22274) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22274) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22284) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22284) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22294) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22294) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22304) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22314) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22314) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22324) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22324) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22334) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22334) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22344) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22344) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22354) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22364) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22364) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22364) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22374) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22384) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22384) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22394) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22404) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22404) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22414) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22414) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22424) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22424) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22434) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22434) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22444) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22454) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22454) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22454) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22464) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22474) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22474) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22494) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22494) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22494) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22504) IMU: ERROR: Could not put item on heart rate queue.[0m
+[1;31mE (22504) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (22514) BUTTON: Datalogging stopped.[0m
+[1;31mE (22514) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (22514) IMU: IMU stopped[0m
+[0;32mI (22524) IMU: heart rate stopped[0m
+[0;32mI (23014) SENSOR_FUSION: IMU sensor fusion stopped.[0m
+����������������������������������������������������������������0x1 (POWERON_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0040,len:6272
+load:0x40078000,len:15848
+load:0x40080400,len:3920
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v6.1-dev-2310-g44e2fa6d9c5-dirt 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Sep  1 2026 14:56:57[0m
+[0;32mI (28) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v3.1[0m
+[0;32mI (34) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (37) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (65) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (78) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=27094h (159892) map[0m
+[0;32mI (145) esp_image: segment 1: paddr=000370bc vaddr=3ffbdb60 size=051f4h ( 20980) load[0m
+[0;32mI (154) esp_image: segment 2: paddr=0003c2b8 vaddr=40080000 size=03d60h ( 15712) load[0m
+[0;32mI (160) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=7edcch (519628) map[0m
+[0;32mI (346) esp_image: segment 4: paddr=000bedf4 vaddr=40083d60 size=150fch ( 86268) load[0m
+[0;32mI (381) esp_image: segment 5: paddr=000d3ef8 vaddr=50000000 size=00028h (    40) load[0m
+[0;32mI (394) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (394) boot: Disabling RNG early entropy source...[0m
+[0;32mI (405) cpu_start: Multicore app[0m
+[0;32mI (413) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (413) cpu_start: Pro cpu start user code[0m
+[0;32mI (413) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (415) app_init: Application information:[0m
+[0;32mI (419) app_init: Project name:     imu_module[0m
+[0;32mI (423) app_init: App version:      40d64d1-dirty[0m
+[0;32mI (427) app_init: Compile time:     Oct 28 2026 13:48:25[0m
+[0;32mI (432) app_init: ELF file SHA256:  78b700171...[0m
+[0;32mI (437) app_init: ESP-IDF:          v6.1-dev-2310-g44e2fa6d9c5-dirt[0m
+[0;32mI (443) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (447) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (451) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (455) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (461) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (466) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (471) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (476) heap_init: At 3FFC7400 len 00018C00 (99 KiB): DRAM[0m
+[0;32mI (481) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (487) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (492) heap_init: At 40098E5C len 000071A4 (28 KiB): IRAM[0m
+[0;33mW (499) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (511) spi_flash: detected chip: generic[0m
+[0;32mI (514) spi_flash: flash io: dio[0m
+[0;33mW (517) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (530) coexist: coex firmware version: 093e3d2[0m
+[0;32mI (534) main_task: Started on CPU0[0m
+[0;32mI (544) main_task: Calling app_main()[0m
+[0;32mI (544) button: IoT Button Version: 4.2.0[0m
+[0;32mI (554) MAIN: I2C initialized successfully[0m
+[0;32mI (554) LSM6DS3: WHO_AM_I = 69[0m
+[0;32mI (564) MAXI (564) HEAP: start heap free block: 227448 bytes, Largest block: 110592 bytes[0m
+[0;32mI (564) BLE: free heap: 227448[0m
+
+[0;32mI (574) BTDM_INIT: BT controller compile version [045a658][0m
+[0;32mI (574) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (574) BTDM_INIT: Bluetooth MAC: d8:13:2a:7d:69:0a[0m
+[0;32mI (584) phy_init: phy_version 4863,a3a4459,Oct 28 2025,14:30:06[0m
+[0;33mW (994) BT_BTM: BTM_BleWriteAdvData, Partial data write into ADV[0m
+[0;33mW (994) BT_BTM: BTM_BleWriteScanRsp, Partial data write into ADV[0m
+[0;32mI (994) HEAP: ble init heap free block: 202400 bytes, Largest block: 110592 bytes[0m
+[0;32mI (1004) BLE: create attribute table successfully, the number handle = 4[0m
+[0;32mI (1004) BLE: create attribute table successfully, the number handle = 4[0m
+[0;32mI (1014) BLE: create attribute table successfully, the number handle = 3[0m
+[0;32mI (1014) BLE: Advertising data set, status 0[0m
+[0;32mI (1024) BLE: Scan response data set, status 0[0m
+[0;32mI (1024) BLE: SERVICE_START_EVT, status 0, service_handle 40[0m
+[0;32mI (1034) BLE: SERVICE_START_EVT, status 0, service_handle 44[0m
+[0;32mI (1034) BLE: SERVICE_START_EVT, status 0, service_handle 48[0m
+[0;32mI (1044) BLE: free heap: 200728[0m
+
+[0;32mI (1044) BLE: Advertising start successfully[0m
+[0;32mI (1054) SD_CARD: Initializing SD card[0m
+[0;32mI (1054) SD_CARD: Using SPI peripheral[0m
+[0;32mI (1054) SD_CARD: Mounting filesystem[0m
+[0;32mI (1064) sdspi_transaction: cmd=52, R1 response: command not supported[0m
+[0;32mI (1104) sdspi_transaction: cmd=5, R1 response: command not supported[0m
+[0;32mI (1154) SD_CARD: Filesystem mounted[0m
+Name: ACLCE
+Type: SDHC
+Speed: 4.00 MHz (limit: 4.00 MHz)
+Size: 60906MB
+CSD: ver=2, sector_size=512, capacity=124735488 read_bl_len=9
+SSR: bus_width=1
+[0;32mI (1154) SD_CARD: SD card initialized[0m
+[0;32mI (1164) HEAP: sdcard init heap free block: 193112 bytes, Largest block: 110592 bytes[0m
+[0;32mI (1164) MAIN: MAX30102 part ID = 0 15 15[0m
+
+[0;32mI (1174) MAIN: Starting all tasks![0m
+[0;32mI (1184) BLE: ble task started[0m
+[0;32mI (1434) SENSOR_FUSION: heart rate sensor fusion started.[0m
+[0;32mI (2184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (2934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (3684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (4434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (5184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (5934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (6684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (7434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (8184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (8934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (9684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (10434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (11184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (11934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (12684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (13434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (14184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (14934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (15684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (16434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (17184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (17934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (18684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (19434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (20184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (20934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (21684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (22434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (23184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (23934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (24684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (25434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (26184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (26934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (27684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (28434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (29184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (29934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (30684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (31434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (32184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (32934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (33684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (34434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (35184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (35934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (36684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (37434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (38184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (38934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (39684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (40434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (41184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (41934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (42684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (43434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (44184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (44934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (45684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (46434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (47184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (47934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (48684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (49434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (50184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (50934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (51684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (52434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (53184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (53934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (54684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (55434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (56184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (56934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (57684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (58434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (59184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (59934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (60684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (61434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (62184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (62934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (63684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (64434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (65184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (65934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (66684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (67434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (68184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (68934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (69684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (70434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (71184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (71934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (72684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (73434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (74184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (74934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (75684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (76434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (77184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (77934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (78684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (79434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (80184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (80934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (81684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (82434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (83184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (83934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (84684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (85434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (86184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (86934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (87684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (88434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (89184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (89934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (90684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (91434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (92184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (92934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (93684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (94434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (95184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (95934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (96684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (97434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (98184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (98934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (99684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (100434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (101184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (101934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (102684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (103434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (104184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (104934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (105684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (106434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (107184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (107934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (108684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (109434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (110184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (110934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (111684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (112434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (113184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (113934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (114684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (115434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (116184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (116934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (117684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (118434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (119184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (119934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (120684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (121434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (122184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (122934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (123684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (124434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (125184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (125934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (126684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (127434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (128184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (128934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (129684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (130434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (131184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (131934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (132684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (133434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (134184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (134934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (135684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (136434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (137184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (137934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (138684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (139434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (140184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (140934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (141684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (142434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (143184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (143934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (144684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (145434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (146184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (146934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (147684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (148434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (149184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (149934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (150684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (151434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (152184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (152934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (153684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (154434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (155184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (155934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (156684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (157434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (158184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (158934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (159684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (160434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (161184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (161934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (162684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (163434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (164184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (164934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (165684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (166434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (167184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (167934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (168684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (169434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (170184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (170934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (171684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (172434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (173184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (173934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (174684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (175434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (176184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (176934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (177684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (178434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (179184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (179934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (180684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (181434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (182184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (182934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (183684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (184434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (185184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (185934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (186684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (187434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (188184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (188934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (189684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (190434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (191184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (191934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (192684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (193434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (194184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (194934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (195684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (196434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (197184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (197934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (198684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (199434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (200184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (200934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (201684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (202434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (203184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (203934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (204684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (205434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (206184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (206934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (207684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (208434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (209184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (209934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (210684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (211434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (212184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (212934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (213684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (214434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (215184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (215934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (216684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (217434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (218184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (218934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (219684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (220434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (221184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (221934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (222684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (223434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (224184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (224934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (225684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (226434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (227184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (227934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (228684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (229434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (230184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (230934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (231684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (232434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (233184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (233934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (234684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (235434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (236184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (236934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (237684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (238434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (239184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (239934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (240684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (241434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (242184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (242934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (243684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (244434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (245184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (245934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (246684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (247434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (248184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (248934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (249684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (250434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (251184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (251934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (252684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (253434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (254184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (254934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (255684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (256434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (257184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (257934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (258684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (259434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (260184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (260934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (261684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (262434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (263184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (263934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (264684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (265434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (266184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (266934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (267684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (268434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (269184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (269934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (270684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (271434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (272184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (272934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (273684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (274434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (275184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (275934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (276684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (277434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (278184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (278934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (279684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (280434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (281184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (281934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (282684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (283434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (284184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (284934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (285684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (286434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (287184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (287934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (288684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (289434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (290184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (290934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (291684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (292434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (293184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (293934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (294684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (295434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (296184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (296934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (297684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (298434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (299184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (299934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (300684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (301434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (302184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (302934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (303684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (304434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (305184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (305934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (306684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (307434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (308184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (308934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (309684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (310434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (311184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (311934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (312684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (313434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (314184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (314934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (315684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (316434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (317184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (317934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (318684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (319434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (320184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (320934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (321684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (322434) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (323184) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (323934) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m
+[0;32mI (324684) SENSOR_FUSION: PPG red -1515870811 IR -1515870811[0m

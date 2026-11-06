@@ -20,6 +20,7 @@
  */
 typedef struct
 {
+    sensor_fusion_cmd_struct_t *sensor_fusion_cmds;
     QueueHandle_t queue_imu_sensor;
     QueueHandle_t queue_heart_rate_sensor;
 

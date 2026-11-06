@@ -22,11 +22,11 @@
 #include <malloc.h>
 
 // Amount of audio channels
-#define I2S_CHANNEL_NUM     (2)
+#define I2S_CHANNEL_NUM (2)
 // Microphone Sample rate
-#define SAMPLE_RATE     (10000)
+#define PPG_SAMPLE_RATE (10000)
 
-#define BITS_PER_CHANNEL     16
+#define BITS_PER_CHANNEL 16
 // Input buffer size
 #define BUFFER_PROCESS_SIZE 512
 
@@ -41,34 +41,38 @@ static void microphone_read_task(void *arg)
     esp_codec_dev_handle_t mic_codec_dev = NULL;
     // Init board microphone
     mic_codec_dev = bsp_audio_codec_microphone_init();
-    if (mic_codec_dev == NULL) {
+    if (mic_codec_dev == NULL)
+    {
         ESP_LOGE(TAG, "Not possible to initialize microphone!");
         return;
     }
 
     // Init esp-dsp library to use fft functionality
     esp_err_t ret = dsps_fft2r_init_sc16(NULL, CONFIG_DSP_MAX_FFT_SIZE);
-    if (ret != ESP_OK) {
+    if (ret != ESP_OK)
+    {
         ESP_LOGE(TAG, "Not possible to initialize FFT esp-dsp from library!");
         return;
     }
 
     esp_codec_dev_sample_info_t fs = {
-        .sample_rate = SAMPLE_RATE,
+        .sample_rate = PPG_SAMPLE_RATE,
         .channel = I2S_CHANNEL_NUM,
         .channel_mask = 0,
         .bits_per_sample = BITS_PER_CHANNEL,
     };
 
     int result = esp_codec_dev_open(mic_codec_dev, &fs);
-    if (result != ESP_OK) {
+    if (result != ESP_OK)
+    {
         ESP_LOGE(TAG, "Not possible to open microphone!");
         return;
     }
     // Set input microphone gain (from 1 to 100)
     ESP_LOGI(TAG, "Adjust microphone input volume in the code here...");
     result |= esp_codec_dev_set_in_gain(mic_codec_dev, 20.0);
-    if (result != ESP_OK) {
+    if (result != ESP_OK)
+    {
         ESP_LOGE(TAG, "Not possible to set up microphone gain!");
         return;
     }
@@ -81,12 +85,14 @@ static void microphone_read_task(void *arg)
     int16_t *wind_buffer = (int16_t *)memalign(16, (audio_chunksize + 16) * sizeof(int16_t) * I2S_CHANNEL_NUM);
     // Generate window and convert it to int16_t
     dsps_wind_blackman_harris_f32(result_data, audio_chunksize);
-    for (int i = 0 ; i < audio_chunksize; i++) {
+    for (int i = 0; i < audio_chunksize; i++)
+    {
         wind_buffer[i * 2 + 0] = (int16_t)(result_data[i] * 32767);
         wind_buffer[i * 2 + 1] = wind_buffer[i * 2 + 0];
     }
 
-    while (true) {
+    while (true)
+    {
 
         // Read audio data from I2S bus
         result = esp_codec_dev_read(mic_codec_dev, audio_buffer, audio_chunksize * sizeof(int16_t) * I2S_CHANNEL_NUM);
@@ -101,7 +107,8 @@ static void microphone_read_task(void *arg)
         dsps_cplx2reC_sc16(audio_buffer, audio_chunksize);
 
         // The output data array presented as moving average for input in dB
-        for (int i = 0 ; i < audio_chunksize ; i++) {
+        for (int i = 0; i < audio_chunksize; i++)
+        {
             float spectrum_sqr = audio_buffer[i * 2 + 0] * audio_buffer[i * 2 + 0] + audio_buffer[i * 2 + 1] * audio_buffer[i * 2 + 1];
             float spectrum_dB = 10 * log10f(0.1 + spectrum_sqr);
             // Multiply with sime coefficient for better view data on screen
@@ -130,7 +137,7 @@ static const lv_img_dsc_t img_screen_rgb = {
 };
 
 // The function convert value to RGB565 color value
-static int8_t colors[3][3] = { {0, 0, 31}, {0, 63, 0}, {31, 0, 0} };
+static int8_t colors[3][3] = {{0, 0, 31}, {0, 63, 0}, {31, 0, 0}};
 static uint16_t convert_to_rgb(uint8_t minval, uint8_t maxval, int8_t val)
 {
     uint16_t result;
@@ -154,11 +161,13 @@ static uint16_t convert_to_rgb(uint8_t minval, uint8_t maxval, int8_t val)
 // Init screen with blue values
 static void spectrum2d_picture_init()
 {
-    for (int y = 0 ; y < img_screen_rgb.header.h ; y++) {
-        for (int x = 0 ; x < img_screen_rgb.header.w ; x++) {
-            screen_rgb_data[(y * img_screen_rgb.header.w + x)*LV_IMG_PX_SIZE_ALPHA_BYTE + 0] = 0x0;
-            screen_rgb_data[(y * img_screen_rgb.header.w + x)*LV_IMG_PX_SIZE_ALPHA_BYTE + 1] = 0x1f;
-            screen_rgb_data[(y * img_screen_rgb.header.w + x)*LV_IMG_PX_SIZE_ALPHA_BYTE + 2] = 0xff;
+    for (int y = 0; y < img_screen_rgb.header.h; y++)
+    {
+        for (int x = 0; x < img_screen_rgb.header.w; x++)
+        {
+            screen_rgb_data[(y * img_screen_rgb.header.w + x) * LV_IMG_PX_SIZE_ALPHA_BYTE + 0] = 0x0;
+            screen_rgb_data[(y * img_screen_rgb.header.w + x) * LV_IMG_PX_SIZE_ALPHA_BYTE + 1] = 0x1f;
+            screen_rgb_data[(y * img_screen_rgb.header.w + x) * LV_IMG_PX_SIZE_ALPHA_BYTE + 2] = 0xff;
         }
     }
 }
@@ -166,26 +175,32 @@ static void spectrum2d_picture_init()
 // Add spectrum data to the screen
 static void spectrum2d_picture()
 {
-    for (int y = 0 ; y < (img_screen_rgb.header.h - 1) ; y++) {
-        for (int x = 0 ; x < img_screen_rgb.header.w ; x++) {
-            for (int i = 0 ; i < LV_IMG_PX_SIZE_ALPHA_BYTE ; i++) {
-                screen_rgb_data[(y * img_screen_rgb.header.w + x)*LV_IMG_PX_SIZE_ALPHA_BYTE + i] = screen_rgb_data[((y + 1) * img_screen_rgb.header.w + x) * LV_IMG_PX_SIZE_ALPHA_BYTE + i];
+    for (int y = 0; y < (img_screen_rgb.header.h - 1); y++)
+    {
+        for (int x = 0; x < img_screen_rgb.header.w; x++)
+        {
+            for (int i = 0; i < LV_IMG_PX_SIZE_ALPHA_BYTE; i++)
+            {
+                screen_rgb_data[(y * img_screen_rgb.header.w + x) * LV_IMG_PX_SIZE_ALPHA_BYTE + i] = screen_rgb_data[((y + 1) * img_screen_rgb.header.w + x) * LV_IMG_PX_SIZE_ALPHA_BYTE + i];
             }
         }
     }
 
     // Add left channel to the screen
     // The order of the values inverted
-    for (int x = 0 ; x < img_screen_rgb.header.w / 2 ; x++) {
+    for (int x = 0; x < img_screen_rgb.header.w / 2; x++)
+    {
         // Get inverted index value
         int in_index = img_screen_rgb.header.w / 2 - x - 1;
         float data = result_data[in_index];
 
         // Limit input data
-        if (data > 127) {
+        if (data > 127)
+        {
             data = 127;
         }
-        if (data < 0) {
+        if (data < 0)
+        {
             data = 0;
         }
 
@@ -194,23 +209,26 @@ static void spectrum2d_picture()
         // Split 16 bit value to two bytes, to change the bytes order
         uint8_t *ref_val = (uint8_t *)&color_val;
         int out_index = x;
-        screen_rgb_data[((img_screen_rgb.header.h - 1)*img_screen_rgb.header.w + out_index)*LV_IMG_PX_SIZE_ALPHA_BYTE + 0] = ref_val[1];
-        screen_rgb_data[((img_screen_rgb.header.h - 1)*img_screen_rgb.header.w + out_index)*LV_IMG_PX_SIZE_ALPHA_BYTE + 1] = ref_val[0];
+        screen_rgb_data[((img_screen_rgb.header.h - 1) * img_screen_rgb.header.w + out_index) * LV_IMG_PX_SIZE_ALPHA_BYTE + 0] = ref_val[1];
+        screen_rgb_data[((img_screen_rgb.header.h - 1) * img_screen_rgb.header.w + out_index) * LV_IMG_PX_SIZE_ALPHA_BYTE + 1] = ref_val[0];
         // Set alpha value
-        screen_rgb_data[((img_screen_rgb.header.h - 1)*img_screen_rgb.header.w + out_index)*LV_IMG_PX_SIZE_ALPHA_BYTE + 2] = 0xff;
+        screen_rgb_data[((img_screen_rgb.header.h - 1) * img_screen_rgb.header.w + out_index) * LV_IMG_PX_SIZE_ALPHA_BYTE + 2] = 0xff;
     }
 
     // Add right channel to the screen
-    for (int x = 0 ; x < img_screen_rgb.header.w / 2 ; x++) {
+    for (int x = 0; x < img_screen_rgb.header.w / 2; x++)
+    {
         // Get index of right channel
         int in_index = BUFFER_PROCESS_SIZE / 2 + x;
         float data = result_data[in_index];
 
         // Limit input data
-        if (data > 127) {
+        if (data > 127)
+        {
             data = 127;
         }
-        if (data < 0) {
+        if (data < 0)
+        {
             data = 0;
         }
 
@@ -219,10 +237,10 @@ static void spectrum2d_picture()
         // Split 16 bit value to two bytes, to change the bytes order
         uint8_t *ref_val = (uint8_t *)&color_val;
         int out_index = img_screen_rgb.header.w / 2 + x;
-        screen_rgb_data[((img_screen_rgb.header.h - 1)*img_screen_rgb.header.w + out_index)*LV_IMG_PX_SIZE_ALPHA_BYTE + 0] = ref_val[1];
-        screen_rgb_data[((img_screen_rgb.header.h - 1)*img_screen_rgb.header.w + out_index)*LV_IMG_PX_SIZE_ALPHA_BYTE + 1] = ref_val[0];
+        screen_rgb_data[((img_screen_rgb.header.h - 1) * img_screen_rgb.header.w + out_index) * LV_IMG_PX_SIZE_ALPHA_BYTE + 0] = ref_val[1];
+        screen_rgb_data[((img_screen_rgb.header.h - 1) * img_screen_rgb.header.w + out_index) * LV_IMG_PX_SIZE_ALPHA_BYTE + 1] = ref_val[0];
         // Set alpha value
-        screen_rgb_data[((img_screen_rgb.header.h - 1)*img_screen_rgb.header.w + out_index)*LV_IMG_PX_SIZE_ALPHA_BYTE + 2] = 0xff;
+        screen_rgb_data[((img_screen_rgb.header.h - 1) * img_screen_rgb.header.w + out_index) * LV_IMG_PX_SIZE_ALPHA_BYTE + 2] = 0xff;
     }
 }
 
@@ -234,7 +252,8 @@ static void image_display_task(void *arg)
     spectrum2d_picture_init();
     lv_obj_align(img1, LV_ALIGN_CENTER, 0, 0);
 
-    for (;;) {
+    for (;;)
+    {
         // Update image with new spectrum values
         spectrum2d_picture();
         // Update screen with new image
@@ -256,13 +275,15 @@ void app_main(void)
     bsp_display_backlight_on();
 
     int ret_val = xTaskCreatePinnedToCore(&microphone_read_task, "Microphone read Task", 8 * 1024, NULL, 3, NULL, 0);
-    if (ret_val != pdPASS) {
+    if (ret_val != pdPASS)
+    {
         ESP_LOGE(TAG, "Not possible to allocate microphone task, ret_val = %i", ret_val);
         return;
     }
 
     ret_val = xTaskCreatePinnedToCore(&image_display_task, "Draw task", 10 * 1024, NULL, 5, NULL, 1);
-    if (ret_val != pdPASS) {
+    if (ret_val != pdPASS)
+    {
         ESP_LOGE(TAG, "Not possible to allocate microphone task, ret_val= %i", ret_val);
         return;
     }

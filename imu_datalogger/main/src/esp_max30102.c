@@ -31,7 +31,7 @@ static int fifo_available(uint8_t wr_ptr, uint8_t rd_ptr)
  * OVF is sticky until a sample is written into a non-full FIFO — do not
  * treat a leftover counter as overflow right after reset/init.
  */
-static void fifo_reset(i2c_MAX30102_handle_t handle)
+void fifo_reset(i2c_MAX30102_handle_t handle)
 {
     (void)i2c_MAX30102_write_reg(handle, REG_FIFO_WR_PTR, 0);
     (void)i2c_MAX30102_write_reg(handle, REG_OVF_COUNTER, 0);
@@ -80,7 +80,7 @@ static esp_err_t fifo_read_ptrs(i2c_MAX30102_handle_t handle, uint8_t *wr_ptr, u
     return ESP_OK;
 }
 
-static esp_err_t fifo_read_sample(i2c_MAX30102_handle_t handle, uint32_t *red, uint32_t *ir)
+esp_err_t fifo_read_sample(i2c_MAX30102_handle_t handle, uint32_t *red, uint32_t *ir)
 {
     uint8_t i2c_data[6];
 
@@ -241,31 +241,34 @@ esp_err_t i2c_MAX30102_read_red(i2c_MAX30102_handle_t MAX30102_handle, gpio_num_
     i2c_MAX30102_read_reg(MAX30102_handle, REG_INTR_STATUS_1, &status, 1);
     i2c_MAX30102_read_reg(MAX30102_handle, REG_INTR_STATUS_2, &status, 1);
 
+    /* while num samples collected is less than num samples requested */
     while (collected < data_size)
     {
         if (xTaskGetTickCount() >= deadline)
         {
             break;
         }
-
+        /* if FIFO read is fail, reset the FIFO and return fail. */
         if (fifo_read_ptrs(MAX30102_handle, &wr_ptr, &rd_ptr) != ESP_OK)
         {
             fifo_reset(MAX30102_handle);
             *got = 0;
             return ESP_FAIL;
         }
+        /* if FIFO read overflow status fail, reset the FIFO and return fail */
         if (fifo_read_ovf(MAX30102_handle, &ovf) != ESP_OK)
         {
             fifo_reset(MAX30102_handle);
             *got = 0;
             return ESP_FAIL;
         }
+        /* if the FIFO overflowed, reset the FIFO. */
         if (fifo_is_full_overflow(wr_ptr, rd_ptr, ovf, collected))
         {
             *got = 0;
             return fifo_on_overflow(MAX30102_handle, ovf);
         }
-
+        // get number of available samples in the FIFO
         int avail = fifo_available(wr_ptr, rd_ptr);
         if (avail <= 0)
         {

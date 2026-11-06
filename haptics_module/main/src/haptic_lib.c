@@ -70,12 +70,12 @@ void haptic_set_val(haptic_channel_pins_t channel, uint8_t val)
 
     if (val)
     {
-        gpio_set_level(channel.pin_1, 0);
+        gpio_set_level(channel.pin_1, 1);
         // gpio_set_level(channel.pin_2, 0);
     }
     else
     {
-        gpio_set_level(channel.pin_1, 1);
+        gpio_set_level(channel.pin_1, 0);
         // gpio_set_level(channel.pin_2, 1);
     }
 }

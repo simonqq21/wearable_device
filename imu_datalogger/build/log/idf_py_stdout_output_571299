@@ -1,0 +1,1163 @@
+Command: /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/imu_module.elf /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader/bootloader.elf -m '/home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python' '/home/simonque/Documents/code/esp-idf/tools/idf.py'
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0040,len:6272
+load:0x40078000,len:15848
+load:0x40080400,len:3920
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v6.1-dev-2310-g44e2fa6d9c5-dirt 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Sep  1 2026 14:56:57[0m
+[0;32mI (28) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v3.1[0m
+[0;32mI (34) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (37) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (65) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (78) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=27024h (159780) map[0m
+[0;32mI (145) esp_image: segment 1: paddr=0003704c vaddr=3ffbdb60 size=051f4h ( 20980) load[0m
+[0;32mI (154) esp_image: segment 2: paddr=0003c248 vaddr=40080000 size=03dd0h ( 15824) load[0m
+[0;32mI (160) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=7ecf8h (519416) map[0m
+[0;32mI (346) esp_image: segment 4: paddr=000bed20 vaddr=40083dd0 size=1508ch ( 86156) load[0m
+[0;32mI (381) esp_image: segment 5: paddr=000d3db4 vaddr=50000000 size=00028h (    40) load[0m
+[0;32mI (394) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (394) boot: Disabling RNG early entropy source...[0m
+[0;32mI (404) cpu_start: Multicore app[0m
+[0;32mI (413) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (413) cpu_start: Pro cpu start user code[0m
+[0;32mI (413) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (415) app_init: Application information:[0m
+[0;32mI (419) app_init: Project name:     imu_module[0m
+[0;32mI (423) app_init: App version:      40d64d1-dirty[0m
+[0;32mI (427) app_init: Compile time:     Oct 28 2026 13:48:25[0m
+[0;32mI (432) app_init: ELF file SHA256:  73520c031...[0m
+[0;32mI (437) app_init: ESP-IDF:          v6.1-dev-2310-g44e2fa6d9c5-dirt[0m
+[0;32mI (442) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (446) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (450) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (454) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (461) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (466) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (471) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (476) heap_init: At 3FFC7400 len 00018C00 (99 KiB): DRAM[0m
+[0;32mI (481) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (486) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (492) heap_init: At 40098E5C len 000071A4 (28 KiB): IRAM[0m
+[0;33mW (498) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (510) spi_flash: detected chip: generic[0m
+[0;32mI (514) spi_flash: flash io: dio[0m
+[0;33mW (517) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (530) coexist: coex firmware version: 093e3d2[0m
+[0;32mI (534) main_task: Started on CPU0[0m
+[0;32mI (544) main_task: Calling app_main()[0m
+[0;32mI (544) button: IoT Button Version: 4.2.0[0m
+[0;32mI (554) MAIN: I2C initialized successfully[0m
+[0;32mI (554) LSM6DS3: WHO_AM_I = 69[0m
+[0;32mI (564) MAXI (564) HEAP: start heap free block: 227448 bytes, Largest block: 110592 bytes[0m
+[0;32mI (564) BLE: free heap: 227448[0m
+
+[0;32mI (564) BTDM_INIT: BT controller compile version [045a658][0m
+[0;32mI (574) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (574) BTDM_INIT: Bluetooth MAC: d8:13:2a:7d:69:0a[0m
+[0;32mI (584) phy_init: phy_version 4863,a3a4459,Oct 28 2025,14:30:06[0m
+[0;33mW (984) BT_BTM: BTM_BleWriteAdvData, Partial data write into ADV[0m
+[0;33mW (984) BT_BTM: BTM_BleWriteScanRsp, Partial data write into ADV[0m
+[0;32mI (984) HEAP: ble init heap free block: 202376 bytes, Largest block: 110592 bytes[0m
+[0;32mI (994) BLE: create attribute table successfully, the number handle = 4[0m
+[0;32mI (994) BLE: create attribute table successfully, the number handle = 4[0m
+[0;32mI (1004) BLE: create attribute table successfully, the number handle = 3[0m
+[0;32mI (1004) BLE: Advertising data set, status 0[0m
+[0;32mI (1014) BLE: Scan response data set, status 0[0m
+[0;32mI (1024) BLE: SERVICE_START_EVT, status 0, service_handle 40[0m
+[0;32mI (1024) BLE: SERVICE_START_EVT, status 0, service_handle 44[0m
+[0;32mI (1024) BLE: SERVICE_START_EVT, status 0, service_handle 48[0m
+[0;32mI (1034) BLE: free heap: 200708[0m
+
+[0;32mI (1034) BLE: Advertising start successfully[0m
+[0;32mI (1044) SD_CARD: Initializing SD card[0m
+[0;32mI (1044) SD_CARD: Using SPI peripheral[0m
+[0;32mI (1044) SD_CARD: Mounting filesystem[0m
+[0;32mI (1054) sdspi_transaction: cmd=52, R1 response: command not supported[0m
+[0;32mI (1094) sdspi_transaction: cmd=5, R1 response: command not supported[0m
+[0;32mI (1144) SD_CARD: Filesystem mounted[0m
+Name: ACLCE
+Type: SDHC
+Speed: 4.00 MHz (limit: 4.00 MHz)
+Size: 60906MB
+CSD: ver=2, sector_size=512, capacity=124735488 read_bl_len=9
+SSR: bus_width=1
+[0;32mI (1144) SD_CARD: SD card initialized[0m
+[0;32mI (1154) HEAP: sdcard init heap free block: 193100 bytes, Largest block: 110592 bytes[0m
+[0;32mI (1154) MAIN: MAX30102 part ID = 0 15 15[0m
+
+[0;32mI (1164) MAIN: Starting all tasks![0m
+[0;32mI (1174) BLE: ble task started[0m
+[0;32mI (340914) BUTTON: Datalogging started.[0m
+[0;32mI (341164) IMU: IMU started at 340666875[0m
+
+[0;32mI (341164) IMU: heart rate started at 340667246[0m
+
+[0;32mI (341174) SENSOR_FUSION: IMU sensor fusion started.[0m
+[0;32mI (341174) SENSOR_FUSION: heart rate sensor fusion started.[0m
+[0;32mI (341174) SENSOR_FUSION: HR 0[0m
+
+[0;32mI (341174) SENSOR_FUSION: HR 1[0m
+
+[0;32mI (341184) SENSOR_FUSION: HR 2[0m
+
+[0;32mI (341184) SENSOR_FUSION: HR 4[0m
+
+[0;32mI (341194) SENSOR_FUSION: HR 6[0m
+
+[0;32mI (341194) SENSOR_FUSION: HR 6[0m
+
+[0;32mI (341204) SENSOR_FUSION: HR 6[0m
+
+[0;32mI (341204) SENSOR_FUSION: HR 8[0m
+
+[0;32mI (341204) SENSOR_FUSION: HR 9[0m
+
+[0;32mI (341214) SENSOR_FUSION: HR 11[0m
+
+[0;32mI (341214) SENSOR_FUSION: HR 13[0m
+
+[0;32mI (341224) SENSOR_FUSION: HR 14[0m
+
+[0;32mI (341224) SENSOR_FUSION: HR 16[0m
+
+[0;32mI (341234) SENSOR_FUSION: HR 16[0m
+
+[0;32mI (341234) SENSOR_FUSION: HR 17[0m
+
+[0;32mI (341244) SENSOR_FUSION: HR 18[0m
+
+[0;32mI (341244) SENSOR_FUSION: HR 20[0m
+
+[0;32mI (341254) SENSOR_FUSION: HR 21[0m
+
+[0;32mI (341254) SENSOR_FUSION: HR 23[0m
+
+[0;32mI (341264) SENSOR_FUSION: HR 24[0m
+
+[0;32mI (341264) SENSOR_FUSION: HR 26[0m
+
+[0;32mI (341274) SENSOR_FUSION: HR 28[0m
+
+[0;32mI (341274) SENSOR_FUSION: HR 30[0m
+
+[0;32mI (341284) SENSOR_FUSION: HR 30[0m
+
+[0;32mI (341284) SENSOR_FUSION: HR 31[0m
+
+[0;32mI (341294) SENSOR_FUSION: HR 32[0m
+
+[0;32mI (341294) SENSOR_FUSION: HR 33[0m
+
+[0;32mI (341304) SENSOR_FUSION: HR 35[0m
+
+[0;32mI (341304) SENSOR_FUSION: HR 37[0m
+
+[0;32mI (341304) SENSOR_FUSION: HR 38[0m
+
+[0;32mI (341314) SENSOR_FUSION: HR 40[0m
+
+[0;32mI (341324) SENSOR_FUSION: HR 42[0m
+
+[0;32mI (341324) SENSOR_FUSION: HR 43[0m
+
+[0;32mI (341324) SENSOR_FUSION: HR 43[0m
+
+[0;32mI (341334) SENSOR_FUSION: HR 44[0m
+
+[0;32mI (341334) SENSOR_FUSION: HR 45[0m
+
+[0;32mI (341344) SENSOR_FUSION: HR 47[0m
+
+[0;32mI (341344) SENSOR_FUSION: HR 49[0m
+
+[0;32mI (341354) SENSOR_FUSION: HR 50[0m
+
+[0;32mI (341354) SENSOR_FUSION: HR 52[0m
+
+[0;32mI (341364) SENSOR_FUSION: HR 54[0m
+
+[0;32mI (341364) SENSOR_FUSION: HR 55[0m
+
+[0;32mI (341374) SENSOR_FUSION: HR 55[0m
+
+[0;32mI (341374) SENSOR_FUSION: HR 56[0m
+
+[0;32mI (341384) SENSOR_FUSION: HR 57[0m
+
+[0;32mI (341384) SENSOR_FUSION: HR 59[0m
+
+[0;32mI (341394) SENSOR_FUSION: HR 60[0m
+
+[0;32mI (341394) SENSOR_FUSION: HR 62[0m
+
+[0;32mI (341404) SENSOR_FUSION: HR 64[0m
+
+[0;32mI (341404) SENSOR_FUSION: HR 66[0m
+
+[0;32mI (341414) SENSOR_FUSION: HR 67[0m
+
+[0;32mI (341414) SENSOR_FUSION: HR 68[0m
+
+[0;32mI (341424) SENSOR_FUSION: HR 68[0m
+
+[0;32mI (341424) SENSOR_FUSION: HR 69[0m
+
+[0;32mI (341424) SENSOR_FUSION: HR 71[0m
+
+[0;32mI (341434) SENSOR_FUSION: HR 72[0m
+
+[0;32mI (341434) SENSOR_FUSION: HR 74[0m
+
+[0;32mI (341444) SENSOR_FUSION: HR 76[0m
+
+[0;32mI (341444) SENSOR_FUSION: HR 77[0m
+
+[0;32mI (341454) SENSOR_FUSION: HR 79[0m
+
+[0;32mI (341454) SENSOR_FUSION: HR 81[0m
+
+[0;32mI (341464) SENSOR_FUSION: HR 82[0m
+
+[0;32mI (341464) SENSOR_FUSION: HR 82[0m
+
+[0;32mI (341474) SENSOR_FUSION: HR 83[0m
+
+[0;32mI (341474) SENSOR_FUSION: HR 84[0m
+
+[0;32mI (341484) SENSOR_FUSION: HR 86[0m
+
+[0;32mI (341484) SENSOR_FUSION: HR 88[0m
+
+[0;32mI (341494) SENSOR_FUSION: HR 89[0m
+
+[0;32mI (341494) SENSOR_FUSION: HR 91[0m
+
+[0;32mI (341504) SENSOR_FUSION: HR 93[0m
+
+[0;32mI (341504) SENSOR_FUSION: HR 93[0m
+
+[0;32mI (341514) SENSOR_FUSION: HR 94[0m
+
+[0;32mI (341514) SENSOR_FUSION: HR 95[0m
+
+[0;32mI (341514) SENSOR_FUSION: HR 96[0m
+
+[0;32mI (341524) SENSOR_FUSION: HR 98[0m
+
+[1;31mE (341524) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341534) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341534) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341534) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341534) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341544) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341544) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341544) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341554) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341554) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341564) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341564) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341564) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341574) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341574) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341584) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341584) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341584) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341594) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341594) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341604) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341604) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341604) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341614) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341614) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341624) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341624) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341624) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341634) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341634) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341644) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341644) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341654) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341654) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341654) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341654) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341664) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341664) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341664) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341674) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341674) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341684) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341684) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341694) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341694) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341694) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341704) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341704) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341704) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341714) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341714) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341714) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341724) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341724) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341734) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341734) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341744) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341744) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341744) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341754) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341754) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341764) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341764) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341764) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341774) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341774) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341784) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341784) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341784) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341794) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341794) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341794) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341804) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341804) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341804) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341814) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341814) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341824) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341824) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341834) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341834) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341834) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341834) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341844) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341844) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341854) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341854) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341864) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341864) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341874) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341874) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341874) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341874) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341884) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341884) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341894) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341894) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341894) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341894) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341904) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341904) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341914) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341914) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341924) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341924) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341924) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341934) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341934) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341934) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341944) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341944) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341954) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341954) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341964) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341964) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341964) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341974) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341974) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341974) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341984) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341984) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (341994) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (341994) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (341994) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342004) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342004) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342014) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342014) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342014) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342024) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342024) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342034) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342034) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342034) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342044) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342044) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342054) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342054) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342054) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342064) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342064) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342074) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342074) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342084) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342084) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342084) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342094) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342094) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342104) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342104) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342104) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342104) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342114) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342114) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342124) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342124) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342124) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342134) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342134) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342144) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342144) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342144) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342154) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342154) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342154) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342164) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342164) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342174) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342174) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342174) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342184) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342184) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342184) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342194) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342194) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342204) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342204) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342204) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342214) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342214) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342214) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342224) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342224) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342234) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342234) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342234) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342244) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342244) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342244) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342254) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342254) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342264) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342264) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342264) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342274) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342274) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342284) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342284) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342284) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342294) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342294) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342304) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342304) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342304) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342314) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342314) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342314) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342324) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342324) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342334) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342334) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342334) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342344) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342344) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342354) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342354) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342364) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342364) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342364) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342374) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342374) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342374) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342384) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342384) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342394) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342394) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342394) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342404) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342404) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342414) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342414) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342414) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342424) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342424) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342424) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342434) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342434) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342444) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342444) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342454) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342454) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342454) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342464) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342464) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342464) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342474) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342474) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342484) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342484) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342494) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342494) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342494) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342504) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342504) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342504) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342514) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342514) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342524) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342524) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342534) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342534) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342534) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342544) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342544) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342554) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342554) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342554) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342564) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342564) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342564) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342574) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (342574) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (342584) BUTTON: Datalogging stopped.[0m
+[0;32mI (342584) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (342584) SENSOR_FUSION: IMU sensor fusion stopped.[0m
+[0;32mI (342594) SENSOR_FUSION: heart rate sensor fusion stopped.[0m
+[0;32mI (342594) IMU: IMU stopped[0m
+[0;32mI (342594) IMU: heart rate stopped[0m
+[0;32mI (346354) BUTTON: Datalogging started.[0m
+[0;32mI (346594) SENSOR_FUSION: IMU sensor fusion started.[0m
+[0;32mI (346594) SENSOR_FUSION: heart rate sensor fusion started.[0m
+[0;32mI (346604) IMU: IMU started at 346106875[0m
+
+[0;32mI (346604) IMU: heart rate started at 346107130[0m
+
+[0;32mI (346604) SENSOR_FUSION: HR 0[0m
+
+[0;32mI (346604) SENSOR_FUSION: HR 0[0m
+
+[0;32mI (346614) SENSOR_FUSION: HR 0[0m
+
+[0;32mI (346614) SENSOR_FUSION: HR 0[0m
+
+[0;32mI (346624) SENSOR_FUSION: HR 1[0m
+
+[0;32mI (346624) SENSOR_FUSION: HR 2[0m
+
+[0;32mI (346624) SENSOR_FUSION: HR 4[0m
+
+[0;32mI (346634) SENSOR_FUSION: HR 6[0m
+
+[0;32mI (346634) SENSOR_FUSION: HR 7[0m
+
+[0;32mI (346644) SENSOR_FUSION: HR 9[0m
+
+[0;32mI (346644) SENSOR_FUSION: HR 10[0m
+
+[0;32mI (346654) SENSOR_FUSION: HR 12[0m
+
+[0;32mI (346654) SENSOR_FUSION: HR 14[0m
+
+[0;32mI (346664) SENSOR_FUSION: HR 14[0m
+
+[0;32mI (346664) SENSOR_FUSION: HR 15[0m
+
+[0;32mI (346674) SENSOR_FUSION: HR 16[0m
+
+[0;32mI (346674) SENSOR_FUSION: HR 18[0m
+
+[0;32mI (346684) SENSOR_FUSION: HR 19[0m
+
+[0;32mI (346684) SENSOR_FUSION: HR 21[0m
+
+[0;32mI (346694) SENSOR_FUSION: HR 23[0m
+
+[0;32mI (346694) SENSOR_FUSION: HR 25[0m
+
+[0;32mI (346704) SENSOR_FUSION: HR 26[0m
+
+[0;32mI (346704) SENSOR_FUSION: HR 27[0m
+
+[0;32mI (346714) SENSOR_FUSION: HR 28[0m
+
+[0;32mI (346714) SENSOR_FUSION: HR 29[0m
+
+[0;32mI (346724) SENSOR_FUSION: HR 30[0m
+
+[0;32mI (346724) SENSOR_FUSION: HR 32[0m
+
+[0;32mI (346724) SENSOR_FUSION: HR 33[0m
+
+[0;32mI (346734) SENSOR_FUSION: HR 35[0m
+
+[0;32mI (346734) SENSOR_FUSION: HR 37[0m
+
+[0;32mI (346744) SENSOR_FUSION: HR 38[0m
+
+[0;32mI (346744) SENSOR_FUSION: HR 39[0m
+
+[0;32mI (346754) SENSOR_FUSION: HR 40[0m
+
+[0;32mI (346754) SENSOR_FUSION: HR 41[0m
+
+[0;32mI (346764) SENSOR_FUSION: HR 42[0m
+
+[0;32mI (346764) SENSOR_FUSION: HR 44[0m
+
+[0;32mI (346774) SENSOR_FUSION: HR 46[0m
+
+[0;32mI (346774) SENSOR_FUSION: HR 47[0m
+
+[0;32mI (346784) SENSOR_FUSION: HR 49[0m
+
+[0;32mI (346784) SENSOR_FUSION: HR 50[0m
+
+[0;32mI (346794) SENSOR_FUSION: HR 52[0m
+
+[0;32mI (346794) SENSOR_FUSION: HR 52[0m
+
+[0;32mI (346804) SENSOR_FUSION: HR 53[0m
+
+[0;32mI (346804) SENSOR_FUSION: HR 54[0m
+
+[0;32mI (346814) SENSOR_FUSION: HR 56[0m
+
+[0;32mI (346814) SENSOR_FUSION: HR 58[0m
+
+[0;32mI (346824) SENSOR_FUSION: HR 59[0m
+
+[0;32mI (346824) SENSOR_FUSION: HR 61[0m
+
+[0;32mI (346834) SENSOR_FUSION: HR 63[0m
+
+[0;32mI (346834) SENSOR_FUSION: HR 64[0m
+
+[0;32mI (346844) SENSOR_FUSION: HR 64[0m
+
+[0;32mI (346844) SENSOR_FUSION: HR 65[0m
+
+[0;32mI (346844) SENSOR_FUSION: HR 66[0m
+
+[0;32mI (346854) SENSOR_FUSION: HR 68[0m
+
+[0;32mI (346854) SENSOR_FUSION: HR 70[0m
+
+[0;32mI (346864) SENSOR_FUSION: HR 71[0m
+
+[0;32mI (346864) SENSOR_FUSION: HR 73[0m
+
+[0;32mI (346874) SENSOR_FUSION: HR 75[0m
+
+[0;32mI (346874) SENSOR_FUSION: HR 76[0m
+
+[0;32mI (346884) SENSOR_FUSION: HR 78[0m
+
+[0;32mI (346884) SENSOR_FUSION: HR 78[0m
+
+[0;32mI (346894) SENSOR_FUSION: HR 79[0m
+
+[0;32mI (346894) SENSOR_FUSION: HR 80[0m
+
+[0;32mI (346904) SENSOR_FUSION: HR 82[0m
+
+[0;32mI (346904) SENSOR_FUSION: HR 84[0m
+
+[0;32mI (346914) SENSOR_FUSION: HR 85[0m
+
+[0;32mI (346914) SENSOR_FUSION: HR 87[0m
+
+[0;32mI (346924) SENSOR_FUSION: HR 89[0m
+
+[0;32mI (346924) SENSOR_FUSION: HR 90[0m
+
+[0;32mI (346934) SENSOR_FUSION: HR 92[0m
+
+[0;32mI (346934) SENSOR_FUSION: HR 92[0m
+
+[0;32mI (346934) SENSOR_FUSION: HR 92[0m
+
+[0;32mI (346944) SENSOR_FUSION: HR 94[0m
+
+[0;32mI (346944) SENSOR_FUSION: HR 95[0m
+
+[0;32mI (346954) SENSOR_FUSION: HR 97[0m
+
+[0;32mI (346954) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (346964) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (346964) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (346964) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (346964) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (346974) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (346974) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (346984) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (346984) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (346984) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (346994) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (346994) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (346994) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347004) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347004) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347014) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347014) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347014) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347024) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347034) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347034) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347034) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347044) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347044) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347044) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347054) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347054) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347064) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347064) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347064) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347074) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347074) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347074) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347084) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347084) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347094) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347094) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347094) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347104) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347104) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347114) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347114) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347114) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347114) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347124) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347124) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347134) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347134) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347134) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347144) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347144) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347154) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347154) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347164) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347164) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347164) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347174) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347174) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347174) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347184) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347184) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347194) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347194) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347194) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347204) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347204) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347204) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347214) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347214) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347224) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347224) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347224) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347234) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347234) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347244) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347244) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347244) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347254) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347254) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347264) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347264) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347264) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347274) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347274) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347284) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347284) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347284) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347294) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347294) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347304) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347304) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347304) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347314) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347314) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347314) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347324) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347324) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347334) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347334) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347334) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347344) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347344) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347354) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347354) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347354) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347364) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347364) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347364) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347374) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347374) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347384) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347384) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347384) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347394) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347394) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347394) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347404) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347404) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347404) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347414) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347414) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347424) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347424) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347424) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347434) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347434) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347434) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347444) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347444) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347454) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347454) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347454) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347464) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347464) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347474) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347474) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347484) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347484) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347494) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347494) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347494) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347504) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347504) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347504) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347514) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347514) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347514) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347524) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347524) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347524) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347534) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347534) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347544) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347544) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347544) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347554) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347554) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347554) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347564) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347564) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347574) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347574) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347584) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347584) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347584) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347594) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347594) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347604) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347604) SENSOR_FUSION: HR 99[0m
+
+[1;31mE (347604) IMU: ERROR: Could not put item on heart rate queue.[0m
+[0;32mI (347614) BUTTON: Datalogging stopped.[0m
+[0;32mI (347614) SENSOR_FUSION: HR 99[0m
+
+[0;32mI (347614) SENSOR_FUSION: IMU sensor fusion stopped.[0m
+[0;32mI (347624) SENSOR_FUSION: heart rate sensor fusion stopped.[0m
+[0;32mI (347624) IMU: IMU stopped[0m
+[0;32mI (347634) IMU: heart rate stopped[0m

@@ -14,14 +14,20 @@
  * @param heart_rate_dev_handle heart rate i2c device handle
  * @param sensors_cmds struct containing sensor command
  */
-typedef struct
+typedef struct params_task_sensors_t
 {
     QueueHandle_t queue_imu_sensor;
     QueueHandle_t queue_heart_rate_sensor;
     i2c_master_dev_handle_t imu_dev_handle;
-    i2c_master_dev_handle_t heart_rate_dev_handle;
+    i2c_MAX30102_handle_t heart_rate_dev_handle;
     sensors_cmd_struct_t *sensors_cmds;
+    gpio_cmd_struct_t *gpio_cmds;
 } params_task_sensors_t;
+
+/**
+ * @brief
+ */
+void stop_all_sensors(sensors_cmd_struct_t *sensors_cmd_struct);
 
 /**
  * @brief i2c sensors reading task

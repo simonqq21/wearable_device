@@ -1,18 +1,14 @@
 #include "../include/gpio_module.h"
 
-// task handles for GPIO, sensors, sensor fusion, and SD card datalogging
-extern TaskHandle_t task_handle_GPIO;
-extern TaskHandle_t task_handle_sensors;
-extern TaskHandle_t task_handle_sensor_fusion;
-extern TaskHandle_t task_handle_SD_card_datalogger;
-
+/* structs for atomic task commands structs */
 extern sensors_cmd_struct_t sensors_cmd_struct;
+extern sensor_fusion_cmd_struct_t sensor_fusion_cmd_struct;
+extern gpio_cmd_struct_t gpio_cmd_struct;
+extern sd_card_cmd_struct_t sd_card_cmd_struct;
 
-uint8_t btn_datalogging;
+atomic_bool btn_datalogging;
 
 extern button_handle_t btn1;
-
-cmd_task_status_led_t status_led_state_from_button;
 
 void gpio_init()
 {
@@ -36,6 +32,13 @@ void gpio_init()
 // gpio_set_level(GPIO_OUTPUT_IO_0, cnt % 2);
 // gpio_set_level(GPIO_OUTPUT_IO_1, cnt % 2);
 
+/**
+ * @brief
+ * Button actions:
+ * short press - toggle datalogging
+ * long press - calibrate + self-test IMU
+ *
+ */
 esp_err_t buttons_init()
 {
     // configure button
@@ -58,101 +61,75 @@ esp_err_t buttons_init()
     return ESP_OK;
 }
 
-void buttons_set_callbacks(void)
-{
-    /*
-    Button actions:
-    short press - toggle datalogging
-    long press - calibrate + self-test IMU
-    */
-    iot_button_register_cb(btn1, BUTTON_SINGLE_CLICK, NULL, button_toggle_datalogging_cb, NULL);
-    iot_button_register_cb(btn1, BUTTON_LONG_PRESS_START, NULL, button_trigger_calibration_cb, NULL);
-}
-
 void set_datalogging_led(uint8_t led_value)
 {
     gpio_set_level(LED1_PIN, led_value);
 }
-
 void button_trigger_calibration_cb(void *arg, void *data)
 {
     ESP_LOGI(BUTTON_TAG, "Calibrating IMU...");
-    // pause datalogging
-    if (task_handle_sensor_fusion != NULL)
-        xTaskNotify(task_handle_sensor_fusion, CMD_DATALOGGING_STOP, eSetValueWithOverwrite);
+    /* stop datalogging */
+    atomic_store(&sensor_fusion_cmd_struct.imu_sensor_fusion_cmd, CMD_IMU_SENSOR_FUSION_STOP);
+    atomic_store(&sensor_fusion_cmd_struct.heart_rate_sensor_fusion_cmd, CMD_HEART_RATE_SENSOR_FUSION_STOP);
 
-    // // pause IMU reading task to perform calibration
-    // if (task_handle_sensors != NULL)
-    //     xTaskNotify(task_handle_sensors, CMD_IMU_CALIBRATE, eSetValueWithOverwrite);
+    /* stop all sensors */
+    atomic_store(&sensors_cmd_struct.imu_cmd, CMD_IMU_STOP);
+    atomic_store(&sensors_cmd_struct.heart_rate_cmd, CMD_HEART_RATE_STOP);
+
+    /* turn off the status LED */
+    atomic_store(&gpio_cmd_struct.status_led_cmd, CMD_STATUS_LED_OFF);
+
+    /* run calibration routine */
     atomic_store(&sensors_cmd_struct.imu_cmd, CMD_IMU_CALIBRATE);
-
-    // vTaskDelay(1000 / portTICK_PERIOD_MS);
-    // xTaskNotify(task_handle_imu, CMD_IMU_STOP, eSetValueWithOverwrite);
 }
 
 void button_toggle_datalogging_cb(void *arg, void *data)
 {
-    if (btn_datalogging)
+    bool btn_datalogging_ = atomic_load(&btn_datalogging);
+    if (btn_datalogging_)
     {
-        btn_datalogging = false;
-        // status_led_state_from_button = STATUS_LED_OFF;
-        // xTaskNotifyGiveIndexed(task_handle_GPIO, 0);
+        /* stop datalogging */
+        atomic_store(&btn_datalogging, false);
 
-        // stop datalogging task
-        if (task_handle_sensor_fusion != NULL)
-            xTaskNotify(task_handle_sensor_fusion, CMD_DATALOGGING_STOP, eSetValueWithOverwrite);
+        /* stop all sensor fusion */
+        atomic_store(&sensor_fusion_cmd_struct.imu_sensor_fusion_cmd, CMD_IMU_SENSOR_FUSION_STOP);
+        atomic_store(&sensor_fusion_cmd_struct.heart_rate_sensor_fusion_cmd, CMD_HEART_RATE_SENSOR_FUSION_STOP);
 
-        // stop all sensors
+        /* stop all sensors */
         atomic_store(&sensors_cmd_struct.imu_cmd, CMD_IMU_STOP);
         atomic_store(&sensors_cmd_struct.heart_rate_cmd, CMD_HEART_RATE_STOP);
 
-        // //  start IMU task
-        // if (task_handle_sensors != NULL)
-        //     xTaskNotify(task_handle_sensors, CMD_IMU_STOP, eSetValueWithOverwrite);
+        /* turn off the status LED */
+        atomic_store(&gpio_cmd_struct.status_led_cmd, CMD_STATUS_LED_OFF);
 
-        // turn off the status LED
-        if (task_handle_GPIO != NULL)
-            xTaskNotify(task_handle_GPIO, STATUS_LED_OFF, eSetValueWithOverwrite);
-        // stop SD card datalogging
-        if (task_handle_SD_card_datalogger != NULL)
-            xTaskNotify(task_handle_SD_card_datalogger, CMD_SD_CARD_STOP, eSetValueWithOverwrite);
+        /* stop SD card datalogging */
+        atomic_store(&sd_card_cmd_struct.sd_card_cmd, CMD_SD_CARD_STOP);
+
         ESP_LOGI(BUTTON_TAG, "Datalogging stopped.");
     }
     else
     {
-        btn_datalogging = true;
-        // status_led_state_from_button = STATUS_LED_BLINK;
-        // xTaskNotifyGiveIndexed(task_handle_GPIO, 0);
+        /* start datalogging */
+        atomic_store(&btn_datalogging, true);
 
-        // start datalogging task
-        if (task_handle_sensor_fusion != NULL)
-            xTaskNotify(task_handle_sensor_fusion, CMD_DATALOGGING_GO, eSetValueWithOverwrite);
+        /* start all sensor fusion */
+        atomic_store(&sensor_fusion_cmd_struct.imu_sensor_fusion_cmd, CMD_IMU_SENSOR_FUSION_GO);
+        atomic_store(&sensor_fusion_cmd_struct.heart_rate_sensor_fusion_cmd, CMD_HEART_RATE_SENSOR_FUSION_GO);
 
-        // start all sensors
+        /* start all sensors */
         atomic_store(&sensors_cmd_struct.imu_cmd, CMD_IMU_START);
         atomic_store(&sensors_cmd_struct.heart_rate_cmd, CMD_HEART_RATE_START);
 
-        // //  start IMU task
-        // if (task_handle_sensors != NULL)
-        //     xTaskNotify(task_handle_sensors, CMD_IMU_START, eSetValueWithOverwrite);
+        /* turn on the status LED */
+        atomic_store(&gpio_cmd_struct.status_led_cmd, CMD_STATUS_LED_BLINK);
 
-        // turn on the status LED
-        if (task_handle_GPIO != NULL)
-            xTaskNotify(task_handle_GPIO, STATUS_LED_BLINK, eSetValueWithOverwrite);
-        // start SD card datalogging
-        if (task_handle_SD_card_datalogger != NULL)
-            xTaskNotify(task_handle_SD_card_datalogger, CMD_SD_CARD_START, eSetValueWithOverwrite);
+        /* stop SD card datalogging */
+        atomic_store(&sd_card_cmd_struct.sd_card_cmd, CMD_SD_CARD_START);
         ESP_LOGI(BUTTON_TAG, "Datalogging started.");
     }
 }
-
-// void set_gpio_task_handles(TaskHandle_t ptask_handle_GPIO,
-//                            TaskHandle_t ptask_handle_sensors,
-//                            TaskHandle_t ptask_handle_main_datalogging,
-//                            TaskHandle_t ptask_handle_SD_card_datalogger)
-// {
-//     task_handle_GPIO = ptask_handle_GPIO;
-//     task_handle_sensors = ptask_handle_sensors;
-//     task_handle_sensor_fusion = ptask_handle_main_datalogging;
-//     task_handle_SD_card_datalogger = ptask_handle_SD_card_datalogger;
-// }
+void buttons_set_callbacks(void)
+{
+    iot_button_register_cb(btn1, BUTTON_SINGLE_CLICK, NULL, button_toggle_datalogging_cb, NULL);
+    iot_button_register_cb(btn1, BUTTON_LONG_PRESS_START, NULL, button_trigger_calibration_cb, NULL);
+}

@@ -13,6 +13,7 @@ typedef struct
 {
     QueueHandle_t queue_imu_sdcard;
     QueueHandle_t queue_heart_rate_sdcard;
+    sd_card_cmd_struct_t *sd_card_cmds;
 } params_task_SD_card_datalogger_t;
 
 void task_SD_card_datalogger(void *params);

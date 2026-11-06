@@ -59,6 +59,10 @@ typedef struct
     i2c_MAX30102_handle_t sensor;
 } max30102_dev_handle_t;
 
+void fifo_reset(i2c_MAX30102_handle_t handle);
+
+esp_err_t fifo_read_sample(i2c_MAX30102_handle_t handle, uint32_t *red, uint32_t *ir);
+
 esp_err_t i2c_MAX30102_init(i2c_master_bus_handle_t bus_handle, const i2c_MAX30102_config_t *MAX30102_config,
                             i2c_MAX30102_handle_t *MAX30102_handle);
 
