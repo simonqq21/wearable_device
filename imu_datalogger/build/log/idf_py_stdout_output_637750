@@ -1,0 +1,11 @@
+Command: ninja partition-table
+[1/1] cd /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/esp-idf/partition_table && /usr/bin/cmake -E echo "Partition table binary generated. Contents:" && /usr/bin/cmake -E echo "*******************************************************************************" && /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/components/partition_table/gen_esp32part.py -q --offset 0x8000 --primary-bootloader-offset 0x1000 --flash-size 4MB -- /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/partition_table/partition-table.bin && /usr/bin/cmake -E echo "*******************************************************************************"
+Partition table binary generated. Contents:
+*******************************************************************************
+# ESP-IDF Partition Table
+# Name, Type, SubType, Offset, Size, Flags
+nvs,data,nvs,0x9000,24K,
+phy_init,data,phy,0xf000,4K,
+factory,app,factory,0x10000,1M,
+nvs_factory,data,nvs,0x110000,24K,readonly
+*******************************************************************************

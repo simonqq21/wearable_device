@@ -70,7 +70,7 @@ QueueHandle_t queue_haptics_BLE;
 // QueueHandle_t queue_haptics_command_play_custom_BLE;
 
 /* shared variables */
-haptics_status_t haptics_status;
+// haptics_status_t haptics_status;
 float battery_voltage;
 
 bool datalogging = false;
@@ -88,10 +88,10 @@ i2c_MAX30102_handle_t heart_rate_dev_handle;
 /* haptics hw struct */
 haptic_actuator_array_t haptics_hw;
 haptic_channel_pins_t haptics_channels[4] = {
-    {CHANNEL_0_PIN_1, CHANNEL_0_PIN_2},
-    {CHANNEL_1_PIN_1, CHANNEL_1_PIN_2},
-    {CHANNEL_2_PIN_1, CHANNEL_2_PIN_2},
-    {CHANNEL_3_PIN_1, CHANNEL_3_PIN_2}};
+    {CHANNEL_0_PIN_1},
+    {CHANNEL_1_PIN_1},
+    {CHANNEL_2_PIN_1},
+    {CHANNEL_3_PIN_1}};
 
 // ****************************************************************
 
@@ -104,7 +104,7 @@ params_task_uart_t params_task_uart;
 params_task_ble_t params_task_ble;
 params_task_haptics_t params_task_haptics;
 
-// Callback function executed when the timer fires
+/* Callback function executed when the timer fires */
 static void haptics_timer_callback(void *arg)
 {
     // i = (i + 1) % 4;
@@ -113,7 +113,6 @@ static void haptics_timer_callback(void *arg)
 }
 
 // main
-imu_raw_data_t data;
 void app_main(void)
 {
     // initialize GPIO (simple inputs and outputs)
@@ -189,7 +188,7 @@ void app_main(void)
                  haptics_channels);
     haptics_disable_all(&haptics_hw);
 
-    // Define periodic timer configuration
+    /* initialize timer that will run haptics loop */
     const esp_timer_create_args_t haptics_timer_args = {
         .callback = &haptics_timer_callback,
         .name = "haptics player timer",
@@ -321,7 +320,7 @@ void app_main(void)
     // micro SD card datalogging task
     xTaskCreatePinnedToCore(task_SD_card_datalogger,
                             "SD card datalogging task",
-                            8192, //
+                            10240, //
                             &params_task_SD_card_datalogger,
                             6,
                             &task_handle_SD_card_datalogger,

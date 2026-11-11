@@ -48,9 +48,10 @@
 
 #include "TaskBLE.h"
 
+/* BLE device name */
 static const char device_name[] = "ITLAB BLE WEARABLE";
-uint16_t ble_task_delay_period = 100;
 
+/* BLE service and characteristic UUIDs, either 16-bit or 128-bit */
 static uint16_t HEART_RATE_SERVICE_UUID = 0x180D;
 static uint16_t HEART_RATE_CHARACTERISTIC_UUID = 0x2A37;
 static uint16_t BODY_SENSOR_LOCATION_CHARACTERISTIC_UUID = 0x2A38;
@@ -200,16 +201,17 @@ static uint8_t HAPTICS_SEQUENCE_CHARACTERISTIC_UUID[] = {
 //     0xc5,
 // };
 
-/* orientation value */
-static imu_orientation_data_t orientation_data;
+/* orientation data */
+imu_orientation_data_t rcv_orientation_data[15];
 /* heart rate value */
 static uint8_t heart_rate = 0;
 /* heart rate body sensor location value */
 static uint8_t body_sensor_location = 0;
 /* haptic actuators play builtin command struct */
+static uint8_t haptics_command_testing;
 static haptics_command_play_builtin_sequence_t haptics_command_builtin;
 /* haptic actuators play custom sequence struct */
-static haptics_command_play_custom_sequence_t haptics_command_custom;
+// static haptics_command_play_custom_sequence_t haptics_command_custom;
 
 /* BLE queues struct */
 static params_task_ble_t *params_task_ble;
@@ -336,13 +338,13 @@ esp_gatts_attr_db_t gatt_db_heart_rate[GATT_HEART_RATE_IDX_NB] = {
     /*  heart rate service declaration  */
     [HEART_RATE_IDX_SVC] =
         {
-            {ESP_GATT_AUTO_RSP},                    // Auto respond configuration, set to respond automatically by the stack.
-            {ESP_UUID_LEN_16,                       // define primary GATT service
-             (uint8_t *)&primary_service_uuid,      // define primary GATT service
-             ESP_GATT_PERM_READ,                    // read permission
-             sizeof(HEART_RATE_SERVICE_UUID),       // max UUID16
-             sizeof(HEART_RATE_SERVICE_UUID),       // UUID16
-             (uint8_t *)&HEART_RATE_SERVICE_UUID}}, // GATT service UUID
+            {ESP_GATT_AUTO_RSP},                             // Auto respond configuration, set to respond automatically by the stack.
+            {.uuid_length = ESP_UUID_LEN_16,                 // define primary GATT service
+             .uuid_p = (uint8_t *)&primary_service_uuid,     // define primary GATT service
+             .perm = ESP_GATT_PERM_READ,                     // read permission
+             .max_length = sizeof(HEART_RATE_SERVICE_UUID),  // max UUID16
+             .length = sizeof(HEART_RATE_SERVICE_UUID),      // UUID16
+             .value = (uint8_t *)&HEART_RATE_SERVICE_UUID}}, // GATT service UUID
 
     /* heart rate measurement characteristic declaration */
     [HEART_RATE_IDX_CHAR] = // Named or designated initializer in the enum table.
@@ -351,8 +353,8 @@ esp_gatts_attr_db_t gatt_db_heart_rate[GATT_HEART_RATE_IDX_NB] = {
         {ESP_UUID_LEN_16,                        // define a GATT characteristic
          (uint8_t *)&character_declaration_uuid, // define a GATT characteristic
          ESP_GATT_PERM_READ,                     // read permission
-         CHAR_DECLARATION_SIZE,                  // characteristic declaration size (uint8_t)
-         CHAR_DECLARATION_SIZE,                  // characteristic declaration size (uint8_t)
+         sizeof(char_prop_read_notify),          // characteristic declaration size (uint8_t)
+         sizeof(char_prop_read_notify),          // characteristic declaration size (uint8_t)
          (uint8_t *)&char_prop_read_notify}},    // Characteristic is read-notify
 
     /* heart rate measurement value declaration */
@@ -371,8 +373,8 @@ esp_gatts_attr_db_t gatt_db_heart_rate[GATT_HEART_RATE_IDX_NB] = {
          {ESP_UUID_LEN_16,                          // UUID16
           (uint8_t *)&character_client_config_uuid, // define a client config UUID
           ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE, // read-write permission
-          sizeof(uint16_t),                         // max size of value
-          sizeof(uint16_t),                         // cur size of value
+          sizeof(heart_rate_ccc),                   // max size of value
+          sizeof(heart_rate_ccc),                   // cur size of value
           (uint8_t *)&heart_rate_ccc}},             // pointer to characteristic value
 
     // /* body sensor location characteristic declaration */
@@ -415,8 +417,8 @@ static const esp_gatts_attr_db_t gatt_db_orientation[GATT_ORIENTATION_IDX_NB] =
          {ESP_UUID_LEN_16,                        // define a GATT characteristic
           (uint8_t *)&character_declaration_uuid, // define a GATT characteristic
           ESP_GATT_PERM_READ,                     // read permission
-          CHAR_DECLARATION_SIZE,                  // characteristic declaration size (uint8_t)
-          CHAR_DECLARATION_SIZE,                  // characteristic declaration size (uint8_t)
+          sizeof(char_prop_read_notify),          // characteristic declaration size (uint8_t)
+          sizeof(char_prop_read_notify),          // characteristic declaration size (uint8_t)
           (uint8_t *)&char_prop_read_notify}},    // Characteristic is read-write
 
         /* orientation value declaration */
@@ -425,9 +427,9 @@ static const esp_gatts_attr_db_t gatt_db_orientation[GATT_ORIENTATION_IDX_NB] =
              {ESP_UUID_LEN_128,                           // UUID128
               (uint8_t *)ORIENTATION_CHARACTERISTIC_UUID, // GATT characteristic UUID
               ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,   // read-write permission
-              500,                                        // max size of value
-              sizeof(orientation_data),                   // cur size of value
-              (uint8_t *)&orientation_data}},             // pointer to characteristic value
+              sizeof(rcv_orientation_data),               // max size of value
+              sizeof(rcv_orientation_data),               // cur size of value
+              (uint8_t *)rcv_orientation_data}},          // pointer to characteristic value
 
         /* orientation notification configuration declaration */
         [ORIENTATION_IDX_NTF_CFG] =
@@ -435,8 +437,8 @@ static const esp_gatts_attr_db_t gatt_db_orientation[GATT_ORIENTATION_IDX_NB] =
              {ESP_UUID_LEN_16,                          // UUID128
               (uint8_t *)&character_client_config_uuid, // GATT characteristic UUID
               ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE, // read-write permission
-              sizeof(uint16_t),                         // max size of value
-              sizeof(uint16_t),                         // cur size of value
+              sizeof(orientation_ccc),                  // max size of value
+              sizeof(orientation_ccc),                  // cur size of value
               (uint8_t *)&orientation_ccc}},            // pointer to characteristic value
 
 };
@@ -458,8 +460,8 @@ static const esp_gatts_attr_db_t gatt_db_haptics[GATT_HAPTICS_IDX_NB] = {
          {ESP_UUID_LEN_16,                        // define a GATT characteristic
           (uint8_t *)&character_declaration_uuid, // define a GATT characteristic
           ESP_GATT_PERM_READ,                     // read permission
-          CHAR_DECLARATION_SIZE,                  // characteristic declaration size (uint8_t)
-          CHAR_DECLARATION_SIZE,                  // characteristic declaration size (uint8_t)
+          sizeof(char_prop_write),                // characteristic declaration size (uint8_t)
+          sizeof(char_prop_write),                // characteristic declaration size (uint8_t)
           (uint8_t *)&char_prop_write}},          // Characteristic is read-notify
 
     /* Haptics command play builtin sequence value declaration */
@@ -745,15 +747,16 @@ void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts
             ESP_LOGI(BLE_TAG, "GATT_WRITE_EVT, handle = %d, value len = %d, value :", param->write.handle, param->write.len);
             ESP_LOG_BUFFER_HEX(BLE_TAG, param->write.value, param->write.len);
 
-            /*
-            receive haptics sequences commands from phone
-            */
+            /* if data received is from the haptics sequence characteristic */
             if (param->write.handle == haptics_service_handle_table[HAPTICS_SEQUENCE_IDX_VAL])
             {
-                ESP_LOGI(BLE_TAG, "haptics sequence write");
+                // haptics_command_testing = (uint8_t *);
+                memcpy(&haptics_command_testing, param->write.value, param->write.len);
+                ESP_LOGI(BLE_TAG, "haptics_command_testing  = %d", haptics_command_testing);
+
                 // memcpy(&haptics_command_builtin, param->write.value, sizeof(haptics_command_play_builtin_sequence_t));
                 /* push to haptics command play builtin queue */
-                xQueueSend(params_task_ble->queue_haptics_BLE, param->write.value, ble_task_delay_period / portTICK_PERIOD_MS);
+                xQueueSend(params_task_ble->queue_haptics_BLE, &haptics_command_testing, 100 / portTICK_PERIOD_MS);
             }
 
             // /*
@@ -1141,8 +1144,6 @@ void task_ble_streaming(void *params)
 {
     /* unified IMU data */
     imu_unified_data_t imu_unified_data;
-    /* orientation data */
-    imu_orientation_data_t rcv_orientation_data[15];
     /* orientation data array index */
     uint8_t orientation_arr_idx = 0;
     /* heart rate data */
@@ -1174,7 +1175,7 @@ void task_ble_streaming(void *params)
                 /* stream the data out via BLE */
                 if (orientation_arr_idx == 14)
                 {
-
+                    // ESP_LOGI(BLE_TAG, "sizeof(rcv_orientation_data) = %d", sizeof(rcv_orientation_data));
                     esp_ble_gatts_set_attr_value(orientation_service_handle_table[ORIENTATION_IDX_VAL],
                                                  sizeof(rcv_orientation_data),
                                                  (uint8_t *)rcv_orientation_data);

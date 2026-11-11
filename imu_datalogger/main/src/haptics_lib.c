@@ -8,12 +8,10 @@
 // volatile uint32_t haptic_time = 0;
 // volatile uint32_t haptic_last_time = 0;
 
-/**
- * @brief initialize the haptic actuator array hardware
- *
- * @param haptics pointer to haptic actuator array
- * @param channels pointer to array of haptic channels
- */
+haptic_pulse_t dummy_pulse[1] = {
+    {.duration_ms = 100,
+     .values = {0, 0, 0, 0}}};
+
 void haptics_init(haptic_actuator_array_t *haptics,
                   uint8_t en_pin,
                   haptic_channel_pins_t *channels)
@@ -57,36 +55,25 @@ void haptics_init(haptic_actuator_array_t *haptics,
 
     // configure GPIO with the given settings
     gpio_config(&io_conf);
+
+    haptics_load_pulse_seq(haptics, dummy_pulse, 1);
 }
 
-/**
- * @brief set value for a haptic actuator
- *
- * @param channel channel to set
- * @param val value to set
- */
 void haptic_set_val(haptic_channel_pins_t channel, uint8_t val)
 {
 
     if (val)
     {
-        gpio_set_level(channel.pin_1, 0);
+        gpio_set_level(channel.pin_1, HAPTIC_ACTIVE_LEVEL);
         // gpio_set_level(channel.pin_2, 0);
     }
     else
     {
-        gpio_set_level(channel.pin_1, 1);
+        gpio_set_level(channel.pin_1, !HAPTIC_ACTIVE_LEVEL);
         // gpio_set_level(channel.pin_2, 1);
     }
 }
 
-/**
- * @brief disable all haptics
- *
- * This function is used when stopping haptics.
- *
- * @param
- */
 void haptics_disable_all(haptic_actuator_array_t *haptics)
 {
     gpio_set_level(haptics->en_pin, 0);
@@ -96,12 +83,6 @@ void haptics_disable_all(haptic_actuator_array_t *haptics)
     }
 }
 
-/**
- * @brief play a single multi-channel haptic actuator pulse
- *
- * @param haptics pointer to haptic actuator array
- * @param pulse haptic pulse to play
- */
 void haptics_play_pulse(haptic_actuator_array_t *haptics, haptic_pulse_t *pulse)
 {
     gpio_set_level(haptics->en_pin, 1);
@@ -112,13 +93,6 @@ void haptics_play_pulse(haptic_actuator_array_t *haptics, haptic_pulse_t *pulse)
     }
 }
 
-/**
- * @brief load a sequence of pulses into the circular buffer for playback
- *
- * @param haptics pointer to haptic actuator array
- * @param pulse_seq pointer to the start of the haptic pulse sequence
- * @param len the length of the haptic sequence
- */
 void haptics_load_pulse_seq(haptic_actuator_array_t *haptics, haptic_pulse_t *pulse_seq, uint8_t len)
 {
     if (len > HAPTIC_SEQ_BUF_LEN)
@@ -131,6 +105,7 @@ void haptics_load_pulse_seq(haptic_actuator_array_t *haptics, haptic_pulse_t *pu
         haptics->pulses_buffer[haptics->head_idx] = pulse_seq[i];
         haptics->head_idx = (haptics->head_idx + 1) % HAPTIC_SEQ_BUF_LEN;
     }
+    haptics->cmd = HAPTICS_CMD_PLAY;
 }
 
 // /**
@@ -160,18 +135,12 @@ void haptics_load_pulse_seq(haptic_actuator_array_t *haptics, haptic_pulse_t *pu
 //     vTaskDelay(pdMS_TO_TICKS(pulse->pause_ms));
 // }
 
-/**
- * @brief stop playing the haptic sequence it is currently playing
- */
 void haptics_stop(haptic_actuator_array_t *haptics)
 {
     /* set command to stop */
     haptics->cmd = HAPTICS_CMD_STOP;
 }
 
-/**
- * @brief check if haptic actuators are playing a sequence
- */
 uint8_t haptics_busy(haptic_actuator_array_t *haptics)
 {
     if (haptics->state == HAPTICS_STATE_PLAYING)
@@ -184,9 +153,6 @@ uint8_t haptics_busy(haptic_actuator_array_t *haptics)
     }
 }
 
-/**
- * @brief haptic actuator loop
- */
 void haptics_ISR_callback(haptic_actuator_array_t *haptics)
 {
     haptics->time = esp_timer_get_time() / 1000;
@@ -247,3 +213,5 @@ void haptics_ISR_callback(haptic_actuator_array_t *haptics)
         break;
     }
 }
+
+// void

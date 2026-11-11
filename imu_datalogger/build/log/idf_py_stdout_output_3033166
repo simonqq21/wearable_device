@@ -1,0 +1,1174 @@
+Command: /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/imu_module.elf /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader/bootloader.elf -m '/home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python' '/home/simonque/Documents/code/esp-idf/tools/idf.py'
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0040,len:6272
+load:0x40078000,len:15848
+load:0x40080400,len:3920
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v6.1-dev-2310-g44e2fa6d9c5-dirt 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Sep  1 2026 14:56:57[0m
+[0;32mI (28) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v3.1[0m
+[0;32mI (34) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (37) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (65) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (78) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=270c4h (159940) map[0m
+[0;32mI (145) esp_image: segment 1: paddr=000370ec vaddr=3ffbdb60 size=051f4h ( 20980) load[0m
+[0;32mI (154) esp_image: segment 2: paddr=0003c2e8 vaddr=40080000 size=03d30h ( 15664) load[0m
+[0;32mI (160) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=7ed44h (519492) map[0m
+[0;32mI (346) esp_image: segment 4: paddr=000bed6c vaddr=40083d30 size=1512ch ( 86316) load[0m
+[0;32mI (381) esp_image: segment 5: paddr=000d3ea0 vaddr=50000000 size=00028h (    40) load[0m
+[0;32mI (394) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (394) boot: Disabling RNG early entropy source...[0m
+[0;32mI (404) cpu_start: Multicore app[0m
+[0;32mI (413) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (413) cpu_start: Pro cpu start user code[0m
+[0;32mI (413) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (415) app_init: Application information:[0m
+[0;32mI (419) app_init: Project name:     imu_module[0m
+[0;32mI (423) app_init: App version:      4c5a499-dirty[0m
+[0;32mI (427) app_init: Compile time:     Nov  7 2026 16:51:29[0m
+[0;32mI (432) app_init: ELF file SHA256:  47e319eea...[0m
+[0;32mI (437) app_init: ESP-IDF:          v6.1-dev-2310-g44e2fa6d9c5-dirt[0m
+[0;32mI (443) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (446) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (450) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (455) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (461) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (466) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (471) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (476) heap_init: At 3FFC7408 len 00018BF8 (98 KiB): DRAM[0m
+[0;32mI (481) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (487) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (492) heap_init: At 40098E5C len 000071A4 (28 KiB): IRAM[0m
+[0;33mW (499) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (510) spi_flash: detected chip: generic[0m
+[0;32mI (514) spi_flash: flash io: dio[0m
+[0;33mW (517) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (530) coexist: coex firmware version: 093e3d2[0m
+[0;32mI (534) main_task: Started on CPU0[0m
+[0;32mI (544) main_task: Calling app_main()[0m
+[0;32mI (544) button: IoT Button Version: 4.2.0[0m
+[0;32mI (554) MAIN: I2C initialized successfully[0m
+[0;32mI (554) LSM6DS3: WHO_AM_I = 69[0m
+[0;32mI (564) MAX301I (564) HEAP: start heap free block: 227440 bytes, Largest block: 110592 bytes[0m
+[0;32mI (564) BLE: free heap: 227440[0m
+
+[0;32mI (574) BTDM_INIT: BT controller compile version [045a658][0m
+[0;32mI (574) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (574) BTDM_INIT: Bluetooth MAC: d8:13:2a:7d:69:0a[0m
+[0;32mI (584) phy_init: phy_version 4863,a3a4459,Oct 28 2025,14:30:06[0m
+[0;33mW (994) BT_BTM: BTM_BleWriteAdvData, Partial data write into ADV[0m
+[0;33mW (1004) BT_BTM: BTM_BleWriteScanRsp, Partial data write into ADV[0m
+[0;32mI (1004) HEAP: ble init heap free block: 202224 bytes, Largest block: 110592 bytes[0m
+[0;32mI (1004) BLE: create attribute table successfully, the number handle = 4[0m
+[0;32mI (1014) BLE: create attribute table successfully, the number handle = 4[0m
+[0;32mI (1014) BLE: create attribute table successfully, the number handle = 3[0m
+[0;32mI (1024) BLE: Advertising data set, status 0[0m
+[0;32mI (1024) BLE: Scan response data set, status 0[0m
+[0;32mI (1034) BLE: SERVICE_START_EVT, status 0, service_handle 40[0m
+[0;32mI (1034) BLE: SERVICE_START_EVT, status 0, service_handle 44[0m
+[0;32mI (1044) BLE: SERVICE_START_EVT, status 0, service_handle 48[0m
+[0;32mI (1054) BLE: Advertising start successfully[0m
+[0;32mI (1054) BLE: free heap: 200952[0m
+
+[0;32mI (1054) SD_CARD: Initializing SD card[0m
+[0;32mI (1054) SD_CARD: Using SPI peripheral[0m
+[0;32mI (1064) SD_CARD: Mounting filesystem[0m
+[0;32mI (1064) sdspi_transaction: cmd=52, R1 response: command not supported[0m
+[0;32mI (1114) sdspi_transaction: cmd=5, R1 response: command not supported[0m
+[0;32mI (1164) SD_CARD: Filesystem mounted[0m
+Name: ACLCE
+Type: SDHC
+Speed: 4.00 MHz (limit: 4.00 MHz)
+Size: 60906MB
+CSD: ver=2, sector_size=512, capacity=124735488 read_bl_len=9
+SSR: bus_width=1
+[0;32mI (1164) SD_CARD: SD card initialized[0m
+[0;32mI (1174) HEAP: sdcard init heap free block: 193112 bytes, Largest block: 110592 bytes[0m
+[0;32mI (1174) MAIN: MAX30102 part ID = 0 15 15[0m
+
+[0;32mI (1184) MAIN: Starting all tasks![0m
+[0;32mI (1194) BLE: ble task started[0m
+[0;32mI (1284) HAPTICS_TAG: next[0m
+[0;32mI (12884) BLE: ESP_GATTS_CONNECT_EVT, conn_id = 0[0m
+[0;32mI (12884) BLE: 7c 89 7f 3d 47 fc[0m
+[0;32mI (12944) BLE: Packet length update, status 0, rx 27, tx 251[0m
+[0;32mI (13294) BLE: Connection params update, status 0, conn_int 24, latency 0, timeout 400[0m
+[0;32mI (13654) BLE: Connection params update, status 0, conn_int 6, latency 0, timeout 500[0m
+[0;32mI (14054) BLE: Connection params update, status 0, conn_int 24, latency 0, timeout 400[0m
+[0;32mI (18304) BLE: GATT_WRITE_EVT, handle = 50, value len = 1, value :[0m
+[0;32mI (18314) BLE: 01[0m
+[0;32mI (18314) BLE: haptics_command_testing  = 1[0m
+[0;32mI (18314) HAPTICS_TAG: recv 1[0m
+[0;32mI (18814) HAPTICS_TAG: next[0m
+[0;32mI (21644) BUTTON: Datalogging started.[0m
+[0;32mI (21794) SENSOR_FUSION: IMU sensor fusion started.[0m
+[0;32mI (21794) SENSOR_FUSION: heart rate sensor fusion started.[0m
+[0;32mI (22184) SENSORS: IMU started at 21686856[0m
+
+[0;32mI (22184) SENSORS: heart rate started at 21687271[0m
+
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (23944) SD_CARD: max_idx: 2242[0m
+[0;32mI (23944) SD_CARD: filename: imu_raw_002243.bin[0m
+[0;32mI (23944) SD_CARD: filepath: /sdcard/imu_raw_002243.bin[0m
+[0;32mI (23944) SD_CARD: Writing to new raw file[0m
+[1;31mE (24804) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (25034) BLE: sizeof(rcv_orientation_data) = 360[0m
+[1;31mE (26824) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (27434) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (27684) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (27684) SD_CARD: filename: imu_orientation_002243.bin[0m
+[0;32mI (27684) SD_CARD: filepath: /sdcard/imu_orientation_002243.bin[0m
+[0;32mI (27684) SD_CARD: Writing to new orientation file[0m
+[1;31mE (28854) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (29844) BLE: sizeof(rcv_orientation_data) = 360[0m
+[1;31mE (30874) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (31434) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (31604) BLE: GATT_WRITE_EVT, handle = 43, value len = 2, value :[0m
+[0;32mI (31604) BLE: 01 00[0m
+[0;32mI (31604) BLE: notify enable[0m
+[0;32mI (32244) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;33mW (32244) BT_GATT: attribute value too long, truncated to 20[0m
+[0;32mI (32244) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (34644) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;33mW (34644) BT_GATT: attribute value too long, truncated to 20[0m
+[0;32mI (34644) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (37044) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;33mW (37044) BT_GATT: attribute value too long, truncated to 20[0m
+[0;32mI (37044) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (39444) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;33mW (39444) BT_GATT: attribute value too long, truncated to 20[0m
+[0;32mI (39444) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (41844) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;33mW (41844) BT_GATT: attribute value too long, truncated to 20[0m
+[0;32mI (41844) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (43034) BLE: ESP_GATTS_MTU_EVT, MTU 500[0m
+[0;32mI (43084) BLE: Packet length update, status 0, rx 251, tx 251[0m
+[0;32mI (44244) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (44244) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (46644) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (46644) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (49044) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (49044) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (51454) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (51454) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (53854) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (53854) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (54254) BLE: GATT_WRITE_EVT, handle = 50, value len = 1, value :[0m
+[0;32mI (54254) BLE: 04[0m
+[0;32mI (54254) BLE: haptics_command_testing  = 4[0m
+[0;32mI (54254) HAPTICS_TAG: recv 4[0m
+[0;32mI (54754) HAPTICS_TAG: next[0m
+[0;32mI (56254) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (56254) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (58664) BLE: GATT_WRITE_EVT, handle = 50, value len = 1, value :[0m
+[0;32mI (58664) BLE: 05[0m
+[0;32mI (58664) BLE: haptics_command_testing  = 5[0m
+[0;32mI (58664) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (58674) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (58674) HAPTICS_TAG: recv 5[0m
+[0;32mI (59174) HAPTICS_TAG: next[0m
+[0;32mI (61054) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (61054) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (63454) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (63454) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (65864) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (65864) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (67724) BLE: GATT_WRITE_EVT, handle = 50, value len = 1, value :[0m
+[0;32mI (67724) BLE: 01[0m
+[0;32mI (67724) BLE: haptics_command_testing  = 1[0m
+[0;32mI (67724) HAPTICS_TAG: recv 1[0m
+[0;32mI (68224) HAPTICS_TAG: next[0m
+[0;32mI (68264) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (68264) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+����������������������������������������������������������������ation_data) = 360
+[0;32mI (70664) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (73064) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (73064) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (75464) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (75464) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (77864) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (77864) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (80264) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (80264) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (82664) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (82664) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (85064) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (85064) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (87464) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (87464) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (89864) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (89864) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (92264) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (92264) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (94664) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (94664) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (97064) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (97064) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (99464) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (99464) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (101864) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (101864) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (104264) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (104264) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (106664) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (106664) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (109064) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (109064) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (111464) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (111464) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (113864) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (113864) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (116274) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (116274) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (118674) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (118674) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (121074) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (121074) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (123474) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (123474) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (125874) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (125874) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (128274) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (128274) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (130674) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (130674) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (133074) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (133074) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (135484) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (135494) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (137894) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (137894) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (140294) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (140294) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (142694) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (142694) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (145094) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (145094) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (147494) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (147494) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (149894) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (149894) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (152304) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (152314) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (154714) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (154724) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (157124) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (157124) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (159524) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (159524) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (161924) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (161924) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (164334) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (164334) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (166734) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (166734) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (169134) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (169134) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (171544) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (171554) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (173944) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (173954) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (176344) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (176344) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (178744) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (178754) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (181154) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (181154) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (183554) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (183554) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (185954) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (185954) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (188354) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (188354) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (190754) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (190754) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (193164) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (193164) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (195564) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (195564) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (197964) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (197964) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (200364) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (200364) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (202764) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (202764) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (205164) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (205164) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (207564) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (207564) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (209964) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (209964) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (212364) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (212364) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (214774) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (214784) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (217184) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (217184) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (219584) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (219584) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (221984) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (221984) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (224384) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (224384) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (226784) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (226784) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (229184) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (229184) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (231584) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (231584) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (233984) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (233984) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (236384) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (236384) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (238784) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (238784) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (241194) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (241194) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (243594) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (243594) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (245994) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (245994) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (248394) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (248394) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (250804) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (250804) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (253204) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (253204) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (255604) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (255604) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (258004) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (258004) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (260404) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (260404) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (262804) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (262804) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (265204) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (265204) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (267604) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (267604) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (270004) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (270004) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (272404) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (272404) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (274804) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (274804) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (277214) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (277214) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (279614) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (279614) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+���������������������������������������������������������������� file size: 441936
+[0;32mI (280654) SD_CARD: IMU orientation file size: 294624[0m
+[0;32mI (280664) SD_CARD: Files written.[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (282414) SD_CARD: max_idx: 2243[0m
+[0;32mI (282414) SD_CARD: IMU raw data filename: imu_raw_002244.bin[0m
+[0;32mI (282414) SD_CARD: IMU raw data filepath: /sdcard/imu_raw_002244.bin[0m
+[0;32mI (282414) SD_CARD: Writing to new raw data file[0m
+[0;32mI (282614) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (282624) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (283274) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (285024) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (285034) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (285304) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (286164) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (286164) SD_CARD: orientation data filename: imu_orientation_002244.bin[0m
+[0;32mI (286164) SD_CARD: orientation data filepath: /sdcard/imu_orientation_002244.bin[0m
+[0;32mI (286164) SD_CARD: Writing to new orientation data file[0m
+[1;31mE (287334) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (287454) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (287454) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (289364) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (289854) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (289864) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (289924) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (292254) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (292254) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (294654) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (294654) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (297054) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (297054) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (299454) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (299454) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (301854) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (301854) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (304254) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (304254) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (306654) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (306654) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (309054) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (309054) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (311454) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (311454) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (313864) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (313864) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (316264) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (316264) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (318664) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (318664) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (321064) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (321064) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (323464) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (323464) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (325864) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (325864) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (328264) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (328264) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (330674) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (330674) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (333074) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (333074) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (335474) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (335474) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (337874) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (337874) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (340274) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (340274) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (342674) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (342674) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (345074) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (345074) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (347474) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (347474) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (349874) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (349874) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (352274) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (352274) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (354674) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (354674) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (357074) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (357074) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (359474) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (359474) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (361874) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (361874) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (364274) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (364274) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (366674) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (366674) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (369074) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (369074) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (371474) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (371474) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (373874) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (373874) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (376274) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (376274) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (378674) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (378674) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (381074) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (381074) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (383474) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (383474) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (385874) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (385874) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (388274) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (388284) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (390674) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (390674) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (393074) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (393074) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (395484) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (395484) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (397884) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (397884) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (400284) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (400294) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (402684) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (402684) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (405084) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (405084) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (407484) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (407484) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (409894) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (409894) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (412294) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (412294) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (414694) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (414694) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (417094) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (417094) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (419494) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (419494) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (421894) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (421894) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (424294) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (424294) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (426694) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (426694) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (429094) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (429094) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (431494) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (431494) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (433894) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (433894) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (436294) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (436294) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (438694) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (438694) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (441104) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (441114) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (443504) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (443514) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (445904) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (445914) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (448304) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (448314) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (450704) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (450714) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (453104) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (453114) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (455514) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (455514) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (457924) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (457924) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (460324) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (460324) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (462724) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (462724) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (465134) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (465144) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (467544) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (467544) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (469964) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (469974) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (472374) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (472374) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (474774) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (474774) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (477174) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (477174) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (479574) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (479574) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (481994) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (481994) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (484404) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (484404) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (486804) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (486804) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (489204) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (489204) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (491604) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (491604) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (494004) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (494004) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (496404) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (496404) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (498814) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (498814) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (501224) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (501234) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (503624) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (503634) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (506024) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (506024) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (508424) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (508434) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (510824) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (510834) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (513224) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (513234) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (515624) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (515634) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (518024) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (518034) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (520434) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (520434) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (522844) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (522844) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (525244) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (525244) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (527644) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (527644) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (530044) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (530044) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (532444) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (532444) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (534844) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (534844) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (537254) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (537264) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (539164) SD_CARD: IMU raw data file size: 445500[0m
+[0;32mI (539184) SD_CARD: IMU orientation file size: 297000[0m
+[0;32mI (539194) SD_CARD: Files written.[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (539904) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (539914) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (540964) SD_CARD: max_idx: 2244[0m
+[0;32mI (540964) SD_CARD: IMU raw data filename: imu_raw_002245.bin[0m
+[0;32mI (540964) SD_CARD: IMU raw data filepath: /sdcard/imu_raw_002245.bin[0m
+[0;32mI (540974) SD_CARD: Writing to new raw data file[0m
+[1;31mE (541834) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (542814) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (542814) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (544014) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (544674) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (544684) SD_CARD: orientation data filename: imu_orientation_002245.bin[0m
+[0;32mI (544684) SD_CARD: orientation data filepath: /sdcard/imu_orientation_002245.bin[0m
+[0;32mI (544684) SD_CARD: Writing to new orientation data file[0m
+[0;32mI (545314) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (545324) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (546154) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (547854) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (547864) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (548254) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (548404) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (550274) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (550284) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (552674) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (552684) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (555084) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (555084) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (557474) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (557484) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (559874) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (559884) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (562274) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (562274) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (564674) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (564684) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (567084) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (567094) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (569474) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (569474) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (571874) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (571874) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (574284) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (574284) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (576694) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (576694) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (579104) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (579114) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (581504) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (581504) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (583904) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (583904) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (586314) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (586314) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (588714) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (588724) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (591114) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (591124) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (593524) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (593524) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (595924) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (595924) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (598324) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (598324) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (600724) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (600724) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (603134) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (603144) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (605534) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (605534) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (607934) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (607934) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (610334) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (610334) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (612734) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (612734) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (615144) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (615144) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (617534) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (617534) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (619934) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (619934) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (622334) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (622334) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (624734) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (624734) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (627144) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (627144) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (629534) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (629534) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (631934) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (631934) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (634334) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (634334) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (636734) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (636734) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (639134) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (639144) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (641534) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (641534) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (643934) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (643934) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (646334) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (646334) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (648734) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (648734) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (651134) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (651144) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (653534) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (653534) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (655934) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (655934) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (658334) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (658334) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (660734) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (660734) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (663134) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (663144) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (665534) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (665534) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (667934) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (667934) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (670344) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (670344) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (672744) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (672744) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (675154) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (675154) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (677544) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (677544) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (679944) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (679944) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (682344) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (682344) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (684744) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (684744) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (687154) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (687154) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (689554) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (689554) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (691954) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (691954) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (694354) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (694354) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (696764) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (696764) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (699164) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (699174) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (701564) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (701564) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (703964) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (703964) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (706364) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (706364) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (708764) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (708764) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (711184) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (711184) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (713574) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (713574) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (715974) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (715974) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (718374) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (718374) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (720774) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (720774) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (723174) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (723184) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (725574) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (725574) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (727974) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (727974) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (730374) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (730374) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (732774) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (732774) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (735184) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (735184) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (737594) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (737594) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (739994) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (739994) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (742394) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (742394) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (744794) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (744794) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (747194) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (747204) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (749594) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (749594) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (751994) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (751994) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (754394) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (754394) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (756794) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (756794) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (759194) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (759204) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (761594) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (761594) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (763994) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (763994) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (766394) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (766394) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (768794) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (768794) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (771214) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (771214) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (773614) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (773614) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (776014) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (776014) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (778414) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (778414) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (780814) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (780814) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (783214) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (783224) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (785614) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (785614) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (788014) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (788014) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (790414) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (790414) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (792824) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (792824) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (795224) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (795234) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (797624) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (797624) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (798004) SD_CARD: IMU raw data file size: 445500[0m
+[0;32mI (798024) SD_CARD: IMU orientation file size: 297000[0m
+[0;32mI (798034) SD_CARD: Files written.[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (799784) SD_CARD: max_idx: 2245[0m
+[0;32mI (799784) SD_CARD: IMU raw data filename: imu_raw_002246.bin[0m
+[0;32mI (799784) SD_CARD: IMU raw data filepath: /sdcard/imu_raw_002246.bin[0m
+[0;32mI (799784) SD_CARD: Writing to new raw data file[0m
+[1;31mE (800664) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (800664) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (800674) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (802784) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (803144) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (803154) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (803534) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (803544) SD_CARD: orientation data filename: imu_orientation_002246.bin[0m
+[0;32mI (803544) SD_CARD: orientation data filepath: /sdcard/imu_orientation_002246.bin[0m
+[0;32mI (803544) SD_CARD: Writing to new orientation data file[0m
+[1;31mE (804924) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (805714) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (805714) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (806994) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (807304) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (808124) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (808124) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (810524) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (810524) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (812924) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (812924) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (815324) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (815324) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (817724) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (817724) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (820124) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (820124) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (822524) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (822524) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (824924) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (824924) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (827324) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (827324) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (829724) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (829724) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (832124) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (832124) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (834534) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (834534) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (836944) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (836944) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (839344) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (839344) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (841744) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (841744) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (844144) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (844144) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (846554) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (846554) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (848954) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (848954) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (851354) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (851354) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (853764) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (853774) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (856174) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (856174) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (858574) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (858574) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (860974) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (860974) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (863384) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (863384) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (865784) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (865784) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (868184) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (868184) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (870594) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (870604) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (872994) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (873004) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (875394) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (875404) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (877794) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (877804) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (880194) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (880204) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (882594) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (882594) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (885004) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (885004) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (887404) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (887404) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (889804) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (889804) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (892204) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (892204) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (894604) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (894604) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (897004) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (897004) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (899404) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (899404) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (901804) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (901804) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (904204) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (904204) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (906604) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (906604) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (909004) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (909004) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (911404) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (911404) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (913804) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (913804) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (916204) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (916204) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (918604) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (918604) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (921004) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (921004) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (923404) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (923404) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (925804) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (925804) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (928204) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (928204) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (930604) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (930614) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (933004) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (933004) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (935404) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (935404) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (937804) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (937804) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (940204) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (940204) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (942604) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (942604) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (945004) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (945004) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (947404) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (947404) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (949804) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (949804) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (952204) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (952204) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (954604) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (954604) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (957004) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (957004) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (959404) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (959404) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (961804) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (961804) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (964204) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (964214) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (966614) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (966614) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (969014) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (969014) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (971414) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (971414) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (973824) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (973824) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (976224) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (976224) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (978624) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (978624) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (981024) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (981024) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (983424) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (983424) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (985824) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (985824) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (988224) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (988224) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (990624) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (990624) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (993054) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (993054) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (995454) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (995454) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (997854) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (997854) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1000254) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1000254) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1002664) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1002664) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1005064) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1005064) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1007464) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1007464) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1009864) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1009864) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1012264) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1012264) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1014664) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1014664) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1017064) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1017074) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1019464) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1019464) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1021864) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1021874) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1024264) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1024274) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1026664) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1026674) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1029074) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1029074) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1031484) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1031484) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1033884) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1033884) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1036284) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1036284) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1038684) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1038684) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1041084) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1041084) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1043484) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1043484) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1045884) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1045884) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1048284) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1048284) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1050684) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1050684) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1053084) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1053084) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1055484) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1055484) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1056754) SD_CARD: IMU raw data file size: 445500[0m
+[0;32mI (1056774) SD_CARD: IMU orientation file size: 297000[0m
+[0;32mI (1056794) SD_CARD: Files written.[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (1058444) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1058454) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1058544) SD_CARD: max_idx: 2246[0m
+[0;32mI (1058544) SD_CARD: IMU raw data filename: imu_raw_002247.bin[0m
+[0;32mI (1058544) SD_CARD: IMU raw data filepath: /sdcard/imu_raw_002247.bin[0m
+[0;32mI (1058554) SD_CARD: Writing to new raw data file[0m
+[1;31mE (1059714) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (1061294) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1061304) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (1061904) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (1062174) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (1062174) SD_CARD: orientation data filename: imu_orientation_002247.bin[0m
+[0;32mI (1062174) SD_CARD: orientation data filepath: /sdcard/imu_orientation_002247.bin[0m
+[0;32mI (1062174) SD_CARD: Writing to new orientation data file[0m
+[0;32mI (1064354) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1064354) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (1064544) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (1065794) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (1067034) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1067034) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1069434) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1069434) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1071834) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1071834) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1074234) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1074234) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1076644) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1076644) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1079044) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1079044) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1081444) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1081444) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1083844) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1083844) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1086254) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1086254) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1088674) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1088684) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1091084) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1091084) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1093494) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1093494) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1095904) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1095904) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1098314) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1098314) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1100734) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1100734) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1103134) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1103134) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1105534) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1105534) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1107934) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1107944) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1110344) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1110344) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1112764) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1112764) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1115164) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1115164) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1117564) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1117564) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1119964) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1119964) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1122364) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1122364) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1124764) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1124764) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1127174) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1127174) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1129574) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1129574) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1131974) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1131974) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1134374) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1134374) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1136774) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1136774) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1139174) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1139174) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+����������������������������������������������������������������ntation_data) = 360
+[0;32mI (1141584) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1143994) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1144004) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1146394) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1146404) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1148794) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1148804) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1151194) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1151204) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1153594) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1153594) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1155994) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1156004) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1158404) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1158404) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (1160824) BLE: sizeof(rcv_orientation_data) = 360[0m
+[0;32mI (1160834) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m

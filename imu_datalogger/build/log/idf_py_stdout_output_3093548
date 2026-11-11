@@ -1,0 +1,1766 @@
+Command: /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/imu_module.elf /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader/bootloader.elf -m '/home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python' '/home/simonque/Documents/code/esp-idf/tools/idf.py'
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0040,len:6272
+load:0x40078000,len:15848
+load:0x40080400,len:3920
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v6.1-dev-2310-g44e2fa6d9c5-dirt 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Sep  1 2026 14:56:57[0m
+[0;32mI (28) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v3.1[0m
+[0;32mI (34) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (37) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (65) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (78) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=27094h (159892) map[0m
+[0;32mI (145) esp_image: segment 1: paddr=000370bc vaddr=3ffbdb60 size=051f4h ( 20980) load[0m
+[0;32mI (154) esp_image: segment 2: paddr=0003c2b8 vaddr=40080000 size=03d60h ( 15712) load[0m
+[0;32mI (160) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=7ed34h (519476) map[0m
+[0;32mI (346) esp_image: segment 4: paddr=000bed5c vaddr=40083d60 size=150fch ( 86268) load[0m
+[0;32mI (381) esp_image: segment 5: paddr=000d3e60 vaddr=50000000 size=00028h (    40) load[0m
+[0;32mI (394) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (394) boot: Disabling RNG early entropy source...[0m
+[0;32mI (404) cpu_start: Multicore app[0m
+[0;32mI (413) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (413) cpu_start: Pro cpu start user code[0m
+[0;32mI (413) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (415) app_init: Application information:[0m
+[0;32mI (419) app_init: Project name:     imu_module[0m
+[0;32mI (423) app_init: App version:      4c5a499-dirty[0m
+[0;32mI (427) app_init: Compile time:     Nov  7 2026 16:51:29[0m
+[0;32mI (432) app_init: ELF file SHA256:  f022686e3...[0m
+[0;32mI (437) app_init: ESP-IDF:          v6.1-dev-2310-g44e2fa6d9c5-dirt[0m
+[0;32mI (443) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (446) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (450) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (455) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (461) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (466) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (471) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (476) heap_init: At 3FFC7558 len 00018AA8 (98 KiB): DRAM[0m
+[0;32mI (481) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (487) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (492) heap_init: At 40098E5C len 000071A4 (28 KiB): IRAM[0m
+[0;33mW (499) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (510) spi_flash: detected chip: generic[0m
+[0;32mI (514) spi_flash: flash io: dio[0m
+[0;33mW (517) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (530) coexist: coex firmware version: 093e3d2[0m
+[0;32mI (534) main_task: Started on CPU0[0m
+[0;32mI (544) main_task: Calling app_main()[0m
+[0;32mI (544) button: IoT Button Version: 4.2.0[0m
+[0;32mI (554) MAIN: I2C initialized successfully[0m
+[0;32mI (554) LSM6DS3: WHO_AM_I = 69[0m
+[0;32mI (564) MAX3010I (564) HEAP: start heap free block: 227104 bytes, Largest block: 110592 bytes[0m
+[0;32mI (574) BLE: free heap: 227104[0m
+
+[0;32mI (574) BTDM_INIT: BT controller compile version [045a658][0m
+[0;32mI (574) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (574) BTDM_INIT: Bluetooth MAC: d8:13:2a:7d:69:0a[0m
+[0;32mI (584) phy_init: phy_version 4863,a3a4459,Oct 28 2025,14:30:06[0m
+[0;33mW (1014) BT_BTM: BTM_BleWriteAdvData, Partial data write into ADV[0m
+[0;33mW (1024) BT_BTM: BTM_BleWriteScanRsp, Partial data write into ADV[0m
+[0;32mI (1014) HEAP: ble init heap free block: 202032 bytes, Largest block: 110592 bytes[0m
+[0;32mI (1024) BLE: create attribute table successfully, the number handle = 4[0m
+[0;32mI (1034) BLE: create attribute table successfully, the number handle = 4[0m
+[0;32mI (1034) BLE: create attribute table successfully, the number handle = 3[0m
+[0;32mI (1044) BLE: Advertising data set, status 0[0m
+[0;32mI (1044) BLE: Scan response data set, status 0[0m
+[0;32mI (1054) BLE: SERVICE_START_EVT, status 0, service_handle 40[0m
+[0;32mI (1054) BLE: SERVICE_START_EVT, status 0, service_handle 44[0m
+[0;32mI (1064) BLE: SERVICE_START_EVT, status 0, service_handle 48[0m
+[0;32mI (1064) BLE: Advertising start successfully[0m
+[0;32mI (1074) BLE: free heap: 200756[0m
+
+[0;32mI (1074) SD_CARD: Initializing SD card[0m
+[0;32mI (1074) SD_CARD: Using SPI peripheral[0m
+[0;32mI (1084) SD_CARD: Mounting filesystem[0m
+[0;32mI (1084) sdspi_transaction: cmd=52, R1 response: command not supported[0m
+[0;32mI (1134) sdspi_transaction: cmd=5, R1 response: command not supported[0m
+[0;32mI (1184) SD_CARD: Filesystem mounted[0m
+Name: ACLCE
+Type: SDHC
+Speed: 4.00 MHz (limit: 4.00 MHz)
+Size: 60906MB
+CSD: ver=2, sector_size=512, capacity=124735488 read_bl_len=9
+SSR: bus_width=1
+[0;32mI (1184) SD_CARD: SD card initialized[0m
+[0;32mI (1194) HEAP: sdcard init heap free block: 192904 bytes, Largest block: 110592 bytes[0m
+[0;32mI (1194) MAIN: MAX30102 part ID = 0 15 15[0m
+
+[0;32mI (1204) MAIN: Starting all tasks![0m
+[0;32mI (1214) BLE: ble task started[0m
+[0;32mI (1304) HAPTICS_TAG: next[0m
+[0;32mI (2028194) BUTTON: Datalogging started.[0m
+[0;32mI (2028204) SENSORS: IMU started at 2027706850[0m
+
+[0;32mI (2028204) SENSORS: heart rate started at 2027707159[0m
+
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (2028214) SENSOR_FUSION: IMU sensor fusion started.[0m
+[0;32mI (2028214) SENSOR_FUSION: heart rate sensor fusion started.[0m
+[0;32mI (2029894) SD_CARD: max_idx: 2247[0m
+[0;32mI (2029894) SD_CARD: filename: imu_raw_002248.bin[0m
+[0;32mI (2029894) SD_CARD: filepath: /sdcard/imu_raw_002248.bin[0m
+[0;32mI (2029894) SD_CARD: Writing to new raw file[0m
+[1;31mE (2030584) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[1;31mE (2032644) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (2033524) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (2033524) SD_CARD: filename: imu_orientation_002248.bin[0m
+[0;32mI (2033524) SD_CARD: filepath: /sdcard/imu_orientation_002248.bin[0m
+[0;32mI (2033524) SD_CARD: Writing to new orientation file[0m
+[1;31mE (2034774) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[1;31mE (2036854) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (2037174) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (2056594) BLE: ESP_GATTS_CONNECT_EVT, conn_id = 0[0m
+[0;32mI (2056594) BLE: 48 fe e6 5b 2f 18[0m
+[0;32mI (2056654) BLE: Packet length update, status 0, rx 27, tx 251[0m
+[0;32mI (2057014) BLE: Connection params update, status 0, conn_int 24, latency 0, timeout 400[0m
+[0;32mI (2057374) BLE: Connection params update, status 0, conn_int 6, latency 0, timeout 500[0m
+[0;32mI (2057674) BLE: Connection params update, status 0, conn_int 24, latency 0, timeout 400[0m
+[0;32mI (2059954) BLE: GATT_WRITE_EVT, handle = 43, value len = 2, value :[0m
+[0;32mI (2059954) BLE: 01 00[0m
+[0;32mI (2059954) BLE: notify enable[0m
+[0;33mW (2062274) BT_GATT: attribute value too long, truncated to 20[0m
+[0;32mI (2062274) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;33mW (2064674) BT_GATT: attribute value too long, truncated to 20[0m
+[0;32mI (2064674) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;33mW (2067074) BT_GATT: attribute value too long, truncated to 20[0m
+[0;32mI (2067074) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;33mW (2069474) BT_GATT: attribute value too long, truncated to 20[0m
+[0;32mI (2069474) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;33mW (2071874) BT_GATT: attribute value too long, truncated to 20[0m
+[0;32mI (2071874) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;33mW (2074274) BT_GATT: attribute value too long, truncated to 20[0m
+[0;32mI (2074274) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;33mW (2076684) BT_GATT: attribute value too long, truncated to 20[0m
+[0;32mI (2076684) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;33mW (2079084) BT_GATT: attribute value too long, truncated to 20[0m
+[0;32mI (2079084) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;33mW (2081494) BT_GATT: attribute value too long, truncated to 20[0m
+[0;32mI (2081494) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;33mW (2083894) BT_GATT: attribute value too long, truncated to 20[0m
+[0;32mI (2083894) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;33mW (2086294) BT_GATT: attribute value too long, truncated to 20[0m
+[0;32mI (2086294) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;33mW (2088694) BT_GATT: attribute value too long, truncated to 20[0m
+[0;32mI (2088694) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;33mW (2091094) BT_GATT: attribute value too long, truncated to 20[0m
+[0;32mI (2091094) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;33mW (2093494) BT_GATT: attribute value too long, truncated to 20[0m
+[0;32mI (2093504) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;33mW (2095894) BT_GATT: attribute value too long, truncated to 20[0m
+[0;32mI (2095894) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;33mW (2098294) BT_GATT: attribute value too long, truncated to 20[0m
+[0;32mI (2098294) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (2099164) BT_SMP: smp_rsp_timeout state=1 br_state=0[0m
+[0;33mW (2099164) BT_APPL: bta_dm_ble_smp_cback remove bond,rsn 99, BDA:0x48FEE65B2F18[0m
+[0;33mW (2099164) BT_BTC: btc_dm_ble_auth_cmpl_evt, remove bond in flash bd_addr: 48fee65b2f18[0m
+[0;33mW (2100694) BT_GATT: attribute value too long, truncated to 20[0m
+[0;32mI (2100694) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;33mW (2102184) BT_BTM: btm_sec_clr_temp_auth_service() - no dev CB[0m
+
+[1;31mE (2102184) BT_BTM: Device not found[0m
+
+[0;33mW (2102184) BT_HCI: hcif disc complete: hdl 0x0, rsn 0x13 dev_find 1[0m
+[0;32mI (2102194) BLE: ESP_GATTS_DISCONNECT_EVT, reason = 0x13[0m
+[0;32mI (2102214) BLE: Advertising start successfully[0m
+[0;33mW (2103114) BT_LOG: esp_ble_gatts_send_indicate, The connection not created.[0m
+[0;33mW (2105514) BT_LOG: esp_ble_gatts_send_indicate, The connection not created.[0m
+[0;33mW (2107914) BT_LOG: esp_ble_gatts_send_indicate, The connection not created.[0m
+[0;32mI (2109604) BLE: ESP_GATTS_CONNECT_EVT, conn_id = 0[0m
+[0;32mI (2109604) BLE: 48 fe e6 5b 2f 18[0m
+[0;32mI (2109664) BLE: Packet length update, status 0, rx 27, tx 251[0m
+[0;32mI (2110024) BLE: Connection params update, status 0, conn_int 24, latency 0, timeout 400[0m
+[0;33mW (2110324) BT_GATT: attribute value too long, truncated to 20[0m
+[0;32mI (2110324) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2110374) BLE: Connection params update, status 0, conn_int 6, latency 0, timeout 500[0m
+[0;32mI (2110704) BLE: Connection params update, status 0, conn_int 24, latency 0, timeout 400[0m
+[0;32mI (2112634) BLE: GATT_WRITE_EVT, handle = 43, value len = 2, value :[0m
+[0;32mI (2112634) BLE: 01 00[0m
+[0;32mI (2112634) BLE: notify enable[0m
+[0;33mW (2112724) BT_GATT: attribute value too long, truncated to 20[0m
+[0;32mI (2112734) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;33mW (2115134) BT_GATT: attribute value too long, truncated to 20[0m
+[0;32mI (2115134) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2115694) BLE: ESP_GATTS_MTU_EVT, MTU 500[0m
+[0;32mI (2115744) BLE: Packet length update, status 0, rx 251, tx 251[0m
+[0;32mI (2117534) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2119934) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2122344) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2124514) BLE: GATT_WRITE_EVT, handle = 50, value len = 1, value :[0m
+[0;32mI (2124514) BLE: 04[0m
+[0;32mI (2124514) BLE: haptics_command_testing  = 4[0m
+[0;32mI (2124514) HAPTICS_TAG: recv 4[0m
+[0;32mI (2124744) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2125014) HAPTICS_TAG: next[0m
+[0;32mI (2127144) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2129544) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2129794) BLE: GATT_WRITE_EVT, handle = 50, value len = 1, value :[0m
+[0;32mI (2129794) BLE: 03[0m
+[0;32mI (2129794) BLE: haptics_command_testing  = 3[0m
+[0;32mI (2129794) HAPTICS_TAG: recv 3[0m
+[0;32mI (2130294) HAPTICS_TAG: next[0m
+[0;32mI (2131944) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2134344) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2135014) BLE: GATT_WRITE_EVT, handle = 50, value len = 1, value :[0m
+[0;32mI (2135014) BLE: 04[0m
+[0;32mI (2135014) BLE: haptics_command_testing  = 4[0m
+[0;32mI (2135014) HAPTICS_TAG: recv 4[0m
+[0;32mI (2135524) HAPTICS_TAG: next[0m
+[0;32mI (2136744) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2139144) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2141554) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2143954) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2146344) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2148754) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2151154) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2153554) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2155954) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2158354) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2160754) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2163164) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2165564) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2167964) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2170364) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2172764) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2175174) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2177574) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2179984) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2182384) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2184784) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2186914) BLE: GATT_WRITE_EVT, handle = 50, value len = 1, value :[0m
+[0;32mI (2186914) BLE: 05[0m
+[0;32mI (2186914) BLE: haptics_command_testing  = 5[0m
+[0;32mI (2186914) HAPTICS_TAG: recv 5[0m
+[0;32mI (2187194) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2187424) HAPTICS_TAG: next[0m
+[0;32mI (2189614) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2192004) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2194404) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2196804) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2199224) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2201624) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2204024) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2206434) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2208834) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2211234) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2213634) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2216034) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2218434) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2220834) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2223264) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2225654) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2228054) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2230454) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2232864) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2235284) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2237694) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2240104) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2242514) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2244934) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2247334) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2249734) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2252134) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2254534) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2256934) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2259344) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2261744) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2264144) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2266544) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2268954) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2271354) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2273754) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2276154) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2278554) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2280954) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+����������������������������������������������������������������EVT, status = 0, attr_handle 42
+[0;32mI (2285754) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2286774) SD_CARD: IMU raw data file size: 441936[0m
+[0;32mI (2286794) SD_CARD: IMU orientation file size: 294624[0m
+[0;32mI (2286804) SD_CARD: Files written.[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (2288544) SD_CARD: max_idx: 2248[0m
+[0;32mI (2288544) SD_CARD: IMU raw data filename: imu_raw_002249.bin[0m
+[0;32mI (2288544) SD_CARD: IMU raw data filepath: /sdcard/imu_raw_002249.bin[0m
+[0;32mI (2288544) SD_CARD: Writing to new raw data file[0m
+[0;32mI (2288694) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (2289354) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (2291124) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (2291414) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (2292354) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (2292354) SD_CARD: orientation data filename: imu_orientation_002249.bin[0m
+[0;32mI (2292354) SD_CARD: orientation data filepath: /sdcard/imu_orientation_002249.bin[0m
+[0;32mI (2292354) SD_CARD: Writing to new orientation data file[0m
+[1;31mE (2293444) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (2293564) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (2295484) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (2295984) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2296204) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (2298374) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2300774) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2303174) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2305574) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2307984) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2310384) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2312784) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2315194) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2317594) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2319994) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2322394) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2324804) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2327194) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2329594) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2332004) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2334404) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2336804) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2339204) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2341604) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2344004) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2346404) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2348804) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2351214) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2353614) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2356014) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2358414) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2360814) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2363214) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2365614) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2368024) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2370434) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2372834) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2375224) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2377634) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2380034) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2382434) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2384834) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2387234) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2389634) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2392034) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2394434) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2396844) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2399244) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2401644) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2404044) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2406464) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2408854) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2411254) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2413664) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2416064) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2418464) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2420864) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2423264) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2425664) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2428074) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2430474) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2432874) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2435284) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2437684) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2440084) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2442494) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2444894) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2447294) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2449694) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2452104) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2454504) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2456904) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2459304) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2461704) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2464104) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2466504) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2468904) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2471304) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2473704) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2476104) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2478504) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2480904) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2483304) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2485704) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2488114) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2490524) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2492924) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2495324) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2497724) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2500144) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2502554) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2504964) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2507374) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2509784) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2512204) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2514614) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2517024) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2519424) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2521824) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2524234) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2526634) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2529034) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2531434) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2533834) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2536234) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2538644) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2541054) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2543464) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2545364) SD_CARD: IMU raw data file size: 445500[0m
+[0;32mI (2545384) SD_CARD: IMU orientation file size: 297000[0m
+[0;32mI (2545394) SD_CARD: Files written.[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (2546124) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2547144) SD_CARD: max_idx: 2249[0m
+[0;32mI (2547144) SD_CARD: IMU raw data filename: imu_raw_002250.bin[0m
+[0;32mI (2547144) SD_CARD: IMU raw data filepath: /sdcard/imu_raw_002250.bin[0m
+[0;32mI (2547144) SD_CARD: Writing to new raw data file[0m
+[1;31mE (2548044) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (2549114) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (2550534) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (2550934) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (2550944) SD_CARD: orientation data filename: imu_orientation_002250.bin[0m
+[0;32mI (2550944) SD_CARD: orientation data filepath: /sdcard/imu_orientation_002250.bin[0m
+[0;32mI (2550944) SD_CARD: Writing to new orientation data file[0m
+[0;32mI (2552104) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (2553054) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (2554764) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (2555054) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2557454) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2559854) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2562254) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2564654) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2567054) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2569454) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2571854) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2574264) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2576664) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2579064) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2581474) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2583874) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+����������������������������������������������������������������EVT, status = 0, attr_handle 42
+[0;32mI (2588674) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2591074) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2593484) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2595884) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2598284) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2600684) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2603094) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2605484) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2607884) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2610294) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2612694) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2615094) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2617494) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2619894) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2622294) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2624694) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2627104) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2629504) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2631914) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+����������������������������������������������������������������EVT, status = 0, attr_handle 42
+[0;32mI (2636724) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2639124) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2641524) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2643924) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2646324) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2648724) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2651124) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2653524) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2655924) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2658324) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2660724) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2663124) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2665524) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2667924) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2670324) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2672724) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2675124) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2677524) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2679924) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2682324) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2684724) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2687124) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2689524) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2691924) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2694324) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2696724) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2699124) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2701534) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2703934) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2706334) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2708734) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2711134) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2713534) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2715934) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2718334) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2720734) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2723134) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2725534) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2727934) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2730334) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2732734) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2735134) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2737544) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2739944) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2742344) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2744744) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2747144) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2749544) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2751944) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2754344) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2756744) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2759144) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2761544) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2763944) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2766344) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2768744) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2771144) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2773544) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2775954) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2778354) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2780754) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2783154) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2785554) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2787954) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2790354) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2792754) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2795154) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2797554) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2799954) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2802354) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2803114) SD_CARD: IMU raw data file size: 445500[0m
+[0;32mI (2803134) SD_CARD: IMU orientation file size: 297000[0m
+[0;32mI (2803144) SD_CARD: Files written.[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (2804884) SD_CARD: max_idx: 2250[0m
+[0;32mI (2804884) SD_CARD: IMU raw data filename: imu_raw_002251.bin[0m
+[0;32mI (2804884) SD_CARD: IMU raw data filepath: /sdcard/imu_raw_002251.bin[0m
+[0;32mI (2804884) SD_CARD: Writing to new raw data file[0m
+[0;32mI (2805474) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (2805874) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (2808684) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (2808684) SD_CARD: orientation data filename: imu_orientation_002251.bin[0m
+[0;32mI (2808684) SD_CARD: orientation data filepath: /sdcard/imu_orientation_002251.bin[0m
+[0;32mI (2808694) SD_CARD: Writing to new orientation data file[0m
+[1;31mE (2808694) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (2808724) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (2811544) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (2812074) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2812524) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (2814564) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2816974) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2819394) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2821804) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2824214) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2826624) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2829034) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2831444) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2833844) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2836244) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2838654) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2841064) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2843474) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2845874) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2848274) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2850684) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2853094) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2855514) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2857924) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2860344) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2862734) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2865134) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2867544) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2869944) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2872344) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2874744) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2877144) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2879544) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2881944) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2884344) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2886754) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2889154) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2891564) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2893964) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2896364) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2898764) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2901164) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2903574) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2905974) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2908374) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+����������������������������������������������������������������EVT, status = 0, attr_handle 42
+[0;32mI (2913174) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2915584) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2917984) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2920384) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2922784) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2925194) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2927604) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2930014) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2932414) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2934814) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2937214) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2939624) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2942024) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2944424) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2946824) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2949224) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2951634) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2954034) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2956434) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2958834) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2961244) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2963654) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2966054) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2968454) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2970854) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2973254) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2975654) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2978054) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2980454) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2982854) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2985254) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2987664) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2990064) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2992464) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2994864) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2997264) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (2999664) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3002064) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3004464) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3006874) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3009274) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3011674) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3014074) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3016484) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3018884) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3021284) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3023694) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3026094) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3028494) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3030904) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3033304) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3035694) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3038094) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3040494) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3042904) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3045304) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3047714) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3050114) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3052514) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3054914) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3057314) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3059724) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3061744) SD_CARD: IMU raw data file size: 445500[0m
+[0;32mI (3061764) SD_CARD: IMU orientation file size: 297000[0m
+[0;32mI (3061774) SD_CARD: Files written.[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (3062324) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3063524) SD_CARD: max_idx: 2251[0m
+[0;32mI (3063524) SD_CARD: IMU raw data filename: imu_raw_002252.bin[0m
+[0;32mI (3063524) SD_CARD: IMU raw data filepath: /sdcard/imu_raw_002252.bin[0m
+[0;32mI (3063524) SD_CARD: Writing to new raw data file[0m
+[1;31mE (3064674) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (3065514) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (3066884) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (3067314) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (3067324) SD_CARD: orientation data filename: imu_orientation_002252.bin[0m
+[0;32mI (3067324) SD_CARD: orientation data filepath: /sdcard/imu_orientation_002252.bin[0m
+[0;32mI (3067324) SD_CARD: Writing to new orientation data file[0m
+[0;32mI (3068194) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (3069264) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (3070974) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3071164) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (3073394) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3075794) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3078204) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3080614) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3083014) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3085424) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3087824) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3090234) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3092634) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3095034) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3097434) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3099844) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3102234) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3104644) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3107044) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3109444) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3111844) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3114244) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3116644) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3119044) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3121444) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3123844) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3126254) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3128654) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3131054) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3133474) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3135884) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3138444) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3141364) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3144004) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3146404) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3148814) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3151214) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3153614) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3156014) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3158434) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3160834) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3163224) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3165634) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3168044) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3170454) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3172854) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3175264) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3177664) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3180064) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3182464) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3184864) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3187264) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3189664) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3192064) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3194464) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3196874) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3199284) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3201684) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3204084) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3206494) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3208904) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3211314) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3213714) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3216114) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3218524) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3220924) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3223324) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3225724) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3228134) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3230534) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3232934) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3235334) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3237734) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3240144) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3242544) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3244944) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3247344) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3249744) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3252144) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3254544) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3256944) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3259344) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3261744) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3264144) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3266554) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3268954) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3271364) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3273764) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3276164) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3278574) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3280974) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3283374) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3285774) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3288174) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3290574) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3292984) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3295384) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3297784) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3300184) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3302594) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3304994) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3307394) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3309794) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3312204) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3314604) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3317004) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3319404) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3320314) SD_CARD: IMU raw data file size: 445500[0m
+[0;32mI (3320334) SD_CARD: IMU orientation file size: 297000[0m
+[0;32mI (3320344) SD_CARD: Files written.[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (3322094) SD_CARD: max_idx: 2252[0m
+[0;32mI (3322094) SD_CARD: IMU raw data filename: imu_raw_002253.bin[0m
+[0;32mI (3322094) SD_CARD: IMU raw data filepath: /sdcard/imu_raw_002253.bin[0m
+[0;32mI (3322094) SD_CARD: Writing to new raw data file[0m
+[0;32mI (3322394) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (3322944) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (3324864) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (3325004) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (3325894) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (3325894) SD_CARD: orientation data filename: imu_orientation_002253.bin[0m
+[0;32mI (3325904) SD_CARD: orientation data filepath: /sdcard/imu_orientation_002253.bin[0m
+[0;32mI (3325904) SD_CARD: Writing to new orientation data file[0m
+[1;31mE (3327044) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (3327314) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (3329094) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (3329734) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3329754) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (3332124) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3334524) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3336924) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3339334) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3341734) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3344134) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3346534) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3348944) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3351334) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3353734) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3356134) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3358534) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3360934) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3363334) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3365734) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3368144) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3370544) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3372954) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3375354) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3377754) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3380154) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3382554) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3384954) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3387354) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3389754) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3392154) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3394554) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3396964) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3399364) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3401764) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3404174) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3406574) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3408974) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3411374) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3413774) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3416174) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3418574) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3420974) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3423374) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3425774) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3428174) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3430574) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3432974) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+����������������������������������������������������������������EVT, status = 0, attr_handle 42
+[0;32mI (3437784) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3440184) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3442584) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3444984) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3447384) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3449784) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3452184) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3454584) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3456984) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3459384) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3461794) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3464204) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3466614) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3469014) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3471414) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3473824) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3476234) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3478634) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3481034) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3483444) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3485854) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3488254) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3490654) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3493054) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3495454) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3497854) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3500264) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3502674) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3505084) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3507504) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3509914) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3512324) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3514734) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3517134) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3519534) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3521934) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3524334) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3526734) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3529134) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3531534) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3533944) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3536354) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3538754) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3541154) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3543554) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3545954) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3548354) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3550754) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3553164) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3555564) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3557964) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3560364) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3562764) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3565174) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3567584) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+����������������������������������������������������������������EVT, status = 0, attr_handle 42
+[0;32mI (3572384) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3574784) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3577184) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3578944) SD_CARD: IMU raw data file size: 441936[0m
+[0;32mI (3578964) SD_CARD: IMU orientation file size: 294624[0m
+[0;32mI (3578974) SD_CARD: Files written.[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (3579894) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3580734) SD_CARD: max_idx: 2253[0m
+[0;32mI (3580734) SD_CARD: IMU raw data filename: imu_raw_002254.bin[0m
+[0;32mI (3580734) SD_CARD: IMU raw data filepath: /sdcard/imu_raw_002254.bin[0m
+[0;32mI (3580734) SD_CARD: Writing to new raw data file[0m
+[1;31mE (3581554) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (3582564) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (3583564) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (3584544) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (3584544) SD_CARD: orientation data filename: imu_orientation_002254.bin[0m
+[0;32mI (3584544) SD_CARD: orientation data filepath: /sdcard/imu_orientation_002254.bin[0m
+[0;32mI (3584554) SD_CARD: Writing to new orientation data file[0m
+[0;32mI (3584984) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (3585604) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (3587384) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (3587634) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (3588414) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (3589794) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+����������������������������������������������������������������EVT, status = 0, attr_handle 42
+[0;32mI (3594594) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3596994) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3599394) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3601794) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3604204) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3606624) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3609014) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3611414) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3613814) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3616224) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3618614) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3621014) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3623414) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3625824) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3628224) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3630624) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3633024) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+����������������������������������������������������������������EVT, status = 0, attr_handle 42
+[0;32mI (3637834) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3640234) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3642654) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3645044) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3647454) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3649844) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3652244) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3654644) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3657044) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3659444) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3661854) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3664254) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3666654) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3669054) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3671464) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3673864) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3676264) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3678664) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3681064) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3683474) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3685874) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3688274) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3690674) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3693074) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3695474) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3697874) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3700274) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3702674) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3705074) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3707474) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3709874) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3712274) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3714674) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3717074) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3719474) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3721884) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3724284) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3726684) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3729094) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3731504) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3733914) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3736324) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3738724) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3741124) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3743534) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3745934) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3748334) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3750734) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3753134) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3755534) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3757944) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3760344) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3762744) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3765144) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3767544) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3769944) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3772364) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3774764) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3777164) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3779564) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3781974) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3784374) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3786774) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3789184) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3791594) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3794004) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3796424) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3798824) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3801234) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3803624) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3806034) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3808444) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3810844) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3813244) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3815654) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3818064) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3820484) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3822894) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3825304) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3827714) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3830124) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3832554) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3834954) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3837354) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3837594) SD_CARD: IMU raw data file size: 445500[0m
+[0;32mI (3837614) SD_CARD: IMU orientation file size: 297000[0m
+[0;32mI (3837624) SD_CARD: Files written.[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (3839374) SD_CARD: max_idx: 2254[0m
+[0;32mI (3839374) SD_CARD: IMU raw data filename: imu_raw_002255.bin[0m
+[0;32mI (3839374) SD_CARD: IMU raw data filepath: /sdcard/imu_raw_002255.bin[0m
+[0;32mI (3839374) SD_CARD: Writing to new raw data file[0m
+[1;31mE (3840604) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (3840804) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3843194) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (3843194) SD_CARD: orientation data filename: imu_orientation_002255.bin[0m
+[0;32mI (3843194) SD_CARD: orientation data filepath: /sdcard/imu_orientation_002255.bin[0m
+[0;32mI (3843204) SD_CARD: Writing to new orientation data file[0m
+[1;31mE (3843364) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (3844134) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (3846184) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (3847054) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (3847204) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3849604) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3852004) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3854414) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3856814) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3859224) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3861624) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3864034) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3866444) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3868844) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3871244) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3873644) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3876044) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3878444) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3880854) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3883254) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3885654) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3888064) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3890474) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3892884) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3895284) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3897684) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3900084) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3902484) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3904884) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3907284) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3909684) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3912084) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3914484) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3916884) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+����������������������������������������������������������������EVT, status = 0, attr_handle 42
+[0;32mI (3921694) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3924094) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3926494) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3928894) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3931294) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+����������������������������������������������������������������EVT, status = 0, attr_handle 42
+[0;32mI (3936094) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3938494) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3940894) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3943294) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3945694) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3948094) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3950494) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3952894) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3955304) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3957704) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3960104) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3962504) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3964904) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3967304) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3969704) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3972104) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3974504) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3976904) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3979304) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3981704) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3984104) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3986504) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3988914) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3991314) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3993724) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3996124) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (3998524) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4000924) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4003334) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4005734) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4008134) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4010534) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4012934) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4015334) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4017734) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4020134) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4022534) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4024934) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4027334) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4029734) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4032134) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4034534) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4036934) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4039344) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4041744) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4044144) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4046544) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4048944) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4051344) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4053744) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4056144) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4058544) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4060954) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4063354) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4065754) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4068164) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4070564) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4072964) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4075374) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4077774) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4080174) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4082584) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4084994) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4087394) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4089794) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4092194) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4094604) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4096114) SD_CARD: IMU raw data file size: 445500[0m
+[0;32mI (4096134) SD_CARD: IMU orientation file size: 297000[0m
+[0;32mI (4096144) SD_CARD: Files written.[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (4097474) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4097904) SD_CARD: max_idx: 2255[0m
+[0;32mI (4097904) SD_CARD: IMU raw data filename: imu_raw_002256.bin[0m
+[0;32mI (4097904) SD_CARD: IMU raw data filepath: /sdcard/imu_raw_002256.bin[0m
+[0;32mI (4097904) SD_CARD: Writing to new raw data file[0m
+[1;31mE (4098884) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (4100444) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (4101284) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (4101724) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (4101724) SD_CARD: orientation data filename: imu_orientation_002256.bin[0m
+[0;32mI (4101724) SD_CARD: orientation data filepath: /sdcard/imu_orientation_002256.bin[0m
+[0;32mI (4101734) SD_CARD: Writing to new orientation data file[0m
+[0;32mI (4103524) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (4104074) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (4105574) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (4106364) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4108764) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4111174) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4113574) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4115974) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4118374) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4120774) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4123174) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4125574) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4127974) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4130374) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4132774) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4135174) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4137604) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4139994) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4142394) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4144804) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4147204) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4149634) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4152034) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4154434) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4156834) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4159234) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4161644) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4164044) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4166444) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4168844) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4171244) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4173644) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4176044) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4178454) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4180854) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4183264) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4185674) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+����������������������������������������������������������������EVT, status = 0, attr_handle 42
+[0;32mI (4190474) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4192874) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4195274) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4197674) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4200074) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+����������������������������������������������������������������EVT, status = 0, attr_handle 42
+[0;32mI (4204874) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4207274) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4209684) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4212084) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4214484) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4216894) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4219294) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4221694) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4224094) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4226494) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4228894) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4231304) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4233694) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4236104) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4238504) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4240894) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4243294) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4245704) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4248104) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4250504) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4252914) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4255314) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4257714) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4260114) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4262514) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4264914) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4267314) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4269724) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4272124) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4274524) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4276924) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4279324) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4281734) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4284134) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4286534) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4288934) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4291334) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4293734) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4296134) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4298544) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4300944) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4303344) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4305744) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4308144) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4310544) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4312954) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4315354) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4317754) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4320154) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4322554) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4324954) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4327364) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4329774) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4332174) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4334574) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4336974) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4339374) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4341774) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4344174) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4346574) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4348974) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4351374) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4353774) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4354134) SD_CARD: IMU raw data file size: 445500[0m
+[0;32mI (4354154) SD_CARD: IMU orientation file size: 297000[0m
+[0;32mI (4354164) SD_CARD: Files written.[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (4355914) SD_CARD: max_idx: 2256[0m
+[0;32mI (4355914) SD_CARD: IMU raw data filename: imu_raw_002257.bin[0m
+[0;32mI (4355914) SD_CARD: IMU raw data filepath: /sdcard/imu_raw_002257.bin[0m
+[0;32mI (4355914) SD_CARD: Writing to new raw data file[0m
+[1;31mE (4357114) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (4357134) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (4359414) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (4359704) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (4359704) SD_CARD: orientation data filename: imu_orientation_002257.bin[0m
+[0;32mI (4359704) SD_CARD: orientation data filepath: /sdcard/imu_orientation_002257.bin[0m
+[0;32mI (4359704) SD_CARD: Writing to new orientation data file[0m
+[0;32mI (4359854) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (4362084) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (4363094) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4363554) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (4365614) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4368024) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4370434) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4372834) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4375234) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4377644) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4380044) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4382454) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4384854) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4387254) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4389654) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4392054) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4394474) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4396884) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4399284) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4401684) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4404084) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4406514) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4408914) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4411324) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4413724) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4416124) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4418544) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4420944) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4423344) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4425744) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4428144) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4430554) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4432954) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4435354) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4437754) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4440154) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4442564) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4444974) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4447394) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4449804) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4452204) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4454614) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4457024) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4459414) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4461824) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4464224) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4466634) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4469034) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4471454) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4473854) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4476244) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4478654) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4481064) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4483464) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4485864) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4488264) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4490674) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4493074) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4495474) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4497884) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4500284) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4502694) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4505094) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4507494) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4509894) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4512304) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4514714) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4517114) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4519514) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4521914) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4524314) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4526724) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4529124) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4531534) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4533934) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4536334) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4538744) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4541144) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4543544) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4545944) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4548354) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4550744) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4553154) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4555544) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4557954) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4560354) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4562764) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4565164) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4567564) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4569964) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4572364) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4574774) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4577174) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4579574) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4581974) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4584374) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4586774) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4589174) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4591574) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4593984) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4596374) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4598784) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4601194) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4603604) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4606004) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4608404) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4610804) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4612454) SD_CARD: IMU raw data file size: 445500[0m
+[0;32mI (4612474) SD_CARD: IMU orientation file size: 297000[0m
+[0;32mI (4612484) SD_CARD: Files written.[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (4613574) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4614254) SD_CARD: max_idx: 2257[0m
+[0;32mI (4614254) SD_CARD: IMU raw data filename: imu_raw_002258.bin[0m
+[0;32mI (4614254) SD_CARD: IMU raw data filepath: /sdcard/imu_raw_002258.bin[0m
+[0;32mI (4614254) SD_CARD: Writing to new raw data file[0m
+[1;31mE (4615074) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (4616234) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (4617124) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (4618044) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (4618044) SD_CARD: orientation data filename: imu_orientation_002258.bin[0m
+[0;32mI (4618044) SD_CARD: orientation data filepath: /sdcard/imu_orientation_002258.bin[0m
+[0;32mI (4618054) SD_CARD: Writing to new orientation data file[0m
+[0;32mI (4618784) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (4619304) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (4621274) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (4621414) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (4621874) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (4623704) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4626104) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4628504) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4630904) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4633304) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4635704) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4638104) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4640524) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4642924) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4645324) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4647724) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4650134) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4652534) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4654934) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4657334) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4659754) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4662164) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4664574) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4666974) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4669374) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4671774) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4674174) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4676574) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4678984) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4681394) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4683794) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4686194) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4688594) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4690994) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4693394) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4695794) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4698194) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4700604) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4703014) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4705414) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4707814) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4710214) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4712614) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4715014) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4717424) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4719844) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4722254) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4724664) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4727064) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4729464) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4731864) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4734264) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4736664) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4739074) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4741474) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4743874) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4746284) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4748684) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4751084) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4753484) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4755904) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4758304) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4760704) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4763104) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4765504) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4767904) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4770314) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4772714) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4775124) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4777514) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4779924) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4782324) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4784724) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4787124) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4789524) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4791924) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4794324) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4796724) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4799134) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4801534) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4803934) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4806344) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4808744) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4811144) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4813544) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4815944) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4818344) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4820744) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4823144) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4825544) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4827944) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4830354) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4832754) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4835154) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4837554) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4839964) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4842364) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4844774) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4847174) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4849574) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4851974) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4854374) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4856774) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4859174) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4861574) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4865164) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4867574) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4869974) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4872374) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4872474) SD_CARD: IMU raw data file size: 441936[0m
+[0;32mI (4872494) SD_CARD: IMU orientation file size: 294624[0m
+[0;32mI (4872504) SD_CARD: Files written.[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (4874154) SD_CARD: max_idx: 2258[0m
+[0;32mI (4874154) SD_CARD: IMU raw data filename: imu_raw_002259.bin[0m
+[0;32mI (4874154) SD_CARD: IMU raw data filepath: /sdcard/imu_raw_002259.bin[0m
+[0;32mI (4874164) SD_CARD: Writing to new raw data file[0m
+[1;31mE (4875044) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (4875324) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (4877084) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (4877734) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4877814) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (4877814) SD_CARD: orientation data filename: imu_orientation_002259.bin[0m
+[0;32mI (4877814) SD_CARD: orientation data filepath: /sdcard/imu_orientation_002259.bin[0m
+[0;32mI (4877824) SD_CARD: Writing to new orientation data file[0m
+[1;31mE (4879114) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (4880154) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (4881144) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (4881494) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (4882554) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4884954) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4887354) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4889754) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4892154) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4894554) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4896954) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4899354) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4901764) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4904164) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4906564) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4908964) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4911374) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4913774) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4916174) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4918574) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4920974) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4923374) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4925774) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4928174) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4930574) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4932984) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4935384) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4937794) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+����������������������������������������������������������������EVT, status = 0, attr_handle 42
+[0;32mI (4942594) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4944994) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4947394) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4949794) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4952194) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4954594) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4956994) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4959394) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4961794) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4964194) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4966594) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4968994) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4971394) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4973794) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4976194) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4978594) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4980994) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4983394) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4985794) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4988194) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4990594) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4992994) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4995394) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (4997794) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5000194) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5002604) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5005014) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5007414) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5009814) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5012214) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5014614) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5017014) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5019414) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5021814) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5024214) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5026614) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5029014) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5031414) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5033824) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5036224) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5038634) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5041044) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5043454) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5045874) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5048284) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5050684) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5053084) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5055484) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5057884) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5060284) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5062684) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5065094) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5067494) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5069904) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5072314) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5074724) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5077134) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5079544) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5081964) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5084374) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5086784) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5089204) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5091604) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5094004) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5096404) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5098814) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5101214) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5103634) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5106024) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5108424) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5110824) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5113224) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5115634) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5118034) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5120444) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5122844) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5125244) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5127644) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5130054) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5131034) SD_CARD: IMU raw data file size: 445500[0m
+[0;32mI (5131054) SD_CARD: IMU orientation file size: 297000[0m
+[0;32mI (5131064) SD_CARD: Files written.[0m
+Listing files in directory: /sdcard
+-----------------------------------
+[0;32mI (5132814) SD_CARD: max_idx: 2259[0m
+[0;32mI (5132814) SD_CARD: IMU raw data filename: imu_raw_002260.bin[0m
+[0;32mI (5132814) SD_CARD: IMU raw data filepath: /sdcard/imu_raw_002260.bin[0m
+[0;32mI (5132824) SD_CARD: Writing to new raw data file[0m
+[0;32mI (5133064) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (5133684) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (5135504) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (5135744) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (5136694) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (5136694) SD_CARD: orientation data filename: imu_orientation_002260.bin[0m
+[0;32mI (5136694) SD_CARD: orientation data filepath: /sdcard/imu_orientation_002260.bin[0m
+[0;32mI (5136704) SD_CARD: Writing to new orientation data file[0m
+[1;31mE (5137794) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (5137954) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[1;31mE (5139834) SENSOR_FUSION: send unified IMU data to SD card fail[0m
+[0;32mI (5140374) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5140584) SD_CARD: FILE IS NOT NULL[0m
+[0;32mI (5142774) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5145174) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5147574) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5149974) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5152374) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5154774) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5157174) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5159574) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5161984) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5164394) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5166794) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5169194) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5171594) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5173994) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5176394) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5178794) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5181194) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5183594) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5185994) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5188394) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5190794) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5193194) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5195604) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5198004) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5200404) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5202804) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5205204) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5207604) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5210004) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5212404) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+����������������������������������������������������������������EVT, status = 0, attr_handle 42
+[0;32mI (5217214) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5219614) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5222024) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5224424) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+[0;32mI (5226834) BLE: ESP_GATTS_CONF_EVT, status = 0, attr_handle 42[0m
+but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig
+[0;32mI (510) spi_flash: detected chip: generic[0m
+[0;32mI (514) spi_flash: flash io: dio[0m
+[0;33mW (517) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (530) coexist: coex firmware version: 093e3d2[0m
+[0;32mI (534) main_task: Started on CPU0[0m
+[0;32mI (544) main_task: Calling app_main()[0m
+[0;32mI (544) button: IoT Button Version: 4.2.0[0m
+[0;32mI (554) MAIN: I2C initialized successfully[0m
+[0;32mI (554) LSM6DS3: WHO_AM_I = 69[0m
+[0;32mI (564) MAX3010I (564) HEAP: start heap free block: 227104 bytes, Largest block: 110592 bytes[0m
+[0;32mI (574) BLE: free heap: 227104[0m
+
+[0;32mI (574) BTDM_INIT: BT controller compile version [045a658][0m
+[0;32mI (574) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (574) BTDM_INIT: Bluetooth MAC: d8:13:2a:7d:69:0a[0m
+[0;32mI (584) phy_init: phy_version 4863,a3a4459,Oct 28 2025,14:30:06[0m
+[0;32mI (674) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(0)[0m
+[0;33mW (1014) BT_BTM: BTM_BleWriteAdvData, Partial data write into ADV[0m
+[0;33mW (1014) BT_BTM: BTM_BleWriteScanRsp, Partial data write into ADV[0m
+[0;32mI (1014) HEAP: ble init heap free block: 201924 bytes, Largest block: 110592 bytes[0m
+[0;32mI (1024) BLE: create attribute table successfully, the number handle = 4[0m
+[0;32mI (1024) BLE: create attribute table successfully, the number handle = 4[0m
+[0;32mI (1034) BLE: create attribute table successfully, the number handle = 3[0m
+[0;32mI (1034) BLE: Advertising data set, status 0[0m
+[0;32mI (1044) BLE: Scan response data set, status 0[0m
+[0;32mI (1044) BLE: SERVICE_START_EVT, status 0, service_handle 40[0m
+[0;32mI (1054) BLE: SERVICE_START_EVT, status 0, service_handle 44[0m
+[0;32mI (1054) BLE: SERVICE_START_EVT, status 0, service_handle 48[0m
+[0;32mI (1064) BLE: Advertising start successfully[0m
+[0;32mI (1064) BLE: free heap: 200496[0m
+
+[0;32mI (1064) SD_CARD: Initializing SD card[0m
+[0;32mI (1074) SD_CARD: Using SPI peripheral[0m
+[0;32mI (1074) SD_CARD: Mounting filesystem[0m
+[0;32mI (1204) sdspi_transaction: cmd=5, R1 response: command not supported[0m
+[0;32mI (1474) SD_CARD: Filesystem mounted[0m
+Name: ACLCE
+Type: SDHC
+Speed: 4.00 MHz (limit: 4.00 MHz)
+Size: 60906MB
+CSD: ver=2, sector_size=512, capacity=124735488 read_bl_len=9
+SSR: bus_width=1
+[0;32mI (1474) SD_CARD: SD card initialized[0m
+[0;32mI (1484) HEAP: sdcard init heap free block: 192892 bytes, Largest block: 110592 bytes[0m
+[0;32mI (1484) MAIN: MAX30102 part ID = 0 15 15[0m
+
+[0;32mI (1494) MAIN: Starting all tasks![0m
+[0;32mI (1504) BLE: ble task started[0m
+[0;32mI (1594) HAPTICS_TAG: next[0m

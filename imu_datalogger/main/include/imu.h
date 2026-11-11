@@ -35,7 +35,7 @@ typedef struct __attribute__((packed))
 } quaternion_t;
 
 /* orientation data union */
-typedef union __attribute__((packed))
+typedef union __attribute__((packed)) imu_orientation_data_t
 {
     euler_angle_t euler_angle;
     quaternion_t quaternion;

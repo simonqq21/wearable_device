@@ -153,11 +153,11 @@ void task_sensor_fusion(void *params)
                                                                                  imu_unified_data.imu_raw_data.timestamp - prev_timestamp,
                                                                                  ALPHA);
 
-                    ESP_LOGI(SENSOR_FUSION_TAG, "cf %lld %.2f %.2f %.2f",
-                             imu_unified_data.imu_orientation_data.euler_angle.timestamp,
-                             imu_unified_data.imu_orientation_data.euler_angle.x,
-                             imu_unified_data.imu_orientation_data.euler_angle.y,
-                             imu_unified_data.imu_orientation_data.euler_angle.z);
+                    // ESP_LOGI(SENSOR_FUSION_TAG, "cf %lld %.2f %.2f %.2f",
+                    //          imu_unified_data.imu_orientation_data.euler_angle.timestamp,
+                    //          imu_unified_data.imu_orientation_data.euler_angle.x,
+                    //          imu_unified_data.imu_orientation_data.euler_angle.y,
+                    //          imu_unified_data.imu_orientation_data.euler_angle.z);
 
                     // /* Fusion AHRS sensor fusion */
                     // // Read sensors (replace with actual sensor data)
@@ -333,11 +333,11 @@ void task_sensor_fusion(void *params)
                               &heart_rate_unified_data.heart_rate_raw_data,
                               20 / portTICK_PERIOD_MS) == pdTRUE)
             {
-                hr_queue_count = uxQueueMessagesWaiting(queue_heart_rate_sensor);
-                ESP_LOGI(SENSOR_FUSION_TAG, "HR %d\n", hr_queue_count);
-                ESP_LOGI(SENSOR_FUSION_TAG, "PPG red %d IR %d",
-                         heart_rate_unified_data.heart_rate_raw_data.red_val,
-                         heart_rate_unified_data.heart_rate_raw_data.ir_val);
+                // hr_queue_count = uxQueueMessagesWaiting(queue_heart_rate_sensor);
+                // ESP_LOGI(SENSOR_FUSION_TAG, "HR %d\n", hr_queue_count);
+                // ESP_LOGI(SENSOR_FUSION_TAG, "PPG red %d IR %d",
+                //          heart_rate_unified_data.heart_rate_raw_data.red_val,
+                //          heart_rate_unified_data.heart_rate_raw_data.ir_val);
 
                 /* perform heart rate sensor fusion */
 

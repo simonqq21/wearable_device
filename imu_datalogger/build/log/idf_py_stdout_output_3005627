@@ -1,0 +1,40 @@
+Command: ninja all
+[1/9] Performing build step for 'bootloader'
+[1/1] cd /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader && /home/simonque/.espressif/python_env/idf6.1_py3.12_env/bin/python /home/simonque/Documents/code/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/bootloader/bootloader.bin
+Bootloader binary size 0x6610 bytes. 0x9f0 bytes (9%) free.
+[2/9] No install step for 'bootloader'
+[3/9] Completed 'bootloader'
+[4/9] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/src/TaskBLE.c.obj
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/TaskBLE.c: In function 'task_ble_streaming':
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/TaskBLE.c:1160:19: warning: unused variable 'queue_haptics_BLE' [-Wunused-variable]
+ 1160 |     QueueHandle_t queue_haptics_BLE = params_task_ble->queue_haptics_BLE;
+      |                   ^~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/TaskBLE.c:1159:19: warning: unused variable 'queue_heart_rate_BLE' [-Wunused-variable]
+ 1159 |     QueueHandle_t queue_heart_rate_BLE = params_task_ble->queue_heart_rate_BLE;
+      |                   ^~~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/TaskBLE.c:1152:14: warning: unused variable 'heart_rate_data' [-Wunused-variable]
+ 1152 |     uint16_t heart_rate_data;
+      |              ^~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/TaskBLE.c: At top level:
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/TaskBLE.c:321:16: warning: 'char_prop_read_write_indicate' defined but not used [-Wunused-variable]
+  321 | static uint8_t char_prop_read_write_indicate = ESP_GATT_CHAR_PROP_BIT_WRITE | ESP_GATT_CHAR_PROP_BIT_READ | ESP_GATT_CHAR_PROP_BIT_INDICATE;
+      |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/TaskBLE.c:319:16: warning: 'char_prop_read_write' defined but not used [-Wunused-variable]
+  319 | static uint8_t char_prop_read_write = ESP_GATT_CHAR_PROP_BIT_READ | ESP_GATT_CHAR_PROP_BIT_WRITE;
+      |                ^~~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/TaskBLE.c:315:16: warning: 'char_prop_read' defined but not used [-Wunused-variable]
+  315 | static uint8_t char_prop_read = ESP_GATT_CHAR_PROP_BIT_READ;
+      |                ^~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/TaskBLE.c:214:47: warning: 'haptics_command_custom' defined but not used [-Wunused-variable]
+  214 | static haptics_command_play_custom_sequence_t haptics_command_custom;
+      |                                               ^~~~~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/TaskBLE.c:209:16: warning: 'body_sensor_location' defined but not used [-Wunused-variable]
+  209 | static uint8_t body_sensor_location = 0;
+      |                ^~~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/TaskBLE.c:122:16: warning: 'HAPTICS_SEQUENCE_CHARACTERISTIC_UUID' defined but not used [-Wunused-variable]
+  122 | static uint8_t HAPTICS_SEQUENCE_CHARACTERISTIC_UUID[] = {
+      |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/main/src/TaskBLE.c:57:17: warning: 'BODY_SENSOR_LOCATION_CHARACTERISTIC_UUID' defined but not used [-Wunused-variable]
+   57 | static uint16_t BODY_SENSOR_LOCATION_CHARACTERISTIC_UUID = 0x2A38;
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[5/9] Linking C static library esp-idf/main/libmain.a
