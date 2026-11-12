@@ -2,14 +2,15 @@
 #define COMMON_H
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
 #include <math.h>
 #include <dirent.h>
 #include <inttypes.h>
-#include <string.h>
 #include <sys/unistd.h>
 #include <sys/stat.h>
 #include <stdatomic.h>
-#include <stdbool.h>
 
 #include <freertos/FreeRTOS.h>
 #include <freertos/task.h>
@@ -27,7 +28,7 @@
 #include "driver/gpio.h"
 #include "driver/uart.h"
 #include "nvs_flash.h"
-
+#include "esp_littlefs.h"
 #include "esp_vfs_fat.h"
 #include "sdmmc_cmd.h"
 #include "config.h"

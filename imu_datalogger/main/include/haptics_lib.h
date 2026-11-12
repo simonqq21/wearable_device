@@ -1,16 +1,7 @@
 #ifndef HAPTIC_LIB_H
 #define HAPTIC_LIB_H
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <inttypes.h>
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "freertos/queue.h"
-#include "driver/gpio.h"
-#include "esp_timer.h"
-#include "esp_log.h"
+#include "common.h"
 
 #define HAPTICS_TAG "HAPTICS_TAG"
 
@@ -64,7 +55,7 @@ typedef struct
 typedef struct
 {
     uint8_t len;
-    haptic_pulse_t haptic_sequence[];
+    haptic_pulse_t *haptic_sequence;
 } haptic_sequence_t;
 
 /**
@@ -189,16 +180,30 @@ void haptics_load_pulse_seq(haptic_actuator_array_t *haptics, haptic_pulse_t *pu
 
 /**
  * @brief stop playing the haptic sequence it is currently playing
+ *
+ * @param haptics pointer to haptic actuator array
  */
 void haptics_stop(haptic_actuator_array_t *haptics);
 
 /**
  * @brief check if haptic actuators are playing a sequence
+ *
+ * @param haptics pointer to haptic actuator array
  */
 uint8_t haptics_busy(haptic_actuator_array_t *haptics);
 
 /**
+ * @brief play a haptic sequence file from the built-in flash
+ *
+ * @param haptics pointer to haptic actuator array
+ * @param filename filename of the haptic sequence binary file in littlefs
+ */
+void haptics_play_file(haptic_actuator_array_t *haptics, char *filename);
+
+/**
  * @brief haptic actuator loop
+ *
+ * @param haptics pointer to haptic actuator array
  */
 void haptics_ISR_callback(haptic_actuator_array_t *haptics);
 

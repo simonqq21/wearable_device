@@ -153,6 +153,42 @@ uint8_t haptics_busy(haptic_actuator_array_t *haptics)
     }
 }
 
+void haptics_play_file(haptic_actuator_array_t *haptics, char *filename)
+{
+    haptic_sequence_t haptic_sequence;
+
+    /* open file */
+    FILE *f = fopen(filename, "rb");
+    /* check if file exists */
+    if (!f)
+    {
+        ESP_LOGE(HAPTICS_TAG, "haptics file doesn't exist.");
+        return;
+    }
+    /* read the number of haptic pulses */
+    fread(&haptic_sequence.len, 1, 1, f);
+    ESP_LOGI(HAPTICS_TAG, "len %d", haptic_sequence.len);
+    if (haptic_sequence.len == 0)
+    {
+        ESP_LOGE(HAPTICS_TAG, "len 0");
+    }
+    /* allocate memory for the haptic pulses */
+    ESP_LOGI(HAPTICS_TAG, "%d", sizeof(haptic_pulse_t));
+    haptic_sequence.haptic_sequence = malloc(sizeof(haptic_pulse_t) * haptic_sequence.len);
+
+    /* read */
+    fread(haptic_sequence.haptic_sequence, sizeof(haptic_pulse_t), haptic_sequence.len, f);
+    /* play the haptic sequence */
+    haptics_load_pulse_seq(haptics,
+                           haptic_sequence.haptic_sequence,
+                           haptic_sequence.len);
+
+    /* free allocated memory */
+    ESP_LOGI(HAPTICS_TAG, "free");
+    fclose(f);
+    free(haptic_sequence.haptic_sequence);
+}
+
 void haptics_ISR_callback(haptic_actuator_array_t *haptics)
 {
     haptics->time = esp_timer_get_time() / 1000;

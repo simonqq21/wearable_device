@@ -1,7 +1,7 @@
 import struct, zlib 
 from pathlib import Path
 
-dest_path = Path("haptics_lib")
+dest_path = Path("littlefs_data/haptics")
 NUM_CHANNELS = 4
 HAPTIC_SEQUENCE_FILE_EXTENSION = ".bin"
 
@@ -122,8 +122,20 @@ if __name__ == "__main__":
                                         values = (0,0,0,0)),
                         ])
     hs_2 = HapticSequence(filename=f"point01{HAPTIC_SEQUENCE_FILE_EXTENSION}",
-                        seq_len="4",
+                        seq_len="8",
                         haptic_sequence=[
+                            HapticPulse(duration_ms=250,
+                                        fade_to_ms=0,
+                                        values = (255,255,255,255)),
+                            HapticPulse(duration_ms=250,
+                                        fade_to_ms=0,
+                                        values = (0,0,0,0)),
+                            HapticPulse(duration_ms=250,
+                                        fade_to_ms=0,
+                                        values = (255,255,255,255)),
+                            HapticPulse(duration_ms=250,
+                                        fade_to_ms=0,
+                                        values = (0,0,0,0)),
                             HapticPulse(duration_ms=250,
                                         fade_to_ms=0,
                                         values = (255,255,255,255)),

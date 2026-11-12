@@ -1138,6 +1138,9 @@
 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/esp-idf/joltwallet__littlefs/CMakeFiles/install/local.dir
 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/esp-idf/joltwallet__littlefs/CMakeFiles/install/strip.dir
 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/esp-idf/main/CMakeFiles/__idf_main.dir
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/esp-idf/main/CMakeFiles/littlefs_storage_bin.dir
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/esp-idf/main/CMakeFiles/storage-flash.dir
+/home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/esp-idf/main/CMakeFiles/encrypted-storage-flash.dir
 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/esp-idf/main/CMakeFiles/edit_cache.dir
 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/esp-idf/main/CMakeFiles/rebuild_cache.dir
 /home/simonque/Documents/code/esp-idf-projects/wearable_device/imu_datalogger/build/esp-idf/main/CMakeFiles/list_install_components.dir

@@ -115,11 +115,21 @@ static void haptics_timer_callback(void *arg)
 // main
 void app_main(void)
 {
-    // initialize GPIO (simple inputs and outputs)
+    /* initialize GPIO (simple inputs and outputs) */
     gpio_init();
 
-    // initialize NVS
+    /* initialize NVS */
     nvs_init();
+
+    /* initialize littleFS for the internal flash */
+    esp_vfs_littlefs_conf_t littlefs_conf = {
+        .base_path = "/littlefs",
+        .partition_label = "storage",
+        .format_if_mount_failed = false,
+        .dont_mount = false,
+        .read_only = true,
+    };
+    ESP_ERROR_CHECK(esp_vfs_littlefs_register(&littlefs_conf));
 
     /* initialize the i2c bus */
     i2c_master_init(&bus_handle);
@@ -351,6 +361,16 @@ void app_main(void)
                             1,
                             &task_handle_haptics,
                             0);
+
+    /* test play haptics sequence from littlefs */
+    haptics_play_file(&haptics_hw, "/littlefs/haptics/point01.bin");
+    vTaskDelay(4000 / portTICK_PERIOD_MS);
+    haptics_play_file(&haptics_hw, "/littlefs/haptics/start.bin");
+    vTaskDelay(2000 / portTICK_PERIOD_MS);
+    haptics_play_file(&haptics_hw, "/littlefs/haptics/left.bin");
+    vTaskDelay(2000 / portTICK_PERIOD_MS);
+    haptics_play_file(&haptics_hw, "/littlefs/haptics/right.bin");
+    vTaskDelay(2000 / portTICK_PERIOD_MS);
 
     while (1)
     {

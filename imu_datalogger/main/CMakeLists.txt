@@ -21,3 +21,5 @@ idf_component_register(SRCS "imu_datalogger.c"
 "src/TaskSDCard.c"
                     INCLUDE_DIRS "." 
                     "./include")
+
+littlefs_create_partition_image(storage haptics_littlefs/littlefs_data FLASH_IN_PROJECT)
